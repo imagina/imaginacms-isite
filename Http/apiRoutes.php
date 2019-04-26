@@ -3,7 +3,7 @@
 use Illuminate\Routing\Router;
 /** @var Router $router */
 
-$router->group(['prefix' =>'/isite/v1'/*,'middleware' => ['auth:api']*/], function (Router $router) {
+$router->group(['prefix' =>'/isite','middleware' => ['auth:api']], function (Router $router) {
 
   $router->get('/', [
     'as' => 'api.isite.index',

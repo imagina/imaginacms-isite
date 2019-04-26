@@ -1,12 +1,13 @@
 {
     "name": "imagina/isite",
-    "description": "site custom config",
+    "description": "custom settings of the site",
     "type": "asgard-module",
     "license": "MIT",
     "require": {
         "php": ">=7.0.0",
         "composer/installers": "~1.0",
-        "idavoll/core-module": "~3.0"
+        "idavoll/core-module": "~3.0",
+        "imagina/asgardcms-ihelpers":">=3.0.12"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.0",
