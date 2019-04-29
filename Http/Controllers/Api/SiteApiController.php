@@ -65,7 +65,8 @@ class SiteApiController extends BaseApiController
       $allowedSettings = config('asgard.isite.config.allowedSettings');
       $imageSettings = config('asgard.isite.config.imageSettings');
       $this->saveImages($data,$allowedSettings,$imageSettings);
-      
+  
+      $newData = [];
       foreach ($data as $key => $val)
         if(in_array($key,$allowedSettings))
           $newData[$key] = $val;
