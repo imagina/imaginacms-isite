@@ -5,7 +5,7 @@ namespace Modules\Isite\Transformers;
 use Illuminate\Http\Resources\Json\Resource;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Modules\Ihelpers\Transformers\BaseApiTransformer;
-
+use Illuminate\Support\Str;
 
 class SiteTransformer extends BaseApiTransformer
 {
