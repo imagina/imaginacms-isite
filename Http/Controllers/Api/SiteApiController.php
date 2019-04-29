@@ -15,7 +15,7 @@ class SiteApiController extends BaseApiController
   /**
    * @var PaypalconfigRepository
    */
-
+  
   private $setting;
   public function __construct(SettingRepository $setting)
   {
@@ -57,15 +57,15 @@ class SiteApiController extends BaseApiController
   {
     \DB::beginTransaction(); //DB Transaction
     try {
-  
+      
       $data = $request->input('attributes');
-  
-  
-  
+      
+      
+      
       $allowedSettings = config('asgard.isite.config.allowedSettings');
       $imageSettings = config('asgard.isite.config.imageSettings');
       $this->saveImages($data,$allowedSettings,$imageSettings);
-
+      
       foreach ($data as $key => $val)
         if(in_array($key,$allowedSettings))
           $newData[$key] = $val;
@@ -87,18 +87,23 @@ class SiteApiController extends BaseApiController
   }
   
   private function saveImages(&$data,$allowedSettings,$imageSettings){
-      foreach($data as $key=>$value){
-        if (is_array($value)){
-          $this->saveImages($value,$allowedSettings,$imageSettings);
-        }else{
-          if(in_array($key,$allowedSettings) && in_array($key,$imageSettings)){
-            $requestimage = $data[$key];
-            if (($requestimage == NULL) || (!empty($requestimage)))
-              $data[$key] = saveImage($requestimage, "assets/isite/".$key.".jpg");
+    foreach($data as $key=>$value){
+      if (is_array($value)){
+        $this->saveImages($value,$allowedSettings,$imageSettings);
+      }else{
+        if(in_array($key,$allowedSettings) && in_array($key,$imageSettings)){
+          $requestimage = $data[$key];
+          if (($requestimage == NULL) || (!empty($requestimage))) {
+            //setting end file (format)
+            $endFile = '.jpg';
+            if(starts_with($requestimage, 'data:image/png;'))
+              $endFile = '.png';
+            $data[$key] = saveImage($requestimage, "assets/isite/" . $key . $endFile);
           }
         }
-      
       }
+      
+    }
     
   }
   
