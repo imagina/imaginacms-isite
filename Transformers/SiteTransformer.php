@@ -22,13 +22,13 @@ class SiteTransformer extends BaseApiTransformer
           $path = '/assets/isite/';
           //Get all files from folder of Isite
           $allFiles =  \Storage::disk('publicmedia')->allFiles($path);
-        
+          
           
           //Find files with same name
           foreach($allFiles as $key => &$file){
             if(Str::contains($file, $this->$val))
               $item[$val] = url(!empty($this->$val) ? $this->$val : '/modules/isite/img/defaultLogo.jpg') .'?'. uniqid();
-          
+            
           }
           
           

@@ -37,24 +37,7 @@ class RegisterIsiteSidebar implements \Maatwebsite\Sidebar\SidebarExtender
     public function extendWith(Menu $menu)
     {
         $menu->group(trans('core::sidebar.content'), function (Group $group) {
-            $group->item(trans('isite::isites.title.isites'), function (Item $item) {
-                $item->icon('fa fa-copy');
-                $item->weight(10);
-                $item->authorize(
-                     /* append */
-                );
-                $item->item(trans('isite::sites.title.sites'), function (Item $item) {
-                    $item->icon('fa fa-copy');
-                    $item->weight(0);
-                    $item->append('admin.isite.site.create');
-                    $item->route('admin.isite.site.index');
-                    $item->authorize(
-                        $this->auth->hasAccess('isite.sites.index')
-                    );
-                });
-// append
-
-            });
+        
         });
 
         return $menu;

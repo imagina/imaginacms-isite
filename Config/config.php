@@ -3,20 +3,14 @@
 return [
     'name' => 'Isite',
   
-    'allowedSettings' => [
-      "phones",
-      "addresses",
-      "emails",
-      "socialNetworks",
-      "logo1",
-      "logo2",
-      "favicon",
-      "branchOffices"
-    ],
   
-    'imageSettings' => [
-      "logo1",
-      "logo2",
-      "favicon"
-    ]
+    'modulesToManagePermissions' => [
+      "Iprofile",
+      "Media",
+      "Isite",
+      "Slider",
+      "Core",
+      "Iplaces",
+      "Dashboard"
+    ],
 ];

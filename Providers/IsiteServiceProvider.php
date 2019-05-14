@@ -38,9 +38,9 @@ class IsiteServiceProvider extends ServiceProvider
     public function boot()
     {
       $this->publishConfig('isite', 'config');
-        $this->publishConfig('isite', 'permissions');
-
-        $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+      $this->publishConfig('isite', 'permissions');
+      $this->publishConfig('isite', 'settings');
+      $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }
 
     /**
@@ -55,19 +55,7 @@ class IsiteServiceProvider extends ServiceProvider
 
     private function registerBindings()
     {
-        $this->app->bind(
-            'Modules\Isite\Repositories\SiteRepository',
-            function () {
-                $repository = new \Modules\Isite\Repositories\Eloquent\EloquentSiteRepository(new \Modules\Isite\Entities\Site());
-
-                if (! config('app.cache')) {
-                    return $repository;
-                }
-
-                return new \Modules\Isite\Repositories\Cache\CacheSiteDecorator($repository);
-            }
-        );
-// add bindings
+    
 
     }
 }
