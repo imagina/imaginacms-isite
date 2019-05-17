@@ -217,10 +217,16 @@ class SettingApiController extends BaseApiController
             $setting['value'] = false;
     
           // type setting standard based in view param
-          if (Str::contains($setting['view'], 'file'))
+          if (Str::contains($setting['view'], 'file')){
             $setting['type'] = 'file';
-  
-  
+            if(!isset($setting['media'])){
+              $setting["media"] = [
+                'mimeType' => 'image/jpeg',
+                'path' => url('modules/isite/img/defaultLogo.jpg')
+              ];
+            }
+          }
+          
           // type setting standard based in view param
           if (Str::contains($setting['view'], 'color'))
             $setting['type'] = 'color';

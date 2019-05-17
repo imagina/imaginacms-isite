@@ -24,13 +24,7 @@ class SettingTransformer extends BaseApiTransformer
 
     ];
     
-    if($this->isMedia()){
-      $media = $this->files()->where('zone', $this->name)->first()->path_string ?? null;
-
-      if ($media === null)
-        $media = url('modules/isite/img/defaultLogo.jpg');
-      $data["path"] = $media;
-    }
+    
   
     $filter = json_decode($request->filter);
   

@@ -32,12 +32,16 @@ return [
     'description'  => 'isite::common.settings.brandTertiary',
     'view'         => 'isite::admin.fields.color',
   ],
-  'brandNeutral' => [
-    'description'  => 'isite::common.settings.brandNeutral',
-    'view'         => 'isite::admin.fields.color',
-  ],
   'brandPositive' => [
     'description'  => 'isite::common.settings.brandPositive',
+    'view'         => 'isite::admin.fields.color',
+  ],
+  'brandNegative' => [
+    'description'  => 'isite::common.settings.brandNegative',
+    'view'         => 'isite::admin.fields.color',
+  ],
+  'brandFaded' => [
+    'description'  => 'isite::common.settings.brandFaded',
     'view'         => 'isite::admin.fields.color',
   ],
   'brandInfo' => [
@@ -48,58 +52,34 @@ return [
     'description'  => 'isite::common.settings.brandWarning',
     'view'         => 'isite::admin.fields.color',
   ],
-  'brandLigth' => [
-    'description'  => 'isite::common.settings.brandLigth',
+  'brandLight' => [
+    'description'  => 'isite::common.settings.brandLight',
     'view'         => 'isite::admin.fields.color',
   ],
   'brandDark' => [
     'description'  => 'isite::common.settings.brandDark',
     'view'         => 'isite::admin.fields.color',
   ],
-  'brandReservation' => [
-    'description'  => 'isite::common.settings.brandReservation',
-    'view'         => 'isite::admin.fields.color',
-  ],
-  'brandIndex' => [
-    'description'  => 'isite::common.settings.brandIndex',
-    'view'         => 'isite::admin.fields.color',
-  ],
-  'brandTextSecondary' => [
-    'description'  => 'isite::common.settings.brandTextSecondary',
-    'view'         => 'isite::admin.fields.color',
-  ],
-  'brandShadowColor' => [
-    'description'  => 'isite::common.settings.brandShadowColor',
-    'view'         => 'isite::admin.fields.color',
-  ],
-  'brandProgressTrack' => [
-    'description'  => 'isite::common.settings.brandProgressTrack',
-    'view'         => 'isite::admin.fields.color',
-  ],
-  'brandItemSide' => [
-    'description'  => 'isite::common.settings.brandItemSide',
-    'view'         => 'isite::admin.fields.color',
-  ],
   
   
   'phones' => [
     'description'  => 'isite::common.settings.phones',
-    'view'         => 'isite::admin.fields.text-multi',
+    'view'         => 'text-multi',
     'input'         => 'number'
   ],
   'addresses' => [
     'description'  => 'isite::common.settings.addresses',
-    'view'         => 'isite::admin.fields.text-multi',
+    'view'         => 'text-multi',
     'input'         => 'text'
   ],
   'emails' => [
     'description'  => 'isite::common.settings.emails',
-    'view'         => 'isite::admin.fields.text-multi',
+    'view'         => 'text-multi',
     'input'         => 'text'
   ],
   'socialNetworks' => [
     'description'  => 'isite::common.settings.socialNetworks',
-    'view'         => 'isite::admin.fields.text-multi-with-options',
+    'view'         => 'text-multi-with-options',
     'options'      => [
       [
         'label' => 'Facebook',
@@ -125,15 +105,15 @@ return [
         'label' => 'Skype',
         'value' => 'skype'
       ]
-      
+    
     ]
   ],
   
-  /*
   'branchOffices' => [
     'description'  => 'isite::common.settings.branchOffices',
-    'view'         => 'color',
-  ],*/
+    'view'         => 'text-multi',
+    'input'         => 'text'
+  ]
 
 
 

@@ -148,10 +148,27 @@ class SiteApiController extends BaseApiController
     foreach ($dbSettings as $keyModule => &$module){
       foreach ($module as $keySetting => &$setting){
         $keyReplaced = Str::replaceFirst(strtolower($keyModule) . '::', '', $keySetting);
+  
+        if($setting->isMedia()){
+          $media = $setting->files()->where('zone', $setting->name)->first() ?? null;
+    
+          if ($media === null)
+            $setting["media"] = [
+              'mimeType' => 'image/jpeg',
+              'path' => url('modules/isite/img/defaultLogo.jpg')
+            ];
+          else
+            $setting["media"] = [
+              'mimeType' => $media->mimetype,
+              'path' => $media->path_string
+            ];
+    
+        }
         
         if(isset($mergedSettings[$keyModule][$keyReplaced]))
           // merging data on DB with config setting
           $setting = array_merge($mergedSettings[$keyModule][$keyReplaced],$setting->toArray());
+       
   
         // decode plain value if is object or array
         $plainValue = $setting['plainValue'];
@@ -185,8 +202,16 @@ class SiteApiController extends BaseApiController
           $setting['value'] = false;
         
         // type setting standard based in view param
-        if( Str::contains($setting['view'], 'file') )
+        if( Str::contains($setting['view'], 'file') ){
           $setting['type'] = 'file';
+          if(!isset($setting['media'])){
+            $setting["media"] = [
+              'mimeType' => 'image/jpeg',
+              'path' => url('modules/isite/img/defaultLogo.jpg')
+            ];
+          }
+        }
+        
   
         // type setting standard based in view param
         if( Str::contains($setting['view'], 'file-multi') )
@@ -203,6 +228,8 @@ class SiteApiController extends BaseApiController
         // type setting standard based in view param
         if (Str::contains($setting['view'], 'text-multi-with-options'))
           $setting['type'] = 'text-multi-with-options';
+  
+        
         
       }
     }

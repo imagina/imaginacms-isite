@@ -27,6 +27,12 @@
             "email": "n.widart@gmail.com"
         }
     ],
+    "scripts": {
+        "post-install-cmd": [
+            "php artisan module:seed isite"
+        ]
+      
+    },
     "extra": {
         "laravel": {
             "providers": [
