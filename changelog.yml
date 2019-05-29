@@ -1,0 +1,5 @@
+url: https://github.com/imagina/asgardcms-iblog
+versions:
+  "0.0.6":
+    changed:
+     - Requested minimum Version Ihelpes
