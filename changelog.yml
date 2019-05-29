@@ -1,5 +1,10 @@
 url: https://github.com/imagina/asgardcms-iblog
 versions:
+  "0.0.7":
+    changed:
+     - default modules to manage permission in config
+     fixed:
+     - database seeder
   "0.0.6":
     changed:
      - Requested minimum Version Ihelpes
