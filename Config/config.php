@@ -5,12 +5,19 @@ return [
   
   
     'modulesToManagePermissions' => [
-      "Iprofile",
       "Media",
       "Isite",
       "Slider",
       "Core",
-      "Iplaces",
+      "Iblog",
+      "Media",
+      "Iform",
+      "Page",
+      "Settings",
+      "Menu",
+      "Tag",
+      "Workshop",
+      "User",
       "Dashboard"
     ],
 ];

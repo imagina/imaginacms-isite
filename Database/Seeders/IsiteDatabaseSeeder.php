@@ -15,16 +15,16 @@ class IsiteDatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Model::unguard();
-
-        $setting = app('Modules\Setting\Repositories\SettingRepository');
+      Model::unguard();
   
-      $this->settings->createOrUpdate([
-        "isite::logo1" => ["medias_single" => ["isite::logo1" => null]],
-        "isite::logo2" => ["medias_single" => ["isite::logo2" => null]],
-        "isite::logo3" => ["medias_single" => ["isite::logo3" => null]],
-        "core::site-name" => 'App',
-        "core::locales" => ['en']
+      $settings = app('Modules\Setting\Repositories\SettingRepository');
+  
+      $settings->createOrUpdate([
+        "core::site-name" => ["en" => "App"],
+        "core::locales" => json_encode(["en"]),
+        "isite::logo1" => json_encode(["medias_single" => ["isite::logo1" => null]]),
+        "isite::logo2" => json_encode(["medias_single" => ["isite::logo2" => null]]),
+        "isite::logo3" => json_encode(["medias_single" => ["isite::logo3" => null]])
       ]);
     }
 }
