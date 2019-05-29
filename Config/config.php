@@ -4,20 +4,20 @@ return [
     'name' => 'Isite',
   
   
-    'modulesToManagePermissions' => [
-      "Media",
-      "Isite",
-      "Slider",
-      "Core",
-      "Iblog",
-      "Media",
-      "Iform",
-      "Page",
-      "Settings",
-      "Menu",
-      "Tag",
-      "Workshop",
-      "User",
-      "Dashboard"
-    ],
+  'modulesToManagePermissions' => [
+    "Media",
+    "Isite",
+    "Slider",
+    "Core",
+    "Iblog",
+    "Media",
+    "Iforms",
+    "Page",
+    "Setting",
+    "Menu",
+    "Tag",
+    "Workshop",
+    "User",
+    "Dashboard"
+  ],
 ];
