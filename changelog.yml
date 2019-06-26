@@ -1,5 +1,11 @@
 url: https://github.com/imagina/asgardcms-iblog
 versions:
+  "0.0.9":
+    added: select-multi in setting transformer
+    added: checkbox-multi-with-options setting
+    added: attribute "custom" in settings
+    changed: text-multi and text-multi-with-options default value
+    changed: checkbox type value transformed to boolean
   "0.0.7":
     changed:
      - default modules to manage permission in config
