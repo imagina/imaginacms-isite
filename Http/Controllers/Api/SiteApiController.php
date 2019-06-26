@@ -197,9 +197,13 @@ class SiteApiController extends BaseApiController
         if( Str::contains($setting['view'], 'select-multi') )
           $setting['type'] = 'select-multi';
   
-        /// init boolean value when type is checkbox
-        if( $setting['type'] == 'checkbox' && $setting['value'] == '' )
-          $setting['value'] = false;
+        // init boolean value when type is checkbox
+        if ($setting['type'] == 'checkbox') {
+          if($setting['value']=='1')
+            $setting['value'] = true;
+          else
+            $setting['value']= false;
+        }
         
         // type setting standard based in view param
         if( Str::contains($setting['view'], 'file') ){
@@ -222,13 +226,36 @@ class SiteApiController extends BaseApiController
           $setting['type'] = 'color';
   
         // type setting standard based in view param
-        if (Str::contains($setting['view'], 'text-multi'))
+        if (Str::contains($setting['view'], 'text-multi')){
+  
           $setting['type'] = 'text-multi';
+          if(!$setting['value']){
+            $setting['value'] = [];
+          }
+          
+        }
+        // type setting standard based in view param
+        if (Str::contains($setting['view'], 'text-multi-with-options')){
+          $setting['type'] = 'text-multi-with-options';
+          if(!$setting['value']){
+            $setting['value'] = [];
+          }
+        }
+        // type setting standard based in view param
+        if (Str::contains($setting['view'], 'checkbox-multi-with-options')){
+          $setting['type'] = 'checkbox-multi-with-options';
+          if(!$setting['value']){
+            $setting['value'] = [];
+          }
+        }
   
         // type setting standard based in view param
-        if (Str::contains($setting['view'], 'text-multi-with-options'))
-          $setting['type'] = 'text-multi-with-options';
-  
+        if (isset($setting["custom"]) && $setting["custom"]){
+          $setting['type'] = $setting['view'];
+          if(isset($setting["default"]) && !$setting['value']){
+            $setting['value'] = $setting["default"];
+          }
+        }
         
         
       }
