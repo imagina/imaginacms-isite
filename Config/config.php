@@ -1,16 +1,18 @@
 <?php
 
 return [
-    'name' => 'Isite',
-  
-  
+  'name' => 'Isite',
+
   'modulesToManagePermissions' => [
-    "Media",
     "Isite",
+    "Iblog",
+    "Iprofile",
+    "Icommerce",
+    "Iplaces",
+    "Imenu",
+    "Media",
     "Slider",
     "Core",
-    "Iblog",
-    "Media",
     "Iforms",
     "Page",
     "Setting",
