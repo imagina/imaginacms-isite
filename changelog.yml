@@ -1,5 +1,7 @@
 url: https://github.com/imagina/asgardcms-iblog
 versions:
+  "0.0.12":
+    update: response failed to status 400 in middleware of capcha
   "0.0.9":
     added: select-multi in setting transformer
     added: checkbox-multi-with-options setting

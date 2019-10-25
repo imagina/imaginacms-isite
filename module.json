@@ -3,7 +3,7 @@
     "alias": "isite",
     "description": "",
     "keywords": [],
-    "version": "0.0.9",
+    "version": "0.0.12",
     "active": 1,
     "order": 1,
     "providers": [
@@ -12,7 +12,7 @@
     ],
     "aliases": {},
     "files": [
-        
+
     ],
     "requires": []
 }
