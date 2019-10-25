@@ -41,10 +41,9 @@ class CaptchaMiddleware extends BaseApiController
           //Define class captcha
           $captcha = new \Anhskohbo\NoCaptcha\NoCaptcha($secret, $sitekey);
           $isValid = $captcha->verifyResponse($token);//Validate token captcha
-          if (!$isValid)
-            throw new Exception();
-        }
-      }
+          if (!$isValid) throw new Exception();
+        } else throw new Exception();
+      } else throw new Exception();
     } catch (\Exception $error) {
       $response = ["errors" => 'Invalid Captcha'];
       return response()->json($response, 400);
