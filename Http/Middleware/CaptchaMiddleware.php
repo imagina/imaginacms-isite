@@ -46,7 +46,7 @@ class CaptchaMiddleware extends BaseApiController
       } else throw new Exception();
     } catch (\Exception $error) {
       $response = ["errors" => 'Invalid Captcha'];
-      return response()->json($response, 400);
+      return response($response, Response::HTTP_UNAUTHORIZED);
     }
 
     return $next($request);

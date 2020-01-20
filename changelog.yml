@@ -1,5 +1,8 @@
 url: https://github.com/imagina/asgardcms-iblog
 versions:
+  "0.0.13":
+    update: colors according to Quasar V1
+    add: seed to default colors
   "0.0.12":
     update: response failed to status 400 in middleware of capcha
   "0.0.9":

@@ -21,6 +21,11 @@ return [
     'description' => 'isite::common.settings.favicon',
     'view' => 'isite::admin.fields.file',
   ],
+  //===== Colors
+  'brandAddressBar' => [
+    'description' => 'isite::common.settings.addressBar',
+    'view' => 'isite::admin.fields.color',
+  ],
   'brandPrimary' => [
     'description' => 'isite::common.settings.brandPrimary',
     'view' => 'isite::admin.fields.color',
@@ -29,8 +34,8 @@ return [
     'description' => 'isite::common.settings.brandSecondary',
     'view' => 'isite::admin.fields.color',
   ],
-  'brandTertiary' => [
-    'description' => 'isite::common.settings.brandTertiary',
+  'brandAccent' => [
+    'description' => 'isite::common.settings.brandAccent',
     'view' => 'isite::admin.fields.color',
   ],
   'brandPositive' => [
@@ -41,10 +46,6 @@ return [
     'description' => 'isite::common.settings.brandNegative',
     'view' => 'isite::admin.fields.color',
   ],
-  'brandFaded' => [
-    'description' => 'isite::common.settings.brandFaded',
-    'view' => 'isite::admin.fields.color',
-  ],
   'brandInfo' => [
     'description' => 'isite::common.settings.brandInfo',
     'view' => 'isite::admin.fields.color',
@@ -53,15 +54,10 @@ return [
     'description' => 'isite::common.settings.brandWarning',
     'view' => 'isite::admin.fields.color',
   ],
-  'brandLight' => [
-    'description' => 'isite::common.settings.brandLight',
-    'view' => 'isite::admin.fields.color',
-  ],
   'brandDark' => [
     'description' => 'isite::common.settings.brandDark',
     'view' => 'isite::admin.fields.color',
   ],
-
 
   'phones' => [
     'description' => 'isite::common.settings.phones',

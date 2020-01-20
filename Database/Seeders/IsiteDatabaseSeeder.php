@@ -24,5 +24,8 @@ class IsiteDatabaseSeeder extends Seeder
         "isite::logo2" => json_encode(["medias_single" => ["isite::logo2" => null]]),
         "isite::logo3" => json_encode(["medias_single" => ["isite::logo3" => null]])
       ]);
+
+      //Seed colors
+      $this->call(IsiteColorsSeeder::class);
     }
 }
