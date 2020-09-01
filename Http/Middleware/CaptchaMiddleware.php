@@ -38,10 +38,18 @@ class CaptchaMiddleware extends BaseApiController
             $this->setting->get('isite::reCaptchaV3Site') :
             $this->setting->get('isite::reCaptchaV2Site');
 
+          $activateCaptcha = $this->setting->get('isite::activateCaptcha');
+
           //Define class captcha
-          $captcha = new \Anhskohbo\NoCaptcha\NoCaptcha($secret, $sitekey);
-          $isValid = $captcha->verifyResponse($token);//Validate token captcha
-          if (!$isValid) throw new Exception();
+          if($activateCaptcha) {
+            if ($secret !== null && $sitekey !== null) {
+              $captcha = new \Anhskohbo\NoCaptcha\NoCaptcha($secret, $sitekey);
+              $isValid = $captcha->verifyResponse($token);//Validate token captcha
+              if (!$isValid) throw new Exception();
+            }else{
+              throw new Exception();
+            }
+          }
         } else throw new Exception();
       } else throw new Exception();
     } catch (\Exception $error) {
