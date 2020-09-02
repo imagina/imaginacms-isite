@@ -23,6 +23,7 @@ return [
     'emails' => 'Emails',
     'socialNetworks' => 'Social Networks',
     'branchOffices' => 'Branch Offices',
+    'activateCaptcha' => 'Activate google captcha',
     'reCaptchaV2Secret' => 'Secret Code Recaptcha V2',
     'reCaptchaV2Site' => 'Site Code Recaptcha V2',
     'reCaptchaV3Secret' => 'Secret Code Recaptcha V3',

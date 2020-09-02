@@ -112,6 +112,11 @@ return [
     'input' => 'text'
   ],
   //Keys recaptcha google
+  'activateCaptcha' => [
+    'description' => 'isite::common.settings.activateCaptcha',
+    'view' => 'checkbox',
+  ],
+
   'reCaptchaV2Secret' => [
     'description' => 'isite::common.settings.reCaptchaV2Secret',
     'view' => 'text',
