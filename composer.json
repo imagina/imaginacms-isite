@@ -1,5 +1,5 @@
 {
-    "name": "imagina/isite",
+    "name": "imagina/isite-module",
     "description": "custom settings of the site",
     "type": "asgard-module",
     "license": "MIT",
