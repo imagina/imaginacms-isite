@@ -47,12 +47,12 @@ class AppApiController extends BaseApiController
   {
     try {
       $permissions = $this->permissions->all();
-      $modules = config('asgard.isite.config.modulesToManagePermissions');
+      $modules = $this->module->allEnabled();
       $response = array();
-
+  
       if (isset($modules)) {
-        foreach ($modules as $name){
-          $response[$name] = $permissions[$name];
+        foreach ($modules as $module) {
+          $response[$module->getName()] = $permissions[$module->getName()];
         }
       }
 

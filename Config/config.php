@@ -4,12 +4,16 @@ return [
   'name' => 'Isite',
 
   'modulesToManagePermissions' => [
+    "Core",
+    "Ilocations",
+    "Icustom",
+    "Iredirect",
+    "Isearch",
+    "Inotification",
     "Isite",
     "Iblog",
+    "Ibanners",
     "Iprofile",
-    "Icommerce",
-    "Iplaces",
-    "Imenu",
     "Media",
     "Slider",
     "Core",
@@ -18,8 +22,10 @@ return [
     "Setting",
     "Menu",
     "Tag",
+    "Translation",
     "Workshop",
     "User",
-    "Dashboard"
+    "Dashboard",
+    "Workshop"
   ],
 ];
