@@ -52,7 +52,8 @@ class AppApiController extends BaseApiController
   
       if (isset($modules)) {
         foreach ($modules as $module) {
-          $response[$module->getName()] = $permissions[$module->getName()];
+          if(isset($permissions[$module->getName()]))
+            $response[$module->getName()] = $permissions[$module->getName()];
         }
       }
 
