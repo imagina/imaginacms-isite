@@ -28,6 +28,8 @@ return [
     'reCaptchaV2Site' => 'Site Code Recaptcha V2',
     'reCaptchaV3Secret' => 'Secret Code Recaptcha V3',
     'reCaptchaV3Site' => 'Site Code Recaptcha V3',
-    'apimaps' => 'Code Google Maps'
+    'apimaps' => 'Code Google Maps',
+    'customCss' => 'Custom CSS',
+    'customJs' => 'Custom JS'
   ]
 ];

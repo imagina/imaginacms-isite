@@ -138,4 +138,12 @@ return [
     'description'  => 'isite::common.settings.apimaps',
     'view'         => 'text',
   ],
+  'custom-css' => [
+    'description'  => 'isite::common.settings.customCss',
+    'view' => 'textarea',
+  ],
+  'custom-js' => [
+    'description'  => 'isite::common.settings.customJs',
+    'view' => 'textarea',
+  ],
 ];

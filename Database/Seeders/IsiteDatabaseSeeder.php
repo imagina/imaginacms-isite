@@ -16,9 +16,9 @@ class IsiteDatabaseSeeder extends Seeder
     public function run()
     {
       Model::unguard();
-  
+
       $settings = app('Modules\Setting\Repositories\SettingRepository');
-  
+
       $settings->createOrUpdate([
         "isite::logo1" => json_encode(["medias_single" => ["isite::logo1" => null]]),
         "isite::logo2" => json_encode(["medias_single" => ["isite::logo2" => null]]),
@@ -27,5 +27,7 @@ class IsiteDatabaseSeeder extends Seeder
 
       //Seed colors
       $this->call(IsiteColorsSeeder::class);
+      //Seed Custom css
+      $this->call(IsiteCustomSourcesSeeder::class);
     }
 }
