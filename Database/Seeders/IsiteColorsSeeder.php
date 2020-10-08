@@ -19,7 +19,7 @@ class IsiteColorsSeeder extends Seeder
 
       $settings = app('Modules\Setting\Repositories\SettingRepository');
 
-      $settings->createOrUpdate([
+      $settingsToCreate = [
         "isite::brandAddressBar" => '#027be3',
         "isite::brandPrimary" => '#027be3',
         "isite::brandSecondary" => '#26a69a',
@@ -29,6 +29,14 @@ class IsiteColorsSeeder extends Seeder
         "isite::brandInfo" => '#31ccec',
         "isite::brandWarning" => '#f2c037',
         "isite::brandDark" => '#1d1d1d',
-      ]);
+      ];
+      
+      foreach ($settingsToCreate as $key => $settingToCreate){
+        $setting = $settings->findByName($key);
+        if(!isset($setting->id)){
+          $settings->createOrUpdate([$key => $settingToCreate]);
+        }
+      }
+      
     }
 }

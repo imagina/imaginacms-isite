@@ -18,17 +18,18 @@ class IsiteCustomSourcesSeeder extends Seeder
     Model::unguard();
 
     $settings = app('Modules\Setting\Repositories\SettingRepository');
-
-    //Search if already exist settings
-    $existCustomeCss = $settings->findByName('isite::custom-css');
-    $existCustomeJs = $settings->findByName('isite::custom-js');
-
-    //Create or update settings
-    if (!$existCustomeCss && !$existCustomeJs) {
-      $settings->createOrUpdate([
-        "isite::custom-css" => '',
-        "isite::custom-js" => '',
-      ]);
+  
+    $settingsToCreate = [
+      "isite::customCss" => "",
+      "isite::customJs" => "",
+    ];
+    
+    foreach ($settingsToCreate as $key => $settingToCreate){
+      $setting = $settings->findByName($key);
+      if(!isset($setting->id)){
+        $settings->createOrUpdate([$key => $settingToCreate]);
+      }
     }
+
   }
 }
