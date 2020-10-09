@@ -46,6 +46,7 @@ class IsiteServiceProvider extends ServiceProvider
     $this->publishConfig('isite', 'config');
     $this->publishConfig('isite', 'permissions');
     $this->publishConfig('isite', 'settings');
+    $this->publishConfig('isite', 'settings-fields');
     $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
   }
 
