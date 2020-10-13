@@ -17,16 +17,16 @@ class SiteApiController extends BaseApiController
   /**
    * @var PaypalconfigRepository
    */
-  
+
   private $setting;
   private $module;
   private $permissions;
-  
+
   /**
    * @var ThemeManager
    */
   private $themeManager;
-  
+
   public function __construct(
     SettingRepository $setting,
     ThemeManager $themeManager,
@@ -37,7 +37,7 @@ class SiteApiController extends BaseApiController
     $this->themeManager = $themeManager;
     $this->permissions = $permissions;
   }
-  
+
   /**
    * GET ITEMS
    *
@@ -47,32 +47,33 @@ class SiteApiController extends BaseApiController
   {
     try {
       //Request to Repository
-      
+      $params = $this->getParamsRequest($request);
+
       // getting modules with settings and enabled
       $modulesWithSettings = $this->setting->moduleSettings($this->module->allEnabled());
-      
+
       $dbSettings = [];
       $translatableSettings = [];
       $plainSettings = [];
-      
+
       // fetching settings in DB by module
       foreach ($modulesWithSettings as $key => $module) {
         $translatableSettings[$key] = $this->setting->translatableModuleSettings($key);
         $plainSettings[$key] = $this->setting->plainModuleSettings($key);
         $dbSettings[$key] = $this->setting->savedModuleSettings($key);
       }
-      
+
       // merging translatable and plain settings
       $mergedSettings = array_merge_recursive($translatableSettings, $plainSettings);
-      
+
       //getting available locales
       $locales = config('asgard.core.available-locales');
-      
+
       foreach ($locales as $key => &$locale) {
         $locale['iso'] = $key;
       }
-      
-      
+
+
       //getting plubic themes available
       $themes = [];
       foreach ($this->themeManager->allPublicThemes() as $key => $theme) {
@@ -82,7 +83,7 @@ class SiteApiController extends BaseApiController
           "lowerName" => $theme->getLowerName(),
         ];
       }
-      
+
       //Response
       $response = [
         "data" => [
@@ -92,16 +93,19 @@ class SiteApiController extends BaseApiController
           "defaultLocale" => config('app.locale')
         ]
       ];
-      
+
+      //Return specific setting group
+      if(isset($params->filter->settingGroupName))
+        $response['data'] = $response['data'][$params->filter->settingGroupName] ?? [];
     } catch (\Exception $e) {
       $status = $this->getStatusError($e->getCode());
       $response = ["errors" => $e->getMessage()];
     }
-    
+
     //Return response
     return response()->json($response, $status ?? 200);
   }
-  
+
   /**
    * UPDATE ITEM
    *
@@ -113,20 +117,20 @@ class SiteApiController extends BaseApiController
   {
     \DB::beginTransaction(); //DB Transaction
     try {
-      
+
       $data = $request->input('attributes');
-      
+
       $allowedSettings = config('asgard.isite.config.allowedSettings');
       $imageSettings = config('asgard.isite.config.imageSettings');
       $this->saveImages($data, $allowedSettings, $imageSettings);
-      
+
       $newData = [];
       foreach ($data as $key => $val)
         if (in_array($key, $allowedSettings))
           $newData[$key] = $val;
-      
+
       $this->setting->createOrUpdate(["isite::siteSettings" => $newData]);
-      
+
       //Response
       $response = ["data" => 'Item Updated'];
       \DB::commit();//Commit to DataBase
@@ -135,11 +139,11 @@ class SiteApiController extends BaseApiController
       $status = $this->getStatusError($e->getCode());
       $response = ["errors" => $e->getMessage()];
     }
-    
+
     //Return response
     return response()->json($response, $status ?? 200);
   }
-  
+
   /**
    * transformer for settings to the front app
    * @param $modules
@@ -151,10 +155,10 @@ class SiteApiController extends BaseApiController
     foreach ($dbSettings as $keyModule => &$module) {
       foreach ($module as $keySetting => &$setting) {
         $keyReplaced = Str::replaceFirst(strtolower($keyModule) . '::', '', $keySetting);
-        
+
         if ($setting->isMedia()) {
           $media = $setting->files()->where('zone', $setting->name)->first() ?? null;
-          
+
           if ($media === null)
             $setting["media"] = [
               'mimeType' => 'image/jpeg',
@@ -165,41 +169,41 @@ class SiteApiController extends BaseApiController
               'mimeType' => $media->mimetype,
               'path' => $media->path_string
             ];
-          
+
         }
-        
+
         if (isset($mergedSettings[$keyModule][$keyReplaced]))
           // merging data on DB with config setting
           $setting = array_merge($mergedSettings[$keyModule][$keyReplaced], $setting->toArray());
-        
-        
+
+
         // decode plain value if is object or array
         $plainValue = $setting['plainValue'];
         $plainValue = $this->isJson($plainValue) ? json_decode($plainValue) : $plainValue;
-        
+
         // update plain value
         $setting['plainValue'] = $plainValue;
-        
+
         // parsing isTranslatable to Boolean
         $setting['isTranslatable'] = $setting['isTranslatable'] == "0" ? false : true;
-        
+
         // translate description
         $description = $setting['description'];
         $setting['description'] = trans($description);
-        
+
         // setting value off settings not translatable
         if (!$setting['isTranslatable'])
           $setting['value'] = $setting['plainValue'];
-        
+
         // type setting standard based in view param
         $setting['type'] = $setting['view'];
         if (Str::contains($setting['view'], 'select'))
           $setting['type'] = 'select';
-        
+
         // type setting standard based in view param
         if (Str::contains($setting['view'], 'select-multi'))
           $setting['type'] = 'select-multi';
-        
+
         // init boolean value when type is checkbox
         if ($setting['type'] == 'checkbox') {
           if ($setting['value'] == '1')
@@ -207,7 +211,7 @@ class SiteApiController extends BaseApiController
           else
             $setting['value'] = false;
         }
-        
+
         // type setting standard based in view param
         if (Str::contains($setting['view'], 'file')) {
           $setting['type'] = 'file';
@@ -218,24 +222,24 @@ class SiteApiController extends BaseApiController
             ];
           }
         }
-        
-        
+
+
         // type setting standard based in view param
         if (Str::contains($setting['view'], 'file-multi'))
           $setting['type'] = 'file-multi';
-        
+
         // type setting standard based in view param
         if (Str::contains($setting['view'], 'color'))
           $setting['type'] = 'color';
-        
+
         // type setting standard based in view param
         if (Str::contains($setting['view'], 'text-multi')) {
-          
+
           $setting['type'] = 'text-multi';
           if (!$setting['value']) {
             $setting['value'] = [];
           }
-          
+
         }
         // type setting standard based in view param
         if (Str::contains($setting['view'], 'text-multi-with-options')) {
@@ -251,7 +255,7 @@ class SiteApiController extends BaseApiController
             $setting['value'] = [];
           }
         }
-        
+
         // type setting standard based in view param
         if (isset($setting["custom"]) && $setting["custom"]) {
           $setting['type'] = $setting['view'];
@@ -259,13 +263,13 @@ class SiteApiController extends BaseApiController
             $setting['value'] = $setting["default"];
           }
         }
-        
-        
+
+
       }
     }
     return array_values(Arr::collapse(array_values($dbSettings)));
   }
-  
+
   /**
    * check if
    * @param $string
@@ -277,7 +281,7 @@ class SiteApiController extends BaseApiController
       (is_object(json_decode($string)) ||
         is_array(json_decode($string))))) ? true : false;
   }
-  
+
   /**
    * Return Version to front-end
    *
@@ -292,11 +296,11 @@ class SiteApiController extends BaseApiController
       $status = $this->getStatusError($e->getCode());
       $response = ["errors" => $e->getMessage()];
     }
-    
+
     //Return response
     return response()->json($response, $status ?? 200);
   }
-  
+
   /**
    * Return permission of backend
    *
@@ -308,21 +312,21 @@ class SiteApiController extends BaseApiController
       $permissions = $this->permissions->all();
       $modules = $this->module->allEnabled();
       $response = array();
-      
+
       if (isset($modules)) {
         foreach ($modules as $module) {
           if (isset($permissions[$module->getName()]))
             $response[$module->getName()] = $permissions[$module->getName()];
         }
       }
-      
+
       //Response
       $response = ["data" => $response];
     } catch (\Exception $e) {
       $status = $this->getStatusError($e->getCode());
       $response = ["errors" => $e->getMessage()];
     }
-    
+
     //Return response
     return response()->json($response, $status ?? 200);
   }
