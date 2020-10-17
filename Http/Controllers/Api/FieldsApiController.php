@@ -59,9 +59,8 @@ class FieldsApiController extends BaseApiController
   public function translateLabels($data)
   {
     foreach ($data as $key => &$item) {
-      if (is_string($item) && (strpos($item, '(trans)') !== false)) {
-        $item = trans(str_replace('(trans)', '', $item));
-      } else if (is_array($item)) {
+      if (is_string($item)) $item = trans($item);
+      else if (is_array($item)) {
         $item = $this->translateLabels($item);
       }
     }
