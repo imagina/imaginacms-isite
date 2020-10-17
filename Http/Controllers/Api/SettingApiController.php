@@ -283,37 +283,4 @@ class SettingApiController extends BaseApiController
       (is_object(json_decode($string)) ||
         is_array(json_decode($string))))) ? true : false;
   }
-
-  //Return setting fields
-  public function settingsFields(Request $request)
-  {
-    try {
-      $params = $this->getParamsRequest($request);//Get Parameters from URL.
-
-      $repsonse = [];//Default response
-      $enabledModules = $this->module->allEnabled();//Get all modules
-
-      //Get "settings-fields" config from modules
-      foreach ($enabledModules as $moduleName => $module) {
-        //Search config
-        $configData = config("asgard.{$module->getLowerName()}.settings-fields");
-        //Validate config data
-        if ($configData) {
-          //Translate fields label in config
-          foreach ($configData as &$field)
-            if (isset($field['props']['label'])) $field['props']['label'] = trans($field['props']['label']);
-          //Add config data to response
-          $response[$moduleName] = $configData;
-        }
-      }
-      //Response data
-      $response = ["data" => $response];
-    } catch (\Exception $e) {
-      $status = $this->getStatusError($e->getCode());
-      $response = ["errors" => $e->getMessage()];
-    }
-
-    //Return response
-    return response()->json($response, $status ?? 200);
-}
 }

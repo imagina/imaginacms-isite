@@ -8,7 +8,7 @@ return [
     'fakeFieldName' => 'isite::logo1',
     'type' => 'media',
     'props' => [
-      'label' => 'isite::common.settings.logo1',
+      'label' => '(trans)isite::common.settings.logo1',
       'zone' => 'isite::logo1',
       'entity' => "Modules\Setting\Entities\Setting",
       'entityId' => null
@@ -20,7 +20,7 @@ return [
     'fakeFieldName' => 'isite::logo2',
     'type' => 'media',
     'props' => [
-      'label' => 'isite::common.settings.logo2',
+      'label' => '(trans)isite::common.settings.logo2',
       'zone' => 'isite::logo2',
       'entity' => "Modules\Setting\Entities\Setting",
       'entityId' => null
@@ -32,7 +32,7 @@ return [
     'fakeFieldName' => 'isite::logo3',
     'type' => 'media',
     'props' => [
-      'label' => 'isite::common.settings.logo3',
+      'label' => '(trans)isite::common.settings.logo3',
       'zone' => 'isite::logo3',
       'entity' => "Modules\Setting\Entities\Setting",
       'entityId' => null
@@ -44,7 +44,7 @@ return [
     'fakeFieldName' => 'isite::favicon',
     'type' => 'media',
     'props' => [
-      'label' => 'isite::common.settings.favicon',
+      'label' => '(trans)isite::common.settings.favicon',
       'zone' => 'isite::favicon',
       'entity' => "Modules\Setting\Entities\Setting",
       'entityId' => null
@@ -56,7 +56,7 @@ return [
     'name' => 'isite::brandAddressBar',
     'type' => 'inputColor',
     'props' => [
-      'label' => 'isite::common.settings.addressBar'
+      'label' => '(trans)isite::common.settings.addressBar'
     ]
   ],
   'brandPrimary' => [
@@ -64,7 +64,7 @@ return [
     'name' => 'isite::brandPrimary',
     'type' => 'inputColor',
     'props' => [
-      'label' => 'isite::common.settings.brandPrimary'
+      'label' => '(trans)isite::common.settings.brandPrimary'
     ]
   ],
   'brandSecondary' => [
@@ -72,7 +72,7 @@ return [
     'name' => 'isite::brandSecondary',
     'type' => 'inputColor',
     'props' => [
-      'label' => 'isite::common.settings.brandSecondary'
+      'label' => '(trans)isite::common.settings.brandSecondary'
     ]
   ],
   'brandAccent' => [
@@ -80,7 +80,7 @@ return [
     'name' => 'isite::brandAccent',
     'type' => 'inputColor',
     'props' => [
-      'label' => 'isite::common.settings.brandAccent'
+      'label' => '(trans)isite::common.settings.brandAccent'
     ]
   ],
   'brandPositive' => [
@@ -88,7 +88,7 @@ return [
     'name' => 'isite::brandPositive',
     'type' => 'inputColor',
     'props' => [
-      'label' => 'isite::common.settings.brandPositive'
+      'label' => '(trans)isite::common.settings.brandPositive'
     ]
   ],
   'brandNegative' => [
@@ -96,7 +96,7 @@ return [
     'name' => 'isite::brandNegative',
     'type' => 'inputColor',
     'props' => [
-      'label' => 'isite::common.settings.brandNegative'
+      'label' => '(trans)isite::common.settings.brandNegative'
     ]
   ],
   'brandInfo' => [
@@ -104,7 +104,7 @@ return [
     'name' => 'isite::brandInfo',
     'type' => 'inputColor',
     'props' => [
-      'label' => 'isite::common.settings.brandInfo'
+      'label' => '(trans)isite::common.settings.brandInfo'
     ]
   ],
   'brandWarning' => [
@@ -112,7 +112,7 @@ return [
     'name' => 'isite::brandWarning',
     'type' => 'inputColor',
     'props' => [
-      'label' => 'isite::common.settings.brandWarning'
+      'label' => '(trans)isite::common.settings.brandWarning'
     ]
   ],
   'brandDark' => [
@@ -120,7 +120,7 @@ return [
     'name' => 'isite::brandDark',
     'type' => 'inputColor',
     'props' => [
-      'label' => 'isite::common.settings.brandDark'
+      'label' => '(trans)isite::common.settings.brandDark'
     ]
   ],
   //Social networks
@@ -172,7 +172,7 @@ return [
     'name' => 'isite::activateCaptcha',
     'type' => 'checkbox',
     'props' => [
-      'label' => 'isite::common.settings.activateCaptcha'
+      'label' => '(trans)isite::common.settings.activateCaptcha'
     ]
   ],
   'reCaptchaV2Secret' => [
@@ -180,7 +180,7 @@ return [
     'name' => 'isite::reCaptchaV2Secret',
     'type' => 'input',
     'props' => [
-      'label' => 'isite::common.settings.reCaptchaV2Secret'
+      'label' => '(trans)isite::common.settings.reCaptchaV2Secret'
     ]
   ],
   'reCaptchaV2Site' => [
@@ -188,7 +188,7 @@ return [
     'name' => 'isite::reCaptchaV2Site',
     'type' => 'input',
     'props' => [
-      'label' => 'isite::common.settings.reCaptchaV2Site'
+      'label' => '(trans)isite::common.settings.reCaptchaV2Site'
     ]
   ],
   'reCaptchaV3Secret' => [
@@ -196,7 +196,7 @@ return [
     'name' => 'isite::reCaptchaV3Secret',
     'type' => 'input',
     'props' => [
-      'label' => 'isite::common.settings.reCaptchaV3Secret'
+      'label' => '(trans)isite::common.settings.reCaptchaV3Secret'
     ]
   ],
   'reCaptchaV3Site' => [
@@ -204,7 +204,7 @@ return [
     'name' => 'isite::reCaptchaV3Site',
     'type' => 'input',
     'props' => [
-      'label' => 'isite::common.settings.reCaptchaV3Site'
+      'label' => '(trans)isite::common.settings.reCaptchaV3Site'
     ]
   ],
   //Google
@@ -213,7 +213,7 @@ return [
     'name' => 'isite::api-maps',
     'type' => 'input',
     'props' => [
-      'label' => 'isite::common.settings.apimaps'
+      'label' => '(trans)isite::common.settings.apimaps'
     ]
   ],
   //Multiples
@@ -222,7 +222,7 @@ return [
     'name' => 'isite::phones',
     'type' => 'select',
     'props' => [
-      'label' => 'isite::common.settings.phones',
+      'label' => '(trans)isite::common.settings.phones',
       'useInput' => true,
       'useChips' => true,
       'multiple' => true,
@@ -235,7 +235,7 @@ return [
     'name' => 'isite::addresses',
     'type' => 'select',
     'props' => [
-      'label' => 'isite::common.settings.addresses',
+      'label' => '(trans)isite::common.settings.addresses',
       'useInput' => true,
       'useChips' => true,
       'multiple' => true,
@@ -248,7 +248,7 @@ return [
     'name' => 'isite::emails',
     'type' => 'select',
     'props' => [
-      'label' => 'isite::common.settings.emails',
+      'label' => '(trans)isite::common.settings.emails',
       'useInput' => true,
       'useChips' => true,
       'multiple' => true,
@@ -262,7 +262,7 @@ return [
     'name' => 'isite::custom-css',
     'type' => 'input',
     'props' => [
-      'label' => 'isite::common.settings.customCss',
+      'label' => '(trans)isite::common.settings.customCss',
       'type' => 'textarea',
       'rows' => 3,
     ],
@@ -272,7 +272,7 @@ return [
     'name' => 'isite::custom-js',
     'type' => 'input',
     'props' => [
-      'label' => 'isite::common.settings.customJs',
+      'label' => '(trans)isite::common.settings.customJs',
       'type' => 'textarea',
       'rows' => 3,
     ],
