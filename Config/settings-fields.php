@@ -1,12 +1,13 @@
 <?php
 
 return [
-  //Images
+  //Media
   'logo1' => [
-    'value' => (object)[],
+    'value' => (object)['isite::logo1' => null],
     'name' => 'medias_single',
     'fakeFieldName' => 'isite::logo1',
     'type' => 'media',
+    'group' => 'isite::common.settingGroups.media',
     'props' => [
       'label' => 'isite::common.settings.logo1',
       'zone' => 'isite::logo1',
@@ -15,10 +16,11 @@ return [
     ]
   ],
   'logo2' => [
-    'value' => (object)[],
+    'value' => (object)['isite::logo2' => null],
     'name' => 'medias_single',
     'fakeFieldName' => 'isite::logo2',
     'type' => 'media',
+    'group' => 'isite::common.settingGroups.media',
     'props' => [
       'label' => 'isite::common.settings.logo2',
       'zone' => 'isite::logo2',
@@ -27,10 +29,11 @@ return [
     ]
   ],
   'logo3' => [
-    'value' => (object)[],
+    'value' => (object)['isite::logo3' => null],
     'name' => 'medias_single',
     'fakeFieldName' => 'isite::logo3',
     'type' => 'media',
+    'group' => 'isite::common.settingGroups.media',
     'props' => [
       'label' => 'isite::common.settings.logo3',
       'zone' => 'isite::logo3',
@@ -39,10 +42,11 @@ return [
     ]
   ],
   'favicon' => [
-    'value' => (object)[],
+    'value' => (object)['isite::favicon' => null],
     'name' => 'medias_single',
     'fakeFieldName' => 'isite::favicon',
     'type' => 'media',
+    'group' => 'isite::common.settingGroups.media',
     'props' => [
       'label' => 'isite::common.settings.favicon',
       'zone' => 'isite::favicon',
@@ -55,6 +59,8 @@ return [
     'value' => null,
     'name' => 'isite::brandAddressBar',
     'type' => 'inputColor',
+    'group' => 'isite::common.settingGroups.colors',
+    'columns' => 'col-12 col-md-6',
     'props' => [
       'label' => 'isite::common.settings.addressBar'
     ]
@@ -63,6 +69,8 @@ return [
     'value' => null,
     'name' => 'isite::brandPrimary',
     'type' => 'inputColor',
+    'group' => 'isite::common.settingGroups.colors',
+    'columns' => 'col-12 col-md-6',
     'props' => [
       'label' => 'isite::common.settings.brandPrimary'
     ]
@@ -71,6 +79,8 @@ return [
     'value' => null,
     'name' => 'isite::brandSecondary',
     'type' => 'inputColor',
+    'group' => 'isite::common.settingGroups.colors',
+    'columns' => 'col-12 col-md-6',
     'props' => [
       'label' => 'isite::common.settings.brandSecondary'
     ]
@@ -79,6 +89,8 @@ return [
     'value' => null,
     'name' => 'isite::brandAccent',
     'type' => 'inputColor',
+    'group' => 'isite::common.settingGroups.colors',
+    'columns' => 'col-12 col-md-6',
     'props' => [
       'label' => 'isite::common.settings.brandAccent'
     ]
@@ -87,6 +99,8 @@ return [
     'value' => null,
     'name' => 'isite::brandPositive',
     'type' => 'inputColor',
+    'group' => 'isite::common.settingGroups.colors',
+    'columns' => 'col-12 col-md-6',
     'props' => [
       'label' => 'isite::common.settings.brandPositive'
     ]
@@ -95,6 +109,8 @@ return [
     'value' => null,
     'name' => 'isite::brandNegative',
     'type' => 'inputColor',
+    'group' => 'isite::common.settingGroups.colors',
+    'columns' => 'col-12 col-md-6',
     'props' => [
       'label' => 'isite::common.settings.brandNegative'
     ]
@@ -103,6 +119,8 @@ return [
     'value' => null,
     'name' => 'isite::brandInfo',
     'type' => 'inputColor',
+    'group' => 'isite::common.settingGroups.colors',
+    'columns' => 'col-12 col-md-6',
     'props' => [
       'label' => 'isite::common.settings.brandInfo'
     ]
@@ -111,6 +129,8 @@ return [
     'value' => null,
     'name' => 'isite::brandWarning',
     'type' => 'inputColor',
+    'group' => 'isite::common.settingGroups.colors',
+    'columns' => 'col-12 col-md-6',
     'props' => [
       'label' => 'isite::common.settings.brandWarning'
     ]
@@ -119,6 +139,8 @@ return [
     'value' => null,
     'name' => 'isite::brandDark',
     'type' => 'inputColor',
+    'group' => 'isite::common.settingGroups.colors',
+    'columns' => 'col-12 col-md-6',
     'props' => [
       'label' => 'isite::common.settings.brandDark'
     ]
@@ -129,6 +151,7 @@ return [
     'name' => 'facebook',
     'fakeFieldName' => 'isite::socialNetworks',
     'type' => 'input',
+    'group' => 'isite::common.settingGroups.socialNetworks',
     'props' => ['label' => 'Facebook']
   ],
   'twitter' => [
@@ -136,6 +159,7 @@ return [
     'name' => 'twitter',
     'fakeFieldName' => 'isite::socialNetworks',
     'type' => 'input',
+    'group' => 'isite::common.settingGroups.socialNetworks',
     'props' => ['label' => 'Twitter']
   ],
   'instagram' => [
@@ -143,6 +167,7 @@ return [
     'name' => 'instagram',
     'fakeFieldName' => 'isite::socialNetworks',
     'type' => 'input',
+    'group' => 'isite::common.settingGroups.socialNetworks',
     'props' => ['label' => 'Instagram']
   ],
   'Linkedin' => [
@@ -150,6 +175,7 @@ return [
     'name' => 'linkedin',
     'fakeFieldName' => 'isite::socialNetworks',
     'type' => 'input',
+    'group' => 'isite::common.settingGroups.socialNetworks',
     'props' => ['label' => 'Linkedin']
   ],
   'google' => [
@@ -157,6 +183,7 @@ return [
     'name' => 'google',
     'fakeFieldName' => 'isite::socialNetworks',
     'type' => 'input',
+    'group' => 'isite::common.settingGroups.socialNetworks',
     'props' => ['label' => 'Google']
   ],
   'skype' => [
@@ -164,6 +191,7 @@ return [
     'name' => 'skype',
     'fakeFieldName' => 'isite::socialNetworks',
     'type' => 'input',
+    'group' => 'isite::common.settingGroups.socialNetworks',
     'props' => ['label' => 'Skype']
   ],
   //Recaptcha
@@ -171,6 +199,7 @@ return [
     'value' => false,
     'name' => 'isite::activateCaptcha',
     'type' => 'checkbox',
+    'group' => 'isite::common.settingGroups.apiKeys',
     'props' => [
       'label' => 'isite::common.settings.activateCaptcha'
     ]
@@ -179,6 +208,7 @@ return [
     'value' => false,
     'name' => 'isite::reCaptchaV2Secret',
     'type' => 'input',
+    'group' => 'isite::common.settingGroups.apiKeys',
     'props' => [
       'label' => 'isite::common.settings.reCaptchaV2Secret'
     ]
@@ -187,6 +217,7 @@ return [
     'value' => false,
     'name' => 'isite::reCaptchaV2Site',
     'type' => 'input',
+    'group' => 'isite::common.settingGroups.apiKeys',
     'props' => [
       'label' => 'isite::common.settings.reCaptchaV2Site'
     ]
@@ -195,6 +226,7 @@ return [
     'value' => false,
     'name' => 'isite::reCaptchaV3Secret',
     'type' => 'input',
+    'group' => 'isite::common.settingGroups.apiKeys',
     'props' => [
       'label' => 'isite::common.settings.reCaptchaV3Secret'
     ]
@@ -203,6 +235,7 @@ return [
     'value' => false,
     'name' => 'isite::reCaptchaV3Site',
     'type' => 'input',
+    'group' => 'isite::common.settingGroups.apiKeys',
     'props' => [
       'label' => 'isite::common.settings.reCaptchaV3Site'
     ]
@@ -212,6 +245,7 @@ return [
     'value' => false,
     'name' => 'isite::api-maps',
     'type' => 'input',
+    'group' => 'isite::common.settingGroups.apiKeys',
     'props' => [
       'label' => 'isite::common.settings.apimaps'
     ]
@@ -221,6 +255,7 @@ return [
     'value' => [],
     'name' => 'isite::phones',
     'type' => 'select',
+    'group' => 'isite::common.settingGroups.contact',
     'props' => [
       'label' => 'isite::common.settings.phones',
       'useInput' => true,
@@ -234,6 +269,7 @@ return [
     'value' => [],
     'name' => 'isite::addresses',
     'type' => 'select',
+    'group' => 'isite::common.settingGroups.contact',
     'props' => [
       'label' => 'isite::common.settings.addresses',
       'useInput' => true,
@@ -247,6 +283,7 @@ return [
     'value' => [],
     'name' => 'isite::emails',
     'type' => 'select',
+    'group' => 'isite::common.settingGroups.contact',
     'props' => [
       'label' => 'isite::common.settings.emails',
       'useInput' => true,
@@ -261,6 +298,7 @@ return [
     'value' => null,
     'name' => 'isite::custom-css',
     'type' => 'input',
+    'group' => 'isite::common.settingGroups.customSources',
     'props' => [
       'label' => 'isite::common.settings.customCss',
       'type' => 'textarea',
@@ -271,6 +309,7 @@ return [
     'value' => null,
     'name' => 'isite::custom-js',
     'type' => 'input',
+    'group' => 'isite::common.settingGroups.customSources',
     'props' => [
       'label' => 'isite::common.settings.customJs',
       'type' => 'textarea',

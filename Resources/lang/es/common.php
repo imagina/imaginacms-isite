@@ -31,5 +31,13 @@ return [
     'apimaps' => 'Codigo Google Maps',
     'customCss' => 'CSS Perzonalizado',
     'customJs' => 'JS Perzonalizado'
+  ],
+  'settingGroups' => [
+    'media' => 'Media',
+    'colors' => 'Colores',
+    'socialNetworks' => 'Redes sociales',
+    'apiKeys' => "Llaves API",
+    'contact' => 'Contacto',
+    'customSources' => 'Fuentes Personalizadas',
   ]
 ];
