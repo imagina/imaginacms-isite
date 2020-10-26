@@ -294,9 +294,9 @@ return [
     ]
   ],
   //Custom
-  'custom-css' => [
+  'customCss' => [
     'value' => null,
-    'name' => 'isite::custom-css',
+    'name' => 'isite::customCss',
     'type' => 'input',
     'group' => 'isite::common.settingGroups.customSources',
     'props' => [
@@ -305,9 +305,9 @@ return [
       'rows' => 3,
     ],
   ],
-  'custom-js' => [
+  'customJs' => [
     'value' => null,
-    'name' => 'isite::custom-js',
+    'name' => 'isite::customJs',
     'type' => 'input',
     'group' => 'isite::common.settingGroups.customSources',
     'props' => [
