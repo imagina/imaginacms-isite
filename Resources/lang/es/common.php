@@ -29,8 +29,8 @@ return [
     'reCaptchaV3Secret' => 'Codigo Secreto Recaptcha V3',
     'reCaptchaV3Site' => 'Codigo de sitio Recaptcha V3',
     'apimaps' => 'Codigo Google Maps',
-    'customCss' => 'CSS Perzonalizado',
-    'customJs' => 'JS Perzonalizado'
+    'customCss' => 'CSS Personalizado',
+    'customJs' => 'JS Personalizado'
   ],
   'settingGroups' => [
     'media' => 'Media',
