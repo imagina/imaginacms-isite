@@ -37,7 +37,7 @@ class FieldsApiController extends BaseApiController
       //Validate filter name
       if (isset($params->filter->configFieldName)) {
         $fieldName = explode('.', $params->filter->configFieldName);
-        if ($fileName && count($fileName)) {
+        if ($fieldName && count($fileName)) {
           foreach ($fieldName as $name)
             if (isset($response[$name])) $response = $response[$name];
             else $response = null;
