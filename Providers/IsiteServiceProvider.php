@@ -34,7 +34,7 @@ class IsiteServiceProvider extends ServiceProvider
     $this->app['events']->listen(BuildingSidebar::class, RegisterIsiteSidebar::class);
 
     $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
-      $event->load('sites', array_dot(trans('isite::sites')));
+      $event->load('sites', Arr::dot(trans('isite::sites')));
       // append translations
 
     });

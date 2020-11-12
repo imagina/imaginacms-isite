@@ -2,7 +2,7 @@
 
 namespace Modules\Isite\Transformers;
 
-use Illuminate\Http\Resources\Json\Resource;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Modules\Ihelpers\Transformers\BaseApiTransformer;
 use Illuminate\Support\Str;
