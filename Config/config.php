@@ -32,7 +32,7 @@ return [
   
   'livewireAlerts' => [
     'position' => 'bottom-end',
-    'color' => 'isite::brandPrimary'
+    'iconColor' => '#008640'
   ]
   
 ];
