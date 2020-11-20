@@ -28,4 +28,11 @@ return [
     "Dashboard",
     "Workshop"
   ],
+  
+  
+  'livewireAlerts' => [
+    'position' => 'bottom-end',
+    'color' => 'isite::brandPrimary'
+  ]
+  
 ];
