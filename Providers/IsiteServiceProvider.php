@@ -84,8 +84,8 @@ class IsiteServiceProvider extends ServiceProvider
 
   private function registerComponents(){
 
-    Blade::component('isite-owl-carousel', \Modules\Isite\View\Components\OwlCarousel::class);
-    Blade::component('isite-mega-menu', \Modules\Isite\View\Components\MegaMenu::class);
+    Blade::component('isite-owl-carousel', \Modules\Isite\View\Components\carousel\OwlCarousel::class);
+    Blade::component('isite-mega-menu', \Modules\Isite\View\Components\menu\MegaMenu::class);
 
   }
 }

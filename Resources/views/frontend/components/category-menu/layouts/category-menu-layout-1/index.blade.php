@@ -3,7 +3,7 @@
         {!! $title !!}
     </button>
     <div class="col-auto d-none d-lg-block">
-        <nav class="navbar navbar-expand-md navbar-category p-0">
+        <nav id="categoryMegaMenu" class="navbar navbar-expand-lg navbar-category p-0">
             <div id="{{ $id }}navbarCollapse" class="collapse navbar-collapse">
                 <ul id="{{ $id }}navbarUl" class="navbar-nav">
                     <li id="{{ $id }}liNavItem" class="nav-item dropdown">
@@ -26,7 +26,7 @@
                                         <div class="dropdown-menu">
                                             <h3><a href="{{$item->url}}">{{ $item->title ?? $item->name }}</a></h3>
                                             @if($firstChildrenLevel)
-                                                <ul class="frame-dropdown">
+                                                <ul class="frame-dropdown{{ count($firstChildrenLevel) > 1 ? "2": ""}}">
                                                     @foreach($firstChildrenLevel as $firstChildLevel)
                                                         <li class="nav-item">
                                                             <a class="nav-link" href="{{$firstChildLevel->url}}">{{ $firstChildLevel->title ?? $firstChildLevel->name }}</a>
