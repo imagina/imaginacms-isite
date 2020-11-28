@@ -50,7 +50,7 @@ class IsiteServiceProvider extends ServiceProvider
     $this->publishConfig('isite', 'settings');
     $this->publishConfig('isite', 'settings-fields');
     $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
-  
+
     $this->registerComponents();
   }
 
@@ -76,15 +76,16 @@ class IsiteServiceProvider extends ServiceProvider
       $this->app['router']->aliasMiddleware($name, $class);
     }
   }
-  
-  
+
+
   /**
    * Register Blade components
    */
-  
+
   private function registerComponents(){
-    
+
     Blade::component('isite-owl-carousel', \Modules\Isite\View\Components\OwlCarousel::class);
-    
+    Blade::component('isite-mega-menu', \Modules\Isite\View\Components\MegaMenu::class);
+
   }
 }
