@@ -36,9 +36,6 @@ class Social extends Component
     {
         $this->items = json_decode(setting('isite::socialNetworks'), true);
 
-        $this->items['youtube'] = $this->items['google'];
-        unset($this->items['google']);
-
         return view($this->view);
     }
 }
