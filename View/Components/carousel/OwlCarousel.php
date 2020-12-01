@@ -1,13 +1,13 @@
 <?php
 
-namespace Modules\Isite\View\Components\carousel;
+namespace Modules\Isite\View\Components;
 
 use Illuminate\View\Component;
 
 class OwlCarousel extends Component
 {
-
-
+  
+  
   public $items;
   public $view;
   public $itemLayout;
@@ -19,23 +19,23 @@ class OwlCarousel extends Component
   public $layout;
   public $title;
   public $subTitle;
-  public $filter;
+  public $params;
   public $responsive;
   public $margin;
   public $responsiveClass;
   public $autoplay;
   public $autoplayHoverPause;
-
+  
   /**
    * Create a new component instance.
    *
    * @return void
    */
-  public function __construct($repository, $filter = null, $id, $margin = 10, $responsiveClass = true, $autoplay = true,
+  public function __construct($repository, $params = [], $id, $margin = 10, $responsiveClass = true, $autoplay = true,
                               $autoplayHoverPause = true, $loop = true, $dots = true, $nav = true, $responsive = null,
                               $layout = null, $title = "", $subTitle = "")
   {
-
+  
 
     $this->loop = $loop;
     $this->id = $id;
@@ -47,24 +47,32 @@ class OwlCarousel extends Component
     $this->autoplay = $autoplay;
     $this->autoplayHoverPause = $autoplayHoverPause;
     $this->repository = $repository;
-    $this->filter = $filter;
+    $this->params = $params;
     $this->layout = $layout;
     $this->title = $title;
     $this->subTitle = $subTitle;
-
+    
     $this->view = "isite::frontend.components.owl.carousel";
-
+  
     $this->getItems();
   }
-
-  private function getItems(){
-
-    $params = [
-      "filter" => $this->filter
+  
+  private function makeParamsFunction(){
+    
+    return [
+      "include" => $this->params["include"] ?? [],
+      "take" => $this->params["take"] ?? 12,
+      "page" => $this->params["page"] ?? 1,
+      "filter" => $this->params["filter"] ?? [],
+      "order" => $this->params["order"] ?? null
     ];
-
-    $this->items = app($this->repository)->getItemsBy(json_decode(json_encode($params)));
-
+  }
+  
+  private function getItems(){
+ 
+  
+    $this->items = app($this->repository)->getItemsBy(json_decode(json_encode($this->makeParamsFunction())));
+  
     switch($this->repository){
       case 'Modules\Icommerce\Repositories\ProductRepository':
         $this->itemLayout = setting('icommerce::productListItemLayout');
