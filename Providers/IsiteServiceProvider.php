@@ -86,6 +86,8 @@ class IsiteServiceProvider extends ServiceProvider
 
     Blade::component('isite-owl-carousel', \Modules\Isite\View\Components\carousel\OwlCarousel::class);
     Blade::component('isite-mega-menu', \Modules\Isite\View\Components\menu\MegaMenu::class);
+    Blade::component('isite-header', \Modules\Isite\View\Components\header\Header::class);
+    Blade::component('isite-social', \Modules\Isite\View\Components\social\Social::class);
 
   }
 }
