@@ -194,6 +194,22 @@ return [
     'group' => 'isite::common.settingGroups.socialNetworks',
     'props' => ['label' => 'Skype']
   ],
+  'whatsapp' => [
+    'value' => null,
+    'name' => 'whatsapp',
+    'fakeFieldName' => 'isite::socialNetworks',
+    'type' => 'input',
+    'group' => 'isite::common.settingGroups.socialNetworks',
+    'props' => ['label' => 'Whatsapp']
+  ],
+  'youtube' => [
+      'value' => null,
+      'name' => 'youtube',
+      'fakeFieldName' => 'isite::socialNetworks',
+      'type' => 'input',
+      'group' => 'isite::common.settingGroups.socialNetworks',
+      'props' => ['label' => 'YouTube']
+  ],
   //Recaptcha
   'activateCaptcha' => [
     'value' => false,
