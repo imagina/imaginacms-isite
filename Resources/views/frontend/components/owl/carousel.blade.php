@@ -24,8 +24,6 @@
   </div>
 </section>
 
-
-
 @section('scripts-owl')
   <script>
     $(document).ready(function(){
