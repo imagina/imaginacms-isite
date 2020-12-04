@@ -24,8 +24,6 @@
   </div>
 </section>
 
-<x-dynamic-component :component="$key" {{$params}} />
-
 @section('scripts-owl')
   <script>
     $(document).ready(function(){
