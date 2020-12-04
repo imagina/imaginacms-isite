@@ -4,7 +4,7 @@ namespace Modules\Isite\View\Components\menu;
 
 use Illuminate\View\Component;
 
-class MegaMenu extends Component
+class Menu extends Component
 {
 
 
