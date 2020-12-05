@@ -1,4 +1,7 @@
 <div id="{{ $id }}">
+    @if($menuBefore)
+        @menu($menuBefore)
+    @endif
     <nav class="navbar navbar-expand-lg navbar-light p-0">
         <div class="collapse navbar-collapse" id="{{ $id }}navbarNav">
             <ul id="{{ $id }}navbarUl" class="navbar-nav">
@@ -17,14 +20,18 @@
                             <div class="dropdown-menu">
                                 <ul class="frame-dropdown">
                                     @foreach($firstChildrenLevel as $firstChildLevel)
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{$firstChildLevel->url}}">{{ $firstChildLevel->title ?? $firstChildLevel->name }}</a>
-                                            @php($secondChildrenLevel = $firstChildLevel->children ?? null)
+                                        @php($secondChildrenLevel = $firstChildLevel->children ?? null)
+                                        <li class="nav-item {{$secondChildrenLevel ? 'dropdown' : ''}}">
+                                            <a class="nav-link" data-toggle="{{$secondChildrenLevel ? 'dropdown' : ''}}" href="{{$firstChildLevel->url}}">{{ $firstChildLevel->title ?? $firstChildLevel->name }}</a>
                                             @if($secondChildrenLevel)
-                                                <div class="dropdown-submenu">
-                                                    @foreach($secondChildrenLevel as $secondChildLevel)
-                                                        <a href="{{$secondChildLevel->url}}">{{ $secondChildLevel->title ?? $secondChildLevel->name }}</a>
-                                                    @endforeach
+                                                <div class="dropdown-menu">
+                                                    <ul class="frame-dropdown">
+                                                        @foreach($secondChildrenLevel as $secondChildLevel)
+                                                            <li class="nav-item">
+                                                                <a href="{{$secondChildLevel->url}}">{{ $secondChildLevel->title ?? $secondChildLevel->name }}</a>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
                                                 </div>
                                             @endif
                                         </li>
@@ -37,4 +44,7 @@
             </ul>
         </div>
     </nav>
+    @if($menuAfter)
+        @menu($menuAfter)
+    @endif
 </div>
