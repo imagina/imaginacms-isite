@@ -17,8 +17,8 @@
                                     <a href="{{$item->url}}" class="nav-link" data-toggle="{{$firstChildrenLevel ? 'dropdown' : ''}}">
                                         @php($mediaFiles = $item->mediaFiles())
 
-                                        @if(isset($mediaFiles->tertiaryimage->path) && !strpos($mediaFiles->tertiaryimage->path,"default.jpg"))
-                                            <img class="filter" src="{{$mediaFiles->tertiaryimage->path}}">
+                                        @if(isset($mediaFiles->iconimage->path) && !strpos($mediaFiles->iconimage->path,"default.jpg"))
+                                            <img class="filter" src="{{$mediaFiles->iconimage->path}}">
                                         @endif
                                         {{ $item->title ?? $item->name }}
                                     </a>

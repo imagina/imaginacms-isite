@@ -4,7 +4,7 @@ namespace Modules\Isite\View\Components\menu;
 
 use Illuminate\View\Component;
 
-class MegaMenu extends Component
+class Menu extends Component
 {
 
 
@@ -18,19 +18,23 @@ class MegaMenu extends Component
   public $title;
   public $filter;
   public $responsiveClass;
+  public $menuBefore;
+  public $menuAfter;
 
   /**
    * Create a new component instance.
    *
    * @return void
    */
-  public function __construct($repository, $filter = ["showMenu" => true,"parentId" => 0], $id, $layout = 'category-menu-layout-1', $title = "Categorías" )
+  public function __construct($repository, $filter = ["showMenu" => true,"parentId" => 0], $id, $layout = 'category-menu-layout-1', $title = "Categorías", $menuBefore = null, $menuAfter = null)
   {
     $this->id = $id;
     $this->repository = $repository;
     $this->filter = $filter;
     $this->layout = $layout;
     $this->title = $title;
+    $this->menuBefore = $menuBefore;
+    $this->menuAfter = $menuAfter;
 
     $this->view = "isite::frontend.components.category-menu.layouts.{$layout}.index";
 

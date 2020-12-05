@@ -6,8 +6,8 @@ use Illuminate\View\Component;
 
 class OwlCarousel extends Component
 {
-  
-  
+
+
   public $items;
   public $view;
   public $itemLayout;
@@ -25,7 +25,7 @@ class OwlCarousel extends Component
   public $responsiveClass;
   public $autoplay;
   public $autoplayHoverPause;
-  
+
   /**
    * Create a new component instance.
    *
@@ -35,7 +35,7 @@ class OwlCarousel extends Component
                               $autoplayHoverPause = true, $loop = true, $dots = true, $nav = true, $responsive = null,
                               $layout = null, $title = "", $subTitle = "")
   {
-  
+
 
     $this->loop = $loop;
     $this->id = $id;
@@ -51,14 +51,14 @@ class OwlCarousel extends Component
     $this->layout = $layout;
     $this->title = $title;
     $this->subTitle = $subTitle;
-    
+
     $this->view = "isite::frontend.components.owl.carousel";
-  
+
     $this->getItems();
   }
-  
+
   private function makeParamsFunction(){
-    
+
     return [
       "include" => $this->params["include"] ?? [],
       "take" => $this->params["take"] ?? 12,
@@ -67,12 +67,12 @@ class OwlCarousel extends Component
       "order" => $this->params["order"] ?? null
     ];
   }
-  
+
   private function getItems(){
- 
-  
+
+
     $this->items = app($this->repository)->getItemsBy(json_decode(json_encode($this->makeParamsFunction())));
-  
+
     switch($this->repository){
       case 'Modules\Icommerce\Repositories\ProductRepository':
         $this->itemLayout = setting('icommerce::productListItemLayout');
