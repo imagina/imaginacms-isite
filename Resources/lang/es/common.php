@@ -1,6 +1,9 @@
 <?php
 
 return [
+  'menu' => [
+    'home' => 'Inicio'
+  ],
   'settings' => [
     'logo1' => 'Logo N°1',
     'logo2' => 'Logo N°2',
