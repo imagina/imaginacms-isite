@@ -34,3 +34,22 @@
   width: 100%;
   height: 100%;
 }
+
+@mixin title-props($trans) {
+  color: $primary;
+  text-align: center;
+  
+  span {
+    display: block;
+    color: $primary;
+    font-size: 18px;
+    text-transform: #{$trans};
+  }
+}
+
+@mixin img-filter() {
+  filter: invert(90%) hue-rotate(175deg);
+  &:hover {
+    filter: invert(0) hue-rotate(175deg);
+  }
+}
