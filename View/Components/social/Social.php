@@ -14,17 +14,18 @@ class Social extends Component
     public $components;
     public $layout;
     public $type;
-
+    public $customIcons;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($layout = 'social-layout-1', $type = 'circle')
+    public function __construct($layout = 'social-layout-1', $type = '', $customIcons = [])
     {
         $this->type = $type;
         $this->view = "isite::frontend.components.social.layouts.{$layout}.index";
+        $this->customIcons = $customIcons;
 
     }
     /**
@@ -34,7 +35,13 @@ class Social extends Component
      */
     public function render()
     {
-        $this->items = json_decode(setting('isite::socialNetworks'), true);
+        $items = json_decode(setting('isite::socialNetworks'), true);
+
+        $this->items = [];
+
+        foreach($items as $key => $value){
+            $this->items[isset($this->customIcons[$key]) ? $this->customIcons[$key] : $key] = $value;
+        }
 
         return view($this->view);
     }
