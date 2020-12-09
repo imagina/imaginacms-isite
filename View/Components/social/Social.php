@@ -40,7 +40,7 @@ class Social extends Component
         $this->items = [];
 
         foreach($items as $key => $value){
-            $this->items[isset($this->customIcons[$key]) ? $this->customIcons[$key] : $key] = $value;
+            $this->items[isset($this->customIcons[$key]) ? $this->customIcons[$key] : 'fa fa-'.$key] = $value;
         }
 
         return view($this->view);
