@@ -31,8 +31,10 @@ return [
   
   
   'livewireAlerts' => [
-    'position' => 'bottom-end',
-    'iconColor' => '#008640'
+    'position' => 'top-end',
+    'iconColor' => '#008640',
+    "timer" => 5000,
+    "timerProgressBar" => true
   ]
   
 ];
