@@ -16,18 +16,20 @@ class Social extends Component
     public $type;
     public $customIcons;
     public $id;
+    public $position;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($layout = 'social-layout-1', $type = '', $customIcons = [], $id = 'socialComponent')
+    public function __construct($layout = 'social-layout-1', $type = '', $customIcons = [], $id = 'socialComponent', $position = 'static')
     {
         $this->type = $type;
         $this->view = "isite::frontend.components.social.layouts.{$layout}.index";
         $this->customIcons = $customIcons;
         $this->id = $id ?? 'socialComponent';
+        $this->position = $position ?? 'static';
 
     }
     /**

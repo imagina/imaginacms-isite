@@ -1,4 +1,4 @@
-<div class="d-inline-block" id="{{ $id }}">
+<div class="d-inline-block social-{{ $position }}" id="{{ $id }}">
   @foreach($items as $name=>$value)
     @if(!empty($value))
       <a href="{{ $value }}" target="_blank">
