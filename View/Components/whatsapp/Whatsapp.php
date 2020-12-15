@@ -53,7 +53,7 @@ class Whatsapp extends Component
         return view($this->view);
     }
 
-    protected function formatNumber ( $mynum, $mask ) {
+    private function formatNumber ( $mynum, $mask ) {
         /*********************************************************************/
         /*   Purpose: Return either masked phone number or false             */
         /*     Masks: Val=1 or xxx xxx xxxx                                             */
@@ -113,7 +113,7 @@ class Whatsapp extends Component
         return false;       // Returns false if no conditions meet or input
     }
 
-    function validatePhoneNumber ( $phone ) {
+    private function validatePhoneNumber ( $phone ) {
         /*********************************************************************/
         /*   Purpose:   To determine if the passed string is a valid phone  */
         /*              number following one of the establish formatting        */
