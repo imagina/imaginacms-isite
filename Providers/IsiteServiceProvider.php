@@ -88,6 +88,7 @@ class IsiteServiceProvider extends ServiceProvider
     Blade::component('isite-menu', \Modules\Isite\View\Components\menu\Menu::class);
     Blade::component('isite-header', \Modules\Isite\View\Components\header\Header::class);
     Blade::component('isite-social', \Modules\Isite\View\Components\social\Social::class);
+    Blade::component('isite-whatsapp', \Modules\Isite\View\Components\whatsapp\Whatsapp::class);
 
   }
 }

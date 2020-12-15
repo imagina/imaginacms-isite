@@ -33,7 +33,12 @@ return [
     'reCaptchaV3Site' => 'Codigo de sitio Recaptcha V3',
     'apimaps' => 'Codigo Google Maps',
     'customCss' => 'CSS Personalizado',
-    'customJs' => 'JS Personalizado'
+    'customJs' => 'JS Personalizado',
+    "whatsapp" =>[
+        "callingCode" => "Cód del país",
+        "number" => "Número del whatsapp",
+        "message" => "Mensaje por defecto",
+    ],
   ],
   'settingGroups' => [
     'media' => 'Media',
