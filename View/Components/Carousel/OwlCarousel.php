@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Isite\View\Components\carousel;
+namespace Modules\Isite\View\Components\Carousel;
 
 use Illuminate\View\Component;
 

@@ -84,11 +84,7 @@ class IsiteServiceProvider extends ServiceProvider
 
   private function registerComponents(){
 
-    Blade::component('isite-owl-carousel', \Modules\Isite\View\Components\carousel\OwlCarousel::class);
-    Blade::component('isite-menu', \Modules\Isite\View\Components\menu\Menu::class);
-    Blade::component('isite-header', \Modules\Isite\View\Components\header\Header::class);
-    Blade::component('isite-social', \Modules\Isite\View\Components\social\Social::class);
-    Blade::component('isite-whatsapp', \Modules\Isite\View\Components\whatsapp\Whatsapp::class);
+    Blade::componentNamespace("Modules\Isite\View\Components", 'isite');
 
   }
 }

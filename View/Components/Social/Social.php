@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Isite\View\Components\social;
+namespace Modules\Isite\View\Components\Social;
 
 use Illuminate\View\Component;
 
