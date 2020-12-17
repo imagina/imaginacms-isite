@@ -14,7 +14,10 @@
           @foreach($items as $item)
             @switch($repository)
               @case('Modules\Icommerce\Repositories\ProductRepository')
-              <x-icommerce-product-list-item :product="$item" />
+              <x-icommerce-product-list-item :product="$item" :layout="$itemLayout" :parentAttributes="$attributes" />
+              @break
+              @default
+              <x-isite-item-list :item="$item" :layout="$itemLayout" :parentAttributes="$attributes" />
               @break
             @endswitch
           @endforeach
