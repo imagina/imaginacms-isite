@@ -17,11 +17,11 @@ class ItemList extends Component
    *
    * @return void
    */
-  public function __construct($item, $mediaImage = "mainimage", $layout = 'list-item-layout-1', $parentAttributes = null)
+  public function __construct($item, $mediaImage = "mainimage", $layout = 'item-list-layout-1', $parentAttributes = null)
   {
     $this->item = $item;
     $this->mediaImage = $mediaImage;
-    $this->view = "isite::frontend.components.list-item.layouts." . ($layout ?? 'list-item-layout-1' ) .".index";
+    $this->view = "isite::frontend.components.item-list.layouts." . ($layout ?? 'item-list-layout-1' ) .".index";
 
     if(!empty($parentAttributes))
       $this->getParentAttributes($parentAttributes);
