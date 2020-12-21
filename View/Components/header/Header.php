@@ -21,7 +21,7 @@ class Header extends Component
    * @return void
    */
   public function __construct($components = [
-        "megaMenu" => [
+        "headerMenu" => [
             "repository" => "Modules\Icommerce\Repositories\CategoryRepository",
             "id" => "menuCat"
         ]
