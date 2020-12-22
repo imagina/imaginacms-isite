@@ -5,7 +5,7 @@
     @endif
         <div class="row align-items-center">
           <div class="col-12">
-            <x-media-single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
+            <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
                                   url="$item->url ?? null" :isMedia="true"
                                   :mediaFiles="$item->mediaFiles()" :zone="$mediaImage ?? 'mainimage'"/>
             
