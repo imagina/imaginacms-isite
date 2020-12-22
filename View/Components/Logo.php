@@ -33,9 +33,7 @@ class Logo extends Component
   
 
   private function getLogoFile($path){
-  
     $this->file =File::where('path',$path)->first();
-    dd($this->file);
   }
   /**
    * Get the view / contents that represent the component.
