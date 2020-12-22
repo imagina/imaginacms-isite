@@ -11,7 +11,6 @@ class ItemList extends Component
   public $item;
   public $mediaImage;
   public $view;
-
   /**
    * Create a new component instance.
    *
