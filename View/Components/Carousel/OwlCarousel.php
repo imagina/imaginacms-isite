@@ -9,6 +9,7 @@ class OwlCarousel extends Component
 
 
   public $items;
+  public $itemsBySlide;
   public $view;
   public $itemLayout;
   public $loop;
@@ -16,7 +17,6 @@ class OwlCarousel extends Component
   public $nav;
   public $id;
   public $repository;
-  public $layout;
   public $title;
   public $subTitle;
   public $params;
@@ -31,11 +31,10 @@ class OwlCarousel extends Component
    *
    * @return void
    */
-  public function __construct($repository, $params = [], $id, $margin = 10, $responsiveClass = true, $autoplay = true,
+  public function __construct($repository, $id, $params = [], $margin = 10, $responsiveClass = true, $autoplay = true,
                               $autoplayHoverPause = true, $loop = true, $dots = true, $nav = true, $responsive = null,
-                              $layout = null, $title = "", $subTitle = "")
+                              $itemLayout = null, $title = "", $subTitle = "", $itemsBySlide = 1)
   {
-
 
     $this->loop = $loop;
     $this->id = $id;
@@ -48,12 +47,12 @@ class OwlCarousel extends Component
     $this->autoplayHoverPause = $autoplayHoverPause;
     $this->repository = $repository;
     $this->params = $params;
-    $this->layout = $layout;
+    $this->itemLayout = $itemLayout;
     $this->title = $title;
+    $this->itemsBySlide = $itemsBySlide;
     $this->subTitle = $subTitle;
 
     $this->view = "isite::frontend.components.owl.carousel";
-
     $this->getItems();
   }
 
@@ -75,10 +74,13 @@ class OwlCarousel extends Component
 
     switch($this->repository){
       case 'Modules\Icommerce\Repositories\ProductRepository':
-        $this->itemLayout = setting('icommerce::productListItemLayout');
+        !$this->itemLayout ? $this->itemLayout = setting('icommerce::productListItemLayout') : false;
+        break;
+      case 'Modules\Icommerce\Repositories\CategoryRepository':
+        $this->itemLayout = $this->itemLayout ?? setting('icommerce::categoryListItemLayout');
         break;
       case 'Modules\Iblog\Repositories\PostRepository':
-        $this->itemLayout = $this->layout ?? setting('iblog::postListItemLayout');
+        $this->itemLayout = $this->itemLayout ?? setting('iblog::postListItemLayout');
         break;
     }
   }
