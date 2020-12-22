@@ -84,17 +84,17 @@ class IsiteServiceProvider extends ServiceProvider
 
   private function registerComponents(){
 
-    Blade::component('isite-owl-carousel', \Modules\Isite\View\Components\carousel\OwlCarousel::class);
-    Blade::component('isite-menu', \Modules\Isite\View\Components\menu\Menu::class);
-    Blade::component('isite-header', \Modules\Isite\View\Components\header\Header::class);
-    Blade::component('isite-social', \Modules\Isite\View\Components\social\Social::class);
-    Blade::component('isite-whatsapp', \Modules\Isite\View\Components\whatsapp\Whatsapp::class);
-    Blade::component('isite-item-list', \Modules\Isite\View\Components\ItemList\ItemList::class);
-    Blade::component('isite-contact-addresses', \Modules\Isite\View\Components\contact\ContactAddresses::class);
-    Blade::component('isite-contact-emails', \Modules\Isite\View\Components\contact\ContactEmails::class);
-    Blade::component('isite-contact-phones', \Modules\Isite\View\Components\contact\ContactPhones::class);
-    Blade::component('isite-logo', \Modules\Isite\View\Components\Logo::class);
-  
+      Blade::component('isite-owl-carousel', \Modules\Isite\View\Components\carousel\OwlCarousel::class);
+      Blade::component('isite-menu', \Modules\Isite\View\Components\menu\Menu::class);
+      Blade::component('isite-header', \Modules\Isite\View\Components\header\Header::class);
+      Blade::component('isite-social', \Modules\Isite\View\Components\social\Social::class);
+      Blade::component('isite-whatsapp', \Modules\Isite\View\Components\whatsapp\Whatsapp::class);
+      Blade::component('isite-item-list', \Modules\Isite\View\Components\ItemList\ItemList::class);
+      Blade::component('isite-contact-addresses', \Modules\Isite\View\Components\contact\ContactAddresses::class);
+      Blade::component('isite-contact-emails', \Modules\Isite\View\Components\contact\ContactEmails::class);
+      Blade::component('isite-contact-phones', \Modules\Isite\View\Components\contact\ContactPhones::class);
+      Blade::component('isite-logo', \Modules\Isite\View\Components\Logo::class);
+      Blade::componentNamespace("Modules\Isite\View\Components", 'isite');
 
   }
 }
