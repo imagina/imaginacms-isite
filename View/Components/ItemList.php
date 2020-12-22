@@ -1,17 +1,17 @@
 <?php
 
-namespace Modules\Isite\View\Components\ItemList;
+namespace Modules\Isite\View\Components;
 
 use Illuminate\View\Component;
 
 class ItemList extends Component
 {
-  
-  
+
+
   public $item;
   public $mediaImage;
   public $view;
-  
+
   /**
    * Create a new component instance.
    *
@@ -26,12 +26,12 @@ class ItemList extends Component
     if(!empty($parentAttributes))
       $this->getParentAttributes($parentAttributes);
   }
-  
+
   private function getParentAttributes($parentAttributes){
-    
+
     isset($parentAttributes["mediaImage"]) ? $this->mediaImage = $parentAttributes["mediaImage"] : false;
     isset($parentAttributes["layout"]) ? $this->layout = $parentAttributes["layout"] : false;
-    
+
   }
   /**
    * Get the view / contents that represent the component.

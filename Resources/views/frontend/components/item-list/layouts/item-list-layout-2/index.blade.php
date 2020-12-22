@@ -6,7 +6,7 @@
         <div class="row align-items-center">
           <div class="col">
             <div class="fondo position-relative text-center p-3">
-              <x-media-single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
+              <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
                                     url="$item->url ?? null" :isMedia="true"
                                     :mediaFiles="$item->mediaFiles()" :zone="$mediaImage ?? 'mainimage'"/>
             </div>

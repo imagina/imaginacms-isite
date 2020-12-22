@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Isite\View\Components\Whatsapp;
+namespace Modules\Isite\View\Components;
 
 use Illuminate\View\Component;
 
