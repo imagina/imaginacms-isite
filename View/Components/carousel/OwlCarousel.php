@@ -9,6 +9,7 @@ class OwlCarousel extends Component
 
 
   public $items;
+  public $itemsBySlide;
   public $view;
   public $itemLayout;
   public $loop;
@@ -32,7 +33,7 @@ class OwlCarousel extends Component
    */
   public function __construct($repository, $id, $params = [], $margin = 10, $responsiveClass = true, $autoplay = true,
                               $autoplayHoverPause = true, $loop = true, $dots = true, $nav = true, $responsive = null,
-                              $itemLayout = null, $title = "", $subTitle = "")
+                              $itemLayout = null, $title = "", $subTitle = "", $itemsBySlide = 1)
   {
 
     $this->loop = $loop;
@@ -48,6 +49,7 @@ class OwlCarousel extends Component
     $this->params = $params;
     $this->itemLayout = $itemLayout;
     $this->title = $title;
+    $this->itemsBySlide = $itemsBySlide;
     $this->subTitle = $subTitle;
 
     $this->view = "isite::frontend.components.owl.carousel";

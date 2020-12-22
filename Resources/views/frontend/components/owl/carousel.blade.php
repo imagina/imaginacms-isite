@@ -11,16 +11,32 @@
         </div>
         
         <div id="{{$id}}Carousel" class="owl-carousel owl-theme">
-          @foreach($items as $item)
-            @switch($repository)
-              @case('Modules\Icommerce\Repositories\ProductRepository')
-              <x-icommerce-product-list-item :product="$item" :layout="$itemLayout" :parentAttributes="$attributes" />
-              @break
-              @default
-              <x-isite-item-list :item="$item" :layout="$itemLayout" :parentAttributes="$attributes" />
-              @break
-            @endswitch
-          @endforeach
+          @php($x = 0) {{-- iterador de items --}}
+          @php($j = 0) {{-- iterador de itemsBySlide --}}
+          @while(isset($items[$x]))
+            @php($j = 0)
+            @if($itemsBySlide > 1)
+              
+              <div class="items-by-slide">
+              @endif
+                
+                @while(isset($items[$x + $j]) && $j<$itemsBySlide)
+                  @switch($repository)
+                    @case('Modules\Icommerce\Repositories\ProductRepository')
+                    <x-icommerce-product-list-item :product="$items[$x + $j]" :layout="$itemLayout"
+                                                   :parentAttributes="$attributes"/>
+                    @break
+                    @default
+                    <x-isite-item-list :item="$items[$x + $j]" :layout="$itemLayout" :parentAttributes="$attributes"/>
+                    @break
+                  @endswitch
+                  @php($j++)
+                @endwhile
+              @if($itemsBySlide > 1)
+              </div>
+            @endif
+            @php($x+=$itemsBySlide)
+          @endwhile
         </div>
       </div>
     </div>
@@ -29,12 +45,12 @@
 
 @section('scripts-owl')
   <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
       var owl = $('#{{$id}}Carousel');
       
       owl.owlCarousel({
         loop: {!! $loop ? 'true' : 'false' !!},
-        lazyLoad:true,
+        lazyLoad: true,
         margin: {!! $margin !!},
         dots: {!! $dots ? 'true' : 'false' !!},
         responsiveClass: {!! $responsiveClass ? 'true' : 'false' !!},
