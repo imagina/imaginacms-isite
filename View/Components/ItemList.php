@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Isite\View\Components\ItemList;
+namespace Modules\Isite\View\Components;
 
 use Illuminate\View\Component;
 
@@ -11,7 +11,6 @@ class ItemList extends Component
   public $item;
   public $mediaImage;
   public $view;
-  
   /**
    * Create a new component instance.
    *
