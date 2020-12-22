@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Isite\View\Components\contact;
+namespace Modules\Isite\View\Components\Contact;
 
 use Illuminate\View\Component;
 
