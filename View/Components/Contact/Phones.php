@@ -4,9 +4,9 @@ namespace Modules\Isite\View\Components\Contact;
 
 use Illuminate\View\Component;
 
-class ContactAddresses extends Component
+class Phones extends Component
 {
-  public $addresses;
+  public $phones;
   public $icon;
   public $showIcon;
 
@@ -15,12 +15,14 @@ class ContactAddresses extends Component
    *
    * @return void
    */
-  public function __construct($icon = "fa fa-map-marker", $showIcon = true)
+  public function __construct($icon = "fa fa-phone", $showIcon = true)
   {
     $this->icon = $icon;
+    $this->phones = json_decode(setting("isite::phones", null, "[]"));
     $this->showIcon = $showIcon;
-    $this->addresses = json_decode(setting("isite::addresses", null, "[]"));
-//        $this->addresses = number_format(string  );
+    foreach ($this->phones as $key => $phone) {
+      $this->phones[$key] = preg_replace('/[^0-9]/', '', $phone);;
+    }
   }
 
   /**
@@ -30,6 +32,6 @@ class ContactAddresses extends Component
    */
   public function render()
   {
-    return view("isite::frontend.components.contact.contactaddresses");
+    return view('isite::frontend.components.contact.contactphones');
   }
 }

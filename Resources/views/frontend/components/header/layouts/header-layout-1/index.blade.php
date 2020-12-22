@@ -1,7 +1,7 @@
 <header id="header" class="container-fluid">
     <div class="row">
         <div class="col-2">
-            <x-isite-mega-menu
+            <x-isite::Menu
                 @foreach($components['megaMenu'] as $item=>$value)
                     {{ $item }}="{{ $value }}"
                 @endforeach

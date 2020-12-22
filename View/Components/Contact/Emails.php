@@ -4,7 +4,7 @@ namespace Modules\Isite\View\Components\Contact;
 
 use Illuminate\View\Component;
 
-class ContactEmails extends Component
+class Emails extends Component
 {
   public $emails;
   public $icon;
