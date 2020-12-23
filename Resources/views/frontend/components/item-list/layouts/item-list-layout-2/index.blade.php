@@ -11,21 +11,21 @@
                                     :mediaFiles="$item->mediaFiles()" :zone="$mediaImage ?? 'mainimage'"/>
             </div>
           </div>
-          <div class="col">
-            <h5 class="title my-4">
+          <div class="col item-title">
+            <h5 class="my-4">
               {{$item->title ?? $item->name}}
             </h5>
           </div>
           @if(isset($item->category->id))
-          <div class="col">
-            <h5 class="category-title my-4">
+          <div class="col item-category-title">
+            <h5 class="my-4">
               {{$item->category->title ?? $item->category->name}}
             </h5>
           </div>
             @endif
           @if(isset($item->summary) || isset($item->description))
-          <div class="col">
-            <h5 class="summary my-4">
+          <div class="col item-summary">
+            <h5 class="my-4">
               {!! $item->summary ?? $item->description ?? ''!!}
             </h5>
           </div>
