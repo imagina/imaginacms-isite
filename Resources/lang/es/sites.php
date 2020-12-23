@@ -5,6 +5,8 @@ return [
   'create resource' => 'Create sites',
   'edit resource' => 'Edit sites',
   'destroy resource' => 'Destroy sites',
+  'cacheCleared' => 'Se ha borrado el cache',
+  'failedCacheClear' => 'Fallo la limpieza de cache, intentelo de nuevo por favor',
   'title' => [
     'sites' => 'Site',
     'create site' => 'Create a site',
