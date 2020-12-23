@@ -26,7 +26,7 @@
           @if(isset($item->summary) || isset($item->description))
           <div class="col">
             <h5 class="summary my-4">
-              {{$item->summary ?? $item->description ?? ''}}
+              {!! $item->summary ?? $item->description ?? ''!!}
             </h5>
           </div>
             @endif
