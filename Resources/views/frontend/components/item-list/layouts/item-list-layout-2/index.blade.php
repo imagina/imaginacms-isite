@@ -16,6 +16,20 @@
               {{$item->title ?? $item->name}}
             </h5>
           </div>
+          @if(isset($item->category->id))
+          <div class="col">
+            <h5 class="category-title my-4">
+              {{$item->category->title ?? $item->category->name}}
+            </h5>
+          </div>
+            @endif
+          @if(isset($item->summary) || isset($item->description))
+          <div class="col">
+            <h5 class="summary my-4">
+              {{$item->summary ?? $item->description ?? ''}}
+            </h5>
+          </div>
+            @endif
         </div>
     @if(isset($item->url))
       </a>
