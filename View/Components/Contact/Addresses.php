@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Isite\View\Components\contact;
+namespace Modules\Isite\View\Components\Contact;
 
 use Illuminate\View\Component;
 
-class ContactAddresses extends Component
+class Addresses extends Component
 {
   public $addresses;
   public $icon;

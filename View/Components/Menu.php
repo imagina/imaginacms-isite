@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Isite\View\Components\menu;
+namespace Modules\Isite\View\Components;
 
 use Illuminate\View\Component;
 
@@ -38,14 +38,14 @@ class Menu extends Component
     $this->menuAfter = $menuAfter;
     $this->withHome = $withHome;
     $this->homeIcon = $homeIcon ?? "fa fa-home";
-    
+
     $this->view = "isite::frontend.components.category-menu.layouts.{$layout}.index";
 
     $this->getItems();
   }
-  
+
   private function makeParamsFunction(){
-    
+
     return [
       "include" => $this->params["include"] ?? ["children"],
       "take" => $this->params["take"] ?? false,
@@ -54,11 +54,11 @@ class Menu extends Component
       "order" => $this->params["order"] ?? null
     ];
   }
-  
+
   private function getItems(){
 
     $params = $this->makeParamsFunction();
-    
+
     $this->items = app($this->repository)->getItemsBy(json_decode(json_encode($params)));
 
     switch($this->repository){

@@ -10,7 +10,7 @@
         @foreach($phones as $key => $phone)
           @if($key > 0) - @endif
         <!--phone-->
-          <a class="d-inline-block" href="tel:{{$phone}}">{{$phone}}</a>
+          <a class="d-inline-block" href="tel:{{$phonesReplaced[$key]}}">{{$phone}}</a>
         @endforeach
       </div>
     </div>

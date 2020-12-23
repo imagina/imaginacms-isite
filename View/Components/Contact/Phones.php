@@ -1,12 +1,13 @@
 <?php
 
-namespace Modules\Isite\View\Components\contact;
+namespace Modules\Isite\View\Components\Contact;
 
 use Illuminate\View\Component;
 
-class ContactPhones extends Component
+class Phones extends Component
 {
   public $phones;
+  public $phonesReplaced;
   public $icon;
   public $showIcon;
 
@@ -21,7 +22,7 @@ class ContactPhones extends Component
     $this->phones = json_decode(setting("isite::phones", null, "[]"));
     $this->showIcon = $showIcon;
     foreach ($this->phones as $key => $phone) {
-      $this->phones[$key] = preg_replace('/[^0-9]/', '', $phone);;
+      $this->phonesReplaced[] = preg_replace('/[^0-9]/', '', $phone);
     }
   }
 

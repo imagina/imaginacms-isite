@@ -23,11 +23,11 @@
                 @while(isset($items[$x + $j]) && $j<$itemsBySlide)
                   @switch($repository)
                     @case('Modules\Icommerce\Repositories\ProductRepository')
-                    <x-icommerce-product-list-item :product="$items[$x + $j]" :layout="$itemLayout"
+                    <x-icommerce::product-list-item :product="$items[$x + $j]" :layout="$itemLayout"
                                                    :parentAttributes="$attributes"/>
                     @break
                     @default
-                    <x-isite-item-list :item="$items[$x + $j]" :layout="$itemLayout" :parentAttributes="$attributes"/>
+                    <x-isite::item-list :item="$items[$x + $j]" :layout="$itemLayout" :parentAttributes="$attributes"/>
                     @break
                   @endswitch
                   @php($j++)
