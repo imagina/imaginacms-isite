@@ -29,6 +29,8 @@ class ItemList extends Component
     $this->view = "isite::frontend.components.item-list.layouts." . ($layout ?? 'item-list-layout-1' ) .".index";
     $this->withViewMoreButton = $withViewMoreButton;
     $this->viewMoreButtonLabel = $viewMoreButtonLabel;
+    $this->withCreatedDate = $withCreatedDate;
+    $this->formatCreatedDate = $formatCreatedDate;
     
     if(!empty($parentAttributes))
       $this->getParentAttributes($parentAttributes);
@@ -40,6 +42,8 @@ class ItemList extends Component
     isset($parentAttributes["layout"]) ? $this->layout = $parentAttributes["layout"] : false;
     isset($parentAttributes["withViewMoreButton"]) ? $this->withViewMoreButton = $parentAttributes["withViewMoreButton"] : false;
     isset($parentAttributes["viewMoreButtonLabel"]) ? $this->viewMoreButtonLabel = $parentAttributes["viewMoreButtonLabel"] : false;
+    isset($parentAttributes["withCreatedDate"]) ? $this->withCreatedDate = $parentAttributes["withCreatedDate"] : false;
+    isset($parentAttributes["formatCreatedDate"]) ? $this->formatCreatedDate = $parentAttributes["formatCreatedDate"] : false;
     
   }
   /**
