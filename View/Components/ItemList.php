@@ -13,13 +13,16 @@ class ItemList extends Component
   public $view;
   public $withViewMoreButton;
   public $viewMoreButtonLabel;
+  public $withCreatedDate;
+  public $formatCreatedDate;
   /**
    * Create a new component instance.
    *
    * @return void
    */
   public function __construct($item, $mediaImage = "mainimage", $layout = 'item-list-layout-1', $parentAttributes = null,
-                              $withViewMoreButton = false, $viewMoreButtonLabel = "isite::common.menu.viewMore")
+                              $withViewMoreButton = false, $viewMoreButtonLabel = "isite::common.menu.viewMore",
+                              $withCreatedDate = false, $formatCreatedDate = "d de M" )
   {
     $this->item = $item;
     $this->mediaImage = $mediaImage;

@@ -20,6 +20,17 @@
               </a>
             @endif
           </div>
+          @if($withCreatedDate && isset($item->created_at))
+            <div class="col-12 item-created-date">
+              @if(isset($item->url))
+                <a href="{{$item->url}}">
+                  @endif
+                  <div class="date">{{ $post->created_at->format($formatCreatedDate) }}</div>
+                  @if(isset($item->url))
+                </a>
+              @endif
+            </div>
+          @endif
           @if(isset($item->category->id))
             <div class="col-12 item-category-title">
               @if(isset($item->category->url))
