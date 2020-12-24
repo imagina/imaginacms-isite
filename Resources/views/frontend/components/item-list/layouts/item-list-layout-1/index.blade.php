@@ -25,7 +25,7 @@
               @if(isset($item->url))
                 <a href="{{$item->url}}">
                   @endif
-                  <div class="date">{{ $post->created_at->format($formatCreatedDate) }}</div>
+                  <div class="date">{{ $item->created_at->format($formatCreatedDate) }}</div>
                   @if(isset($item->url))
                 </a>
               @endif
