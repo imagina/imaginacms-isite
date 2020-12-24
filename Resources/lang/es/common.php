@@ -2,7 +2,8 @@
 
 return [
   'menu' => [
-    'home' => 'Inicio'
+    'home' => 'Inicio',
+    'viewMore' => "Ver más"
   ],
   'settings' => [
     'logo1' => 'Logo N°1',
