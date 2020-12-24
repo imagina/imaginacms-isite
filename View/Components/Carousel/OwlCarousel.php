@@ -12,8 +12,6 @@ class OwlCarousel extends Component
   public $itemsBySlide;
   public $view;
   public $itemLayout;
-  public $withViewMoreButton;
-  public $viewMoreButtonLabel;
   public $loop;
   public $dots;
   public $nav;
@@ -35,8 +33,7 @@ class OwlCarousel extends Component
    */
   public function __construct($repository, $id, $params = [], $margin = 10, $responsiveClass = true, $autoplay = true,
                               $autoplayHoverPause = true, $loop = true, $dots = true, $nav = true, $responsive = null,
-                              $itemLayout = null, $title = "", $subTitle = "", $itemsBySlide = 1,
-                              $withViewMoreButton = false, $viewMoreButtonLabel = "isite::common.menu.viewMore")
+                              $itemLayout = null, $title = "", $subTitle = "", $itemsBySlide = 1)
   {
 
     $this->loop = $loop;
@@ -54,8 +51,6 @@ class OwlCarousel extends Component
     $this->title = $title;
     $this->itemsBySlide = $itemsBySlide;
     $this->subTitle = $subTitle;
-    $this->withViewMoreButton = $withViewMoreButton;
-    $this->viewMoreButtonLabel = $viewMoreButtonLabel;
 
     $this->view = "isite::frontend.components.owl.carousel";
     $this->getItems();
