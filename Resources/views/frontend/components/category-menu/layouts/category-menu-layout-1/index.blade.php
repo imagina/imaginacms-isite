@@ -26,7 +26,7 @@
                                         <div class="dropdown-menu">
                                             <h3><a href="{{$item->url}}">{{ $item->title ?? $item->name }}</a></h3>
                                             @if($firstChildrenLevel)
-                                                <ul class="frame-dropdown{{ count($firstChildrenLevel) > 1 ? "2": ""}}">
+                                                <ul class="frame-dropdown {{ count($firstChildrenLevel) > 1 ? "frame-dropdown2": ""}}">
                                                     @foreach($firstChildrenLevel as $firstChildLevel)
                                                         <li class="nav-item">
                                                             <a class="nav-link" href="{{$firstChildLevel->url}}">{{ $firstChildLevel->title ?? $firstChildLevel->name }}</a>
