@@ -8,30 +8,44 @@ class Whatsapp extends Component
 {
 
 
-    public $items;
-    public $view;
-    public $itemLayout;
-    public $layout;
-    public $title;
-    public $mask;
-    public $icon;
-    public $id;
+  public $items;
+  public $view;
+  public $itemLayout;
+  public $layout;
+  public $title;
+  public $mask;
+  public $icon;
+  public $id;
+  public $alignment;
+  public $parentAttributes;
 
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
-    public function __construct($layout = 'whatsapp-layout-1', $title = '', $id = 'whatsappComponent', $mask= 1, $icon = 'fa fa-whatsapp')
-    {
-        $this->layout = $layout ?? 'whatsapp-layout-1';
-        $this->view = "isite::frontend.components.whatsapp.layouts.{$this->layout}.index";
-        $this->title = $title ?? '';
-        $this->id = $id ?? 'whatsappComponent';
-        $this->icon = $icon ?? 'fa fa-whatsapp';
-        $this->mask = $mask ?? 1;
+  /**
+   * Create a new component instance.
+   *
+   * @return void
+   */
+  public function __construct(
+    $layout = 'whatsapp-layout-1', $title = '', $id = 'whatsappComponent', $mask = 1,
+    $icon = 'fa fa-whatsapp', $alignment = 'dropdown-menu-right', $parentAttributes = []
+  )
+  {
+    $this->layout = $layout ?? 'whatsapp-layout-1';
+    $this->title = $title ?? '';
+    $this->id = $id ?? 'whatsappComponent';
+    $this->icon = $icon ?? 'fa fa-whatsapp';
+    $this->mask = $mask ?? 1;
+    $this->alignment = $alignment ?? 'dropdown-menu-right';
+    $this->setParentAttributes($parentAttributes);//Set parent attributes
+    $this->view = "isite::frontend.components.whatsapp.layouts.{$this->layout}.index";
+  }
 
+  private function setParentAttributes($parentAttributes)
+  {
+    $this->parentAttributes = $parentAttributes;
+    foreach ($this->parentAttributes as $key => $attribute) {
+      $this->{$key} = $attribute;
     }
+  }
     /**
      * Get the view / contents that represent the component.
      *

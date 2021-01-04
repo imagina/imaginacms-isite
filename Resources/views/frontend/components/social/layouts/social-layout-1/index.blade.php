@@ -14,3 +14,4 @@
     @endif
   @endforeach
 </div>
+<x-isite::whatsapp :parentAttributes="$whatsappAttributes"/>
