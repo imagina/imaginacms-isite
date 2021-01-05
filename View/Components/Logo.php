@@ -27,14 +27,9 @@ class Logo extends Component
      if(isset($setting->id)){
       $this->logo = $setting;
      }
-   
   }
 
   
-
-  private function getLogoFile($path){
-    $this->file =File::where('path',$path)->first();
-  }
   /**
    * Get the view / contents that represent the component.
    *
