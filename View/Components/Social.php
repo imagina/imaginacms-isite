@@ -17,19 +17,24 @@ class Social extends Component
     public $customIcons;
     public $id;
     public $position;
+    public $whatsappAttributes;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($layout = 'social-layout-1', $type = '', $customIcons = [], $id = 'socialComponent', $position = 'static')
-    {
+  public function __construct($layout = 'social-layout-1', $type = '', $customIcons = [], $id = 'socialComponent',
+                              $position = 'static', $whatsappAttributes = [])
+  {
         $this->type = $type;
         $this->view = "isite::frontend.components.social.layouts.{$layout}.index";
         $this->customIcons = $customIcons;
         $this->id = $id ?? 'socialComponent';
         $this->position = $position ?? 'static';
+
+    //validate whatsapp attributes
+    $this->whatsappAttributes = is_array($whatsappAttributes) ? $whatsappAttributes :  [];
 
     }
     /**
