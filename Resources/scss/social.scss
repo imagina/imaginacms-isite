@@ -8,3 +8,18 @@
   left: 0;
   right: auto;
 }
+#dropdownMenuWhatsapp{
+  &:after{
+    display: none;
+  }
+
+}
+.dropdown-whatsapp{
+  .dropdown-menu-whatsapp{
+    a{
+      font-size: 14px !important;
+      font-weight: normal !important;
+      margin: 0 5px !important;
+    }
+  }
+}
