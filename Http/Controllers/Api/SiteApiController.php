@@ -5,12 +5,17 @@ namespace Modules\Isite\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Artisan;
 use Modules\Ihelpers\Http\Controllers\Api\BaseApiController;
 use Modules\Setting\Repositories\SettingRepository;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Modules\Core\Foundation\Theme\ThemeManager;
 use Modules\User\Permissions\PermissionManager;
+use Spatie\ResponseCache\Facades\ResponseCache;
+
+//Controller
+use Modules\Isite\Http\Controllers\Api\SettingApiController;
 
 class SiteApiController extends BaseApiController
 {
@@ -21,11 +26,8 @@ class SiteApiController extends BaseApiController
   private $setting;
   private $module;
   private $permissions;
-
-  /**
-   * @var ThemeManager
-   */
   private $themeManager;
+  private $settingController;
 
   public function __construct(
     SettingRepository $setting,
@@ -36,6 +38,7 @@ class SiteApiController extends BaseApiController
     $this->setting = $setting;
     $this->themeManager = $themeManager;
     $this->permissions = $permissions;
+    $this->settingController = app('Modules\Isite\Http\Controllers\Api\SettingApiController');
   }
 
   /**
@@ -84,10 +87,19 @@ class SiteApiController extends BaseApiController
         ];
       }
 
+      //Get all settings (With new setting controller)
+      $settingsResponse = [];
+      $allSettings = $this->validateResponseApi($this->settingController->index(new Request()));
+      foreach ($allSettings as $settingObj)
+        $settingsResponse = array_merge($settingsResponse, collect($settingObj)->values()->toArray());
+
+      //dd($this->transformSettings($dbSettings, $mergedSettings)[2], $settingsResponse[39]);
+
       //Response
       $response = [
         "data" => [
-          "siteSettings" => $this->transformSettings($dbSettings, $mergedSettings),
+          //"siteSettings" => $this->transformSettings($dbSettings, $mergedSettings),
+          "siteSettings" => $settingsResponse,
           "availableLocales" => array_values($locales),
           "availableThemes" => array_values($themes),
           "defaultLocale" => config('app.locale')
@@ -95,7 +107,7 @@ class SiteApiController extends BaseApiController
       ];
 
       //Return specific setting group
-      if(isset($params->filter->settingGroupName))
+      if (isset($params->filter->settingGroupName))
         $response['data'] = $response['data'][$params->filter->settingGroupName] ?? [];
     } catch (\Exception $e) {
       $status = $this->getStatusError($e->getCode());
@@ -329,5 +341,32 @@ class SiteApiController extends BaseApiController
 
     //Return response
     return response()->json($response, $status ?? 200);
+  }
+
+  /**
+   * Cache clear
+   *
+   * @param Request $request
+   * @return mixed
+   */
+  public function cacheClear(Request $request)
+  {
+    try {
+      //clear spatie larevel-responsecache
+      ResponseCache::clear();
+      //Artisan Cache clear
+      Artisan::call('cache:clear');
+
+      //Response
+      $response = ["messages" => [['type' => 'info', 'message' => trans('isite::sites.cacheCleared')]]];
+    } catch (\Exception $e) {
+      $status = $this->getStatusError($e->getCode());
+      $response = [
+        "errors" => $e->getMessage(),
+        "messages" => [['type' => 'error', 'message' => trans('isite::sites.failedCacheClear')]]
+      ];
+    }
+    //Return response
+    return response()->json($response ?? ["data" => "Request successful"], $status ?? 200);
   }
 }

@@ -52,6 +52,7 @@
         loop: {!! $loop ? 'true' : 'false' !!},
         lazyLoad: true,
         margin: {!! $margin !!},
+        {!! !empty($navText) ? 'navText: '.$navText."," : "" !!}
         dots: {!! $dots ? 'true' : 'false' !!},
         responsiveClass: {!! $responsiveClass ? 'true' : 'false' !!},
         autoplay: {!! $autoplay ? 'true' : 'false' !!},
