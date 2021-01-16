@@ -41,6 +41,11 @@ return [
         "message" => "Mensaje por defecto",
     ],
   ],
+  'settingHints' => [
+    'phones' => "Ingresa un número telefónico y presiona enter",
+    'addresses' => "Ingresa una dirección y presiona enter",
+    'emails' => "Ingresa un correo electrónico y presiona enter",
+  ],
   'settingGroups' => [
     'media' => 'Media',
     'colors' => 'Colores',
