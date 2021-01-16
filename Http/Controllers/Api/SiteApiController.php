@@ -14,6 +14,9 @@ use Modules\Core\Foundation\Theme\ThemeManager;
 use Modules\User\Permissions\PermissionManager;
 use Spatie\ResponseCache\Facades\ResponseCache;
 
+//Controller
+use Modules\Isite\Http\Controllers\Api\SettingApiController;
+
 class SiteApiController extends BaseApiController
 {
   /**
@@ -24,6 +27,7 @@ class SiteApiController extends BaseApiController
   private $module;
   private $permissions;
   private $themeManager;
+  private $settingController;
 
   public function __construct(
     SettingRepository $setting,
@@ -34,6 +38,7 @@ class SiteApiController extends BaseApiController
     $this->setting = $setting;
     $this->themeManager = $themeManager;
     $this->permissions = $permissions;
+    $this->settingController = app('Modules\Isite\Http\Controllers\Api\SettingApiController');
   }
 
   /**
@@ -82,10 +87,19 @@ class SiteApiController extends BaseApiController
         ];
       }
 
+      //Get all settings (With new setting controller)
+      $settingsResponse = [];
+      $allSettings = $this->validateResponseApi($this->settingController->index(new Request()));
+      foreach ($allSettings as $settingObj)
+        $settingsResponse = array_merge($settingsResponse, collect($settingObj)->values()->toArray());
+
+      //dd($this->transformSettings($dbSettings, $mergedSettings)[2], $settingsResponse[39]);
+
       //Response
       $response = [
         "data" => [
-          "siteSettings" => $this->transformSettings($dbSettings, $mergedSettings),
+          //"siteSettings" => $this->transformSettings($dbSettings, $mergedSettings),
+          "siteSettings" => $settingsResponse,
           "availableLocales" => array_values($locales),
           "availableThemes" => array_values($themes),
           "defaultLocale" => config('app.locale')
