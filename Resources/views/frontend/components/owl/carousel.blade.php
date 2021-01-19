@@ -1,5 +1,5 @@
 <section id="{{$id}}">
-  <div class="container">
+  <div class="{{$containerFluid ? 'container-fluid': 'container'}}">
     <div class="row">
       <div class="col-12">
         
