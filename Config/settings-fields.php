@@ -389,6 +389,7 @@ return [
             'useChips' => true,
             'multiple' => true,
             'hideDropdownIcon' => true,
+            'hint' => 'isite::common.settingHints.phones',
             'newValueMode' => 'add-unique'
         ]
     ],
@@ -403,6 +404,7 @@ return [
             'useChips' => true,
             'multiple' => true,
             'hideDropdownIcon' => true,
+            'hint' => 'isite::common.settingHints.addresses',
             'newValueMode' => 'add-unique'
         ]
     ],
@@ -417,6 +419,7 @@ return [
             'useChips' => true,
             'multiple' => true,
             'hideDropdownIcon' => true,
+            'hint' => 'isite::common.settingHints.emails',
             'newValueMode' => 'add-unique'
         ]
     ],

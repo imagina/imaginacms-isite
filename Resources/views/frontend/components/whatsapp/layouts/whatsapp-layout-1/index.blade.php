@@ -7,8 +7,9 @@
     @foreach($items as $item)
         @if(!empty($item->callingCode) && !empty($item->number))
             <div class="col-12">
+              <i class="{{ $icon }}"></i>
                 <a href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}" target="_blank">
-                    <i class="{{ $icon }}"></i> {{ $item->formattedNumber }}
+                   {{ $item->formattedNumber }}
                 </a>
             </div>
         @endif
