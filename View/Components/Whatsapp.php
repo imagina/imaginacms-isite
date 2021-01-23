@@ -19,6 +19,10 @@ class Whatsapp extends Component
   public $alignment;
   public $parentAttributes;
 
+  public $top;
+  public $right;
+  public $left;
+
   /**
    * Create a new component instance.
    *
@@ -26,7 +30,8 @@ class Whatsapp extends Component
    */
   public function __construct(
     $layout = 'whatsapp-layout-1', $title = '', $id = 'whatsappComponent', $mask = 1,
-    $icon = 'fa fa-whatsapp', $alignment = 'dropdown-menu-right', $parentAttributes = []
+    $icon = 'fa fa-whatsapp', $alignment = 'dropleft', $parentAttributes = [],
+    $top = '50%', $right = '', $left=''
   )
   {
     $this->layout = $layout ?? 'whatsapp-layout-1';
@@ -34,9 +39,13 @@ class Whatsapp extends Component
     $this->id = $id ?? 'whatsappComponent';
     $this->icon = $icon ?? 'fa fa-whatsapp';
     $this->mask = $mask ?? 1;
-    $this->alignment = $alignment ?? 'dropdown-menu-right';
+    $this->alignment = $alignment ?? 'dropleft';
     $this->setParentAttributes($parentAttributes);//Set parent attributes
     $this->view = "isite::frontend.components.whatsapp.layouts.{$this->layout}.index";
+
+    $this->top = $top ?? '50%';
+    $this->right = $right ?? '';
+    $this->left = $left ?? '';
   }
 
   private function setParentAttributes($parentAttributes)

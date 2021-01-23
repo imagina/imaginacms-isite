@@ -20,18 +20,18 @@ class Logo extends Component
    */
   public function __construct($name = "logo1", $to = null, $imgClasses = "")
   {
-    
+
     $this->to = $to ?? \URL::to('/');
-   $this->zone = "isite::$name";
-   $this->imgClasses = $imgClasses;
+    $this->zone = "isite::$name";
+    $this->imgClasses = $imgClasses;
     $setting = Setting::where("name", $this->zone)->with('files')->first();
-    
+
      if(isset($setting->id)){
       $this->logo = $setting;
      }
   }
 
-  
+
   /**
    * Get the view / contents that represent the component.
    *
