@@ -81,6 +81,12 @@
 
       $(document).ready(function () {
 
+        //Redirect to main category if is desktop
+        window.redirectMainCategory = function (url = false) {
+          var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+          if (width >= 992) window.location.href = url
+        }
+
         function divtomodal() {
 
           var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
@@ -104,11 +110,6 @@
         if(width<=992)
           divtomodal()
 
-        //Redirect to main category if is desktop
-        function redirectMainCategory(url = false) {
-          var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-          if (width >= 992) window.location.href = url
-        }
 
       });
     </script>
