@@ -14,7 +14,8 @@
                             @foreach($items as $item)
                                 @php($firstChildrenLevel = count($item->children) ? $item->children  : null)
                                 <li class="nav-item {{$firstChildrenLevel ? 'dropdown' : ''}}">
-                                    <a href="{{$item->url}}" class="nav-link" data-toggle="{{$firstChildrenLevel ? 'dropdown' : ''}}">
+                                    <a href="{{$item->url}}" onclick="redirectMainCategory('{{$item->url}}')"
+                                       class="nav-link" data-toggle="{{$firstChildrenLevel ? 'dropdown' : ''}}">
                                         @php($mediaFiles = $item->mediaFiles())
 
                                         @if(isset($mediaFiles->iconimage->path) && !strpos($mediaFiles->iconimage->path,"default.jpg"))
@@ -102,6 +103,13 @@
         var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
         if(width<=992)
           divtomodal()
+
+        //Redirect to main category if is desktop
+        function redirectMainCategory(url = false) {
+          var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+          if (width >= 992) window.location.href = url
+        }
+
       });
     </script>
 
