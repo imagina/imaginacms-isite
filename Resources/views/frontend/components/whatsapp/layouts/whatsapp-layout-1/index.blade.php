@@ -1,4 +1,4 @@
-<div class="row py-3" id="{{ $id }}">
+<div class="row" id="{{ $id }}">
     @if($title)
         <div class="col-12">
             <h3>{{ $title }}</h3>
