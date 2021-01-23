@@ -35,7 +35,7 @@ class OwlCarousel extends Component
    */
   public function __construct($repository, $id, $params = [], $margin = 10, $responsiveClass = true, $autoplay = true,
                               $autoplayHoverPause = true, $loop = true, $dots = true, $nav = true, $responsive = null,
-                              $itemLayout = "item-list-layout-1", $title = "", $subTitle = "", $itemsBySlide = 1, $navText = "",
+                              $itemLayout = null, $title = "", $subTitle = "", $itemsBySlide = 1, $navText = "",
                               $containerFluid = false)
   {
 
