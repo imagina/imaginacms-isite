@@ -5,6 +5,10 @@
       display: none;
     }
   }
+
+  .number-whatsapp {
+    text-align: center;
+  }
 }
 
 //whatsapp layout 3
@@ -65,12 +69,11 @@
     top: 11px !important;
   }
 
-
-  .content-baground {
+  .content-background {
     text-align: center;
     color: white;
     background-color: $primary;
-    padding: 11px;
+    padding: 3px;
     border-radius: 48%;
     font-size: 29px;
     width: 78px;
