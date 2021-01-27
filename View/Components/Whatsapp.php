@@ -44,8 +44,8 @@ class Whatsapp extends Component
     $this->view = "isite::frontend.components.whatsapp.layouts.{$this->layout}.index";
 
     $this->top = $top ?? '50%';
-    $this->right = $right ?? '';
-    $this->left = $left ?? '';
+    $this->right = $right ?? ($layout == 'whatsapp-layout-4' ? '10px' : 'unset');
+    $this->left = $left ?? ($layout == 'whatsapp-layout-3' ? '0px' : 'unset');
   }
 
   private function setParentAttributes($parentAttributes)

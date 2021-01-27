@@ -1,4 +1,4 @@
-<div id="whatsappFixedImage" style="top:{{$top}}; left: {{$left}}; right: {{$right}}">
+<div id="whatsappImageFixed" class="whatsapp-layout-3 whatsapp-fixed" style="top:{{$top}}; left: {{$left}}; right: {{$right}}">
   <div class="content-whatsapp">
     <div class="rotate">
       <img id="WhatsappimageText" src="/modules/isite/img/whatsapp-text.png" alt="WhatsappimageText">
