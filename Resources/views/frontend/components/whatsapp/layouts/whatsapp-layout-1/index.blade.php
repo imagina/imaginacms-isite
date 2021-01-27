@@ -8,8 +8,8 @@
         @if(!empty($item->callingCode) && !empty($item->number))
             <div class="col-12">
                 @if($type)
-                    <span class="fa-stack fa-lg">
-                      <i class="fa fa-{{ $type }} fa-stack-{{ $size }}"></i>
+                    <span class="fa-stack fa-{{ $size }}">
+                      <i class="fa fa-{{ $type }} fa-stack-2x"></i>
                       <i class="icon-whatsapp {{ $icon }} fa-stack-1x @if($type=='square-o' || empty($type))  @else text-white @endif"></i>
                     </span>
                 @else
