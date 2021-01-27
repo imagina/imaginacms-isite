@@ -33,7 +33,7 @@ class Whatsapp extends Component
   public function __construct(
     $layout = 'whatsapp-layout-1', $title = '', $id = 'whatsappComponent', $mask = 1,
     $icon = 'fa fa-whatsapp', $alignment = 'dropleft', $parentAttributes = [],
-    $top = '50%', $right = '', $left='', $type = '', $size = 'lg'
+    $top = '50%', $right = null, $left= null, $type = '', $size = 'lg'
   )
   {
     $this->layout = $layout ?? 'whatsapp-layout-1';
