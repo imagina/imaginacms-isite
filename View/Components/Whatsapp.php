@@ -48,6 +48,7 @@ class Whatsapp extends Component
     $this->top = $top ?? '50%';
     $this->right = $right ?? ($layout == 'whatsapp-layout-4' ? '10px' : 'unset');
     $this->left = $left ?? ($layout == 'whatsapp-layout-3' ? '0px' : 'unset');
+    $this->setParentAttributes($parentAttributes);
   }
 
   private function setParentAttributes($parentAttributes)
