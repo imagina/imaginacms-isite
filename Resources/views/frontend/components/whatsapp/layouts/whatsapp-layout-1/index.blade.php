@@ -10,7 +10,7 @@
                 @if($type)
                     <span class="fa-stack fa-{{ $size }}">
                       <i class="fa fa-{{ $type }} fa-stack-2x"></i>
-                      <i class="icon-whatsapp {{ $icon }} fa-stack-1x @if($type=='square-o' || empty($type))  @else text-white @endif"></i>
+                      <i class="icon-whatsapp {{ $icon }} fa-stack-1x @if($type=='square-o' || $type=='circle-thin' || empty($type)) @else text-white @endif"></i>
                     </span>
                 @else
                     <i class="{{ $icon }} fa-{{ $size }}"></i>

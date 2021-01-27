@@ -5,7 +5,7 @@
       @if($type)
         <span class="fa-stack fa-{{ $size }}">
           <i class="fa fa-{{ $type }} fa-stack-2x text-primary"></i>
-          <i class="icon-whatsapp {{ $icon }} fa-stack-1x @if($type=='square-o' || empty($type))  @else text-white @endif"></i>
+          <i class="icon-whatsapp {{ $icon }} fa-stack-1x @if($type=='square-o' || $type=='circle-thin' || empty($type))  @else text-white @endif"></i>
         </span>
       @else
         <i class="icon-whatsapp {{ $icon }} fa-{{ $size }} text-primary"></i>
@@ -14,14 +14,14 @@
   @endforeach
 @else
   <div class="btn-group {{$alignment}} whatsapp-layout-2">
-    <a id="dropdownMenuWhatsapp" type="button" class="btn dropdown-toggle p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a id="dropdownMenuWhatsapp" type="button" class="btn dropdown-toggle{{ count($parentAttributes) > 0 ? ' p-0' : '' }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         @if($type)
             <span class="fa-stack fa-{{ $size }}">
-          <i class="fa fa-{{ $type }} fa-stack-2x text-primary"></i>
-          <i class="icon-whatsapp {{ $icon }} fa-stack-1x @if($type=='square-o' || empty($type))  @else text-white @endif"></i>
+          <i class="fa fa-{{ $type }} fa-stack-2x"></i>
+          <i class="icon-whatsapp {{ $icon }} fa-stack-1x @if($type=='square-o' || $type=='circle-thin' || empty($type))  @else text-white @endif"></i>
         </span>
         @else
-            <i class="icon-whatsapp {{ $icon }} fa-{{ $size }} text-primary"></i>
+            <i class="icon-whatsapp {{ $icon }} fa-{{ $size }}"></i>
         @endif
     </a>
     <div class="dropdown-menu dropdown-menu-whatsapp">
