@@ -4,11 +4,11 @@
     <a href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}" class="whatsapp-layout-2" target="_blank">
       @if($type)
         <span class="fa-stack fa-{{ $size }}">
-          <i class="fa fa-{{ $type }} fa-stack-2x text-primary"></i>
+          <i class="fa fa-{{ $type }} fa-stack-2x text-white"></i>
           <i class="icon-whatsapp {{ $icon }} fa-stack-1x @if($type=='square-o' || $type=='circle-thin' || empty($type))  @else text-white @endif"></i>
         </span>
       @else
-        <i class="icon-whatsapp {{ $icon }} fa-{{ $size }} text-primary"></i>
+        <i class="icon-whatsapp {{ $icon }} fa-{{ $size }} text-white"></i>
       @endif
     </a>
   @endforeach

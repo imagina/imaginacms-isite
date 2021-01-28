@@ -9,6 +9,7 @@ class OwlCarousel extends Component
 
 
   public $items;
+  public $emptyItems;
   public $itemsBySlide;
   public $view;
   public $itemLayout;
@@ -38,7 +39,7 @@ class OwlCarousel extends Component
                               $itemLayout = null, $title = "", $subTitle = "", $itemsBySlide = 1, $navText = "",
                               $containerFluid = false)
   {
-
+    $this->emptyItems = false;
     $this->loop = $loop;
     $this->id = $id;
     $this->dots = $dots;
@@ -88,6 +89,10 @@ class OwlCarousel extends Component
       case 'Modules\Iblog\Repositories\PostRepository':
         $this->itemLayout = $this->itemLayout ?? setting('iblog::postListItemLayout');
         break;
+    }
+    
+    if($this->items->isEmpty()){
+      $this->emptyItems = true;
     }
   }
   /**

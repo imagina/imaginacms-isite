@@ -1,3 +1,4 @@
+@if(!$emptyItems)
 <section id="{{$id}}">
   <div class="{{$containerFluid ? 'container-fluid': 'container'}}">
     <div class="row">
@@ -67,3 +68,4 @@
   @parent
 
 @stop
+@endif
