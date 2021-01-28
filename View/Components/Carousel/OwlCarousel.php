@@ -28,6 +28,7 @@ class OwlCarousel extends Component
   public $autoplay;
   public $autoplayHoverPause;
   public $containerFluid;
+  public $itemComponent;
 
   /**
    * Create a new component instance.
@@ -57,7 +58,7 @@ class OwlCarousel extends Component
     $this->itemsBySlide = $itemsBySlide;
     $this->subTitle = $subTitle;
     $this->containerFluid = $containerFluid;
-
+    $this->itemComponent = "isite::item-list";
     $this->view = "isite::frontend.components.owl.carousel";
     $this->getItems();
  
@@ -82,12 +83,9 @@ class OwlCarousel extends Component
     switch($this->repository){
       case 'Modules\Icommerce\Repositories\ProductRepository':
         !$this->itemLayout ? $this->itemLayout = setting('icommerce::productListItemLayout') : false;
-        break;
-      case 'Modules\Icommerce\Repositories\CategoryRepository':
-        $this->itemLayout = $this->itemLayout ?? setting('icommerce::categoryListItemLayout');
-        break;
-      case 'Modules\Iblog\Repositories\PostRepository':
-        $this->itemLayout = $this->itemLayout ?? setting('iblog::postListItemLayout');
+        if(is_module_enabled("Icommerce")) {
+          $this->itemComponent = "icommerce::product-list-item";
+        }
         break;
     }
     
