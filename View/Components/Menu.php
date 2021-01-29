@@ -60,7 +60,7 @@ class Menu extends Component
     $params = $this->makeParamsFunction();
 
     $this->items = app($this->repository)->getItemsBy(json_decode(json_encode($params)));
-
+   
     switch($this->repository){
       case 'Modules\Icommerce\Repositories\ProductRepository':
         $this->itemLayout = setting('icommerce::productListItemLayout');
