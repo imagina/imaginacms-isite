@@ -31,7 +31,7 @@
           <div class="number-whatsapp">
             <a href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}"
                target="_blank">
-              <span>{{ $item->formattedNumber }}</span>
+              <span>{{ $item->label.': ' ?? '' }} {{ $item->formattedNumber }}</span>
             </a>
           </div>
         @endif
