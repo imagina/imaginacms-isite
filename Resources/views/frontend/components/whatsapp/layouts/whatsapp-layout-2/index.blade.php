@@ -31,10 +31,10 @@
           <div class="number-whatsapp">
               <a href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}"
                  target="_blank">
-                  <p>
+                  <p class="mb-0">
                     <span>{{ $item->label.': ' ?? '' }}</span>
                   </p>
-                  <p>
+                  <p class="mb-0">
                     <span>{{ $item->formattedNumber }}</span>
                   </p>
               </a>
