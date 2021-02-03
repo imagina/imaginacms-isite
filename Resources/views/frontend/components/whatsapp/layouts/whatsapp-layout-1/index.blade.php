@@ -16,7 +16,7 @@
                     <i class="{{ $icon }} fa-{{ $size }}"></i>
                 @endif
                 <a href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}" target="_blank">
-                    {{ $item->label.': ' ?? '' }} {{ $item->formattedNumber }}
+                    {{ isset($item->label) ? $item->label.': ' : '' }} {{ $item->formattedNumber }}
                 </a>
             </div>
         @endif
