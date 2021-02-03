@@ -32,7 +32,7 @@
               <a href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}"
                  target="_blank">
                   <p class="mb-0">
-                    <span>{{ $item->label.': ' ?? '' }}</span>
+                    <span>{{ isset($item->label) ? $item->label.': ' : '' }}</span>
                   </p>
                   <p class="mb-0">
                     <span>{{ $item->formattedNumber }}</span>
