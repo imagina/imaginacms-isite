@@ -204,7 +204,7 @@ return [
                 'name' => 'callingCode',
                 'value' => null,
                 'type' => 'select',
-                'columns' => 'col-4 q-pr-sm',
+                'columns' => 'col-3 q-pr-sm',
                 'props' => [
                     'label' => 'isite::common.settings.whatsapp.callingCode',
                 ],
@@ -217,7 +217,7 @@ return [
                 'name' => 'number',
                 'value' => null,
                 'type' => 'input',
-                'columns' => 'col-4 q-pr-sm',
+                'columns' => 'col-3 q-pr-sm',
                 'props' => [
                     'label' => 'isite::common.settings.whatsapp.number',
                     'type' => 'number',
@@ -227,9 +227,18 @@ return [
                 'name' => 'message',
                 'value' => null,
                 'type' => 'input',
-                'columns' => 'col-4',
+                'columns' => 'col-3 q-pr-sm',
                 'props' => [
                     'label' => 'isite::common.settings.whatsapp.message',
+                ]
+            ],
+            'label' => [
+                'name' => 'label',
+                'value' => null,
+                'type' => 'input',
+                'columns' => 'col-3',
+                'props' => [
+                    'label' => 'isite::common.settings.whatsapp.label',
                 ]
             ],
         ]
@@ -244,7 +253,7 @@ return [
                 'name' => 'callingCode',
                 'value' => null,
                 'type' => 'select',
-                'columns' => 'col-4 q-pr-sm',
+                'columns' => 'col-3 q-pr-sm',
                 'props' => [
                     'label' => 'isite::common.settings.whatsapp.callingCode',
                 ],
@@ -257,7 +266,7 @@ return [
                 'name' => 'number',
                 'value' => null,
                 'type' => 'input',
-                'columns' => 'col-4 q-pr-sm',
+                'columns' => 'col-3 q-pr-sm',
                 'props' => [
                     'label' => 'isite::common.settings.whatsapp.number',
                     'type' => 'number',
@@ -267,9 +276,18 @@ return [
                 'name' => 'message',
                 'value' => null,
                 'type' => 'input',
-                'columns' => 'col-4',
+                'columns' => 'col-3 q-pr-sm',
                 'props' => [
                     'label' => 'isite::common.settings.whatsapp.message',
+                ]
+            ],
+            'label' => [
+                'name' => 'label',
+                'value' => null,
+                'type' => 'input',
+                'columns' => 'col-3',
+                'props' => [
+                    'label' => 'isite::common.settings.whatsapp.label',
                 ]
             ],
         ]
@@ -283,7 +301,7 @@ return [
                 'name' => 'callingCode',
                 'value' => null,
                 'type' => 'select',
-                'columns' => 'col-4 q-pr-sm',
+                'columns' => 'col-3 q-pr-sm',
                 'props' => [
                     'label' => 'isite::common.settings.whatsapp.callingCode',
                 ],
@@ -296,7 +314,7 @@ return [
                 'name' => 'number',
                 'value' => null,
                 'type' => 'input',
-                'columns' => 'col-4 q-pr-sm',
+                'columns' => 'col-3 q-pr-sm',
                 'props' => [
                     'label' => 'isite::common.settings.whatsapp.number',
                     'type' => 'number',
@@ -306,9 +324,18 @@ return [
                 'name' => 'message',
                 'value' => null,
                 'type' => 'input',
-                'columns' => 'col-4',
+                'columns' => 'col-3 q-pr-sm',
                 'props' => [
                     'label' => 'isite::common.settings.whatsapp.message',
+                ]
+            ],
+            'label' => [
+                'name' => 'label',
+                'value' => null,
+                'type' => 'input',
+                'columns' => 'col-3',
+                'props' => [
+                    'label' => 'isite::common.settings.whatsapp.label',
                 ]
             ],
         ]
