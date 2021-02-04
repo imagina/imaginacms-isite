@@ -38,6 +38,7 @@ return [
         "callingCode" => "CountryCode",
         "number" => "Whatsapp number",
         "message" => "Default Message",
+        "label" => "Label",
     ],
   ],
   'settingGroups' => [

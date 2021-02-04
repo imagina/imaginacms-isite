@@ -39,6 +39,7 @@ return [
         "callingCode" => "Cód del país",
         "number" => "Número del whatsapp",
         "message" => "Mensaje por defecto",
+        "label" => "Etiqueta",
     ],
   ],
   'settingHints' => [

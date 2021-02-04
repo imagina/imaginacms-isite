@@ -66,10 +66,18 @@ class Whatsapp extends Component
     public function render()
     {
         $items = [];
+        $countryParams = [
+          'include' => ['*'],
+          'filter' => [
+              'field' => 'calling_code'
+          ]
+        ];
         for($i=1;$i<=3;$i++) {
             $item = json_decode(setting('isite::whatsapp'.$i));
             if(!empty($item->callingCode) && !empty($item->number)){
-                $item->formattedNumber =  "+{$item->callingCode} ".$this->formatNumber($item->number, $this->mask);
+                $item->country = app('Modules\\Ilocations\\Repositories\\CountryRepository')
+                    ->getItem($item->callingCode,json_decode(json_encode($countryParams)));
+                $item->formattedNumber =  "({$item->country->iso_2}) ".$this->formatNumber($item->number, $this->mask);
                 $items[] = $item;
             }
         }

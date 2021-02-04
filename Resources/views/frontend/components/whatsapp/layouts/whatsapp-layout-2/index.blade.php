@@ -29,10 +29,15 @@
       @foreach($items as $key => $item)
         @if(!empty($item->callingCode) && !empty($item->number))
           <div class="number-whatsapp">
-            <a href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}"
-               target="_blank">
-              <span>{{ $item->formattedNumber }}</span>
-            </a>
+              <a href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}"
+                 target="_blank">
+                  <p class="mb-0">
+                    <span>{{ isset($item->label) ? $item->label.': ' : '' }}</span>
+                  </p>
+                  <p class="mb-0">
+                    <span>{{ $item->formattedNumber }}</span>
+                  </p>
+              </a>
           </div>
         @endif
       @endforeach
