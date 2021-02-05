@@ -1,16 +1,17 @@
 <div id="{{ $id }}">
-  <div class="col-auto d-block d-lg-none px-1 px-sm-3">
+  
+  <div class="col-auto d-block {{$collapsed ? "" : "d-lg-none"}} px-1 px-sm-3">
     <ul class="nav justify-content-center">
       <li class="nav-item">
         <a class="nav-link link-movil cursor-pointer" data-toggle="modal" data-target="#{{ $id }}menuModal">
-          <i class="fa fa-bars"></i>
+          <i class="fa fa-bars"></i> {{$title}}
         </a>
       </li>
     </ul>
   </div>
   
   <div id="{{ $id }}contentToMove">
-    <nav id="{{$id}}nav" class="navbar navbar-category-2 p-0">
+    <nav id="{{$id}}nav" class="navbar navbar-category-2 p-0 {{$collapsed ? "d-none" : ""}}">
       @if($menuBefore)
         @menu($menuBefore,'imagina-navbar')
       @endif
@@ -97,23 +98,32 @@
   <script>
     
     $(document).ready(function () {
-      
-      function divtomodal() {
+     
+
+      window.isite_menu_divtomodal = function () {
+        var collapsed = {!! $collapsed ? 'true' : 'false' !!}
         var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-        if (width <= 992) {
+        if (width <= 992 || collapsed) {
         
           $('#{{ $id }}modalBody').append($("#{{ $id }}nav"));
+  
+          if(collapsed){
+            $('#{{$id}}nav').removeClass("d-none");
+          }
         } else {
   
           $('#{{ $id }}contentToMove').append($("#{{ $id }}nav"));
         }
       }
       
-      $(window).resize(divtomodal);
+      $(window).resize(isite_menu_divtomodal);
       
       var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-      if(width<=992)
-        divtomodal()
+      var collapsed = {!! $collapsed ? 'true' : 'false' !!}
+      if(width<=992 || collapsed){
+        isite_menu_divtomodal()
+      }
+      
     });
   </script>
 
