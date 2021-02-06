@@ -26,7 +26,7 @@
           </li>
         @endif
         @foreach($items as $item)
-          @php($firstChildrenLevel = count($item->children) ? $item->children  : null)
+          @php($firstChildrenLevel = $item->children)
           <li class="nav-item {{$firstChildrenLevel->isNotEmpty() ? 'dropdown' : ''}}">
             <a href="{{$item->url}}" class="nav-link {{$firstChildrenLevel->isNotEmpty() ? ' dropdown-toggle' : ''}}" data-toggle="{{$firstChildrenLevel->isNotEmpty() ? 'dropdown' : ''}}">
               @php($mediaFiles = $item->mediaFiles())
@@ -39,7 +39,7 @@
             @if($firstChildrenLevel->isNotEmpty())
               <ul class="dropdown-menu">
                 @foreach($firstChildrenLevel as $firstChildLevel)
-                  @php($secondChildrenLevel = $firstChildLevel->children ?? null)
+                  @php($secondChildrenLevel = $firstChildLevel->children)
                   <li class="nav-item {{$secondChildrenLevel->isNotEmpty() ? 'dropdown' : ''}}">
                     <a class="nav-link" data-toggle="{{$secondChildrenLevel->isNotEmpty() ? 'dropdown' : ''}}" href="{{$firstChildLevel->url}}">{{ $firstChildLevel->title ?? $firstChildLevel->name }}</a>
                     @if($secondChildrenLevel->isNotEmpty())
