@@ -79,7 +79,7 @@
         </div>
     </div>
 </div>
-@section('scripts-owl')
+@section('scripts')
     @parent
     <script>
 

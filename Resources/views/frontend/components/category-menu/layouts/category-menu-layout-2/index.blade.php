@@ -27,8 +27,8 @@
         @endif
         @foreach($items as $item)
           @php($firstChildrenLevel = count($item->children) ? $item->children  : null)
-          <li class="nav-item {{$firstChildrenLevel ? 'dropdown' : ''}}">
-            <a href="{{$item->url}}" class="nav-link {{$firstChildrenLevel ? ' dropdown-toggle' : ''}}" data-toggle="{{$firstChildrenLevel ? 'dropdown' : ''}}">
+          <li class="nav-item {{$firstChildrenLevel->isNotEmpty() ? 'dropdown' : ''}}">
+            <a href="{{$item->url}}" class="nav-link {{$firstChildrenLevel->isNotEmpty() ? ' dropdown-toggle' : ''}}" data-toggle="{{$firstChildrenLevel->isNotEmpty() ? 'dropdown' : ''}}">
               @php($mediaFiles = $item->mediaFiles())
             
               @if(isset($mediaFiles->iconimage->path) && !strpos($mediaFiles->iconimage->path,"default.jpg"))
@@ -36,14 +36,13 @@
               @endif
               {{ $item->title ?? $item->name }}
             </a>
-            @if($firstChildrenLevel)
-            
+            @if($firstChildrenLevel->isNotEmpty())
               <ul class="dropdown-menu">
                 @foreach($firstChildrenLevel as $firstChildLevel)
                   @php($secondChildrenLevel = $firstChildLevel->children ?? null)
-                  <li class="nav-item {{$secondChildrenLevel ? 'dropdown' : ''}}">
-                    <a class="nav-link" data-toggle="{{$secondChildrenLevel ? 'dropdown' : ''}}" href="{{$firstChildLevel->url}}">{{ $firstChildLevel->title ?? $firstChildLevel->name }}</a>
-                    @if($secondChildrenLevel)
+                  <li class="nav-item {{$secondChildrenLevel->isNotEmpty() ? 'dropdown' : ''}}">
+                    <a class="nav-link" data-toggle="{{$secondChildrenLevel->isNotEmpty() ? 'dropdown' : ''}}" href="{{$firstChildLevel->url}}">{{ $firstChildLevel->title ?? $firstChildLevel->name }}</a>
+                    @if($secondChildrenLevel->isNotEmpty())
                     
                       <ul class="dropdown-menu">
                         @foreach($secondChildrenLevel as $secondChildLevel)
@@ -93,7 +92,7 @@
   </div>
 </div>
 
-@section('scripts-owl')
+@section('scripts')
   @parent
   <script>
     
