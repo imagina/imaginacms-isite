@@ -29,17 +29,21 @@
                                             @if($firstChildrenLevel)
                                                 <ul class="frame-dropdown {{ count($firstChildrenLevel) > 1 ? "frame-dropdown2": ""}}">
                                                     @foreach($firstChildrenLevel as $firstChildLevel)
+                                                      @if($firstChildLevel->status)
                                                         <li class="nav-item">
                                                             <a class="nav-link" href="{{$firstChildLevel->url}}">{{ $firstChildLevel->title ?? $firstChildLevel->name }}</a>
                                                             @php($secondChildrenLevel = $firstChildLevel->children ?? null)
                                                             @if($secondChildrenLevel)
                                                                 <div class="dropdown-submenu">
                                                                     @foreach($secondChildrenLevel as $secondChildLevel)
+                                                                    @if($secondChildLevel->status)
                                                                         <a href="{{$secondChildLevel->url}}">{{ $secondChildLevel->title ?? $secondChildLevel->name }}</a>
+                                                                    @endif
                                                                     @endforeach
                                                                 </div>
                                                             @endif
                                                         </li>
+                                                    @endif
                                                     @endforeach
                                                 </ul>
                                             @endif

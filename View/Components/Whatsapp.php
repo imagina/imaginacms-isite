@@ -22,6 +22,8 @@ class Whatsapp extends Component
   public $top;
   public $right;
   public $left;
+  public $size;
+  public $type;
 
   /**
    * Create a new component instance.
@@ -31,7 +33,7 @@ class Whatsapp extends Component
   public function __construct(
     $layout = 'whatsapp-layout-1', $title = '', $id = 'whatsappComponent', $mask = 1,
     $icon = 'fa fa-whatsapp', $alignment = 'dropleft', $parentAttributes = [],
-    $top = '50%', $right = '', $left=''
+    $top = '50%', $right = null, $left= null, $type = '', $size = 'lg'
   )
   {
     $this->layout = $layout ?? 'whatsapp-layout-1';
@@ -40,12 +42,13 @@ class Whatsapp extends Component
     $this->icon = $icon ?? 'fa fa-whatsapp';
     $this->mask = $mask ?? 1;
     $this->alignment = $alignment ?? 'dropleft';
-    $this->setParentAttributes($parentAttributes);//Set parent attributes
+    $this->size = $size ?? 'lg';
+    $this->type = $type ?? '';
     $this->view = "isite::frontend.components.whatsapp.layouts.{$this->layout}.index";
-
     $this->top = $top ?? '50%';
-    $this->right = $right ?? '';
-    $this->left = $left ?? '';
+    $this->right = $right ?? ($layout == 'whatsapp-layout-4' ? '10px' : 'unset');
+    $this->left = $left ?? ($layout == 'whatsapp-layout-3' ? '0px' : 'unset');
+    $this->setParentAttributes($parentAttributes);
   }
 
   private function setParentAttributes($parentAttributes)
@@ -63,10 +66,18 @@ class Whatsapp extends Component
     public function render()
     {
         $items = [];
+        $countryParams = [
+          'include' => ['*'],
+          'filter' => [
+              'field' => 'calling_code'
+          ]
+        ];
         for($i=1;$i<=3;$i++) {
             $item = json_decode(setting('isite::whatsapp'.$i));
             if(!empty($item->callingCode) && !empty($item->number)){
-                $item->formattedNumber =  "+{$item->callingCode} ".$this->formatNumber($item->number, $this->mask);
+                $item->country = app('Modules\\Ilocations\\Repositories\\CountryRepository')
+                    ->getItem($item->callingCode,json_decode(json_encode($countryParams)));
+                $item->formattedNumber =  "({$item->country->iso_2}) ".$this->formatNumber($item->number, $this->mask);
                 $items[] = $item;
             }
         }

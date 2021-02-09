@@ -53,7 +53,7 @@
               <a href="{{$item->url}}">
                 @endif
             <div class="my-4">
-              {!! $item->summary ?? $item->description ?? ''!!}
+              {!! $item->summary ?? ''!!}
             </div>
                 @if(isset($item->url))
               </a>

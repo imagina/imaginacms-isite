@@ -1,16 +1,17 @@
 <div id="{{ $id }}">
-  <div class="col-auto d-block d-lg-none px-1 px-sm-3">
+  
+  <div class="col-auto d-block {{$collapsed ? "" : "d-lg-none"}} px-1 px-sm-3">
     <ul class="nav justify-content-center">
       <li class="nav-item">
         <a class="nav-link link-movil cursor-pointer" data-toggle="modal" data-target="#{{ $id }}menuModal">
-          <i class="fa fa-bars"></i>
+          <i class="fa fa-bars"></i> {{$title}}
         </a>
       </li>
     </ul>
   </div>
   
   <div id="{{ $id }}contentToMove">
-    <nav id="{{$id}}nav" class="navbar navbar-category-2 p-0">
+    <nav id="{{$id}}nav" class="navbar navbar-category-2 p-0 {{$collapsed ? "d-none" : ""}}">
       @if($menuBefore)
         @menu($menuBefore,'imagina-navbar')
       @endif
@@ -25,9 +26,9 @@
           </li>
         @endif
         @foreach($items as $item)
-          @php($firstChildrenLevel = count($item->children) ? $item->children  : null)
-          <li class="nav-item {{$firstChildrenLevel ? 'dropdown' : ''}}">
-            <a href="{{$item->url}}" class="nav-link {{$firstChildrenLevel ? ' dropdown-toggle' : ''}}" data-toggle="{{$firstChildrenLevel ? 'dropdown' : ''}}">
+          @php($firstChildrenLevel = $item->children)
+          <li class="nav-item {{$firstChildrenLevel->isNotEmpty() ? 'dropdown' : ''}}">
+            <a href="{{$item->url}}" class="nav-link {{$firstChildrenLevel->isNotEmpty() ? ' dropdown-toggle' : ''}}" data-toggle="{{$firstChildrenLevel->isNotEmpty() ? 'dropdown' : ''}}">
               @php($mediaFiles = $item->mediaFiles())
             
               @if(isset($mediaFiles->iconimage->path) && !strpos($mediaFiles->iconimage->path,"default.jpg"))
@@ -35,14 +36,13 @@
               @endif
               {{ $item->title ?? $item->name }}
             </a>
-            @if($firstChildrenLevel)
-            
+            @if($firstChildrenLevel->isNotEmpty())
               <ul class="dropdown-menu">
                 @foreach($firstChildrenLevel as $firstChildLevel)
-                  @php($secondChildrenLevel = $firstChildLevel->children ?? null)
-                  <li class="nav-item {{$secondChildrenLevel ? 'dropdown' : ''}}">
-                    <a class="nav-link" data-toggle="{{$secondChildrenLevel ? 'dropdown' : ''}}" href="{{$firstChildLevel->url}}">{{ $firstChildLevel->title ?? $firstChildLevel->name }}</a>
-                    @if($secondChildrenLevel)
+                  @php($secondChildrenLevel = $firstChildLevel->children)
+                  <li class="nav-item {{$secondChildrenLevel->isNotEmpty() ? 'dropdown' : ''}}">
+                    <a class="nav-link" data-toggle="{{$secondChildrenLevel->isNotEmpty() ? 'dropdown' : ''}}" href="{{$firstChildLevel->url}}">{{ $firstChildLevel->title ?? $firstChildLevel->name }}</a>
+                    @if($secondChildrenLevel->isNotEmpty())
                     
                       <ul class="dropdown-menu">
                         @foreach($secondChildrenLevel as $secondChildLevel)
@@ -97,23 +97,32 @@
   <script>
     
     $(document).ready(function () {
-      
-      function divtomodal() {
+     
+
+      window.isite_menu_divtomodal = function () {
+        var collapsed = {!! $collapsed ? 'true' : 'false' !!}
         var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-        if (width <= 992) {
+        if (width <= 992 || collapsed) {
         
           $('#{{ $id }}modalBody').append($("#{{ $id }}nav"));
+  
+          if(collapsed){
+            $('#{{$id}}nav').removeClass("d-none");
+          }
         } else {
   
           $('#{{ $id }}contentToMove').append($("#{{ $id }}nav"));
         }
       }
       
-      $(window).resize(divtomodal);
+      $(window).resize(isite_menu_divtomodal);
       
       var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-      if(width<=992)
-        divtomodal()
+      var collapsed = {!! $collapsed ? 'true' : 'false' !!}
+      if(width<=992 || collapsed){
+        isite_menu_divtomodal()
+      }
+      
     });
   </script>
 

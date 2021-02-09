@@ -1,3 +1,4 @@
+@if(!$emptyItems)
 <section id="{{$id}}">
   <div class="{{$containerFluid ? 'container-fluid': 'container'}}">
     <div class="row">
@@ -21,15 +22,10 @@
               @endif
                 
                 @while(isset($items[$x + $j]) && $j<$itemsBySlide)
-                  @switch($repository)
-                    @case('Modules\Icommerce\Repositories\ProductRepository')
-                    <x-icommerce::product-list-item :product="$items[$x + $j]" :layout="$itemLayout"
-                                                   :parentAttributes="$attributes"/>
-                    @break
-                    @default
-                    <x-isite::item-list :item="$items[$x + $j]" :layout="$itemLayout" :parentAttributes="$attributes"/>
-                    @break
-                  @endswitch
+      
+                      <x-dynamic-component :component="$itemComponent" :item="$items[$x + $j]" :product="$items[$x + $j]" :layout="$itemLayout"
+                                           :parentAttributes="$attributes" />
+                  
                   @php($j++)
                 @endwhile
               @if($itemsBySlide > 1)
@@ -67,3 +63,4 @@
   @parent
 
 @stop
+@endif

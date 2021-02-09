@@ -20,6 +20,7 @@ class Menu extends Component
   public $menuAfter;
   public $withHome;
   public $homeIcon;
+  public $collapsed;
 
   /**
    * Create a new component instance.
@@ -27,7 +28,7 @@ class Menu extends Component
    * @return void
    */
   public function __construct($repository, $id, $params = [], $layout = 'category-menu-layout-1', $title = "Categorías",
-                              $menuBefore = null, $menuAfter = null, $withHome = true, $homeIcon = "")
+                              $menuBefore = null, $menuAfter = null, $withHome = true, $homeIcon = "",$collapsed = false)
   {
     $this->id = $id;
     $this->repository = $repository;
@@ -37,6 +38,7 @@ class Menu extends Component
     $this->menuBefore = $menuBefore;
     $this->menuAfter = $menuAfter;
     $this->withHome = $withHome;
+    $this->collapsed = $collapsed;
     $this->homeIcon = $homeIcon ?? "fa fa-home";
 
     $this->view = "isite::frontend.components.category-menu.layouts.{$layout}.index";
@@ -60,7 +62,7 @@ class Menu extends Component
     $params = $this->makeParamsFunction();
 
     $this->items = app($this->repository)->getItemsBy(json_decode(json_encode($params)));
-
+   
     switch($this->repository){
       case 'Modules\Icommerce\Repositories\ProductRepository':
         $this->itemLayout = setting('icommerce::productListItemLayout');
