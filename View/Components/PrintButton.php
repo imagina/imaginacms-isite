@@ -7,7 +7,7 @@ use Illuminate\View\Component;
 class PrintButton extends Component
 {
 
-  public $container;
+  public $containerId;
   public $icon;
   public $text;
   public $containerName;
@@ -17,12 +17,12 @@ class PrintButton extends Component
    *
    * @return void
    */
-  public function __construct($container = "body", $icon = "fa fa-print", $text= "Imprimir")
+  public function __construct($containerId = "page-wrapper", $icon = "fa fa-print", $text= "Imprimir")
   {
-    $this->container = $container ?? 'body';
+    $this->containerId = $containerId ?? 'page-wrapper';
     $this->icon = $icon ?? "fa fa-print";
     $this->text = $text ?? "Imprimir";
-    $this->containerName = str_replace('#','_',$this->container);
+    $this->containerName = str_replace('#','_',$this->containerId);
     $this->containerName = str_replace('.','_',$this->containerName);
     $this->containerName = str_replace(',','_',$this->containerName);
     $this->containerName = str_replace('-','_',$this->containerName);
