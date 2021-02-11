@@ -10,7 +10,6 @@ class PrintButton extends Component
   public $containerId;
   public $icon;
   public $text;
-  public $containerName;
 
   /**
    * Create a new component instance.
@@ -22,11 +21,6 @@ class PrintButton extends Component
     $this->containerId = $containerId ?? 'page-wrapper';
     $this->icon = $icon ?? "fa fa-print";
     $this->text = $text ?? "Imprimir";
-    $this->containerName = str_replace('#','_',$this->containerId);
-    $this->containerName = str_replace('.','_',$this->containerName);
-    $this->containerName = str_replace(',','_',$this->containerName);
-    $this->containerName = str_replace('-','_',$this->containerName);
-    $this->containerName = str_replace(' ','_',$this->containerName);
   }
 
 
