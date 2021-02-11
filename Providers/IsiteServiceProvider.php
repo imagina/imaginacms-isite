@@ -10,6 +10,7 @@ use Modules\Core\Events\LoadingBackendTranslations;
 use Modules\Isite\Events\Handlers\RegisterIsiteSidebar;
 use Modules\Isite\Http\Middleware\CaptchaMiddleware;
 use Illuminate\Support\Facades\Blade;
+use Livewire\Livewire;
 
 class IsiteServiceProvider extends ServiceProvider
 {
@@ -52,6 +53,7 @@ class IsiteServiceProvider extends ServiceProvider
     $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
     $this->registerComponents();
+    $this->registerComponentsLivewire();
   }
 
   /**
@@ -85,4 +87,15 @@ class IsiteServiceProvider extends ServiceProvider
   private function registerComponents(){
       Blade::componentNamespace("Modules\Isite\View\Components", 'isite');
   }
+
+   /**
+   * Register components Livewire
+   */
+  private function registerComponentsLivewire()
+  {
+
+    Livewire::component('isite::item-list', \Modules\Isite\Http\Livewire\Index\ItemList::class);
+   
+  }
+
 }
