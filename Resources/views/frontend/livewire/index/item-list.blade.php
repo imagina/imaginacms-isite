@@ -1,8 +1,8 @@
-<div class="item-list">
+<div class="{{$entityName}}-list">
 
 	@includeIf($moduleName.'::frontend.livewire.index.top-content.index')
 	
-	<div class="item">
+	<div class="{{$entityName}}s">
 		
 		@include('isite::frontend.partials.preloader')
 		
@@ -10,7 +10,7 @@
 
 			<div class="row">
 				@foreach($items as $item)
-				<div class="{{$layoutClass}} item">
+				<div class="{{$layoutClass}} {{$entityName}}">
 					
 					<x-dynamic-component 
 	                  :component="$itemComponentName"
@@ -23,7 +23,7 @@
 			</div>
 
 			<div class="row">
-				<div class="item-list-pagination d-flex w-100 px-3 justify-content-end">
+				<div class="{{$entityName}}-list-pagination d-flex w-100 px-3 justify-content-end">
 					
 					{{ $items->links('isite::frontend.livewire.index.custom-pagination') }}
 					
@@ -51,7 +51,7 @@
     });
     
     $(document).on('click', '.page-link-scroll', function (e) {
-    	let scrollPos = $(".item-list").offset().top; 
+    	let scrollPos = $(".{{$entityName}}-list").offset().top; 
 
 	  $("html, body").animate({ scrollTop: scrollPos }, "slow");
 	  return false;

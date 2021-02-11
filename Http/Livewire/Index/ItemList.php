@@ -19,6 +19,7 @@ class ItemList extends Component
     public $moduleName;
     public $repository;
     public $itemComponentName;
+    public $entityName;
 
     public $totalItems = 0;
     public $orderBy;
@@ -53,11 +54,13 @@ class ItemList extends Component
     * Runs once, immediately after the component is instantiated,
     * but before render() is called
     */
-	public function mount( Request $request, $itemListLayout = null, $moduleName = "isite", $entityName = null, $itemComponentName = "item-list", $params = []
+	public function mount( Request $request, $itemListLayout = null, $moduleName = "isite", $entityName = "item", $itemComponentName = "item-list", $params = []
     ){
 
 
         $this->moduleName = strtolower($moduleName);
+        $this->entityName = strtolower($entityName);
+        
         $this->itemComponentName = $this->moduleName . "::" .$itemComponentName;
         $this->repository = "Modules\\". ucfirst($this->moduleName) . "\Repositories\\" . ucfirst($entityName).'Repository';
 
