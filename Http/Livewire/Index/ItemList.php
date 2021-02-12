@@ -29,11 +29,11 @@ class ItemList extends Component
     public $itemListLayout;
     public $layoutClass;
 
-    public $params = [];
+    public $moduleParams = [];
     public $filters = [];
 
     protected $paginationTheme = 'bootstrap';
-    protected $emitItemListRendered = false;
+    protected $emitItemListRendered;
 
 
     /**
@@ -54,7 +54,7 @@ class ItemList extends Component
     * Runs once, immediately after the component is instantiated,
     * but before render() is called
     */
-	public function mount( Request $request, $itemListLayout = null, $moduleName = "isite", $entityName = "item", $itemComponentName = "item-list", $params = []
+	public function mount( Request $request, $itemListLayout = null, $moduleName = "isite", $entityName = "item", $itemComponentName = "item-list", $moduleParams = []
     ){
 
 
@@ -64,9 +64,8 @@ class ItemList extends Component
         $this->itemComponentName = $this->moduleName . "::" .$itemComponentName;
         $this->repository = "Modules\\". ucfirst($this->moduleName) . "\Repositories\\" . ucfirst($entityName).'Repository';
 
-        $this->params = $params;
-        $this->filters = $params['filter'];
-
+        $this->moduleParams = $moduleParams;
+       
         $this->initConfigs();
         $this->initValuesOrderBy();
         $this->initValuesLayout();
@@ -110,7 +109,10 @@ class ItemList extends Component
     */
     public function initRequest(){
 
+        $this->filters = array_merge($this->filters, $this->moduleParams['filter']);
+
         $this->firstRequest = true;
+        $this->emitItemListRendered = false;
         $this->fill(request()->only('search', 'filters','page','orderBy'));
     }
 
@@ -164,8 +166,8 @@ class ItemList extends Component
         }
 
         $params = [
-            "include" => $this->params['include'],
-            "take" => $this->params['take'],
+            "include" => $this->moduleParams['include'],
+            "take" => $this->moduleParams['take'],
             "page" => $this->page ?? 1,
             "filter" => $this->filters,
             "order" =>  $this->order
@@ -180,7 +182,7 @@ class ItemList extends Component
     }
 
     /*
-    * Get Product Repository
+    * Get Item Repository
     *
     */
     private function getItemRepository(){
@@ -200,7 +202,7 @@ class ItemList extends Component
         }
 
         $params = $this->makeParamsToRepository();
-        //\Log::info("params: ".json_encode($params));
+        //\Log::info("RENDER - PARAMS to emit: ".json_encode($params));
 
         $items = $this->getItemRepository()->getItemsBy(json_decode(json_encode($params)));
 
@@ -209,7 +211,7 @@ class ItemList extends Component
         $tpl = 'isite::frontend.livewire.index.item-list';
 
         // Emit Finish Render
-        //\Log::info("Emit list rendered: ".json_encode($this->emitProductListRendered));
+        //\Log::info("Emit list rendered: ".json_encode($this->emitItemListRendered));
         $this->emitItemListRendered ? $this->emit('itemListRendered', $params) : false;
 
         return view($tpl,['items'=> $items, 'params' => $params]);
