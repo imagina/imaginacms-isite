@@ -34,7 +34,7 @@ class Menu extends Component
     $this->repository = $repository;
     $this->params = $params;
     $this->layout = $layout;
-    $this->title = $title;
+    $this->title = $this->layout == 'category-menu-layout-2' ? ($title == "Categorías" ? "" : $title) : $title;
     $this->menuBefore = $menuBefore;
     $this->menuAfter = $menuAfter;
     $this->withHome = $withHome;
@@ -62,15 +62,7 @@ class Menu extends Component
     $params = $this->makeParamsFunction();
 
     $this->items = app($this->repository)->getItemsBy(json_decode(json_encode($params)));
-   
-    switch($this->repository){
-      case 'Modules\Icommerce\Repositories\ProductRepository':
-        $this->itemLayout = setting('icommerce::productListItemLayout');
-        break;
-      case 'Modules\Iblog\Repositories\PostRepository':
-        $this->itemLayout = $this->layout ?? setting('iblog::postListItemLayout');
-        break;
-    }
+
   }
   /**
    * Get the view / contents that represent the component.
