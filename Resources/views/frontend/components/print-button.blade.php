@@ -1,17 +1,20 @@
-<button class="btn btn-primary" onclick="printContent('{{ $containerId }}');" title="{{ $text }} (Ctrl+P)">
+<button id="{{ $containerId }}DownloadButton" class="btn btn-primary" title="{{ $text }} (Ctrl+P)">
     <i class="{{ $icon }}"></i> {{ $text  }}
 </button>
 <script type="text/javascript">
-  $(function(){
+  $(document).ready(function(){
     //handles Ctrl+P (print dialog)
     $(document).on('keydown', function(e) {
       var kc = e.which || e.keyCode;
 
       if (e.ctrlKey && String.fromCharCode(kc).toUpperCase() == "P") {
         e.preventDefault();
-        printContent('{{ $containerId }}')
+        printContent('{{ $containerId }}');
       }
     });
+    $("#{{ $containerId }}DownloadButton").click(function(){
+      printContent('{{ $containerId }}');
+    })
   });
 </script>
 @once
