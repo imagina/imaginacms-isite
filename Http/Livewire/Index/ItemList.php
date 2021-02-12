@@ -39,7 +39,9 @@ class ItemList extends Component
     /**
     * Listeners
     */
+    //protected $listeners = ['getData'];
     protected $listeners = ['updateFilter'];
+    
 
     /**
     * Query String
@@ -103,13 +105,38 @@ class ItemList extends Component
         $this->layoutClass = $this->configs['itemListLayout']['options'][$this->itemListLayout]['class'];
     }
 
+
+    /*
+    * Init Values To ChangeLayout
+    *
+    */
+    public function getData($params){
+
+        if(isset($params["filters"])){
+            array_merge($this->filters, $filter);
+        
+        }
+
+         if(isset($params["order"])){
+            array_merge($this->order, $params["order"]);
+        
+        }
+
+
+         if(isset($params["layout"])){
+            array_merge($this->layout, $params["layout"]);
+        
+        }
+    }
+
     /*
     * Init Request
     *
     */
     public function initRequest(){
 
-        $this->filters = array_merge($this->filters, $this->moduleParams['filter']);
+        // This add the category id on URL Filters
+        //$this->filters = array_merge($this->filters, $this->moduleParams['filter']);
 
         $this->firstRequest = true;
         $this->emitItemListRendered = false;
@@ -172,11 +199,11 @@ class ItemList extends Component
             "filter" => $this->filters,
             "order" =>  $this->order
         ];
-        
        
-        if(isset($params["filter"]["withDiscount"])) 
-            $params["filter"]["withDiscount"] = (boolean)$params["filter"]["withDiscount"];
-        
+        if(isset($this->moduleParams['filter']) && !empty($this->moduleParams['filter']) ){
+             $params["filter"] = array_merge_recursive($params["filter"], $this->moduleParams['filter']); 
+        }
+
         return $params;
         
     }
