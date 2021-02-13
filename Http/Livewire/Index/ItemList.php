@@ -20,6 +20,7 @@ class ItemList extends Component
     public $repository;
     public $itemComponentName;
     public $entityName;
+    public $responsive;
 
     public $totalItems = 0;
     public $orderBy;
@@ -56,7 +57,7 @@ class ItemList extends Component
     * Runs once, immediately after the component is instantiated,
     * but before render() is called
     */
-	public function mount( Request $request, $itemListLayout = null, $moduleName = "isite", $entityName = "item", $itemComponentName = "item-list", $moduleParams = []
+	public function mount( Request $request, $itemListLayout = null, $moduleName = "isite", $entityName = "item", $itemComponentName = "item-list", $params = [] , $responsive
     ){
 
 
@@ -66,8 +67,10 @@ class ItemList extends Component
         $this->itemComponentName = $this->moduleName . "::" .$itemComponentName;
         $this->repository = "Modules\\". ucfirst($this->moduleName) . "\Repositories\\" . ucfirst($entityName).'Repository';
 
-        $this->moduleParams = $moduleParams;
-       
+        $this->moduleParams = $params;
+
+        $this->responsive = $responsive ?? ['top-content' => ["mobil" =>  true, "desktop" => true]];
+
         $this->initConfigs();
         $this->initValuesOrderBy();
         $this->initValuesLayout();

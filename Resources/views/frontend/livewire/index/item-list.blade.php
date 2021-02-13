@@ -1,6 +1,6 @@
 <div class="{{$entityName}}-list">
 
-	@includeIf($moduleName.'::frontend.livewire.index.top-content.index')
+	@include('isite::frontend.livewire.index.top-content.index')
 	
 	<div class="{{$entityName}}s">
 		

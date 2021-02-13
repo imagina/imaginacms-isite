@@ -16,5 +16,9 @@ return [
 	    'price_high_low' => 'Precio alto a bajo',
 	    'recently' => 'Más Recientes',
 	 ],
+	 'mobile' => [
+        'filter' => 'Filtrar',
+        'order' => 'Ordenar',
+    ]
    
 ];

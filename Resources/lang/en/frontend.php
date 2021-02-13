@@ -4,7 +4,7 @@ return [
     'index' =>[
         'title' => 'Items',
         'we found' => 'We found',
-        'items' => 'Items'
+        'items' => 'Items',
         'views' => 'Views',
     ],
     'sort' => [
@@ -16,5 +16,9 @@ return [
         'price_high_low' => 'Precio alto a bajo',
         'recently' => 'More Recently',
     ],
+    'mobile' => [
+        'filter' => 'Filter',
+        'order' => 'Order',
+    ]
    
 ];
