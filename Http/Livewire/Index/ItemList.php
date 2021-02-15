@@ -77,7 +77,7 @@ class ItemList extends Component
 
         $this->initConfigs();
         $this->initValuesOrderBy();
-        $this->initValuesLayout();
+        $this->initValuesLayout($itemListLayout);
         $this->initRequest();
        
 	}
@@ -108,7 +108,7 @@ class ItemList extends Component
     * Init Values To ChangeLayout
     *
     */
-    public function initValuesLayout(){
+    public function initValuesLayout($itemListLayout){
 
         $this->itemListLayout = $itemListLayout ?? $this->configs['itemListLayout']['default'] ?? "four";
         $this->layoutClass = $this->configs['itemListLayout']['options'][$this->itemListLayout]['class'];
