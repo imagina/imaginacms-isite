@@ -1,6 +1,8 @@
 <div class="top-content mb-2">
 	
-	@include('isite::frontend.livewire.index.top-content.custom-titles')
+	@if($showTitle)
+		@include('isite::frontend.livewire.index.top-content.custom-titles')
+	@endif
 
 	@if($responsiveTopContent['desktop'])
 
