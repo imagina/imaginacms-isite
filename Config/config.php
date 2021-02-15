@@ -42,7 +42,7 @@ return [
     'default' => 'recently',
     'options' => [
       'nameaz' => [
-        'title' => 'icommerce::common.sort.name_a_z',
+        'title' => 'isite::common.sort.name_a_z',
         'name' => 'nameaz',
         'order' => [
           'field' => "name",
@@ -50,7 +50,7 @@ return [
         ]
       ],
       'nameza' => [
-        'title' => 'icommerce::common.sort.name_z_a',
+        'title' => 'isite::common.sort.name_z_a',
         'name' => 'nameza',
         'order' => [
           'field' => "name",
@@ -58,7 +58,7 @@ return [
         ]
       ],
       'lowerprice' => [
-        'title' => 'icommerce::common.sort.price_low_high',
+        'title' => 'isite::common.sort.price_low_high',
         'name' => 'lowerprice',
         'order' => [
           'field' => "price",
@@ -66,7 +66,7 @@ return [
         ]
       ],
       'higherprice' => [
-        'title' => 'icommerce::common.sort.price_high_low',
+        'title' => 'isite::common.sort.price_high_low',
         'name' => 'higherprice',
         'order' => [
           'field' => "price",
@@ -74,7 +74,7 @@ return [
         ]
       ],
       'recently' => [
-        'title' => 'icommerce::common.sort.recently',
+        'title' => 'isite::common.sort.recently',
         'name' => 'recently',
         'order' => [
           'field' => "created_at",
