@@ -33,6 +33,7 @@ class ItemList extends Component
     public $configs;
     public $itemListLayout;
     public $layoutClass;
+    public $wrapperClass;
 
     public $moduleParams = [];
     public $filters = [];
@@ -60,7 +61,7 @@ class ItemList extends Component
     * Runs once, immediately after the component is instantiated,
     * but before render() is called
     */
-	public function mount( Request $request, $itemListLayout = null, $moduleName = "isite", $entityName = "item", $itemComponentName = "item-list", $params = [] , $responsiveTopContent =null
+	public function mount( Request $request, $itemListLayout = null, $moduleName = "isite", $entityName = "item", $itemComponentName = "item-list", $params = [] , $responsiveTopContent = null
     ){
 
 
@@ -87,8 +88,8 @@ class ItemList extends Component
     */
     public function initConfigs(){
 
-        $this->configs['orderBy'] = config("asgard.{$this->moduleName}.config.orderBy");
-        $this->configs['itemListLayout'] = config("asgard.{$this->moduleName}.config.layoutIndex");
+        $this->configs['orderBy'] = config("asgard.{$this->moduleName}.config.orderBy") ?? config("asgard.isite.config.orderBy");
+        $this->configs['itemListLayout'] = config("asgard.{$this->moduleName}.config.layoutIndex") ?? config("asgard.isite.config.layoutIndex");
     }
 
     /*
@@ -111,7 +112,9 @@ class ItemList extends Component
 
         $this->itemListLayout = $itemListLayout ?? $this->configs['itemListLayout']['default'] ?? "four";
         $this->layoutClass = $this->configs['itemListLayout']['options'][$this->itemListLayout]['class'];
-    }
+
+        $this->wrapperClass = $this->configs['itemListLayout']['options'][$this->itemListLayout]['wrapperClass'] ?? 'row';
+    } 
 
 
     /*
@@ -182,8 +185,8 @@ class ItemList extends Component
         }
 
         $params = [
-            "include" => $this->moduleParams['include'],
-            "take" => $this->moduleParams['take'],
+            "include" => $this->moduleParams['include'] ?? [],
+            "take" => $this->moduleParams['take'] ?? 12,
             "page" => $this->page ?? 1,
             "filter" => $this->filters,
             "order" =>  $this->order
