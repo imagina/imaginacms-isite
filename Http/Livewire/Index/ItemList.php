@@ -33,6 +33,7 @@ class ItemList extends Component
     public $configs;
     public $itemListLayout;
     public $layoutClass;
+    public $wrapperClass;
 
     public $moduleParams = [];
     public $filters = [];
@@ -111,7 +112,9 @@ class ItemList extends Component
 
         $this->itemListLayout = $itemListLayout ?? $this->configs['itemListLayout']['default'] ?? "four";
         $this->layoutClass = $this->configs['itemListLayout']['options'][$this->itemListLayout]['class'];
-    }
+
+        $this->wrapperClass = $this->configs['itemListLayout']['options'][$this->itemListLayout]['wrapperClass'] ?? 'row';
+    } 
 
 
     /*

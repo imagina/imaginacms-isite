@@ -8,7 +8,7 @@
 		
 		@if(isset($items) && count($items)>0)
 
-			<div class="row">
+			<div class="{{$wrapperClass}}">
 				@foreach($items as $item)
 				<div class="{{$layoutClass}} {{$entityName}}">
 					
