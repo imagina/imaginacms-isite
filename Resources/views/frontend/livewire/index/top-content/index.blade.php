@@ -2,7 +2,7 @@
 	
 	@include('isite::frontend.livewire.index.top-content.custom-titles')
 
-	@if($responsive['top-content']['desktop'])
+	@if($responsiveTopContent['desktop'])
 
 		<div class="options-product-list d-none d-lg-block d-xl-block">
 
@@ -15,7 +15,16 @@
 
 				{{-- Filter - Order By --}}
 				<div class="col-lg-5">
+
+					
+					<livewire:isite::filter-order-by key="filter-order-by"
+					:moduleName="$moduleName"/>
+
+					
+
+					{{--
 					@include('isite::frontend.livewire.index.top-content.filter-orderby')
+					--}}
 				</div>
 
 				{{-- Change Layout --}}
@@ -31,7 +40,7 @@
 
 	
 
-	@if($responsive['top-content']['mobil'])
+	@if($responsiveTopContent['mobile'])
 		@include('isite::frontend.livewire.index.top-content.mobile.index')
 	@endif
 	

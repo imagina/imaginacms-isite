@@ -13,18 +13,22 @@ class ItemList extends Component
 
     use WithPagination;
 
-    private $order;
+   
     private $firstRequest;
 
     public $moduleName;
     public $repository;
     public $itemComponentName;
     public $entityName;
-    public $responsive;
+    public $responsiveTopContent;
 
     public $totalItems = 0;
-    public $orderBy;
+
     public $search = '';
+
+    private $order;
+    // OrderBy to URL
+    public $orderBy;
 
     public $configs;
     public $itemListLayout;
@@ -40,8 +44,7 @@ class ItemList extends Component
     /**
     * Listeners
     */
-    //protected $listeners = ['getData'];
-    protected $listeners = ['updateFilter'];
+    protected $listeners = ['getData'];
     
 
     /**
@@ -57,7 +60,7 @@ class ItemList extends Component
     * Runs once, immediately after the component is instantiated,
     * but before render() is called
     */
-	public function mount( Request $request, $itemListLayout = null, $moduleName = "isite", $entityName = "item", $itemComponentName = "item-list", $params = [] , $responsive
+	public function mount( Request $request, $itemListLayout = null, $moduleName = "isite", $entityName = "item", $itemComponentName = "item-list", $params = [] , $responsiveTopContent =null
     ){
 
 
@@ -69,7 +72,7 @@ class ItemList extends Component
 
         $this->moduleParams = $params;
 
-        $this->responsive = $responsive ?? ['top-content' => ["mobil" =>  true, "desktop" => true]];
+        $this->responsiveTopContent = $responsiveTopContent ?? ["mobile" =>  true, "desktop" => true];
 
         $this->initConfigs();
         $this->initValuesOrderBy();
@@ -94,8 +97,10 @@ class ItemList extends Component
     */
     public function initValuesOrderBy(){
 
+        // OrderBy to URL
         $this->orderBy = $this->configs['orderBy']['default'] ?? "nameaz";
-        $this->order = $this->configs['orderBy']['options'][$this->orderBy]['order'];  
+        $this->order = $this->configs['orderBy']['options'][$this->orderBy]['order'];
+
     }
 
     /*
@@ -110,26 +115,32 @@ class ItemList extends Component
 
 
     /*
-    * Init Values To ChangeLayout
+    * Listener - GET DATA FROM FILTERS
     *
     */
     public function getData($params){
 
+        //\Log::info("ITEMLIST - GETDATA - PARAMS: ".json_encode($params));
+
         if(isset($params["filters"])){
-            array_merge($this->filters, $filter);
+            $this->emitItemListRendered = true;
+            $this->filters = array_merge($this->filters, $params["filters"]);
+            $this->resetPage();
+        }
         
+        if(isset($params["order"])){
+            $this->emitItemListRendered = false;
+            $this->orderBy = $params['order'];
+            $this->resetPage();
         }
 
-         if(isset($params["order"])){
-            array_merge($this->order, $params["order"]);
-        
-        }
-
-
-         if(isset($params["layout"])){
+        /*
+        if(isset($params["layout"])){
             array_merge($this->layout, $params["layout"]);
         
         }
+        */
+
     }
 
     /*
@@ -137,35 +148,9 @@ class ItemList extends Component
     *
     */
     public function initRequest(){
-
-        // This add the category id on URL Filters
-        //$this->filters = array_merge($this->filters, $this->moduleParams['filter']);
-
         $this->firstRequest = true;
         $this->emitItemListRendered = false;
         $this->fill(request()->only('search', 'filters','page','orderBy'));
-    }
-
-    /*
-    * Updating Attribute OrderBy
-    *
-    */
-    public function updatingOrderBy(){
-        $this->emitItemListRendered = false;
-        $this->resetPage();
-    }
-    
-  
-    /*
-    * Listener - Update Filters
-    *
-    */
-    public function updateFilter($filter){
-    
-        $this->emitItemListRendered = true;
-        $this->filters = array_merge($this->filters, $filter);
-        $this->resetPage();
-    
     }
 
     /*
@@ -187,9 +172,10 @@ class ItemList extends Component
      
         if($this->firstRequest)
             $this->firstRequest = false;
-        
-        $this->order = $this->configs['orderBy']['options'][$this->orderBy]['order'];
 
+        // To First Time and Others
+        $this->order = $this->configs['orderBy']['options'][$this->orderBy]['order'];
+        
         if(is_string($this->search) && $this->search){
           $this->filters["search"] = $this->search;
           $this->filters["locale"] = App::getLocale();
@@ -226,19 +212,22 @@ class ItemList extends Component
     */
     public function render(){
         
-
+        
         if(!$this->firstRequest && !in_array('orderBy', $this->queryString)){
             array_push($this->queryString, 'orderBy');
         }
-
+       
         $params = $this->makeParamsToRepository();
-        //\Log::info("RENDER - PARAMS to emit: ".json_encode($params));
+        //\Log::info("ITEM LIST - RENDER - PARAMS QUERY ".json_encode($params));
 
         $items = $this->getItemRepository()->getItemsBy(json_decode(json_encode($params)));
 
         $this->totalItems = $items->total();
 
         $tpl = 'isite::frontend.livewire.index.item-list';
+
+        // Add value name to order on Filter
+        $params ['orderBy'] = $this->orderBy;
 
         // Emit Finish Render
         //\Log::info("Emit list rendered: ".json_encode($this->emitItemListRendered));

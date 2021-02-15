@@ -26,7 +26,13 @@
 
 	
 	<div class="item-options item-options--order">
+
+		<livewire:isite::filter-order-by key="filter-order-by-mobile"
+		:moduleName="$moduleName"
+		type="radio"/>
+		{{--
 	    @include('isite::frontend.livewire.index.top-content.mobile.filter-orderby')
+		--}}
 	</div>
 	
 </div>

@@ -95,6 +95,7 @@ class IsiteServiceProvider extends ServiceProvider
   {
 
     Livewire::component('isite::item-list', \Modules\Isite\Http\Livewire\Index\ItemList::class);
+    Livewire::component('isite::filter-order-by', \Modules\Isite\Http\Livewire\Index\Filters\OrderBy::class);
    
   }
 
