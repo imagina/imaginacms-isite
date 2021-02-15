@@ -74,6 +74,7 @@ class ItemList extends Component
 
         $this->moduleParams = $params;
         $this->showTitle = $showTitle;
+        $this->page = $this->moduleParams['page'] ?? 1;
 
         $this->responsiveTopContent = $responsiveTopContent ?? ["mobile" =>  true, "desktop" => true];
 
