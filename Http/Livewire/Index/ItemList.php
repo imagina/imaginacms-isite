@@ -61,14 +61,14 @@ class ItemList extends Component
     * Runs once, immediately after the component is instantiated,
     * but before render() is called
     */
-	public function mount( Request $request, $itemListLayout = null, $moduleName = "isite", $entityName = "item", $itemComponentName = "item-list", $params = [] , $responsiveTopContent = null
+	public function mount( Request $request, $itemListLayout = null, $moduleName = "isite", $entityName = "item", $itemComponentName = "isite::item-list", $params = [] , $responsiveTopContent = null
     ){
 
 
         $this->moduleName = strtolower($moduleName);
         $this->entityName = strtolower($entityName);
         
-        $this->itemComponentName = $this->moduleName . "::" .$itemComponentName;
+        $this->itemComponentName = $itemComponentName;
         $this->repository = "Modules\\". ucfirst($this->moduleName) . "\Repositories\\" . ucfirst($entityName).'Repository';
 
         $this->moduleParams = $params;
