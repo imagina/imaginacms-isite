@@ -40,6 +40,7 @@ return [
         "number" => "Número del whatsapp",
         "message" => "Mensaje por defecto",
         "label" => "Etiqueta",
+        "icon-label" => "Icono",
     ],
   ],
   'settingHints' => [

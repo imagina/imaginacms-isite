@@ -39,6 +39,7 @@ return [
         "number" => "Whatsapp number",
         "message" => "Default Message",
         "label" => "Label",
+        "icon-label" => "Icon",
     ],
   ],
   'settingGroups' => [
