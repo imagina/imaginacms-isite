@@ -34,6 +34,7 @@ class ItemList extends Component
     public $itemListLayout;
     public $layoutClass;
     public $wrapperClass;
+    public $showTitle;
 
     public $moduleParams = [];
     public $filters = [];
@@ -61,7 +62,7 @@ class ItemList extends Component
     * Runs once, immediately after the component is instantiated,
     * but before render() is called
     */
-	public function mount( Request $request, $itemListLayout = null, $moduleName = "isite", $entityName = "item", $itemComponentName = "isite::item-list", $params = [] , $responsiveTopContent = null
+	public function mount( Request $request, $itemListLayout = null, $moduleName = "isite", $entityName = "item", $itemComponentName = "isite::item-list", $params = [] , $responsiveTopContent = null, $showTitle = true
     ){
 
 
@@ -72,6 +73,7 @@ class ItemList extends Component
         $this->repository = "Modules\\". ucfirst($this->moduleName) . "\Repositories\\" . ucfirst($entityName).'Repository';
 
         $this->moduleParams = $params;
+        $this->showTitle = $showTitle;
 
         $this->responsiveTopContent = $responsiveTopContent ?? ["mobile" =>  true, "desktop" => true];
 
