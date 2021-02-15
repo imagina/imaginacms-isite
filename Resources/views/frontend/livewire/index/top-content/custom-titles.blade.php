@@ -1,5 +1,5 @@
 @php($customIndexTitle = setting($moduleName.'::customIndexTitle'))
-<h1 class="text-primary text-uppercase font-weight-bold h3">{{$category->title ?? (!empty($customIndexTitle) ? setting($moduleName.'::customIndexTitle') : trans('icommerce::products.title.products') )}} {{isset($manufacturer->id) ? isset($category->id) ? "/ $manufacturer->name" : $manufacturer->name : ""}}</h1>
+<h1 class="text-primary text-uppercase font-weight-bold h3">{{$category->title ?? (!empty($customIndexTitle) ? setting($moduleName.'::customIndexTitle') : trans($moduleName.'::frontend.index.title') )}} {{isset($manufacturer->id) ? isset($category->id) ? "/ $manufacturer->name" : $manufacturer->name : ""}}</h1>
 
 @if(isset($category->options->descriptionIndex) && !empty($category->options->descriptionIndex))
 	<p class="category-index-description">

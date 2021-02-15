@@ -1,6 +1,6 @@
 <div class="change-layout d-flex align-items-center">
 	<label>
-		{{trans('icommerce::frontend.index.views')}}:
+		{{trans('isite::frontend.index.views')}}:
 	</label>
 	<div class="types-columns ml-1">
 		@foreach($configs['itemListLayout']['options'] as  $layoutOption)
