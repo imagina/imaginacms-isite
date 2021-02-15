@@ -20,7 +20,7 @@ class OrderBy extends Component
 
 	public function mount($moduleName = "isite", $type = "select"){
 
-        $this->configs['orderBy'] = config("asgard.{$moduleName}.config.orderBy");
+        $this->configs['orderBy'] = config("asgard.{$moduleName}.config.orderBy") ?? config("asgard.isite.config.orderBy");
 
         $this->orderBy = $this->configs['orderBy']['default'] ?? "nameaz";
         $this->order = $this->configs['orderBy']['options'][$this->orderBy]['order'];
