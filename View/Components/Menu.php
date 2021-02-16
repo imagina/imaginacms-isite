@@ -27,7 +27,7 @@ class Menu extends Component
    *
    * @return void
    */
-  public function __construct($repository, $id, $params = [], $layout = 'category-menu-layout-1', $title = "Categorías",
+  public function __construct( $id,$repository = null, $params = [], $layout = 'category-menu-layout-1', $title = "Categorías",
                               $menuBefore = null, $menuAfter = null, $withHome = true, $homeIcon = "",$collapsed = false)
   {
     $this->id = $id;
@@ -42,6 +42,7 @@ class Menu extends Component
     $this->homeIcon = $homeIcon ?? "fa fa-home";
 
     $this->view = "isite::frontend.components.category-menu.layouts.{$layout}.index";
+    $this->items = [];
 
     $this->getItems();
   }
@@ -60,8 +61,9 @@ class Menu extends Component
   private function getItems(){
 
     $params = $this->makeParamsFunction();
-
-    $this->items = app($this->repository)->getItemsBy(json_decode(json_encode($params)));
+    
+    if($this->repository)
+      $this->items = app($this->repository)->getItemsBy(json_decode(json_encode($params)));
 
   }
   /**

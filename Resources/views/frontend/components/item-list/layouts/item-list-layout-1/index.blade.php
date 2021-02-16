@@ -5,7 +5,7 @@
           <div class="col-12">
 
             <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
-                                  :url="$item->url ?? null" :isMedia="true" with="100%"
+                                  :url="$item->url ?? null" :isMedia="true" width="100%"
                                   :mediaFiles="$item->mediaFiles()" :zone="$mediaImage ?? 'mainimage'"/>
 
           </div>
