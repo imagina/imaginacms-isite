@@ -35,8 +35,8 @@
                     <i class="{{ isset($item->iconLabel) ? $item->iconLabel : "" }}"></i>
                     <span>{{ isset($item->label) ? $item->label.'' :'' }}</span>
                   </p>
-                  <p class="mb-0">
-                    <span>{{  isset($item->iconLabel) ? "" : $item->formattedNumber }}</span>
+                  <p class="mb-0 formatted-number">
+                    <span>{{ $item->formattedNumber }}</span>
                   </p>
               </a>
           </div>
