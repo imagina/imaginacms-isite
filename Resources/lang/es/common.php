@@ -54,5 +54,8 @@ return [
     'apiKeys' => "Llaves API",
     'contact' => 'Contacto',
     'customSources' => 'Fuentes Personalizadas',
+  ],
+  'messages' => [
+    'no items' => 'No existe información disponible'
   ]
 ];

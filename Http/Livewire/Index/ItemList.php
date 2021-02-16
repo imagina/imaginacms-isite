@@ -33,7 +33,9 @@ class ItemList extends Component
     public $configs;
     public $itemListLayout;
     public $layoutClass;
+
     public $wrapperClass;
+    public $pagination;
     public $showTitle;
 
     public $moduleParams = [];
@@ -62,20 +64,24 @@ class ItemList extends Component
     * Runs once, immediately after the component is instantiated,
     * but before render() is called
     */
-	public function mount( Request $request, $itemListLayout = null, $moduleName = "isite", $entityName = "item", $itemComponentName = "isite::item-list", $params = [] , $responsiveTopContent = null, $showTitle = true
+	public function mount( Request $request, $itemListLayout = null, $moduleName = "isite", $entityName = "item", $itemComponentName = "isite::item-list", $params = [] , $responsiveTopContent = null, $showTitle = true, $pagination = null
     ){
 
 
         $this->moduleName = strtolower($moduleName);
         $this->entityName = strtolower($entityName);
-        
         $this->itemComponentName = $itemComponentName;
+
         $this->repository = "Modules\\". ucfirst($this->moduleName) . "\Repositories\\" . ucfirst($entityName).'Repository';
 
         $this->moduleParams = $params;
-        $this->showTitle = $showTitle;
-
+        $this->page = $this->moduleParams['page'] ?? 1;
+       
         $this->responsiveTopContent = $responsiveTopContent ?? ["mobile" =>  true, "desktop" => true];
+
+        $this->showTitle = $showTitle;
+      
+        $this->pagination = $pagination ? array_merge(['show' => true , 'type' => 'normal'],$pagination) : ['show' => true , 'type' => 'normal'];
 
         $this->initConfigs();
         $this->initValuesOrderBy();

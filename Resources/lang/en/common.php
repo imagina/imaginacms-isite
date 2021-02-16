@@ -48,5 +48,8 @@ return [
     'apiKeys' => "API Keys",
     'contact' => 'Contact',
     'customSources' => 'Custom Sources',
+  ],
+  'messages' => [
+    'no items' => 'Not Information available'
   ]
 ];
