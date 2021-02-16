@@ -37,6 +37,9 @@ class ItemList extends Component
     public $wrapperClass;
     public $pagination;
     public $showTitle;
+    public $amount;
+
+    public $take;
 
     public $moduleParams = [];
     public $filters = [];
@@ -75,7 +78,9 @@ class ItemList extends Component
         $this->repository = "Modules\\". ucfirst($this->moduleName) . "\Repositories\\" . ucfirst($entityName).'Repository';
 
         $this->moduleParams = $params;
+
         $this->page = $this->moduleParams['page'] ?? 1;
+        $this->take = $this->moduleParams['take'] ?? 12;
        
         $this->responsiveTopContent = $responsiveTopContent ?? ["mobile" =>  true, "desktop" => true];
 
@@ -173,6 +178,13 @@ class ItemList extends Component
         $this->layoutClass = $this->configs['itemListLayout']['options'][$this->itemListLayout]['class'];
     }
 
+    /*
+    * Function Frontend - Load More Button
+    *
+    */
+    public function loadMore(){
+        $this->take += $this->moduleParams['take'];
+    }
 
      /*
     * Make params to Repository
@@ -194,8 +206,8 @@ class ItemList extends Component
 
         $params = [
             "include" => $this->moduleParams['include'] ?? [],
-            "take" => $this->moduleParams['take'] ?? 12,
-            "page" => $this->page ?? 1,
+            "take" => $this->take,
+            "page" => $this->page,
             "filter" => $this->filters,
             "order" =>  $this->order
         ];
