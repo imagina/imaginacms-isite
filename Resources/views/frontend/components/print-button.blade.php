@@ -16,18 +16,3 @@
   </script>
 @stop
 @endonce
-@section('scripts-owl')
-  <script type="text/javascript">
-    $(document).ready(function(){
-      //handles Ctrl+P (print dialog)
-      $(document).on('keydown', function(e) {
-        var kc = e.which || e.keyCode;
-
-        if (e.ctrlKey && String.fromCharCode(kc).toUpperCase() == "P") {
-          e.preventDefault();
-          printContent('{{ $containerId }}');
-        }
-      });
-    });
-  </script>
-@endsection
