@@ -32,7 +32,9 @@
               <a href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}"
                  target="_blank">
                   <p class="mb-0">
-                    <i class="{{ isset($item->iconLabel) ? $item->iconLabel : "" }}"></i>
+                    @if(isset($item->iconLabel) && !empty($item->iconLabel))
+                      <i class="{{ $item->iconLabel}} "></i>
+                    @endif
                     <span>{{ isset($item->label) ? $item->label.'' :'' }}</span>
                   </p>
                   <p class="mb-0 formatted-number">
