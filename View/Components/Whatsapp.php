@@ -18,6 +18,7 @@ class Whatsapp extends Component
   public $id;
   public $alignment;
   public $parentAttributes;
+  public $iconLabel;
 
   public $top;
   public $right;
@@ -33,7 +34,7 @@ class Whatsapp extends Component
   public function __construct(
     $layout = 'whatsapp-layout-1', $title = '', $id = 'whatsappComponent', $mask = 1,
     $icon = 'fa fa-whatsapp', $alignment = 'dropleft', $parentAttributes = [],
-    $top = '50%', $right = null, $left= null, $type = '', $size = 'lg'
+    $top = '50%', $right = null, $left= null, $type = '', $size = 'lg', $iconLabel = ''
   )
   {
     $this->layout = $layout ?? 'whatsapp-layout-1';
@@ -49,6 +50,7 @@ class Whatsapp extends Component
     $this->right = $right ?? ($layout == 'whatsapp-layout-4' ? '10px' : 'unset');
     $this->left = $left ?? ($layout == 'whatsapp-layout-3' ? '0px' : 'unset');
     $this->setParentAttributes($parentAttributes);
+    $this->iconLabel = $iconLabel ?? '';
   }
 
   private function setParentAttributes($parentAttributes)
