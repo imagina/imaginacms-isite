@@ -35,7 +35,7 @@ class Radio extends Component
     * Runs once, immediately after the component is instantiated,
     * but before render() is called
     */
-	public function mount($title,$name,$status=true,$isExpanded=true,$options,$type,$repository,$emitTo,$repoAction,$repoAttribute,$listener,$getDataRepo,$layout='default',$classes='col-xs-12'){
+	public function mount($title,$name,$status=true,$isExpanded=true,$options,$type,$repository,$emitTo,$repoAction,$repoAttribute,$listener,$getDataRepo,$layout='radio-layout-1',$classes='col-12'){
 		
         $this->title = trans($title);
         $this->name = $name;

@@ -23,9 +23,6 @@ class Filters extends Component
     */
 	public function mount($filters = null){
 		
-        // Eliminando el de Categories por ahora - OJOOOOOOOO
-        unset($filters['categories']);
-        
         $this->filters = $filters;
 
 	}
