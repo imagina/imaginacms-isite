@@ -32,6 +32,7 @@ class Range extends Component
     public $step;
     public $selPriceMin;
     public $selPriceMax;
+    public $show;
 
 
 	/*
@@ -60,6 +61,8 @@ class Range extends Component
         $this->priceMax = 1;
         $this->selPriceMin = 0;
         $this->selPriceMax = 1;
+        $this->show = true;
+
 	}
 
 

@@ -1,5 +1,5 @@
 <div class="filter-{{$type}} filter-{{$type}}-layout-{{$layout}} filter-{{$name}}">
-	
+@if($show)
 	<div class="title">
         <a class="item mb-3" data-toggle="collapse" href="#collapse-{{$name}}" role="button" aria-expanded="{{$isExpanded ? 'true' : 'false'}}" aria-controls="collapse-{{$name}}" class="{{$isExpanded ? '' : 'collapsed'}}">
 
@@ -22,13 +22,13 @@
 			<input type="hidden" id="priceMin" name="priceMin" wire:model="priceMin">
 			<input type="hidden" id="priceMax" name="priceMax" wire:model="priceMax">
 
-			<input type="hidden" id="selPriceMin" name="selPriceMin" wire:model="selPriceMin">
-			<input type="hidden" id="selPriceMax" name="selPriceMax" wire:model="selPriceMax">
+			<input type="hidden" id="selPriceMin-{{$name}}" name="selPriceMin" wire:model="selPriceMin">
+			<input type="hidden" id="selPriceMax-{{$name}}" name="selPriceMax" wire:model="selPriceMax">
 			
 			<div class="mx-3">
 			<div id="slider-range-{{$name}}" wire:ignore></div>
 
-			<button onClick="window.livewire.emit('updateRange',{'selPriceMin' : document.getElementById('selPriceMin').value,'selPriceMax' : document.getElementById('selPriceMax').value})" id="btnUpdatePrices" class="btn btn-outline-primary btn-sm btn-block mt-3">
+			<button onClick="window.livewire.emit('updateRange',{'selPriceMin' : document.getElementById('selPriceMin-{{$name}}').value,'selPriceMax' : document.getElementById('selPriceMax-{{$name}}').value})" id="btnUpdatePrices" class="btn btn-outline-primary btn-sm btn-block mt-3">
 				{{trans('icommerce::common.button.update')}}
 			</button>
 			</div>
@@ -37,7 +37,7 @@
 
 	</div>
 
-	
+@endif
 </div>
 
 
@@ -70,8 +70,8 @@
 		      	slide: function( event, ui ) {
 		        	$( "#amount-{{$name}}" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
 
-		        	$( "#selPriceMin" ).val(ui.values[ 0 ]);
-		        	$( "#selPriceMax" ).val(ui.values[ 1 ]);
+		        	$( "#selPriceMin-{{$name}}" ).val(ui.values[ 0 ]);
+		        	$( "#selPriceMax-{{$name}}" ).val(ui.values[ 1 ]);
 		      	}
 		    });
 
