@@ -112,13 +112,11 @@ class Checkbox extends Component
        
 
         $tpl = 'isite::frontend.livewire.filters.checkbox.layouts.'.$this->layout.'.index';
-
-        /*
+       
         $ttpl = $this->layout;
-        if (view()->exists($ttpl)){
+        if (view()->exists($ttpl))
             $tpl = $ttpl;
-        }
-        */
+            
         return view($tpl,['options' => $this->options]);
 			
     }
