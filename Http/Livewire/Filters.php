@@ -9,11 +9,13 @@ class Filters extends Component
 	
     public $filters;
 
+    public $filterValues;
 
-    // Un evento tipo items list
-    // Lo que hace el item list en el get data
-    // Array merge
-    // Metodo de Borrar
+    /**
+    * Listeners
+    */
+    protected $listeners = ['getDataFromFilters'];
+
 
 	/*
     * Runs once, immediately after the component is instantiated,
@@ -21,12 +23,43 @@ class Filters extends Component
     */
 	public function mount($filters = null){
 		
-        // Elimnando el de Categories por ahora
+        // Eliminando el de Categories por ahora - OJOOOOOOOO
         unset($filters['categories']);
         
         $this->filters = $filters;
 
 	}
+
+
+    /*
+    * LISTENER
+    */
+    public function getDataFromFilters($params){
+
+        //\Log::info("FILTERS - GETDATA - PARAMS: ".json_encode($params));
+        if(isset($params["filter"])){
+            
+            //$this->filterValues = array_merge($this->filterValues, $params["filter"]);
+            
+            // getData (Seria el de Item List)
+            /*
+            $this->emit('getData',[
+                'filter' => $this->filterValues
+            ]);
+            */
+            
+        }
+
+    }
+
+    /*
+    * Event to clear all filters
+    *
+    */
+    public function clearFilters(){
+        //\Log::info("FILTERS - ");
+
+    }
 
     /*
     * Render
