@@ -8,7 +8,7 @@ use App;
 
 use Illuminate\Http\Request;
 
-class ItemList extends Component
+class ItemsList extends Component
 {
 
     use WithPagination;
@@ -247,7 +247,7 @@ class ItemList extends Component
 
         $this->totalItems = $items->total();
 
-        $tpl = 'isite::frontend.livewire.index.item-list';
+        $tpl = 'isite::frontend.livewire.index.items-list';
 
         // Add value name to order on Filter
         $params ['orderBy'] = $this->orderBy;
