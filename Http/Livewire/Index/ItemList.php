@@ -42,7 +42,7 @@ class ItemList extends Component
     public $take;
 
     public $moduleParams = [];
-    public $filters = [];
+    public $filter = [];
 
     protected $paginationTheme = 'bootstrap';
     protected $emitItemListRendered;
@@ -59,7 +59,7 @@ class ItemList extends Component
     */
     protected $queryString = [
         'search' => ['except' => ''],
-        'filters' => ['except' => []],
+        'filter' => ['except' => []],
         'page' => ['except' => 1]
     ];
     
@@ -138,9 +138,9 @@ class ItemList extends Component
 
         //\Log::info("ITEMLIST - GETDATA - PARAMS: ".json_encode($params));
 
-        if(isset($params["filters"])){
+        if(isset($params["filter"])){
             $this->emitItemListRendered = true;
-            $this->filters = array_merge($this->filters, $params["filters"]);
+            $this->filter = array_merge($this->filter, $params["filter"]);
             $this->resetPage();
         }
         
@@ -166,7 +166,7 @@ class ItemList extends Component
     public function initRequest(){
         $this->firstRequest = true;
         $this->emitItemListRendered = false;
-        $this->fill(request()->only('search', 'filters','page','orderBy'));
+        $this->fill(request()->only('search', 'filter','page','orderBy'));
     }
 
     /*
@@ -200,15 +200,15 @@ class ItemList extends Component
         $this->order = $this->configs['orderBy']['options'][$this->orderBy]['order'];
         
         if(is_string($this->search) && $this->search){
-          $this->filters["search"] = $this->search;
-          $this->filters["locale"] = App::getLocale();
+          $this->filter["search"] = $this->search;
+          $this->filter["locale"] = App::getLocale();
         }
 
         $params = [
             "include" => $this->moduleParams['include'] ?? [],
             "take" => $this->take,
             "page" => $this->page,
-            "filter" => $this->filters,
+            "filter" => $this->filter,
             "order" =>  $this->order
         ];
        

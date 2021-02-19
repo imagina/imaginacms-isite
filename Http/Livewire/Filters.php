@@ -17,7 +17,8 @@ class Filters extends Component
 		
         // Elimnando el de Categories por ahora
         unset($filters['categories']);
-       
+        unset($filters['product-options']);
+
         $this->filters = $filters;
 
 	}
