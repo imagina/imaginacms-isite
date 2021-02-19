@@ -180,6 +180,10 @@ class Range extends Component
         
     	$tpl = 'isite::frontend.livewire.filters.range.layouts.'.$this->layout.'.index';
 
+        $ttpl = $this->layout;
+        if (view()->exists($ttpl))
+            $tpl = $ttpl;
+
 		return view($tpl);
 			
     }

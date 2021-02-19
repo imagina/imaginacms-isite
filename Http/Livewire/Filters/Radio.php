@@ -115,6 +115,10 @@ class Radio extends Component
 
 
     	$tpl = 'isite::frontend.livewire.filters.radio.layouts.'.$this->layout.'.index';
+
+        $ttpl = $this->layout;
+        if (view()->exists($ttpl))
+            $tpl = $ttpl;
         
 		return view($tpl);
 			
