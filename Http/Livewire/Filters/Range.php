@@ -73,24 +73,28 @@ class Range extends Component
    */
     public function updateRange($data){
 
+        // Testing
+        //\Log::info("DATA: ".json_encode($data));
        
-        $this->selPriceMin = $data["selPriceMin"];
-        $this->selPriceMax = $data["selPriceMax"];
-        
-        /**
-            Example: 
-            emitTo = getData (To ItemList Listener)
-            repoAction => 'filter' (To Product Repository),
-            repoAttribute = 'priceRange' (To Product Repository),
-        */
-        $this->emit($this->emitTo,[
-            $this->repoAction => [
-              $this->repoAttribute => [
-                'from' => $this->selPriceMin,
-                'to' => $this->selPriceMax
-              ]
-            ]
-        ]);
+        if(!empty($data["selPriceMin"]) && !empty($data["selPriceMax"])){
+            $this->selPriceMin = $data["selPriceMin"];
+            $this->selPriceMax = $data["selPriceMax"];
+            
+            /**
+                Example: 
+                emitTo = getData (To ItemList Listener)
+                repoAction => 'filter' (To Product Repository),
+                repoAttribute = 'priceRange' (To Product Repository),
+            */
+            $this->emit($this->emitTo,[
+                $this->repoAction => [
+                  $this->repoAttribute => [
+                    'from' => $this->selPriceMin,
+                    'to' => $this->selPriceMax
+                  ]
+                ]
+            ]);
+        }
        
     }
 
