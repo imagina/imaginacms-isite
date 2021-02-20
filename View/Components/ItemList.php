@@ -4,7 +4,7 @@ namespace Modules\Isite\View\Components;
 
 use Illuminate\View\Component;
 
-class ItemsList extends Component
+class ItemList extends Component
 {
 
 
