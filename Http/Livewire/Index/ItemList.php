@@ -192,7 +192,8 @@ class ItemList extends Component
             "take" => $this->moduleParams['take'] ?? 12,
             "page" => $this->page ?? 1,
             "filter" => $this->filters,
-            "order" =>  $this->order
+            "order" =>  $this->order,
+            'user' => \Auth::user()
         ];
        
         if(isset($this->moduleParams['filter']) && !empty($this->moduleParams['filter']) ){
