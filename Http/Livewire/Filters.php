@@ -8,6 +8,7 @@ class Filters extends Component
 {
 	
     public $filters;
+    public $showResponsiveModal;
 
     public $filterValues;
 
@@ -21,9 +22,10 @@ class Filters extends Component
     * Runs once, immediately after the component is instantiated,
     * but before render() is called
     */
-	public function mount($filters = null){
+	public function mount($filters = null,$showResponsiveModal = true){
 		
         $this->filters = $filters;
+        $this->showResponsiveModal = $showResponsiveModal;
 
 	}
 

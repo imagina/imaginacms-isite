@@ -22,6 +22,9 @@ return [
     ],
     'buttons' => [
         'load more' => 'Ver más...'
+    ],
+    'filters' => [
+        'title' => 'Filtros'
     ]
    
 ];

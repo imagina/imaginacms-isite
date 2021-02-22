@@ -22,6 +22,9 @@ return [
     ],
     'buttons' => [
         'load more' => 'Load more...'
+    ],
+    'filters' => [
+        'title' => 'Filters'
     ]
    
 ];
