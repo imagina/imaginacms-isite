@@ -23,7 +23,7 @@ class Filters extends Component
     * but before render() is called
     */
 	public function mount($filters = null,$showResponsiveModal = true){
-		
+
         $this->filters = $filters;
         $this->showResponsiveModal = $showResponsiveModal;
 
