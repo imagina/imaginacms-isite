@@ -20,7 +20,7 @@ class Range extends Component
     public $repoAction;
     public $repoAttribute;
     public $listener;
-    public $getDataRepo;
+    public $repoMethod;
     public $layout;
     public $classes;
 
@@ -38,7 +38,7 @@ class Range extends Component
     * Runs once, immediately after the component is instantiated,
     * but before render() is called
     */
-	public function mount($title,$name,$status=true,$isExpanded=true,$type,$repository,$emitTo,$repoAction,$repoAttribute,$listener,$getDataRepo,$layout='range-layout-1',$classes='col-12',$step = null){
+	public function mount($title,$name,$status=true,$isExpanded=true,$type,$repository,$emitTo,$repoAction,$repoAttribute,$listener,$repoMethod='getItemsBy',$layout='range-layout-1',$classes='col-12',$step = null){
 
         $this->title = trans($title);
         $this->name = $name;
@@ -50,7 +50,7 @@ class Range extends Component
         $this->repoAction = $repoAction;
         $this->repoAttribute = $repoAttribute;
         $this->listener = $listener;
-        $this->getDataRepo = $getDataRepo;
+        $this->repoMethod = $repoMethod;
         $this->layout = $layout;
         $this->classes = $classes;
         $this->step = $step ?? 10000;
@@ -129,7 +129,7 @@ class Range extends Component
        
         $selectedPrices  = $params["filter"][$this->repoAttribute] ?? null;
 
-        $range = $this->getRepository()->{$this->getDataRepo}(json_decode(json_encode($params)));
+        $range = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params)));
 
         //Getting the new price range
         $this->priceMin = round($range->minPrice);

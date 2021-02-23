@@ -20,7 +20,7 @@ class Checkbox extends Component
     public $repoAction;
     public $repoAttribute;
     public $listener;
-    public $getDataRepo;
+    public $repoMethod;
     public $layout;
     public $classes;
 
@@ -34,7 +34,7 @@ class Checkbox extends Component
     * Runs once, immediately after the component is instantiated,
     * but before render() is called
     */
-	public function mount($title,$name,$status=true,$isExpanded=true,$type,$repository,$emitTo,$repoAction,$repoAttribute,$listener,$getDataRepo,$layout='checkbox-layout-1',$classes='col-12'){
+	public function mount($title,$name,$status=true,$isExpanded=true,$type,$repository,$emitTo,$repoAction,$repoAttribute,$listener,$repoMethod='getItemsBy',$layout='checkbox-layout-1',$classes='col-12'){
 		
         $this->title = trans($title);
         $this->name = $name;
@@ -46,7 +46,7 @@ class Checkbox extends Component
         $this->repoAction = $repoAction;
         $this->repoAttribute = $repoAttribute;
         $this->listener = $listener;
-        $this->getDataRepo = $getDataRepo;
+        $this->repoMethod = $repoMethod;
         $this->layout = $layout;
         $this->classes = $classes;
       
@@ -93,7 +93,7 @@ class Checkbox extends Component
 
         $this->selectedOptions  = $params["filter"][$this->repoAttribute] ?? [];
         
-        $this->options = $this->getRepository()->{$this->getDataRepo}(json_decode(json_encode($params)));
+        $this->options = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params)));
     }
 
     /*
