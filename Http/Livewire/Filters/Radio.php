@@ -21,7 +21,7 @@ class Radio extends Component
     public $repoAction;
     public $repoAttribute;
     public $listener;
-    public $getDataRepo;
+    public $repoMethod;
     public $layout;
     public $classes;
 
@@ -35,7 +35,7 @@ class Radio extends Component
     * Runs once, immediately after the component is instantiated,
     * but before render() is called
     */
-	public function mount($title,$name,$status=true,$isExpanded=true,$options,$type,$repository,$emitTo,$repoAction,$repoAttribute,$listener,$getDataRepo,$layout='radio-layout-1',$classes='col-12'){
+	public function mount($title,$name,$status=true,$isExpanded=true,$options,$type,$repository,$emitTo,$repoAction,$repoAttribute,$listener,$repoMethod='getItemsBy',$layout='radio-layout-1',$classes='col-12'){
 		
         $this->title = trans($title);
         $this->name = $name;
@@ -48,7 +48,7 @@ class Radio extends Component
         $this->repoAction = $repoAction;
         $this->repoAttribute = $repoAttribute;
         $this->listener = $listener;
-        $this->getDataRepo = $getDataRepo;
+        $this->repoMethod = $repoMethod;
         $this->layout = $layout;
         $this->classes = $classes;
 
@@ -82,18 +82,17 @@ class Radio extends Component
     * Get Listener From Config
     *
     */
-    protected function getListeners()
-    {
+    protected function getListeners(){
         return [ $this->listener => 'getData'];
     }
 
-     /*
+    /*
     * Listener 
     * Item List Rendered (Like First Version)
     */
     public function getData($params){
 
-        $resultShowFilter = $this->getRepository()->{$this->getDataRepo}(json_decode(json_encode($params)));
+        $resultShowFilter = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params)));
 
         // Validation from URL
         if(isset($params["filter"][$this->repoAttribute])){
