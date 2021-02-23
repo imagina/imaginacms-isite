@@ -51,7 +51,7 @@ class ItemsList extends Component
     /**
     * Listeners
     */
-    protected $listeners = ['getData'];
+    protected $listeners = ['getData','itemsListClearValues'];
     
 
     /**
@@ -179,6 +179,17 @@ class ItemsList extends Component
     }
 
     /*
+    * Listener 
+    * Clear Values
+    */
+    public function itemsListClearValues(){
+        //\Log::info($this->name."- CLEAR VALUES FILTER");
+        $this->filter = [];
+        $this->emitItemListRendered = true;
+
+    }
+
+    /*
     * Function Frontend - Load More Button
     *
     */
@@ -192,7 +203,6 @@ class ItemsList extends Component
     */
     public function makeParamsToRepository(){
 
-     
         if($this->firstRequest)
             $this->firstRequest = false;
 
@@ -239,10 +249,11 @@ class ItemsList extends Component
         if(!$this->firstRequest && !in_array('orderBy', $this->queryString)){
             array_push($this->queryString, 'orderBy');
         }
-       
-        $params = $this->makeParamsToRepository();
-        //\Log::info("ITEM LIST - RENDER - PARAMS QUERY ".json_encode($params));
 
+        $params = $this->makeParamsToRepository();
+
+        //\Log::info("ITEM LIST - RENDER - PARAMS QUERY ".json_encode($params));
+        
         $items = $this->getItemRepository()->getItemsBy(json_decode(json_encode($params)));
 
         $this->totalItems = $items->total();

@@ -21,7 +21,9 @@ return [
         'order' => 'Ordenar',
     ],
     'buttons' => [
-        'load more' => 'Ver más...'
+        'load more' => 'Ver más...',
+        'filter' => 'Filtrar',
+        'clear' => 'Borrar',
     ],
     'filters' => [
         'title' => 'Filtros'

@@ -81,11 +81,9 @@ class Checkbox extends Component
     * Get Listener From Config
     *
     */
-    protected function getListeners()
-    {
+    protected function getListeners(){
         return [ $this->listener => 'getData'];
     }
-
 
     /*
     * Listener 

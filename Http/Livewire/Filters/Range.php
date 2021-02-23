@@ -34,7 +34,6 @@ class Range extends Component
     public $selPriceMax;
     public $show;
 
-
 	/*
     * Runs once, immediately after the component is instantiated,
     * but before render() is called

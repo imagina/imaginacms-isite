@@ -12,6 +12,16 @@
 						</div>
 					@endif
 				@endforeach
+
+				<div class="filter-buttons my-2">
+					@if($showBtnFilter)
+						<button id="btnFilter" type="button" class="btnFilter btn btn-primary">{{trans('isite::frontend.buttons.filter')}}</button>
+					@endif
+					@if($showBtnClear)
+						<button id="btnClear" type="button" class="btnClear btn btn-primary" onClick="window.livewire.emit('itemsListClearValues')">{{trans('isite::frontend.buttons.clear')}}</button>
+					@endif
+				</div>
+
 			</div>
 		</div>
 

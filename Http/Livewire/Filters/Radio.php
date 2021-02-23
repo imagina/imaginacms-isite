@@ -82,12 +82,11 @@ class Radio extends Component
     * Get Listener From Config
     *
     */
-    protected function getListeners()
-    {
+    protected function getListeners(){
         return [ $this->listener => 'getData'];
     }
 
-     /*
+    /*
     * Listener 
     * Item List Rendered (Like First Version)
     */
