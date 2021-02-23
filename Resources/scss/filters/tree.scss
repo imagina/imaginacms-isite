@@ -1,7 +1,13 @@
 .filter-tree {
   
-  .list-group-item {
+  [class*="level-"]{
     padding-right: 0;
+  }
+  .level-0{
+    padding: 0.5rem 1.25rem;
+  }
+  
+  .list-group-item  {
     
     .icon-collapsable {
       .angle:before {
