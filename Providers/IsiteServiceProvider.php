@@ -100,6 +100,8 @@ class IsiteServiceProvider extends ServiceProvider
     Livewire::component('isite::filter-checkbox', \Modules\Isite\Http\Livewire\Filters\Checkbox::class);
     Livewire::component('isite::filter-radio', \Modules\Isite\Http\Livewire\Filters\Radio::class);
     Livewire::component('isite::filter-tree', \Modules\Isite\Http\Livewire\Filters\Tree::class);
+    Livewire::component('isite::filter-select', \Modules\Isite\Http\Livewire\Filters\Select::class);
+
 
     Livewire::component('isite::filter-order-by', \Modules\Isite\Http\Livewire\Index\Filters\OrderBy::class);
    
