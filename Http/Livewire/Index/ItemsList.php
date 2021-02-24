@@ -38,6 +38,7 @@ class ItemsList extends Component
     public $pagination;
     public $showTitle;
     public $amount;
+    public $activeBackToTop = false;
 
     public $take;
 

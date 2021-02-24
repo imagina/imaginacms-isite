@@ -42,16 +42,41 @@
 @section('scripts')
 @parent
 <script type="text/javascript">
+
     document.addEventListener('DOMContentLoaded', function () {
 		window.livewire.emit('itemListRendered',{!! json_encode($params) !!});
     });
-    
-    $(document).on('click', '.page-link-scroll', function (e) {
-    	let scrollPos = $(".{{$entityName}}-list").offset().top; 
 
-	  $("html, body").animate({ scrollTop: scrollPos }, "slow");
-	  return false;
+    /*
+	* Function Back Top
+	*/
+    function itemsListBackToTop(){
+    	let positionY = window.pageYOffset;
+    	let scrollPos = $(".{{$entityName}}-list").offset().top; 
+    	if(positionY>scrollPos)
+    		$("html, body").animate({ scrollTop: scrollPos }, "slow");
+    }
+
+    /*
+	* Event on Click Pagination
+	*/
+    $(document).on('click', '.page-link-scroll', function (e) {
+    	itemsListBackToTop();
+	  	return false;
 	});
+
+	/*
+	* Listener Item List Rendered
+	*/
+	Livewire.on('itemListRendered', function () {
+
+		if(@this.activeBackToTop)
+			itemsListBackToTop();
+		else
+			@this.activeBackToTop = true;
+
+	})
+
 </script>
 
 @stop
