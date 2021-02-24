@@ -82,7 +82,11 @@ class Checkbox extends Component
     *
     */
     protected function getListeners(){
-        return [ $this->listener => 'getData'];
+        if(!empty($this->listener)){
+            return [ $this->listener => 'getData'];
+        }else{
+            return [];
+        }
     }
 
     /*
