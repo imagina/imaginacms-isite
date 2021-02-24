@@ -25,7 +25,7 @@ class Tree extends Component
   public $listener;
   public $layout;
   public $classes;
-  public $mode;
+  public $renderMode;
   public $entityClass;
   public $params;
   
@@ -38,12 +38,11 @@ class Tree extends Component
   
   public $extraParamsUrl;
   
-  protected $listeners = ['updateExtraParams'];
   
   public function mount(  $title, $name, $type, $repository, $entityClass, $emitTo, $repoAction, $repoAttribute, $listener,
                           $repoMethod = "getItemsBy", $params = [], $layout='range-layout-1', $itemSelected = null,
                           $typeTitle = "configTitle", $classes='col-12', $status=true, $isExpanded=true,
-                          $breadcrumb = [], $mode = "allTree")
+                          $breadcrumb = [], $renderMode = "allTree")
   {
     $this->title = trans($title);
     $this->name = $name;
@@ -59,11 +58,11 @@ class Tree extends Component
     $this->listener = $listener;
     $this->layout = $layout;
     $this->classes = $classes;
-    $this->mode = $mode;
+    $this->renderMode = $renderMode;
     $this->params = $params;
  
     
-    $this->breadcrumb = $breadcrumb;
+    $this->breadcrumb = $breadcrumb ?? [];
     $this->extraParamsUrl = "";
     
     $this->itemSelected = $itemSelected;
@@ -74,6 +73,10 @@ class Tree extends Component
 
     
     $this->initConfigs();
+    
+    if(empty($this->listener)){
+      $this->getData($this->params);
+    }
   }
   
   
@@ -87,9 +90,39 @@ class Tree extends Component
     
   }
   
-  public function updateExtraParams($params)
+  public function updateItemSelected($item)
   {
-    $this->extraParamsUrl = $params;
+ 
+    if(!empty($this->emitTo)){
+      $this->itemSelected = $this->getRepository()->getItem($item, json_decode(json_encode(["filter" => ["field" => "id"]])));
+  
+      $this->refreshBreadcrumb();
+      
+      $this->emit($this->emitTo,[
+        $this->repoAction => [
+          $this->repoAttribute => $item
+        ]
+      ]);
+    }
+   
+    
+  }
+  
+  /*
+  * Get Listener From Config
+  *
+  */
+  protected function getListeners(){
+    if(!empty($this->listener)){
+      $listener = [ $this->listener => 'getData',
+        'updateItemSelected'];
+    }else{
+      $listener [
+        'updateItemSelected'
+      ];
+    }
+
+    return $listener;
   }
   
   private function getRepository()
@@ -97,32 +130,40 @@ class Tree extends Component
     return app($this->repository);
   }
   
-  public function render()
-  {
-    
-    $tpl = 'isite::frontend.livewire.filters.tree.index';
-    $ttpl = 'isite.livewire.filters.tree.index';
-    
+  private function refreshBreadcrumb(){
+    if(isset($this->itemSelected->id)){
+      $this->breadcrumb = $this->entityClass::ancestorsAndSelf($this->itemSelected->id);
+    }else{
+      $this->breadcrumb = [];
+    }
+  }
+  /*
+    * Listener
+    * Item List Rendered (Like First Version)
+    */
+  public function getData($params){
+  
     $params = json_decode(json_encode([
       "include" => ['translations'],
       "take" => 0,
       "filter" => $this->params["filter"] ?? []
     ]));
-    
+
+   $this->refreshBreadcrumb();
     
     $this->items = $this->getRepository()->{$this->repoMethod}($params);
-    
-    if (view()->exists($ttpl)) $tpl = $ttpl;
-    
+  
+ 
+  
     // Reorganize collection by the 'mode' config
-    if (isset($this->itemSelected->id) && $this->mode) {
-      switch ($this->mode) {
+    if (isset($this->itemSelected->id) && $this->renderMode) {
+      switch ($this->renderMode) {
         case 'allFamilyOfTheSelectedNode':
           $ancestors = $this->entityClass::ancestorsAndSelf($this->itemSelected->id);
           $rootItem = $ancestors->whereNull('parent_id')->first();
           $this->items = $this->entityClass::descendantsAndSelf($rootItem->id);
           break;
-    
+      
         case 'onlyLeftAndRightOfTheSelectedNode':
           $ancestors = $this->entityClass::ancestorsOf($this->itemSelected->id);
           $descendants = $result = $this->entityClass::descendantsAndSelf($this->itemSelected->id);
@@ -132,6 +173,16 @@ class Tree extends Component
       }
     }
     
+  }
+  
+  public function render()
+  {
+    
+    $tpl = 'isite::frontend.livewire.filters.tree.index';
+    $ttpl = 'isite.livewire.filters.tree.index';
+  
+    if (view()->exists($ttpl)) $tpl = $ttpl;
+
     return view($tpl,["breadcrumb" => $this->breadcrumb]);
 
   }

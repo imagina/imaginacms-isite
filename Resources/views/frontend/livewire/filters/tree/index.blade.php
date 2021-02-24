@@ -1,5 +1,5 @@
-@if($items && count($items)>0)
 <div class="filter-tree filter-{{$name}} filter-tree-style-{{$layout}} mb-4">
+@if($items && count($items)>0)
     
     <div class="title">
       <a class="item" data-toggle="collapse" href="#collapseCategories" role="button" aria-expanded="{{$isExpanded ? 'true' : 'false'}}" aria-controls="collapseCategories" class="{{$isExpanded ? '' : 'collapsed'}}">
@@ -29,5 +29,24 @@
       </div>
     </div>
   
-  </div>
 @endif
+</div>
+
+@section("scripts")
+  @parent
+  <script>
+    
+      function emit_{{$name}}(itemId,itemUrl){
+        var configEmit =  {!! $emitTo ? 'true' : 'false' !!};
+        console.warn("adsadasdasd12312321")
+        if(configEmit){
+          console.warn("adsadasdasd")
+          window.livewire.emit('updateItemSelected',itemId)
+        }else{
+          window.location.href = itemUrl
+        }
+      }
+   
+    
+  </script>
+@endsection
