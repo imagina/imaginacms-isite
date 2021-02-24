@@ -51,7 +51,10 @@ class ItemsList extends Component
     /**
     * Listeners
     */
-    protected $listeners = ['getData','itemsListClearValues'];
+    protected $listeners = [
+        'itemsListGetData' => 'getData',
+        'itemsListClearValues' => 'clearValues'
+    ];
     
 
     /**
@@ -182,7 +185,7 @@ class ItemsList extends Component
     * Listener 
     * Clear Values
     */
-    public function itemsListClearValues(){
+    public function clearValues(){
         //\Log::info($this->name."- CLEAR VALUES FILTER");
         $this->filter = [];
         $this->emitItemListRendered = true;
