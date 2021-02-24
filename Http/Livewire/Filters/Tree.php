@@ -117,7 +117,7 @@ class Tree extends Component
       $listener = [ $this->listener => 'getData',
         'updateItemSelected'];
     }else{
-      $listener [
+      $listener = [
         'updateItemSelected'
       ];
     }
