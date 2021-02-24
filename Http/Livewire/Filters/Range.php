@@ -112,10 +112,12 @@ class Range extends Component
     */
     protected function getListeners()
     {
-        return [
-            $this->listener => 'getData',
-            'updateRange'
-        ];
+        if(!empty($this->listener)){
+            return [ $this->listener => 'getData','updateRange'];
+        }else{
+            return ['updateRange'];
+        }
+        
     }
 
     /*
