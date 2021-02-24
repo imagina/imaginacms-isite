@@ -69,12 +69,7 @@
 	* Listener Item List Rendered
 	*/
 	Livewire.on('itemListRendered', function () {
-
-		if(@this.activeBackToTop)
-			itemsListBackToTop();
-		else
-			@this.activeBackToTop = true;
-
+		itemsListBackToTop();
 	})
 
 </script>
