@@ -18,9 +18,9 @@ class OrderBy extends Component
 
     protected $listeners = ['itemListRendered'];
 
-	public function mount($moduleName = "isite", $type = "select"){
+	public function mount($config = null, $type = "select"){
 
-        $this->configs['orderBy'] = config("asgard.{$moduleName}.config.orderBy") ?? config("asgard.isite.config.orderBy");
+        $this->configs['orderBy'] = $config ?? config("asgard.isite.config.orderBy");
 
         $this->orderBy = $this->configs['orderBy']['default'] ?? "nameaz";
         $this->order = $this->configs['orderBy']['options'][$this->orderBy]['order'];

@@ -18,15 +18,9 @@
 				{{-- Filter - Order By --}}
 				<div class="col-lg-5">
 
-					
 					<livewire:isite::filter-order-by key="filter-order-by"
-					:moduleName="$moduleName"/>
+					:config="config('asgard.'.$moduleName.'.config.orderBy')"/>
 
-					
-
-					{{--
-					@include('isite::frontend.livewire.index.top-content.filter-orderby')
-					--}}
 				</div>
 
 				{{-- Change Layout --}}
