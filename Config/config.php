@@ -57,22 +57,6 @@ return [
           'way' => "desc",
         ]
       ],
-      'lowerprice' => [
-        'title' => 'isite::common.sort.price_low_high',
-        'name' => 'lowerprice',
-        'order' => [
-          'field' => "price",
-          'way' => "asc",
-        ]
-      ],
-      'higherprice' => [
-        'title' => 'isite::common.sort.price_high_low',
-        'name' => 'higherprice',
-        'order' => [
-          'field' => "price",
-          'way' => "desc",
-        ]
-      ],
       'recently' => [
         'title' => 'isite::common.sort.recently',
         'name' => 'recently',
