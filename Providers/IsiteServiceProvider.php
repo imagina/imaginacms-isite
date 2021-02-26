@@ -94,7 +94,15 @@ class IsiteServiceProvider extends ServiceProvider
   private function registerComponentsLivewire()
   {
 
-    Livewire::component('isite::item-list', \Modules\Isite\Http\Livewire\Index\ItemList::class);
+    Livewire::component('isite::items-list', \Modules\Isite\Http\Livewire\Index\ItemsList::class);
+    Livewire::component('isite::filters', \Modules\Isite\Http\Livewire\Filters::class);
+    Livewire::component('isite::filter-range', \Modules\Isite\Http\Livewire\Filters\Range::class);
+    Livewire::component('isite::filter-checkbox', \Modules\Isite\Http\Livewire\Filters\Checkbox::class);
+    Livewire::component('isite::filter-radio', \Modules\Isite\Http\Livewire\Filters\Radio::class);
+    Livewire::component('isite::filter-tree', \Modules\Isite\Http\Livewire\Filters\Tree::class);
+    Livewire::component('isite::filter-select', \Modules\Isite\Http\Livewire\Filters\Select::class);
+
+
     Livewire::component('isite::filter-order-by', \Modules\Isite\Http\Livewire\Index\Filters\OrderBy::class);
    
   }

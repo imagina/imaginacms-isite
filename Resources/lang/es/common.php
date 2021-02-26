@@ -57,6 +57,6 @@ return [
     'customSources' => 'Fuentes Personalizadas',
   ],
   'messages' => [
-    'no items' => "No se encontraron items..."
+    'no items' => 'No existe información disponible'
   ]
 ];
