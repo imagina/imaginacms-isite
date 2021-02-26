@@ -70,7 +70,7 @@ class ItemsList extends Component
     * Runs once, immediately after the component is instantiated,
     * but before render() is called
     */
-	public function mount($itemListLayout = null, $moduleName = "isite", $entityName = "item", $itemComponentName = "isite::item-list", $params = [] , $responsiveTopContent = null, $showTitle = true, $pagination = null, $configOrderBy = null
+	public function mount($itemListLayout = null, $moduleName = "isite", $entityName = "item", $itemComponentName = "isite::item-list", $params = [] , $responsiveTopContent = null, $showTitle = true, $pagination = null, $configOrderBy = null, $configLayoutIndex = null
     ){
 
 
@@ -92,7 +92,7 @@ class ItemsList extends Component
         $this->pagination = $pagination ? array_merge(['show' => true , 'type' => 'normal'],$pagination) : ['show' => true , 'type' => 'normal'];
 
 
-        $this->initConfigs($configOrderBy);
+        $this->initConfigs($configOrderBy,$configLayoutIndex);
         $this->initValuesOrderBy();
         $this->initValuesLayout($itemListLayout);
         $this->initRequest();
@@ -103,10 +103,10 @@ class ItemsList extends Component
     * Init Configs
     *
     */
-    public function initConfigs(){
+    public function initConfigs($configOrderBy,$configLayoutIndex){
 
         $this->configs['orderBy'] = $configOrderBy ?? config("asgard.isite.config.orderBy");
-        $this->configs['itemListLayout'] = config("asgard.{$this->moduleName}.config.layoutIndex") ?? config("asgard.isite.config.layoutIndex");
+        $this->configs['itemListLayout'] = $configLayoutIndex ?? config("asgard.isite.config.layoutIndex");
     }
 
     /*
