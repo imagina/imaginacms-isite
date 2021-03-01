@@ -14,11 +14,12 @@
 			@php($expanded = true)
 		@endif
 	@endforeach
+	@php($mediaFiles = $item->mediaFiles())
 	@php(isset($mediaFiles->iconimage->path) && !strpos($mediaFiles->iconimage->path,"default.jpg") ? $withIcon = true : $withIcon = false)
 	
 	@if($children->isNotEmpty())
 		<div class="link-desktop d-none d-md-block {{$isSelected && $children ? 'font-weight-bold' : ''}}">
-			<a data-href="{{$item->url}}" style="cursor: pointer" onclick="emit_{{$name}}({{$item->id}},'{{$item->url}}'')" class="{{$name}}-link text-href ">
+			<a data-href="{{$item->url}}" style="cursor: pointer" onclick="emit_{{$name}}({{$item->id}},'{{$item->url}}')" class="{{$name}}-link text-href ">
 				@php($mediaFiles = $item->mediaFiles())
 				@if($withIcon)
 					<img class="item-icon filter" src="{{$mediaFiles->iconimage->path}}">
