@@ -32,7 +32,7 @@ class ItemList extends Component
     $this->viewMoreButtonLabel = $viewMoreButtonLabel;
     $this->withCreatedDate = $withCreatedDate;
     $this->formatCreatedDate = $formatCreatedDate;
-    $this->orderClasses = !empty($orderClasses) ? $orderClasses : ["order-1","order-2","order-3","order-4","order-5","order-6"];
+    $this->orderClasses = !empty($orderClasses) ? $orderClasses : ["photo" => "order-1", "title" => "order-2","date" => "order-3","categoryTitle" => "order-4","summary" => "order-5","viewMoreButton" => "order-6"];
 
     if(!empty($parentAttributes))
       $this->getParentAttributes($parentAttributes);
@@ -46,7 +46,7 @@ class ItemList extends Component
     isset($parentAttributes["viewMoreButtonLabel"]) ? $this->viewMoreButtonLabel = $parentAttributes["viewMoreButtonLabel"] : false;
     isset($parentAttributes["withCreatedDate"]) ? $this->withCreatedDate = $parentAttributes["withCreatedDate"] : false;
     isset($parentAttributes["formatCreatedDate"]) ? $this->formatCreatedDate = $parentAttributes["formatCreatedDate"] : false;
-    isset($parentAttributes["orderClasses"]) ? $this->orderClasses = !empty($parentAttributes["orderClasses"]) ? $parentAttributes["orderClasses"] : ["order-1","order-2","order-3","order-4","order-5","order-6"] : false;
+    isset($parentAttributes["orderClasses"]) ? $this->orderClasses = !empty($parentAttributes["orderClasses"]) ? $parentAttributes["orderClasses"] : ["photo" => "order-1", "title" => "order-2","date" => "order-3","categoryTitle" => "order-4","summary" => "order-5","viewMoreButton" => "order-6"] : false;
 
   }
   /**
