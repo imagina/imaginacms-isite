@@ -15,6 +15,7 @@ class ItemList extends Component
   public $viewMoreButtonLabel;
   public $withCreatedDate;
   public $formatCreatedDate;
+  public $orderClasses;
   /**
    * Create a new component instance.
    *
@@ -22,7 +23,7 @@ class ItemList extends Component
    */
   public function __construct($item, $mediaImage = "mainimage", $layout = 'item-list-layout-1', $parentAttributes = null,
                               $withViewMoreButton = false, $viewMoreButtonLabel = "isite::common.menu.viewMore",
-                              $withCreatedDate = false, $formatCreatedDate = "d \\d\\e M" )
+                              $withCreatedDate = false, $formatCreatedDate = "d \\d\\e M", $orderClasses = [] )
   {
     $this->item = $item;
     $this->mediaImage = $mediaImage;
@@ -31,6 +32,7 @@ class ItemList extends Component
     $this->viewMoreButtonLabel = $viewMoreButtonLabel;
     $this->withCreatedDate = $withCreatedDate;
     $this->formatCreatedDate = $formatCreatedDate;
+    $this->orderClasses = !empty($orderClasses) ? $orderClasses : ["order-1","order-2","order-3","order-4","order-5","order-6"];
 
     if(!empty($parentAttributes))
       $this->getParentAttributes($parentAttributes);
@@ -44,6 +46,7 @@ class ItemList extends Component
     isset($parentAttributes["viewMoreButtonLabel"]) ? $this->viewMoreButtonLabel = $parentAttributes["viewMoreButtonLabel"] : false;
     isset($parentAttributes["withCreatedDate"]) ? $this->withCreatedDate = $parentAttributes["withCreatedDate"] : false;
     isset($parentAttributes["formatCreatedDate"]) ? $this->formatCreatedDate = $parentAttributes["formatCreatedDate"] : false;
+    isset($parentAttributes["orderClasses"]) ? $this->orderClasses = !empty($parentAttributes["orderClasses"]) ? $parentAttributes["orderClasses"] : ["order-1","order-2","order-3","order-4","order-5","order-6"] : false;
 
   }
   /**
