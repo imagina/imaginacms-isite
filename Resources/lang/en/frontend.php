@@ -19,6 +19,14 @@ return [
     'mobile' => [
         'filter' => 'Filter',
         'order' => 'Order',
+    ],
+    'buttons' => [
+        'load more' => 'Load more...',
+        'filter' => 'Filter',
+        'clear' => 'Clear',
+    ],
+    'filters' => [
+        'title' => 'Filters'
     ]
    
 ];

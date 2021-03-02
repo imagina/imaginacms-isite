@@ -19,6 +19,14 @@ return [
 	 'mobile' => [
         'filter' => 'Filtrar',
         'order' => 'Ordenar',
+    ],
+    'buttons' => [
+        'load more' => 'Ver más...',
+        'filter' => 'Filtrar',
+        'clear' => 'Borrar',
+    ],
+    'filters' => [
+        'title' => 'Filtros'
     ]
    
 ];

@@ -8,7 +8,7 @@ use App;
 
 use Illuminate\Http\Request;
 
-class ItemList extends Component
+class ItemsList extends Component
 {
 
     use WithPagination;
@@ -33,11 +33,16 @@ class ItemList extends Component
     public $configs;
     public $itemListLayout;
     public $layoutClass;
+
     public $wrapperClass;
+    public $pagination;
     public $showTitle;
+    public $amount;
+
+    public $take;
 
     public $moduleParams = [];
-    public $filters = [];
+    public $filter = [];
 
     protected $paginationTheme = 'bootstrap';
     protected $emitItemListRendered;
@@ -46,7 +51,10 @@ class ItemList extends Component
     /**
     * Listeners
     */
-    protected $listeners = ['getData'];
+    protected $listeners = [
+        'itemsListGetData' => 'getData',
+        'itemsListClearValues' => 'clearValues'
+    ];
     
 
     /**
@@ -54,7 +62,7 @@ class ItemList extends Component
     */
     protected $queryString = [
         'search' => ['except' => ''],
-        'filters' => ['except' => []],
+        'filter' => ['except' => []],
         'page' => ['except' => 1]
     ];
     
@@ -62,23 +70,29 @@ class ItemList extends Component
     * Runs once, immediately after the component is instantiated,
     * but before render() is called
     */
-	public function mount( Request $request, $itemListLayout = null, $moduleName = "isite", $entityName = "item", $itemComponentName = "isite::item-list", $params = [] , $responsiveTopContent = null, $showTitle = true
+	public function mount($itemListLayout = null, $moduleName = "isite", $entityName = "item", $itemComponentName = "isite::item-list", $params = [] , $responsiveTopContent = null, $showTitle = true, $pagination = null, $configOrderBy = null, $configLayoutIndex = null
     ){
 
 
         $this->moduleName = strtolower($moduleName);
         $this->entityName = strtolower($entityName);
-        
         $this->itemComponentName = $itemComponentName;
+
         $this->repository = "Modules\\". ucfirst($this->moduleName) . "\Repositories\\" . ucfirst($entityName).'Repository';
 
         $this->moduleParams = $params;
-        $this->showTitle = $showTitle;
-        $this->page = $this->moduleParams['page'] ?? 1;
 
+        $this->page = $this->moduleParams['page'] ?? 1;
+        $this->take = $this->moduleParams['take'] ?? 12;
+       
         $this->responsiveTopContent = $responsiveTopContent ?? ["mobile" =>  true, "desktop" => true];
 
-        $this->initConfigs();
+        $this->showTitle = $showTitle;
+      
+        $this->pagination = $pagination ? array_merge(['show' => true , 'type' => 'normal'],$pagination) : ['show' => true , 'type' => 'normal'];
+
+
+        $this->initConfigs($configOrderBy,$configLayoutIndex);
         $this->initValuesOrderBy();
         $this->initValuesLayout($itemListLayout);
         $this->initRequest();
@@ -89,10 +103,10 @@ class ItemList extends Component
     * Init Configs
     *
     */
-    public function initConfigs(){
+    public function initConfigs($configOrderBy,$configLayoutIndex){
 
-        $this->configs['orderBy'] = config("asgard.{$this->moduleName}.config.orderBy") ?? config("asgard.isite.config.orderBy");
-        $this->configs['itemListLayout'] = config("asgard.{$this->moduleName}.config.layoutIndex") ?? config("asgard.isite.config.layoutIndex");
+        $this->configs['orderBy'] = $configOrderBy ?? config("asgard.isite.config.orderBy");
+        $this->configs['itemListLayout'] = $configLayoutIndex ?? config("asgard.isite.config.layoutIndex");
     }
 
     /*
@@ -128,9 +142,9 @@ class ItemList extends Component
 
         //\Log::info("ITEMLIST - GETDATA - PARAMS: ".json_encode($params));
 
-        if(isset($params["filters"])){
+        if(isset($params["filter"])){
             $this->emitItemListRendered = true;
-            $this->filters = array_merge($this->filters, $params["filters"]);
+            $this->filter = array_merge($this->filter, $params["filter"]);
             $this->resetPage();
         }
         
@@ -156,7 +170,7 @@ class ItemList extends Component
     public function initRequest(){
         $this->firstRequest = true;
         $this->emitItemListRendered = false;
-        $this->fill(request()->only('search', 'filters','page','orderBy'));
+        $this->fill(request()->only('search', 'filter','page','orderBy'));
     }
 
     /*
@@ -168,6 +182,24 @@ class ItemList extends Component
         $this->layoutClass = $this->configs['itemListLayout']['options'][$this->itemListLayout]['class'];
     }
 
+    /*
+    * Listener 
+    * Clear Values
+    */
+    public function clearValues(){
+        //\Log::info($this->name."- CLEAR VALUES FILTER");
+        $this->filter = [];
+        $this->emitItemListRendered = true;
+
+    }
+
+    /*
+    * Function Frontend - Load More Button
+    *
+    */
+    public function loadMore(){
+        $this->take += $this->moduleParams['take'];
+    }
 
      /*
     * Make params to Repository
@@ -175,7 +207,6 @@ class ItemList extends Component
     */
     public function makeParamsToRepository(){
 
-     
         if($this->firstRequest)
             $this->firstRequest = false;
 
@@ -183,17 +214,16 @@ class ItemList extends Component
         $this->order = $this->configs['orderBy']['options'][$this->orderBy]['order'];
         
         if(is_string($this->search) && $this->search){
-          $this->filters["search"] = $this->search;
-          $this->filters["locale"] = App::getLocale();
+          $this->filter["search"] = $this->search;
+          $this->filter["locale"] = App::getLocale();
         }
 
         $params = [
             "include" => $this->moduleParams['include'] ?? [],
-            "take" => $this->moduleParams['take'] ?? 12,
-            "page" => $this->page ?? 1,
-            "filter" => $this->filters,
-            "order" =>  $this->order,
-            'user' => \Auth::user()
+            "take" => $this->take,
+            "page" => $this->page,
+            "filter" => $this->filter,
+            "order" =>  $this->order
         ];
        
         if(isset($this->moduleParams['filter']) && !empty($this->moduleParams['filter']) ){
@@ -223,15 +253,16 @@ class ItemList extends Component
         if(!$this->firstRequest && !in_array('orderBy', $this->queryString)){
             array_push($this->queryString, 'orderBy');
         }
-       
-        $params = $this->makeParamsToRepository();
-        //\Log::info("ITEM LIST - RENDER - PARAMS QUERY ".json_encode($params));
 
+        $params = $this->makeParamsToRepository();
+
+        //\Log::info("ITEM LIST - RENDER - PARAMS QUERY ".json_encode($params));
+        
         $items = $this->getItemRepository()->getItemsBy(json_decode(json_encode($params)));
 
         $this->totalItems = $items->total();
 
-        $tpl = 'isite::frontend.livewire.index.item-list';
+        $tpl = 'isite::frontend.livewire.index.items-list';
 
         // Add value name to order on Filter
         $params ['orderBy'] = $this->orderBy;
