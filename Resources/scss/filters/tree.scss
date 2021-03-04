@@ -59,7 +59,7 @@
 
 .filter-tree-style-ttys {
   .item, .item-icon {
-    display: none;
+    display: none !important;
   }
   .list-group-item {
     padding: 0 !important;
