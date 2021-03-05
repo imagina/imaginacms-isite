@@ -21,11 +21,13 @@ class Whatsapp extends Component
   public $iconLabel;
 
   public $top;
+  public $bottom;
   public $right;
   public $left;
   public $size;
   public $type;
 
+  public $notNumber;
   /**
    * Create a new component instance.
    *
@@ -34,7 +36,7 @@ class Whatsapp extends Component
   public function __construct(
     $layout = 'whatsapp-layout-1', $title = '', $id = 'whatsappComponent', $mask = 1,
     $icon = 'fa fa-whatsapp', $alignment = 'dropleft', $parentAttributes = [],
-    $top = '50%', $right = null, $left= null, $type = '', $size = 'lg', $iconLabel = ''
+    $top = '50%', $bottom = null, $right = null, $left= null, $type = '', $size = 'lg', $iconLabel = '', $notNumber = true
   )
   {
     $this->layout = $layout ?? 'whatsapp-layout-1';
@@ -47,10 +49,12 @@ class Whatsapp extends Component
     $this->type = $type ?? '';
     $this->view = "isite::frontend.components.whatsapp.layouts.{$this->layout}.index";
     $this->top = $top ?? '50%';
+    $this->bottom = $bottom ?? 'unset';
     $this->right = $right ?? ($layout == 'whatsapp-layout-4' ? '10px' : 'unset');
     $this->left = $left ?? ($layout == 'whatsapp-layout-3' ? '0px' : 'unset');
     $this->setParentAttributes($parentAttributes);
     $this->iconLabel = $iconLabel ?? '';
+    $this->notNumber = $notNumber ?? true;
   }
 
   private function setParentAttributes($parentAttributes)
