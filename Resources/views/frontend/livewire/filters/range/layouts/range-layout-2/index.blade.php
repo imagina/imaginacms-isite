@@ -19,19 +19,30 @@
 
 			<div class="form-row">
 				<div class="col-md-6">
-					<input type="number" id="selPriceMin-{{$name}}" name="selPriceMin-{{$name}}" class="form-control form-control-sm" value="{{$selPriceMin}}">
+					<label for="selValueMin-{{$name}}">
+						{{trans('isite::frontend.filter-range.from')}}:
+					</label>
+					<input 
+						type="number" 
+						id="selValueMin-{{$name}}" 
+						name="selValueMin-{{$name}}" 
+						class="form-control form-control-sm" 
+						min="0"
+						wire:model.debounce.500ms="selValueMin">
 				</div>
 				<div class="col-md-6">
-					<input type="number" id="selPriceMax-{{$name}}" name="selPriceMax-{{$name}}"  class="form-control form-control-sm" value="{{$selPriceMax}}">
+					<label for="selValueMax-{{$name}}">
+						{{trans('isite::frontend.filter-range.to')}}:
+					</label>
+					<input 
+						type="number" 
+						id="selValueMax-{{$name}}" 
+						name="selValueMax-{{$name}}"  
+						class="form-control form-control-sm" 
+						min="0"
+						wire:model.debounce.500ms="selValueMax">
 				</div>
 			</div>
-
-			<div class="mx-3">
-				<button onClick="window.livewire.emit('updateRange',{'selPriceMin' : document.getElementById('selPriceMin-{{$name}}').value,'selPriceMax' : document.getElementById('selPriceMax-{{$name}}').value})" id="btnUpdatePrices" class="btn btn-outline-primary btn-sm btn-block mt-3">
-					{{trans('icommerce::common.button.update')}}
-				</button>
-			</div>
-			
 
 		</div>
 

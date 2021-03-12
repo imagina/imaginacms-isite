@@ -3,22 +3,25 @@
 
 		<div id="staticdiv">
 			<div id="contenttomove">
-				@foreach($filters as $index => $filter)
-					@if($filter['status'])
-						<div class="row">
+				<div class="row">
+					@foreach($filters as $index => $filter)
+						@if($filter['status'])
 							<div class="{{$filter['classes']}}">
 								@livewire("isite::filter-".$filter['type'], $filter, key($index.'-'.$filter['type']))
 							</div>
-						</div>
-					@endif
-				@endforeach
+						@endif
+					@endforeach
+				</div>
 
-				<div class="filter-buttons my-2">
+				<div class="filter-buttons d-flex justify-content-center my-2">
 					@if($showBtnFilter)
-						<button id="btnFilter" type="button" class="btnFilter btn btn-primary">{{trans('isite::frontend.buttons.filter')}}</button>
+						<button wire:click="updateItemsList" id="btnFilter" type="button" class="btnFilter btn btn-primary mx-2">{{trans('isite::frontend.buttons.filter')}}</button>
 					@endif
 					@if($showBtnClear)
+						<button wire:click="clearValuesFilters" id="btnClear" type="button" class="btnClear btn btn-primary mx-2">{{trans('isite::frontend.buttons.clear')}}</button>
+						{{--
 						<button id="btnClear" type="button" class="btnClear btn btn-primary" onClick="window.livewire.emit('itemsListClearValues')">{{trans('isite::frontend.buttons.clear')}}</button>
+						--}}
 					@endif
 				</div>
 
@@ -47,7 +50,7 @@
 	@endif
 </div>
 
-@section('scripts')
+@section('scripts-owl')
 	@parent
 	<script>
 
@@ -68,6 +71,17 @@
 				if(width<=992)
 					divtomodal()
 			@endif
+
+
+			/*
+			* Listener Filters Close Modal
+			*/
+			@if($extraModalId)
+				window.addEventListener('filters-close-modal', event => {
+					$('#{{$extraModalId}}').modal('hide');
+				})
+			@endif
+
 		});
 	</script>
 

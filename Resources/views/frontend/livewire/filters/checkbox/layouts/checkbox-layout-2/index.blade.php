@@ -26,12 +26,17 @@
 
 		  				@if(!empty($options))
 				  			@foreach($options as $option)
-					  			<div class="form-check form-check-inline">
-							  		<input class="form-check-input" type="checkbox" value="{{$option->id}}" name="{{$name}}{{$option->id}}" id="{{$name}}{{$option->id}}"  wire:model="selectedOptions">
-								  	<label class="form-check-label" for="{{$name}}{{$option->id}}">
-								    	{{$option->name}}
-								  	</label>
-								</div>
+				  				<div class="mr-2 mb-2 tagBoxs">
+                                    <input 
+                                    	type="checkbox" 
+                                    	name="{{$name}}{{$option->id}}" 
+                                    	id="{{$name}}{{$option->id}}"
+                                    	value="{{$option->id}}"
+                                    	wire:model="selectedOptions">
+                                    <label for="{{$name}}{{$option->id}}">
+                                    	<span>{{$option->name ?? $option->title}}</span>
+                                    </label>
+                                </div>
 							@endforeach
 						@endif
 		  			</div>

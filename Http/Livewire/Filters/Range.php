@@ -23,22 +23,24 @@ class Range extends Component
     public $repoMethod;
     public $layout;
     public $classes;
+    public $params;
 
     /*
     * Attributes
     */
-    public $priceMin;
-    public $priceMax;
+    public $valueMin;
+    public $valueMax;
     public $step;
-    public $selPriceMin;
-    public $selPriceMax;
+    public $selValueMin;
+    public $selValueMax;
     public $show;
+    public $emitWithIndividualAtts = true;
 
 	/*
     * Runs once, immediately after the component is instantiated,
     * but before render() is called
     */
-	public function mount($title,$name,$status=true,$isExpanded=true,$type,$repository,$emitTo,$repoAction,$repoAttribute,$listener,$repoMethod='getItemsBy',$layout='range-layout-1',$classes='col-12',$step = null){
+	public function mount($title,$name,$status=true,$isExpanded=true,$type,$repository,$emitTo,$repoAction,$repoAttribute,$listener,$repoMethod='getItemsBy',$layout='range-layout-1',$classes='col-12',$params = [],$step = null){
 
         $this->title = trans($title);
         $this->name = $name;
@@ -53,48 +55,85 @@ class Range extends Component
         $this->repoMethod = $repoMethod;
         $this->layout = $layout;
         $this->classes = $classes;
+        $this->params = $params;
         $this->step = $step ?? 10000;
-
        
-        $this->priceMin = 0;
-        $this->priceMax = 1;
-        $this->selPriceMin = 0;
-        $this->selPriceMax = 1;
+        $this->valueMin = 0;
+        $this->valueMax = 1;
+        $this->selValueMin = 0;
+        $this->selValueMax = 1;
         $this->show = true;
 
 	}
 
 
     /**
-   * Update Range
-   * Emit updateFilter
+   * 
+   * Update Range BTN
    *
    */
     public function updateRange($data){
 
         // Testing
         //\Log::info("DATA: ".json_encode($data));
+        $this->emitWithIndividualAtts = false;
        
-        if(!empty($data["selPriceMin"]) && !empty($data["selPriceMax"])){
-            $this->selPriceMin = $data["selPriceMin"];
-            $this->selPriceMax = $data["selPriceMax"];
+        if(!empty($data["selValueMin"]) && !empty($data["selValueMax"])){
+            $this->selValueMin = $data["selValueMin"];
+            $this->selValueMax = $data["selValueMax"];
             
-            /**
-                Example: 
-                emitTo = getData (To ItemList Listener)
-                repoAction => 'filter' (To Product Repository),
-                repoAttribute = 'priceRange' (To Product Repository),
-            */
-            $this->emit($this->emitTo,[
-                $this->repoAction => [
-                  $this->repoAttribute => [
-                    'from' => $this->selPriceMin,
-                    'to' => $this->selPriceMax
-                  ]
-                ]
-            ]);
+            $this->emitToFilter();
         }
        
+    }
+
+    /* 
+    * When update Selected Price Min
+    * 
+    */
+    public function updatedSelValueMin(){
+        
+        //\Log::info("FILTER: ".$this->name."- UPDATED SEL PRICE MIN: ".$this->selValueMin);
+
+        if($this->emitWithIndividualAtts)
+            $this->emitToFilter();
+
+    }
+
+    /* 
+    * When updated Selected Price Max
+    * 
+    */
+    public function updatedSelValueMax(){
+
+        //\Log::info("FILTER: ".$this->name."- UPDATED SEL PRICE MAX: ".$this->selValueMax);
+        
+        if($this->emitWithIndividualAtts)
+            $this->emitToFilter();
+
+    }
+
+    /* 
+    * Emit To Filter
+    * 
+    */
+    public function emitToFilter(){
+
+        /**
+        * Example: 
+        * emitTo = itemsListGetData (To ItemList Listener)
+        * repoAction => 'filter' (To Product Repository),
+        * repoAttribute = 'priceRange' (To Product Repository),
+        */
+        $this->emit($this->emitTo,[
+            'name' => $this->name,
+            $this->repoAction => [
+                $this->repoAttribute => [
+                    'from' => $this->selValueMin,
+                    'to' => $this->selValueMax
+                ]
+            ]
+        ]);
     }
 
     /*
@@ -113,9 +152,13 @@ class Range extends Component
     protected function getListeners()
     {
         if(!empty($this->listener)){
-            return [ $this->listener => 'getData','updateRange'];
+            return [ 
+                $this->listener => 'getData',
+                'updateRange',
+                'filtersClearValues' => 'clearValues'
+            ];
         }else{
-            return ['updateRange'];
+            return ['updateRange','filtersClearValues' => 'clearValues'];
         }
         
     }
@@ -129,53 +172,62 @@ class Range extends Component
         // Testing
         //\Log::info("GET DATA - PARAMS: ".json_encode($params));
        
-        $selectedPrices  = $params["filter"][$this->repoAttribute] ?? null;
+        $selectedValues  = $params["filter"][$this->repoAttribute] ?? null;
 
         $range = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params)));
 
         //Getting the new price range
-        $this->priceMin = round($range->minPrice);
-        $this->priceMax = round($range->maxPrice);
+        $this->valueMin = round($range->minPrice);
+        $this->valueMax = round($range->maxPrice);
 
         //Validating if the user had selected prices 
-        if(!empty($selectedPrices)){
-            $this->selPriceMin = $selectedPrices["from"];
-            $this->selPriceMax = $selectedPrices["to"]; 
+        if(!empty($selectedValues)){
+            $this->selValueMin = $selectedValues["from"];
+            $this->selValueMax = $selectedValues["to"]; 
         }else{
-            $this->selPriceMin = $this->priceMin;
-            $this->selPriceMax = $this->priceMax;
+            $this->selValueMin = $this->valueMin;
+            $this->selValueMax = $this->valueMax;
         }
 
         //Validating if there is no price range
-        if($this->selPriceMin==$this->selPriceMax && $this->priceMin==$this->selPriceMin && $this->priceMax==$this->selPriceMax){
+        if($this->selValueMin==$this->selValueMax && $this->valueMin==$this->selValueMin && $this->valueMax==$this->selValueMax){
             $this->show = false;
         }else{
             $this->show = true;
         }
 
-        if($this->priceMax==0)
+        if($this->valueMax==0)
             $this->show = false;
 
-        $originalPriceMax = $this->priceMax;
+        $originalPriceMax = $this->valueMax;
 
         // Sum Step Because the widget performs a calculation for the range
-        $this->priceMax+=intval($this->step);
+        $this->valueMax+=intval($this->step);
 
         // Validating the selected price if the "step" has increased the maximum value
-        if($this->selPriceMax==$originalPriceMax && $this->selPriceMax!=$this->priceMax){
-            $this->selPriceMax = $this->priceMax;
+        if($this->selValueMax==$originalPriceMax && $this->selValueMax!=$this->valueMax){
+            $this->selValueMax = $this->valueMax;
         }
 
         // Dispatch Event to FrontEnd JQuery Layout Slider
         $this->dispatchBrowserEvent('filter-prices-updated', [
-            'newPriceMin' => $this->priceMin,
-            'newPriceMax' => $this->priceMax,
-            'newSelPriceMin' => $this->selPriceMin,
-            'newSelPriceMax' => $this->selPriceMax,
+            'newPriceMin' => $this->valueMin,
+            'newPriceMax' => $this->valueMax,
+            'newSelValueMin' => $this->selValueMin,
+            'newSelValueMax' => $this->selValueMax,
             'step' => $this->step
         ]);
         
 
+    }
+
+    /*
+    * Listener 
+    * Filter Clear Values
+    */
+    public function clearValues(){
+        $this->selValueMin = 0;
+        $this->selValueMax = 1;
     }
 
     /*

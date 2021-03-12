@@ -146,7 +146,7 @@ class ItemsList extends Component
   */
   public function getData($params){
     
-    //\Log::info("ITEMLIST - GETDATA - PARAMS: ".json_encode($params));
+    \Log::info("ITEMLIST - GETDATA - PARAMS: ".json_encode($params));
     
     if(isset($params["filter"])){
       $this->emitItemListRendered = true;
