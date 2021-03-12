@@ -19,16 +19,16 @@
 			
 			<input type="text" id="amount-{{$name}}" class="amount border-0 text-primary font-weight-bold mb-2" readonly>
 
-			<input type="hidden" id="priceMin" name="priceMin" wire:model="priceMin">
-			<input type="hidden" id="priceMax" name="priceMax" wire:model="priceMax">
+			<input type="hidden" id="valueMin" name="valueMin" wire:model="valueMin">
+			<input type="hidden" id="valueMax" name="valueMax" wire:model="valueMax">
 
-			<input type="hidden" id="selPriceMin-{{$name}}" name="selPriceMin" wire:model="selPriceMin">
-			<input type="hidden" id="selPriceMax-{{$name}}" name="selPriceMax" wire:model="selPriceMax">
+			<input type="hidden" id="selValueMin-{{$name}}" name="selValueMin" wire:model="selValueMin">
+			<input type="hidden" id="selValueMax-{{$name}}" name="selValueMax" wire:model="selValueMax">
 			
 			<div class="mx-3">
 				<div id="slider-range-{{$name}}" wire:ignore></div>
 
-				<button onClick="window.livewire.emit('updateRange',{'selPriceMin' : document.getElementById('selPriceMin-{{$name}}').value,'selPriceMax' : document.getElementById('selPriceMax-{{$name}}').value})" id="btnUpdatePrices" class="btn btn-outline-primary btn-sm btn-block mt-3">
+				<button onClick="window.livewire.emit('updateRange',{'selValueMin' : document.getElementById('selValueMin-{{$name}}').value,'selValueMax' : document.getElementById('selValueMax-{{$name}}').value})" id="btnUpdatePrices" class="btn btn-outline-primary btn-sm btn-block mt-3">
 					{{trans('icommerce::common.button.update')}}
 				</button>
 			</div>
@@ -70,8 +70,8 @@
 		      	slide: function( event, ui ) {
 		        	$( "#amount-{{$name}}" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
 
-		        	$( "#selPriceMin-{{$name}}" ).val(ui.values[ 0 ]);
-		        	$( "#selPriceMax-{{$name}}" ).val(ui.values[ 1 ]);
+		        	$( "#selValueMin-{{$name}}" ).val(ui.values[ 0 ]);
+		        	$( "#selValueMax-{{$name}}" ).val(ui.values[ 1 ]);
 		      	}
 		    });
 
@@ -83,8 +83,8 @@
 		/*
 		* First Time
 		*/
-		var defPriceMin = {{$priceMin}};
-		var defPriceMax = {{$priceMax}};
+		var defPriceMin = {{$valueMin}};
+		var defPriceMax = {{$valueMax}};
 
 		createSlider(defPriceMin,defPriceMax,0,1,1000)
 		

@@ -1,6 +1,8 @@
 <div class="filter-{{$type}} filter-{{$type}}-layout-{{$layout}} filter-{{$name}}">
 
+{{--
 @if($options && count($options)>0)
+--}}
 
 	<div class="title">
         <a class="item mb-3" data-toggle="collapse" href="#collapse-{{$name}}" role="button" aria-expanded="{{$isExpanded ? 'true' : 'false'}}" aria-controls="collapse-{{$name}}"
@@ -20,12 +22,14 @@
 
 		<div class="collapse multi-collapse {{$isExpanded ? 'show' : ''}}" id="collapse-{{$name}}">
 			
-			layout base
+			select layout 1
 
 		</div>
 
 	</div>
 
+{{--
 @endif
+--}}
 
 </div>
