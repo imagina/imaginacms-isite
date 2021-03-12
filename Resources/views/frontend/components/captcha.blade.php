@@ -2,5 +2,14 @@
     $captchaActivate = setting('isite::activateCaptcha')
 @endphp
 @if($captchaActivate)
-    {!! app('captcha')->display(['data-sitekey' => setting('isite::reCaptchaV2Site')]) !!}
+
 @endif
+@once
+@section('scripts-owl')
+    <script>
+      function callbackCaptchaSubscription(form, response){
+
+      }
+    </script>
+@stop
+@endonce

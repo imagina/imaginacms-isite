@@ -11,7 +11,7 @@
   </div>
 
   <div id="{{ $id }}contentToMove">
-    <nav id="{{$id}}nav" class="navbar navbar-expand-md navbar-category-2 p-0 {{$collapsed ? "d-none" : ""}}">
+    <nav id="{{$id}}nav" class="navbar d-none d-lg-block navbar-expand-lg navbar-category-2 p-0 {{$collapsed ? "d-none" : ""}}">
       @if($menuBefore)
         @menu($menuBefore,'imagina-navbar')
       @endif
@@ -72,8 +72,7 @@
 
   </div>
 
-  <div class="modal modal-menu fade" id="{{ $id }}menuModal" tabindex="-1" role="dialog"
-       aria-hidden="true">
+  <div class="modal modal-menu fade" id="{{ $id }}menuModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header rounded-0">
@@ -118,12 +117,12 @@
         }
       }
 
-      $(window).resize(isite_menu_divtomodal);
+      $(window).resize(function(){window.isite_menu_divtomodal});
 
       var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
       var collapsed = {!! $collapsed ? 'true' : 'false' !!}
       if(width<=992 || collapsed){
-        isite_menu_divtomodal()
+        window.isite_menu_divtomodal()
       }
 
     });
