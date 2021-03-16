@@ -160,13 +160,6 @@ class ItemsList extends Component
       $this->resetPage();
     }
     
-    /*
-    if(isset($params["layout"])){
-        array_merge($this->layout, $params["layout"]);
-    
-    }
-    */
-    
   }
   
   /*

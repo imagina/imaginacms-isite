@@ -1,37 +1,17 @@
-<div class="{{$entityName}}-list">
+<div class="items-list {{$entityName}}-list">
 	
 	@include('isite::frontend.livewire.index.top-content.index')
 	
-	<div class="{{$entityName}}s">
+	<div class="items {{$entityName}}s">
 		
 		@include('isite::frontend.partials.preloader')
 		
 		@if(isset($items) && count($items)>0)
 			
-			<div class="{{$wrapperClass}}">
-				@foreach($items as $item)
-					<div class="{{$layoutClass}} {{$entityName}}">
-						
-						
-						<?php
-						$hash = sha1($itemComponentNamespace);
-						if (isset($component)) {
-							$__componentOriginal{$hash} = $component;
-						}
-						$component = $__env->getContainer()->make($itemComponentNamespace, array_merge($itemComponentAttributes, ["item" => $item]));
-						$component->withName($itemComponentName);
-						if ($component->shouldRender()):
-							$__env->startComponent($component->resolveView(), $component->data());
-							if (isset($__componentOriginal{$hash})):
-								$component = $__componentOriginal{$hash};
-								unset($__componentOriginal{$hash});
-							endif;
-							echo $__env->renderComponent();
-						endif;
-						?>
-					
-					</div>
-				@endforeach
+			<div class="items-list-wrapper {{$wrapperClass}}">
+				
+				@include("isite::frontend.livewire.index.partials.items")
+				
 			</div>
 			
 			@if($pagination["show"])
@@ -60,8 +40,8 @@
 		});
 		
 		/*
-  * Function Back Top
-  */
+		* Function Back Top
+		*/
 		function itemsListBackToTop() {
 			let positionY = window.pageYOffset;
 			let scrollPos = $(".{{$entityName}}-list").offset().top;
@@ -70,20 +50,36 @@
 		}
 		
 		/*
-  * Event on Click Pagination
-  */
+  		* Event on Click Pagination
+  		*/
 		$(document).on('click', '.page-link-scroll', function (e) {
 			itemsListBackToTop();
 			return false;
 		});
 		
+		
 		/*
-    * Listener Item List Rendered
-    */
-		Livewire.on('itemListRendered', function () {
-			itemsListBackToTop();
-		})
-	
+    	* Document Ready Gral
+    	*/
+		jQuery(document).ready(function($) {
+
+			/*
+    		* Listener Item List Rendered
+    		*/
+			Livewire.on('itemListRendered', function () {
+				
+				if(@this.itemListLayout!="masonry"){
+					itemsListBackToTop();
+				}
+
+				if(@this.itemListLayout=="masonry"){
+					window.bricklayer = new window.Bricklayer(document.querySelector('.bricklayer'))
+				}
+				
+			})
+
+		});
+
 	</script>
 
 @stop

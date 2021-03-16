@@ -5,9 +5,21 @@
 			{{ $items->links('isite::frontend.livewire.index.pagination.custom') }}
 		@endif
 		
-		@if($pagination["type"]=="loadMore" && $take<$totalItems)
-			<a wire:click="loadMore" class="btn btn-primary btn-load-more">{{trans('isite::frontend.buttons.load more')}}</a>
-		@endif
+		@if($pagination["type"]=="loadMore" && $items->hasMorePages())
+		
+			<livewire:isite::load-more-button
+				:repository="$repository"
+				:params="$params"
+				:layoutClass="$layoutClass"
+				:itemListLayout="$itemListLayout"
+				:entityName="$entityName"
+				:itemComponentNamespace="$itemComponentNamespace"
+				:itemComponentName="$itemComponentName"
+				:itemComponentAttributes="$itemComponentAttributes"
+				:pagination="$pagination"
+			/>
+		
+		@endif	
 						
 	</div>
 </div>
