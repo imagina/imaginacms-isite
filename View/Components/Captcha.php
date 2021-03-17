@@ -10,6 +10,7 @@ class Captcha extends Component
 {
 
   public $formId;
+  public $captchaEnabled;
   public $params;
 
   /**
@@ -20,6 +21,7 @@ class Captcha extends Component
   public function __construct($formId  = "formsuscripcion", $params = [])
   {
     $this->formId = $formId ?? "formsuscripcion";
+    $this->captchaEnabled = setting('isite::activateCaptcha');
     $this->params = array_merge($params ?? [], ['id' => 'captcha'.$this->formId,'data-sitekey' => setting('isite::reCaptchaV2Site') ?? setting('isite::reCaptchaV3Site')]);
   }
 

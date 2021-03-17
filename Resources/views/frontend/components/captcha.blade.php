@@ -1,8 +1,5 @@
-@php
-    $captchaActivate = setting('isite::activateCaptcha')
-@endphp
-@if($captchaActivate)
-    {!! app('formCaptcha')->display($params) !!}
+@if($captchaEnabled)
+    {!! app('icaptcha')->display($params) !!}
 @endif
 @once
 @section('scripts-owl')

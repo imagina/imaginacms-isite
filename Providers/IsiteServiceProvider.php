@@ -43,7 +43,7 @@ class IsiteServiceProvider extends ServiceProvider
 
     });
 
-    $this->app->singleton('formCaptcha', function ($app) {
+    $this->app->singleton('icaptcha', function ($app) {
         return new NoCaptcha(
             setting('isite::reCaptchaV2Secret') ?? setting('isite::reCaptchaV3Secret'),
             setting('isite::reCaptchaV2Site') ?? setting('isite::reCaptchaV3Site'),
