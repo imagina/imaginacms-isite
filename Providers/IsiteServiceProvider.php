@@ -61,6 +61,12 @@ class IsiteServiceProvider extends ServiceProvider
     $this->publishConfig('isite', 'settings-fields');
     $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
+    $app = $this->app;
+
+    $this->app['validator']->extend('icaptcha', function ($attribute, $value) use ($app) {
+          return $app['icaptcha']->verifyResponse($value, $app['request']->getClientIp());
+    });
+
     $this->registerComponents();
     $this->registerComponentsLivewire();
   }
