@@ -9,7 +9,7 @@ use Modules\Setting\Entities\Setting;
 class Captcha extends Component
 {
 
-  public $formContainer;
+  public $formId;
   public $params;
 
   /**
@@ -17,10 +17,10 @@ class Captcha extends Component
    *
    * @return void
    */
-  public function __construct($formContainer  = "formsuscripcion", $params = [])
+  public function __construct($formId  = "formsuscripcion", $params = [])
   {
-    $this->formContainer = $formContainer ?? "formsuscripcion";
-    $this->params = array_merge($params ?? [], ['data-sitekey' => setting('isite::reCaptchaV2Site')]);
+    $this->formId = $formId ?? "formsuscripcion";
+    $this->params = array_merge($params ?? [], ['id' => 'captcha'.$this->formId,'data-sitekey' => setting('isite::reCaptchaV2Site') ?? setting('isite::reCaptchaV3Site')]);
   }
 
 

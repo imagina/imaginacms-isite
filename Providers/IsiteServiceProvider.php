@@ -2,6 +2,7 @@
 
 namespace Modules\Isite\Providers;
 
+use Anhskohbo\NoCaptcha\NoCaptcha;
 use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
 use Modules\Core\Traits\CanPublishConfiguration;
@@ -40,6 +41,14 @@ class IsiteServiceProvider extends ServiceProvider
       $event->load('sites', Arr::dot(trans('isite::sites')));
       // append translations
 
+    });
+
+    $this->app->singleton('formCaptcha', function ($app) {
+        return new NoCaptcha(
+            setting('isite::reCaptchaV2Secret') ?? setting('isite::reCaptchaV3Secret'),
+            setting('isite::reCaptchaV2Site') ?? setting('isite::reCaptchaV3Site'),
+            $app['config']['captcha.options']
+        );
     });
   }
 
@@ -107,7 +116,7 @@ class IsiteServiceProvider extends ServiceProvider
 
 
     Livewire::component('isite::filter-order-by', \Modules\Isite\Http\Livewire\Index\Filters\OrderBy::class);
-   
+
   }
 
 }

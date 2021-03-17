@@ -2,14 +2,11 @@
     $captchaActivate = setting('isite::activateCaptcha')
 @endphp
 @if($captchaActivate)
-
+    {!! app('formCaptcha')->display($params) !!}
 @endif
 @once
 @section('scripts-owl')
-    <script>
-      function callbackCaptchaSubscription(form, response){
-
-      }
-    </script>
+    @parent
+    <script type="text/javascript" src="https://www.google.com/recaptcha/api.js"></script>
 @stop
 @endonce
