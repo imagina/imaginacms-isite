@@ -1,23 +1,18 @@
-<button class="btn btn-primary" onclick="print{{ $containerName }}();">
+<button id="{{ $containerId }}DownloadButton" onclick="printContent('{{ $containerId }}')" class="btn btn-primary" title="{{ $text }} (Ctrl+P)">
     <i class="{{ $icon }}"></i> {{ $text  }}
 </button>
-@section('scripts')
+@once
+@section('scripts-owl')
   @parent
-  <script>
-    function print{{ $containerName }}() {
-      var data = $('{{ $container }}').html();
-      var myWindow = window.open('', '{{ $text }}');
-      myWindow.document.write("<html><head><title>{{ $text }}</title>");
-      myWindow.document.write('{!! Theme::style('css/main.css?v='.config('app.version')) !!}');
-      myWindow.document.write('{!! Theme::style('css/secondary.css?v='.config('app.version')) !!}');
-      myWindow.document.write(data);
-      myWindow.document.close(); // necessary for IE >= 10
-      myWindow.onload=function(){ // necessary if the div contain images
-
-        myWindow.focus(); // necessary for IE >= 10
-        myWindow.print();
-        myWindow.close();
-      };
+  <script type="text/javascript">
+    function printContent(containerId){
+      var restorepage = document.body.innerHTML;
+      var printcontent = document.getElementById(containerId).innerHTML;
+      var printHeader = '{!! Theme::style('css/secondary.css?v='.config('app.version')) !!}\n'
+      document.body.innerHTML = printHeader + printcontent;
+      window.print();
+      document.body.innerHTML = restorepage;
     }
   </script>
 @stop
+@endonce

@@ -146,7 +146,7 @@ class ItemsList extends Component
   */
   public function getData($params){
     
-    //\Log::info("ITEMLIST - GETDATA - PARAMS: ".json_encode($params));
+    \Log::info("ITEMLIST - GETDATA - PARAMS: ".json_encode($params));
     
     if(isset($params["filter"])){
       $this->emitItemListRendered = true;
@@ -159,13 +159,6 @@ class ItemsList extends Component
       $this->orderBy = $params['order'];
       $this->resetPage();
     }
-    
-    /*
-    if(isset($params["layout"])){
-        array_merge($this->layout, $params["layout"]);
-    
-    }
-    */
     
   }
   

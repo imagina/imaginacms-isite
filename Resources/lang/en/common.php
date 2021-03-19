@@ -39,6 +39,7 @@ return [
         "number" => "Whatsapp number",
         "message" => "Default Message",
         "label" => "Label",
+        "icon-label" => "Icon",
     ],
   ],
   'settingGroups' => [
@@ -51,5 +52,14 @@ return [
   ],
   'messages' => [
     'no items' => 'Not Information available'
-  ]
+  ],
+  'sort' => [
+        'title' => 'Order',
+        'all' => 'All',
+        'name_a_z' => 'Name (A - Z)',
+        'name_z_a' => 'Name (Z - A)',
+        'price_low_high' => 'Price: low to high',
+        'price_high_low' => 'Price: high to low',
+        'recently' => 'More Recently',
+    ],
 ];

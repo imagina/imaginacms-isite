@@ -40,6 +40,7 @@ return [
         "number" => "Número del whatsapp",
         "message" => "Mensaje por defecto",
         "label" => "Etiqueta",
+        "icon-label" => "Icono",
     ],
   ],
   'settingHints' => [
@@ -57,5 +58,14 @@ return [
   ],
   'messages' => [
     'no items' => 'No existe información disponible'
-  ]
+  ],
+   'sort' => [
+    'title' => 'Ordenar Por',
+    'all' => 'Todas',
+    'name_a_z' => 'Nombre (A - Z)',
+    'name_z_a' => 'Nombre (Z - A)',
+    'price_low_high' => 'Precio: bajo a alto',
+    'price_high_low' => 'Precio alto a bajo',
+    'recently' => 'Más Recientes',
+  ],
 ];

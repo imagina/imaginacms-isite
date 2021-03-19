@@ -27,6 +27,20 @@ return [
     ],
     'filters' => [
         'title' => 'Filtros'
+    ],
+    'filter-range' => [
+        'from' => 'Desde',
+        'to' => 'Hasta'
+    ],
+    'filter-location' => [
+        'input-placeholder' => '¿Dónde estás?',
+        'title-nearme' => 'Cerca de mí',
+        'geolocation' => [
+            'denied' => 'Permiso denegado por el usuario',
+            'unavailable' => 'Posición de ubicación no disponible',
+            'timeout' => 'Request timeout',
+            'error' => 'Error desconocido'
+        ]
     ]
    
 ];

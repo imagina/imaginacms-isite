@@ -2,14 +2,14 @@
   <div class="card card-category bg-white border-0">
 
         <div class="row align-items-center">
-          <div class="col-12">
+          <div class="col-12 {{$orderClasses["photo"] ?? 'order-1'}}">
 
             <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
-                                  :url="$item->url ?? null" :isMedia="true"
+                                  :url="$item->url ?? null" :isMedia="true" width="100%"
                                   :mediaFiles="$item->mediaFiles()" :zone="$mediaImage ?? 'mainimage'"/>
 
           </div>
-          <div class="col-12">
+          <div class="col-12 {{$orderClasses["title"] ?? 'order-2'}}">
             @if(isset($item->url))
               <a href="{{$item->url}}">
                 @endif
@@ -21,7 +21,7 @@
             @endif
           </div>
           @if($withCreatedDate && isset($item->created_at))
-            <div class="col-12 item-created-date">
+            <div class="col-12 {{$orderClasses["date"] ?? 'order-3'}} item-created-date">
               @if(isset($item->url))
                 <a href="{{$item->url}}">
                   @endif
@@ -32,7 +32,7 @@
             </div>
           @endif
           @if(isset($item->category->id))
-            <div class="col-12 item-category-title">
+            <div class="col-12 {{$orderClasses["categoryTitle"] ?? 'order-4'}} item-category-title">
               @if(isset($item->category->url))
                 <a href="{{$item->category->url}}">
                   @endif
@@ -45,7 +45,7 @@
             </div>
           @endif
           @if(isset($item->summary) || isset($item->description))
-            <div class="col-12 item-summary">
+            <div class="col-12 {{$orderClasses["summary"] ?? 'order-5'}} item-summary">
               @if(isset($item->url))
                 <a href="{{$item->url}}">
                   @endif
@@ -58,7 +58,7 @@
             </div>
           @endif
           @if($withViewMoreButton)
-            <div class="col-12 item-view-more-button">
+            <div class="col-12 {{$orderClasses["viewMoreButton"] ?? 'order-6'}} item-view-more-button">
               @if(isset($item->url))
                 <a href="{{$item->url}}" class="btn">
                   @endif
