@@ -30,41 +30,31 @@
 
 //whatsapp layout 3
 #whatsappImageFixed {
+  position: fixed;
   background: #06d755;
   width: 39px;
   height: 137px;
   color: #ffffff;
 
-  .content-whatsapp {
+  #WhatsappimageText {
+    transform: rotate(-90deg);
+    margin-top: 43px;
+    margin-left: -18px;
+  }
 
-    //image
-    #WhatsappimageText {
-      transform: rotate(-90deg);
-      margin-top: 43px;
-      margin-left: -18px;
-      max-width: max-content;
+  .whatsapp-layout-2 {
+    position: relative;
+    bottom: -37px;
+    left: 7px;
+    #dropdownMenuWhatsapp {
+      padding: 0;
     }
+  }
 
-    //content whatsapp-layout-2 inside layout-3
-    .whatsapp-layout-2 {
-      display: flex;
-      position: relative;
-      top: 40px;
-
-      #dropdownMenuWhatsapp {
-        padding: 0;
-
-        &:before {
-          display: none;
-        }
-
-        .icon-whatsapp {
-          transform: rotate(-90deg);
-          color: #fff;
-          font-size: 27px;
-        }
-      }
-    }
+  .icon-whatsapp {
+    color: #fff;
+    font-size: 27px;
+    padding: 7px 0;
   }
 }
 
