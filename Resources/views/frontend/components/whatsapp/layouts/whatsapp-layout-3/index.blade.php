@@ -5,7 +5,7 @@
       <a @if(count($items)>1)
          id="dropdownMenuWhatsapp" class="{{ count($parentAttributes) > 0 ? ' p-0' : '' }}" data-toggle="dropdown"
          aria-haspopup="true" aria-expanded="false" style="cursor: pointer"
-         @else @php($item = $items[0]) href="https://wa.me/%7B%7B $item->callingCode }}{{ $item->number }}?text={{ $item->message }}"
+         @else @php($item = $items[0]) href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}"
          class="whatsapp-link-layout-2" target="_blank"
         @endif>
         <img id="WhatsappimageText" src="/modules/isite/img/whatsapp-text.png" alt="WhatsappimageText">
