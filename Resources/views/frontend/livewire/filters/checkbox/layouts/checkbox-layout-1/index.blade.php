@@ -26,6 +26,12 @@
 
 		  				@if(!empty($options))
 				  			@foreach($options as $option)
+
+				  				@php
+				  					if(is_array($option))
+				  						$option = json_decode(json_encode($option), FALSE);
+				  				@endphp
+
 					  			<div class="form-check">
 							  		<input class="form-check-input" type="checkbox" value="{{$option->id}}" name="{{$name}}{{$option->id}}" id="{{$name}}{{$option->id}}"  wire:model="selectedOptions">
 								  	<label class="form-check-label" for="{{$name}}{{$option->id}}">
