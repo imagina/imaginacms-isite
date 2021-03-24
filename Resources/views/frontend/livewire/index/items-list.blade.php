@@ -17,7 +17,7 @@
 			@if($pagination["show"])
 				@include('isite::frontend.livewire.index.pagination.index')
 			@endif
-		
+
 		@else
 			<div class="row">
 				<div class="alert alert-danger my-5" role="alert">

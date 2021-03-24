@@ -59,6 +59,11 @@ return [
   'messages' => [
     'no items' => 'No existe información disponible'
   ],
+  'form' => [
+    'validations' => [
+      "require" => "El campo :attribute es obligatorio"
+    ]
+  ],
    'sort' => [
     'title' => 'Ordenar Por',
     'all' => 'Todas',

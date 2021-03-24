@@ -96,7 +96,7 @@
 
 			if($("#slider-range-{{$name}}").hasClass( "ui-slider" ))
 			$("#slider-range-{{$name}}").slider("destroy");
-    		createSlider(event.detail.newPriceMin,event.detail.newPriceMax,event.detail.newSelPriceMin,event.detail.newSelPriceMax,event.detail.step)
+    		createSlider(event.detail.newPriceMin,event.detail.newPriceMax,event.detail.newSelValueMin,event.detail.newSelValueMax,event.detail.step)
 
 		})
 
