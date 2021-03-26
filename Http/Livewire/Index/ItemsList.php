@@ -21,6 +21,8 @@ class ItemsList extends Component
   public $itemComponentName;
   public $entityName;
   public $responsiveTopContent;
+  public $itemModal;
+  public $itemMainClass;
   
   public $totalItems = 0;
   
@@ -72,10 +74,20 @@ class ItemsList extends Component
     * Runs once, immediately after the component is instantiated,
     * but before render() is called
     */
-  public function mount($itemComponentNamespace="Modules\Isite\View\Components\ItemList", $itemListLayout = null,
-                        $moduleName = "isite", $entityName = "item", $itemComponentName = "isite::item-list",
-                        $params = [] , $responsiveTopContent = null, $showTitle = true, $pagination = null,
-                        $configOrderBy = null, $configLayoutIndex = null, $itemComponentAttributes = []
+  public function mount(
+    $itemComponentNamespace="Modules\Isite\View\Components\ItemList", 
+    $itemListLayout = null, 
+    $moduleName = "isite", 
+    $entityName = "item", 
+    $itemComponentName = "isite::item-list", 
+    $params = [] , 
+    $responsiveTopContent = null, 
+    $showTitle = true, 
+    $pagination = null,
+    $configOrderBy = null, 
+    $configLayoutIndex = null, 
+    $itemComponentAttributes = [],
+    $itemModal = null
   ){
     
     $this->moduleName = strtolower($moduleName);
@@ -83,6 +95,7 @@ class ItemsList extends Component
     $this->itemComponentName = $itemComponentName;
     $this->itemComponentAttributes = $itemComponentAttributes;
     $this->itemComponentNamespace = $itemComponentNamespace;
+    $this->itemMainClass = $this->entityName == "ad" ? "pin" : $this->entityName;
     
     $this->repository = "Modules\\". ucfirst($this->moduleName) . "\Repositories\\" . ucfirst($entityName).'Repository';
     
@@ -96,6 +109,8 @@ class ItemsList extends Component
     $this->showTitle = $showTitle;
     
     $this->pagination = $pagination ? array_merge(['show' => true , 'type' => 'normal'],$pagination) : ['show' => true , 'type' => 'normal'];
+
+    $this->itemModal = $itemModal ?? ["mobile" =>  false, "desktop" => false];
     
     
     $this->initConfigs($configOrderBy,$configLayoutIndex);
@@ -199,6 +214,7 @@ class ItemsList extends Component
   public function loadMore(){
     $this->take += $this->moduleParams['take'];
   }
+
   
   /*
  * Make params to Repository

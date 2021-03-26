@@ -22,6 +22,8 @@ class LoadMoreButton extends Component
   public $repository;
   public $params;
   public $pagination;
+  public $itemMainClass;
+  public $itemModal;
 
   /**
    * Attributes
@@ -33,18 +35,20 @@ class LoadMoreButton extends Component
   * Runs once, immediately after the component is instantiated,
   * but before render() is called
   */
-  public function mount($entityName,$itemComponentNamespace,$itemComponentName,$itemComponentAttributes,$layoutClass,$itemListLayout,$repository,$params,$pagination)
+  public function mount($entityName,$itemComponentNamespace,$itemComponentName,$itemComponentAttributes,$layoutClass,$itemListLayout,$repository,$params,$pagination,$itemMainClass,$itemModal)
   {
 
     $this->entityName = $entityName;
     $this->itemComponentNamespace = $itemComponentNamespace;
     $this->itemComponentName = $itemComponentName;
     $this->itemComponentAttributes = $itemComponentAttributes;
+    $this->itemModal = $itemModal;
 
     $this->layoutClass = $layoutClass;
     $this->itemListLayout = $itemListLayout;
     $this->repository = $repository;
     $this->params = $params;
+    $this->itemMainClass = $itemMainClass;
     $this->pagination = $pagination;
 
     $this->loadMore = false;
@@ -74,7 +78,9 @@ class LoadMoreButton extends Component
       'entityName' => $this->entityName,
       'itemComponentNamespace' => $this->itemComponentNamespace,
       'itemComponentAttributes' => $this->itemComponentAttributes,
-      'itemComponentName' => $this->itemComponentName
+      'itemComponentName' => $this->itemComponentName,
+      'itemMainClass' => $this->itemMainClass,
+      'itemModal' => $this->itemModal
     ])->render();
 
     $this->dispatchBrowserEvent('items-load-more-button', [

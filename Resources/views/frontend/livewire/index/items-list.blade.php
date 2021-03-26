@@ -1,8 +1,8 @@
-<div class="items-list {{$entityName}}-list">
+<div class="items-list {{$itemMainClass}}-list">
 	
 	@include('isite::frontend.livewire.index.top-content.index')
 	
-	<div class="items {{$entityName}}s">
+	<div class="items {{$itemMainClass}}s">
 		
 		@include('isite::frontend.partials.preloader')
 		
@@ -11,6 +11,8 @@
 			<div class="items-list-wrapper {{$wrapperClass}}">
 				
 				@include("isite::frontend.livewire.index.partials.items")
+
+				@livewire("isite::item-modal", array_merge($itemModal,["params" => $params,"repository" => $repository]))
 				
 			</div>
 			
