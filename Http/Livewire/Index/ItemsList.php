@@ -116,7 +116,7 @@ class ItemsList extends Component
     
     $this->pagination = $pagination ? array_merge(['show' => true , 'type' => 'normal'],$pagination) : ['show' => true , 'type' => 'normal'];
 
-    $this->itemModal = $itemModal ?? ["mobile" =>  false, "desktop" => false];
+    $this->itemModal = $itemModal ?? ["mobile" =>  false, "desktop" => false, "idModal" => 'modal_'.$this->id];
     $this->carouselAttributes = $carouselAttributes;
 
     $this->uniqueItemListRendered = $uniqueItemListRendered;
