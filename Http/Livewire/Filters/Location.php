@@ -33,6 +33,9 @@ class Location extends Component
     public $lng;
     public $selectedRadio;
     public $inputSearchLocation;
+    public $country;
+    public $province;
+    public $city;
 
 	/*
     * Runs once, immediately after the component is instantiated,
@@ -67,7 +70,7 @@ class Location extends Component
     public function initValues(){
         $this->lat = 0;
         $this->lng = 0;
-        $this->selectedRadio = $this->radio['defaultValue'] ?? 0;
+        $this->selectedRadio = $this->radio['defaultValue'] ?? 'all';
         $this->inputSearchLocation = "";
     }
 
@@ -96,20 +99,23 @@ class Location extends Component
     */
     public function emitToFilter(){
 
-        if($this->lat!=0 && $this->lng!=0){
+        //\Log::info("NAME: ".$this->name."-".$this->selectedRadio);
 
-            $this->emit($this->emitTo,[
-                'name' => $this->name,
-                $this->repoAction => [
-                    $this->repoAttribute => [
-                        'lat' => $this->lat,
-                        'lng' => $this->lng,
-                        'radio' => $this->selectedRadio,
-                    ]
-                ]
-            ]);
-
-        }
+        $emitInfor = [];
+            
+        $emitInfor['country'] = $this->country;
+        $emitInfor['province'] = $this->province;
+        $emitInfor['city'] = $this->city;
+        $emitInfor['radio'] = $this->selectedRadio;
+        $emitInfor['lat'] = $this->lat;
+        $emitInfor['lng'] = $this->lng;
+          
+        $this->emit($this->emitTo,[
+            'name' => $this->name,
+            $this->repoAction => [
+                $this->repoAttribute => $emitInfor
+            ]
+        ]);
 
     }
 

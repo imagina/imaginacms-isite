@@ -12,7 +12,7 @@
 				
 				@include("isite::frontend.livewire.index.partials.items")
 
-				@livewire("isite::item-modal", array_merge($itemModal,["params" => $params,"repository" => $repository]))
+				@livewire("isite::item-modal", array_merge($itemModal,["params" => $params,"repository" => $repository]),key(rand()))
 				
 			</div>
 			
@@ -46,7 +46,7 @@
 		*/
 		function itemsListBackToTop() {
 			let positionY = window.pageYOffset;
-			let scrollPos = $(".{{$entityName}}-list").offset().top;
+			let scrollPos = $(".{{$itemMainClass}}-list").offset().top;
 			if (positionY > scrollPos)
 				$("html, body").animate({scrollTop: scrollPos}, "slow");
 		}
@@ -65,22 +65,71 @@
     	*/
 		jQuery(document).ready(function($) {
 
+			@if(isset($itemListLayout) && $itemListLayout=='carousel')
+	    		$('#idCarousel_{{$this->id}}').owlCarousel({!! json_encode($carouselAttributes) !!})
+			@endif
+
 			/*
     		* Listener Item List Rendered
     		*/
-			Livewire.on('itemListRendered', function () {
-				
-				if(@this.itemListLayout!="masonry"){
+    		var nameEmit = 'itemListRendered';
+    		if(@this.uniqueItemListRendered){
+    			nameEmit = 'itemListRendered_{{$this->id}}'
+    		}
+
+			Livewire.on(nameEmit, function () {
+
+				if(@this.itemListLayout!="masonry" && @this.itemListLayout!="carousel" ){
 					itemsListBackToTop();
 				}
 
 				if(@this.itemListLayout=="masonry"){
 					window.bricklayer = new window.Bricklayer(document.querySelector('.bricklayer'))
 				}
+
+				if(@this.itemListLayout=="carousel"){
+					$('#idCarousel_{{$this->id}}').trigger('destroy.owl.carousel');
+					$('#idCarousel_{{$this->id}}').owlCarousel({!! json_encode($carouselAttributes) !!})
+				}
 				
 			})
 
 		});
+
+
+		/*
+    	* Check is Mobile
+    	*/
+		function checkMobile(){
+	        var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+	        if(width <= 992) {
+	          return true;
+	        }else{
+	          return false;
+	        }
+	    }
+
+	   
+	    /*
+    	* Check is Mobile and emit Modal
+    	*/
+	    function checkModal_{{$itemModal['idModal']}}(itemId){
+
+	        var mobile = checkMobile();
+
+	        var itemMobile = {!! $itemModal['mobile'] ? 'true' : 'false' !!}
+	        var itemDesktop = {!! $itemModal['desktop'] ? 'true' : 'false' !!}
+
+	        if(!mobile && itemDesktop){
+	          window.livewire.emit('itemModalLoadData',itemId,@this.itemModal['idModal'])
+	        }else{
+	          if(mobile && itemMobile){
+	            window.livewire.emit('itemModalLoadData',itemId,@this.itemModal['idModal'])
+	          }
+	        }
+
+	    }
+
 
 	</script>
 

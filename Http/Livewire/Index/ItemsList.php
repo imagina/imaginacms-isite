@@ -42,10 +42,14 @@ class ItemsList extends Component
   public $amount;
   public $itemComponentAttributes;
   public $itemComponentNamespace;
+  public $carouselAttributes;
   public $take;
   
   public $moduleParams = [];
   public $filter = [];
+
+  public $uniqueItemListRendered;
+  public $emitItemListRenderedName;
   
   protected $paginationTheme = 'bootstrap';
   protected $emitItemListRendered;
@@ -87,7 +91,9 @@ class ItemsList extends Component
     $configOrderBy = null, 
     $configLayoutIndex = null, 
     $itemComponentAttributes = [],
-    $itemModal = null
+    $itemModal = null,
+    $carouselAttributes = null,
+    $uniqueItemListRendered = false
   ){
     
     $this->moduleName = strtolower($moduleName);
@@ -111,15 +117,18 @@ class ItemsList extends Component
     $this->pagination = $pagination ? array_merge(['show' => true , 'type' => 'normal'],$pagination) : ['show' => true , 'type' => 'normal'];
 
     $this->itemModal = $itemModal ?? ["mobile" =>  false, "desktop" => false];
-    
+    $this->carouselAttributes = $carouselAttributes;
+
+    $this->uniqueItemListRendered = $uniqueItemListRendered;
     
     $this->initConfigs($configOrderBy,$configLayoutIndex);
     $this->initValuesOrderBy();
     $this->initValuesLayout($itemListLayout);
     $this->initRequest();
-    
+
+    $this->validateNameEmitListRendered();
   }
-  
+
   /*
   * Init Configs
   *
@@ -259,6 +268,17 @@ class ItemsList extends Component
   
   
   /*
+  * Validate Name Emit List Rendered
+  * To Frontend multiples components
+  */
+  private function validateNameEmitListRendered(){
+
+    $this->emitItemListRenderedName = "itemListRendered";
+    if($this->uniqueItemListRendered)
+      $this->emitItemListRenderedName = "itemListRendered_".$this->id;
+  }
+
+  /*
   * Render
   *
   */
@@ -276,15 +296,17 @@ class ItemsList extends Component
     $items = $this->getItemRepository()->getItemsBy(json_decode(json_encode($params)));
     
     $this->totalItems = $items->total();
+
+    //\Log::info("ITEM LIST - TOTAL: ".$items->total());
     
     $tpl = 'isite::frontend.livewire.index.items-list';
     
     // Add value name to order on Filter
     $params ['orderBy'] = $this->orderBy;
-    
+
     // Emit Finish Render
     //\Log::info("Emit list rendered: ".json_encode($this->emitItemListRendered));
-    $this->emitItemListRendered ? $this->emit('itemListRendered', $params) : false;
+    $this->emitItemListRendered ? $this->emit($this->emitItemListRenderedName, $params) : false;
     
     return view($tpl,['items'=> $items, 'params' => $params]);
     
