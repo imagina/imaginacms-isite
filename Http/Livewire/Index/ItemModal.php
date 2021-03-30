@@ -21,6 +21,7 @@ class ItemModal extends Component
   public $view;
   public $params;
   public $repository;
+  public $idModal;
 
   /**
   * Listeners
@@ -39,7 +40,8 @@ class ItemModal extends Component
     $desktop = false, 
     $view = "isite::frontend.livewire.index.partials.item-modal-content",
     $params = null,
-    $repository = null
+    $repository = null,
+    $idModal = "itemModal"
     ){
 
     $this->mobile = $mobile;
@@ -47,6 +49,7 @@ class ItemModal extends Component
     $this->view = $view;
     $this->params = $params;
     $this->repository = $repository;
+    $this->idModal = $idModal;
      
   }
 
@@ -54,8 +57,10 @@ class ItemModal extends Component
   * Listener - itemModalLoadData
   *
   */
-  public function getData($itemId)
+  public function getData($itemId,$idModalNew)
   {
+
+    //\Log::info("ItemModal - GETDATA : {$itemId} - {$idModalNew}");
 
     $item = $this->getItemRepository()->getItem($itemId,json_decode(json_encode($this->params)));
 
@@ -64,9 +69,12 @@ class ItemModal extends Component
       'item' => $item
     ])->render();
 
-    $this->dispatchBrowserEvent('item-load-modal-content', [
-      'newHtml' => $newHtml  
-    ]);
+    if($idModalNew==$this->idModal){
+      $this->dispatchBrowserEvent('item-load-modal-content-'.$this->idModal, [
+        'newHtml' => $newHtml,
+        'idModalNew' => $idModalNew
+      ]);
+    }
     
   }
 

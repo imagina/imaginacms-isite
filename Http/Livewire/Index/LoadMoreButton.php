@@ -80,7 +80,8 @@ class LoadMoreButton extends Component
       'itemComponentAttributes' => $this->itemComponentAttributes,
       'itemComponentName' => $this->itemComponentName,
       'itemMainClass' => $this->itemMainClass,
-      'itemModal' => $this->itemModal
+      'itemModal' => $this->itemModal,
+      'itemListLayout' => $this->itemListLayout
     ])->render();
 
     $this->dispatchBrowserEvent('items-load-more-button', [

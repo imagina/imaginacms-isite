@@ -1,6 +1,6 @@
 <div class="item-modal">
 
-	<div wire:ignore.self id="itemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="itemModalLabel" aria-hidden="true">
+	<div wire:ignore.self id="{{$idModal}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="{{$idModal}}Label" aria-hidden="true">
 	  <div class="modal-dialog modal-xl" role="document">
 
 	    <div class="modal-content">
@@ -24,10 +24,12 @@
 	@parent
 	 <script type="text/javascript">
 
-	    window.addEventListener('item-load-modal-content', event => {
+	    window.addEventListener('item-load-modal-content-{{$idModal}}', event => {
+
+	    	//console.warn("CARGA MODAL {{$idModal}} - "+event.detail.idModalNew)
 	          
-	        $('#itemModal').modal('show'); 
-	        $("#itemModal .modal-body").append(event.detail.newHtml);
+	        $('#'+event.detail.idModalNew).modal('show'); 
+	        $("#"+event.detail.idModalNew+" .modal-body").append(event.detail.newHtml);
 	       
 	    });
 
