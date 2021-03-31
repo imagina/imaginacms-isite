@@ -47,13 +47,13 @@
             @endif
           </div>
             @endif
-          @if(isset($item->summary) || isset($item->description))
+          @if(isset($item->summary) || isset($item->description) || isset($item->custom_html))
           <div class="col item-summary">
             @if(isset($item->url))
               <a href="{{$item->url}}">
                 @endif
             <div class="my-4">
-              {!! $item->summary ?? ''!!}
+              {{ Str::limit( $item->summary ?? $item->custom_html ?? $item->description ??  '', 100) }}
             </div>
                 @if(isset($item->url))
               </a>

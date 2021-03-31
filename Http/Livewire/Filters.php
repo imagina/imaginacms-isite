@@ -42,7 +42,7 @@ class Filters extends Component
     */
     public function getDataFromFilters($params){
 
-        \Log::info("FILTERS - GETDATA - PARAMS: ".json_encode($params));
+        //\Log::info("FILTERS - GETDATA - PARAMS: ".json_encode($params));
         
         if(isset($params["filter"])){
 

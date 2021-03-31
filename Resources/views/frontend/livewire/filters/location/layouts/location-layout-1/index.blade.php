@@ -22,6 +22,7 @@
 	  	@if(!empty($radio))
 		    <div class="search-location-radius">
 		        <select id="select-radius" wire:model="selectedRadio">
+                    <option value="all">Todo</option>
 		        	@foreach($radio['values'] as $key => $value)
 			            <option value="{{$value}}">{{$value}} {{$radio['measure']}}</option>
 			        @endforeach
@@ -83,29 +84,94 @@
                 }
             }
 
-            // Event Click Locate Near Icon
+            // Get City (0), Deparment (1), Country(2) from Google
+            function getPlaceInfor(placeAC){
+
+                var inforPlace = []
+
+                var componentMap = {
+                    country: 'country',
+                    locality: 'locality',
+                    administrative_area_level_1 : 'administrative_area_level_1',
+                }; 
+
+                for(var i = 0; i < placeAC.length; i++){
+                    var types = placeAC[i].types; // get types array of each component 
+                    for(var j = 0; j < types.length; j++){ 
+                       
+                        var component_type = types[j];
+                        if(componentMap.hasOwnProperty(component_type)){
+                            if(component_type=="locality")
+                                inforPlace[0] = placeAC[i]['short_name']
+        
+                            if(component_type=="administrative_area_level_1")
+                                inforPlace[1] = placeAC[i]['short_name']
+                            
+                            if(component_type=="country")
+                                inforPlace[2] = placeAC[i]['short_name']
+                        }
+                    }
+                }
+
+                return inforPlace;
+            }
+
+
+            /**
+            * Event Click Locate Near Icon
+            */
             const el = document.getElementById("locate-near-icon");
             el.addEventListener("click", initGeolocation, false);
 
 
-            // Google Maps Places
-            var searchInput = 'input-search-location';
+            // Google Maps Places INIT
+            var searchInputLocation = 'input-search-location';
             var autocomplete;
 
-            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInputLocation)), {
                 types: ['geocode'],
                 componentRestrictions: {
                     country: "COL"
                 }
             });
 
+            /**
+            *Event Place Changed
+            */
             google.maps.event.addListener(autocomplete, 'place_changed', function () {
 
                 var near_place = autocomplete.getPlace();
+                var placeInformation = []
+
+                //console.warn(near_place.address_components)
+                
+                placeInformation = getPlaceInfor(near_place.address_components)
+                
+                @this.city = placeInformation[0]
+                @this.province = placeInformation[1]
+                @this.country = placeInformation[2]
 
                 @this.lat = near_place.geometry.location.lat();
                 @this.lng = near_place.geometry.location.lng();
                 
+            });
+
+            /**
+            * Event Input Empty
+            */ 
+            const isEmpty = str => !str.trim().length;
+            document.getElementById(searchInputLocation).addEventListener("input", function() {
+              if( isEmpty(this.value) ) {
+                 
+                @this.city = ''
+                @this.province = ''
+                @this.country = ''
+                @this.lat = ''
+                @this.lng = ''
+
+              } else {
+                //console.log( `NAME value is: ${this.value}` );
+              }
             });
            
 
