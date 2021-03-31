@@ -17,6 +17,8 @@
 				:itemComponentName="$itemComponentName"
 				:itemComponentAttributes="$itemComponentAttributes"
 				:pagination="$pagination"
+				:itemMainClass="$itemMainClass"
+				:itemModal="$itemModal"
 			/>
 		
 		@endif	

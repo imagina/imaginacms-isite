@@ -21,6 +21,8 @@ class ItemsList extends Component
   public $itemComponentName;
   public $entityName;
   public $responsiveTopContent;
+  public $itemModal;
+  public $itemMainClass;
   
   public $totalItems = 0;
   
@@ -40,10 +42,14 @@ class ItemsList extends Component
   public $amount;
   public $itemComponentAttributes;
   public $itemComponentNamespace;
+  public $carouselAttributes;
   public $take;
   
   public $moduleParams = [];
   public $filter = [];
+
+  public $uniqueItemListRendered;
+  public $emitItemListRenderedName;
   
   protected $paginationTheme = 'bootstrap';
   protected $emitItemListRendered;
@@ -72,10 +78,22 @@ class ItemsList extends Component
     * Runs once, immediately after the component is instantiated,
     * but before render() is called
     */
-  public function mount($itemComponentNamespace="Modules\Isite\View\Components\ItemList", $itemListLayout = null,
-                        $moduleName = "isite", $entityName = "item", $itemComponentName = "isite::item-list",
-                        $params = [] , $responsiveTopContent = null, $showTitle = true, $pagination = null,
-                        $configOrderBy = null, $configLayoutIndex = null, $itemComponentAttributes = []
+  public function mount(
+    $itemComponentNamespace="Modules\Isite\View\Components\ItemList", 
+    $itemListLayout = null, 
+    $moduleName = "isite", 
+    $entityName = "item", 
+    $itemComponentName = "isite::item-list", 
+    $params = [] , 
+    $responsiveTopContent = null, 
+    $showTitle = true, 
+    $pagination = null,
+    $configOrderBy = null, 
+    $configLayoutIndex = null, 
+    $itemComponentAttributes = [],
+    $itemModal = null,
+    $carouselAttributes = null,
+    $uniqueItemListRendered = false
   ){
     
     $this->moduleName = strtolower($moduleName);
@@ -83,6 +101,7 @@ class ItemsList extends Component
     $this->itemComponentName = $itemComponentName;
     $this->itemComponentAttributes = $itemComponentAttributes;
     $this->itemComponentNamespace = $itemComponentNamespace;
+    $this->itemMainClass = $this->entityName == "ad" ? "pin" : $this->entityName;
     
     $this->repository = "Modules\\". ucfirst($this->moduleName) . "\Repositories\\" . ucfirst($entityName).'Repository';
     
@@ -96,15 +115,20 @@ class ItemsList extends Component
     $this->showTitle = $showTitle;
     
     $this->pagination = $pagination ? array_merge(['show' => true , 'type' => 'normal'],$pagination) : ['show' => true , 'type' => 'normal'];
-    
+
+    $this->itemModal = $itemModal ?? ["mobile" =>  false, "desktop" => false, "idModal" => 'modal_'.$this->id];
+    $this->carouselAttributes = $carouselAttributes;
+
+    $this->uniqueItemListRendered = $uniqueItemListRendered;
     
     $this->initConfigs($configOrderBy,$configLayoutIndex);
     $this->initValuesOrderBy();
     $this->initValuesLayout($itemListLayout);
     $this->initRequest();
-    
+
+    $this->validateNameEmitListRendered();
   }
-  
+
   /*
   * Init Configs
   *
@@ -199,6 +223,7 @@ class ItemsList extends Component
   public function loadMore(){
     $this->take += $this->moduleParams['take'];
   }
+
   
   /*
  * Make params to Repository
@@ -243,6 +268,17 @@ class ItemsList extends Component
   
   
   /*
+  * Validate Name Emit List Rendered
+  * To Frontend multiples components
+  */
+  private function validateNameEmitListRendered(){
+
+    $this->emitItemListRenderedName = "itemListRendered";
+    if($this->uniqueItemListRendered)
+      $this->emitItemListRenderedName = "itemListRendered_".$this->id;
+  }
+
+  /*
   * Render
   *
   */
@@ -260,15 +296,17 @@ class ItemsList extends Component
     $items = $this->getItemRepository()->getItemsBy(json_decode(json_encode($params)));
     
     $this->totalItems = $items->total();
+
+    //\Log::info("ITEM LIST - TOTAL: ".$items->total());
     
     $tpl = 'isite::frontend.livewire.index.items-list';
     
     // Add value name to order on Filter
     $params ['orderBy'] = $this->orderBy;
-    
+
     // Emit Finish Render
     //\Log::info("Emit list rendered: ".json_encode($this->emitItemListRendered));
-    $this->emitItemListRendered ? $this->emit('itemListRendered', $params) : false;
+    $this->emitItemListRendered ? $this->emit($this->emitItemListRenderedName, $params) : false;
     
     return view($tpl,['items'=> $items, 'params' => $params]);
     
