@@ -2,24 +2,27 @@
 
 namespace Modules\Isite\View\Components;
 
+use Illuminate\Support\Arr;
 use Illuminate\View\Component;
 use Modules\Setting\Entities\Setting;
 
 class Captcha extends Component
 {
 
-  public $formContainer;
-  public $size;
+  public $formId;
+  public $captchaEnabled;
+  public $params;
 
   /**
    * Create a new component instance.
    *
    * @return void
    */
-  public function __construct($formContainer  = "formsuscripcion", $size = "invisible")
+  public function __construct($formId  = "formsuscripcion", $params = [])
   {
-    $this->formContainer = $formContainer ?? "formsuscripcion";
-    $this->size = $size ?? "invisible";
+    $this->formId = $formId ?? "formsuscripcion";
+    $this->captchaEnabled = setting('isite::activateCaptcha');
+    $this->params = array_merge($params ?? [], ['id' => 'captcha'.$this->formId,'data-sitekey' => setting('isite::reCaptchaV2Site') ?? setting('isite::reCaptchaV3Site')]);
   }
 
 

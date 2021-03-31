@@ -52,7 +52,7 @@ class Menu extends Component
     return [
       "include" => $this->params["include"] ?? ["children"],
       "take" => $this->params["take"] ?? false,
-      "page" => $this->params["page"] ?? 1,
+      "page" => $this->params["page"] ?? false,
       "filter" => $this->params["filter"] ?? ["showMenu" => true,"parentId" => 0],
       "order" => $this->params["order"] ?? null
     ];
@@ -61,7 +61,8 @@ class Menu extends Component
   private function getItems(){
 
     $params = $this->makeParamsFunction();
-    
+
+
     if($this->repository)
       $this->items = app($this->repository)->getItemsBy(json_decode(json_encode($params)));
 

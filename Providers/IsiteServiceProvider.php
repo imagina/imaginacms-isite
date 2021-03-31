@@ -2,6 +2,7 @@
 
 namespace Modules\Isite\Providers;
 
+use Anhskohbo\NoCaptcha\NoCaptcha;
 use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
 use Modules\Core\Traits\CanPublishConfiguration;
@@ -41,6 +42,14 @@ class IsiteServiceProvider extends ServiceProvider
       // append translations
 
     });
+
+    $this->app->singleton('icaptcha', function ($app) {
+        return new NoCaptcha(
+            setting('isite::reCaptchaV2Secret') ?? setting('isite::reCaptchaV3Secret'),
+            setting('isite::reCaptchaV2Site') ?? setting('isite::reCaptchaV3Site'),
+            $app['config']['captcha.options']
+        );
+    });
   }
 
   public function boot()
@@ -51,6 +60,12 @@ class IsiteServiceProvider extends ServiceProvider
     $this->publishConfig('isite', 'settings');
     $this->publishConfig('isite', 'settings-fields');
     $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+
+    $app = $this->app;
+
+    $this->app['validator']->extend('icaptcha', function ($attribute, $value) use ($app) {
+          return $app['icaptcha']->verifyResponse($value, $app['request']->getClientIp());
+    });
 
     $this->registerComponents();
     $this->registerComponentsLivewire();
@@ -108,7 +123,7 @@ class IsiteServiceProvider extends ServiceProvider
 
 
     Livewire::component('isite::filter-order-by', \Modules\Isite\Http\Livewire\Index\Filters\OrderBy::class);
-   
+
   }
 
 }
