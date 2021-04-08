@@ -22,7 +22,7 @@
 
 		@else
 			<div class="row">
-				<div class="alert alert-danger my-5" role="alert">
+				<div class="no-items alert alert-danger my-5" role="alert">
 					{{trans('isite::common.messages.no items')}}
 				</div>
 			</div>
