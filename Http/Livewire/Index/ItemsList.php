@@ -103,8 +103,8 @@ class ItemsList extends Component
     $this->entityName = strtolower($entityName);
   
     $customIndexTitle = setting($moduleName.'::customIndexTitle');
-    $this->title = !empty($title) ? $title : (!empty($customIndexTitle) ? $customIndexTitle : trans($moduleName.'::frontend.index.title') );
-    
+    $this->title = !empty($title) ? $title : (!empty($customIndexTitle) ? $customIndexTitle : trans($this->moduleName.'::frontend.index.title') );
+
     $this->itemComponentName = $itemComponentName;
     $this->itemComponentAttributes = $itemComponentAttributes;
     $this->itemComponentNamespace = $itemComponentNamespace;
