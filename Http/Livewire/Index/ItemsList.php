@@ -16,6 +16,7 @@ class ItemsList extends Component
   
   private $firstRequest;
   
+  public $title;
   public $moduleName;
   public $repository;
   public $itemComponentName;
@@ -93,11 +94,17 @@ class ItemsList extends Component
     $itemComponentAttributes = [],
     $itemModal = null,
     $carouselAttributes = null,
-    $uniqueItemListRendered = false
+    $uniqueItemListRendered = false,
+    $title = null
   ){
+  
     
     $this->moduleName = strtolower($moduleName);
     $this->entityName = strtolower($entityName);
+  
+    $customIndexTitle = setting($moduleName.'::customIndexTitle');
+    $this->title = !empty($title) ? $title : (!empty($customIndexTitle) ? $customIndexTitle : trans($moduleName.'::frontend.index.title') );
+    
     $this->itemComponentName = $itemComponentName;
     $this->itemComponentAttributes = $itemComponentAttributes;
     $this->itemComponentNamespace = $itemComponentNamespace;
