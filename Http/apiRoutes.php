@@ -9,8 +9,8 @@ $router->group(['prefix' => '/isite/v1'], function (Router $router) {
   require('ApiRoutes/settingsRoutes.php');
   //======  APP
   require('ApiRoutes/siteRoutes.php');
-  //======  Fields
-  require('ApiRoutes/fieldsRoutes.php');
+  //======  Configs
+  require('ApiRoutes/configsRoutes.php');
   //======  Export
   require('ApiRoutes/exportRoutes.php');
 });

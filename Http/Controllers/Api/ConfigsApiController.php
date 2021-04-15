@@ -7,7 +7,7 @@ use Illuminate\Http\Response;
 use Modules\Ihelpers\Http\Controllers\Api\BaseApiController;
 use Nwidart\Modules\Module;
 
-class FieldsApiController extends BaseApiController
+class ConfigsApiController extends BaseApiController
 {
   private $module;
 
@@ -22,30 +22,29 @@ class FieldsApiController extends BaseApiController
     try {
       $params = $this->getParamsRequest($request);//Get Parameters from URL.
       $enabledModules = $this->module->allEnabled();//Get all modules
-      $response = ['settings-fields' => [], 'crud-fields' => []];//Default response
+      $configName = $params->filter->configName ?? false;//Get config name filter
+      $configNameByModule = $params->filter->configNameByModule ?? false;//Get config name by module filter
 
-      //Get configs from modules
-      foreach ($enabledModules as $moduleName => $module) {
-        foreach ($response as $fileName => $item) {
-          $configData = config("asgard.{$module->getLowerName()}.{$fileName}");
+      //Get all configs
+      if (!$configName && !$configNameByModule)
+        $response = config("asgard");
 
-          //Add config data to response
-          if ($configData) $response[$fileName][$moduleName] = $this->translateLabels($configData);
-        }
+      //Get config by name
+      if ($configName && strlen($configName)) {
+        $configNameExplode = explode('.', $configName);
+        $response = config("asgard." . strtolower(array_shift($configNameExplode)) . "." . implode('.', $configNameExplode));
       }
 
-      //Validate filter name
-      if (isset($params->filter->configFieldName)) {
-        $fieldName = explode('.', $params->filter->configFieldName);
-        if ($fieldName && !empty($fileName)) {
-          foreach ($fieldName as $name)
-            if (isset($response[$name])) $response = $response[$name];
-            else $response = null;
+      //Get config by name to each module
+      if (isset($configNameByModule) && strlen($configNameByModule)) {
+        $response = [];
+        foreach (array_keys($enabledModules) as $moduleName) {
+          $response[$moduleName] = config("asgard." . strtolower($moduleName) . "." . $configNameByModule);
         }
       }
 
       //Response data
-      $response = ["data" => $response];
+      $response = ["data" => $response ? $this->translateLabels($response) : null];
     } catch (\Exception $e) {
       $status = $this->getStatusError($e->getCode());
       $response = ["errors" => $e->getMessage()];
