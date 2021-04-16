@@ -18,6 +18,8 @@
 	  </div>
 	</div>
 
+	@include('isite::frontend.partials.preloader-all-page')
+	
 </div>
 
 @section('scripts-owl')
