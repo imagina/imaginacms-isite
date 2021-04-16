@@ -182,7 +182,7 @@ class ItemsList extends Component
   */
   public function getData($params){
     
-    \Log::info("ITEMLIST - GETDATA - PARAMS: ".json_encode($params));
+    //\Log::info("ITEMLIST - GETDATA - PARAMS: ".json_encode($params));
     
     if(isset($params["filter"])){
       $this->emitItemListRendered = true;
@@ -315,6 +315,12 @@ class ItemsList extends Component
     
     // Add value name to order on Filter
     $params ['orderBy'] = $this->orderBy;
+
+    // Update Params in other component when init a Filter
+    if($this->pagination["type"]=="infiniteScroll"){
+      $showMore = $items->hasMorePages() ? true : false;
+      $this->emit('loadMoreButtonUpdateParamsForFilters',$params,$showMore);
+    }
 
     // Emit Finish Render
     //\Log::info("Emit list rendered: ".json_encode($this->emitItemListRendered));
