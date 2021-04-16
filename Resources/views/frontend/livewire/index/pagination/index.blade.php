@@ -5,7 +5,7 @@
 			{{ $items->links('isite::frontend.livewire.index.pagination.custom') }}
 		@endif
 		
-		@if($pagination["type"]=="loadMore" && $items->hasMorePages())
+		@if(($pagination["type"]=="loadMore" || $pagination["type"]=="infiniteScroll") && $items->hasMorePages())
 		
 			<livewire:isite::load-more-button
 				:repository="$repository"

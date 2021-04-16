@@ -24,12 +24,20 @@ class LoadMoreButton extends Component
   public $pagination;
   public $itemMainClass;
   public $itemModal;
+  public $infiniteStatus;
 
   /**
    * Attributes
    */
   public $loadMore;
   public $showBtnLoadMore;
+
+  /**
+   * Listeners
+   */
+  protected $listeners = [
+    'loadMoreButtonInfinite' => 'loadMoreInfinite'
+  ];
 
   /*
   * Runs once, immediately after the component is instantiated,
@@ -53,6 +61,7 @@ class LoadMoreButton extends Component
 
     $this->loadMore = false;
     $this->showBtnLoadMore = true; 
+    $this->infiniteStatus = false;
     
   }
 
@@ -83,11 +92,24 @@ class LoadMoreButton extends Component
       'itemModal' => $this->itemModal,
       'itemListLayout' => $this->itemListLayout
     ])->render();
-
+    
     $this->dispatchBrowserEvent('items-load-more-button', [
       'newHtml' => $newHtml  
     ]);
-   
+    
+  }
+
+  /*
+  * Listener
+  * Emited Frontend
+  */
+  public function loadMoreInfinite(){
+
+    if(!$this->infiniteStatus){
+      $this->infiniteStatus = true;
+      $this->loadMore();
+    }
+
   }
   
  /*

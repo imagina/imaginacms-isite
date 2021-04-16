@@ -1,6 +1,6 @@
 <div class="load-more-button mx-auto">
 
-	@if($showBtnLoadMore)
+	@if($showBtnLoadMore && $pagination["type"]=="loadMore")
   		<a wire:click="loadMore" class="btn btn-primary btn-load-more">{{trans('isite::frontend.buttons.load more')}}</a>
   	@endif
 
@@ -30,7 +30,40 @@
 					$(".items-list .items .items-list-wrapper").append(event.detail.newHtml);
 				@endif
 
+				
+				if(@this.pagination['type']=="infiniteScroll")
+					@this.infiniteStatus = false;
+				
 		    });
+
+		    /*
+		    * Event to Infinite Scroll Pagination Type
+		    */
+		    if(@this.pagination['type']=="infiniteScroll"){
+
+		    	let itemListPos = $(".{{$itemMainClass}}-list").offset().top;
+
+			   	window.onscroll = function(ev) {
+
+			   		/*
+					* showBtnLoadMore == true = exist more elements
+					* infiniteStatus == false = Request is not executting
+			   		*/
+			   		if(@this.showBtnLoadMore && !@this.infiniteStatus){
+			   			
+			   			/*
+			   			* innerHeight = Altura en pix del viewport
+			   			* scrollY = Número de píxeles, desplazados mediante el scroll vertical.
+			   			*/
+			   			var currentPos = window.innerHeight + window.scrollY + itemListPos;
+
+			   			// body.offsetHeight = alto de un elemento
+				        if (currentPos >= document.body.offsetHeight) {
+				            window.livewire.emit('loadMoreButtonInfinite');
+				        }
+				    }
+			    };
+			}
 		   
 		});
 
