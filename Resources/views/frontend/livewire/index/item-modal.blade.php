@@ -25,14 +25,24 @@
 @section('scripts-owl')
 	@parent
 	 <script type="text/javascript">
-
+		 
 	    window.addEventListener('item-load-modal-content-{{$idModal}}', event => {
-
+				var previouslyUrl =''
 	    	//console.warn("CARGA MODAL {{$idModal}} - "+event.detail.idModalNew)
 	          
 	        $('#'+event.detail.idModalNew).modal('show'); 
 	        $("#"+event.detail.idModalNew+" .modal-body").append(event.detail.newHtml);
-	       
+		
+	        if(event.detail.itemUrl){
+							previouslyUrl = window.location.href;
+							window.history.pushState("", "", event.detail.itemUrl)
+					}
+		
+				$('#{{$idModal}}').on('hidden.bs.modal', (e) => {
+					console.warn("pasoo",previouslyUrl)
+					window.history.pushState("", "", previouslyUrl)
+				})
+		
 	    });
 
 	</script>
