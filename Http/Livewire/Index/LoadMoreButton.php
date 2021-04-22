@@ -36,7 +36,8 @@ class LoadMoreButton extends Component
    * Listeners
    */
   protected $listeners = [
-    'loadMoreButtonInfinite' => 'loadMoreInfinite'
+    'loadMoreButtonInfinite' => 'loadMoreInfinite',
+    'loadMoreButtonUpdateParamsForFilters' => 'updateParamsForFilters'
   ];
 
   /*
@@ -72,6 +73,7 @@ class LoadMoreButton extends Component
   public function loadMore()
   {
 
+    //\Log::info("Load More Button - GETDATA - PARAMS: ".json_encode($this->params));
 
     $this->params["page"] = $this->params["page"] + 1;
     $this->loadMore = true;
@@ -109,6 +111,20 @@ class LoadMoreButton extends Component
       $this->infiniteStatus = true;
       $this->loadMore();
     }
+
+  }
+
+  /*
+  * Listener
+  * Emited By Items Lists when update a Filter
+  */
+  public function updateParamsForFilters($newParams,$showMore){
+    
+    //\Log::info("Load More Button - Update Params: ".json_encode($newParams));
+    //\Log::info("Load More Button - showMore: ".$showMore);
+
+    $this->params = $newParams;
+    $this->showBtnLoadMore = $showMore;
 
   }
   
