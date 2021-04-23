@@ -6,8 +6,8 @@ use Illuminate\View\Component;
 
 class OwlCarousel extends Component
 {
-
-
+  
+  
   public $items;
   public $emptyItems;
   public $itemsBySlide;
@@ -29,8 +29,7 @@ class OwlCarousel extends Component
   public $autoplayHoverPause;
   public $containerFluid;
   public $itemComponent;
-  public $owlBlockStyle;
-
+  
   /**
    * Create a new component instance.
    *
@@ -39,7 +38,7 @@ class OwlCarousel extends Component
   public function __construct($repository, $id, $params = [], $margin = 10, $responsiveClass = true, $autoplay = true,
                               $autoplayHoverPause = true, $loop = true, $dots = true, $nav = true, $responsive = null,
                               $itemLayout = null, $title = "", $subTitle = "", $itemsBySlide = 1, $navText = "",
-                              $containerFluid = false, $owlBlockStyle = null)
+                              $containerFluid = false, $itemComponent = null)
   {
     $this->emptyItems = false;
     $this->loop = $loop;
@@ -59,15 +58,14 @@ class OwlCarousel extends Component
     $this->itemsBySlide = $itemsBySlide;
     $this->subTitle = $subTitle;
     $this->containerFluid = $containerFluid;
-    $this->owlBlockStyle = $owlBlockStyle;
-    $this->itemComponent = "isite::item-list";
+    $this->itemComponent = $itemComponent ?? "isite::item-list";
     $this->view = "isite::frontend.components.owl.carousel";
     $this->getItems();
- 
+    
   }
-
+  
   private function makeParamsFunction(){
-
+    
     return [
       "include" => $this->params["include"] ?? [],
       "take" => $this->params["take"] ?? 12,
@@ -76,12 +74,12 @@ class OwlCarousel extends Component
       "order" => $this->params["order"] ?? null
     ];
   }
-
+  
   private function getItems(){
-
-
+    
+    
     $this->items = app($this->repository)->getItemsBy(json_decode(json_encode($this->makeParamsFunction())));
-
+    
     switch($this->repository){
       case 'Modules\Icommerce\Repositories\ProductRepository':
         !$this->itemLayout ? $this->itemLayout = setting('icommerce::productListItemLayout') : false;
