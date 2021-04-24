@@ -72,7 +72,6 @@ class ItemModal extends Component
     if($idModalNew==$this->idModal){
       $this->dispatchBrowserEvent('item-load-modal-content-'.$this->idModal, [
         'newHtml' => $newHtml,
-        'itemUrl' => $item->url ?? '',
         'idModalNew' => $idModalNew
       ]);
     }
