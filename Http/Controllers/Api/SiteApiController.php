@@ -359,10 +359,7 @@ class SiteApiController extends BaseApiController
 
       //Response
       $response = [
-        "data" => [],
-        "messages" => [
-          ['type' => 'info', 'message' => trans('isite::sites.cacheCleared')]
-        ]
+        "data" => []
       ];
     } catch (\Exception $e) {
       $status = $this->getStatusError($e->getCode());
