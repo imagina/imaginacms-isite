@@ -43,8 +43,11 @@ class ConfigsApiController extends BaseApiController
         }
       }
 
+      //Validate Response
+      if ($response == null) throw new \Exception('Item not found', 204);
+
       //Response data
-      $response = ["data" => $response ? $this->translateLabels($response) : null];
+      $response = ["data" => $this->translateLabels($response)];
     } catch (\Exception $e) {
       $status = $this->getStatusError($e->getCode());
       $response = ["errors" => $e->getMessage()];
