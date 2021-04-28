@@ -56,7 +56,7 @@
                                     <a href="{{$item->url}}">
                                         @endif
                                         <div class="summary">
-                                            {{ Str::limit( $item->summary ?? '', 100) }}
+                                            {{ Str::limit( $item->summary ?? $item->description ?? '', 100) }}
                                         </div>
                                         @if(isset($item->url))
                                     </a>
