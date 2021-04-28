@@ -47,7 +47,7 @@
               @endif
             </div>
           @endif
-                    @if($withSummary && ( isset($item->summary) || isset($item->description)) )
+                    @if($withSummary && ( isset($item->summary) || isset($item->description)|| isset($item->custom_html)) )
             <div class="col item-summary">
               @if(isset($item->url))
                 <a href="{{$item->url}}">
