@@ -1,5 +1,5 @@
 <div class="item-layout item-list-layout-3">
-    <div class="card-item">
+    <div class="card card-item">
         <div class="item-image">
             <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
                                    :url="$item->url ?? null" :isMedia="true" width="100%"

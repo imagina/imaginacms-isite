@@ -1,5 +1,5 @@
 <div class="item-layout item-list-layout-1">
-    <div class="card-category card-item">
+    <div class="card card-category card-item border-0">
     <div class="row align-items-center">
             <div class="col-12 {{$orderClasses["photo"] ?? 'order-0'}} item-image">
         <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
