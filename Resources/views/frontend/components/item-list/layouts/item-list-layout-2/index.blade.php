@@ -1,4 +1,4 @@
-<div class="item-layout list-item-layout-2">
+<div class="item-layout item-list-layout-2">
   <div class="card card-category bg-white border-0">
     @if(isset($item->url))
       <a href="{{$item->url}}">
@@ -34,7 +34,7 @@
               @endif
             </div>
           @endif
-          @if(isset($item->category->id))
+                    @if($withCategory && isset($item->category->id))
             <div class="col item-category-title">
               @if(isset($item->category->url))
                 <a href="{{$item->category->url}}">
@@ -47,13 +47,13 @@
               @endif
             </div>
           @endif
-          @if(isset($item->summary) || isset($item->description) || isset($item->custom_html))
+                    @if($withSummary && ( isset($item->summary) || isset($item->description)) )
             <div class="col item-summary">
               @if(isset($item->url))
                 <a href="{{$item->url}}">
                   @endif
                   <div class="my-4">
-                    {!! Str::limit( $item->summary ?? $item->custom_html ?? $item->description ??  '', 100) !!}
+                                        {!! $item->summary ?? ''!!}
                   </div>
                   @if(isset($item->url))
                 </a>
@@ -72,6 +72,8 @@
             </div>
           @endif
         </div>
-  
+                @if(isset($item->url))
+            </a>
+        @endif
   </div>
 </div>
