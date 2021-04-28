@@ -99,13 +99,11 @@
   <script>
     
     $(document).ready(function () {
-      console.warn("asdadasdasdasd")
+
       
       window.isite_menu_divtomodal = function () {
         var collapsed = {!! $collapsed ? 'true' : 'false' !!}
         var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-        
-        console.warn("width 123",width)
         if (width <= 992 || collapsed) {
           
           $('#{{ $id }}modalBody').append($("#{{ $id }}nav"));

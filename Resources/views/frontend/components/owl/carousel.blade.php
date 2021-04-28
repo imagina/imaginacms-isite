@@ -1,5 +1,5 @@
 @if(!$emptyItems)
-  <section id="{{$id}}">
+<section id="{{$id}}" class="{{$owlBlockStyle}}">
     <div class="{{$containerFluid ? 'container-fluid': 'container'}}">
       <div class="row">
         <div class="col-12">
