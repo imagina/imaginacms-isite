@@ -1,5 +1,5 @@
 <div class="item-layout item-list-layout-2">
-  <div class="card card-category bg-white border-0">
+  <div class="card-category bg-white border-0">
     @if(isset($item->url))
       <a href="{{$item->url}}">
         @endif
