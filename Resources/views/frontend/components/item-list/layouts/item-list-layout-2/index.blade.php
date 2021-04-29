@@ -4,6 +4,7 @@
       <a href="{{$item->url}}">
         @endif
         <div class="row align-items-center">
+          @if(method_exists ( $item, "mediaFiles" ) )
           <div class="col">
             <div class="fondo position-relative text-center p-3">
               <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
@@ -12,6 +13,7 @@
             
             </div>
           </div>
+          @endif
           <div class="col item-title">
             @if(isset($item->url))
               <a href="{{$item->url}}">

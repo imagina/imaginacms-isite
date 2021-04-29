@@ -1,10 +1,12 @@
 <div class="item-layout item-list-layout-3">
     <div class="card card-item">
+      @if(method_exists ( $item, "mediaFiles" ) )
         <div class="item-image">
             <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
                                    :url="$item->url ?? null" :isMedia="true" width="100%"
                                    :mediaFiles="$item->mediaFiles()" :zone="$mediaImage ?? 'mainimage'"/>
         </div>
+      @endif
         <div class="card-img-overlay item-content">
 
             <div class="{{$orderClasses["title"] ?? 'order-1'}} item-title">

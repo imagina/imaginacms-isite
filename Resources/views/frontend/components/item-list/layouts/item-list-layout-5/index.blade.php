@@ -1,5 +1,6 @@
 <div class="item-layout item-list-layout-5">
     <div class="card-item">
+      @if(method_exists ( $item, "mediaFiles" ) )
         <div class="row row-left h-100 mx-0">
             <div class="col-md-6 mr-md-auto col-left position-relative h-100 pl-0">
                 <div class="item-image">
@@ -9,7 +10,7 @@
                 </div>
             </div>
         </div>
-
+  @endif
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-right ml-auto">

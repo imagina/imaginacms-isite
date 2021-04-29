@@ -1,6 +1,7 @@
 <div class="item-layout item-list-layout-4">
     <div class="card-item m-1">
         <div class="row align-items-center">
+          @if(method_exists ( $item, "mediaFiles" ) )
             <div class="col-lg-6">
                 <div class="item-image">
                     <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
@@ -8,6 +9,7 @@
                                            :mediaFiles="$item->mediaFiles()" :zone="$mediaImage ?? 'mainimage'"/>
                 </div>
             </div>
+          @endif
             <div class="col-lg-6">
                 <div class="item-content">
 
