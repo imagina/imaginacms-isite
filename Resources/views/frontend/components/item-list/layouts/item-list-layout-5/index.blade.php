@@ -1,5 +1,6 @@
 <div class="item-layout item-list-layout-5">
     <div class="card-item">
+      @if(method_exists ( $item, "mediaFiles" ) )
         <div class="row row-left h-100 mx-0">
             <div class="col-md-6 mr-md-auto col-left position-relative h-100 pl-0">
                 <div class="item-image">
@@ -9,7 +10,7 @@
                 </div>
             </div>
         </div>
-
+  @endif
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-right ml-auto">
@@ -50,13 +51,13 @@
                                 @endif
                             </div>
                         @endif
-                        @if($withSummary && ( isset($item->summary) || isset($item->description)) )
+                        @if($withSummary && ( isset($item->summary) || isset($item->description)|| isset($item->custom_html)) )
                             <div class="{{$orderClasses["summary"] ?? 'order-4'}} item-summary">
                                 @if(isset($item->url))
                                     <a href="{{$item->url}}">
                                         @endif
                                         <div class="summary">
-                                            {{ Str::limit( $item->summary ?? $item->description ??  $item->custom_html ?? '', 100) }}
+                                            {!! Str::limit( $item->summary ?? $item->description ??  $item->custom_html ?? '', 100) !!}
                                         </div>
                                         @if(isset($item->url))
                                     </a>
