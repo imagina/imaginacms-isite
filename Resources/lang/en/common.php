@@ -42,6 +42,11 @@ return [
         "icon-label" => "Icon",
     ],
   ],
+  'settingHints' => [
+     'phones' => "Type a phone number and press enter key",
+     'addresses' => "Type an address and press enter key",
+     'emails' => "Type an email and press enter key",
+  ],
   'settingGroups' => [
     'media' => 'Media',
     'colors' => 'Colors',
