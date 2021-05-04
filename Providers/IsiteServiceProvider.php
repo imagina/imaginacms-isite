@@ -39,7 +39,9 @@ class IsiteServiceProvider extends ServiceProvider
 
     $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
       $event->load('sites', Arr::dot(trans('isite::sites')));
-      // append translations
+      $event->load('recommendations', Arr::dot(trans('isite::recommendations')));
+            // append translations
+
 
     });
 
@@ -83,7 +85,18 @@ class IsiteServiceProvider extends ServiceProvider
 
   private function registerBindings()
   {
-
+    $this->app->bind(
+      'Modules\Isite\Repositories\RecommendationRepository',
+      function () {
+        $repository = new \Modules\Isite\Repositories\Eloquent\EloquentRecommendationRepository(new \Modules\Isite\Entities\Recommendation());
+      
+        if (!config('app.cache')) {
+          return $repository;
+        }
+      
+        return new \Modules\Isite\Repositories\Cache\CacheRecommendationDecorator($repository);
+      }
+    );
 
   }
 
