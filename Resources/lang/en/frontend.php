@@ -8,12 +8,12 @@ return [
         'views' => 'Views',
     ],
     'sort' => [
-        'title' => 'Ordenar Por',
-        'all' => 'Todas',
-        'name_a_z' => 'Nombre (A - Z)',
-        'name_z_a' => 'Nombre (Z - A)',
-        'price_low_high' => 'Precio: bajo a alto',
-        'price_high_low' => 'Precio alto a bajo',
+        'title' => 'Order By',
+        'all' => 'All',
+        'name_a_z' => 'Name (A - Z)',
+        'name_z_a' => 'Name (Z - A)',
+        'price_low_high' => 'Price: lower to higher',
+        'price_high_low' => 'Precio higher to lower',
         'recently' => 'More Recently',
     ],
     'mobile' => [
@@ -42,5 +42,5 @@ return [
             'error' => 'Error desconocido'
         ]
     ]
-   
+
 ];
