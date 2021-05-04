@@ -43,7 +43,17 @@ class RegisterIsiteSidebar implements \Maatwebsite\Sidebar\SidebarExtender
         $item->authorize(
         /* append */
         );
-        // append
+                        $item->item(trans('isite::recommendations.title.recommendations'), function (Item $item) {
+                    $item->icon('fa fa-copy');
+                    $item->weight(0);
+                    $item->append('admin.isite.recommendation.create');
+                    $item->route('admin.isite.recommendation.index');
+                    $item->authorize(
+                        $this->auth->hasAccess('isite.recommendations.index')
+                    );
+                });
+// append
+
       });
     });
 

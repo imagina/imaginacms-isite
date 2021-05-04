@@ -14,4 +14,11 @@ return [
     'create' => 'isite::master.record.create resource',
     'destroy' => 'isite::master.record.destroy resource',
   ],
+  'isite.recommendations' => [
+    'manage' => 'isite::recommendations.manage',
+    'index' => 'isite::recommendations.list resource',
+    'edit' => 'isite::recommendations.edit resource',
+    'create' => 'isite::recommendations.create resource',
+    'destroy' => 'isite::recommendations.destroy resource',
+  ],
 ];

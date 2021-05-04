@@ -13,4 +13,6 @@ $router->group(['prefix' => '/isite/v1'], function (Router $router) {
   require('ApiRoutes/configsRoutes.php');
   //======  Export
   require('ApiRoutes/exportRoutes.php');
+  //======  Recomendation
+  require('ApiRoutes/recommendationRoutes.php');
 });

@@ -2,40 +2,25 @@
 
 return [
   'name' => 'Isite',
-
-  'modulesToManagePermissions' => [
-    "Core",
-    "Ilocations",
-    "Icustom",
-    "Iredirect",
-    "Isearch",
-    "Inotification",
-    "Isite",
-    "Iblog",
-    "Ibanners",
-    "Iprofile",
-    "Media",
-    "Slider",
-    "Core",
-    "Iforms",
-    "Page",
-    "Setting",
-    "Menu",
-    "Tag",
-    "Translation",
-    "Workshop",
-    "User",
-    "Dashboard",
-    "Workshop"
-  ],
   
+  /*
+  |--------------------------------------------------------------------------
+  | Livewire Alerts - Config
+  |--------------------------------------------------------------------------
+  | Default config to the Livewire Alerts
+  */
   'livewireAlerts' => [
     'position' => 'top-end',
     "timer" => 5000,
     "timerProgressBar" => true
   ],
-
-  /* Order By - Index */
+  
+  /*
+ |--------------------------------------------------------------------------
+ | Order By - Index
+ |--------------------------------------------------------------------------
+ | Default orderBy config to the items List Livewire component
+ */
   'orderBy' =>[
     'default' => 'recently',
     'options' => [
@@ -65,8 +50,13 @@ return [
       ]
     ],
   ],
-
-  /*Layout Products - Index */
+  
+  /*
+  |--------------------------------------------------------------------------
+  | Layout Items - Index
+  |--------------------------------------------------------------------------
+  | Default layout config to the items List Livewire component
+  */
   'layoutIndex' => [
     'default' => 'four',
     'options' => [
@@ -89,6 +79,8 @@ return [
         'status' => true
       ],
     ]
-  ]
+  ],
+  
+
   
 ];
