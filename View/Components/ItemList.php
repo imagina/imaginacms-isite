@@ -18,6 +18,7 @@ class ItemList extends Component
   public $withSummary;
   public $formatCreatedDate;
   public $orderClasses;
+  public $numberCharactersSummary;
   /**
    * Create a new component instance.
    *
@@ -26,7 +27,7 @@ class ItemList extends Component
   public function __construct($item, $mediaImage = "mainimage", $layout = 'item-list-layout-1', $parentAttributes = null,
                               $withViewMoreButton = false, $viewMoreButtonLabel = "isite::common.menu.viewMore",
                               $withCreatedDate = false, $formatCreatedDate = "d \\d\\e M", $orderClasses = [],
-                              $withCategory = false,  $withSummary = true)
+                              $withCategory = false,  $withSummary = true , $numberCharactersSummary = 100)
   {
     $this->item = $item;
     $this->mediaImage = $mediaImage;
@@ -37,6 +38,7 @@ class ItemList extends Component
     $this->formatCreatedDate = $formatCreatedDate;
     $this->withCategory =  $withCategory;
     $this->withSummary =  $withSummary;
+    $this->numberCharactersSummary = $numberCharactersSummary;
     $this->orderClasses = !empty($orderClasses) ? $orderClasses : ["photo" => "order-0", "title" => "order-1","date" => "order-2","categoryTitle" => "order-3","summary" => "order-4","viewMoreButton" => "order-5"];
     
     if(!empty($parentAttributes))
@@ -54,7 +56,8 @@ class ItemList extends Component
     isset($parentAttributes["withCategory"]) ? $this->withCategory = $parentAttributes["withCategory"] : false;
     isset($parentAttributes["withSummary"]) ? $this->withSummary = $parentAttributes["withSummary"] : false;
     isset($parentAttributes["orderClasses"]) ? $this->orderClasses = !empty($parentAttributes["orderClasses"]) ? $parentAttributes["orderClasses"] : ["photo" => "order-1", "title" => "order-2","date" => "order-3","categoryTitle" => "order-4","summary" => "order-5","viewMoreButton" => "order-6"] : false;
-    
+    isset($parentAttributes["numberCharactersSummary"]) ? $this->numberCharactersSummary = $parentAttributes["numberCharactersSummary"] : 100;
+
   }
   /**
    * Get the view / contents that represent the component.
