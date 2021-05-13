@@ -22,7 +22,13 @@ class Captcha extends Component
   {
     $this->formId = $formId ?? "formsuscripcion";
     $this->captchaEnabled = setting('isite::activateCaptcha');
-    $this->params = array_merge($params ?? [], ['id' => 'captcha'.$this->formId,'data-sitekey' => setting('isite::reCaptchaV2Site') ?? setting('isite::reCaptchaV3Site')]);
+    $this->params = array_merge($params ?? [], [
+        'id' => 'captcha'.$this->formId,
+        'data-sitekey' => setting('isite::reCaptchaV2Site') ?? setting('isite::reCaptchaV3Site'),
+        'data-callback' => "enable{$formId}Button",
+        'data-expired-callback' => "disable{$formId}Button",
+        'data-error-callback' => "disable{$formId}Button",
+    ]);
   }
 
 
