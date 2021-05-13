@@ -1,13 +1,29 @@
 <div class="item-layout item-list-layout-1">
     <div class="card card-category card-item border-0">
     <div class="row align-items-center">
-      @if(method_exists ( $item, "mediaFiles" ) )
-            <div class="col-12 {{$orderClasses["photo"] ?? 'order-0'}} item-image">
-        <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
-                               :url="$item->url ?? null" :isMedia="true" width="100%"
-                               :mediaFiles="$item->mediaFiles()" :zone="$mediaImage ?? 'mainimage'"/>
-      
-      </div>
+
+      @if(isset($item->type) && $item->type=="video")
+        <div class="col-12 {{$orderClasses["photo"] ?? 'order-0'}} item-video">
+          <iframe 
+            width="100%"
+            class="embed-responsive-item" 
+            frameborder="0" 
+            allowfullscreen
+            src="{{$item->url}}">
+          </iframe>
+        </div>
+        
+      @else
+
+        @if(method_exists ( $item, "mediaFiles" ) )
+          <div class="col-12 {{$orderClasses["photo"] ?? 'order-0'}} item-image">
+          <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
+                                 :url="$item->url ?? null" :isMedia="true" width="100%"
+                                 :mediaFiles="$item->mediaFiles()" :zone="$mediaImage ?? 'mainimage'"/>
+        
+          </div>
+        @endif
+
       @endif
             <div class="col-12 {{$orderClasses["title"] ?? 'order-1'}} item-title">
         @if(isset($item->url))
@@ -50,7 +66,7 @@
             <a href="{{$item->url}}">
               @endif
                             <div class="summary">
-                                {!! Str::limit( $item->summary ?? $item->description ?? $item->custom_html ?? '', 100) !!}
+                                {!! Str::limit( $item->summary ?? $item->description ?? $item->custom_html ?? '', $numberCharactersSummary) !!}
               </div>
               @if(isset($item->url))
             </a>

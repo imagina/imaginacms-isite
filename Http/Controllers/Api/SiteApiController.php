@@ -358,12 +358,7 @@ class SiteApiController extends BaseApiController
       Artisan::call('cache:clear');
 
       //Response
-      $response = [
-        "data" => [],
-        "messages" => [
-          ['type' => 'info', 'message' => trans('isite::sites.cacheCleared')]
-        ]
-      ];
+      $response = ["data" => []];
     } catch (\Exception $e) {
       $status = $this->getStatusError($e->getCode());
       $response = [
