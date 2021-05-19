@@ -58,7 +58,12 @@
 			   			var currentPos = window.innerHeight + window.scrollY + itemListPos;
 
 			   			// body.offsetHeight = alto de un elemento
-				        if (currentPos >= document.body.offsetHeight) {
+			   			var currentHeight = document.body.offsetHeight/1.3;
+
+			   			//console.warn("currentPos: "+currentPos)
+			   			//console.warn("currentHeight: "+currentHeight)
+
+				        if (currentPos >= currentHeight) {
 				            window.livewire.emit('loadMoreButtonInfinite');
 				        }
 				    }
