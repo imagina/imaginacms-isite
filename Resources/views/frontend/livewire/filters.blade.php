@@ -2,7 +2,7 @@
 	@if(!empty($filters))
 
 		<div id="staticdiv">
-			<div id="contenttomove">
+			<div id="contenttomove" class="d-none">
 				<div class="row">
 					@foreach($filters as $index => $filter)
 						@if($filter['status'])
@@ -54,14 +54,22 @@
 	@parent
 	<script>
 
+		/*Validate init width to desktop - show filters*/
+		var widthInit = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+		if(widthInit > 992) {
+			$("#contenttomove").removeClass("d-none");
+		}
+
 		$(document).ready(function () {
 
 			function divtomodal() {
 				var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 				if(width <= 992) {
 					$('#modal-body').append($("#contenttomove"));
+					$("#contenttomove").removeClass("d-none");
 				} else {
 					$('#staticdiv').append($("#contenttomove"));
+					
 				}
 			}
 
