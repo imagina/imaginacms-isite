@@ -41,6 +41,7 @@ class OwlCarousel extends Component
                               $itemLayout = null, $title = "", $subTitle = "", $itemsBySlide = 1, $navText = "",
                               $containerFluid = false, $itemComponent = null, $owlBlockStyle = null)
   {
+
     $this->emptyItems = false;
     $this->loop = $loop;
     $this->id = $id;

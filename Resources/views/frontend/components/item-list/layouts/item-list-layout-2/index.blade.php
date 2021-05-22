@@ -55,7 +55,7 @@
                 <a href="{{$item->url}}">
                   @endif
                   <div class="my-4">
-                                        {!! Str::limit($item->summary ?? $item->description ??  $item->custom_html ?? '', 100)!!}
+                                        {!! Str::limit($item->summary ?? $item->description ??  $item->custom_html ?? '', $numberCharactersSummary)!!}
                   </div>
                   @if(isset($item->url))
                 </a>
