@@ -63,7 +63,6 @@ class OwlCarousel extends Component
     $this->itemComponent = $itemComponent ?? "isite::item-list";
     $this->view = "isite::frontend.components.owl.carousel";
     $this->getItems();
-    
   }
   
   private function makeParamsFunction(){
@@ -85,7 +84,7 @@ class OwlCarousel extends Component
     switch($this->repository){
       case 'Modules\Icommerce\Repositories\ProductRepository':
         !$this->itemLayout ? $this->itemLayout = setting('icommerce::productListItemLayout') : false;
-        if(is_module_enabled("Icommerce")) {
+        if(is_module_enabled("Icommerce") && $this->itemComponent == "isite::item-list") {
           $this->itemComponent = "icommerce::product-list-item";
         }
         break;
