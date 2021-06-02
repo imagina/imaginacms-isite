@@ -377,7 +377,7 @@ return [
     ],
     //Recaptcha
     'activateCaptcha' => [
-        'value' => false,
+        'value' => null,
         'name' => 'isite::activateCaptcha',
         'type' => 'checkbox',
         'group' => 'isite::common.settingGroups.apiKeys',
@@ -386,7 +386,7 @@ return [
         ]
     ],
     'reCaptchaV2Secret' => [
-        'value' => false,
+        'value' => null,
         'name' => 'isite::reCaptchaV2Secret',
         'type' => 'input',
         'group' => 'isite::common.settingGroups.apiKeys',
@@ -395,7 +395,7 @@ return [
         ]
     ],
     'reCaptchaV2Site' => [
-        'value' => false,
+        'value' => null,
         'name' => 'isite::reCaptchaV2Site',
         'type' => 'input',
         'group' => 'isite::common.settingGroups.apiKeys',
@@ -404,7 +404,7 @@ return [
         ]
     ],
     'reCaptchaV3Secret' => [
-        'value' => false,
+        'value' => null,
         'name' => 'isite::reCaptchaV3Secret',
         'type' => 'input',
         'group' => 'isite::common.settingGroups.apiKeys',
@@ -413,7 +413,7 @@ return [
         ]
     ],
     'reCaptchaV3Site' => [
-        'value' => false,
+        'value' => null,
         'name' => 'isite::reCaptchaV3Site',
         'type' => 'input',
         'group' => 'isite::common.settingGroups.apiKeys',
@@ -423,7 +423,7 @@ return [
     ],
   //Google
   'api-maps' => [
-    'value' => false,
+    'value' => null,
     'name' => 'isite::api-maps',
     'type' => 'input',
     'group' => 'isite::common.settingGroups.apiKeys',
@@ -433,7 +433,7 @@ return [
   ],
   //Open street maps
   'api-open-street-maps' => [
-    'value' => false,
+    'value' => null,
     'name' => 'isite::api-open-street-maps',
     'type' => 'input',
     'group' => 'isite::common.settingGroups.apiKeys',
