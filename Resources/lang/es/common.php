@@ -33,6 +33,7 @@ return [
     'reCaptchaV3Secret' => 'Codigo Secreto Recaptcha V3',
     'reCaptchaV3Site' => 'Codigo de sitio Recaptcha V3',
     'apimaps' => 'Codigo Google Maps',
+    'apiOpenStreetMaps' => 'Codigo Open Street Maps',
     'customCss' => 'CSS Personalizado',
     'customJs' => 'JS Personalizado',
     "whatsapp" =>[

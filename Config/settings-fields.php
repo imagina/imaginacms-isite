@@ -421,16 +421,26 @@ return [
             'label' => 'isite::common.settings.reCaptchaV3Site'
         ]
     ],
-    //Google
-    'api-maps' => [
-        'value' => false,
-        'name' => 'isite::api-maps',
-        'type' => 'input',
-        'group' => 'isite::common.settingGroups.apiKeys',
-        'props' => [
-            'label' => 'isite::common.settings.apimaps'
-        ]
-    ],
+  //Google
+  'api-maps' => [
+    'value' => false,
+    'name' => 'isite::api-maps',
+    'type' => 'input',
+    'group' => 'isite::common.settingGroups.apiKeys',
+    'props' => [
+      'label' => 'isite::common.settings.apimaps'
+    ]
+  ],
+  //Open street maps
+  'api-open-street-maps' => [
+    'value' => false,
+    'name' => 'isite::api-open-street-maps',
+    'type' => 'input',
+    'group' => 'isite::common.settingGroups.apiKeys',
+    'props' => [
+      'label' => 'isite::common.settings.apiOpenStreetMaps'
+    ]
+  ],
     //Multiples
     'phones' => [
         'value' => [],
