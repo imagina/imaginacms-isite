@@ -91,7 +91,6 @@ class ExportApiController extends BaseApiController
       //Response
       $response = ['Export started!'];
     } catch (\Exception $e) {
-      dd($e->getFile(), $e->getLine());
       $status = $this->getStatusError($e->getCode());
       $response = ["errors" => $e->getMessage()];
     }
