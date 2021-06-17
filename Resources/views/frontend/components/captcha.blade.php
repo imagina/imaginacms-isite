@@ -1,8 +1,13 @@
-@if($captchaEnabled && $captchaEnabled === 1)
+@if($captchaEnabled && $captchaEnabled == '1')
     {!! app('icaptcha')->display($params) !!}
+    @once
+        @section('scripts-owl')
+             @parent
+            <script type="text/javascript" src="https://www.google.com/recaptcha/api.js"></script>
+        @endsection
+    @endonce
     @section('scripts-owl')
         @parent
-        <script type="text/javascript" src="https://www.google.com/recaptcha/api.js"></script>
         <script type="text/javascript">
           $(function(){
             disable{{ $formId }}Button();
