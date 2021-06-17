@@ -60,7 +60,7 @@ class Filters extends Component
 
         \Log::info("FILTERS: ".json_encode($this->filtersValues));
 
-
+        $this->dispatchBrowserEvent('filters-after-get-data');
     }
 
     /*

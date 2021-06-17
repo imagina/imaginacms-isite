@@ -90,6 +90,13 @@
 				})
 			@endif
 
+			/*
+			* Listener After Get Data (getDataFromFilters)
+			*/
+			window.addEventListener('filters-after-get-data', event => {
+				$("#contenttomove").removeClass("d-none");
+			})
+
 		});
 	</script>
 
