@@ -38,10 +38,6 @@
 @section('scripts-owl')
     @parent
 
-     {{--<script
-      src="https://maps.googleapis.com/maps/api/js?key=setting('isite::api-maps')&libraries=places"
-    ></script>--}}
-
     <script>
 
         $(document).ready(function () {

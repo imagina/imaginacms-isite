@@ -60,6 +60,7 @@ class Filters extends Component
 
         \Log::info("FILTERS: ".json_encode($this->filtersValues));
 
+        // remove d-none frontend
         $this->dispatchBrowserEvent('filters-after-get-data');
     }
 
@@ -86,6 +87,9 @@ class Filters extends Component
 
                 if(!empty($this->extraModalId))
                     $this->dispatchBrowserEvent('filters-close-modal');
+
+                // remove d-none frontend
+                $this->dispatchBrowserEvent('filters-after-get-data');
             }
         }
         
@@ -101,7 +105,11 @@ class Filters extends Component
             $this->filtersValues = [];
             $this->emit('filtersClearValues');
             $this->emit('itemsListClearValues');
+
         }
+
+        // remove d-none frontend
+        $this->dispatchBrowserEvent('filters-after-get-data');
        
     }
 
