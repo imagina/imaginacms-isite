@@ -1,12 +1,12 @@
 <div class="filter-{{$type}} filter-{{$type}}-layout-{{$layout}} filter-{{$name}}">
-	
+
 	<div class="d-flex">
 
-		<input 
-	        type="text" 
-	        name="input-search-location" 
+		<input
+	        type="text"
+	        name="input-search-location"
 	        id="input-search-location"
-	        autocomplete="off" 
+	        autocomplete="off"
 	        placeholder="{{trans('isite::frontend.filter-location.input-placeholder')}}"
             value="{{$inputSearchLocation}}"
             wire:ignore>
@@ -15,7 +15,7 @@
 	        <div class="locate-icon-wrapper d-flex justify-content-center align-items-center">
 
                 <i id="locate-near-icon" class="fa fa-dot-circle-o text-primary cursor-pointer" aria-hidden="true"></i>
-               
+
 	        </div>
 	    </div>
 
@@ -38,15 +38,11 @@
 @section('scripts-owl')
     @parent
 
-     <script
-      src="https://maps.googleapis.com/maps/api/js?key={{setting('isite::api-maps')}}&libraries=places"
-    ></script>
-
     <script>
 
         $(document).ready(function () {
 
-            
+
             function initGeolocation(){
                 if ("geolocation" in navigator){
                     navigator.geolocation.getCurrentPosition(showLocation, showError, {timeout:2000, enableHighAccuracy: true}); //position request
@@ -60,6 +56,7 @@
 
             	@this.lat = position.coords.latitude;
             	@this.lng = position.coords.longitude;
+
                 @this.inputSearchLocation = "{{trans('isite::frontend.filter-location.title-nearme')}}";
 
             	$("#input-search-location").val("{{trans('isite::frontend.filter-location.title-nearme')}}");
@@ -93,20 +90,20 @@
                     country: 'country',
                     locality: 'locality',
                     administrative_area_level_1 : 'administrative_area_level_1',
-                }; 
+                };
 
                 for(var i = 0; i < placeAC.length; i++){
-                    var types = placeAC[i].types; // get types array of each component 
-                    for(var j = 0; j < types.length; j++){ 
-                       
+                    var types = placeAC[i].types; // get types array of each component
+                    for(var j = 0; j < types.length; j++){
+
                         var component_type = types[j];
                         if(componentMap.hasOwnProperty(component_type)){
                             if(component_type=="locality")
                                 inforPlace[0] = placeAC[i]['short_name']
-        
+
                             if(component_type=="administrative_area_level_1")
                                 inforPlace[1] = placeAC[i]['short_name']
-                            
+
                             if(component_type=="country")
                                 inforPlace[2] = placeAC[i]['short_name']
                         }
@@ -144,25 +141,25 @@
                 var placeInformation = []
 
                 //console.warn(near_place.address_components)
-                
+
                 placeInformation = getPlaceInfor(near_place.address_components)
-                
+
                 @this.city = placeInformation[0]
                 @this.province = placeInformation[1]
                 @this.country = placeInformation[2]
 
                 @this.lat = near_place.geometry.location.lat();
                 @this.lng = near_place.geometry.location.lng();
-                
+
             });
 
             /**
             * Event Input Empty
-            */ 
+            */
             const isEmpty = str => !str.trim().length;
             document.getElementById(searchInputLocation).addEventListener("input", function() {
               if( isEmpty(this.value) ) {
-                 
+
                 @this.city = ''
                 @this.province = ''
                 @this.country = ''
@@ -173,7 +170,7 @@
                 //console.log( `NAME value is: ${this.value}` );
               }
             });
-           
+
 
         });
     </script>
