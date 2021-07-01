@@ -42,10 +42,28 @@
 
         $(document).ready(function () {
 
+            // emit To Parent Filter
+            function emitToParentFilterLocation(lat,lng,updateItemList){
 
+                window.livewire.emit('filtersGetData',{
+                    'name' : 'location-range',
+                    'filter' : {
+                        'nearby':{
+                            "radio":@this.selectedRadio,
+                            "lat":lat,
+                            "lng":lng
+                        }
+                    },
+                    'eventUpdateItemsList':updateItemList
+                }) 
+            }
+
+            // Init Geolocation
             function initGeolocation(){
+
                 if ("geolocation" in navigator){
                     navigator.geolocation.getCurrentPosition(showLocation, showError, {timeout:2000, enableHighAccuracy: true}); //position request
+
                 }else{
                     console.log("Browser doesn't support geolocation!");
                 }
@@ -60,6 +78,13 @@
                 @this.inputSearchLocation = "{{trans('isite::frontend.filter-location.title-nearme')}}";
 
             	$("#input-search-location").val("{{trans('isite::frontend.filter-location.title-nearme')}}");
+
+                // No event Button
+                /*
+                if(@this.startGeolocation)
+                    emitToParentFilterLocation(position.coords.latitude,position.coords.longitude,true)
+                    @this.startGeolocation = false;
+                */
 
             }
 
@@ -171,6 +196,15 @@
               }
             });
 
+            /**
+            * Start Geolocation First Request
+            */
+            /*
+            if(@this.startGeolocation)
+                initGeolocation()
+            */
+
+                
 
         });
     </script>

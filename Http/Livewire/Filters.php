@@ -58,7 +58,7 @@ class Filters extends Component
 
         }
 
-        \Log::info("FILTERS: ".json_encode($this->filtersValues));
+        //\Log::info("FILTERS: ".json_encode($this->filtersValues));
 
         // remove d-none frontend
         $this->dispatchBrowserEvent('filters-after-get-data');

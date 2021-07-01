@@ -25,6 +25,7 @@ class Location extends Component
     public $classes;
     public $params;
     public $radio;
+    public $startGeolocation;
    
     /*
     * Attributes
@@ -34,14 +35,22 @@ class Location extends Component
     public $selectedRadio;
     public $inputSearchLocation;
     public $country;
+    public $countryCode;
     public $province;
     public $city;
+
+    /*
+    * Attributes To Type "location-2"
+    *
+    */
+    public $options;
+    public $selectedOption;
 
 	/*
     * Runs once, immediately after the component is instantiated,
     * but before render() is called
     */
-	public function mount($title,$name,$status=true,$isExpanded=true,$type,$repository,$emitTo,$repoAction,$repoAttribute,$listener,$repoMethod='getItemsBy',$layout='location-layout-1',$classes='col-12', $params = [], $radio = []){
+	public function mount($title,$name,$status=true,$isExpanded=true,$type="location",$repository,$emitTo,$repoAction,$repoAttribute,$listener,$repoMethod='getItemsBy',$layout='location-layout-1',$classes='col-12', $params = [], $radio = [], $startGeolocation=false){
 		
         $this->title = trans($title);
         $this->name = $name;
@@ -58,6 +67,7 @@ class Location extends Component
         $this->classes = $classes;
         $this->params = $params;
         $this->radio = $radio;
+        $this->startGeolocation = $startGeolocation;
         
         $this->initValues();
         
@@ -72,15 +82,46 @@ class Location extends Component
         $this->lng = 0;
         $this->selectedRadio = $this->radio['defaultValue'] ?? 'all';
         $this->inputSearchLocation = "";
+
+        /* Init Values to type 2*/
+        if($this->type=="location-2"){
+
+            $this->options = $this->cityRepository()->getItemsBy();
+
+            $optionId = request()->session()->get('cityIdSelected');
+            
+            if(!empty($optionId))
+                $this->selectedOption = $optionId;
+        }
+
     }
 
     /* 
     * When updated Lng Attribute
-    * 
+    * type location
     */
     public function updatedLng(){
 
         $this->emitToFilter();
+    }
+
+    /* 
+    * When updated CountryCode Attribute
+    * Only Type location-2
+    * Just First Request
+    */
+    public function updatedCountryCode(){
+
+        $option = $this->options->firstWhere('name',strtoupper($this->city));
+
+        if(!empty($option))
+            $this->selectedOption = $option->id;
+        else
+            $this->selectedOption = 0;
+        
+        if($this->selectedOption!=0)
+            $this->emitToFilter();
+
     }
 
     /* 
@@ -94,6 +135,17 @@ class Location extends Component
     }
 
     /* 
+    * When updated selectedOption Attribute
+    * 
+    */
+    public function updatedSelectedOption(){
+
+        $this->emitToFilter();
+      
+    }
+
+
+    /* 
     * Emit To Filter
     * 
     */
@@ -102,20 +154,33 @@ class Location extends Component
         //\Log::info("NAME: ".$this->name."-".$this->selectedRadio);
 
         $emitInfor = [];
-            
-        $emitInfor['country'] = $this->country;
-        $emitInfor['province'] = $this->province;
-        $emitInfor['city'] = $this->city;
-        $emitInfor['radio'] = $this->selectedRadio;
-        $emitInfor['lat'] = $this->lat;
-        $emitInfor['lng'] = $this->lng;
-          
+
+        if($this->type=="location-2"){
+
+            request()->session()->put('cityIdSelected', $this->selectedOption);
+
+            $emitInfor = (int)$this->selectedOption;
+
+        }else{
+
+            $emitInfor['country'] = $this->country;
+            $emitInfor['province'] = $this->province;
+            $emitInfor['city'] = $this->city;
+            $emitInfor['radio'] = $this->selectedRadio;
+            $emitInfor['lat'] = $this->lat;
+            $emitInfor['lng'] = $this->lng;  
+
+        }
+        
+        // Emit To (config file - parent filter or items list)
         $this->emit($this->emitTo,[
             'name' => $this->name,
             $this->repoAction => [
                 $this->repoAttribute => $emitInfor
-            ]
+            ],
+            'eventUpdateItemsList' => $this->startGeolocation
         ]);
+
 
     }
 
@@ -159,6 +224,14 @@ class Location extends Component
       
       $this->initValues(); 
 
+    }
+
+    /*
+    * City Repository
+    */
+    private function cityRepository()
+    {
+        return app('Modules\Ilocations\Repositories\CityRepository');
     }
 
     /*

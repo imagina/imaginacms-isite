@@ -40,7 +40,8 @@ return [
             'unavailable' => 'Posición de ubicación no disponible',
             'timeout' => 'Request timeout',
             'error' => 'Error desconocido'
-        ]
+        ],
+        'all' => 'ALL'
     ]
 
 ];
