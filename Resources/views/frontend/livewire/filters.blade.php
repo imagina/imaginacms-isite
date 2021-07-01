@@ -73,6 +73,10 @@
 				}
 			}
 
+			/**
+			* If the filters are already in a modal, 
+			* they should not be added again (Example: Latinas Website)
+			*/
 			@if($showResponsiveModal)
 				$(window).resize(divtomodal);
 				var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
@@ -80,6 +84,8 @@
 					divtomodal()
 			@endif
 
+			// Fix all
+			$("#contenttomove").removeClass("d-none");
 
 			/*
 			* Listener Filters Close Modal
