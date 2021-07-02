@@ -82,7 +82,7 @@ class LoadMoreButton extends Component
 
     if(!$items->hasMorePages())
       $this->showBtnLoadMore = false;
-
+     
     $newHtml = view('isite::frontend.livewire.index.partials.items', [
       'items' => $items,
       'layoutClass' => $this->layoutClass,
@@ -107,10 +107,13 @@ class LoadMoreButton extends Component
   */
   public function loadMoreInfinite(){
 
-    if(!$this->infiniteStatus){
+    //if(!$this->infiniteStatus){
+
+      //\Log::info("LLama a LoadMore");
+
       $this->infiniteStatus = true;
       $this->loadMore();
-    }
+    //}
 
   }
 
