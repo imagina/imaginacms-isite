@@ -1,35 +1,27 @@
 <div class="filter-{{$type}} filter-{{$type}}-layout-{{$layout}} filter-{{$name}}">
 
     @if($options && count($options)>0)
-        <div class="dropdown radio-location">
-            <button class="btn btn-selected" type="button" id="dropdownMenuLocation2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="selected-radio">{{$selectedOptionName}}</span>
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuLocation2">
-                <div class="options-container">
-                @foreach($options as $key => $option)
-                    <div class="option-radio-location">
-                        <input class="radio" type="radio"
-                            value="{{$option->id}}"
-                            name="radioOp"
-                            id="radioOp{{$key}}"
-                            wire:model="selectedOption">
-                        <label class="form-check-label"
-                            for="radioOp{{$key}}">
-                            {{strtolower($option->name)}}
-                        </label>
-                    </div>
-                @endforeach
-                </div>
-            </div>
-        </div>
+
+        <select class="form-control form-control-sm"
+            wire:model="selectedOption" 
+            wire:ignore>
+            <option value="0">{{trans('isite::frontend.filter-location.all')}}</option>
+            @foreach($options as $key => $option)
+                <option value="{{$option->id}}">
+                   {{$option->name}}
+                </option>
+            @endforeach
+        </select>
+
     @endif
-    
+   
 </div>
 
 @section('scripts-owl')
     @parent
+
     <script>
+
         // emit To Parent Filter
         function emitToParentFilterLocation(selectedOptionId,updateItemList){
 
