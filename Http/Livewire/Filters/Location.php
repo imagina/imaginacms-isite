@@ -45,6 +45,7 @@ class Location extends Component
     */
     public $options;
     public $selectedOption;
+    public $selectedOptionName = "";
 
 	/*
     * Runs once, immediately after the component is instantiated,
@@ -90,8 +91,10 @@ class Location extends Component
 
             $optionId = request()->session()->get('cityIdSelected');
             
-            if(!empty($optionId))
+            if(!empty($optionId)){
                 $this->selectedOption = $optionId;
+                $this->setValueOptionName();
+            }
         }
 
     }
@@ -114,10 +117,13 @@ class Location extends Component
 
         $option = $this->options->firstWhere('name',strtoupper($this->city));
 
-        if(!empty($option))
+        if(!empty($option)){
             $this->selectedOption = $option->id;
-        else
+            $this->selectedOptionName = $option->name;
+        }else{
             $this->selectedOption = 0;
+            $this->selectedOptionName = trans('isite::frontend.filter-location.all');
+        }
         
         if($this->selectedOption!=0)
             $this->emitToFilter();
@@ -151,13 +157,13 @@ class Location extends Component
     */
     public function emitToFilter(){
 
-        //\Log::info("NAME: ".$this->name."-".$this->selectedRadio);
-
         $emitInfor = [];
 
         if($this->type=="location-2"){
 
             request()->session()->put('cityIdSelected', $this->selectedOption);
+
+            $this->setValueOptionName();
 
             $emitInfor = (int)$this->selectedOption;
 
@@ -182,6 +188,16 @@ class Location extends Component
         ]);
 
 
+    }
+
+    /*
+    * Set Value Option Name
+    *
+    */
+    private function setValueOptionName($param='id'){
+
+        $option = $this->options->firstWhere($param,strtoupper($this->selectedOption));
+        $this->selectedOptionName = $option->name;   
     }
 
     /*

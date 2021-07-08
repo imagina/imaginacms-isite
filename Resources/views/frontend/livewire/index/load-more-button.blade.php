@@ -4,6 +4,9 @@
   		<a wire:click="loadMore" class="btn btn-primary btn-load-more">{{trans('isite::frontend.buttons.load more')}}</a>
   	@endif
 
+  	<input wire:model="showBtnLoadMore" type="hidden" id="inputShowBtnLoadMore">
+  	<input wire:model="infiniteStatus" type="hidden" id="inputInfiniteStatus">
+
 </div>
 
 @section('scripts-owl')
@@ -30,9 +33,13 @@
 					$(".items-list .items .items-list-wrapper").append(event.detail.newHtml);
 				@endif
 
-				
-				if(@this.pagination['type']=="infiniteScroll")
-					@this.infiniteStatus = false;
+
+				/*
+				* Validation after get new items
+				*/
+				@if($pagination['type']=="infiniteScroll")
+					$("#inputInfiniteStatus").val(false)
+				@endif
 				
 		    });
 
@@ -42,14 +49,21 @@
 		    if(@this.pagination['type']=="infiniteScroll"){
 
 		    	let itemListPos = $(".{{$itemMainClass}}-list").offset().top;
-
+		    	
 			   	window.onscroll = function(ev) {
+
+			   		
+			   		var inputShow = $("#inputShowBtnLoadMore").val();
+			   		var inputInfinite = $("#inputInfiniteStatus").val();
+
+			   		//console.warn("Input Load More: "+inputShow);
+			   		//console.warn("Input Infinite: "+inputInfinite);
 
 			   		/*
 					* showBtnLoadMore == true = exist more elements
 					* infiniteStatus == false = Request is not executting
 			   		*/
-			   		if(@this.showBtnLoadMore && !@this.infiniteStatus){
+			   		if(inputShow=="true" && inputInfinite=="false"){
 			   			
 			   			/*
 			   			* innerHeight = Altura en pix del viewport
@@ -64,10 +78,13 @@
 			   			//console.warn("currentHeight: "+currentHeight)
 
 				        if (currentPos >= currentHeight) {
+
+				        	$("#inputInfiniteStatus").val(true)
 				            window.livewire.emit('loadMoreButtonInfinite');
 				        }
 				    }
 			    };
+				
 			}
 		   
 		});
