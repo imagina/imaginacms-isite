@@ -36,13 +36,15 @@ return [
     'apiOpenStreetMaps' => 'Codigo Open Street Maps',
     'customCss' => 'CSS Personalizado',
     'customJs' => 'JS Personalizado',
-    "whatsapp" =>[
-        "callingCode" => "Cód del país",
-        "number" => "Número del whatsapp",
-        "message" => "Mensaje por defecto",
-        "label" => "Etiqueta",
-        "icon-label" => "Icono",
+    "whatsapp" => [
+      "callingCode" => "Cód del país",
+      "number" => "Número del whatsapp",
+      "message" => "Mensaje por defecto",
+      "label" => "Etiqueta",
+      "icon-label" => "Icono",
     ],
+    'googleClient' => 'Cliente Google',
+    'facebookClient' => 'Cliente Facebook'
   ],
   'settingHints' => [
     'phones' => "Ingresa un número telefónico y presiona enter",
@@ -65,7 +67,7 @@ return [
       "require" => "El campo :attribute es obligatorio"
     ]
   ],
-   'sort' => [
+  'sort' => [
     'title' => 'Ordenar Por',
     'all' => 'Todas',
     'name_a_z' => 'Nombre (A - Z)',
