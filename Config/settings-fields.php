@@ -382,7 +382,9 @@ return [
         'type' => 'checkbox',
         'group' => 'isite::common.settingGroups.apiKeys',
         'props' => [
-            'label' => 'isite::common.settings.activateCaptcha'
+            'label' => 'isite::common.settings.activateCaptcha',
+            'trueValue'=>"1",
+            'falseValue'=>"0",
         ]
     ],
     'reCaptchaV2Secret' => [
