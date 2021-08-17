@@ -21,4 +21,7 @@ return [
     'create' => 'isite::recommendations.create resource',
     'destroy' => 'isite::recommendations.destroy resource',
   ],
+  'isite.edit-link' => [
+    'manage' => 'isite::edit-link.manage',
+  ],
 ];
