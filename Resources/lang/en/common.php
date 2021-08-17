@@ -70,4 +70,7 @@ return [
         'price_high_low' => 'Price: high to low',
         'recently' => 'More Recently',
     ],
+  'editLink' => [
+    'tooltip' => 'Edit this section'
+  ]
 ];

@@ -532,4 +532,55 @@ return [
       'label' => 'isite::common.settings.facebookClient'
     ]
   ],
+  //Choose pdf header logo
+  'pdfLogoHeader' => [
+    'value' => "logo1",
+    'name' => 'isite::pdfLogoHeader',
+    'group' => 'isite::pdf.settings.pdf.group',
+    'type' => 'select',
+    'columns' => 'col-6',
+    'props' => [
+      'label' => 'isite::pdf.settings.pdf.text.Logo_header',
+      'useInput' => false,
+      'useChips' => false,
+      'multiple' => false,
+      'hideDropdownIcon' => true,
+      'newValueMode' => 'add-unique',
+      'options' => [
+        ['label' => 'Logotipo 1', 'value' => "logo1"],
+        ['label' => 'Logotipo 2', 'value' => "logo2"],
+        ['label' => 'logotipo 3', 'value' => "logo3"],
+      ]
+    ]
+  ],
+  //Customize pdf header
+  'pdfPreContent' => [
+    'value' => null,
+    'name' => 'isite::pdfPreContent',
+    'group' => 'isite::pdf.settings.pdf.group',
+    'type' => 'html',
+    'props' => [
+      'label' => 'isite::pdf.settings.pdf.text.Information_header',
+    ]
+  ],
+  //Customize pdf footer
+  'pdfFooterContent' => [
+    'value' => null,
+    'name' => 'isite::pdfFooterContent',
+    'group' => 'isite::pdf.settings.pdf.group',
+    'type' => 'html',
+    'props' => [
+      'label' => 'isite::pdf.settings.pdf.text.Information_footer',
+    ]
+  ],
+  //Customize section product information pdf
+  'pdfPostContent' => [
+    'value' => null,
+    'name' => 'isite::pdfPostContent',
+    'group' => 'isite::pdf.settings.pdf.group',
+    'type' => 'html',
+    'props' => [
+      'label' => 'isite::pdf.settings.pdf.text.Information_content',
+    ]
+  ],
 ];
