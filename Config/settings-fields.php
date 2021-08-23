@@ -194,6 +194,14 @@ return [
     'group' => 'isite::common.settingGroups.socialNetworks',
     'props' => ['label' => 'Skype']
   ],
+  'telegram' => [
+    'value' => null,
+    'name' => 'telegram',
+    'fakeFieldName' => 'isite::socialNetworks',
+    'type' => 'input',
+    'group' => 'isite::common.settingGroups.socialNetworks',
+    'props' => ['label' => 'Telegram']
+  ],
   'whatsapp1' => [
     'name' => 'isite::whatsapp1',
     'label' => 'Whatsapp #1',
