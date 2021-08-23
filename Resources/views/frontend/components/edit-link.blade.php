@@ -1,5 +1,5 @@
 @if($canAccess)
-  <div id="{{$idButton}}" class="position-absolute  {{$classes}}"
+  <div {{$idButton ? 'id=".$idButton."' : ''}} class="position-absolute  {{$classes}}"
        style="top:{{$top}}; bottom:{{$bottom}}; left: {{$left}}; right: {{$right}}; z-index:999">
     <a href="{{url($link)}}" class="" target="_blank" data-toggle="tooltip" title="{{$tooltip}}">
  <span class="fa-stack fa-lg ">
