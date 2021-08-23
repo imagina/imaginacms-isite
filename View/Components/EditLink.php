@@ -17,6 +17,7 @@ class EditLink extends Component
   public $canAccess;
   public $tooltip;
   public $classes;
+  public $idButton;
 
   /**
    * Create a new component instance.
@@ -24,7 +25,7 @@ class EditLink extends Component
    * @return void
    */
   public function __construct($link, $tooltip = null, $classes = null, $top = null,
-                              $bottom = null, $right = null, $left= null)
+                              $bottom = null, $right = null, $left= null, $idButton = null)
   {
     $this->top = $top ?? '15%';
     $this->bottom = $bottom ?? 'unset';
