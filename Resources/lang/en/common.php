@@ -71,6 +71,12 @@ return [
         'recently' => 'More Recently',
     ],
   'editLink' => [
-    'tooltip' => 'Edit this section'
+    'tooltip' => 'Edit this section',
+    'tooltipCategory' => 'Edit this category',
+    'tooltipProduct' => 'Edit this product',
+    'tooltipManufacturer' => 'Edit this manufacturer',
+    'tooltipPost' => 'Edit this post',
+    'tooltipSlide' => 'Edit this slide',
+    'tooltipLogo' => 'Edit this logo'
   ]
 ];
