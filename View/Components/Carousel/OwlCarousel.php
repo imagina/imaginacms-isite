@@ -6,8 +6,8 @@ use Illuminate\View\Component;
 
 class OwlCarousel extends Component
 {
-  
-  
+
+
   public $items;
   public $emptyItems;
   public $itemsBySlide;
@@ -30,7 +30,9 @@ class OwlCarousel extends Component
   public $containerFluid;
   public $itemComponent;
   public $owlBlockStyle;
-  
+  public $editLink;
+  public $tooltipEditLink;
+
   /**
    * Create a new component instance.
    *
@@ -48,7 +50,7 @@ class OwlCarousel extends Component
     $this->dots = $dots;
     $this->nav = $nav;
     $this->navText = json_encode($navText);
-    $this->responsive = json_encode($responsive ?? [0 => ["items" =>  1],640 => ["items" => 2],992 => ["items" => 4]]);
+    $this->responsive = json_encode($responsive ?? [0 => ["items" => 1], 640 => ["items" => 2], 992 => ["items" => 4]]);
     $this->margin = $margin;
     $this->responsiveClass = $responsiveClass;
     $this->autoplay = $autoplay;
@@ -64,10 +66,12 @@ class OwlCarousel extends Component
     $this->itemComponent = $itemComponent ?? "isite::item-list";
     $this->view = "isite::frontend.components.owl.carousel";
     $this->getItems();
+    $this->getEditLink();
   }
-  
-  private function makeParamsFunction(){
-    
+
+  private function makeParamsFunction()
+  {
+
     return [
       "include" => $this->params["include"] ?? [],
       "take" => $this->params["take"] ?? 12,
@@ -76,25 +80,57 @@ class OwlCarousel extends Component
       "order" => $this->params["order"] ?? null
     ];
   }
-  
-  private function getItems(){
-    
-    
+
+  private function getEditLink()
+  {
+    switch ($this->repository) {
+      case 'Modules\Icommerce\Repositories\ProductRepository':
+        $this->editLink = "/iadmin/#/ecommerce/products?edit=";
+        $this->tooltipEditLink = trans("isite::common.editLink.tooltipProduct");
+        break;
+      case 'Modules\Icommerce\Repositories\CategoryRepository':
+        $this->editLink = "/iadmin/#/ecommerce/product-categories?edit=";
+        $this->tooltipEditLink = trans("isite::common.editLink.tooltipCategory");
+        break;
+      case 'Modules\Icommerce\Repositories\ManufacturerRepository':
+        $this->editLink = "/iadmin/#/ecommerce/manufacturers?edit=";
+        $this->tooltipEditLink = trans("isite::common.editLink.tooltipManufacturer");
+        break;
+      case 'Modules\Iblog\Repositories\PostRepository':
+        $this->editLink = "/iadmin/#/blog/posts/index?edit=";
+        $this->tooltipEditLink = trans("isite::common.editLink.tooltipPost");
+        break;
+      case 'Modules\Iblog\Repositories\CategoryRepository':
+        $this->editLink = "/iadmin/#/blog/categories/index?edit=";
+        $this->tooltipEditLink = trans("isite::common.editLink.tooltipCategory");
+        break;
+      case 'Modules\Slider\Repositories\SlideRepository':
+        $this->editLink = "";
+        $this->tooltipEditLink = trans("isite::common.editLink.tooltipSlide");
+        break;
+    }
+  }
+
+  private function getItems()
+  {
+
+
     $this->items = app($this->repository)->getItemsBy(json_decode(json_encode($this->makeParamsFunction())));
-    
-    switch($this->repository){
+
+    switch ($this->repository) {
       case 'Modules\Icommerce\Repositories\ProductRepository':
         !$this->itemLayout ? $this->itemLayout = setting('icommerce::productListItemLayout') : false;
-        if(is_module_enabled("Icommerce") && $this->itemComponent == "isite::item-list") {
+        if (is_module_enabled("Icommerce") && $this->itemComponent == "isite::item-list") {
           $this->itemComponent = "icommerce::product-list-item";
         }
         break;
     }
-    
-    if($this->items->isEmpty()){
+
+    if ($this->items->isEmpty()) {
       $this->emptyItems = true;
     }
   }
+
   /**
    * Get the view / contents that represent the component.
    *

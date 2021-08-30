@@ -19,6 +19,8 @@ class ItemList extends Component
   public $formatCreatedDate;
   public $orderClasses;
   public $numberCharactersSummary;
+  public $editLink;
+  public $tooltipEditLink;
   /**
    * Create a new component instance.
    *
@@ -27,7 +29,7 @@ class ItemList extends Component
   public function __construct($item, $mediaImage = "mainimage", $layout = 'item-list-layout-1', $parentAttributes = null,
                               $withViewMoreButton = false, $viewMoreButtonLabel = "isite::common.menu.viewMore",
                               $withCreatedDate = false, $formatCreatedDate = "d \\d\\e M", $orderClasses = [],
-                              $withCategory = false,  $withSummary = true , $numberCharactersSummary = 100)
+                              $withCategory = false,  $withSummary = true , $numberCharactersSummary = 100 , $editLink , $tooltipEditLink)
   {
     $this->item = $item;
     $this->mediaImage = $mediaImage;
@@ -40,7 +42,10 @@ class ItemList extends Component
     $this->withSummary =  $withSummary;
     $this->numberCharactersSummary = $numberCharactersSummary;
     $this->orderClasses = !empty($orderClasses) ? $orderClasses : ["photo" => "order-0", "title" => "order-1","date" => "order-2","categoryTitle" => "order-3","summary" => "order-4","viewMoreButton" => "order-5"];
-    
+    $this->editLink = $editLink;
+    $this->tooltipEditLink = $tooltipEditLink;
+
+
     if(!empty($parentAttributes))
       $this->getParentAttributes($parentAttributes);
   }
