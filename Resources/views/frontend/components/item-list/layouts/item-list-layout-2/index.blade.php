@@ -1,4 +1,5 @@
 <div class="item-layout item-list-layout-2">
+  <x-isite::edit-link link="{{$editLink}}{{$item->id}}" tooltip="{{$tooltipEditLink}}"/>
   <div class="card card-category bg-white border-0">
     @if(isset($item->url))
       <a href="{{$item->url}}">

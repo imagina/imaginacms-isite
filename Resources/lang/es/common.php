@@ -78,6 +78,13 @@ return [
     'recently' => 'Más Recientes',
   ],
   'editLink' => [
-    'tooltip' => 'Editar esta sección'
+    'tooltip' => 'Editar esta sección',
+    'tooltipCategory' => 'Editar esta categoria',
+    'tooltipProduct' => 'Editar este producto',
+    'tooltipManufacturer' => 'Editar este fabricante',
+    'tooltipPost' => 'Editar este post',
+    'tooltipSlide' => 'Editar este slide',
+    'tooltipLogo' => 'Editar este logo'
+
   ]
 ];
