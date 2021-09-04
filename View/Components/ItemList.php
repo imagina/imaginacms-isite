@@ -29,7 +29,7 @@ class ItemList extends Component
   public function __construct($item, $mediaImage = "mainimage", $layout = 'item-list-layout-1', $parentAttributes = null,
                               $withViewMoreButton = false, $viewMoreButtonLabel = "isite::common.menu.viewMore",
                               $withCreatedDate = false, $formatCreatedDate = "d \\d\\e M", $orderClasses = [],
-                              $withCategory = false,  $withSummary = true , $numberCharactersSummary = 100 , $editLink , $tooltipEditLink)
+                              $withCategory = false,  $withSummary = true , $numberCharactersSummary = 100 , $editLink = null , $tooltipEditLink = null)
   {
     $this->item = $item;
     $this->mediaImage = $mediaImage;
