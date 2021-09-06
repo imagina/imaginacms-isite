@@ -12,6 +12,7 @@
         "jantinnerezo/livewire-alert": "^2.0",
         "imagina/laravel-responsecache": "^6.6",
         "kalnoy/nestedset": "6.0",
+        "hisorange/browser-detect": "^4.4.0",
         "maatwebsite/excel": "^3.1",
         "barryvdh/laravel-dompdf": "^0.9.0"
     },

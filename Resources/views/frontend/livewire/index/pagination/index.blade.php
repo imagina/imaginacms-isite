@@ -13,6 +13,8 @@
 				:layoutClass="$layoutClass"
 				:itemListLayout="$itemListLayout"
 				:entityName="$entityName"
+				:editLink="$editLink"
+				:tooltipEditLink="$tooltipEditLink"
 				:itemComponentNamespace="$itemComponentNamespace"
 				:itemComponentName="$itemComponentName"
 				:itemComponentAttributes="$itemComponentAttributes"
