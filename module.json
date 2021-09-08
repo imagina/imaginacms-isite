@@ -7,6 +7,7 @@
     "active": 1,
     "priority": 1,
     "providers": [
+        "Modules\\Isite\\Providers\\EventServiceProvider",
         "Modules\\Isite\\Providers\\IsiteServiceProvider",
         "Modules\\Isite\\Providers\\RouteServiceProvider"
     ],

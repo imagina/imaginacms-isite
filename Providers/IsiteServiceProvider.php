@@ -12,6 +12,7 @@ use Modules\Isite\Events\Handlers\RegisterIsiteSidebar;
 use Modules\Isite\Http\Middleware\CaptchaMiddleware;
 use Illuminate\Support\Facades\Blade;
 use Livewire\Livewire;
+use Stancl\Tenancy\Database\Concerns\BelongsToTenant;
 
 class IsiteServiceProvider extends ServiceProvider
 {
@@ -52,6 +53,8 @@ class IsiteServiceProvider extends ServiceProvider
             $app['config']['captcha.options']
         );
     });
+  
+    BelongsToTenant::$tenantIdColumn = 'organization_id';
   }
 
   public function boot()
@@ -95,6 +98,19 @@ class IsiteServiceProvider extends ServiceProvider
         }
       
         return new \Modules\Isite\Repositories\Cache\CacheRecommendationDecorator($repository);
+      }
+    );
+  
+    $this->app->bind(
+      'Modules\Isite\Repositories\OrganizationRepository',
+      function () {
+        $repository = new \Modules\Isite\Repositories\Eloquent\EloquentOrganizationRepository(new \Modules\Isite\Entities\Organization());
+      
+        if (!config('app.cache')) {
+          return $repository;
+        }
+      
+        return new \Modules\Isite\Repositories\Cache\CacheOrganizationDecorator($repository);
       }
     );
 
