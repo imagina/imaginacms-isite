@@ -78,6 +78,7 @@ return [
     'tooltipManufacturer' => 'Edit this manufacturer',
     'tooltipPost' => 'Edit this post',
     'tooltipSlide' => 'Edit this slide',
+    'tooltipPlace' => 'Edit this place',
     'tooltipLogo' => 'Edit this logo'
   ]
 ];

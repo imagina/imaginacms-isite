@@ -84,6 +84,7 @@ return [
     'tooltipManufacturer' => 'Editar este fabricante',
     'tooltipPost' => 'Editar este post',
     'tooltipSlide' => 'Editar este slide',
+    'tooltipPlace' => 'Editar este lugar',
     'tooltipLogo' => 'Editar este logo'
 
   ]

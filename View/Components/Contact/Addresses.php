@@ -15,12 +15,15 @@ class Addresses extends Component
    *
    * @return void
    */
-  public function __construct($icon = "fa fa-map-marker", $showIcon = true)
+  public function __construct($icon = "fa fa-map-marker", $showIcon = true, $addresses = null)
   {
     $this->icon = $icon;
     $this->showIcon = $showIcon;
-    $this->addresses = json_decode(setting("isite::addresses", null, "[]"));
-//        $this->addresses = number_format(string  );
+    if(!empty($addresses)){
+      $this->addresses = !is_array($addresses) ? [$addresses] : $addresses;
+    }else
+      $this->addresses = json_decode(setting("isite::addresses", null, "[]"));
+
   }
 
   /**

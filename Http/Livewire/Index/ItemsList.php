@@ -142,7 +142,7 @@ class ItemsList extends Component
     $this->initRequest();
     
     $this->validateNameEmitListRendered();
-    $this->getEditLink();
+    list($this->editLink, $this->tooltipEditLink) = getEditLink($this->repository);
   }
   
   /*
@@ -304,36 +304,6 @@ class ItemsList extends Component
     $this->emitItemListRenderedName = "itemListRendered";
     if ($this->uniqueItemListRendered)
       $this->emitItemListRenderedName = "itemListRendered_" . $this->id;
-  }
-  
-  private function getEditLink()
-  {
-    switch ($this->repository) {
-      case 'Modules\Icommerce\Repositories\ProductRepository':
-        $this->editLink = "/iadmin/#/ecommerce/products?edit=";
-        $this->tooltipEditLink = trans("isite::common.editLink.tooltipProduct");
-        break;
-      case 'Modules\Icommerce\Repositories\CategoryRepository':
-        $this->editLink = "/iadmin/#/ecommerce/product-categories?edit=";
-        $this->tooltipEditLink = trans("isite::common.editLink.tooltipCategory");
-        break;
-      case 'Modules\Icommerce\Repositories\ManufacturerRepository':
-        $this->editLink = "/iadmin/#/ecommerce/manufacturers?edit=";
-        $this->tooltipEditLink = trans("isite::common.editLink.tooltipManufacturer");
-        break;
-      case 'Modules\Iblog\Repositories\PostRepository':
-        $this->editLink = "/iadmin/#/blog/posts/index?edit=";
-        $this->tooltipEditLink = trans("isite::common.editLink.tooltipPost");
-        break;
-      case 'Modules\Iblog\Repositories\CategoryRepository':
-        $this->editLink = "/iadmin/#/blog/categories/index?edit=";
-        $this->tooltipEditLink = trans("isite::common.editLink.tooltipCategory");
-        break;
-      case 'Modules\Slider\Repositories\SlideRepository':
-        $this->editLink = "";
-        $this->tooltipEditLink = trans("isite::common.editLink.tooltipSlide");
-        break;
-    }
   }
   
   /*
