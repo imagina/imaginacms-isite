@@ -62,6 +62,10 @@ if (!function_exists('getEditLink')) {
         $editLink = "/iadmin/#/iplaces/places/index?edit=";
         $tooltipEditLink = trans("isite::common.editLink.tooltipPlace");
         break;
+        default:
+        $editLink = "/iadmin/#/";
+        $tooltipEditLink = "";
+        break;
     }
     
     return [ $editLink, $tooltipEditLink];
