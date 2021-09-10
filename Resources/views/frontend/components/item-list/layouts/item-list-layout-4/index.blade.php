@@ -1,4 +1,5 @@
 <div class="item-layout item-list-layout-4">
+  <x-isite::edit-link link="{{$editLink}}{{$item->id}}" tooltip="{{$tooltipEditLink}}"/>
     <div class="card-item m-1">
         <div class="row align-items-center">
           @if(method_exists ( $item, "mediaFiles" ) )

@@ -16,10 +16,14 @@ class Phones extends Component
    *
    * @return void
    */
-  public function __construct($icon = "fa fa-phone", $showIcon = true)
+  public function __construct($icon = "fa fa-phone", $showIcon = true, $phones = null)
   {
     $this->icon = $icon;
-    $this->phones = json_decode(setting("isite::phones", null, "[]"));
+    if(!empty($phones)){
+      $this->phones = !is_array($phones) ? [$phones] : $phones;
+    }else
+      $this->phones = json_decode(setting("isite::phones", null, "[]"));
+    
     $this->showIcon = $showIcon;
     foreach ($this->phones as $key => $phone) {
       $this->phonesReplaced[] = preg_replace('/[^0-9]/', '', $phone);
