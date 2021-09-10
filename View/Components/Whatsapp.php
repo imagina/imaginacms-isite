@@ -58,6 +58,7 @@ class Whatsapp extends Component
     $this->iconLabel = $iconLabel ?? '';
     $this->notNumber = $notNumber ?? true;
     $this->numbers = $numbers ?? null;
+ 
   }
 
   private function setParentAttributes($parentAttributes)
@@ -81,11 +82,12 @@ class Whatsapp extends Component
               'field' => 'calling_code'
           ]
         ];
-        for($i=1;$i<=3;$i++) {
-          if(empty($this->numbers[$i]))
-            $item = json_decode(setting('isite::whatsapp'.$i));
+        
+        for($i=0;$i<3;$i++) {
+          if(empty($this->numbers))
+            $item = json_decode(setting('isite::whatsapp'.($i+1)));
           else
-            $item = (object)$this->numbers[$i];
+            $item = (object)($this->numbers[$i] ?? []);
           
             if(!empty($item->callingCode) && !empty($item->number)){
                 $item->country = app('Modules\\Ilocations\\Repositories\\CountryRepository')
