@@ -1,4 +1,4 @@
-<div class="item-layout item-list-layout-4">
+<div class="item-layout item-list-layout-4 position-relative">
   <x-isite::edit-link link="{{$editLink}}{{$item->id}}" tooltip="{{$tooltipEditLink}}"/>
     <div class="card-item m-1">
         <div class="row align-items-center">

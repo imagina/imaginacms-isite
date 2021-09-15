@@ -1,4 +1,4 @@
-<div class="item-layout item-list-layout-3">
+<div class="item-layout item-list-layout-3 position-relative">
   <x-isite::edit-link link="{{$editLink}}{{$item->id}}" tooltip="{{$tooltipEditLink}}"/>
     <div class="card card-item">
       @if(method_exists ( $item, "mediaFiles" ) )
