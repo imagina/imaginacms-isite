@@ -85,9 +85,8 @@ return [
     'tooltipPost' => 'Editar este post',
     'tooltipSlide' => 'Editar este slide',
     'tooltipLogo' => 'Editar este logo',
-    'buttonEdit' => 'Editar'
-    'tooltipPlace' => 'Editar este lugar',
-
+    'buttonEdit' => 'Editar',
+    'tooltipPlace' => 'Editar este lugar'
 
   ]
 ];
