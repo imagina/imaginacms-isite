@@ -80,7 +80,6 @@ class OwlCarousel extends Component
       "order" => $this->params["order"] ?? null
     ];
   }
-  
 
   private function getItems()
   {

@@ -55,7 +55,7 @@ if (!function_exists('getEditLink')) {
         $tooltipEditLink = trans("isite::common.editLink.tooltipCategory");
         break;
       case 'Modules\Slider\Repositories\SlideRepository':
-        $editLink = "";
+        $editLink = "/iadmin/#/slider/show/";
         $tooltipEditLink = trans("isite::common.editLink.tooltipSlide");
         break;
       case 'Modules\Iplaces\Repositories\PlaceRepository':
