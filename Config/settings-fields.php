@@ -41,6 +41,19 @@ return [
       'entityId' => null
     ]
   ],
+  'logoIadmin' => [
+    'value' => (object)['isite::logoIadmin' => null],
+    'name' => 'medias_single',
+    'fakeFieldName' => 'isite::logoIadmin',
+    'type' => 'media',
+    'group' => 'isite::common.settingGroups.media',
+    'props' => [
+      'label' => 'isite::common.settings.logoIadmin',
+      'zone' => 'isite::logoIadmin',
+      'entity' => "Modules\Setting\Entities\Setting",
+      'entityId' => null
+    ]
+  ],
   'favicon' => [
     'value' => (object)['isite::favicon' => null],
     'name' => 'medias_single',
@@ -390,7 +403,9 @@ return [
     'type' => 'checkbox',
     'group' => 'isite::common.settingGroups.apiKeys',
     'props' => [
-      'label' => 'isite::common.settings.activateCaptcha'
+            'label' => 'isite::common.settings.activateCaptcha',
+            'trueValue'=>"1",
+            'falseValue'=>"0",
     ]
   ],
   'reCaptchaV2Secret' => [
