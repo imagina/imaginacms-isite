@@ -105,8 +105,12 @@ class OwlCarousel extends Component
         $this->tooltipEditLink = trans("isite::common.editLink.tooltipCategory");
         break;
       case 'Modules\Slider\Repositories\SlideRepository':
-        $this->editLink = "";
+        $this->editLink = "/iadmin/#/slider/show/";
         $this->tooltipEditLink = trans("isite::common.editLink.tooltipSlide");
+        break;
+      case 'Modules\Iplaces\Repositories\PlaceRepository':
+        $editLink = "/iadmin/#/iplaces/places/index?edit=";
+        $tooltipEditLink = trans("isite::common.editLink.tooltipPlace");
         break;
     }
   }
