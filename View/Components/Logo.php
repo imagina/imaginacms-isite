@@ -21,7 +21,7 @@ class Logo extends Component
   public function __construct($name = "logo1", $to = null, $imgClasses = "")
   {
 
-    $this->to = $to ?? \URL::to('/');
+    $this->to = $to ?? \LaravelLocalization::localizeUrl('/');
     $this->zone = "isite::$name";
     $this->imgClasses = $imgClasses;
     $setting = Setting::where("name", $this->zone)->with('files')->first();

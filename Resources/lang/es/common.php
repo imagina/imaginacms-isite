@@ -9,6 +9,7 @@ return [
     'logo1' => 'Logo N°1',
     'logo2' => 'Logo N°2',
     'logo3' => 'Logo N°3',
+    'logoIadmin' => 'Logo Iadmin',
     'favicon' => 'Favicon',
     'addressBar' => 'Color de la barra de direcciones',
     'brandPrimary' => 'Color Primario',
@@ -85,6 +86,8 @@ return [
     'tooltipSlide' => 'Editar este slide',
     'tooltipLogo' => 'Editar este logo',
     'buttonEdit' => 'Editar'
+    'tooltipPlace' => 'Editar este lugar',
+
 
   ]
 ];

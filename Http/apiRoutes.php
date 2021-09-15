@@ -15,4 +15,11 @@ $router->group(['prefix' => '/isite/v1'], function (Router $router) {
   require('ApiRoutes/exportRoutes.php');
   //======  Recomendation
   require('ApiRoutes/recommendationRoutes.php');
+  
+  $router->apiCrud([
+    'module' => 'isite',
+    'prefix' => 'organizations',
+    'controller' => 'OrganizationApiController',
+    'middleware' => ['create' => [],'index' => []] // Just Testing
+  ]);
 });

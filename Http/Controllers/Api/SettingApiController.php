@@ -65,11 +65,11 @@ class SettingApiController extends BaseApiController
       }
       /*=== SETTINGS ===*/
       $assignedSettings = [];
-      if (isset($params->settings)) {
+      /*if (isset($params->settings)) {
         if (isset($params->settings['assignedSettings']) && !empty($params->settings['assignedSettings'])) {
           $assignedSettings = $params->settings['assignedSettings'];
         }
-      }
+      }*/
 
       // merging translatable and plain settings
       $mergedSettings = array_merge_recursive($translatableSettings, $plainSettings);
@@ -127,8 +127,17 @@ class SettingApiController extends BaseApiController
   {
     \DB::beginTransaction(); //DB Transaction
     try {
-
+      //Get Parameters from URL.
+      $params = $this->getParamsRequest($request);
+      //Get data
       $data = $request->input('attributes');
+
+      //Validate settings can manage
+      if (isset($params->settings['assignedSettings']) && count($params->settings['assignedSettings'])) {
+        foreach ($data as $settingName => $settingValue) {
+          if (!in_array($settingName, $params->settings['assignedSettings'])) unset($data[$settingName]);
+        };
+      }
 
       $this->settings->createOrUpdate($data);
 

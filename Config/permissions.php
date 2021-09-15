@@ -24,4 +24,11 @@ return [
   'isite.edit-link' => [
     'manage' => 'isite::edit-link.manage',
   ],
+  'isite.organizations' => [
+    'manage' => 'isite::organizations.manage',
+    'index' => 'isite::organizations.list resource',
+    'index-all' => 'isite::organizations.list resource',
+    'edit' => 'isite::organizations.edit resource',
+    'create' => 'isite::organizations.create resource',
+  ],
 ];

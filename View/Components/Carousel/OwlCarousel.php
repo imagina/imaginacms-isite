@@ -66,7 +66,7 @@ class OwlCarousel extends Component
     $this->itemComponent = $itemComponent ?? "isite::item-list";
     $this->view = "isite::frontend.components.owl.carousel";
     $this->getItems();
-    $this->getEditLink();
+    list($this->editLink, $this->tooltipEditLink) = getEditLink($this->repository);
   }
 
   private function makeParamsFunction()
@@ -79,40 +79,6 @@ class OwlCarousel extends Component
       "filter" => $this->params["filter"] ?? [],
       "order" => $this->params["order"] ?? null
     ];
-  }
-
-  private function getEditLink()
-  {
-    switch ($this->repository) {
-      case 'Modules\Icommerce\Repositories\ProductRepository':
-        $this->editLink = "/iadmin/#/ecommerce/products?edit=";
-        $this->tooltipEditLink = trans("isite::common.editLink.tooltipProduct");
-        break;
-      case 'Modules\Icommerce\Repositories\CategoryRepository':
-        $this->editLink = "/iadmin/#/ecommerce/product-categories?edit=";
-        $this->tooltipEditLink = trans("isite::common.editLink.tooltipCategory");
-        break;
-      case 'Modules\Icommerce\Repositories\ManufacturerRepository':
-        $this->editLink = "/iadmin/#/ecommerce/manufacturers?edit=";
-        $this->tooltipEditLink = trans("isite::common.editLink.tooltipManufacturer");
-        break;
-      case 'Modules\Iblog\Repositories\PostRepository':
-        $this->editLink = "/iadmin/#/blog/posts/index?edit=";
-        $this->tooltipEditLink = trans("isite::common.editLink.tooltipPost");
-        break;
-      case 'Modules\Iblog\Repositories\CategoryRepository':
-        $this->editLink = "/iadmin/#/blog/categories/index?edit=";
-        $this->tooltipEditLink = trans("isite::common.editLink.tooltipCategory");
-        break;
-      case 'Modules\Slider\Repositories\SlideRepository':
-        $this->editLink = "/iadmin/#/slider/show/";
-        $this->tooltipEditLink = trans("isite::common.editLink.tooltipSlide");
-        break;
-      case 'Modules\Iplaces\Repositories\PlaceRepository':
-        $editLink = "/iadmin/#/iplaces/places/index?edit=";
-        $tooltipEditLink = trans("isite::common.editLink.tooltipPlace");
-        break;
-    }
   }
 
   private function getItems()

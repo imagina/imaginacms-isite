@@ -20,6 +20,9 @@ return [
   'form' => [
   ],
   'messages' => [
+  
+    'invalidCaptcha' => 'Invalid Captcha'
+    
   ],
   'validation' => [
   ],

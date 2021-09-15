@@ -8,6 +8,7 @@ return [
     'logo1' => 'Logo N°1',
     'logo2' => 'Logo N°2',
     'logo3' => 'Logo N°3',
+    'logoIadmin' => 'Logo Iadmin',
     'favicon' => 'Favicon',
     'addressBar' => 'Address bar color',
     'brandPrimary' => 'Primary Color',
@@ -77,7 +78,9 @@ return [
     'tooltipManufacturer' => 'Edit this manufacturer',
     'tooltipPost' => 'Edit this post',
     'tooltipSlide' => 'Edit this slide',
-    'tooltipLogo' => 'Edit this logo',
     'buttonEdit' => 'Edit'
+    'tooltipPlace' => 'Edit this place',
+    'tooltipLogo' => 'Edit this logo'
+
   ]
 ];

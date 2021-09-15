@@ -26,6 +26,7 @@ class Whatsapp extends Component
   public $left;
   public $size;
   public $type;
+  public $numbers;
 
   public $notNumber;
   /**
@@ -36,7 +37,8 @@ class Whatsapp extends Component
   public function __construct(
     $layout = 'whatsapp-layout-1', $title = '', $id = 'whatsappComponent', $mask = 1,
     $icon = 'fa fa-whatsapp', $alignment = 'dropleft', $parentAttributes = [],
-    $top = '50%', $bottom = null, $right = null, $left= null, $type = '', $size = 'lg', $iconLabel = '', $notNumber = true
+    $top = '50%', $bottom = null, $right = null, $left= null, $type = '', $size = 'lg', $iconLabel = '',
+    $notNumber = true, $numbers = []
   )
   {
     $this->layout = $layout ?? 'whatsapp-layout-1';
@@ -55,6 +57,8 @@ class Whatsapp extends Component
     $this->setParentAttributes($parentAttributes);
     $this->iconLabel = $iconLabel ?? '';
     $this->notNumber = $notNumber ?? true;
+    $this->numbers = $numbers ?? null;
+ 
   }
 
   private function setParentAttributes($parentAttributes)
@@ -78,8 +82,13 @@ class Whatsapp extends Component
               'field' => 'calling_code'
           ]
         ];
-        for($i=1;$i<=3;$i++) {
-            $item = json_decode(setting('isite::whatsapp'.$i));
+        
+        for($i=0;$i<3;$i++) {
+          if(empty($this->numbers))
+            $item = json_decode(setting('isite::whatsapp'.($i+1)));
+          else
+            $item = (object)($this->numbers[$i] ?? []);
+          
             if(!empty($item->callingCode) && !empty($item->number)){
                 $item->country = app('Modules\\Ilocations\\Repositories\\CountryRepository')
                     ->getItem($item->callingCode,json_decode(json_encode($countryParams)));

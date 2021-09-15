@@ -15,12 +15,14 @@ class Emails extends Component
    *
    * @return void
    */
-  public function __construct($icon = "fa fa-envelope", $showIcon = true)
+  public function __construct($icon = "fa fa-envelope", $showIcon = true, $emails = null)
   {
     $this->icon = $icon;
     $this->showIcon = $showIcon;
-    $this->emails = json_decode(setting(
-      "isite::emails", null, "[]"));
+    if(!empty($emails)){
+      $this->emails = !is_array($emails) ? [$emails] : $emails;
+    }else
+      $this->emails = json_decode(setting("isite::emails", null, "[]"));
   }
 
   /**
