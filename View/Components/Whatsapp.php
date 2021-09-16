@@ -27,7 +27,7 @@ class Whatsapp extends Component
   public $size;
   public $type;
   public $numbers;
-
+  public $editButton;
   public $notNumber;
   /**
    * Create a new component instance.
@@ -38,7 +38,7 @@ class Whatsapp extends Component
     $layout = 'whatsapp-layout-1', $title = '', $id = 'whatsappComponent', $mask = 1,
     $icon = 'fa fa-whatsapp', $alignment = 'dropleft', $parentAttributes = [],
     $top = '50%', $bottom = null, $right = null, $left= null, $type = '', $size = 'lg', $iconLabel = '',
-    $notNumber = true, $numbers = []
+    $notNumber = true, $numbers = [], $editButton = true
   )
   {
     $this->layout = $layout ?? 'whatsapp-layout-1';
@@ -58,6 +58,7 @@ class Whatsapp extends Component
     $this->iconLabel = $iconLabel ?? '';
     $this->notNumber = $notNumber ?? true;
     $this->numbers = $numbers ?? null;
+    $this->editButton = $editButton ?? true;
  
   }
 

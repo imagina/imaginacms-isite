@@ -80,7 +80,11 @@ return [
     'tooltipSlide' => 'Edit this slide',
     'buttonEdit' => 'Edit',
     'tooltipPlace' => 'Edit this place',
-    'tooltipLogo' => 'Edit this logo'
-
+    'tooltipLogo' => 'Edit this logo',
+    'tooltipSocial' => 'Edit social networks',
+    'tooltipWhatsapp' => 'Edit whatsapp',
+    'tooltipAddress' => 'Edit address',
+    'tooltipEmail' => 'Edit Email',
+    'tooltipPhone' => 'Edit Phone'
   ]
 ];
