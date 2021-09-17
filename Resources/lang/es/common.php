@@ -86,7 +86,12 @@ return [
     'tooltipSlide' => 'Editar este slide',
     'tooltipLogo' => 'Editar este logo',
     'buttonEdit' => 'Editar',
-    'tooltipPlace' => 'Editar este lugar'
+    'tooltipPlace' => 'Editar este lugar',
+    'tooltipSocial' => 'Editar redes sociales',
+    'tooltipWhatsapp' => 'Editar whatsapp',
+    'tooltipAddress' => 'Editar direccion',
+    'tooltipEmail' => 'Editar correo electronico',
+    'tooltipPhone' => 'Editar telefono'
 
   ]
 ];
