@@ -15,26 +15,19 @@ class PdfService
 
   public function create($data)
   {
-    $viewPdf = 'isite::pdf.index';
-    $viewPdfTheme = 'pdf.index';
+    $layout = 'isite::pdf.layouts.default';
+    $themeLayout = 'pdf.layouts.default';
 
-    if (view()->exists($viewPdfTheme)) $viewPdf = $viewPdfTheme;
+    if (view()->exists($themeLayout)) $layout = $themeLayout;
 
-    $filename = ($data['filename'] ?? 'file') . '_' . strtotime(date("Y-m-d H:i:s")) . '.pdf';
+    if(isset($data["layout"]) && view()->exists($data["layout"]))  $layout = $data["layout"];
 
+    $fileName = ($data['fileName'] ?? ('file'. '_' . strtotime(date("Y-m-d H:i:s")))) . '.pdf';
 
-    \Storage::disk('exports')->put("test.txt", "test");
-
-
-    $pdf = \PDF::loadView($viewPdf, $data)->save(storage_path('app/exports/') . $filename);
-    //
-
-    /*
-     *
-     * TODO: Limpiar todos los archivos que existan por fecha en el nombre muy antiguos
-     *
-     */
-
-    return \Storage::disk('exports')->download($filename);
+    //inserting an empty file into the disk route because the PDF package dont create the folders route necessary
+    \Storage::disk($data["disk"] ?? 'exports')->put("test.txt", "test");
+    
+    $pdf = \PDF::loadView($layout, ["data" => $data])->save(Storage::disk($data["disk"] ?? 'exports')->path($fileName));
+ 
   }
 }

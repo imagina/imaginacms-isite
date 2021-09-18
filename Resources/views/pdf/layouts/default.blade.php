@@ -104,8 +104,8 @@
     <meta charset="UTF-8">
     <div id="pdfPreContent">{!!setting("isite::pdfPreContent")!!}</div>
     <div id="pdfContent">
-      @if(isset($view))
-        @include($view,$data)
+      @if(isset($data["content"]))
+        @include($data["content"],$data)
       @else
         {{trans("isite::pdf.settings.pdf.text.Document_without_content")}}
       @endif

@@ -10,14 +10,20 @@ use Illuminate\Support\Facades\Storage;
 //Exportables
 use Maatwebsite\Excel\Facades\Excel;
 use Modules\Isite\Exports\RepositoryExport;
+use Modules\Isite\Jobs\PDFExport;
 
 class ExportApiController extends BaseApiController
 {
   private $disk;
+  private $fileTypes;
 
   public function __construct()
   {
     $this->disk = 'public';
+    $this->fileTypes = [
+      "pdf" => "pdf",
+      "excel" => "xlsx"
+    ];
   }
 
   /**
@@ -32,7 +38,7 @@ class ExportApiController extends BaseApiController
       //Get Parameters from URL.
       $params = $this->getParamsRequest($request);
       $exportParams = (object)(is_string($request->exportParams) ? json_decode($request->exportParams) : $request->exportParams);
-      $fileName = $exportParams->fileName . "-" . $params->user->id . ".xlsx";
+      $fileName = $exportParams->fileName . "-" . $params->user->id . ".".($this->fileTypes[$exportParams->fileType ?? "excel"]);
 
       //Check if file exist
       $existFile = Storage::disk($this->disk)->exists($fileName);
@@ -71,22 +77,36 @@ class ExportApiController extends BaseApiController
       $params = $this->getParamsRequest($request);
       $exportParams = (is_string($request->exportParams) ? json_decode($request->exportParams) : (object)$request->exportParams);
 
-      if (isset($exportParams->repositoryName)) {//Generate File report by repository
-        Excel::store(
-          new RepositoryExport($params, $exportParams),
-          $exportParams->fileName . "-" . $params->user->id . ".xlsx",
-          $this->disk
-        );
-      } else if (isset($exportParams->exportName)) {//Generate File report by exportClass
-        Excel::store(
-          app()->makeWith(
-            "Modules\\{$exportParams->moduleName}\\Exports\\{$exportParams->exportName}",
-            ['params' => $params, 'exportParams' => $exportParams]
-          ),
-          $exportParams->fileName . "-" . $params->user->id . ".xlsx",
-          $this->disk
-        );
+      switch($exportParams->fileType ?? "excel"){
+        case "pdf":
+          PDFExport::dispatch($params, $exportParams, $this->disk);
+          break;
+        case "excel":
+  
+          if (isset($exportParams->repositoryName)) {//Generate File report by repository
+            Excel::store(
+              new RepositoryExport($params, $exportParams),
+              $exportParams->fileName . "-" . $params->user->id . ".xlsx",
+              $this->disk
+            );
+          } else if (isset($exportParams->exportName)) {//Generate File report by exportClass
+            Excel::store(
+              app()->makeWith(
+                "Modules\\{$exportParams->moduleName}\\Exports\\{$exportParams->exportName}",
+                ['params' => $params, 'exportParams' => $exportParams]
+              ),
+              $exportParams->fileName . "-" . $params->user->id . ".xlsx",
+              $this->disk
+            );
+          }
+  
+          
+          break;
       }
+   
+  
+      
+      
 
       //Response
       $response = ['Export started!'];
