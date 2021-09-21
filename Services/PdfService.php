@@ -27,7 +27,7 @@ class PdfService
     //inserting an empty file into the disk route because the PDF package dont create the folders route necessary
     \Storage::disk($data["disk"] ?? 'exports')->put("test.txt", "test");
     
-    $pdf = \PDF::loadView($layout, ["data" => $data])->save(Storage::disk($data["disk"] ?? 'exports')->path($fileName));
+    $pdf = \PDF::loadView($layout, ["data" => $data])->setPaper($data["paper"] ?? "letter")->save(Storage::disk($data["disk"] ?? 'exports')->path($fileName));
  
   }
 }

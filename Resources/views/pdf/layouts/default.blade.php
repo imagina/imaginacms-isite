@@ -1,103 +1,145 @@
 <html>
 <head>
-  <style>
-    @page {
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <style type="text/css" media="all">
+    /**
+               Establezca los márgenes de la página en 0, por lo que el pie de página y el encabezado
+               puede ser de altura y anchura completas.
+            **/
+
+    @page {   margin: 50px 0cm; }
+    @page :first{
       margin: 0cm 0cm;
-      font-family: Arial;
+      border-top: 9px solid{{setting("isite::brandPrimary")}};
+    }
+    
+
+    main {
+      margin-left: 1cm;
+      margin-right: 1cm;
+      margin-bottom: 1cm;
     }
 
-    body {
-      margin: 3cm 2cm 2cm;
-    }
-
-    header .header {
-      justify-content: space-between;
-      display: block;
-    }
-
-
-    header .box {
-      width: 32%;
-      text-align: center;
-      display: inline-block;
+    .items-list-wrapper {
       justify-content: center;
     }
-
-    header .img {
-      width: 150px;
+    
+    .d-inline-block {
+      display: inline-block !important;
     }
-
-    header .content-site-data {
-      font-size: 14px;
-      display: block;
+    
+    .mr-2{
+      margin-right: 0.5rem !important;
     }
-
-
-    #content {
-      height: auto;
-      padding: 7px;
-
+   
+    .editLink {
+      display: none;
     }
-
-    #pdfPreContent {
-
-
+    
+    .align-self-center{
+      align-self: center !important;
     }
-
-    #pdfContent {
-
-
+    
+    .header-content {
+      border-top: 9px solid {{setting("isite::brandPrimary")}};
+      padding: 15px 0;
     }
-
-    #pdfPostContent {
-
-
+    
+  
+    
+    .header-content .content-site-data i {
+      text-align: center;
+      width: 28px;
+      height: 12px;
+      border-radius: 100%;
+      margin-right: px;
+      color: {{setting("isite::brandPrimary")}};
+      padding-top: 5px;
+      -webkit-margin-after: 10px;
+      margin-block-end: 10px;
+      display: none;
     }
-
-    #gridFooter {
-      margin: 0.25cm 0cm 0cm;
-      height: auto;
-
+    
+    .header-content .content-site-data a {
+      margin-bottom: 8px;
+      font-size: 10px;
+      text-decoration: none;
+      color: #3C3C3B;
+      text-align: left;
+      width: 100%;
     }
-
-    #pdfFooterContent {
-
+    .header-content img {
+      max-width: 150px;
+    }
+    
+    .header-bottom {
+      border-top: 1px solid #ebebeb;
+    }
+    
+    .header-bottom .date {
+      padding: 7px 15px;
+      background-color: #ebebeb;
+      margin-right: 30px;
+      float: right;
+    }
+    
+    .dropdown-whatsapp .dropdown-menu-whatsapp a {
+      font-size: 14px !important;
+      font-weight: normal !important;
+      margin: 0 8px !important;
+      line-height: normal;
+      color: {{setting("isite::brandPrimary")}}    !important;
+    }
+    
+    
+    footer .app-url {
+      text-align: center;
+      padding: 12px;
+      background-color: white;
+    }
+    
+    footer .app-url a {
+      text-decoration: none;
+      color: #0A0808;
+      font-size: 10px;
     }
   </style>
 </head>
 <body>
 <header>
-  <div class="header">
-    <meta charset="UTF-8">
-    <div class="box">
-      <img class="img" src="@setting('isite::'.setting('isite::pdfLogoHeader'))" alt="Logotipo">
-    </div>
-    <div class="box">
-      <h1>{!!setting("core::site-name")!!}</h1>
-    </div>
-    <div class="box" style="justify-content: center">
-        <strong>{{trans("isite::pdf.settings.pdf.text.Date")}}</strong>
-        <div><?php echo date("Y-m-d")?></div>
-    </div>
+  
+  <div class="header-content">
+    <table width="100%">
+      <tbody>
+      <tr>
+        <td width="30%" style="text-align: center">
+          <img class="img" src="@setting('isite::'.setting('isite::pdfLogoHeader'))" alt="Logotipo">
+        </td>
+        <td width="40%">&nbsp;</td>
+        <td width="30%" style="text-align: center">
+          <h1 style="font-size: 16px">{!!setting("core::site-name")!!}</h1>
+          <div class="content-site-data">
+    
+            <x-isite::contact.phones/>
+    
+            <x-isite::contact.emails/>
+    
+            <x-isite::contact.addresses/>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
-  <div class="content-site-data">
-    <br>
-    <strong>{{trans("isite::pdf.settings.pdf.text.Phone")}} : </strong>
-    <div id="info" style="display: inline-block"><strong>
-        <x-isite::contact.phones/>
-      </strong></div>
-    <br>
-    <strong>{{trans("isite::pdf.settings.pdf.text.Address")}} : </strong>
-    <div id="info" style="display: inline-block"><strong>
-        <x-isite::contact.addresses/>
-      </strong></div>
-    <br>
-    <strong>{{trans("isite::pdf.settings.pdf.text.Email")}} : </strong>
-    <div id="info" style="display: inline-block"><strong>
-        <x-isite::contact.emails/>
-      </strong></div>
+  
+  <div class="header-bottom">
+    <div class="date" style="display: inline-block; font-size: 10px">Fecha: <?php echo date("Y/m/d")?></div>
   </div>
+
 </header>
+
+
+
 <main>
   <div id="content">
     <br>
@@ -113,10 +155,20 @@
   </div>
   <div id="pdfPostContent">{!!setting("isite::pdfPostContent")!!}</div>
 </main>
+
 <footer>
-  <div id="gridFooter">
-    <div id="pdfFooterContent">{!!setting("isite::pdfFooterContent")!!}</div>
-  </div>
+  <table width="100%">
+    <tbody>
+    <tr>
+      <td width="50%" style="background-color: {{setting("isite::brandPrimary")}}"> &nbsp;</td>
+      <td width="50%" style="background-color: #ebebeb">
+      <div class="app-url">
+        <a href="{{url(env("APP_URL"))}}">   {{env("APP_URL")}}</a>
+      </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </footer>
 </body>
 </html>

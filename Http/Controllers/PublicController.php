@@ -27,4 +27,29 @@ class PublicController extends BaseApiController
   public function footer(){
     return view('isite::frontend.footer');
   }
+  
+  public function pdf(){
+  
+    $repository = app("Modules\\Iforms\\Repositories\\LeadRepository");
+    //Set fields and extra params
+    $params = [
+      "include" => [],
+      "take" => 12,
+      "filter" => [
+        "id" => 176
+      ]
+    ];
+    //Get query
+    $items = $repository->getItemsBy(json_decode(json_encode($params)));
+    
+    $pdf = \PDF::loadView('isite::pdf.layouts.default', ["data" => [
+      "items" => $items,
+      "content" => "iforms::pdf.leadItem",
+      ]]);
+    return $pdf->stream('invoice.pdf');
+    return view('isite::pdf.layouts.default', ["data" => [
+      "items" => $items,
+      "content" => "iforms::pdf.leadItem",
+    ]]);
+  }
 }
