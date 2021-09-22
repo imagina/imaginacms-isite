@@ -30,12 +30,12 @@ class ItemList extends Component
                               $withViewMoreButton = false, $viewMoreButtonLabel = "isite::common.menu.viewMore",
                               $withCreatedDate = false, $formatCreatedDate = "d \\d\\e M", $orderClasses = [],
                               $withCategory = false,  $withSummary = true , $numberCharactersSummary = 100 , $editLink = null ,
-                              $tooltipEditLink = null, $view = null)
+                              $tooltipEditLink = null, $itemComponentView = null)
   {
     $this->item = $item;
     $this->mediaImage = $mediaImage;
     $this->view = "isite::frontend.components.item-list.layouts." . ($layout ?? 'item-list-layout-1' ) .".index";
-    $this->view = $view ?? $this->view;
+    $this->view = $itemComponentView ?? $this->view;
     $this->withViewMoreButton = $withViewMoreButton;
     $this->viewMoreButtonLabel = $viewMoreButtonLabel;
     $this->withCreatedDate = $withCreatedDate;
