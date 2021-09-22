@@ -13,13 +13,33 @@
       border-top: 9px solid{{setting("isite::brandPrimary")}};
     }
     
+    body{
+      margin: 0;
+    }
+    
 
     main {
+      margin-top: 0cm;
       margin-left: 1cm;
       margin-right: 1cm;
       margin-bottom: 1cm;
     }
 
+
+    td, th {
+      padding: 8px;
+    }
+
+    tr:nth-child(even){background-color: #f2f2f2;}
+
+    tr:hover {background-color: #ddd;}
+
+    th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+    }
+    
     .items-list-wrapper {
       justify-content: center;
     }
@@ -44,8 +64,14 @@
       border-top: 9px solid {{setting("isite::brandPrimary")}};
       padding: 15px 0;
     }
+
+    .header-content h1 {
+      text-align: left;
+    }
     
-  
+    .header-content .content-site-data .content-address {
+      text-align: left;
+    }
     
     .header-content .content-site-data i {
       text-align: center;
@@ -69,7 +95,9 @@
       width: 100%;
     }
     .header-content img {
-      max-width: 150px;
+      margin: 0 left;
+      max-height: 90px;
+      max-width: 500px;
     }
     
     .header-bottom {
@@ -79,7 +107,7 @@
     .header-bottom .date {
       padding: 7px 15px;
       background-color: #ebebeb;
-      margin-right: 30px;
+      margin-right: 90px;
       float: right;
     }
     
@@ -112,11 +140,11 @@
     <table width="100%">
       <tbody>
       <tr>
-        <td width="30%" style="text-align: center">
-          <img class="img" src="@setting('isite::'.setting('isite::pdfLogoHeader'))" alt="Logotipo">
+        <td width="70%">
+          <img class="align-self-center" src="@setting('isite::'.setting('isite::pdfLogoHeader'))" alt="Logotipo">
         </td>
-        <td width="40%">&nbsp;</td>
-        <td width="30%" style="text-align: center">
+        
+        <td width="30%">
           <h1 style="font-size: 16px">{!!setting("core::site-name")!!}</h1>
           <div class="content-site-data">
     
