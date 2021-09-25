@@ -1,9 +1,11 @@
 <!--Validation to show icon or dropdown -->
 @if($editButton == true)
   @if(count($items) <= 1)
-    <x-isite::edit-link
-      link="/iadmin/#/site/settings?module=isite&settings=whatsapp1,whatsapp2,whatsapp3"
-      :tooltip="trans('isite::common.editLink.tooltipWhatsapp')"/>
+    <div class="relative-position">
+      <x-isite::edit-link
+        link="/iadmin/#/site/settings?module=isite&settings=whatsapp1,whatsapp2,whatsapp3"
+        :tooltip="trans('isite::common.editLink.tooltipWhatsapp')"/>
+    </div>
     @foreach($items as $key => $item)
       <a href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}"
          class="whatsapp-layout-2" target="_blank">

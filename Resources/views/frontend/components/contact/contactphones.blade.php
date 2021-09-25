@@ -1,9 +1,11 @@
 @if(!empty($phones))
   <!--phone content-->
   <div id="componentContactPhones">
-    <x-isite::edit-link
-      link="/iadmin/#/site/settings?module=isite&settings=phones"
-      :tooltip="trans('isite::common.editLink.tooltipPhone')"/>
+    <div class="relative-position">
+      <x-isite::edit-link
+        link="/iadmin/#/site/settings?module=isite&settings=phones"
+        :tooltip="trans('isite::common.editLink.tooltipPhone')"/>
+    </div>
     <div class="d-flex">
       <!--icon-->
       @if($showIcon)

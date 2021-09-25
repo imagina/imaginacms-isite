@@ -5,9 +5,11 @@
         <h3>{{ $title }}</h3>
       </div>
     @endif
-    <x-isite::edit-link
-      link="/iadmin/#/site/settings?module=isite&settings=whatsapp1,whatsapp2,whatsapp3"
-      :tooltip="trans('isite::common.editLink.tooltipWhatsapp')"/>
+    <div class="relative-position">
+      <x-isite::edit-link
+        link="/iadmin/#/site/settings?module=isite&settings=whatsapp1,whatsapp2,whatsapp3"
+        :tooltip="trans('isite::common.editLink.tooltipWhatsapp')"/>
+    </div>
     @foreach($items as $item)
       @if(!empty($item->callingCode) && !empty($item->number))
         <div class="col-12">

@@ -1,9 +1,11 @@
 @if($editButton = true)
   <div id="whatsappIconChatFixed" class="whatsapp-layout-5 whatsapp-fixed"
        style=" bottom:{{$bottom}}; left: {{$left}}; right: {{$right}}">
-    <x-isite::edit-link
-      link="/iadmin/#/site/settings?module=isite&settings=whatsapp1,whatsapp2,whatsapp3"
-      :tooltip="trans('isite::common.editLink.tooltipWhatsapp')"/>
+    <div class="relative-position">
+      <x-isite::edit-link
+        link="/iadmin/#/site/settings?module=isite&settings=whatsapp1,whatsapp2,whatsapp3"
+        :tooltip="trans('isite::common.editLink.tooltipWhatsapp')"/>
+    </div>
     @if(count($items) >= 1)
       <div class="pre-window">
         <div class="icon"><i class="fa fa-whatsapp"></i></div>
