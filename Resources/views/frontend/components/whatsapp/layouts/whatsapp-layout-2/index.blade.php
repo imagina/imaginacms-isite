@@ -1,15 +1,16 @@
 <!--Validation to show icon or dropdown -->
-@if(count($items) <= 1)
-  @if($editButton == true)
-    <x-isite::edit-link
-            link="/iadmin/#/site/settings?module=isite&settings=whatsapp1,whatsapp2,whatsapp3"
-            :tooltip="trans('isite::common.editLink.tooltipWhatsapp')"/>
-  @endif
-  @foreach($items as $key => $item)
-    <a href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}"
-       class="whatsapp-layout-2" target="_blank">
-      @if($type)
-        <span class="fa-stack fa-{{ $size }}">
+@if($editButton == true)
+  @if(count($items) <= 1)
+    <div class="relative-position">
+      <x-isite::edit-link
+        link="/iadmin/#/site/settings?module=isite&settings=whatsapp1,whatsapp2,whatsapp3"
+        :tooltip="trans('isite::common.editLink.tooltipWhatsapp')"/>
+    </div>
+    @foreach($items as $key => $item)
+      <a href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}"
+         class="whatsapp-layout-2" target="_blank">
+        @if($type)
+          <span class="fa-stack fa-{{ $size }}">
           <i class="fa fa-{{ $type }} fa-stack-2x"></i>
           <i
                   class="icon-whatsapp {{ $icon }} fa-stack-1x @if($type=='square-o' || $type=='circle-thin' || empty($type))  @else text-white @endif"></i>
