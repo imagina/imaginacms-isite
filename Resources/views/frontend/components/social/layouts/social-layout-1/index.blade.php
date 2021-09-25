@@ -1,9 +1,7 @@
-<div class="d-inline-block social-{{ $position }}" id="{{ $id }}">
-  <div class="relative-position">
-    <x-isite::edit-link
-      link="/iadmin/#/site/settings?module=isite&group={{trans('isite::common.settingGroups.socialNetworks')}}"
-      :tooltip="trans('isite::common.editLink.tooltipSocial')"/>
-  </div>
+<div class="d-inline-block social-{{ $position }} position-relative" id="{{ $id }}">
+  <x-isite::edit-link
+    link="/iadmin/#/site/settings?module=isite&group={{trans('isite::common.settingGroups.socialNetworks')}}"
+    :tooltip="trans('isite::common.editLink.tooltipSocial')"/>
   @foreach($items as $name=>$value)
     @if(!empty($value))
       <a href="{{ $value }}" target="_blank">

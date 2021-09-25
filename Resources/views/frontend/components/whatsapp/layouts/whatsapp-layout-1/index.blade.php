@@ -1,15 +1,13 @@
 @if($editButton = true)
-  <div class="row" id="{{ $id }}">
+  <div class="row position-relative" id="{{ $id }}">
     @if($title)
       <div class="col-12">
         <h3>{{ $title }}</h3>
       </div>
     @endif
-    <div class="relative-position">
-      <x-isite::edit-link
-        link="/iadmin/#/site/settings?module=isite&settings=whatsapp1,whatsapp2,whatsapp3"
-        :tooltip="trans('isite::common.editLink.tooltipWhatsapp')"/>
-    </div>
+    <x-isite::edit-link
+      link="/iadmin/#/site/settings?module=isite&settings=whatsapp1,whatsapp2,whatsapp3"
+      :tooltip="trans('isite::common.editLink.tooltipWhatsapp')"/>
     @foreach($items as $item)
       @if(!empty($item->callingCode) && !empty($item->number))
         <div class="col-12">

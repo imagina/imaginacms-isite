@@ -1,7 +1,5 @@
-<div class="item-layout item-list-layout-3">
-  <div class="relative-position">
-    <x-isite::edit-link link="{{$editLink}}{{$item->id}}" tooltip="{{$tooltipEditLink}}"/>
-  </div>
+<div class="item-layout item-list-layout-3 position-relative">
+  <x-isite::edit-link link="{{$editLink}}{{$item->id}}" tooltip="{{$tooltipEditLink}}"/>
   <div class="card card-item">
     @if(method_exists ( $item, "mediaFiles" ) )
       <div class="item-image">
@@ -11,7 +9,7 @@
       </div>
     @endif
     <div class="card-img-overlay item-content">
-    
+
       <div class="{{$orderClasses["title"] ?? 'order-1'}} item-title">
         @if(isset($item->url))
           <a href="{{$item->url}}">
