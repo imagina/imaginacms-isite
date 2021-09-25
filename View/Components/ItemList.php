@@ -46,8 +46,7 @@ class ItemList extends Component
     $this->orderClasses = !empty($orderClasses) ? $orderClasses : ["photo" => "order-0", "title" => "order-1","date" => "order-2","categoryTitle" => "order-3","summary" => "order-4","viewMoreButton" => "order-5"];
     $this->editLink = $editLink;
     $this->tooltipEditLink = $tooltipEditLink;
-
-
+    
     if(!empty($parentAttributes))
       $this->getParentAttributes($parentAttributes);
   }

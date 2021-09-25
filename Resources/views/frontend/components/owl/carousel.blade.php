@@ -40,7 +40,7 @@
   </section>
 
 @section('scripts-owl')
-  <script>
+  <script type="text/javascript" defer>
     $(document).ready(function () {
       var owl = $('#{{$id}}Carousel');
       

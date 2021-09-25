@@ -95,11 +95,12 @@
       width: 100%;
     }
     .header-content img {
-      margin: 0 left;
+
       max-height: 90px;
       max-width: 500px;
     }
-    
+
+
     .header-bottom {
       border-top: 1px solid #ebebeb;
     }
@@ -110,7 +111,10 @@
       margin-right: 90px;
       float: right;
     }
-    
+
+    #content{
+      position: relative;
+    }
     .dropdown-whatsapp .dropdown-menu-whatsapp a {
       font-size: 14px !important;
       font-weight: normal !important;
@@ -145,7 +149,7 @@
         </td>
         
         <td width="30%">
-          <h1 style="font-size: 16px">{!!setting("core::site-name")!!}</h1>
+          <h1 id="siteName" style="font-size: 16px">{!!setting("core::site-name")!!}</h1>
           <div class="content-site-data">
     
             <x-isite::contact.phones/>
@@ -184,7 +188,7 @@
   <div id="pdfPostContent">{!!setting("isite::pdfPostContent")!!}</div>
 </main>
 
-<footer>
+<footer id="layoutFooter">
   <table width="100%">
     <tbody>
     <tr>

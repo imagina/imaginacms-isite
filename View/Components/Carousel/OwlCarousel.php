@@ -66,6 +66,7 @@ class OwlCarousel extends Component
     $this->itemComponent = $itemComponent ?? "isite::item-list";
     $this->view = "isite::frontend.components.owl.carousel";
     $this->getItems();
+
     list($this->editLink, $this->tooltipEditLink) = getEditLink($this->repository);
   }
 

@@ -3,7 +3,7 @@
     @once
         @section('scripts-owl')
              @parent
-            <script type="text/javascript" src="https://www.google.com/recaptcha/api.js"></script>
+            <script type="text/javascript" src="https://www.google.com/recaptcha/api.js" async></script>
         @endsection
     @endonce
     @section('scripts-owl')
