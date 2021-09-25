@@ -1,5 +1,5 @@
 @if($editButton = true)
-  <div class="row position-relative" id="{{ $id }}">
+  <div class="row" id="{{ $id }}">
     @if($title)
       <div class="col-12">
         <h3>{{ $title }}</h3>

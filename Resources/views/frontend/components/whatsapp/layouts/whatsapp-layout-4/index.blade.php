@@ -1,5 +1,5 @@
 @if($editButton = true)
-  <div id="whatsappIconFixed" class="whatsapp-layout-4 whatsapp-fixed position-relative"
+  <div id="whatsappIconFixed" class="whatsapp-layout-4 whatsapp-fixed"
        style="top:{{$top}}; bottom:{{$bottom}}; left: {{$left}}; right: {{$right}}">
     <div class="rotate">
       <div class="content-background">

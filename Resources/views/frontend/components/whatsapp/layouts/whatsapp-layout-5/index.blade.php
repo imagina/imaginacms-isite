@@ -1,18 +1,18 @@
 @if($editButton = true)
-  <div id="whatsappIconChatFixed" class="whatsapp-layout-5 whatsapp-fixed position-relative"
+  <div id="whatsappIconChatFixed" class="whatsapp-layout-5 whatsapp-fixed"
        style=" bottom:{{$bottom}}; left: {{$left}}; right: {{$right}}">
-      <x-isite::edit-link
-        link="/iadmin/#/site/settings?module=isite&settings=whatsapp1,whatsapp2,whatsapp3"
-        :tooltip="trans('isite::common.editLink.tooltipWhatsapp')"/>
+    <x-isite::edit-link
+      link="/iadmin/#/site/settings?module=isite&settings=whatsapp1,whatsapp2,whatsapp3"
+      :tooltip="trans('isite::common.editLink.tooltipWhatsapp')"/>
     @if(count($items) >= 1)
       <div class="pre-window">
         <div class="icon"><i class="fa fa-whatsapp"></i></div>
         <div class="text">¿Hablamos?</div>
       </div>
-
+      
       <div class="window animate__animated animate__bounceOutDown">
         <div class="window-header">
-
+          
           <div class="header-close"><i class="fa fa-close"></i></div>
           <div class="header-title"><i class="{{ $icon}}"></i> WhatsApp</div>
           <div class="header-text">Hola, ¿En que podemos ayudarte?</div>
@@ -43,13 +43,13 @@
     setTimeout(function () {
       $("#whatsappIconChatFixed").css('visibility', 'visible')
     }, 3000);
-
+    
     $("#whatsappIconChatFixed .pre-window").click(function () {
       $("#whatsappIconChatFixed .window").removeClass('animate__bounceOutDown').addClass('animate__bounceInUp');
     });
     $("#whatsappIconChatFixed .header-close").click(function () {
       $("#whatsappIconChatFixed .window").removeClass('animate__bounceInUp').addClass('animate__bounceOutDown');
-
+      
     });
   });
 </script>

@@ -1,7 +1,7 @@
 @if($editButton = true)
   <div id="whatsappImageFixed" class="whatsapp-layout-3 whatsapp-fixed"
        style="top:{{$top}}; bottom:{{$bottom}}; left: {{$left}}; right: {{$right}}">
-    <div class="content-whatsapp position-relative">
+    <div class="content-whatsapp">
       <div class="rotate">
           <x-isite::edit-link
             link="/iadmin/#/site/settings?module=isite&settings=whatsapp1,whatsapp2,whatsapp3"
