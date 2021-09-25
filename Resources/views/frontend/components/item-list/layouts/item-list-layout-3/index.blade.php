@@ -11,7 +11,7 @@
       </div>
     @endif
     <div class="card-img-overlay item-content">
-
+    
       <div class="{{$orderClasses["title"] ?? 'order-1'}} item-title">
         @if(isset($item->url))
           <a href="{{$item->url}}">

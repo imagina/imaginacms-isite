@@ -6,6 +6,7 @@ return [
     'index' => 'isite::settings.list resource',
     'edit' => 'isite::settings.edit resource',
     'create' => 'isite::settings.create resource',
+    'assign' => 'isite::settings.assign resource',
   ],
   'isite.master.records' => [
     'manage' => 'isite::master.record.manage',

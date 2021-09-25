@@ -15,3 +15,7 @@ $router->get('isite/footer', [
   'as' => 'isite.footer',
   'uses' => 'PublicController@footer'
 ]);
+$router->get('isite/pdf', [
+  'as' => 'isite.pdf',
+  'uses' => 'PublicController@pdf'
+]);
