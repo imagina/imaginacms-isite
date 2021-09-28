@@ -86,5 +86,9 @@ return [
     'tooltipAddress' => 'Edit address',
     'tooltipEmail' => 'Edit Email',
     'tooltipPhone' => 'Edit Phone'
+  ],
+  'maps' => [
+    'groupMaps' => 'Maps',
+    'mapsLabel' => 'Maps in the site'
   ]
 ];
