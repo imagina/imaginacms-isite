@@ -29,14 +29,14 @@ class PublicController extends BaseApiController
   }
   
   public function pdf(){
-  
+    \Artisan::call('view:clear');
     $repository = app("Modules\\Iforms\\Repositories\\LeadRepository");
     //Set fields and extra params
     $params = [
       "include" => [],
       "take" => 12,
       "filter" => [
-        "id" => 176
+        "id" => 61
       ]
     ];
     //Get query

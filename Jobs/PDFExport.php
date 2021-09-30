@@ -71,7 +71,7 @@ class PDFExport implements ShouldQueue
     
     //sending the $data and de exportParams in one array merged
     $this->pdfService->create(array_merge($data,$this->exportParams));
-    
+    \Log::info("post PDFExport");
     //Send pusher notification
     $this->inotification->to(['broadcast' => $this->params->user->id])->push([
       "title" => "New PDF",

@@ -604,4 +604,21 @@ return [
       'label' => 'isite::pdf.settings.pdf.text.Information_content',
     ]
   ],
+  
+  
+  //Roles to register
+  'rolesToTenant' => [
+    'name' => 'isite::rolesToTenant',
+    'value' => [],
+    'type' => 'select',
+    'props' => [
+      'label' => 'isite::common.settings.rolesToTenant',
+      'multiple' => true,
+      'useChips' => true
+    ],
+    'loadOptions' => [
+      'apiRoute' => 'apiRoutes.quser.roles',
+      'select' => ['label' => 'name', 'id' => 'id']
+    ]
+  ],
 ];
