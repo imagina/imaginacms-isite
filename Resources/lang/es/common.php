@@ -93,6 +93,9 @@ return [
     'tooltipAddress' => 'Editar direccion',
     'tooltipEmail' => 'Editar correo electronico',
     'tooltipPhone' => 'Editar telefono'
-
+  ],
+  'maps' => [
+    'groupMaps' => 'Mapas',
+    'mapsLabel' => 'Mapas en el sitio'
   ]
 ];

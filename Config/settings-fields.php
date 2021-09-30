@@ -403,9 +403,9 @@ return [
     'type' => 'checkbox',
     'group' => 'isite::common.settingGroups.apiKeys',
     'props' => [
-            'label' => 'isite::common.settings.activateCaptcha',
-            'trueValue'=>"1",
-            'falseValue'=>"0",
+      'label' => 'isite::common.settings.activateCaptcha',
+      'trueValue' => "1",
+      'falseValue' => "0",
     ]
   ],
   'reCaptchaV2Secret' => [
@@ -619,6 +619,19 @@ return [
     'loadOptions' => [
       'apiRoute' => 'apiRoutes.quser.roles',
       'select' => ['label' => 'name', 'id' => 'id']
+    ]
+  ],
+  'mapInShow' => [
+    'value' => 'openStreet',
+    'name' => 'isite::mapInShow',
+    'type' => 'select',
+    'group' => 'isite::common.maps.groupMaps',
+    'props' => [
+      'label' => 'isite::common.maps.mapsLabel',
+      'options' => [
+        ['label' => 'OpenStreet', 'value' => 'openStreet'],
+        ['label' => 'GoogleMaps', 'value' => 'googleMaps'],
+      ]
     ]
   ],
 ];
