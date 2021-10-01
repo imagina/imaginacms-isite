@@ -13,6 +13,7 @@ use Modules\Isite\Http\Middleware\CaptchaMiddleware;
 use Illuminate\Support\Facades\Blade;
 use Livewire\Livewire;
 use Stancl\Tenancy\Database\Concerns\BelongsToTenant;
+use Modules\Isite\View\Components\Multilang;
 
 class IsiteServiceProvider extends ServiceProvider
 {
