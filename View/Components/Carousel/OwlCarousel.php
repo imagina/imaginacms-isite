@@ -16,6 +16,7 @@ class OwlCarousel extends Component
   public $loop;
   public $dots;
   public $nav;
+  public $center;
   public $navText;
   public $id;
   public $repository;
@@ -39,7 +40,7 @@ class OwlCarousel extends Component
    * @return void
    */
   public function __construct($repository, $id, $params = [], $margin = 10, $responsiveClass = true, $autoplay = true,
-                              $autoplayHoverPause = true, $loop = true, $dots = true, $nav = true, $responsive = null,
+                              $autoplayHoverPause = true, $loop = true, $dots = true, $nav = true, $center = false, $responsive = null,
                               $itemLayout = null, $title = "", $subTitle = "", $itemsBySlide = 1, $navText = "",
                               $containerFluid = false, $itemComponent = null, $owlBlockStyle = null)
   {
@@ -49,6 +50,7 @@ class OwlCarousel extends Component
     $this->id = $id;
     $this->dots = $dots;
     $this->nav = $nav;
+    $this->center = $center;
     $this->navText = json_encode($navText);
     $this->responsive = json_encode($responsive ?? [0 => ["items" => 1], 640 => ["items" => 2], 992 => ["items" => 4]]);
     $this->margin = $margin;
