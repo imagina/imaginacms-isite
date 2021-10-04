@@ -398,7 +398,7 @@ return [
   ],
   //Recaptcha
   'activateCaptcha' => [
-    'value' => null,
+    'value' => "0",
     'name' => 'isite::activateCaptcha',
     'type' => 'checkbox',
     'group' => 'isite::common.settingGroups.apiKeys',
@@ -608,6 +608,7 @@ return [
   
   //Roles to register
   'rolesToTenant' => [
+    "onlySuperAdmin" => true,
     'name' => 'isite::rolesToTenant',
     'value' => [],
     'type' => 'select',
@@ -622,6 +623,7 @@ return [
     ]
   ],
   'mapInShow' => [
+    "onlySuperAdmin" => true,
     'value' => 'openStreet',
     'name' => 'isite::mapInShow',
     'type' => 'select',
