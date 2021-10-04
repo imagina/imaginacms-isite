@@ -61,9 +61,9 @@ class IsiteServiceProvider extends ServiceProvider
   {
     $this->registerMiddleware();
     $this->publishConfig('isite', 'config');
-    $this->publishConfig('isite', 'permissions');
-    $this->publishConfig('isite', 'settings');
-    $this->publishConfig('isite', 'settings-fields');
+    $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'settings'), "asgard.isite.settings");
+    $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'settings-fields'), "asgard.isite.settings-fields");
+    $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'permissions'), "asgard.isite.permissions");
     $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'deprecated-settings'), "asgard.isite.deprecated-settings");
     $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
