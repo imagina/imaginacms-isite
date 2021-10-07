@@ -423,6 +423,7 @@ return [
   'youtube' => [
     'value' => null,
     'name' => 'youtube',
+    'fakeFieldName' => 'isite::socialNetworks',
     'groupName' => 'socialNetworks',
     'groupTitle' => 'isite::common.settingGroups.socialNetworks',
     'type' => 'input',
