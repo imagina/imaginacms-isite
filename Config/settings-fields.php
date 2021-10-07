@@ -164,6 +164,7 @@ return [
     'name' => 'facebook',
     'fakeFieldName' => 'isite::socialNetworks',
     'type' => 'input',
+    'isTranslatable' => true,
     'group' => 'isite::common.settingGroups.socialNetworks',
     'props' => ['label' => 'Facebook']
   ],
@@ -172,6 +173,7 @@ return [
     'name' => 'twitter',
     'fakeFieldName' => 'isite::socialNetworks',
     'type' => 'input',
+    'isTranslatable' => true,
     'group' => 'isite::common.settingGroups.socialNetworks',
     'props' => ['label' => 'Twitter']
   ],
@@ -180,6 +182,7 @@ return [
     'name' => 'instagram',
     'fakeFieldName' => 'isite::socialNetworks',
     'type' => 'input',
+    'isTranslatable' => true,
     'group' => 'isite::common.settingGroups.socialNetworks',
     'props' => ['label' => 'Instagram']
   ],
@@ -188,6 +191,7 @@ return [
     'name' => 'linkedin',
     'fakeFieldName' => 'isite::socialNetworks',
     'type' => 'input',
+    'isTranslatable' => true,
     'group' => 'isite::common.settingGroups.socialNetworks',
     'props' => ['label' => 'Linkedin']
   ],
@@ -196,6 +200,7 @@ return [
     'name' => 'google',
     'fakeFieldName' => 'isite::socialNetworks',
     'type' => 'input',
+    'isTranslatable' => true,
     'group' => 'isite::common.settingGroups.socialNetworks',
     'props' => ['label' => 'Google']
   ],
@@ -204,6 +209,7 @@ return [
     'name' => 'skype',
     'fakeFieldName' => 'isite::socialNetworks',
     'type' => 'input',
+    'isTranslatable' => true,
     'group' => 'isite::common.settingGroups.socialNetworks',
     'props' => ['label' => 'Skype']
   ],
@@ -212,12 +218,14 @@ return [
     'name' => 'telegram',
     'fakeFieldName' => 'isite::socialNetworks',
     'type' => 'input',
+    'isTranslatable' => true,
     'group' => 'isite::common.settingGroups.socialNetworks',
     'props' => ['label' => 'Telegram']
   ],
   'whatsapp1' => [
     'name' => 'isite::whatsapp1',
     'label' => 'Whatsapp #1',
+    'isTranslatable' => true,
     'group' => 'isite::common.settingGroups.socialNetworks',
     "multiple" => true,
     'children' => [
@@ -276,6 +284,7 @@ return [
   'whatsapp2' => [
     'name' => 'isite::whatsapp2',
     'label' => 'Whatsapp #2',
+    'isTranslatable' => true,
     'group' => 'isite::common.settingGroups.socialNetworks',
     "multiple" => true,
     'children' => [
@@ -334,6 +343,7 @@ return [
   'whatsapp3' => [
     'name' => 'isite::whatsapp3',
     'label' => 'Whatsapp #3',
+    'isTranslatable' => true,
     'group' => 'isite::common.settingGroups.socialNetworks',
     'children' => [
       'callingCode' => [
@@ -393,6 +403,7 @@ return [
     'name' => 'youtube',
     'fakeFieldName' => 'isite::socialNetworks',
     'type' => 'input',
+    'isTranslatable' => true,
     'group' => 'isite::common.settingGroups.socialNetworks',
     'props' => ['label' => 'YouTube']
   ],
