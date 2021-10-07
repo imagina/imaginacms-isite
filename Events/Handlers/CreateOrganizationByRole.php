@@ -37,7 +37,7 @@ class CreateOrganizationByRole
       }
       
     } catch (\Exception $e) {
-      \Log::error("Error | SendOrder Event: " . $e->getMessage() . "\n" . $e->getFile() . "\n" . $e->getLine() . $e->getTraceAsString());
+      \Log::info($e->getMessage().' '.$e->getFile().' '.$e->getLine());
     }
     
   }

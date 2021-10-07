@@ -32,6 +32,7 @@ return [
     'reCaptchaV2Site' => 'Site Code Recaptcha V2',
     'reCaptchaV3Secret' => 'Secret Code Recaptcha V3',
     'reCaptchaV3Site' => 'Site Code Recaptcha V3',
+    'rolesToTenant' => 'Roles available to Tenant',
     'apimaps' => 'Code Google Maps',
     'apiOpenStreetMaps' => 'Code Open Street Maps',
     'customCss' => 'Custom CSS',

@@ -33,6 +33,7 @@ return [
     'reCaptchaV2Site' => 'Codigo de sitio Recaptcha V2',
     'reCaptchaV3Secret' => 'Codigo Secreto Recaptcha V3',
     'reCaptchaV3Site' => 'Codigo de sitio Recaptcha V3',
+    'rolesToTenant' => 'Roles habilitados como inquilinos',
     'apimaps' => 'Codigo Google Maps',
     'apiOpenStreetMaps' => 'Codigo Open Street Maps',
     'customCss' => 'CSS Personalizado',

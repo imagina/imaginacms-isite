@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Artisan;
 use Modules\Ihelpers\Http\Controllers\Api\BaseApiController;
+use Modules\Isite\Transformers\ModuleTransformer;
 use Modules\Setting\Repositories\SettingRepository;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -52,8 +53,9 @@ class SiteApiController extends BaseApiController
       //Request to Repository
       $params = $this->getParamsRequest($request);
 
+      $enabledModules = $this->module->allEnabled();
       // getting modules with settings and enabled
-      $modulesWithSettings = $this->setting->moduleSettings($this->module->allEnabled());
+      $modulesWithSettings = $this->setting->moduleSettings($enabledModules);
 
       $dbSettings = [];
       $translatableSettings = [];
@@ -93,8 +95,6 @@ class SiteApiController extends BaseApiController
       foreach ($allSettings as $settingObj)
         $settingsResponse = array_merge($settingsResponse, collect($settingObj)->values()->toArray());
 
-      //dd($this->transformSettings($dbSettings, $mergedSettings)[2], $settingsResponse[39]);
-
       //Response
       $response = [
         "data" => [
@@ -102,7 +102,8 @@ class SiteApiController extends BaseApiController
           "siteSettings" => $settingsResponse,
           "availableLocales" => array_values($locales),
           "availableThemes" => array_values($themes),
-          "defaultLocale" => config('app.locale')
+          "defaultLocale" => config('app.locale'),
+          "modulesEnabled" => ModuleTransformer::collection($enabledModules)
         ]
       ];
 

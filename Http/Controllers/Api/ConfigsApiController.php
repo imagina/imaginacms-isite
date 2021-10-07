@@ -39,8 +39,7 @@ class ConfigsApiController extends BaseApiController
       if (isset($configNameByModule) && strlen($configNameByModule)) {
         $response = [];
         foreach (array_keys($enabledModules) as $moduleName) {
-          $name = $moduleName == "Icustom" ? trans("isite::isite.icustom") : trans(strtolower($moduleName)."::".strtolower($moduleName).".name");
-          $response[$name] = config("asgard." . strtolower($moduleName) . "." . $configNameByModule);
+          $response[$moduleName] = config("asgard." . strtolower($moduleName) . "." . $configNameByModule);
         }
       }
 
