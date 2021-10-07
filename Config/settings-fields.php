@@ -1,6 +1,14 @@
 <?php
 
 return [
+  'appVersion' => [
+    "onlySuperAdmin" => true,
+    'value' => "0.0.1",
+    'name' => 'isite::appVersion',
+    'type' => 'input',
+    'props' => ['label' => "isite::sites.settings.appVersion"]
+  ],
+  
   //Media
   'logo1' => [
     'value' => (object)['isite::logo1' => null],
