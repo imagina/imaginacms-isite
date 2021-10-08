@@ -21,6 +21,7 @@ class ItemList extends Component
   public $numberCharactersSummary;
   public $editLink;
   public $tooltipEditLink;
+  public $target;
   /**
    * Create a new component instance.
    *
@@ -30,12 +31,13 @@ class ItemList extends Component
                               $withViewMoreButton = false, $viewMoreButtonLabel = "isite::common.menu.viewMore",
                               $withCreatedDate = false, $formatCreatedDate = "d \\d\\e M", $orderClasses = [],
                               $withCategory = false,  $withSummary = true , $numberCharactersSummary = 100 , $editLink = null ,
-                              $tooltipEditLink = null, $itemComponentView = null)
+                              $tooltipEditLink = null, $itemComponentView = null, $itemComponentTarget = "_self")
   {
     $this->item = $item;
     $this->mediaImage = $mediaImage;
     $this->view = "isite::frontend.components.item-list.layouts." . ($layout ?? 'item-list-layout-1' ) .".index";
     $this->view = $itemComponentView ?? $this->view;
+    $this->target = $itemComponentTarget;
     $this->withViewMoreButton = $withViewMoreButton;
     $this->viewMoreButtonLabel = $viewMoreButtonLabel;
     $this->withCreatedDate = $withCreatedDate;
@@ -64,6 +66,7 @@ class ItemList extends Component
     isset($parentAttributes["orderClasses"]) ? $this->orderClasses = !empty($parentAttributes["orderClasses"]) ? $parentAttributes["orderClasses"] : ["photo" => "order-1", "title" => "order-2","date" => "order-3","categoryTitle" => "order-4","summary" => "order-5","viewMoreButton" => "order-6"] : false;
     isset($parentAttributes["numberCharactersSummary"]) ? $this->numberCharactersSummary = $parentAttributes["numberCharactersSummary"] : 100;
     isset($parentAttributes["itemComponentView"]) ? $this->view = $parentAttributes["itemComponentView"] ?? $this->view : false;
+    isset($parentAttributes["target"]) ? $this->target = $parentAttributes["target"] ?? "_self" : false;
 
   }
   /**
