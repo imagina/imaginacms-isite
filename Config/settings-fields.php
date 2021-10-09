@@ -575,7 +575,7 @@ return [
     'props' => [
       'label' => 'isite::common.settings.headerCustomJs',
       'type' => 'textarea',
-      'rows' => 3,
+      'rows' => 8,
     ],
   ],
   'customCss' => [
@@ -587,7 +587,7 @@ return [
     'props' => [
       'label' => 'isite::common.settings.customCss',
       'type' => 'textarea',
-      'rows' => 3,
+      'rows' => 8,
     ],
   ],
   'customJs' => [
@@ -599,7 +599,7 @@ return [
     'props' => [
       'label' => 'isite::common.settings.customJs',
       'type' => 'textarea',
-      'rows' => 3,
+      'rows' => 8,
     ],
   ],
 
