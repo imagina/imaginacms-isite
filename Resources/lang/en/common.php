@@ -35,8 +35,9 @@ return [
     'rolesToTenant' => 'Roles available to Tenant',
     'apimaps' => 'Code Google Maps',
     'apiOpenStreetMaps' => 'Code Open Street Maps',
-    'customCss' => 'Custom CSS',
-    'customJs' => 'Custom JS',
+    'customCss' => 'Custom Body CSS',
+    'customJs' => 'Custom Body JS',
+    'headerCustomJs' => 'Custom Head JS',
     "whatsapp" =>[
         "callingCode" => "CountryCode",
         "number" => "Whatsapp number",

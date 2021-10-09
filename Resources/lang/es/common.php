@@ -36,8 +36,9 @@ return [
     'rolesToTenant' => 'Roles habilitados como inquilinos',
     'apimaps' => 'Codigo Google Maps',
     'apiOpenStreetMaps' => 'Codigo Open Street Maps',
-    'customCss' => 'CSS Personalizado',
-    'customJs' => 'JS Personalizado',
+    'customCss' => 'CSS Personalizado para el Body',
+    'customJs' => 'JS Personalizado para el Body',
+    'headerCustomJs' => 'JS Personalizado para el Head',
     "whatsapp" => [
       "callingCode" => "Cód del país",
       "number" => "Número del whatsapp",
