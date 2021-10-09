@@ -566,6 +566,18 @@ return [
     ]
   ],
   //Custom
+  'headerCustomJs' => [
+    'value' => null,
+    'name' => 'isite::headerCustomJs',
+    'type' => 'input',
+    'groupName' => 'customSources',
+    'groupTitle' => 'isite::common.settingGroups.customSources',
+    'props' => [
+      'label' => 'isite::common.settings.headerCustomJs',
+      'type' => 'textarea',
+      'rows' => 3,
+    ],
+  ],
   'customCss' => [
     'value' => null,
     'name' => 'isite::customCss',
@@ -590,6 +602,7 @@ return [
       'rows' => 3,
     ],
   ],
+
   //Client Google
   'api-client-google' => [
     'value' => null,
