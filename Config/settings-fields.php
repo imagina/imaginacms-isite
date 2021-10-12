@@ -572,10 +572,11 @@ return [
     'type' => 'input',
     'groupName' => 'customSources',
     'groupTitle' => 'isite::common.settingGroups.customSources',
+    'columns' => 'col-12 col-md-12',
     'props' => [
       'label' => 'isite::common.settings.headerCustomJs',
       'type' => 'textarea',
-      'rows' => 8,
+      'rows' => 12,
     ],
   ],
   'customCss' => [
@@ -584,10 +585,11 @@ return [
     'type' => 'input',
     'groupName' => 'customSources',
     'groupTitle' => 'isite::common.settingGroups.customSources',
+    'columns' => 'col-12 col-md-12',
     'props' => [
       'label' => 'isite::common.settings.customCss',
       'type' => 'textarea',
-      'rows' => 8,
+      'rows' => 12,
     ],
   ],
   'customJs' => [
@@ -596,10 +598,11 @@ return [
     'type' => 'input',
     'groupName' => 'customSources',
     'groupTitle' => 'isite::common.settingGroups.customSources',
+    'columns' => 'col-12 col-md-12',
     'props' => [
       'label' => 'isite::common.settings.customJs',
       'type' => 'textarea',
-      'rows' => 8,
+      'rows' => 12,
     ],
   ],
 
