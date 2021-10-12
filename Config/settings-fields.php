@@ -608,7 +608,7 @@ return [
 
   //Client Google
   'api-client-google' => [
-    'value' => null,
+    'value' => "",
     'name' => 'isite::googleClientId',
     'type' => 'input',
     'groupName' => 'apiKeys',
@@ -619,13 +619,24 @@ return [
   ],
   //Client Facebook
   'api-client-facebook' => [
-    'value' => null,
+    'value' => "",
     'name' => 'isite::facebookClientId',
     'type' => 'input',
     'groupName' => 'apiKeys',
     'groupTitle' => 'isite::common.settingGroups.apiKeys',
     'props' => [
       'label' => 'isite::common.settings.facebookClient'
+    ]
+  ],
+  //Facebook APP ID
+  'facebookAppId' => [
+    'value' => "",
+    'name' => 'isite::facebookAppId',
+    'type' => 'input',
+    'groupName' => 'apiKeys',
+    'groupTitle' => 'isite::common.settingGroups.apiKeys',
+    'props' => [
+      'label' => 'isite::common.settings.facebookAppId'
     ]
   ],
   //Choose pdf header logo

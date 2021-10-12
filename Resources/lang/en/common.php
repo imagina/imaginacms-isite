@@ -46,7 +46,9 @@ return [
         "icon-label" => "Icon",
     ],
     'googleClient' => 'Google Client',
-    'facebookClient' => 'Facebook Client'
+    'facebookClient' => 'Facebook Client',
+    'facebookAppId' => 'Facebook App Id',
+    
   ],
   'settingHints' => [
      'phones' => "Type a phone number and press enter key",
