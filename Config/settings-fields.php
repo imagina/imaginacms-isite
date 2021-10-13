@@ -87,7 +87,7 @@ return [
     'type' => 'inputColor',
     'groupName' => 'colors',
     'groupTitle' => 'isite::common.settingGroups.colors',
-    'columns' => 'col-12 col-md-6',
+    'colClass' => 'col-12 col-md-6',
     'props' => [
       'label' => 'isite::common.settings.addressBar'
     ]
@@ -98,7 +98,7 @@ return [
     'type' => 'inputColor',
     'groupName' => 'colors',
     'groupTitle' => 'isite::common.settingGroups.colors',
-    'columns' => 'col-12 col-md-6',
+    'colClass' => 'col-12 col-md-6',
     'props' => [
       'label' => 'isite::common.settings.brandPrimary'
     ]
@@ -109,7 +109,7 @@ return [
     'type' => 'inputColor',
     'groupName' => 'colors',
     'groupTitle' => 'isite::common.settingGroups.colors',
-    'columns' => 'col-12 col-md-6',
+    'colClass' => 'col-12 col-md-6',
     'props' => [
       'label' => 'isite::common.settings.brandSecondary'
     ]
@@ -120,7 +120,7 @@ return [
     'type' => 'inputColor',
     'groupName' => 'colors',
     'groupTitle' => 'isite::common.settingGroups.colors',
-    'columns' => 'col-12 col-md-6',
+    'colClass' => 'col-12 col-md-6',
     'props' => [
       'label' => 'isite::common.settings.brandAccent'
     ]
@@ -131,7 +131,7 @@ return [
     'type' => 'inputColor',
     'groupName' => 'colors',
     'groupTitle' => 'isite::common.settingGroups.colors',
-    'columns' => 'col-12 col-md-6',
+    'colClass' => 'col-12 col-md-6',
     'props' => [
       'label' => 'isite::common.settings.brandPositive'
     ]
@@ -142,7 +142,7 @@ return [
     'type' => 'inputColor',
     'groupName' => 'colors',
     'groupTitle' => 'isite::common.settingGroups.colors',
-    'columns' => 'col-12 col-md-6',
+    'colClass' => 'col-12 col-md-6',
     'props' => [
       'label' => 'isite::common.settings.brandNegative'
     ]
@@ -153,7 +153,7 @@ return [
     'type' => 'inputColor',
     'groupName' => 'colors',
     'groupTitle' => 'isite::common.settingGroups.colors',
-    'columns' => 'col-12 col-md-6',
+    'colClass' => 'col-12 col-md-6',
     'props' => [
       'label' => 'isite::common.settings.brandInfo'
     ]
@@ -164,7 +164,7 @@ return [
     'type' => 'inputColor',
     'groupName' => 'colors',
     'groupTitle' => 'isite::common.settingGroups.colors',
-    'columns' => 'col-12 col-md-6',
+    'colClass' => 'col-12 col-md-6',
     'props' => [
       'label' => 'isite::common.settings.brandWarning'
     ]
@@ -175,7 +175,7 @@ return [
     'type' => 'inputColor',
     'groupName' => 'colors',
     'groupTitle' => 'isite::common.settingGroups.colors',
-    'columns' => 'col-12 col-md-6',
+    'colClass' => 'col-12 col-md-6',
     'props' => [
       'label' => 'isite::common.settings.brandDark'
     ]
@@ -263,7 +263,7 @@ return [
         'name' => 'callingCode',
         'value' => null,
         'type' => 'select',
-        'columns' => 'col-6 col-xl-2 q-pr-sm q-pt-sm',
+        'colClass' => 'col-6 col-xl-2 q-pr-sm q-pt-sm',
         'props' => [
           'label' => 'isite::common.settings.whatsapp.callingCode',
         ],
@@ -276,7 +276,7 @@ return [
         'name' => 'number',
         'value' => null,
         'type' => 'input',
-        'columns' => 'col-6 col-xl-2 q-pr-sm q-pt-sm',
+        'colClass' => 'col-6 col-xl-2 q-pr-sm q-pt-sm',
         'props' => [
           'label' => 'isite::common.settings.whatsapp.number',
           'type' => 'number',
@@ -286,7 +286,7 @@ return [
         'name' => 'message',
         'value' => null,
         'type' => 'input',
-        'columns' => 'col-12 col-xl-3 q-pr-sm q-pt-sm',
+        'colClass' => 'col-12 col-xl-3 q-pr-sm q-pt-sm',
         'props' => [
           'label' => 'isite::common.settings.whatsapp.message',
         ]
@@ -295,7 +295,7 @@ return [
         'name' => 'label',
         'value' => null,
         'type' => 'input',
-        'columns' => 'col-6 col-xl-3 q-pr-sm q-pt-sm',
+        'colClass' => 'col-6 col-xl-3 q-pr-sm q-pt-sm',
         'props' => [
           'label' => 'isite::common.settings.whatsapp.label',
         ]
@@ -304,7 +304,7 @@ return [
         'name' => 'iconLabel',
         'value' => null,
         'type' => 'input',
-        'columns' => 'col-6 col-xl-2 q-pr-sm q-pt-sm',
+        'colClass' => 'col-6 col-xl-2 q-pr-sm q-pt-sm',
         'props' => [
           'label' => 'isite::common.settings.whatsapp.icon-label',
         ]
@@ -323,7 +323,7 @@ return [
         'name' => 'callingCode',
         'value' => null,
         'type' => 'select',
-        'columns' => 'col-6 col-xl-2 q-pr-sm q-pt-sm',
+        'colClass' => 'col-6 col-xl-2 q-pr-sm q-pt-sm',
         'props' => [
           'label' => 'isite::common.settings.whatsapp.callingCode',
         ],
@@ -336,7 +336,7 @@ return [
         'name' => 'number',
         'value' => null,
         'type' => 'input',
-        'columns' => 'col-6 col-xl-2 q-pr-sm q-pt-sm',
+        'colClass' => 'col-6 col-xl-2 q-pr-sm q-pt-sm',
         'props' => [
           'label' => 'isite::common.settings.whatsapp.number',
           'type' => 'number',
@@ -346,7 +346,7 @@ return [
         'name' => 'message',
         'value' => null,
         'type' => 'input',
-        'columns' => 'col-12 col-xl-3 q-pr-sm q-pt-sm',
+        'colClass' => 'col-12 col-xl-3 q-pr-sm q-pt-sm',
         'props' => [
           'label' => 'isite::common.settings.whatsapp.message',
         ]
@@ -355,7 +355,7 @@ return [
         'name' => 'label',
         'value' => null,
         'type' => 'input',
-        'columns' => 'col-6 col-xl-3 q-pr-sm q-pt-sm',
+        'colClass' => 'col-6 col-xl-3 q-pr-sm q-pt-sm',
         'props' => [
           'label' => 'isite::common.settings.whatsapp.label',
         ]
@@ -364,7 +364,7 @@ return [
         'name' => 'iconLabel',
         'value' => null,
         'type' => 'input',
-        'columns' => 'col-6 col-xl-2 q-pr-sm q-pt-sm',
+        'colClass' => 'col-6 col-xl-2 q-pr-sm q-pt-sm',
         'props' => [
           'label' => 'isite::common.settings.whatsapp.icon-label',
         ]
@@ -382,7 +382,7 @@ return [
         'name' => 'callingCode',
         'value' => null,
         'type' => 'select',
-        'columns' => 'col-6 col-xl-2 q-pr-sm q-pt-sm',
+        'colClass' => 'col-6 col-xl-2 q-pr-sm q-pt-sm',
         'props' => [
           'label' => 'isite::common.settings.whatsapp.callingCode',
         ],
@@ -395,7 +395,7 @@ return [
         'name' => 'number',
         'value' => null,
         'type' => 'input',
-        'columns' => 'col-6 col-xl-2 q-pr-sm q-pt-sm',
+        'colClass' => 'col-6 col-xl-2 q-pr-sm q-pt-sm',
         'props' => [
           'label' => 'isite::common.settings.whatsapp.number',
           'type' => 'number',
@@ -405,7 +405,7 @@ return [
         'name' => 'message',
         'value' => null,
         'type' => 'input',
-        'columns' => 'col-12 col-xl-3 q-pr-sm q-pt-sm',
+        'colClass' => 'col-12 col-xl-3 q-pr-sm q-pt-sm',
         'props' => [
           'label' => 'isite::common.settings.whatsapp.message',
         ]
@@ -414,7 +414,7 @@ return [
         'name' => 'label',
         'value' => null,
         'type' => 'input',
-        'columns' => 'col-6 col-xl-3 q-pr-sm q-pt-sm',
+        'colClass' => 'col-6 col-xl-3 q-pr-sm q-pt-sm',
         'props' => [
           'label' => 'isite::common.settings.whatsapp.label',
         ]
@@ -423,7 +423,7 @@ return [
         'name' => 'iconLabel',
         'value' => null,
         'type' => 'input',
-        'columns' => 'col-6 col-xl-2 q-pr-sm q-pt-sm',
+        'colClass' => 'col-6 col-xl-2 q-pr-sm q-pt-sm',
         'props' => [
           'label' => 'isite::common.settings.whatsapp.icon-label',
         ]
@@ -572,7 +572,7 @@ return [
     'type' => 'input',
     'groupName' => 'customSources',
     'groupTitle' => 'isite::common.settingGroups.customSources',
-    'columns' => 'col-12 col-md-12',
+    'colClass' => 'col-12 col-md-12',
     'props' => [
       'label' => 'isite::common.settings.headerCustomJs',
       'type' => 'textarea',
@@ -585,7 +585,7 @@ return [
     'type' => 'input',
     'groupName' => 'customSources',
     'groupTitle' => 'isite::common.settingGroups.customSources',
-    'columns' => 'col-12 col-md-12',
+    'colClass' => 'col-12 col-md-12',
     'props' => [
       'label' => 'isite::common.settings.customCss',
       'type' => 'textarea',
@@ -598,7 +598,7 @@ return [
     'type' => 'input',
     'groupName' => 'customSources',
     'groupTitle' => 'isite::common.settingGroups.customSources',
-    'columns' => 'col-12 col-md-12',
+    'colClass' => 'col-12 col-md-12',
     'props' => [
       'label' => 'isite::common.settings.customJs',
       'type' => 'textarea',
@@ -646,7 +646,7 @@ return [
     'groupName' => 'pdf',
     'groupTitle' => 'isite::pdf.settings.pdf.group',
     'type' => 'select',
-    'columns' => 'col-6',
+    'colClass' => 'col-6',
     'props' => [
       'label' => 'isite::pdf.settings.pdf.text.Logo_header',
       'useInput' => false,
