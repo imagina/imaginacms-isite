@@ -54,7 +54,7 @@ class IsiteServiceProvider extends ServiceProvider
             $app['config']['captcha.options']
         );
     });
-  
+
     BelongsToTenant::$tenantIdColumn = 'organization_id';
   }
 
@@ -94,27 +94,44 @@ class IsiteServiceProvider extends ServiceProvider
       'Modules\Isite\Repositories\RecommendationRepository',
       function () {
         $repository = new \Modules\Isite\Repositories\Eloquent\EloquentRecommendationRepository(new \Modules\Isite\Entities\Recommendation());
-      
+
         if (!config('app.cache')) {
           return $repository;
         }
-      
+
         return new \Modules\Isite\Repositories\Cache\CacheRecommendationDecorator($repository);
       }
     );
-  
+
     $this->app->bind(
       'Modules\Isite\Repositories\OrganizationRepository',
       function () {
         $repository = new \Modules\Isite\Repositories\Eloquent\EloquentOrganizationRepository(new \Modules\Isite\Entities\Organization());
-      
+
         if (!config('app.cache')) {
           return $repository;
         }
-      
+
         return new \Modules\Isite\Repositories\Cache\CacheOrganizationDecorator($repository);
       }
     );
+
+    $this->app->bind(
+      'Modules\Isite\Repositories\IcrudRepository',
+      function () {
+          $repository = new \Modules\Isite\Repositories\Eloquent\EloquentIcrudRepository(new \Modules\Isite\Entities\Icrud());
+
+          if (! config('app.cache')) {
+              return $repository;
+          }
+
+          return new \Modules\Isite\Repositories\Cache\CacheIcrudDecorator($repository);
+      }
+    );
+// add bindings
+
+
+
 
   }
 

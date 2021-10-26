@@ -32,4 +32,13 @@ return [
     'edit' => 'isite::organizations.edit resource',
     'create' => 'isite::organizations.create resource',
   ],
+  'isite.icruds' => [
+    'manage' => 'isite::icruds.manage resource',
+    'index' => 'isite::icruds.list resource',
+    'create' => 'isite::icruds.create resource',
+    'edit' => 'isite::icruds.edit resource',
+    'destroy' => 'isite::icruds.destroy resource',
+    'restore' => 'isite::icruds.restore resource',
+  ],
+// append
 ];
