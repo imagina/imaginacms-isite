@@ -38,9 +38,7 @@
     
       function emit_{{$name}}(itemId,itemUrl){
         var configEmit =  {!! $emitTo ? 'true' : 'false' !!};
-        console.warn("adsadasdasd12312321")
         if(configEmit){
-          console.warn("adsadasdasd")
           window.livewire.emit('updateItemSelected',itemId)
         }else{
           window.location.href = itemUrl

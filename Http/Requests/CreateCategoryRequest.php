@@ -4,13 +4,11 @@ namespace Modules\Isite\Http\Requests;
 
 use Modules\Core\Internationalisation\BaseFormRequest;
 
-class CreateOrganizationRequest extends BaseFormRequest
+class CreateCategoryRequest extends BaseFormRequest
 {
     public function rules()
     {
-        return [
-          'title' => 'required|min:2',
-        ];
+        return [];
     }
 
     public function translationRules()
@@ -32,4 +30,9 @@ class CreateOrganizationRequest extends BaseFormRequest
     {
         return [];
     }
+
+    public function getValidator(){
+        return $this->getValidatorInstance();
+    }
+    
 }

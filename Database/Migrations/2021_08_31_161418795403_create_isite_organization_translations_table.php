@@ -23,7 +23,6 @@ class CreateIsiteOrganizationTranslationsTable extends Migration
       $table->string('meta_title')->nullable();
       $table->string('meta_description')->nullable();
       $table->text('translatable_options')->nullable();
-      
       $table->integer('organization_id')->unsigned();
       $table->string('locale')->index();
       $table->unique(['organization_id', 'locale']);

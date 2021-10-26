@@ -25,6 +25,7 @@ class Organization extends BaseTenant
     'user_id',
     'featured',
     'permissions',
+    'category_id',
     'status',
     'sort_order'
   ];

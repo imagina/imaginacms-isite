@@ -30,7 +30,7 @@ if (!function_exists('alternate')) {
 
 if (!function_exists('getEditLink')) {
   
-  function getEditLink($repository)
+  function getEditLink($repository = null, $componentName = null)
   {
   
     switch ($repository) {
@@ -63,8 +63,12 @@ if (!function_exists('getEditLink')) {
         $tooltipEditLink = trans("isite::common.editLink.tooltipPlace");
         break;
         default:
-        $editLink = "/iadmin/#/";
-        $tooltipEditLink = "";
+          switch ($componentName) {
+            case 'logo':
+              $editLink = "/iadmin/#/iplaces/places/index?edit=";
+              $tooltipEditLink = trans("isite::common.editLink.tooltipPlace");
+              break;
+          }
         break;
     }
     

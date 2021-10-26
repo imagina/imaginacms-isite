@@ -17,6 +17,7 @@ class CreateOrganizationByRole
   {
     try {
       $user = $event->user;
+      $data = $event->bindings;
   
       $roles = $user->roles;
       

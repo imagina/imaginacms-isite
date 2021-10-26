@@ -22,6 +22,13 @@ $router->group(['prefix' => '/isite/v1'], function (Router $router) {
     'controller' => 'OrganizationApiController',
     'middleware' => []
   ]);
+  
+  $router->apiCrud([
+    'module' => 'isite',
+    'prefix' => 'categories',
+    'controller' => 'CategoryApiController',
+    'middleware' => ['index' => []]
+  ]);
   $router->apiCrud([
     'module' => 'isite',
     'prefix' => 'icruds',

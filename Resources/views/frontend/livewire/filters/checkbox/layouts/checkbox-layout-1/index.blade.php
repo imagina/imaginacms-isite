@@ -35,7 +35,7 @@
 					  			<div class="form-check">
 							  		<input class="form-check-input" type="checkbox" value="{{$option->id}}" name="{{$name}}{{$option->id}}" id="{{$name}}{{$option->id}}"  wire:model="selectedOptions">
 								  	<label class="form-check-label" for="{{$name}}{{$option->id}}">
-								    	{{$option->name}}
+								    	{{$option->name ?? $option->title}}
 								  	</label>
 								</div>
 							@endforeach
