@@ -17,7 +17,7 @@ class CreateIsiteOrganizationTranslationsTable extends Migration
       $table->increments('id');
       // Your translatable fields
       
-      $table->text('title')->nullable();
+      $table->string('title')->nullable();
       $table->string('slug')->nullable();
       $table->text('description')->nullable();
       $table->string('meta_title')->nullable();
