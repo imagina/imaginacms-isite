@@ -17,7 +17,10 @@ class AddCategoryIdInOrganizationTable extends Migration
       
       $table->integer('category_id')->unsigned()->nullable();
       $table->foreign('category_id')->references('id')->on('isite__categories')->onDelete('restrict');
-  
+
+    });
+    Schema::table('isite__organization_translations', function (Blueprint $table) {
+      
       $table->unique(['title']);
       $table->unique(['slug']);
     });
