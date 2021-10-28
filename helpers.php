@@ -34,6 +34,10 @@ if (!function_exists('getEditLink')) {
   {
   
     switch ($repository) {
+      case 'Modules\Iad\Repositories\AdRepository':
+        $editLink = "/iadmin/#/ad/ads/update/";
+        $tooltipEditLink = trans("isite::common.editLink.tooltipAd");
+        break;
       case 'Modules\Icommerce\Repositories\ProductRepository':
         $editLink = "/iadmin/#/ecommerce/products?edit=";
         $tooltipEditLink = trans("isite::common.editLink.tooltipProduct");
@@ -55,7 +59,6 @@ if (!function_exists('getEditLink')) {
         $tooltipEditLink = trans("isite::common.editLink.tooltipCategory");
         break;
       case 'Modules\Slider\Repositories\SlideRepository':
-      case 'Modules\Slider\Repositories\SlideApiRepository':
         $editLink = "/iadmin/#/slider/show/";
         $tooltipEditLink = trans("isite::common.editLink.tooltipSlide");
         break;
@@ -67,8 +70,13 @@ if (!function_exists('getEditLink')) {
           switch ($componentName) {
             case 'logo':
               $editLink = "/iadmin/#/iplaces/places/index?edit=";
-              $tooltipEditLink = trans("isite::common.editLink.tooltipPlace");
+              $tooltipEditLink = trans("isite::common.editLink.tooltipLogo");
               break;
+              
+            default:
+              $editLink = "/iadmin/#";
+              $tooltipEditLink = trans("isite::common.editLink.tooltip");
+              breaK;
           }
         break;
     }

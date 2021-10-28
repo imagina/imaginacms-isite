@@ -89,7 +89,9 @@ return [
     'tooltipWhatsapp' => 'Edit whatsapp',
     'tooltipAddress' => 'Edit address',
     'tooltipEmail' => 'Edit Email',
-    'tooltipPhone' => 'Edit Phone'
+    'tooltipPhone' => 'Edit Phone',
+    'tooltipLogo' => 'Edit Logo',
+    'tooltipAd' => 'Editar Ad',
   ],
   'maps' => [
     'groupMaps' => 'Maps',

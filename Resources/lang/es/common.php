@@ -94,7 +94,9 @@ return [
     'tooltipWhatsapp' => 'Editar whatsapp',
     'tooltipAddress' => 'Editar direccion',
     'tooltipEmail' => 'Editar correo electronico',
-    'tooltipPhone' => 'Editar telefono'
+    'tooltipPhone' => 'Editar telefono',
+    'tooltipLogo' => 'Editar este logo',
+    'tooltipAd' => 'Editar este anuncio',
   ],
   'maps' => [
     'groupMaps' => 'Mapas',
