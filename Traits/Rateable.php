@@ -34,26 +34,7 @@ trait Rateable
         return $this->ratings()->count();
     }
 
-
-    /**
-     * CALCULATES - Attributes
-     */
-    public function getAverageRatingAttribute()
-    {
-        return $this->averageRating();
-    }
-
-    public function getSumRatingAttribute()
-    {
-        return $this->sumRating();
-    }
-
-    public function getTimesRatedAttribute()
-    {
-        return $this->timesRated();
-    }
-
-    public function getMaxValueRatedAttribute()
+    public function maxValueRated()
     {
         return $this->ratings()->max('rating');
     }
