@@ -4,7 +4,7 @@ namespace Modules\Isite\Transformers;
 
 use Modules\Core\Icrud\Transformers\CrudResource;
 
-class OrganizationTransformer extends CrudResource
+class DomainTransformer extends CrudResource
 {
   /**
   * Method to merge values with response
@@ -13,9 +13,6 @@ class OrganizationTransformer extends CrudResource
   */
   public function modelAttributes($request)
   {
-
-    return [
-      "url" => $this->url
-    ];
+    return [];
   }
 }

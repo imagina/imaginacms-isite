@@ -39,6 +39,7 @@ return [
     'customCss' => 'CSS Personalizado para el Body',
     'customJs' => 'JS Personalizado para el Body',
     'headerCustomJs' => 'JS Personalizado para el Head',
+    'tenantRouteAlias' => 'Alias de la ruta de aterrizaje para los Inquilinos',
     "whatsapp" => [
       "callingCode" => "Cód del país",
       "number" => "Número del whatsapp",
@@ -62,6 +63,7 @@ return [
     'apiKeys' => "Llaves API",
     'contact' => 'Contacto',
     'customSources' => 'Fuentes Personalizadas',
+    'tenants' => 'Inquilinos',
   ],
   'messages' => [
     'no items' => 'No existe información disponible'

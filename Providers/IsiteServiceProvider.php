@@ -163,7 +163,20 @@ class IsiteServiceProvider extends ServiceProvider
           return new \Modules\Isite\Repositories\Cache\CacheIcrudDecorator($repository);
       }
     );
+        $this->app->bind(
+            'Modules\Isite\Repositories\DomainRepository',
+            function () {
+                $repository = new \Modules\Isite\Repositories\Eloquent\EloquentDomainRepository(new \Modules\Isite\Entities\Domain());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Isite\Repositories\Cache\CacheDomainDecorator($repository);
+            }
+        );
 // add bindings
+
 
 
 

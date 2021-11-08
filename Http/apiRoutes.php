@@ -20,7 +20,6 @@ $router->group(['prefix' => '/isite/v1'], function (Router $router) {
     'module' => 'isite',
     'prefix' => 'organizations',
     'controller' => 'OrganizationApiController',
-    'middleware' => []
   ]);
   
   $router->apiCrud([
@@ -35,6 +34,13 @@ $router->group(['prefix' => '/isite/v1'], function (Router $router) {
     'controller' => 'IcrudApiController',
     'middleware' => ['create' => [], 'index' => [], 'show' => [], 'update' => [], 'delete' => [], 'restore' => []]
   ]);
+    $router->apiCrud([
+      'module' => 'isite',
+      'prefix' => 'domains',
+      'controller' => 'DomainApiController',
+      //'middleware' => ['create' => [], 'index' => [], 'show' => [], 'update' => [], 'delete' => [], 'restore' => []]
+    ]);
 // append
+
 
 });

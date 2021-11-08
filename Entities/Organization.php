@@ -4,11 +4,13 @@ namespace Modules\Isite\Entities;
 
 use Astrotomic\Translatable\Translatable;
 use Stancl\Tenancy\Database\Models\Tenant as BaseTenant;
+use Stancl\Tenancy\Database\Concerns\HasDomains;
 use Modules\Core\Support\Traits\AuditTrait;
+use Illuminate\Support\Str;
 
 class Organization extends BaseTenant
 {
-  use AuditTrait,Translatable;
+  use AuditTrait,Translatable, HasDomains;
   
   protected $table = 'isite__organizations';
   
@@ -31,7 +33,7 @@ class Organization extends BaseTenant
   ];
   
   protected $casts = [
-    'options' => 'array'
+    'options' => 'array',
   ];
   
   
@@ -44,6 +46,7 @@ class Organization extends BaseTenant
       'permissions',
       'status',
       'sort_order',
+      'category_id',
       'created_by',
       'updated_by',
       'deleted_by',
@@ -53,6 +56,30 @@ class Organization extends BaseTenant
   public function getIncrementing()
 {
     return true;
+  }
+  
+  public function category()
+{
+    return $this->belognsTo(Category::class);
+  }
+  
+  public function domains()
+  {
+    return $this->hasMany(Domain::class);
+  }
+  
+  public function getUrlAttribute()
+  {
+   
+    $currentLocale = \LaravelLocalization::getCurrentLocale();
+    
+    $slug = $this->domains->first()->domain ?? $this->slug;
+    
+    if($slug)
+      return tenant_route($slug.".".(Str::remove('https://', env('APP_URL', 'localhost'))), $currentLocale. '.organization.index', [$this->slug]);
+    else
+      return "";
+    
   }
   
   public function users()

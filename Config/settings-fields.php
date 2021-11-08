@@ -702,6 +702,8 @@ return [
     'name' => 'isite::rolesToTenant',
     'value' => [],
     'type' => 'select',
+    'groupName' => 'tenants',
+    'groupTitle' => 'isite::common.settingGroups.tenants',
     'props' => [
       'label' => 'isite::common.settings.rolesToTenant',
       'multiple' => true,
@@ -712,6 +714,19 @@ return [
       'select' => ['label' => 'name', 'id' => 'id']
     ]
   ],
+  
+  //Tenant route alias
+  'tenantRouteAlias' => [
+    'value' => "",
+    'name' => 'isite::tenantRouteAlias',
+    'type' => 'input',
+    'groupName' => 'tenants',
+    'groupTitle' => 'isite::common.settingGroups.tenants',
+    'props' => [
+      'label' => 'isite::common.settings.tenantRouteAlias'
+    ]
+  ],
+  
   'mapInShow' => [
     "onlySuperAdmin" => true,
     'value' => 'openStreet',

@@ -2,24 +2,23 @@
 
 namespace Modules\Isite\Repositories\Eloquent;
 
-use Modules\Isite\Repositories\OrganizationRepository;
+use Modules\Isite\Repositories\DomainRepository;
 use Modules\Core\Icrud\Repositories\Eloquent\EloquentCrudRepository;
 
-class EloquentOrganizationRepository extends EloquentCrudRepository implements OrganizationRepository
+class EloquentDomainRepository extends EloquentCrudRepository implements DomainRepository
 {
-  
   /**
    * Filter names to replace
    * @var array
    */
   protected $replaceFilters = [];
-  
+
   /**
    * Relation names to replace
    * @var array
    */
   protected $replaceSyncModelRelations = [];
-  
+
   /**
    * Filter query
    *
@@ -29,7 +28,7 @@ class EloquentOrganizationRepository extends EloquentCrudRepository implements O
    */
   public function filterQuery($query, $filter)
   {
-    
+
     /**
      * Note: Add filter name to replaceFilters attribute before replace it
      *
@@ -37,11 +36,11 @@ class EloquentOrganizationRepository extends EloquentCrudRepository implements O
      * if (isset($filter->status)) $query->where('status', $filter->status);
      *
      */
-    
+
     //Response
     return $query;
   }
-  
+
   /**
    * Method to sync Model Relations
    *
@@ -52,7 +51,7 @@ class EloquentOrganizationRepository extends EloquentCrudRepository implements O
   {
     //Get model relations data from attribute of model
     $modelRelationsData = ($model->modelRelations ?? []);
-    
+
     /**
      * Note: Add relation name to replaceSyncModelRelations attribute before replace it
      *
@@ -62,9 +61,8 @@ class EloquentOrganizationRepository extends EloquentCrudRepository implements O
      * }
      *
      */
-    
+
     //Response
     return $model;
   }
-
 }

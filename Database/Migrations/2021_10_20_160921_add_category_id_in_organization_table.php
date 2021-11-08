@@ -15,7 +15,7 @@ class AddCategoryIdInOrganizationTable extends Migration
   {
     Schema::table('isite__organizations', function (Blueprint $table) {
       
-      $table->integer('category_id')->unsigned()->nullable();
+      $table->integer('category_id')->unsigned()->nullable()->after("data");
       $table->foreign('category_id')->references('id')->on('isite__categories')->onDelete('restrict');
 
     });

@@ -38,6 +38,7 @@ return [
     'customCss' => 'Custom Body CSS',
     'customJs' => 'Custom Body JS',
     'headerCustomJs' => 'Custom Head JS',
+    'tenantRouteAlias' => 'Route Alias to the tenant lading page',
     "whatsapp" =>[
         "callingCode" => "CountryCode",
         "number" => "Whatsapp number",
@@ -62,6 +63,7 @@ return [
     'apiKeys' => "API Keys",
     'contact' => 'Contact',
     'customSources' => 'Custom Sources',
+    'tenants' => 'Tenants',
   ],
   'messages' => [
     'no items' => 'Not Information available'
