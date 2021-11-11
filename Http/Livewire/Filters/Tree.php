@@ -145,15 +145,14 @@ class Tree extends Component
   
     $params = json_decode(json_encode([
       "include" => ['translations'],
-      "take" => 0,
+      "take" => null,
       "filter" => $this->params["filter"] ?? []
     ]));
 
    $this->refreshBreadcrumb();
     
     $this->items = $this->getRepository()->{$this->repoMethod}($params);
-  
- 
+    
   
     // Reorganize collection by the 'mode' config
     if (isset($this->itemSelected->id) && $this->renderMode) {
