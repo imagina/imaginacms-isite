@@ -9,10 +9,12 @@ use Modules\Core\Support\Traits\AuditTrait;
 use Illuminate\Support\Str;
 use Modules\Media\Support\Traits\MediaRelation;
 use Modules\Ischedulable\Support\Traits\Schedulable;
+use Modules\Core\Icrud\Traits\hasEventsWithBindings;
+use Modules\Ifillable\Traits\isFillable;
 
 class Organization extends BaseTenant
 {
-  use AuditTrait, Translatable, HasDomains, MediaRelation, Schedulable;
+  use AuditTrait, Translatable, HasDomains, MediaRelation, Schedulable, hasEventsWithBindings, isFillable;
 
   public $transformer = 'Modules\Isite\Transformers\OrganizationTransformer';
   public $requestValidation = [
