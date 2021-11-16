@@ -8,10 +8,13 @@ use Stancl\Tenancy\Database\Concerns\HasDomains;
 use Modules\Core\Support\Traits\AuditTrait;
 use Illuminate\Support\Str;
 use Modules\Media\Support\Traits\MediaRelation;
+use Modules\Ischedulable\Support\Traits\Schedulable;
+use Modules\Core\Icrud\Traits\hasEventsWithBindings;
+use Modules\Ifillable\Traits\isFillable;
 
 class Organization extends BaseTenant
 {
-  use AuditTrait,Translatable,MediaRelation, HasDomains;
+  use AuditTrait, Translatable, HasDomains, MediaRelation, Schedulable, hasEventsWithBindings, isFillable;
 
   public $transformer = 'Modules\Isite\Transformers\OrganizationTransformer';
   public $requestValidation = [
@@ -58,12 +61,12 @@ class Organization extends BaseTenant
   }
 
   public function getIncrementing()
-{
+  {
     return true;
   }
 
   public function category()
-{
+  {
     return $this->belognsTo(Category::class);
   }
 
@@ -79,8 +82,8 @@ class Organization extends BaseTenant
 
     $slug = $this->domains->first()->domain ?? $this->slug;
 
-    if($slug)
-      return tenant_route($slug.".".(Str::remove('https://', env('APP_URL', 'localhost'))), $currentLocale. '.organization.index', [$this->slug]);
+    if ($slug)
+      return tenant_route($slug . "." . (Str::remove('https://', env('APP_URL', 'localhost'))), $currentLocale . '.organization.index', [$this->slug]);
     else
       return "";
 
