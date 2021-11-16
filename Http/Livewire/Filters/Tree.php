@@ -35,6 +35,7 @@ class Tree extends Component
   public $items;
   public $configs;
   public $itemSelected;
+  public $initElements;
   
   public $extraParamsUrl;
   
@@ -60,7 +61,7 @@ class Tree extends Component
     $this->classes = $classes;
     $this->renderMode = $renderMode;
     $this->params = $params;
- 
+    $this->initElements = [];
     
     $this->breadcrumb = $breadcrumb ?? [];
     $this->extraParamsUrl = "";
@@ -74,6 +75,7 @@ class Tree extends Component
     
     $this->initConfigs();
     
+
     if(empty($this->listener)){
       $this->getData($this->params);
     }
@@ -125,6 +127,19 @@ class Tree extends Component
     return $listener;
   }
   
+  private function initializeInitElements(){
+    foreach ($this->items as $itemX){
+      $founded = false;
+      foreach ( $this->items as $itemY){
+        if($itemX->parent_id == $itemY->id)
+          $founded = true;
+      }
+      if(!$founded){
+        array_push($this->initElements,$itemX->id);
+      }
+    }
+  }
+  
   private function getRepository()
   {
     return app($this->repository);
@@ -152,8 +167,8 @@ class Tree extends Component
    $this->refreshBreadcrumb();
     
     $this->items = $this->getRepository()->{$this->repoMethod}($params);
-    
-  
+
+
     // Reorganize collection by the 'mode' config
     if (isset($this->itemSelected->id) && $this->renderMode) {
       switch ($this->renderMode) {
@@ -171,7 +186,11 @@ class Tree extends Component
           break;
       }
     }
-    
+  
+    //funcion para sacar los elementos cuyo padre no exista en la coleccion
+    // con eso se sabe a partir de qué nodos debe arrancar el arbol a renderizarse
+    $this->initializeInitElements();
+
   }
   
   public function render()

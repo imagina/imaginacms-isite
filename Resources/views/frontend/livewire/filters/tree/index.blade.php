@@ -18,7 +18,7 @@
           <div class="list-categories">
             <ul class="list-group list-group-flush">
             
-            @foreach($items->where("parent_id",0) as $item)
+            @foreach($items->whereIn("id",$initElements) as $item)
                 @include('isite::frontend.livewire.filters.tree.single-item',["level" => 0,"item" => $item,"itemId" => $item->id])
               @endforeach
             
@@ -39,6 +39,7 @@
       function emit_{{$name}}(itemId,itemUrl){
         var configEmit =  {!! $emitTo ? 'true' : 'false' !!};
         if(configEmit){
+          preventDefault();
           window.livewire.emit('updateItemSelected',itemId)
         }else{
           window.location.href = itemUrl

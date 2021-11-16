@@ -19,7 +19,7 @@
 	
 	@if($children->isNotEmpty())
 		<div class="link-desktop d-none d-md-block {{$isSelected && $children ? 'font-weight-bold' : ''}}">
-			<a data-href="{{$item->url}}" style="cursor: pointer" onclick="emit_{{$name}}({{$item->id}},'{{$item->url}}')" class="{{$name}}-link text-href ">
+			<a href="{{$item->url}}" style="cursor: pointer" onclick="event.preventDefault(); emit_{{$name}}({{$item->id}},'{{$item->url}}')" class="{{$name}}-link text-href ">
 				@php($mediaFiles = $item->mediaFiles())
 				@if($withIcon)
 					<img class="item-icon filter" src="{{$mediaFiles->iconimage->path}}">
@@ -42,7 +42,7 @@
 				@endif
 				<span class="{{$withIcon ? 'span-with-icon' : 'span-without-icon'}}" title="{{$item->title}}">{{$item->title}}</span>
 			</a>
-			<a data-href="{{$item->url}}" style="cursor: pointer" onclick="emit_{{$name}}({{$item->id}},'{{$item->url}}')" class="{{$name}}-link icon-href float-right">
+			<a href="{{$item->url}}" style="cursor: pointer" onclick="event.preventDefault(); emit_{{$name}}({{$item->id}},'{{$item->url}}')" class="{{$name}}-link icon-href float-right">
 				<i class="fa fa-external-link"></i>
 			</a>
 		</div>
@@ -54,7 +54,7 @@
 			</ul>
 		</div>
 	@else
-		<a  data-href="{{$item->url}}" style="cursor: pointer" onclick="emit_{{$name}}({{$item->id}},'{{$item->url}}')" class="{{$name}}-link link-childless d-block {{$isSelected && $children->isEmpty() ? 'font-weight-bold' : ''}}">
+		<a  href="{{$item->url}}" style="cursor: pointer" onclick="event.preventDefault(); emit_{{$name}}({{$item->id}},'{{$item->url}}')" class="{{$name}}-link link-childless d-block {{$isSelected && $children->isEmpty() ? 'font-weight-bold' : ''}}">
 			@php($mediaFiles = $item->mediaFiles())
 			@if(isset($mediaFiles->iconimage->path) && !strpos($mediaFiles->iconimage->path,"default.jpg"))
 				<img class="item-icon filter" src="{{$mediaFiles->iconimage->path}}">

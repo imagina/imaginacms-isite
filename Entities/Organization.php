@@ -7,10 +7,11 @@ use Stancl\Tenancy\Database\Models\Tenant as BaseTenant;
 use Stancl\Tenancy\Database\Concerns\HasDomains;
 use Modules\Core\Support\Traits\AuditTrait;
 use Illuminate\Support\Str;
+use Modules\Media\Support\Traits\MediaRelation;
 
 class Organization extends BaseTenant
 {
-  use AuditTrait,Translatable, HasDomains;
+  use AuditTrait,Translatable,MediaRelation, HasDomains;
 
   public $transformer = 'Modules\Isite\Transformers\OrganizationTransformer';
   public $requestValidation = [
