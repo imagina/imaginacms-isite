@@ -64,6 +64,7 @@ return [
     'contact' => 'Contacto',
     'customSources' => 'Fuentes Personalizadas',
     'tenants' => 'Inquilinos',
+    'modalVerifier' => 'Modal Verificador',
   ],
   'messages' => [
     'no items' => 'No existe información disponible'

@@ -742,4 +742,50 @@ return [
       ]
     ]
   ],
+  
+  'statusModalVerifier' => [
+    'value' => '0',
+    'name' => 'isite::statusModalVerifier',
+    'type' => 'checkbox',
+    'groupName' => 'modalVerifier',
+    'groupTitle' => 'isite::common.settingGroups.modalVerifier',
+    'props' => [
+      'trueValue' => "1",
+      'falseValue' => "0",
+      'label' => 'isite::isite.verifier.active'
+    ]
+  ],
+  'titleModalVerifier' => [
+    'value' => '',
+    'name' => 'isite::titleModalVerifier',
+    'type' => 'input',
+    'colClass' => "col-12",
+    'groupName' => 'modalVerifier',
+    'groupTitle' => 'isite::common.settingGroups.modalVerifier',
+    'props' => [
+      'label' => 'isite::isite.verifier.title'
+    ]
+  ],
+  'contentModalVerifier' => [
+    'value' => '',
+    'name' => 'isite::contentModalVerifier',
+    'type' => 'html',
+    'colClass' => "col-12",
+    'groupName' => 'modalVerifier',
+    'groupTitle' => 'isite::common.settingGroups.modalVerifier',
+    'props' => [
+      'label' => 'isite::isite.verifier.content'
+    ]
+  ],
+  'buttonLabelModalVerifier' => [
+    'value' => '',
+    'name' => 'isite::buttonLabelModalVerifier',
+    'type' => 'input',
+    'colClass' => "col-12",
+    'groupName' => 'modalVerifier',
+    'groupTitle' => 'isite::common.settingGroups.modalVerifier',
+    'props' => [
+      'label' => 'isite::isite.verifier.buttonLabel'
+    ]
+  ],
 ];

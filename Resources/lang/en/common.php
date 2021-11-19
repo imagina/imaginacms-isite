@@ -64,6 +64,7 @@ return [
     'contact' => 'Contact',
     'customSources' => 'Custom Sources',
     'tenants' => 'Tenants',
+    'modalVerifier' => 'Verifier Modal',
   ],
   'messages' => [
     'no items' => 'Not Information available'

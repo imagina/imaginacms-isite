@@ -87,7 +87,6 @@ class OwlCarousel extends Component
   private function getItems()
   {
 
-
     $this->items = app($this->repository)->getItemsBy(json_decode(json_encode($this->makeParamsFunction())));
 
     switch ($this->repository) {
