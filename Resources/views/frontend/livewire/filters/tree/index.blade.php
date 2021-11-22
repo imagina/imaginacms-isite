@@ -44,7 +44,7 @@ $isSelected = !empty($itemSelected) ? $itemSelected->id == $item->id ? true : fa
               ?>
 
                 <span class="<?=$withIcon ? 'span-with-icon' : 'span-without-icon'?>"
-                      title="<?=$item->title?>"><?=$item->title?>-<?=$item->id?></span>
+                      title="<?=$item->title?>"><?=$item->title?></span>
             </a>
             <a class="icon-collapsable" data-toggle="collapse" role="button"
                href="#multiCollapse-<?=$slug?>" aria-expanded="<?=$expanded ? 'true' : 'false'?>"
@@ -65,7 +65,7 @@ $isSelected = !empty($itemSelected) ? $itemSelected->id == $item->id ? true : fa
               }
               ?>
                 <span class="<?=$withIcon ? 'span-with-icon' : 'span-without-icon'?>"
-                      title="<?=$item->title?>"><?=$item->title?>-<?=$item->id?></span>
+                      title="<?=$item->title?>"><?=$item->title?></span>
             </a>
             <a href="<?=$item->url?>" style="cursor: pointer"
                onclick="event.preventDefault(); emit_<?=$name?>(<?=$item->id?>,'<?=$item->url?>')"
@@ -96,7 +96,7 @@ $isSelected = !empty($itemSelected) ? $itemSelected->id == $item->id ? true : fa
           <?php
           }
           ?>
-            <span title="<?=$item->title?>"><?=$item->title?>-<?=$item->id?></span>
+            <span title="<?=$item->title?>"><?=$item->title?></span>
         </a>
   <?php
     }
