@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Blade;
 use Livewire\Livewire;
 use Modules\Isite\Http\Middleware\InitializeOrganizationByRequestDataMiddleware;
 use Stancl\Tenancy\Database\Concerns\BelongsToTenant;
-<<<<<<< HEAD
+use Modules\Isite\View\Components\Multilang;
+use Modules\Isite\View\Components\Categorylist;
 
-=======
->>>>>>> dbe0ed0ec1e4f6838820f9f2d58f67432fdb619d
+
 
 class IsiteServiceProvider extends ServiceProvider
 {
