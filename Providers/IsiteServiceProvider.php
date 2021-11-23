@@ -12,9 +12,12 @@ use Modules\Isite\Events\Handlers\RegisterIsiteSidebar;
 use Modules\Isite\Http\Middleware\CaptchaMiddleware;
 use Illuminate\Support\Facades\Blade;
 use Livewire\Livewire;
+use Modules\Isite\Http\Middleware\InitializeOrganizationByRequestDataMiddleware;
 use Stancl\Tenancy\Database\Concerns\BelongsToTenant;
-use Modules\Isite\View\Components\Multilang;
-use Modules\Isite\View\Components\Categorylist;
+<<<<<<< HEAD
+
+=======
+>>>>>>> dbe0ed0ec1e4f6838820f9f2d58f67432fdb619d
 
 class IsiteServiceProvider extends ServiceProvider
 {
@@ -55,7 +58,7 @@ class IsiteServiceProvider extends ServiceProvider
             $app['config']['captcha.options']
         );
     });
-  
+    
     BelongsToTenant::$tenantIdColumn = 'organization_id';
   }
 
@@ -63,13 +66,14 @@ class IsiteServiceProvider extends ServiceProvider
   {
     $this->registerMiddleware();
     $this->publishConfig('isite', 'config');
-    $this->publishConfig('isite', 'permissions');
-    $this->publishConfig('isite', 'settings');
-    $this->publishConfig('isite', 'settings-fields');
+    $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'settings'), "asgard.isite.settings");
+    $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'settings-fields'), "asgard.isite.settings-fields");
+    $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'permissions'), "asgard.isite.permissions");
+    $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'deprecated-settings'), "asgard.isite.deprecated-settings");
     $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
     $app = $this->app;
-
+    
     $this->app['validator']->extend('icaptcha', function ($attribute, $value) use ($app) {
           return $app['icaptcha']->verifyResponse($value, $app['request']->getClientIp());
     });
@@ -115,6 +119,71 @@ class IsiteServiceProvider extends ServiceProvider
         return new \Modules\Isite\Repositories\Cache\CacheOrganizationDecorator($repository);
       }
     );
+    $this->app->bind(
+      'Modules\Isite\Repositories\OrganizationRepository',
+      function () {
+        $repository = new \Modules\Isite\Repositories\Eloquent\EloquentOrganizationRepository(new \Modules\Isite\Entities\Organization());
+      
+        if (!config('app.cache')) {
+          return $repository;
+        }
+      
+        return new \Modules\Isite\Repositories\Cache\CacheOrganizationDecorator($repository);
+      }
+    );
+    $this->app->bind(
+      'Modules\Isite\Repositories\OrganizationFieldRepository',
+      function () {
+        $repository = new \Modules\Isite\Repositories\Eloquent\EloquentOrganizationFieldRepository(new \Modules\Isite\Entities\OrganizationField());
+      
+        if (!config('app.cache')) {
+          return $repository;
+        }
+      
+        return new \Modules\Isite\Repositories\Cache\CacheOrganizationFieldDecorator($repository);
+      }
+    );
+    $this->app->bind(
+      'Modules\Isite\Repositories\CategoryRepository',
+      function () {
+        $repository = new \Modules\Isite\Repositories\Eloquent\EloquentCategoryRepository(new \Modules\Isite\Entities\Category());
+      
+        if (!config('app.cache')) {
+          return $repository;
+        }
+      
+        return new \Modules\Isite\Repositories\Cache\CacheCategoryDecorator($repository);
+      }
+    );
+    $this->app->bind(
+      'Modules\Isite\Repositories\IcrudRepository',
+      function () {
+          $repository = new \Modules\Isite\Repositories\Eloquent\EloquentIcrudRepository(new \Modules\Isite\Entities\Icrud());
+
+          if (! config('app.cache')) {
+              return $repository;
+          }
+
+          return new \Modules\Isite\Repositories\Cache\CacheIcrudDecorator($repository);
+      }
+    );
+        $this->app->bind(
+            'Modules\Isite\Repositories\DomainRepository',
+            function () {
+                $repository = new \Modules\Isite\Repositories\Eloquent\EloquentDomainRepository(new \Modules\Isite\Entities\Domain());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Isite\Repositories\Cache\CacheDomainDecorator($repository);
+            }
+        );
+// add bindings
+
+
+
+
 
   }
 

@@ -21,7 +21,7 @@ return [
  |--------------------------------------------------------------------------
  | Default orderBy config to the items List Livewire component
  */
-  'orderBy' =>[
+  'orderBy' => [
     'default' => 'recently',
     'options' => [
       'nameaz' => [
@@ -81,6 +81,17 @@ return [
     ]
   ],
   
-
   
+  /*
+  |--------------------------------------------------------------------------
+  | Define config to the mediaFillable trait for each entity
+  |--------------------------------------------------------------------------
+  */
+  "mediaFillable" => [
+    'organization' => [
+      'mainimage' => 'single',
+      'secondaryimage' => 'single',
+      'gallery' => 'multiple',
+    ],
+  ]
 ];

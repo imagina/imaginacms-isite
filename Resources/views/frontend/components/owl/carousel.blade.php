@@ -54,6 +54,7 @@
         autoplay: {!! $autoplay ? 'true' : 'false' !!},
         autoplayHoverPause: {!! $autoplayHoverPause ? 'true' : 'false' !!},
         nav: {!! $nav ? 'true' : 'false' !!},
+        center: {!! $center ? 'true' : 'false' !!},
         responsive: {!! $responsive!!}
       });
       

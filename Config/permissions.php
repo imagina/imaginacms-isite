@@ -26,10 +26,29 @@ return [
     'manage' => 'isite::edit-link.manage',
   ],
   'isite.organizations' => [
+    'manageee' => 'isite::organizations.manage',
     'manage' => 'isite::organizations.manage',
     'index' => 'isite::organizations.list resource',
     'index-all' => 'isite::organizations.list resource',
     'edit' => 'isite::organizations.edit resource',
     'create' => 'isite::organizations.create resource',
   ],
+  'isite.icruds' => [
+    'manage' => 'isite::icruds.manage resource',
+    'index' => 'isite::icruds.list resource',
+    'create' => 'isite::icruds.create resource',
+    'edit' => 'isite::icruds.edit resource',
+    'destroy' => 'isite::icruds.destroy resource',
+    'restore' => 'isite::icruds.restore resource',
+  ],
+    'isite.domains' => [
+        'manage' => 'isite::domains.manage resource',
+        'index' => 'isite::domains.list resource',
+        'create' => 'isite::domains.create resource',
+        'edit' => 'isite::domains.edit resource',
+        'destroy' => 'isite::domains.destroy resource',
+        'restore' => 'isite::domains.restore resource',
+    ],
+// append
+
 ];

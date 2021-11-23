@@ -27,6 +27,7 @@ return [
   'validation' => [
   ],
   'settings' => [
-    'apimaps' => 'Api Code Maps'
+    'apimaps' => 'Api Code Maps',
+    'appVersion' => 'Versión de la aplicación',
   ]
 ];

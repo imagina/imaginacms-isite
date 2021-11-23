@@ -20,6 +20,22 @@ class PublicController extends BaseApiController
     parent::__construct();
   }
 
+  public function organizationIndex(Request $request,$subDomain){
+  
+    $locale = \LaravelLocalization::setLocale() ?: \App::getLocale();
+
+    $routeAlias = setting("isite::tenantRouteAlias",null,null);
+    
+    if(isset(tenant()->id) && $routeAlias){
+      if(tenant()->status){
+        return redirect(tenant_route($request->getHost(), $locale . '.'.$routeAlias));
+      }
+    }
+    
+    return redirect()->route("homepage");
+    
+  }
+  
   public function header(){
     return view('isite::frontend.header');
   }

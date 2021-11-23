@@ -16,6 +16,7 @@ class OwlCarousel extends Component
   public $loop;
   public $dots;
   public $nav;
+  public $center;
   public $navText;
   public $id;
   public $repository;
@@ -38,8 +39,8 @@ class OwlCarousel extends Component
    *
    * @return void
    */
-  public function __construct($repository, $id, $params = [], $margin = 10, $responsiveClass = true, $autoplay = true,
-                              $autoplayHoverPause = true, $loop = true, $dots = true, $nav = true, $responsive = null,
+  public function __construct($repository, $id, $view = null, $params = [], $margin = 10, $responsiveClass = true, $autoplay = true,
+                              $autoplayHoverPause = true, $loop = true, $dots = true, $nav = true, $center = false, $responsive = null,
                               $itemLayout = null, $title = "", $subTitle = "", $itemsBySlide = 1, $navText = "",
                               $containerFluid = false, $itemComponent = null, $owlBlockStyle = null)
   {
@@ -49,6 +50,7 @@ class OwlCarousel extends Component
     $this->id = $id;
     $this->dots = $dots;
     $this->nav = $nav;
+    $this->center = $center;
     $this->navText = json_encode($navText);
     $this->responsive = json_encode($responsive ?? [0 => ["items" => 1], 640 => ["items" => 2], 992 => ["items" => 4]]);
     $this->margin = $margin;
@@ -64,7 +66,7 @@ class OwlCarousel extends Component
     $this->containerFluid = $containerFluid;
     $this->owlBlockStyle = $owlBlockStyle;
     $this->itemComponent = $itemComponent ?? "isite::item-list";
-    $this->view = "isite::frontend.components.owl.carousel";
+    $this->view = $view ?? "isite::frontend.components.owl.carousel";
     $this->getItems();
 
     list($this->editLink, $this->tooltipEditLink) = getEditLink($this->repository);
@@ -84,7 +86,6 @@ class OwlCarousel extends Component
 
   private function getItems()
   {
-
 
     $this->items = app($this->repository)->getItemsBy(json_decode(json_encode($this->makeParamsFunction())));
 

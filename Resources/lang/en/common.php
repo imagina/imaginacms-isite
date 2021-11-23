@@ -35,8 +35,10 @@ return [
     'rolesToTenant' => 'Roles available to Tenant',
     'apimaps' => 'Code Google Maps',
     'apiOpenStreetMaps' => 'Code Open Street Maps',
-    'customCss' => 'Custom CSS',
-    'customJs' => 'Custom JS',
+    'customCss' => 'Custom Body CSS',
+    'customJs' => 'Custom Body JS',
+    'headerCustomJs' => 'Custom Head JS',
+    'tenantRouteAlias' => 'Route Alias to the tenant lading page',
     "whatsapp" =>[
         "callingCode" => "CountryCode",
         "number" => "Whatsapp number",
@@ -45,7 +47,9 @@ return [
         "icon-label" => "Icon",
     ],
     'googleClient' => 'Google Client',
-    'facebookClient' => 'Facebook Client'
+    'facebookClient' => 'Facebook Client',
+    'facebookAppId' => 'Facebook App Id',
+    
   ],
   'settingHints' => [
      'phones' => "Type a phone number and press enter key",
@@ -59,6 +63,8 @@ return [
     'apiKeys' => "API Keys",
     'contact' => 'Contact',
     'customSources' => 'Custom Sources',
+    'tenants' => 'Tenants',
+    'modalVerifier' => 'Verifier Modal',
   ],
   'messages' => [
     'no items' => 'Not Information available'
@@ -86,7 +92,9 @@ return [
     'tooltipWhatsapp' => 'Edit whatsapp',
     'tooltipAddress' => 'Edit address',
     'tooltipEmail' => 'Edit Email',
-    'tooltipPhone' => 'Edit Phone'
+    'tooltipPhone' => 'Edit Phone',
+    'tooltipLogo' => 'Edit Logo',
+    'tooltipAd' => 'Editar Ad',
   ],
   'maps' => [
     'groupMaps' => 'Maps',

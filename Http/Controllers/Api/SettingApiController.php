@@ -65,11 +65,6 @@ class SettingApiController extends BaseApiController
       }
       /*=== SETTINGS ===*/
       $assignedSettings = [];
-      /*if (isset($params->settings)) {
-        if (isset($params->settings['assignedSettings']) && !empty($params->settings['assignedSettings'])) {
-          $assignedSettings = $params->settings['assignedSettings'];
-        }
-      }*/
 
       // merging translatable and plain settings
       $mergedSettings = array_merge_recursive($translatableSettings, $plainSettings);
