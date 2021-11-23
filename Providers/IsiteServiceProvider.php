@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Blade;
 use Livewire\Livewire;
 use Stancl\Tenancy\Database\Concerns\BelongsToTenant;
 use Modules\Isite\View\Components\Multilang;
+use Modules\Isite\View\Components\Categorylist;
 
 class IsiteServiceProvider extends ServiceProvider
 {
