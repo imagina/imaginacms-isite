@@ -178,7 +178,7 @@ class ItemsList extends Component
     
     $this->itemListLayout = $itemListLayout ?? $this->configs['itemListLayout']['default'] ?? "four";
     $this->layoutClass = $this->configs['itemListLayout']['options'][$this->itemListLayout]['class'];
-    
+    !is_array($this->layoutClass) ? $this->layoutClass = [$this->layoutClass]: false;
     $this->wrapperClass = $this->configs['itemListLayout']['options'][$this->itemListLayout]['wrapperClass'] ?? 'row';
   }
   
@@ -342,7 +342,7 @@ class ItemsList extends Component
     // Emit Finish Render
     //\Log::info("Emit list rendered: ".json_encode($this->emitItemListRendered));
     $this->emitItemListRendered ? $this->emit($this->emitItemListRenderedName, $params) : false;
-    
+  
     return view($tpl, ['items' => $items, 'params' => $params]);
     
   }

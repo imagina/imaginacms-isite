@@ -115,18 +115,7 @@ class IsiteServiceProvider extends ServiceProvider
         return new \Modules\Isite\Repositories\Cache\CacheOrganizationDecorator($repository);
       }
     );
-    $this->app->bind(
-      'Modules\Isite\Repositories\OrganizationRepository',
-      function () {
-        $repository = new \Modules\Isite\Repositories\Eloquent\EloquentOrganizationRepository(new \Modules\Isite\Entities\Organization());
-      
-        if (!config('app.cache')) {
-          return $repository;
-        }
-      
-        return new \Modules\Isite\Repositories\Cache\CacheOrganizationDecorator($repository);
-      }
-    );
+ 
     $this->app->bind(
       'Modules\Isite\Repositories\OrganizationFieldRepository',
       function () {

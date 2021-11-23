@@ -129,16 +129,6 @@ class Tree extends Component
     return $listener;
   }
   
-  private function initializeInitElements()
-  {
-    $itemsByParentId = $this->items->keyBy("id");
-    foreach ($this->items as $item) {
-      
-      if (!isset($itemsByParentId[$item->parent_id]))
-        array_push($this->initElements, $item->id);
-      
-    }
-  }
   
   private function getRepository()
   {
@@ -187,14 +177,12 @@ class Tree extends Component
           $siblings = $this->itemSelected->getSiblings();
           $this->items = $ancestors->merge($descendants)->merge($siblings);
           break;
+
       }
     }
-    
-    //funcion para sacar los elementos cuyo padre no exista en la coleccion
-    // con eso se sabe a partir de qué nodos debe arrancar el arbol a renderizarse
-    $this->initializeInitElements();
-   
-    $this->items = $this->items->toTree();
+  
+    if($this->items->isNotEmpty())
+      $this->items = $this->items->toTree();
   }
   
   public function render()
