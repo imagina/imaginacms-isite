@@ -29,6 +29,15 @@ class EloquentOrganizationRepository extends EloquentCrudRepository implements O
    */
   public function filterQuery($query, $filter)
   {
+    //
+    if (\Auth::id()) {
+      if (!isset($filter->params->permissions["isite.organizations.index-all"]) || !$filter->params->permissions["isite.organizations.index-all"]) {
+        $query->whereHas("users", function ($query) {
+          $query->where("users.id", \Auth::id());
+        });
+      }
+    }
+   // dd($query->toSql(),$query->getBindings());
     
     /**
      * Note: Add filter name to replaceFilters attribute before replace it
@@ -66,5 +75,5 @@ class EloquentOrganizationRepository extends EloquentCrudRepository implements O
     //Response
     return $model;
   }
-
+  
 }

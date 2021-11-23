@@ -117,7 +117,7 @@ print $output;
 ?>
 
 <div class="filter-tree filter-<?=$name?> filter-tree-style-<?=$layout?> mb-4">
-    @if($this->items && count($this->items)>0)
+    @if($items && count($items)>0)
 
         <div class="title">
             <a class="item" data-toggle="collapse" href="#collapseCategories" role="button"
@@ -138,8 +138,8 @@ print $output;
                     <div class="list-categories">
                         <ul class="list-group list-group-flush">
                           <?php
-                          foreach ($this->items as $item) {
-                            includeWithVariables($item, $this->breadcrumb, 0, $name, $itemSelected);
+                          foreach ($items as $item) {
+                            includeWithVariables($item, $breadcrumb, 0, $name, $itemSelected);
                           }
                           ?>
                         </ul>
