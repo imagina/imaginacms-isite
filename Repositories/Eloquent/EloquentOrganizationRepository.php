@@ -30,7 +30,7 @@ class EloquentOrganizationRepository extends EloquentCrudRepository implements O
   public function filterQuery($query, $filter)
   {
     //
-    if (\Auth::id()) {
+    if (\Auth::id() && isset($filter->params->setting->fromAdmin) && $filter->params->setting->fromAdmin) {
       if (!isset($filter->params->permissions["isite.organizations.index-all"]) || !$filter->params->permissions["isite.organizations.index-all"]) {
         $query->whereHas("users", function ($query) {
           $query->where("users.id", \Auth::id());

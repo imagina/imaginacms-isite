@@ -5,15 +5,18 @@ use Illuminate\Support\Str;
 
 $locale = LaravelLocalization::setLocale() ?: App::getLocale();
 
-Route::domain('{subdomain}.'.Str::remove('https://', env('APP_URL', 'localhost')))->group(function (Router $router) use ($locale) {
-  
-  $router->get('/', [
-    'as' => $locale . '.organization.index',
-    'uses' => 'PublicController@organizationIndex',
-    'middleware' => ['universal',\Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain::class]
-  ]);
-  
-});
+if(!empty(json_decode(setting("isite::rolesToTenant",null,"[]")))){
+  Route::domain('{subdomain}.'.Str::remove('https://', env('APP_URL', 'localhost')))->group(function (Router $router) use ($locale) {
+    
+    $router->get('/', [
+      'as' => $locale . '.organization.index',
+      'uses' => 'PublicController@organizationIndex',
+      'middleware' => ['universal',\Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain::class]
+    ]);
+    
+  });
+}
+
 
 #==================================================== Partials to the Ipanel
 
