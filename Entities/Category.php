@@ -25,7 +25,6 @@ class Category extends CrudModel
       'parent_id',
       'show_menu',
       'featured',
-      'internal',
       'status',
       'sort_order',
       'options'
