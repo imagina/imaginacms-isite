@@ -28,7 +28,6 @@ class EloquentCategoryRepository extends EloquentCrudRepository implements Categ
    */
   public function filterQuery($query, $filter)
   {
-
     /**
      * Note: Add filter name to replaceFilters attribute before replace it
      *

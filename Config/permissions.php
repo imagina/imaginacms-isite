@@ -41,6 +41,14 @@ return [
     'destroy' => 'isite::icruds.destroy resource',
     'restore' => 'isite::icruds.restore resource',
   ],
+  'isite.categories' => [
+    'manage' => 'isite::categories.manage resource',
+    'index' => 'isite::categories.list resource',
+    'create' => 'isite::categories.create resource',
+    'edit' => 'isite::categories.edit resource',
+    'destroy' => 'isite::categories.destroy resource',
+    'restore' => 'isite::categories.restore resource',
+  ],
     'isite.domains' => [
         'manage' => 'isite::domains.manage resource',
         'index' => 'isite::domains.list resource',

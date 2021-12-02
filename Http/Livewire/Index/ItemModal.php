@@ -50,7 +50,6 @@ class ItemModal extends Component
     $this->params = $params;
     $this->repository = $repository;
     $this->idModal = $idModal;
-     
   }
 
   /*
@@ -66,7 +65,8 @@ class ItemModal extends Component
 
      //'item' => json_decode(json_encode($item), FALSE)
     $newHtml = view($this->view, [
-      'item' => $item
+      'item' => $item,
+      'inModal' => true
     ])->render();
 
     if($idModalNew==$this->idModal){
