@@ -225,6 +225,7 @@ class ItemsList extends Component
   {
     $this->itemListLayout = $c;
     $this->layoutClass = $this->configs['itemListLayout']['options'][$this->itemListLayout]['class'];
+    !is_array($this->layoutClass) ? $this->layoutClass = [$this->layoutClass]: false;
   }
   
   /*
