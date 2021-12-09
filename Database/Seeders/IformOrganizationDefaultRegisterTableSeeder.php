@@ -17,11 +17,11 @@ class IformOrganizationDefaultRegisterTableSeeder extends Seeder
   public function run()
   {
     Model::unguard();
-    
+
     $rolesToTenant = json_decode(setting("isite::rolesToTenant", null, "[]"));
 
-    if (!empty($rolesToTenant)){
-  
+    if (!empty($rolesToTenant)) {
+
       $formRepository = app("Modules\Iforms\Repositories\FormRepository");
       $blockRepository = app("Modules\Iforms\Repositories\BlockRepository");
       $fieldRepository = app("Modules\Iforms\Repositories\FieldRepository");
@@ -36,18 +36,18 @@ class IformOrganizationDefaultRegisterTableSeeder extends Seeder
       ];
       $form = $formRepository->getItem("iform_organization_default_register", json_decode(json_encode($params)));
       if (!isset($form->id)) {
-    
+
         $form = $formRepository->create([
           "title" => trans("isite::forms.organizationDefaultRegister.title"),
           "system_name" => "iform_organization_default_register",
           "active" => true
         ]);
-    
+
         $fieldsBlock = $blockRepository->create([
           "form_id" => $form->id,
           "name" => "fields"
         ]);
-    
+
         $fieldRepository->create([
           "form_id" => $form->id,
           "block_id" => $fieldsBlock->id,
@@ -61,7 +61,7 @@ class IformOrganizationDefaultRegisterTableSeeder extends Seeder
           "name" => "firstName",
           "required" => true,
         ]);
-    
+
         $fieldRepository->create([
           "form_id" => $form->id,
           "block_id" => $fieldsBlock->id,
@@ -75,7 +75,7 @@ class IformOrganizationDefaultRegisterTableSeeder extends Seeder
           "name" => "lastName",
           "required" => true,
         ]);
-    
+
         $fieldRepository->create([
           "form_id" => $form->id,
           "block_id" => $fieldsBlock->id,
@@ -86,10 +86,10 @@ class IformOrganizationDefaultRegisterTableSeeder extends Seeder
             "label" => trans("isite::forms.organizationDefaultRegister.fields.birthday", [], "en"),
           ],
           "type" => 11,
-          "name" => "lastName",
+          "name" => "birthday",
           "required" => false,
         ]);
-    
+
         $fieldRepository->create([
           "form_id" => $form->id,
           "block_id" => $fieldsBlock->id,
@@ -110,7 +110,7 @@ class IformOrganizationDefaultRegisterTableSeeder extends Seeder
           "name" => "documentType",
           "required" => false,
         ]);
-    
+
         $fieldRepository->create([
           "form_id" => $form->id,
           "block_id" => $fieldsBlock->id,
@@ -124,12 +124,12 @@ class IformOrganizationDefaultRegisterTableSeeder extends Seeder
           "name" => "documentNumber",
           "required" => true,
         ]);
-  
+
         $organizationBlock = $blockRepository->create([
           "form_id" => $form->id,
           "name" => "organization"
         ]);
-  
+
         $fieldRepository->create([
           "form_id" => $form->id,
           "block_id" => $organizationBlock->id,
@@ -143,7 +143,7 @@ class IformOrganizationDefaultRegisterTableSeeder extends Seeder
           "name" => "title",
           "required" => true,
         ]);
-  
+
         $fieldRepository->create([
           "form_id" => $form->id,
           "block_id" => $fieldsBlock->id,
@@ -153,7 +153,7 @@ class IformOrganizationDefaultRegisterTableSeeder extends Seeder
           "en" => [
             "label" => trans("isite::forms.organizationDefaultRegister.organization.category", [], "en"),
           ],
-          "type" => 5,
+          "type" => 13,
           "name" => "categoryId",
           'options' => [
             'loadOptions' => [
@@ -164,13 +164,13 @@ class IformOrganizationDefaultRegisterTableSeeder extends Seeder
           "required" => true,
         ]);
 
-        foreach ($rolesToTenant as $role){
+        foreach ($rolesToTenant as $role) {
           $role = Role::find($role);
           event(new SyncFormeable($role, ["form_id" => $form->id]));
         }
       }
-      
+
     }
-    
+
   }
 }
