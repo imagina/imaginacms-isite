@@ -54,7 +54,7 @@ class IsiteServiceProvider extends ServiceProvider
             $app['config']['captcha.options']
         );
     });
-    
+
     BelongsToTenant::$tenantIdColumn = 'organization_id';
   }
 
@@ -69,7 +69,7 @@ class IsiteServiceProvider extends ServiceProvider
     $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
     $app = $this->app;
-    
+
     $this->app['validator']->extend('icaptcha', function ($attribute, $value) use ($app) {
           return $app['icaptcha']->verifyResponse($value, $app['request']->getClientIp());
     });
@@ -94,37 +94,36 @@ class IsiteServiceProvider extends ServiceProvider
       'Modules\Isite\Repositories\RecommendationRepository',
       function () {
         $repository = new \Modules\Isite\Repositories\Eloquent\EloquentRecommendationRepository(new \Modules\Isite\Entities\Recommendation());
-      
+
         if (!config('app.cache')) {
           return $repository;
         }
-      
+
         return new \Modules\Isite\Repositories\Cache\CacheRecommendationDecorator($repository);
       }
     );
-  
+
     $this->app->bind(
       'Modules\Isite\Repositories\OrganizationRepository',
       function () {
         $repository = new \Modules\Isite\Repositories\Eloquent\EloquentOrganizationRepository(new \Modules\Isite\Entities\Organization());
-      
+
         if (!config('app.cache')) {
           return $repository;
         }
-      
+
         return new \Modules\Isite\Repositories\Cache\CacheOrganizationDecorator($repository);
       }
     );
- 
     $this->app->bind(
       'Modules\Isite\Repositories\OrganizationFieldRepository',
       function () {
         $repository = new \Modules\Isite\Repositories\Eloquent\EloquentOrganizationFieldRepository(new \Modules\Isite\Entities\OrganizationField());
-      
+
         if (!config('app.cache')) {
           return $repository;
         }
-      
+
         return new \Modules\Isite\Repositories\Cache\CacheOrganizationFieldDecorator($repository);
       }
     );
@@ -132,11 +131,11 @@ class IsiteServiceProvider extends ServiceProvider
       'Modules\Isite\Repositories\CategoryRepository',
       function () {
         $repository = new \Modules\Isite\Repositories\Eloquent\EloquentCategoryRepository(new \Modules\Isite\Entities\Category());
-      
+
         if (!config('app.cache')) {
           return $repository;
         }
-      
+
         return new \Modules\Isite\Repositories\Cache\CacheCategoryDecorator($repository);
       }
     );
@@ -164,7 +163,20 @@ class IsiteServiceProvider extends ServiceProvider
                 return new \Modules\Isite\Repositories\Cache\CacheDomainDecorator($repository);
             }
         );
+        $this->app->bind(
+            'Modules\Isite\Repositories\TemplateRepository',
+            function () {
+                $repository = new \Modules\Isite\Repositories\Eloquent\EloquentTemplateRepository(new \Modules\Isite\Entities\Template());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Isite\Repositories\Cache\CacheTemplateDecorator($repository);
+            }
+        );
 // add bindings
+
 
 
 

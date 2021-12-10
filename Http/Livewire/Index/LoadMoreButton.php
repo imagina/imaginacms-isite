@@ -68,7 +68,7 @@ class LoadMoreButton extends Component
     
     $this->editLink = $editLink;
     $this->tooltipEditLink = $tooltipEditLink;
- 
+    
   }
 
   /*
@@ -79,7 +79,7 @@ class LoadMoreButton extends Component
   {
 
     //\Log::info("Load More Button - GETDATA - PARAMS: ".json_encode($this->params));
-  //  dd($this->params);
+
     $this->params["page"] = $this->params["page"] + 1;
     $this->loadMore = true;
 

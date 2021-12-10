@@ -251,39 +251,6 @@ return [
     'groupTitle' => 'isite::common.settingGroups.socialNetworks',
     'props' => ['label' => 'Telegram']
   ],
-  'youtube' => [
-    'value' => null,
-    'name' => 'youtube',
-    'fakeFieldName' => 'isite::socialNetworks',
-    'groupName' => 'socialNetworks',
-    'groupTitle' => 'isite::common.settingGroups.socialNetworks',
-    'type' => 'input',
-    'isTranslatable' => true,
-    'group' => 'isite::common.settingGroups.socialNetworks',
-    'props' => ['label' => 'YouTube']
-  ],
-  'pinterest' => [
-    'value' => null,
-    'name' => 'pinterest',
-    'fakeFieldName' => 'isite::socialNetworks',
-    'groupName' => 'socialNetworks',
-    'groupTitle' => 'isite::common.settingGroups.socialNetworks',
-    'type' => 'input',
-    'isTranslatable' => true,
-    'group' => 'isite::common.settingGroups.socialNetworks',
-    'props' => ['label' => 'Pinterest']
-  ],
-  'flickr' => [
-    'value' => null,
-    'name' => 'flickr',
-    'fakeFieldName' => 'isite::socialNetworks',
-    'groupName' => 'socialNetworks',
-    'groupTitle' => 'isite::common.settingGroups.socialNetworks',
-    'type' => 'input',
-    'isTranslatable' => true,
-    'group' => 'isite::common.settingGroups.socialNetworks',
-    'props' => ['label' => 'Flickr']
-  ],
   'whatsapp1' => [
     'name' => 'isite::whatsapp1',
     'label' => 'Whatsapp #1',
@@ -462,6 +429,17 @@ return [
         ]
       ],
     ]
+  ],
+  'youtube' => [
+    'value' => null,
+    'name' => 'youtube',
+    'fakeFieldName' => 'isite::socialNetworks',
+    'groupName' => 'socialNetworks',
+    'groupTitle' => 'isite::common.settingGroups.socialNetworks',
+    'type' => 'input',
+    'isTranslatable' => true,
+    'group' => 'isite::common.settingGroups.socialNetworks',
+    'props' => ['label' => 'YouTube']
   ],
   //Recaptcha
   'activateCaptcha' => [

@@ -343,7 +343,7 @@ class ItemsList extends Component
     // Emit Finish Render
     //\Log::info("Emit list rendered: ".json_encode($this->emitItemListRendered));
     $this->emitItemListRendered ? $this->emit($this->emitItemListRenderedName, $params) : false;
-  
+    
     return view($tpl, ['items' => $items, 'params' => $params]);
     
   }

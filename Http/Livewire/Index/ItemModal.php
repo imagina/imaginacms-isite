@@ -50,6 +50,7 @@ class ItemModal extends Component
     $this->params = $params;
     $this->repository = $repository;
     $this->idModal = $idModal;
+     
   }
 
   /*

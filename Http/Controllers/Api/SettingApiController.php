@@ -156,7 +156,7 @@ class SettingApiController extends BaseApiController
         $settingName = strtolower($keyModule) . '::' . $keySetting;//Setting name
         $dbSetting = $dbSettings[$keyModule][$settingName] ?? false;//DB setting value
         //Get available locales
-        $locales = json_decode($dbSettings['Core']['core::locales']->plainValue ?? json_encode(['en']));
+        $locales = json_decode($dbSettings['Core']['core::locales']->plainValue ?? json_encode([locale()]));
 
         //Transform settings
         if (empty($assignedSettings) || in_array($settingName, $assignedSettings)) {
