@@ -14,21 +14,27 @@ class PublicController extends BaseApiController
 {
   protected $auth;
   
-  public function __construct(
-  )
+  public function __construct()
   {
     parent::__construct();
   }
-
-  public function organizationIndex(Request $request,$subDomain){
   
-    $locale = \LaravelLocalization::setLocale() ?: \App::getLocale();
-
-    $routeAlias = setting("isite::tenantRouteAlias",null,null);
+  public function organizationIndex(Request $request, $subDomain)
+  {
     
-    if(isset(tenant()->id) && $routeAlias){
-      if(tenant()->status){
-        return redirect(tenant_route($request->getHost(), $locale . '.'.$routeAlias));
+    $locale = \LaravelLocalization::setLocale() ?: \App::getLocale();
+    
+    $organization = tenant();
+  
+    //default view in the Theme
+    if (view()->exists("isite.organization.default"))
+      return view("isite.organization.default", compact('organization'));
+  
+    $routeAlias = setting("isite::tenantRouteAlias", null, null, true);
+  
+    if (isset($organization->id) && $routeAlias) {
+      if ($organization->status) {
+        return redirect(tenant_route($request->getHost(), $locale . '.' . $routeAlias));
       }
     }
     
@@ -36,15 +42,18 @@ class PublicController extends BaseApiController
     
   }
   
-  public function header(){
+  public function header()
+  {
     return view('isite::frontend.header');
   }
   
-  public function footer(){
+  public function footer()
+  {
     return view('isite::frontend.footer');
   }
   
-  public function pdf(){
+  public function pdf()
+  {
     \Artisan::call('view:clear');
     $repository = app("Modules\\Iforms\\Repositories\\LeadRepository");
     //Set fields and extra params
@@ -61,7 +70,7 @@ class PublicController extends BaseApiController
     $pdf = \PDF::loadView('isite::pdf.layouts.default', ["data" => [
       "items" => $items,
       "content" => "iforms::pdf.leadItem",
-      ]]);
+    ]]);
     return $pdf->stream('invoice.pdf');
     return view('isite::pdf.layouts.default', ["data" => [
       "items" => $items,
