@@ -38,7 +38,10 @@ class Checkbox extends Component
     * Runs once, immediately after the component is instantiated,
     * but before render() is called
     */
-	public function mount($title,$name,$status=true,$isExpanded=true,$type,$repository,$emitTo,$repoAction,$repoAttribute,$listener,$repoMethod='getItemsBy',$layout='checkbox-layout-1',$classes='col-12', $params = [], $wrapperClasses='row',$childrenClasses = 'col-12'){
+  public function mount($title, $name, $status = true, $isExpanded = true, $type, $repository, $emitTo, $repoAction,
+                        $repoAttribute, $listener, $repoMethod = 'getItemsBy', $layout = 'checkbox-layout-1',
+                        $classes = 'col-12', $params = [], $wrapperClasses = 'row', $childrenClasses = 'col-12')
+  {
     
     $this->title = trans($title);
     $this->name = $name;
@@ -126,8 +129,8 @@ class Checkbox extends Component
       $params = array_merge_recursive($params, $this->params);
     
     //\Log::info("NAME: ".$this->name."- PARAMS:".json_encode($params));
-      
-        $this->options = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params)));
+    
+    $this->options = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params)));
   }
   
   /*

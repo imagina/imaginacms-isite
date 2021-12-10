@@ -180,10 +180,9 @@ class Tree extends Component
 
       }
     }
-
-    if($this->items->isNotEmpty()){
+  
+    if($this->items->isNotEmpty())
       $this->items = $this->items->toTree();
-    }
   }
   
   public function render()
@@ -194,7 +193,7 @@ class Tree extends Component
     
     if (view()->exists($ttpl)) $tpl = $ttpl;
     
-    return view($tpl, ["breadcrumb" => $this->breadcrumb,"items" => $this->items]);
+    return view($tpl, ["breadcrumb" => $this->breadcrumb]);
     
   }
   
