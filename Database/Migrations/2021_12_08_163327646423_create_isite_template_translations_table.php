@@ -12,16 +12,16 @@ class CreateIsiteTemplateTranslationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('isite__template_translations', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->increments('id');
-            // Your translatable fields
-
-            $table->integer('template_id')->unsigned();
-            $table->string('locale')->index();
-            $table->unique(['template_id', 'locale']);
-            $table->foreign('template_id')->references('id')->on('isite__templates')->onDelete('cascade');
-        });
+//        Schema::create('isite__template_translations', function (Blueprint $table) {
+//            $table->engine = 'InnoDB';
+//            $table->increments('id');
+//            // Your translatable fields
+//
+//            $table->integer('template_id')->unsigned();
+//            $table->string('locale')->index();
+//            $table->unique(['template_id', 'locale']);
+//            $table->foreign('template_id')->references('id')->on('isite__templates')->onDelete('cascade');
+//        });
     }
 
     /**
@@ -31,9 +31,9 @@ class CreateIsiteTemplateTranslationsTable extends Migration
      */
     public function down()
     {
-        Schema::table('isite__template_translations', function (Blueprint $table) {
-            $table->dropForeign(['template_id']);
-        });
-        Schema::dropIfExists('isite__template_translations');
+//        Schema::table('isite__template_translations', function (Blueprint $table) {
+//            $table->dropForeign(['template_id']);
+//        });
+//        Schema::dropIfExists('isite__template_translations');
     }
 }

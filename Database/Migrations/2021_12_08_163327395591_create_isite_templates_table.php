@@ -12,16 +12,16 @@ class CreateIsiteTemplatesTable extends Migration
    */
   public function up()
   {
-    Schema::create('isite__templates', function (Blueprint $table) {
-      $table->engine = 'InnoDB';
-      $table->increments('id');
-      // Your fields...
-      $table->integer('status')->default(0);
-      $table->text('options')->nullable();
-      // Audit fields
-      $table->timestamps();
-      $table->auditStamps();
-    });
+//    Schema::create('isite__templates', function (Blueprint $table) {
+//      $table->engine = 'InnoDB';
+//      $table->increments('id');
+//      // Your fields...
+//      $table->integer('status')->default(0);
+//      $table->text('options')->nullable();
+//      // Audit fields
+//      $table->timestamps();
+//      $table->auditStamps();
+//    });
   }
   
   /**
@@ -31,6 +31,6 @@ class CreateIsiteTemplatesTable extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('isite__templates');
+//    Schema::dropIfExists('isite__templates');
   }
 }
