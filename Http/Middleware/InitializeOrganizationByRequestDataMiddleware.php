@@ -26,7 +26,11 @@ class InitializeOrganizationByRequestDataMiddleware extends BaseApiController
    
       $query = $request->query();
       $header = $request->header();
+      
+      
       if(isset($query["organizationId"]) || isset($header["organizationid"])){
+        $organizationsIds = \Auth::user()->organizations->pluck("id")->toArray();
+        if(in_array($query["organizationId"] ?? $header["organizationid"][0],$organizationsIds))
         tenancy()->initialize($query["organizationId"] ?? $header["organizationid"][0] ?? null);
       }
       //dd(config("filesystems.disks.local"),config("filesystems.disks.public"),config("filesystems.disks.publicmedia"),config("tenancy.filesystem"));
