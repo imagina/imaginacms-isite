@@ -2,7 +2,7 @@
 	@if(!empty($filters))
 
 		<div id="staticdiv">
-			<div id="contenttomove">
+			<div id="contenttomove" class="d-none">
 				<div class="row">
 					@foreach($filters as $index => $filter)
 						@if($filter['status'])
@@ -19,9 +19,6 @@
 					@endif
 					@if($showBtnClear)
 						<button wire:click="clearValuesFilters" id="btnClear" type="button" class="btnClear btn btn-primary mx-2">{{trans('isite::frontend.buttons.clear')}}</button>
-						{{--
-						<button id="btnClear" type="button" class="btnClear btn btn-primary" onClick="window.livewire.emit('itemsListClearValues')">{{trans('isite::frontend.buttons.clear')}}</button>
-						--}}
 					@endif
 				</div>
 
