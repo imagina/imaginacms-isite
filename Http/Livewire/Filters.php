@@ -89,7 +89,6 @@ class Filters extends Component
         //\Log::info("FILTER NAME:{$key} - VALUE:".json_encode($filter));
         $filterToSend = array_merge_recursive($filterToSend, $filter);
       }
-      
       //\Log::info("FILTER TO SEND TO ITEMSLIST -".json_encode($filterToSend));
       
       if (!empty($filterToSend) && count($filterToSend) > 0) {
@@ -98,10 +97,11 @@ class Filters extends Component
           
           $urlParams = "";
           foreach ($filterToSend as $key => $filter){
-            $urlParams.=http_build_query(["filter" =>[$key => $filter] ])."&";
+              $urlParams.=http_build_query(["filter" =>[$key => $filter] ])."&";
           }
+          if($urlParams)
+            redirect()->to($this->goToUrl."?".$urlParams);
           
-          redirect()->to($this->goToUrl."?".$urlParams);
           return ;
         }
         $this->emit('itemsListGetData', [

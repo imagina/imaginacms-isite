@@ -105,11 +105,11 @@ class Select extends Component
   */
   public function updatedSelected()
   {
-    
+
     $this->emit($this->emitTo, [
       'name' => $this->name,
       $this->repoAction => [
-        $this->repoAttribute => $this->selected
+        $this->repoAttribute => $this->selected == "NULL" ? null : $this->selected
       ]
     ]);
     

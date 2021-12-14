@@ -174,7 +174,7 @@ class SettingApiController extends BaseApiController
             'description' => isset($setting['description']) ? trans($setting['description']) : '',
             'isTranslatable' => $setting['translatable'] ?? false,
             'plainValue' => $plainValue ?? $defaultValue,
-            'value' => $plainValue ? $plainValue : ($setting['value'] ?? $defaultValue ?? null)
+            'value' => !is_null($plainValue) ? $plainValue : ($setting['value'] ?? $defaultValue ?? null)
           ]);
           //Get media path
           if (is_object($setting['value']) && isset($setting['value']->medias_single)) {

@@ -19,7 +19,7 @@
            id="collapse-{{$name}}" @endif>
 				<label>{{$title}}</label>
         <select class="form-control" name="select" wire:model="selected">
-					<option value="null">Seleccione un(a) {{$title}}</option>
+					<option value="NULL">Seleccione un(a) {{$title}}</option>
           @foreach($options as $item)
             <option value="{{$item->id}}">{{$item->title ?? $item->name}}</option>
           @endforeach
