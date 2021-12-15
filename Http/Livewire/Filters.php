@@ -61,7 +61,6 @@ class Filters extends Component
       $this->filtersValues[$filterName] = $params["filter"];
       
       \Log::info("FILTER {$filterName}: " . json_encode($this->filtersValues[$filterName]));
-      \Log::info("FILTERS: " . json_encode($this->filtersValues));
       
       // Example like btn search
       if (isset($params['eventUpdateItemsList']) && $params['eventUpdateItemsList'])
@@ -69,7 +68,7 @@ class Filters extends Component
       
     }
     
-    //\Log::info("FILTERS: ".json_encode($this->filtersValues));
+    \Log::info("FILTERS: ".json_encode($this->filtersValues));
     
     // remove d-none frontend
     $this->dispatchBrowserEvent('filters-after-get-data');
@@ -82,18 +81,21 @@ class Filters extends Component
   public function updateItemsList()
   {
     
-    //\Log::info("FILTERS - UPDATE ITEMS LIST");
+    \Log::info("FILTERS - UPDATE ITEMS LIST");
     if (!empty($this->filtersValues) && count($this->filtersValues) > 0) {
       $filterToSend = [];
       foreach ($this->filtersValues as $key => $filter) {
-        //\Log::info("FILTER NAME:{$key} - VALUE:".json_encode($filter));
+        \Log::info("FILTER NAME:{$key} - VALUE:".json_encode($filter));
+        
+        /*
         foreach ($filter as $key => &$filterCheck)
           if(!$filterCheck)
             unset($filter[$key]);
-          
+        */
+        
         $filterToSend = array_merge_recursive($filterToSend, $filter);
       }
-      //\Log::info("FILTER TO SEND TO ITEMSLIST -".json_encode($filterToSend));
+      \Log::info("FILTER TO SEND TO ITEMSLIST -".json_encode($filterToSend));
 
       if (!empty($filterToSend) && count($filterToSend) > 0) {
         
@@ -119,6 +121,9 @@ class Filters extends Component
         $this->dispatchBrowserEvent('filters-after-get-data');
       }
     }
+
+    // remove d-none frontend
+    $this->dispatchBrowserEvent('filters-after-get-data');
     
   }
   

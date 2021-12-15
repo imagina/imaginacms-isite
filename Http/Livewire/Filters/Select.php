@@ -77,9 +77,12 @@ class Select extends Component
   protected function getListeners()
   {
     if (!empty($this->listener)) {
-      return [$this->listener => 'getData'];
+      return [
+        $this->listener => 'getData',
+        'filtersClearValues' => 'clearValues'
+      ];
     } else {
-      return [];
+      return ['filtersClearValues' => 'clearValues'];
     }
   }
   
@@ -114,6 +117,15 @@ class Select extends Component
     ]);
     
     $this->isExpanded = true;
+  }
+
+  /*
+  * Listener
+  * Filter Clear Values
+  */
+  public function clearValues()
+  {
+    $this->selected = null;
   }
   
   /*

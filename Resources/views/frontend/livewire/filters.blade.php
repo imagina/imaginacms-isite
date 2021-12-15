@@ -2,7 +2,7 @@
 	@if(!empty($filters))
 
 		<div id="staticdiv">
-			<div id="contenttomove">
+			<div id="contenttomove" class="d-none">
 				<div class="row">
 					@foreach($filters as $index => $filter)
 						@if($filter['status'])
