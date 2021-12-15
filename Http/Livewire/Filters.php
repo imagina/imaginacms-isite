@@ -87,10 +87,14 @@ class Filters extends Component
       $filterToSend = [];
       foreach ($this->filtersValues as $key => $filter) {
         //\Log::info("FILTER NAME:{$key} - VALUE:".json_encode($filter));
+        foreach ($filter as $key => &$filterCheck)
+          if(!$filterCheck)
+            unset($filter[$key]);
+          
         $filterToSend = array_merge_recursive($filterToSend, $filter);
       }
       //\Log::info("FILTER TO SEND TO ITEMSLIST -".json_encode($filterToSend));
-      
+
       if (!empty($filterToSend) && count($filterToSend) > 0) {
         
         if(!empty($this->goToUrl)){
