@@ -11,6 +11,7 @@ use Modules\Media\Support\Traits\MediaRelation;
 use Modules\Ischedulable\Support\Traits\Schedulable;
 use Modules\Core\Icrud\Traits\hasEventsWithBindings;
 use Modules\Ifillable\Traits\isFillable;
+use Modules\Setting\Entities\Setting;
 
 class Organization extends BaseTenant
 {
@@ -73,6 +74,11 @@ class Organization extends BaseTenant
   public function domains()
   {
     return $this->hasMany(Domain::class);
+  }
+  
+  public function settings()
+  {
+    return $this->hasMany(Setting::class);
   }
 
   public function getUrlAttribute()
