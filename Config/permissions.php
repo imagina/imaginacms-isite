@@ -57,14 +57,6 @@ return [
     'destroy' => 'isite::domains.destroy resource',
     'restore' => 'isite::domains.restore resource',
   ],
-    'isite.templates' => [
-        'manage' => 'isite::templates.manage resource',
-        'index' => 'isite::templates.list resource',
-        'create' => 'isite::templates.create resource',
-        'edit' => 'isite::templates.edit resource',
-        'destroy' => 'isite::templates.destroy resource',
-        'restore' => 'isite::templates.restore resource',
-    ],
 // append
 
 
