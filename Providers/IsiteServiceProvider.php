@@ -168,7 +168,33 @@ class IsiteServiceProvider extends ServiceProvider
             }
         );
        
+        $this->app->bind(
+            'Modules\Isite\Repositories\LayoutRepository',
+            function () {
+                $repository = new \Modules\Isite\Repositories\Eloquent\EloquentLayoutRepository(new \Modules\Isite\Entities\Layout());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Isite\Repositories\Cache\CacheLayoutDecorator($repository);
+            }
+        );
+        $this->app->bind(
+            'Modules\Isite\Repositories\TypeableRepository',
+            function () {
+                $repository = new \Modules\Isite\Repositories\Eloquent\EloquentTypeableRepository(new \Modules\Isite\Entities\Typeable());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Isite\Repositories\Cache\CacheTypeableDecorator($repository);
+            }
+        );
 // add bindings
+
+
 
 
 

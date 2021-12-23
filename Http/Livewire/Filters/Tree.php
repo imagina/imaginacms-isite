@@ -75,10 +75,6 @@ class Tree extends Component
     
     $this->initConfigs();
     
-    
-    if (empty($this->listener)) {
-      $this->getData($this->params);
-    }
   }
   
   
@@ -98,6 +94,7 @@ class Tree extends Component
     
     if (!empty($this->emitTo)) {
       $this->itemSelected = $this->getRepository()->getItem($item, json_decode(json_encode(["filter" => ["field" => "id"]])));
+  
       
       $this->refreshBreadcrumb();
       
@@ -183,10 +180,14 @@ class Tree extends Component
   
     if($this->items->isNotEmpty())
       $this->items = $this->items->toTree();
+    
+    //dd($this->items);
   }
   
   public function render()
   {
+  
+    $this->getData($this->params);
     
     $tpl = 'isite::frontend.livewire.filters.tree.index';
     $ttpl = 'isite.livewire.filters.tree.index';
