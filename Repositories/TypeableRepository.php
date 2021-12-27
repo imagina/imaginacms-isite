@@ -4,6 +4,6 @@ namespace Modules\Isite\Repositories;
 
 use Modules\Core\Icrud\Repositories\BaseCrudRepository;
 
-interface TemplateRepository extends BaseCrudRepository
+interface TypeableRepository extends BaseCrudRepository
 {
 }

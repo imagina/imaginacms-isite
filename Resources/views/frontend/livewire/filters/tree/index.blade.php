@@ -20,8 +20,7 @@ $isSelected = !empty($itemSelected) ? $itemSelected->id == $item->id ? true : fa
   $children = $item->children;
   
   $expanded = false;
-  
-  $slug = $item->slug;
+
   
   foreach ($breadcrumb as $itemBreadcrumb) {
     if ($itemBreadcrumb->id == $item->id)
@@ -47,15 +46,15 @@ $isSelected = !empty($itemSelected) ? $itemSelected->id == $item->id ? true : fa
             title="<?=$item->title?>"><?=$item->title?></span>
     </a>
     <a class="icon-collapsable" data-toggle="collapse" role="button"
-       href="#multiCollapse-<?=$slug?>" aria-expanded="<?=$expanded ? 'true' : 'false'?>"
-       aria-controls="multiCollapse-<?=$slug?>">
+       href="#multiCollapse-<?=$item->id?>" aria-expanded="<?=$expanded ? 'true' : 'false'?>"
+       aria-controls="multiCollapse-<?=$item->id?>">
       <i class="fa angle"></i>
     </a>
   </div>
   <div class="link-movil d-block d-md-none <?=$isSelected && $children ? 'font-weight-bold' : ''?>">
     <a class="text-collapsable" data-toggle="collapse" role="button"
-       href="#multiCollapse-<?=$slug?>" aria-expanded="<?=$isSelected && $children ? 'true' : 'false'?>"
-       aria-controls="multiCollapse-<?=$slug?>">
+       href="#multiCollapse-<?=$item->id?>" aria-expanded="<?=$isSelected && $children ? 'true' : 'false'?>"
+       aria-controls="multiCollapse-<?=$item->id?>">
       
       <?php
       if($withIcon){
@@ -73,7 +72,7 @@ $isSelected = !empty($itemSelected) ? $itemSelected->id == $item->id ? true : fa
       <i class="fa fa-external-link"></i>
     </a>
   </div>
-  <div class="collapse multi-collapse mt-2 <?=$expanded ? 'show' : ''?>" id="multiCollapse-<?=$slug?>">
+  <div class="collapse multi-collapse mt-2 <?=$expanded ? 'show' : ''?>" id="multiCollapse-<?=$item->id?>">
     <ul class="list-group list-group-flush">
       <?php
       foreach ($children as $subItem) {

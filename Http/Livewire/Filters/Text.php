@@ -17,10 +17,14 @@ class Text  extends Component
   public $classes;
   public $placeholder;
   public $name;
+  public $value;
+  public $isCollapsable;
+  public $isExpanded;
+  public $title;
 
-  public function mount($placeholder, $status = true, $type, $emitTo, $repoAction,
+  public function mount($title, $name, $placeholder, $status = true, $isExpanded = true, $type, $emitTo, $repoAction,
                         $repoAttribute, $repoMethod = 'getItemsBy', $layout = 'text-layout-1',
-                        $classes = 'col-12', $name = 'text')
+                        $classes = 'col-12', $isCollapsable = true)
   {
     $this->status = $status;
     $this->type = $type;
@@ -32,8 +36,29 @@ class Text  extends Component
     $this->classes = $classes;
     $this->placeholder = $placeholder;
     $this->name = $name;
+    $this->isCollapsable = $isCollapsable;
+    $this->isExpanded = $isExpanded;
+    $this->title = $title;
 
   }
+  
+  
+  /*
+  * When SelectedOption has been selected
+  */
+  public function updatedValue()
+  {
+    
+    $this->emit($this->emitTo, [
+      'name' => $this->name,
+      $this->repoAction => [
+        $this->repoAttribute => $this->value
+      ]
+    ]);
+    
+    $this->isExpanded = true;
+  }
+  
 
   public function render()
   {

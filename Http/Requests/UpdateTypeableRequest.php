@@ -4,7 +4,7 @@ namespace Modules\Isite\Http\Requests;
 
 use Modules\Core\Internationalisation\BaseFormRequest;
 
-class UpdateTemplateRequest extends BaseFormRequest
+class UpdateTypeableRequest extends BaseFormRequest
 {
     public function rules()
     {

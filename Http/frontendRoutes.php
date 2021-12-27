@@ -17,18 +17,10 @@ if(!empty(json_decode(setting("isite::rolesToTenant",null,"[]")))){
   });
 }
 
-
-#==================================================== Partials to the Ipanel
-
-$router->get('isite/header', [
-  'as' => 'isite.header',
-  'uses' => 'PublicController@header'
-]);
-$router->get('isite/footer', [
-  'as' => 'isite.footer',
-  'uses' => 'PublicController@footer'
-]);
-$router->get('isite/pdf', [
-  'as' => 'isite.pdf',
-  'uses' => 'PublicController@pdf'
-]);
+/**
+ *
+ */
+$router->any('{uri}', [
+  'uses' => 'PublicController@uri',
+  'as' => 'site',
+])->where('uri', '.*');

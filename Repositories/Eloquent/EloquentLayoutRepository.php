@@ -2,10 +2,10 @@
 
 namespace Modules\Isite\Repositories\Eloquent;
 
-use Modules\Isite\Repositories\TemplateRepository;
+use Modules\Isite\Repositories\LayoutRepository;
 use Modules\Core\Icrud\Repositories\Eloquent\EloquentCrudRepository;
 
-class EloquentTemplateRepository extends EloquentCrudRepository implements TemplateRepository
+class EloquentLayoutRepository extends EloquentCrudRepository implements LayoutRepository
 {
   /**
    * Filter names to replace

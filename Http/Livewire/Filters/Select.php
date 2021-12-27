@@ -38,7 +38,7 @@ class Select extends Component
     */
   public function mount($title, $name, $status = true, $isExpanded = true, $type, $repository, $emitTo, $repoAction,
                         $repoAttribute, $listener, $repoMethod = 'getItemsBy', $layout = 'select-layout-1',
-                        $classes = 'col-12', $params = [])
+                        $classes = 'col-12', $params = [], $isCollapsable = true)
   {
     
     $this->title = trans($title);
@@ -54,7 +54,9 @@ class Select extends Component
     $this->repoMethod = $repoMethod;
     $this->layout = $layout;
     $this->classes = $classes;
+    $this->isCollapsable = $isCollapsable;
     $this->params = $params;
+    $this->selected = null;
     
     $this->getData();
   }
@@ -75,9 +77,12 @@ class Select extends Component
   protected function getListeners()
   {
     if (!empty($this->listener)) {
-      return [$this->listener => 'getData'];
+      return [
+        $this->listener => 'getData',
+        'filtersClearValues' => 'clearValues'
+      ];
     } else {
-      return [];
+      return ['filtersClearValues' => 'clearValues'];
     }
   }
   
@@ -95,6 +100,32 @@ class Select extends Component
   
     $this->options = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params)));
   
+  }
+  
+  
+  /*
+  * When SelectedOption has been selected
+  */
+  public function updatedSelected()
+  {
+
+    $this->emit($this->emitTo, [
+      'name' => $this->name,
+      $this->repoAction => [
+        $this->repoAttribute => $this->selected == "NULL" ? null : $this->selected
+      ]
+    ]);
+    
+    $this->isExpanded = true;
+  }
+
+  /*
+  * Listener
+  * Filter Clear Values
+  */
+  public function clearValues()
+  {
+    $this->selected = null;
   }
   
   /*

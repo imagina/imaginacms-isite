@@ -3,17 +3,16 @@
   <div class="card-item m-1">
     <div class="row align-items-center">
       @if(method_exists ( $item, "mediaFiles" ) )
-        <div class="col-lg-6">
-          <div class="item-image">
+        <div class="col-lg-6 item-image">
+          
             <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
                                    :url="$item->url ?? null" :isMedia="true" width="100%" :target="$target"
                                    :mediaFiles="$item->mediaFiles()" :zone="$mediaImage ?? 'mainimage'"/>
-          </div>
+          
         </div>
       @endif
-      <div class="col-lg-6">
-        <div class="item-content">
-
+      <div class="col-lg-6 item-content">
+    
           <div class="{{$orderClasses["title"] ?? 'order-1'}} item-title">
             @if(isset($item->url) && !empty($item->url))
               <a href="{{$item->url}}" target="{{$target}}">
@@ -73,7 +72,7 @@
               @endif
             </div>
           @endif
-        </div>
+       
       </div>
     </div>
   </div>

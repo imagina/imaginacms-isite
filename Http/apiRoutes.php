@@ -42,11 +42,19 @@ $router->group(['prefix' => '/isite/v1'], function (Router $router) {
     ]);
     $router->apiCrud([
       'module' => 'isite',
-      'prefix' => 'templates',
-      'controller' => 'TemplateApiController',
+      'prefix' => 'layouts',
+      'controller' => 'LayoutApiController',
+      //'middleware' => ['create' => [], 'index' => [], 'show' => [], 'update' => [], 'delete' => [], 'restore' => []]
+    ]);
+    $router->apiCrud([
+      'module' => 'isite',
+      'prefix' => 'typeables',
+      'controller' => 'TypeableApiController',
       //'middleware' => ['create' => [], 'index' => [], 'show' => [], 'update' => [], 'delete' => [], 'restore' => []]
     ]);
 // append
+
+
 
 
 

@@ -57,15 +57,25 @@ return [
     'destroy' => 'isite::domains.destroy resource',
     'restore' => 'isite::domains.restore resource',
   ],
-    'isite.templates' => [
-        'manage' => 'isite::templates.manage resource',
-        'index' => 'isite::templates.list resource',
-        'create' => 'isite::templates.create resource',
-        'edit' => 'isite::templates.edit resource',
-        'destroy' => 'isite::templates.destroy resource',
-        'restore' => 'isite::templates.restore resource',
+    'isite.layouts' => [
+        'manage' => 'isite::layouts.manage resource',
+        'index' => 'isite::layouts.list resource',
+        'create' => 'isite::layouts.create resource',
+        'edit' => 'isite::layouts.edit resource',
+        'destroy' => 'isite::layouts.destroy resource',
+        'restore' => 'isite::layouts.restore resource',
+    ],
+    'isite.typeables' => [
+        'manage' => 'isite::typeables.manage resource',
+        'index' => 'isite::typeables.list resource',
+        'create' => 'isite::typeables.create resource',
+        'edit' => 'isite::typeables.edit resource',
+        'destroy' => 'isite::typeables.destroy resource',
+        'restore' => 'isite::typeables.restore resource',
     ],
 // append
+
+
 
 
 ];

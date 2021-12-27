@@ -4,7 +4,7 @@ namespace Modules\Isite\Http\Requests;
 
 use Modules\Core\Internationalisation\BaseFormRequest;
 
-class CreateTemplateRequest extends BaseFormRequest
+class UpdateLayoutRequest extends BaseFormRequest
 {
     public function rules()
     {
@@ -34,5 +34,4 @@ class CreateTemplateRequest extends BaseFormRequest
     public function getValidator(){
         return $this->getValidatorInstance();
     }
-    
 }

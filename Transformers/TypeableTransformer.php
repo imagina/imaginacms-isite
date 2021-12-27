@@ -4,7 +4,7 @@ namespace Modules\Isite\Transformers;
 
 use Modules\Core\Icrud\Transformers\CrudResource;
 
-class TemplateTransformer extends CrudResource
+class TypeableTransformer extends CrudResource
 {
   /**
   * Method to merge values with response

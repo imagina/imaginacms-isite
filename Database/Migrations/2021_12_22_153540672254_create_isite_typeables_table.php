@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIsiteTemplatesTable extends Migration
+class CreateIsiteTypeablesTable extends Migration
 {
   /**
    * Run the migrations.
@@ -12,12 +12,15 @@ class CreateIsiteTemplatesTable extends Migration
    */
   public function up()
   {
-    Schema::create('isite__templates', function (Blueprint $table) {
+    Schema::create('isite__typeables', function (Blueprint $table) {
       $table->engine = 'InnoDB';
       $table->increments('id');
       // Your fields...
-      $table->integer('status')->default(0);
-      $table->text('options')->nullable();
+      $table->string('typeable_type',255);
+      $table->integer('typeable_id');
+      $table->string('layout_path',255);
+      $table->integer('layout_id')->unsigned();
+      $table->foreign('layout_id')->references('id')->on('isite__layouts')->onDelete('restrict');
       // Audit fields
       $table->timestamps();
       $table->auditStamps();
@@ -31,6 +34,6 @@ class CreateIsiteTemplatesTable extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('isite__templates');
+    Schema::dropIfExists('isite__typeables');
   }
 }
