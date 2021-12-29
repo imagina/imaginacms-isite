@@ -237,6 +237,7 @@ class IsiteServiceProvider extends ServiceProvider
     Livewire::component('isite::filter-select', \Modules\Isite\Http\Livewire\Filters\Select::class);
     Livewire::component('isite::filter-location', \Modules\Isite\Http\Livewire\Filters\Location::class);
     Livewire::component('isite::filter-text', \Modules\Isite\Http\Livewire\Filters\Text::class);
+    Livewire::component('isite::filter-autocomplete', \Modules\Isite\Http\Livewire\Filters\Autocomplete::class);
 
     Livewire::component('isite::filter-order-by', \Modules\Isite\Http\Livewire\Index\Filters\OrderBy::class);
 
