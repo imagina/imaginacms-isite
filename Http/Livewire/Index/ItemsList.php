@@ -83,27 +83,13 @@ class ItemsList extends Component
     * but before render() is called
     */
   public function mount(
-    $itemComponentNamespace = "Modules\Isite\View\Components\ItemList",
-    $itemListLayout = null,
-    $moduleName = "isite",
-    $entityName = "item",
-    $itemComponentName = "isite::item-list",
-    $params = [],
-    $responsiveTopContent = null,
-    $showTitle = true,
-    $pagination = null,
-    $configOrderBy = null,
-    $configLayoutIndex = null,
-    $itemComponentAttributes = [],
-    $itemModal = null,
-    $carouselAttributes = null,
-    $uniqueItemListRendered = false,
-    $title = null,
-    $description = null
+    $itemComponentNamespace = "Modules\Isite\View\Components\ItemList", $itemListLayout = null, $moduleName = "isite",
+    $entityName = "item", $itemComponentName = "isite::item-list", $params = [], $responsiveTopContent = null,
+    $showTitle = true, $pagination = null, $configOrderBy = null, $configLayoutIndex = null, $itemComponentAttributes = [],
+    $itemModal = null, $carouselAttributes = null, $uniqueItemListRendered = false, $title = null, $description = null
   )
   {
-    
-    
+
     $this->moduleName = strtolower($moduleName);
     $this->entityName = strtolower($entityName);
     
@@ -135,7 +121,7 @@ class ItemsList extends Component
     $this->carouselAttributes = $carouselAttributes;
     
     $this->uniqueItemListRendered = $uniqueItemListRendered;
-    
+ 
     $this->initConfigs($configOrderBy, $configLayoutIndex);
     $this->initValuesOrderBy();
     $this->initValuesLayout($itemListLayout);
@@ -314,18 +300,16 @@ class ItemsList extends Component
   public function render()
   {
     
-    
     if (!$this->firstRequest && !in_array('orderBy', $this->queryString)) {
       array_push($this->queryString, 'orderBy');
     }
     
     $params = $this->makeParamsToRepository();
-    
     //\Log::info("ITEM LIST - RENDER - PARAMS QUERY ".json_encode($params));
     
     $items = $this->getItemRepository()->getItemsBy(json_decode(json_encode($params)));
     
-    $this->totalItems = $items->total();
+    $this->totalItems = method_exists($items,"total") ? $items->total() : $items->count();
     
     //\Log::info("ITEM LIST - TOTAL: ".$items->total());
     
