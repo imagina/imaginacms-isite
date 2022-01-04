@@ -8,7 +8,7 @@ return [
     'type' => 'input',
     'props' => ['label' => "isite::sites.settings.appVersion"]
   ],
-  
+
   //Media
   'logo1' => [
     'value' => (object)['isite::logo1' => null],
@@ -17,6 +17,7 @@ return [
     'type' => 'media',
     'groupName' => 'media',
     'groupTitle' => 'isite::common.settingGroups.media',
+    'quickSetting' => true,
     'props' => [
       'label' => 'isite::common.settings.logo1',
       'zone' => 'isite::logo1',
@@ -99,6 +100,7 @@ return [
     'groupName' => 'colors',
     'groupTitle' => 'isite::common.settingGroups.colors',
     'colClass' => 'col-12 col-md-6',
+    'quickSetting' => true,
     'props' => [
       'label' => 'isite::common.settings.brandPrimary'
     ]
@@ -110,6 +112,7 @@ return [
     'groupName' => 'colors',
     'groupTitle' => 'isite::common.settingGroups.colors',
     'colClass' => 'col-12 col-md-6',
+    'quickSetting' => true,
     'props' => [
       'label' => 'isite::common.settings.brandSecondary'
     ]
@@ -250,6 +253,37 @@ return [
     'groupName' => 'socialNetworks',
     'groupTitle' => 'isite::common.settingGroups.socialNetworks',
     'props' => ['label' => 'Telegram']
+  ],
+  'youtube' => [
+    'value' => null,
+    'name' => 'youtube',
+    'fakeFieldName' => 'isite::socialNetworks',
+    'groupName' => 'socialNetworks',
+    'groupTitle' => 'isite::common.settingGroups.socialNetworks',
+    'type' => 'input',
+    'isTranslatable' => true,
+    'group' => 'isite::common.settingGroups.socialNetworks',
+    'props' => ['label' => 'YouTube']
+  ],
+  'flickr' => [
+    'value' => null,
+    'name' => 'flickr',
+    'fakeFieldName' => 'isite::socialNetworks',
+    'type' => 'input',
+    'isTranslatable' => true,
+    'groupName' => 'socialNetworks',
+    'groupTitle' => 'isite::common.settingGroups.socialNetworks',
+    'props' => ['label' => 'Flickr']
+  ],
+  'pinterest' => [
+    'value' => null,
+    'name' => 'pinterest',
+    'fakeFieldName' => 'isite::socialNetworks',
+    'type' => 'input',
+    'isTranslatable' => true,
+    'groupName' => 'socialNetworks',
+    'groupTitle' => 'isite::common.settingGroups.socialNetworks',
+    'props' => ['label' => 'Pinterest']
   ],
   'whatsapp1' => [
     'name' => 'isite::whatsapp1',
@@ -430,17 +464,6 @@ return [
       ],
     ]
   ],
-  'youtube' => [
-    'value' => null,
-    'name' => 'youtube',
-    'fakeFieldName' => 'isite::socialNetworks',
-    'groupName' => 'socialNetworks',
-    'groupTitle' => 'isite::common.settingGroups.socialNetworks',
-    'type' => 'input',
-    'isTranslatable' => true,
-    'group' => 'isite::common.settingGroups.socialNetworks',
-    'props' => ['label' => 'YouTube']
-  ],
   //Recaptcha
   'activateCaptcha' => [
     'value' => "0",
@@ -523,6 +546,7 @@ return [
     'type' => 'select',
     'groupName' => 'contact',
     'groupTitle' => 'isite::common.settingGroups.contact',
+    'quickSetting' => true,
     'props' => [
       'label' => 'isite::common.settings.phones',
       'useInput' => true,
@@ -539,6 +563,7 @@ return [
     'type' => 'select',
     'groupName' => 'contact',
     'groupTitle' => 'isite::common.settingGroups.contact',
+    'quickSetting' => true,
     'props' => [
       'label' => 'isite::common.settings.addresses',
       'useInput' => true,
@@ -694,7 +719,7 @@ return [
       'label' => 'isite::pdf.settings.pdf.text.Information_content',
     ]
   ],
-  
+
   //Roles to register
   'rolesToTenant' => [
     "onlySuperAdmin" => true,
@@ -713,7 +738,7 @@ return [
       'select' => ['label' => 'name', 'id' => 'id']
     ]
   ],
-  
+
   //Tenant route alias
   'tenantRouteAlias' => [
     'value' => "",
@@ -726,7 +751,7 @@ return [
       'label' => 'isite::common.settings.tenantRouteAlias'
     ]
   ],
-  
+
   'mapInShow' => [
     "onlySuperAdmin" => true,
     'value' => 'openStreet',
@@ -742,7 +767,7 @@ return [
       ]
     ]
   ],
-  
+
   'statusModalVerifier' => [
     'value' => '0',
     'name' => 'isite::statusModalVerifier',
