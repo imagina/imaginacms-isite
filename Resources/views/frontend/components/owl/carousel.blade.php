@@ -22,9 +22,11 @@
                   @endif
                   
                   @while(isset($items[$x + $j]) && $j<$itemsBySlide)
-                    
-                    <x-dynamic-component :component="$itemComponent" :item="$items[$x + $j]" :product="$items[$x + $j]" :layout="$itemLayout"
-                                         :parentAttributes="$attributes" :editLink="$editLink" :tooltipEditLink="$tooltipEditLink"/>
+
+                    <x-dynamic-component :positionNumber="$x+$j" :component="$itemComponent" :item="$items[$x + $j]"
+                                         :product="$items[$x + $j]" :layout="$itemLayout"
+                                         :parentAttributes="$attributes" :editLink="$editLink"
+                                         :tooltipEditLink="$tooltipEditLink"/>
                     
                     @php($j++)
                   @endwhile

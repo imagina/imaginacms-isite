@@ -8,7 +8,7 @@ return [
     'type' => 'input',
     'props' => ['label' => "isite::sites.settings.appVersion"]
   ],
-  
+
   //Media
   'logo1' => [
     'value' => (object)['isite::logo1' => null],
@@ -17,6 +17,7 @@ return [
     'type' => 'media',
     'groupName' => 'media',
     'groupTitle' => 'isite::common.settingGroups.media',
+    'quickSetting' => true,
     'props' => [
       'label' => 'isite::common.settings.logo1',
       'zone' => 'isite::logo1',
@@ -99,6 +100,7 @@ return [
     'groupName' => 'colors',
     'groupTitle' => 'isite::common.settingGroups.colors',
     'colClass' => 'col-12 col-md-6',
+    'quickSetting' => true,
     'props' => [
       'label' => 'isite::common.settings.brandPrimary'
     ]
@@ -110,6 +112,7 @@ return [
     'groupName' => 'colors',
     'groupTitle' => 'isite::common.settingGroups.colors',
     'colClass' => 'col-12 col-md-6',
+    'quickSetting' => true,
     'props' => [
       'label' => 'isite::common.settings.brandSecondary'
     ]
@@ -543,6 +546,7 @@ return [
     'type' => 'select',
     'groupName' => 'contact',
     'groupTitle' => 'isite::common.settingGroups.contact',
+    'quickSetting' => true,
     'props' => [
       'label' => 'isite::common.settings.phones',
       'useInput' => true,
@@ -559,6 +563,7 @@ return [
     'type' => 'select',
     'groupName' => 'contact',
     'groupTitle' => 'isite::common.settingGroups.contact',
+    'quickSetting' => true,
     'props' => [
       'label' => 'isite::common.settings.addresses',
       'useInput' => true,
@@ -714,8 +719,7 @@ return [
       'label' => 'isite::pdf.settings.pdf.text.Information_content',
     ]
   ],
-  
-  
+
   //Roles to register
   'rolesToTenant' => [
     "onlySuperAdmin" => true,
@@ -734,11 +738,12 @@ return [
       'select' => ['label' => 'name', 'id' => 'id']
     ]
   ],
-  
+
   //Tenant route alias
   'tenantRouteAlias' => [
     'value' => "",
     'name' => 'isite::tenantRouteAlias',
+    "onlySuperAdmin" => true,
     'type' => 'input',
     'groupName' => 'tenants',
     'groupTitle' => 'isite::common.settingGroups.tenants',
@@ -746,7 +751,7 @@ return [
       'label' => 'isite::common.settings.tenantRouteAlias'
     ]
   ],
-  
+
   'mapInShow' => [
     "onlySuperAdmin" => true,
     'value' => 'openStreet',
@@ -762,7 +767,7 @@ return [
       ]
     ]
   ],
-  
+
   'statusModalVerifier' => [
     'value' => '0',
     'name' => 'isite::statusModalVerifier',
@@ -806,6 +811,47 @@ return [
     'groupTitle' => 'isite::common.settingGroups.modalVerifier',
     'props' => [
       'label' => 'isite::isite.verifier.buttonLabel'
+    ]
+  ],
+  //Choose header layout
+  'headerLayout' => [
+    'value' => "header-layout-1",
+    'name' => 'isite::headerLayout',
+    "onlySuperAdmin" => true,
+    'type' => 'select',
+    'colClass' => 'col-6',
+    'props' => [
+      'label' => 'isite::common.settings.headerLayout',
+      'useInput' => false,
+      'useChips' => false,
+      'multiple' => false,
+      'hideDropdownIcon' => true,
+      'newValueMode' => 'add-unique',
+      'options' => [
+        ['label' => 'Header Layout 1', 'value' => "header-layout-1"],
+        ['label' => 'Header Layout 2', 'value' => "header-layout-2"],
+        ['label' => 'Header Layout 3', 'value' => "header-layout-3"],
+      ]
+    ]
+  ], //Choose footer layout
+  'footerLayout' => [
+    'value' => "footer-layout-1",
+    'name' => 'isite::footerLayout',
+    "onlySuperAdmin" => true,
+    'type' => 'select',
+    'colClass' => 'col-6',
+    'props' => [
+      'label' => 'isite::common.settings.footerLayout',
+      'useInput' => false,
+      'useChips' => false,
+      'multiple' => false,
+      'hideDropdownIcon' => true,
+      'newValueMode' => 'add-unique',
+      'options' => [
+        ['label' => 'Footer Layout 1', 'value' => "footer-layout-1"],
+        ['label' => 'Footer Layout 2', 'value' => "footer-layout-2"],
+        ['label' => 'Footer Layout 3', 'value' => "footer-layout-3"],
+      ]
     ]
   ],
 ];

@@ -15,7 +15,7 @@ class OrganizationTransformer extends CrudResource
   {
 
     return [
-      "url" => $this->url
+      "url" => $this->url,
     ];
   }
 }

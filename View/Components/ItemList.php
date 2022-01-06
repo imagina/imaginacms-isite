@@ -23,6 +23,7 @@ class ItemList extends Component
   public $tooltipEditLink;
   public $target;
   public $itemListLayout;
+  public $positionNumber;
   
   /**
    * Create a new component instance.
@@ -33,10 +34,11 @@ class ItemList extends Component
                               $withViewMoreButton = false, $viewMoreButtonLabel = "isite::common.menu.viewMore",
                               $withCreatedDate = false, $formatCreatedDate = "d \\d\\e M", $orderClasses = [],
                               $withCategory = false, $withSummary = true, $numberCharactersSummary = 100, $editLink = null,
-                              $tooltipEditLink = null, $itemComponentView = null, $itemComponentTarget = "_self", $itemListLayout = null)
+                              $tooltipEditLink = null, $itemComponentView = null, $itemComponentTarget = "_self", $itemListLayout = null, $positionNumber = null)
   {
     $this->item = $item;
     $this->mediaImage = $mediaImage;
+    $this->positionNumber = $positionNumber;
     $this->view = "isite::frontend.components.item-list.layouts." . ($layout ?? 'item-list-layout-1') . ".index";
     $this->view = $itemComponentView ?? $this->view;
     $this->target = $itemComponentTarget;
