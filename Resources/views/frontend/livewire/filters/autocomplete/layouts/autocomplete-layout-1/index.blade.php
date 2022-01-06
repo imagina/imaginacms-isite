@@ -17,6 +17,13 @@
                      class="form-control  rounded-right"
                      placeholder="{{ $placeholder }}"
                      aria-label="{{ $placeholder }}" aria-describedby="button-addon2">
+              @if($buttonSearch)
+                <div class="input-group-append">
+                  <button class="btn btn-primary px-3 " wire:click="goToIndex" type="submit" id="button-addon2">
+                    <i class="{{ $icon }}"></i>
+                  </button>
+                </div>
+              @endif
             </div>
           </div>
           <!-- dropdown search result -->
