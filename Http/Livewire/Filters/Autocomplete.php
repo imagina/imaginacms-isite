@@ -25,7 +25,10 @@ class Autocomplete extends Component
   public $classes;
   public $options;
   public $params;
-
+  public $emitTo;
+  public $repoAction;
+  public $repoAttribute;
+  public $repoMethod;
 
   /*
   * Attributes
@@ -45,9 +48,11 @@ class Autocomplete extends Component
     'search' => ['except' => ''],
   ];
 
-  public function mount($layout = 'autocomplete-layout-1', $showModal = false, $icon = 'fa fa-search',
-                        $placeholder = null, $title = '', $params = [], $buttonSearch = false)
+  public function mount($name, $layout = 'autocomplete-layout-1', $showModal = false, $icon = 'fa fa-search',
+                        $placeholder = null, $title = '', $params = [], $buttonSearch = false, $emitTo = null,
+                        $repoAction = null, $repoAttribute = null, $repoMethod = null)
   {
+
     $this->defaultView = 'isite::frontend.livewire.filters.autocomplete.layouts.autocomplete-layout-1.index';
     $this->view = isset($layout) ? 'isite::frontend.livewire.filters.autocomplete.layouts.' . $layout . '.index' : $this->defaultView;
     $this->results = [];
@@ -55,15 +60,38 @@ class Autocomplete extends Component
     $this->icon = isset($icon) ? $icon : 'fa-search';
     $this->placeholder = $placeholder ?? trans('isearch::common.form.search_here');
     $this->title = $title;
+    $this->name = $name;
     $minSearchChars = setting('isearch::minSearchChars', null, "3");
     $this->minSearchChars = $minSearchChars;
     $this->buttonSearch = $buttonSearch;
+    $this->emitTo = $emitTo;
+    $this->repoAction = $repoAction;
+    $this->repoAttribute = $repoAttribute;
+    $this->repoMethod = $repoMethod;
+    $this->params = $params ?? ["filter" => []];
   }
 
   public function hydrate()
   {
     \Log::info('Autocomplete: HYDRATE');
     $this->results = [];
+  }
+
+  /*
+ * When SelectedOption has been selected
+ */
+  public function updatedSearch()
+  {
+    \Log::info("UpdatedSearch",[$this->emitTo]);
+    if (!empty($this->emitTo)) {
+      $this->emit($this->emitTo, [
+        'name' => $this->name,
+        $this->repoAction => [
+          $this->repoAttribute => $this->search ?? null
+        ]
+      ]);
+    }
+
   }
 
   private function makeParamsFunction()

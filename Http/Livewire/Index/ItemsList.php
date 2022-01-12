@@ -104,6 +104,7 @@ class ItemsList extends Component
     $this->initRequest();
     $this->validateNameEmitListRendered();
     list($this->editLink, $this->tooltipEditLink) = getEditLink($this->repository);
+
   }
 
   /*
@@ -226,6 +227,7 @@ class ItemsList extends Component
     if (isset($this->moduleParams['filter']) && !empty($this->moduleParams['filter'])) {
       $params["filter"] = array_merge_recursive($params["filter"], $this->moduleParams['filter']);
     }
+
     return $params;
   }
 
