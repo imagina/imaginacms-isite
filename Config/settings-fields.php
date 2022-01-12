@@ -720,7 +720,6 @@ return [
     ]
   ],
 
-
   //Roles to register
   'rolesToTenant' => [
     "onlySuperAdmin" => true,
@@ -744,6 +743,7 @@ return [
   'tenantRouteAlias' => [
     'value' => "",
     'name' => 'isite::tenantRouteAlias',
+    "onlySuperAdmin" => true,
     'type' => 'input',
     'groupName' => 'tenants',
     'groupTitle' => 'isite::common.settingGroups.tenants',
@@ -811,6 +811,47 @@ return [
     'groupTitle' => 'isite::common.settingGroups.modalVerifier',
     'props' => [
       'label' => 'isite::isite.verifier.buttonLabel'
+    ]
+  ],
+  //Choose header layout
+  'headerLayout' => [
+    'value' => "header-layout-1",
+    'name' => 'isite::headerLayout',
+    "onlySuperAdmin" => true,
+    'type' => 'select',
+    'colClass' => 'col-6',
+    'props' => [
+      'label' => 'isite::common.settings.headerLayout',
+      'useInput' => false,
+      'useChips' => false,
+      'multiple' => false,
+      'hideDropdownIcon' => true,
+      'newValueMode' => 'add-unique',
+      'options' => [
+        ['label' => 'Header Layout 1', 'value' => "header-layout-1"],
+        ['label' => 'Header Layout 2', 'value' => "header-layout-2"],
+        ['label' => 'Header Layout 3', 'value' => "header-layout-3"],
+      ]
+    ]
+  ], //Choose footer layout
+  'footerLayout' => [
+    'value' => "footer-layout-1",
+    'name' => 'isite::footerLayout',
+    "onlySuperAdmin" => true,
+    'type' => 'select',
+    'colClass' => 'col-6',
+    'props' => [
+      'label' => 'isite::common.settings.footerLayout',
+      'useInput' => false,
+      'useChips' => false,
+      'multiple' => false,
+      'hideDropdownIcon' => true,
+      'newValueMode' => 'add-unique',
+      'options' => [
+        ['label' => 'Footer Layout 1', 'value' => "footer-layout-1"],
+        ['label' => 'Footer Layout 2', 'value' => "footer-layout-2"],
+        ['label' => 'Footer Layout 3', 'value' => "footer-layout-3"],
+      ]
     ]
   ],
 ];

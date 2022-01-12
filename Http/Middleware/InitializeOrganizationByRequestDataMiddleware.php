@@ -55,7 +55,7 @@ class InitializeOrganizationByRequestDataMiddleware extends BaseApiController
       if(!empty($organizationSelected))
         tenancy()->initialize($organizationSelected);
       
-      
+ 
     } catch (\Exception $error) {
       \Log::info($error->getMessage() . ' ' . $error->getFile() . ' ' . $error->getLine());
     }

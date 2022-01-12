@@ -19,6 +19,8 @@ return [
     'brandFaded' => 'Faded Color',
     'brandInfo' => 'Information Color',
     'brandWarning' => 'Warning Color',
+    'headerLayout' => 'Header Layout',
+    'headerLayout' => 'Footer Layout',
     'brandDark' => 'Dark Color',
     'brandLight' => 'Light Color',
     'brandAccent' => 'Accent Color',
