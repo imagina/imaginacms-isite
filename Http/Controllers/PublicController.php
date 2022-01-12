@@ -20,26 +20,37 @@ class PublicController extends BaseApiController
     parent::__construct();
   }
   
-  public function organizationIndex(Request $request, $subDomain)
+  public function homepage(Request $request)
   {
-    
+
     $locale = \LaravelLocalization::setLocale() ?: \App::getLocale();
     
     $organization = tenant();
+
+    if(isset($organization->id)){
+      //default view in the Theme
+      if (view()->exists("isite.organization.default"))
+        return view("isite.organization.default", compact('organization'));
   
-    //default view in the Theme
-    if (view()->exists("isite.organization.default"))
-      return view("isite.organization.default", compact('organization'));
+      $routeAlias = setting("isite::tenantRouteAlias", null, null, true);
   
-    $routeAlias = setting("isite::tenantRouteAlias", null, null, true);
-  
-    if (isset($organization->id) && $routeAlias) {
-      if ($organization->status) {
-        return redirect(tenant_route($request->getHost(), $locale . '.' . $routeAlias));
+      if (isset($organization->id) && $routeAlias) {
+        if ($organization->status) {
+          return redirect(tenant_route($request->getHost(), $locale . '.' . $routeAlias));
+        }
       }
     }
     
-    return redirect()->route("homepage");
+  
+    //ultimo, busca el slug en Page
+    $pageRepository = app("Modules\Page\Repositories\PageRepository");
+    $page = $pageRepository->findBySlug("home");
+  
+    if(isset($page->id)){
+      $controller = app("Modules\Page\Http\Controllers\PublicController");
+      return $controller->uri($page);
+    }
+    
     
   }
   

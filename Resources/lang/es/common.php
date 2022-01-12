@@ -23,6 +23,8 @@ return [
     'brandDark' => 'Color Oscuro',
     'brandLight' => 'Color Claro',
     'brandAccent' => 'Color Acento',
+    'headerLayout' => 'Layout para la Cabecera del sitio',
+    'footerLayout' => 'Layout para el Pié del sitio',
     'phones' => 'Teléfonos',
     'addresses' => 'Direcciones',
     'emails' => 'Correos',
