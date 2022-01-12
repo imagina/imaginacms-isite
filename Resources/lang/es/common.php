@@ -57,14 +57,54 @@ return [
     'emails' => "Ingresa un correo electrónico y presiona enter",
   ],
   'settingGroups' => [
-    'media' => 'Media',
-    'colors' => 'Colores',
-    'socialNetworks' => 'Redes sociales',
-    'apiKeys' => "Llaves API",
-    'contact' => 'Contacto',
-    'customSources' => 'Fuentes Personalizadas',
-    'tenants' => 'Inquilinos',
-    'modalVerifier' => 'Modal Verificador',
+    'title' => 'Agrega tu logo',
+    'media' => [
+      'description' => 'Agregar el logo de tu empresa'
+    ],
+    'general' => [
+      'title' => 'Datos Principales',
+      'description' => 'Personaliza los datos principales de tu sitio'
+    ],
+    'colors' => [
+      'title' => 'Personaliza los colores',
+      'description' => 'Dale personalidad a tu página web con tus colores corpoativos'
+    ],
+    'socialNetworks' => [
+      'title' => 'Redes sociales',
+      'description' => 'Enlaza las redes sociales de tu empresa con tu sitio web'
+    ],
+    'apiKeys' => [
+      'title' => 'Llaves API',
+      'description' => 'Llaves API'
+    ],
+    'contact' => [
+      'title' => 'Datos de contacto',
+      'description' => 'Ingresa los datos de contacto de tu sitio web'
+    ],
+    'customSources' => [
+      'title' => 'Fuentes Personalizadas',
+      'description' => 'Fuentes Personalizadas'
+    ],
+    'tenants' => [
+      'title' => 'Inquilinos',
+      'description' => 'Inquilinos'
+    ],
+    'modalVerifier' => [
+      'title' => 'Modal Verificador',
+      'description' => 'Modal Verificador'
+    ],
+    'pdf' => [
+      'title' => 'PDF',
+      'description' => 'PDF'
+    ],
+    'pdf' => [
+      'title' => 'PDF',
+      'description' => 'PDF'
+    ],
+    'maps' => [
+      'title' => 'Mapas',
+      'description' => 'Mapas'
+    ],
   ],
   'messages' => [
     'no items' => 'No existe información disponible'

@@ -39,45 +39,81 @@ return [
     'customJs' => 'Custom Body JS',
     'headerCustomJs' => 'Custom Head JS',
     'tenantRouteAlias' => 'Route Alias to the tenant lading page',
-    "whatsapp" =>[
-        "callingCode" => "CountryCode",
-        "number" => "Whatsapp number",
-        "message" => "Default Message",
-        "label" => "Label",
-        "icon-label" => "Icon",
+    "whatsapp" => [
+      "callingCode" => "CountryCode",
+      "number" => "Whatsapp number",
+      "message" => "Default Message",
+      "label" => "Label",
+      "icon-label" => "Icon",
     ],
     'googleClient' => 'Google Client',
     'facebookClient' => 'Facebook Client',
     'facebookAppId' => 'Facebook App Id',
-    
+
   ],
   'settingHints' => [
-     'phones' => "Type a phone number and press enter key",
-     'addresses' => "Type an address and press enter key",
-     'emails' => "Type an email and press enter key",
+    'phones' => "Type a phone number and press enter key",
+    'addresses' => "Type an address and press enter key",
+    'emails' => "Type an email and press enter key",
   ],
   'settingGroups' => [
-    'media' => 'Media',
-    'colors' => 'Colors',
-    'socialNetworks' => 'Social Networks',
-    'apiKeys' => "API Keys",
-    'contact' => 'Contact',
-    'customSources' => 'Custom Sources',
-    'tenants' => 'Tenants',
-    'modalVerifier' => 'Verifier Modal',
+    'media' => [
+      'title' => 'Media',
+      'description' => 'Media'
+    ],
+    'general' => [
+      'title' => 'General',
+      'description' => 'General'
+    ],
+    'colors' => [
+      'title' => 'Colors',
+      'description' => 'Custom your colors'
+    ],
+    'socialNetworks' => [
+      'title' => 'Social Networks',
+      'description' => 'Social Networks'
+    ],
+    'apiKeys' => [
+      'title' => 'API Keys',
+      'description' => 'API Keys'
+    ],
+    'contact' => [
+      'title' => 'Contact',
+      'description' => 'Contact'
+    ],
+    'customSources' => [
+      'title' => 'Custom Sources',
+      'description' => 'Custom Sources'
+    ],
+    'tenants' => [
+      'title' => 'Tenants',
+      'description' => 'Tenants'
+    ],
+    'modalVerifier' => [
+      'title' => 'Verifier Modal',
+      'description' => 'Verifier Modal'
+    ],
+    'pdf' => [
+      'title' => 'PDF',
+      'description' => 'PDF'
+    ],
+    'maps' => [
+      'title' => 'Maps',
+      'description' => 'Maps'
+    ],
   ],
   'messages' => [
     'no items' => 'Not Information available'
   ],
   'sort' => [
-        'title' => 'Order',
-        'all' => 'All',
-        'name_a_z' => 'Name (A - Z)',
-        'name_z_a' => 'Name (Z - A)',
-        'price_low_high' => 'Price: low to high',
-        'price_high_low' => 'Price: high to low',
-        'recently' => 'More Recently',
-    ],
+    'title' => 'Order',
+    'all' => 'All',
+    'name_a_z' => 'Name (A - Z)',
+    'name_z_a' => 'Name (Z - A)',
+    'price_low_high' => 'Price: low to high',
+    'price_high_low' => 'Price: high to low',
+    'recently' => 'More Recently',
+  ],
   'editLink' => [
     'tooltip' => 'Edit this section',
     'tooltipCategory' => 'Edit this category',
