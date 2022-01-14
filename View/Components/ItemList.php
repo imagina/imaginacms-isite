@@ -24,6 +24,8 @@ class ItemList extends Component
   public $target;
   public $itemListLayout;
   public $positionNumber;
+  public $layout;
+  public $withDescription;
   
   /**
    * Create a new component instance.
@@ -34,8 +36,10 @@ class ItemList extends Component
                               $withViewMoreButton = false, $viewMoreButtonLabel = "isite::common.menu.viewMore",
                               $withCreatedDate = false, $formatCreatedDate = "d \\d\\e M", $orderClasses = [],
                               $withCategory = false, $withSummary = true, $numberCharactersSummary = 100, $editLink = null,
-                              $tooltipEditLink = null, $itemComponentView = null, $itemComponentTarget = "_self", $itemListLayout = null, $positionNumber = null)
+                              $tooltipEditLink = null, $itemComponentView = null, $itemComponentTarget = "_self",
+                              $itemListLayout = null, $positionNumber = null, $withDescription = false)
   {
+
     $this->item = $item;
     $this->mediaImage = $mediaImage;
     $this->positionNumber = $positionNumber;
@@ -53,7 +57,8 @@ class ItemList extends Component
     $this->editLink = $editLink;
     $this->tooltipEditLink = $tooltipEditLink;
     $this->itemListLayout = $itemListLayout;
-    
+    $this->withDescription = $withDescription;
+
     if (!empty($parentAttributes))
       $this->getParentAttributes($parentAttributes);
   }
@@ -74,6 +79,7 @@ class ItemList extends Component
     isset($parentAttributes["itemComponentView"]) ? $this->view = $parentAttributes["itemComponentView"] ?? $this->view : false;
     isset($parentAttributes["target"]) ? $this->target = $parentAttributes["target"] ?? "_self" : false;
     isset($parentAttributes["itemListLayout"]) ? $this->itemListLayout = $parentAttributes["itemListLayout"] : false;
+    isset($parentAttributes["withDescription"]) ? $this->withDescription = $parentAttributes["withDescription"] : false;
     
   }
   
