@@ -103,8 +103,8 @@ return [
     ],
     'media' => [
       'icon' => 'far fa-images',
-      'title' => 'isite::common.settingGroups.general.title',
-      'description' => 'isite::common.settingGroups.general.description'
+      'title' => 'isite::common.settingGroups.media.title',
+      'description' => 'isite::common.settingGroups.media.description'
     ],
     'colors' => [
       'icon' => 'fas fa-tint',

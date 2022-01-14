@@ -61,6 +61,7 @@ return [
   'settingGroups' => [
     'title' => 'Agrega tu logo',
     'media' => [
+      'title' => 'Agrega tu Imagen',
       'description' => 'Agregar el logo de tu empresa'
     ],
     'general' => [
