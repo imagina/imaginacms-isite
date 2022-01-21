@@ -31,7 +31,7 @@ trait WithProduct
 
     }
 
-    
+
     /**
     * Sync Product
     */
@@ -42,7 +42,7 @@ trait WithProduct
             'entity_type' => get_class($this),
             'entity_id' => $this->id
         ],[
-            'name' => $this->title,
+            'name' => $this->title ?? $this->name,
             'slug' => $this->slug,
             'description' => $this->description,
             'summary' => $this->summary ?? substr($this->description, 0, 150),
