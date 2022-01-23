@@ -1,6 +1,8 @@
 <div class="col-12">
-  <p class="subtitle h3">{{$title}}</p>
-  <hr>
+  @if(isset($title) && !empty($title))
+    <p class="subtitle h3">{{$title}}</p>
+    <hr>
+  @endif
   <div class="section-map">
     <div class="map bg-light">
       @if(setting('isite::mapInShow') == 'googleMaps')
@@ -27,13 +29,14 @@
           .bindPopup('{{$locationName}}')
           .openPopup();
       }
+
       $(document).ready(function () {
         initialize();
       });
     </script>
     <script>
       function initMap() {
-        const position = { lat: {{$lat}}, lng: {{$lng}} };
+        const position = {lat: {{$lat}}, lng: {{$lng}}};
         const map = new google.maps.Map(document.getElementById("map_canvas_google"), {
           zoom: {{$zoom}},
           center: position,

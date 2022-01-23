@@ -42,6 +42,7 @@ return [
     'customJs' => 'JS Personalizado para el Body',
     'headerCustomJs' => 'JS Personalizado para el Head',
     'tenantRouteAlias' => 'Alias de la ruta de aterrizaje para los Inquilinos',
+    'itemsTabs' => 'Ingresa Titulos para los tabs',
     "whatsapp" => [
       "callingCode" => "Cód del país",
       "number" => "Número del whatsapp",
@@ -57,8 +58,19 @@ return [
     'phones' => "Ingresa un número telefónico y presiona enter",
     'addresses' => "Ingresa una dirección y presiona enter",
     'emails' => "Ingresa un correo electrónico y presiona enter",
+    'itemsTabs' => "Ingresa un titulo para identificar los tabs",
   ],
   'settingGroups' => [
+    'media' => 'Media',
+    'colors' => 'Colores',
+    'socialNetworks' => 'Redes sociales',
+    'apiKeys' => "Llaves API",
+    'contact' => 'Contacto',
+    'customSources' => 'Fuentes Personalizadas',
+    'tenants' => 'Inquilinos',
+    'modalVerifier' => 'Modal Verificador',
+    'components' => 'Componentes',
+
     'title' => 'Agrega tu logo',
     'media' => [
       'title' => 'Agrega tu Imagen',
@@ -108,6 +120,7 @@ return [
       'title' => 'Mapas',
       'description' => 'Mapas'
     ],
+
   ],
   'messages' => [
     'no items' => 'No existe información disponible'

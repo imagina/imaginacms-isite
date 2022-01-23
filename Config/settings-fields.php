@@ -854,4 +854,21 @@ return [
       ]
     ]
   ],
+  //Components
+  'itemsTabs' => [
+    'value' => ['Item-1','Item-2'],
+    'name' => 'isite::itemsTabs',
+    'type' => 'select',
+    'groupName' => 'components',
+    'groupTitle' => 'isite::common.settingGroups.components',
+    'props' => [
+      'label' => 'isite::common.settings.itemsTabs',
+      'useInput' => true,
+      'useChips' => true,
+      'multiple' => true,
+      'hideDropdownIcon' => true,
+      'hint' => 'isite::common.settingHints.itemsTabs',
+      'newValueMode' => 'add-unique'
+    ]
+  ],
 ];
