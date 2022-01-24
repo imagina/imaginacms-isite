@@ -15,7 +15,6 @@
           {{$itemTab->title}}
         </a>
       </li>
-{{--      {{dd($itemTab)}}--}}
     @endforeach
   </ul>
   <div class="tab-content border-top border-bottom border-white">
@@ -39,7 +38,6 @@
       @else
         @php($counter++)
         @php($counter == 1 ? $state = 'show active' : $state = ' ')
-{{--              {{dd($componentFilter)}}--}}
         <div class="tab-pane fade {{$state}}" id="tab-{{$item->id}}" role="tabpanel"
              aria-labelledby="product-tab-{{$item->id}}">
           <livewire:isite::items-list

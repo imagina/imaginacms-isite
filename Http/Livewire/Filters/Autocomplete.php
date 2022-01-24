@@ -48,7 +48,7 @@ class Autocomplete extends Component
     'search' => ['except' => ''],
   ];
 
-  public function mount($name, $layout = 'autocomplete-layout-1', $showModal = false, $icon = 'fa fa-search',
+  public function mount($name = null, $layout = 'autocomplete-layout-1', $showModal = false, $icon = 'fa fa-search',
                         $placeholder = null, $title = '', $params = [], $buttonSearch = false, $emitTo = null,
                         $repoAction = null, $repoAttribute = null, $repoMethod = null)
   {
