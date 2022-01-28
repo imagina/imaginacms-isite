@@ -74,7 +74,7 @@ class Autocomplete extends Component
   public function hydrate()
   {
     \Log::info('Autocomplete: HYDRATE');
-    $this->results = [];
+    $this->results = collect([]);
   }
 
   /*
