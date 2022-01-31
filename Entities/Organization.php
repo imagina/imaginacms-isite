@@ -38,6 +38,7 @@ class Organization extends BaseTenant
     'permissions',
     'category_id',
     'status',
+    'enable',
     'sort_order'
   ];
   protected $casts = [
@@ -76,6 +77,7 @@ class Organization extends BaseTenant
     return $this->hasMany(Domain::class);
   }
   
+  
   public function settings()
   {
     return $this->hasMany(Setting::class);
@@ -87,9 +89,9 @@ class Organization extends BaseTenant
     $currentLocale = \LaravelLocalization::getCurrentLocale();
 
     $slug = $this->domains->first()->domain ?? $this->slug;
-
+    $domains = $this->domains;
     if ($slug)
-      return tenant_route($slug . "." . (Str::remove('https://', env('APP_URL', 'localhost'))), $currentLocale . '.organization.index', [$this->slug]);
+      return $domains->where("type","custom")->first()->domain ?? $domains->where("type","default")->first()->domain.Str::remove('https://', env('APP_URL', 'localhost'));
     else
       return "";
 
