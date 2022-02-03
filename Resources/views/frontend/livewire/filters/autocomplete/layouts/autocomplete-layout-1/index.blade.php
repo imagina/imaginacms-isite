@@ -28,7 +28,7 @@
           </div>
           <!-- dropdown search result -->
           <div id="display_result"
-               class="dropdown-menu w-100 rounded-0 py-3 m-0 overflow-auto {{ $this->search ? 'show' : '' }}"
+               class="dropdown-menu w-100 rounded-0 py-3 m-0 overflow-auto {{ $this->search && $updatedSearchFromInput ? 'show' : '' }}"
                aria-labelledby="dropdownSearch"
                style="z-index: 999999;max-height: 480px;">
             @if(!empty($search))

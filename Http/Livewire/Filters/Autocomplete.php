@@ -43,6 +43,7 @@ class Autocomplete extends Component
   public $minSearchChars;
   public $repositories;
   public $buttonSearch;
+  public $updatedSearchFromInput;
 
   protected $queryString = [
     'search' => ['except' => ''],
@@ -61,6 +62,7 @@ class Autocomplete extends Component
     $this->placeholder = $placeholder ?? trans('isearch::common.form.search_here');
     $this->title = $title;
     $this->name = $name;
+    $this->updatedSearchFromInput = false;
     $minSearchChars = setting('isearch::minSearchChars', null, "3");
     $this->minSearchChars = $minSearchChars;
     $this->buttonSearch = $buttonSearch;
@@ -82,6 +84,7 @@ class Autocomplete extends Component
  */
   public function updatedSearch()
   {
+    $this->updatedSearchFromInput = true;
     \Log::info("UpdatedSearch",[$this->emitTo]);
     if (!empty($this->emitTo)) {
       $this->emit($this->emitTo, [
@@ -125,7 +128,7 @@ class Autocomplete extends Component
         $haystack = Str::lower($item->title ?? $item->name);
         $bits_of_haystack = explode(' ', $haystack);
         foreach (explode(" ", $search) as $substring) {
-          if (!in_array($substring, $bits_of_haystack))
+          if (empty($substring) || !in_array($substring, $bits_of_haystack))
             continue; // skip this needle if it doesn't exist as a whole word
           $initial += substr_count($haystack, $substring);
         }
