@@ -1,6 +1,6 @@
 <div class="filter-{{$type}} filter-{{$type}}-layout-{{$layout}} filter-{{$name}}">
   @if($status)
-    @if($withTitle)
+    @if($this->withTitle)
       <div class="title">
         <a class="item mb-3" @if($isCollapsable) data-toggle="collapse" href="#collapse-{{$name}}" role="button"
            aria-expanded="{{$isExpanded ? 'true' : 'false'}}" aria-controls="collapse-{{$name}}"
@@ -12,13 +12,11 @@
         </a>
       </div>
     @endif
-
     <div class="content position-relative m-3">
-
       @include('isite::frontend.partials.preloader')
       <div @if($isCollapsable) class="collapse multi-collapse {{$isExpanded ? 'show' : ''}}"
            id="collapse-{{$name}}" @endif>
-        @if($withSubtitle)
+        @if($this->withSubtitle)
           <label>{{$title}}</label>
         @endif
         <select class="form-control" name="select" wire:model="selected">
@@ -28,7 +26,6 @@
           @endforeach
         </select>
       </div>
-
     </div>
   @endif
 </div>

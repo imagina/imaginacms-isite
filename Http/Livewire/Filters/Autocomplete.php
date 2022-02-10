@@ -154,6 +154,25 @@ class Autocomplete extends Component
     }
   }
 
+  /*
+  * Get Listener From Config
+  *
+  */
+  protected function getListeners()
+  {
+    return ['filtersClearValues' => 'clearValues'];
+  }
+
+  /*
+  * Listener
+  * Filter Clear Values
+  */
+  public function clearValues()
+  {
+    $this->search = null;
+  }
+
+
   /**
    * @return SearchRepository
    */
