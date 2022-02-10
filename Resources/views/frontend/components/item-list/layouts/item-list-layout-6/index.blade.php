@@ -1,4 +1,4 @@
-<div class="item-layout item-list-layout-1-1 position-relative ">
+<div class="item-layout item-list-layout-6 position-relative ">
     <x-isite::edit-link link="{{$editLink}}{{$item->id}}" tooltip="{{$tooltipEditLink}}"/>
   <div class="card-item">
     <div class="row align-items-center">
@@ -31,7 +31,7 @@
         @if(isset($item->url) && !empty($item->url))
           <a href="{{$item->url}}" target="{{$target}}">
             @endif
-            <h3 class="title {{$titleTextWeight}} {{$titleTextTransform}} {{$titleColor}} {{$titleMarginT}} {{$titleMarginB}} {{$contentPaddingInsideX}}">
+            <h3 class="title {{$titleTextWeight}} {{$titleTextTransform}} {{$titleColor}} {{$titleMarginT}} {{$titleMarginB}} {{$contentMarginInsideX}}">
               {{$item->title ?? $item->name}}
             </h3>
             @if(isset($item->url) && !empty($item->url))
@@ -44,7 +44,7 @@
           @if(isset($item->url)&& !empty($item->url))
             <a href="{{$item->url}}" target="{{$target}}">
               @endif
-              <div class="created-date {{$createdDateTextWeight}} {{$createdDateColor}} {{$createdDateMarginT}} {{$createdDateMarginB}} {{$contentPaddingInsideX}}">
+              <div class="created-date {{$createdDateTextWeight}} {{$createdDateColor}} {{$createdDateMarginT}} {{$createdDateMarginB}} {{$contentMarginInsideX}}">
                   {{ $item->created_at->format($formatCreatedDate) }}
               </div>
               @if(isset($item->url) && !empty($item->url))
@@ -57,7 +57,7 @@
           @if(isset($item->category->url) && !empty($item->category->url))
             <a href="{{$item->category->url}}" target="{{$target}}">
               @endif
-              <h5 class="category {{$categoryTextWeight}} {{$categoryColor}} {{$categoryMarginT}} {{$categoryMarginB}} {{$contentPaddingInsideX}}">
+              <h5 class="category {{$categoryTextWeight}} {{$categoryColor}} {{$categoryMarginT}} {{$categoryMarginB}} {{$contentMarginInsideX}}">
                 {{$item->category->title ?? $item->category->name}}
               </h5>
               @if(isset($item->category->url) && !empty($item->category->url))
@@ -70,7 +70,7 @@
           @if(isset($item->url) && !empty($item->url))
             <a href="{{$item->url}}" target="{{$target}}">
               @endif
-              <div class="summary {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}} {{$contentPaddingInsideX}}">
+              <div class="summary {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}} {{$contentMarginInsideX}}">
                 {!! Str::limit( $item->summary ?? $item->description ?? $item->custom_html ?? '', $numberCharactersSummary) !!}
               </div>
               @if(isset($item->url) && !empty($item->url))
@@ -81,7 +81,7 @@
       @if($withViewMoreButton)
         <div class="col-12 {{$orderClasses["viewMoreButton"] ?? 'order-5'}} item-view-more-button {{$buttonAlign}}">
           @if(isset($item->url) && !empty($item->url))
-            <a href="{{$item->url}}" class="btn btn{{strpos($buttonLayout,'outline') !== false ? '-outline' : ''}}-{{$buttonColor}} {{$buttonLayout}}  view-more-button {{$buttonMarginT}} {{$buttonMarginB}} {{$contentPaddingInsideX}}" target="{{$target}}">
+            <a href="{{$item->url}}" class="btn btn{{strpos($buttonLayout,'outline') !== false ? '-outline' : ''}}-{{$buttonColor}} {{$buttonLayout}}  view-more-button {{$buttonMarginT}} {{$buttonMarginB}} {{$contentMarginInsideX}}" target="{{$target}}">
               @endif
 
                 @if($buttonIconLR=="left") <i class="{{$buttonIcon != "" ? $buttonIcon." mr-1" : ""}}"></i>  @endif
@@ -100,19 +100,27 @@
 
 
 <style>
-    .item-list-layout-1-1 .item-image picture:before {
+    .item-list-layout-6 .item-image picture:before {
         border-radius: {{$imageBorderRadio}}px;
+        top: {{$imagePadding}}px;
+        left: {{$imagePadding}}px;
+        bottom: {{$imagePadding}}px;
+        right: {{$imagePadding}}px;
     }
-    .item-list-layout-1-1 .img-style {
-        aspect-ratio:{{$imageAspect}};
-        object-fit:{{$imageObject}};
+    .item-list-layout-6 .item-image picture {
+        display: block !important;
         border-radius:{{$imageBorderRadio}}px;
         border-style: {{$imageBorderStyle}};
         border-width:{{$imageBorderWidth}}px;
         border-color:{{$imageBorderColor}};
+    }
+    .item-list-layout-6 .img-style {
+        aspect-ratio:{{$imageAspect}};
+        object-fit:{{$imageObject}};
+        border-radius:{{$imageBorderRadio}}px;
         padding:{{$imagePadding}}px;
     }
-    .item-list-layout-1-1 .card-item {
+    .item-list-layout-6 .card-item {
         padding:{{$contentPadding}}px;
         border-width: {{$contentBorder==false ? 0 : 1}}px;
         border-style: solid;
@@ -122,25 +130,25 @@
         box-shadow: {{$contentBorderShadows}};
         @endif
     }
-    .item-list-layout-1-1 .card-item:hover {
+    .item-list-layout-6 .card-item:hover {
         @if($contentBorderShadowsHover)
             box-shadow: {{$contentBorderShadows}};
         @endif
     }
 
-    .item-list-layout-1-1 .item-title .title {
+    .item-list-layout-6 .item-title .title {
         font-size: {{$titleTextSize}}px;
     }
-    .item-list-layout-1-1 .item-summary .summary {
+    .item-list-layout-6 .item-summary .summary {
         font-size: {{$summaryTextSize}}px;
     }
-    .item-list-layout-1-1 .item-category .category {
+    .item-list-layout-6 .item-category .category {
         font-size: {{$categoryTextSize}}px;
     }
-    .item-list-layout-1-1 .item-created-date .created-date {
+    .item-list-layout-6 .item-created-date .created-date {
         font-size: {{$createdDateTextSize}}px;
     }
-    .item-list-layout-1-1 .item-view-more-button .view-more-button {
+    .item-list-layout-6 .item-view-more-button .view-more-button {
 
     }
 </style>

@@ -68,8 +68,7 @@ class ItemList extends Component
   public $contentBorderColor;
   public $contentBorderRounded;
 
-  public $contentPaddingInsideY;
-  public $contentPaddingInsideX;
+  public $contentMarginInsideX;
   public $contentBorderShadows;
   public $contentBorderShadowsHover;
 
@@ -148,7 +147,7 @@ class ItemList extends Component
                               $createdDateTextWeight="font-weight-normal", $buttonAlign="text-left", $buttonLayout="border-0",
                               $buttonIcon=" ", $buttonIconLR="left", $imagePosition="1", $imagePositionVertical="align-self-center",
                               $contentPositionVertical="align-self-center", $contentPadding=0, $contentBorder=false, $contentBorderColor="#dddddd",
-                              $contentBorderRounded=0, $buttonColor="primary", $contentPaddingInsideY="mb-0", $contentPaddingInsideX="mx-0",
+                              $contentBorderRounded=0, $buttonColor="primary", $contentMarginInsideX="mx-0",
                               $contentBorderShadows="none", $contentBorderShadowsHover=false, $titleColor="text-primary", $summaryColor="text-dark",
                               $categoryColor="text-primary", $createdDateColor="text-primary",  $titleMarginT="mt-0", $titleMarginB="mb-0",
                               $summaryMarginT="mt-0", $summaryMarginB="mb-0",  $categoryMarginT="mt-0", $categoryMarginB="mb-0",  $createdDateMarginT="mt-0",
@@ -216,8 +215,7 @@ class ItemList extends Component
     $this->contentBorderColor=$contentBorderColor;
     $this->contentBorderRounded=$contentBorderRounded;
 
-    $this->contentPaddingInsideY=$contentPaddingInsideY;
-    $this->contentPaddingInsideX=$contentPaddingInsideX;
+    $this->contentMarginInsideX=$contentMarginInsideX;
     $this->contentBorderShadows="$contentBorderShadows";
     $this->contentBorderShadowsHover=$contentBorderShadowsHover;
 
@@ -296,8 +294,7 @@ class ItemList extends Component
     isset($parentAttributes["contentBorder"]) ? $this->contentBorder = $parentAttributes["contentBorder"] : false;
     isset($parentAttributes["contentBorderColor"]) ? $this->contentBorderColor = $parentAttributes["contentBorderColor"] : false;
     isset($parentAttributes["contentBorderRounded"]) ? $this->contentBorderRounded = $parentAttributes["contentBorderRounded"] : false;
-    isset($parentAttributes["contentPaddingInsideY"]) ? $this->contentPaddingInsideY = $parentAttributes["contentPaddingInsideY"] : false;
-    isset($parentAttributes["contentPaddingInsideX"]) ? $this->contentPaddingInsideX = $parentAttributes["contentPaddingInsideX"] : false;
+    isset($parentAttributes["contentMarginInsideX"]) ? $this->contentMarginInsideX = $parentAttributes["contentMarginInsideX"] : false;
     isset($parentAttributes["contentBorderShadows"]) ? $this->contentBorderShadows = $parentAttributes["contentBorderShadows"] : false;
     isset($parentAttributes["contentBorderShadowsHover"]) ? $this->contentBorderShadowsHover = $parentAttributes["contentBorderShadowsHover"] : false;
     isset($parentAttributes["titleColor"]) ? $this->titleColor = $parentAttributes["titleColor"] : false;

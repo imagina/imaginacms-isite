@@ -11,7 +11,7 @@
     @break
 @endswitch
 
-<div class="item-layout item-list-layout-1-2 position-relative">
+<div class="item-layout item-list-layout-7 position-relative">
   <x-isite::edit-link link="{{$editLink}}{{$item->id}}" tooltip="{{$tooltipEditLink}}"/>
   <div class="card-item {{$row}}">
     @if(method_exists ( $item, "mediaFiles" ) )
@@ -99,19 +99,28 @@
 
 
 <style>
-    .item-list-layout-1-2 .item-image picture:before {
+    .item-list-layout-7 .item-image picture:before {
         border-radius: {{$imageBorderRadio}}px;
+        top: {{$imagePadding}}px;
+        left: {{$imagePadding}}px;
+        bottom: {{$imagePadding}}px;
+        right: {{$imagePadding}}px;
     }
-    .item-list-layout-1-2 .img-style {
-        aspect-ratio:{{$imageAspect}};
-        object-fit:{{$imageObject}};
+    .item-list-layout-7 .item-image picture {
+        display: block !important;
         border-radius:{{$imageBorderRadio}}px;
         border-style: {{$imageBorderStyle}};
         border-width:{{$imageBorderWidth}}px;
         border-color:{{$imageBorderColor}};
+    }
+    .item-list-layout-7 .img-style {
+        aspect-ratio:{{$imageAspect}};
+        object-fit:{{$imageObject}};
+        border-radius:{{$imageBorderRadio}}px;
         padding:{{$imagePadding}}px;
     }
-    .item-list-layout-1-2 .item-border {
+
+    .item-list-layout-7 .item-border {
         padding:{{$contentPadding}}px;
         border-width: {{$contentBorder==false ? 0 : 1}}px;
         border-style: solid;
@@ -121,21 +130,21 @@
         box-shadow: {{$contentBorderShadows}};
         @endif
     }
-    .item-list-layout-1-2 .item-border:hover {
+    .item-list-layout-7 .item-border:hover {
         @if($contentBorderShadowsHover)
         box-shadow: {{$contentBorderShadows}};
         @endif
     }
-    .item-list-layout-1-2 .item-title .title {
+    .item-list-layout-7 .item-title .title {
         font-size: {{$titleTextSize}}px;
     }
-    .item-list-layout-1-2 .item-summary .summary {
+    .item-list-layout-7 .item-summary .summary {
         font-size: {{$summaryTextSize}}px;
     }
-    .item-list-layout-1-2 .item-category .category {
+    .item-list-layout-7 .item-category .category {
         font-size: {{$categoryTextSize}}px;
     }
-    .item-list-layout-1-2 .item-created-date .created-date {
+    .item-list-layout-7 .item-created-date .created-date {
         font-size: {{$createdDateTextSize}}px;
     }
 </style>
