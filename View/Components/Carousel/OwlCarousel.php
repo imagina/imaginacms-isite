@@ -33,6 +33,10 @@ class OwlCarousel extends Component
   public $owlBlockStyle;
   public $editLink;
   public $tooltipEditLink;
+  public $stagePadding;
+  public $autoplayTimeout;
+
+
 
   /**
    * Create a new component instance.
@@ -42,7 +46,8 @@ class OwlCarousel extends Component
   public function __construct($repository, $id, $view = null, $params = [], $margin = 10, $responsiveClass = true, $autoplay = true,
                               $autoplayHoverPause = true, $loop = true, $dots = true, $nav = true, $center = false, $responsive = null,
                               $itemLayout = null, $title = "", $subTitle = "", $itemsBySlide = 1, $navText = "",
-                              $containerFluid = false, $itemComponent = null, $owlBlockStyle = null)
+                              $containerFluid = false, $itemComponent = null, $owlBlockStyle = null, $stagePadding = 0,
+                              $autoplayTimeout = 5000)
   {
 
     $this->emptyItems = false;
@@ -68,6 +73,8 @@ class OwlCarousel extends Component
     $this->itemComponent = $itemComponent ?? "isite::item-list";
     $this->view = $view ?? "isite::frontend.components.owl.carousel";
     $this->getItems();
+    $this->stagePadding = $stagePadding;
+    $this->autoplayTimeout = $autoplayTimeout;
 
     list($this->editLink, $this->tooltipEditLink) = getEditLink($this->repository);
   }
