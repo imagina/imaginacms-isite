@@ -26,6 +26,8 @@ class Select extends Component
   public $options;
   public $selected;
   public $params;
+  public $withTitle;
+  public $withSubtitle;
   
   /*
   * Attributes
@@ -38,7 +40,7 @@ class Select extends Component
     */
   public function mount($title, $name, $status = true, $isExpanded = true, $type, $repository, $emitTo, $repoAction,
                         $repoAttribute, $listener, $repoMethod = 'getItemsBy', $layout = 'select-layout-1',
-                        $classes = 'col-12', $params = [], $isCollapsable = true)
+                        $classes = 'col-12', $params = [], $isCollapsable = true, $withTitle = true, $withSubtitle = true)
   {
     
     $this->title = trans($title);
@@ -57,6 +59,8 @@ class Select extends Component
     $this->isCollapsable = $isCollapsable;
     $this->params = $params;
     $this->selected = null;
+    $this->withTitle = $withTitle;
+    $this->withSubtitle = $withSubtitle;
     
     $this->getData();
   }
