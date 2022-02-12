@@ -51,7 +51,7 @@ class Autocomplete extends Component
 
   public function mount($name = null, $layout = 'autocomplete-layout-1', $showModal = false, $icon = 'fa fa-search',
                         $placeholder = null, $title = '', $params = [], $buttonSearch = false, $emitTo = null,
-                        $repoAction = null, $repoAttribute = null, $repoMethod = null)
+                        $repoAction = null, $repoAttribute = null, $repoMethod = null, $minSearchChars = null)
   {
 
     $this->defaultView = 'isite::frontend.livewire.filters.autocomplete.layouts.autocomplete-layout-1.index';
@@ -63,8 +63,7 @@ class Autocomplete extends Component
     $this->title = $title;
     $this->name = $name;
     $this->updatedSearchFromInput = false;
-    $minSearchChars = setting('isearch::minSearchChars', null, "3");
-    $this->minSearchChars = $minSearchChars;
+    $this->minSearchChars = $minSearchChars ?? setting('isearch::minSearchChars', null, "3");
     $this->buttonSearch = $buttonSearch;
     $this->emitTo = $emitTo;
     $this->repoAction = $repoAction;
@@ -122,6 +121,7 @@ class Autocomplete extends Component
 
         $this->results = $this->searchRepository()->getItemsBy(json_decode(json_encode($params)));
       }
+      dd($this->search,$this->results);
       $search = Str::lower($this->search);
       $this->results = $this->results->sortByDesc(function ($item, $key) use ($search) {
         $initial = 0;

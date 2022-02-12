@@ -9,6 +9,7 @@
                aria-haspopup="true"
                aria-expanded="false"
                role="button"
+               style="width: 100%; max-width: 520px;"
                class="input-group dropdown-toggle">
             <div class="input-group">
               <input type="text" id="input_search" wire:model.debounce.500ms="search"
@@ -30,40 +31,51 @@
           <div id="display_result"
                class="dropdown-menu w-100 rounded-0 py-3 m-0 overflow-auto {{ $this->search && $updatedSearchFromInput ? 'show' : '' }}"
                aria-labelledby="dropdownSearch"
-               style="z-index: 999999;max-height: 480px;">
+               style="z-index: 999999;
+    max-height: 480px;
+    position: absolute;
+    will-change: transform;
+    top: 0px;
+    left: 0px;
+    transform: translate3d(0px, 40px, 0px);">
             @if(!empty($search))
               @if(count($results) > 0)
                 <div>
                   @foreach($results as $item)
-                    <div class="px-3 mb-3" wire:key="{{ $loop->index }}">
+                    <div class="px-3 mb-3" style="max-height: 70px" wire:key="{{ $loop->index }}">
                       <!--Shopping cart items -->
                       <div class="row" style="max-height: 70px">
                         <!-- image -->
                         <!-- image -->
-                        <div class="col-3">
+                        <div class="col-2 px-0">
                           <x-media::single-image :alt="$item->title ?? $item->name"
                                                  :title="$item->title ?? $item->name"
                                                  :isMedia="true"
+                                                 imgStyles="
+                                                  width: 100%;
+                                                  height: 100%;
+                                                  -o-object-fit: cover;
+                                                  object-fit: cover;"
                                                  :url="$item->url ?? null"
                                                  :mediaFiles="$item->mediaFiles()"
                                                  imgClasses="cover-img"/>
                         </div>
                         <!-- dates -->
-                        <div class="col-9">
+                        <div class="col-10">
                           <!-- title -->
-                          <h5 class="mb-0">
+                          <h6 class="mb-0">
                             <a href="{{ $item->url }}"
-                               class="font-weight-bold text-capitalize">
+                               class="text-dark font-weight-bold text-capitalize">
                               {{ $item->title  ?? $item->name}}
                             </a>
-                          </h5>
+                          </h6>
                           @if(isset($item->category->title))
-                            <h6 class="mb-0">
+                            <h7 class="mb-0">
                               <a href="{{ $item->category->url }}"
-                                 class="text-capitalize">
+                                 class="text-dark text-capitalize">
                                 {{ $item->category->title }}
                               </a>
-                            </h6>
+                            </h7>
                           @endif
                         </div>
                       </div>
@@ -72,12 +84,12 @@
                   @endforeach
                 </div>
               @else
-                <h6 class="text-primary text-center">
+                <h6 class="text-dark text-center">
                   {{ trans('isearch::common.index.Not Found') }}
                 </h6>
               @endif
             @else
-              <h6 class="text-primary text-center">
+              <h6 class="text-dark text-center">
                 {{ trans('isearch::common.index.Not Found') }}
               </h6>
             @endif
