@@ -121,7 +121,6 @@ class Autocomplete extends Component
 
         $this->results = $this->searchRepository()->getItemsBy(json_decode(json_encode($params)));
       }
-      dd($this->search,$this->results);
       $search = Str::lower($this->search);
       $this->results = $this->results->sortByDesc(function ($item, $key) use ($search) {
         $initial = 0;
