@@ -61,7 +61,7 @@
             @endif
           </div>
         @endif
-        @if($withDescription && ( isset($item->description)|| isset($item->custom_html)) )
+        @if($withSummary && ( isset($item->description)|| isset($item->custom_html)) )
           <div class="{{$orderClasses["description"] ?? 'order-4'}} item-description">
             @if(isset($item->url) && !empty($item->url))
               <a href="{{$item->url}}" target="{{$target}}">

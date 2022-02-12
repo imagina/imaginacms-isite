@@ -53,8 +53,10 @@
 
 		/*Validate init width to desktop - show filters*/
 		var widthInit = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+	
 		if(widthInit > 992) {
 			$("#contenttomove").removeClass("d-none");
+			
 		}
 
 		$(document).ready(function () {
@@ -69,7 +71,7 @@
 					
 				}
 			}
-
+			
 			/**
 			* If the filters are already in a modal, 
 			* they should not be added again (Example: Latinas Website)
@@ -80,10 +82,10 @@
 				if(width<=992)
 					divtomodal()
 			@endif
-
+			
 			// Fix all
 			$("#contenttomove").removeClass("d-none");
-
+			
 			/*
 			* Listener Filters Close Modal
 			*/
@@ -92,14 +94,14 @@
 					$('#{{$extraModalId}}').modal('hide');
 				})
 			@endif
-
+			
 			/*
 			* Listener After Get Data (getDataFromFilters)
 			*/
 			window.addEventListener('filters-after-get-data', event => {
 				$("#contenttomove").removeClass("d-none");
 			})
-
+			
 		});
 	</script>
 
