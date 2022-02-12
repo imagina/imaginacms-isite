@@ -47,6 +47,7 @@
       var owl = $('#{{$id}}Carousel');
       
       owl.owlCarousel({
+        stagePadding: {!!$stagePadding!!},
         loop: {!! $loop ? 'true' : 'false' !!},
         lazyLoad: true,
         margin: {!! $margin !!},
@@ -55,15 +56,13 @@
         responsiveClass: {!! $responsiveClass ? 'true' : 'false' !!},
         autoplay: {!! $autoplay ? 'true' : 'false' !!},
         autoplayHoverPause: {!! $autoplayHoverPause ? 'true' : 'false' !!},
+        autoplayTimeout:{!!$autoplayTimeout!!},
         nav: {!! $nav ? 'true' : 'false' !!},
         center: {!! $center ? 'true' : 'false' !!},
         responsive: {!! $responsive!!}
       });
-      
     });
   </script>
-  
   @parent
-
 @stop
 @endif
