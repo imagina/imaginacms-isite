@@ -15,13 +15,17 @@ class Maps extends Component
   public $locationName;
   public $classes;
   public $zoom;
+  public $id;
+  public $mapId;
+  public $settingMap;
 
   /**
    * Create a new component instance.
    *
    * @return void
    */
-  public function __construct($lat, $lng, $locationName = 'Ubicacion', $title = null, $zoom = 16, $classes = '')
+  public function __construct($lat, $lng, $locationName = 'Ubicacion', $title = null, $zoom = 16, $classes = '',
+                              $id = null, $mapId = null)
   {
     $this->lat = $lat;
     $this->lng = $lng;
@@ -29,6 +33,9 @@ class Maps extends Component
     $this->title = $title;
     $this->zoom = $zoom;
     $this->classes = $classes;
+    $this->id = $id;
+    $this->mapId = 'map_canvas_' . setting('isite::mapInShow') . '_' . $id;
+    $this->settingMap = setting('isite::mapInShow');
   }
 
   /**
