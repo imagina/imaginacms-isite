@@ -14,9 +14,11 @@ return [
     "adminOrganizationForm" => "Formulario"
   ],
   "crud" => [
-    "denyPermissions" => "Permisos insuficientes",
-    "showAsList" => "Ver como lista",
-    "showAsCard" => "Ver como tarjetas"
+    "message" => [
+      "denyPermissions" => "Permisos insuficientes",
+      "showAsList" => "Ver como lista",
+      "showAsCard" => "Ver como tarjetas"
+    ]
   ],
   "newRecommendation" => "Nueva Recomendación",
   "updateRecommendation" => "Actualizar Recomendación",
@@ -49,6 +51,7 @@ return [
     "delete" => "Eliminar",
     "cancel" => "Cancelar",
     "cancelled" => "Cancelado",
+    "approved" => "Aprovado",
     "open" => "Abierto",
     "close" => "Cerrar",
     "closed" => "Cerrado",
@@ -329,7 +332,8 @@ return [
     "inbound" => "Entrada",
     "outbound" => "Salida",
     "payOut" => "Método de Cobro | Mètodos de cobro",
-    "account" => "Cuenta | Cuentas"
+    "account" => "Cuenta | Cuentas",
+    "resource" => "Recurso | Recursos"
   ],
   "message" => [
     "notFound" => "Lo sentimos, no hay nada aquí",
