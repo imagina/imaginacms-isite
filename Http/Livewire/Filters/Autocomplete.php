@@ -44,6 +44,7 @@ class Autocomplete extends Component
   public $repositories;
   public $buttonSearch;
   public $updatedSearchFromInput;
+  public $goToRouteAlias;
 
   protected $queryString = [
     'search' => ['except' => ''],
@@ -51,7 +52,7 @@ class Autocomplete extends Component
 
   public function mount($name = null, $layout = 'autocomplete-layout-1', $showModal = false, $icon = 'fa fa-search',
                         $placeholder = null, $title = '', $params = [], $buttonSearch = false, $emitTo = null,
-                        $repoAction = null, $repoAttribute = null, $repoMethod = null, $minSearchChars = null)
+                        $repoAction = null, $repoAttribute = null, $repoMethod = null, $minSearchChars = null, $goToRouteAlias = null)
   {
 
     $this->defaultView = 'isite::frontend.livewire.filters.autocomplete.layouts.autocomplete-layout-1.index';
@@ -69,6 +70,7 @@ class Autocomplete extends Component
     $this->repoAction = $repoAction;
     $this->repoAttribute = $repoAttribute;
     $this->repoMethod = $repoMethod;
+    $this->goToRouteAlias = $goToRouteAlias;
     $this->params = $params ?? ["filter" => []];
   }
 
@@ -96,7 +98,7 @@ class Autocomplete extends Component
 
   }
 
-  private function makeParamsFunction()
+  private function makeParamsFunction(): array
   {
     return [
       "include" => $this->params["include"] ?? ['category'],
@@ -140,16 +142,15 @@ class Autocomplete extends Component
   public function goToIndex()
   {
     $locale = LaravelLocalization::setLocale() ?: \App::getLocale();
-    $routeLink = config('asgard.isearch.config.route', 'isearch.search');
-    $rl = $routeLink;
+    $route = $this->goToRouteAlias;
     if (!empty($this->search)) {
-      if (!Route::has($rl)) { //if route does not exist without locale, pass route with locale
-        $rl = $locale . '.' . $routeLink;
+      if (!Route::has($route)) { //if route does not exist without locale, pass route with locale
+        $route = $locale . '.' . $route;
       }
-      if (!Route::has($rl)) { //if route with locale does not exist either, pass the isearch default route
-        $rl = $locale . '.isearch.search';
+      if (!Route::has($route)) { //if route with locale does not exist either, pass the isearch default route
+        $route = $locale . '.isearch.search';
       }
-      $this->redirect(\URL::route($rl) . '?search=' . $this->search);
+      $this->redirect(\URL::route($route) . '?search=' . $this->search);
     }
   }
 
