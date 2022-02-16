@@ -14,9 +14,11 @@ return [
     "adminOrganizationForm" => "Form"
   ],
   "crud" => [
-    "denyPermissions" => "Insufficient permissions",
-    "showAsList" => "Show as list",
-    "showAsCard" => "Show as card"
+    "message" => [
+      "denyPermissions" => "Insufficient permissions",
+      "showAsList" => "Show as list",
+      "showAsCard" => "Show as card"
+    ]
   ],
   "newRecommendation" => "New Recommendation",
   "updateRecommendation" => "Update Recomendation",
@@ -49,6 +51,7 @@ return [
     "delete" => "Delete",
     "cancel" => "Cancel",
     "cancelled" => "Cancelled",
+    "approved" => "Approved",
     "open" => "Open",
     "close" => "Close",
     "closed" => "Closed",
@@ -324,7 +327,8 @@ return [
     "inbound" => "Inbound",
     "outbound" => "Outbound",
     "payOut" => "Payout",
-    "account" => "Account | Accounts"
+    "account" => "Account | Accounts",
+    "resource" => "Resource | Resources"
   ],
   "message" => [
     "notFound" => "Sorry, nothing here",
