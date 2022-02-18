@@ -333,7 +333,10 @@ return [
     "outbound" => "Salida",
     "payOut" => "Método de Cobro | Mètodos de cobro",
     "account" => "Cuenta | Cuentas",
-    "resource" => "Recurso | Recursos"
+    "resource" => "Recurso | Recursos",
+    "winner" => "Ganador | Ganadores",
+    "creator" => "Creador | Creadores",
+    "inverse" => "Reverso",
   ],
   "message" => [
     "notFound" => "Lo sentimos, no hay nada aquí",
