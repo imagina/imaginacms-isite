@@ -15,6 +15,7 @@ class ItemList extends Component
   public $viewMoreButtonLabel;
   public $withCreatedDate;
   public $withCategory;
+  public $withUser;
   public $withSummary;
   public $formatCreatedDate;
   public $orderClasses;
@@ -53,6 +54,10 @@ class ItemList extends Component
   public $createdDateTextSize;
   public $createdDateTextWeight;
 
+  public $userAlign;
+  public $userTextSize;
+  public $userTextWeight;
+
   public $buttonAlign;
   public $buttonLayout;
   public $buttonIcon;
@@ -76,6 +81,7 @@ class ItemList extends Component
   public $summaryColor;
   public $categoryColor;
   public $createdDateColor;
+  public $userColor;
 
   public $titleMarginT;
   public $titleMarginB;
@@ -85,6 +91,8 @@ class ItemList extends Component
   public $categoryMarginB;
   public $createdDateMarginT;
   public $createdDateMarginB;
+  public $userMarginT;
+  public $userMarginB;
   public $buttonMarginT;
   public $buttonMarginB;
 
@@ -134,7 +142,7 @@ class ItemList extends Component
    */
   public function __construct($item, $mediaImage = "mainimage", $layout = 'item-list-layout-1', $parentAttributes = null,
                               $withViewMoreButton = false, $viewMoreButtonLabel = "isite::common.menu.viewMore",
-                              $withCreatedDate = false, $formatCreatedDate = "d \\d\\e M", $orderClasses = [],
+                              $withCreatedDate = false, $withUser =false, $formatCreatedDate = "d \\d\\e M", $orderClasses = [],
                               $withCategory = false, $withSummary = true, $numberCharactersSummary = 100, $editLink = null,
                               $tooltipEditLink = null, $itemComponentView = null, $itemComponentTarget = "_self", $itemListLayout = null,
                               $positionNumber = null, $imageAspect="auto", $imageObject="unset", $imageBorderRadio=0,
@@ -144,14 +152,15 @@ class ItemList extends Component
                               $titleTextWeight="font-weight-bold", $titleTextTransform="font-weight-normal", $summaryAlign="text-left",
                               $summaryTextSize="16", $summaryTextWeight="font-weight-normal",  $categoryAlign="text-left",  $categoryTextSize="18",
                               $categoryTextWeight="font-weight-normal", $createdDateAlign="text-left", $createdDateTextSize="14",
-                              $createdDateTextWeight="font-weight-normal", $buttonAlign="text-left", $buttonLayout="border-0",
+                              $createdDateTextWeight="font-weight-normal",$userAlign="text-left", $userTextSize="14",
+                              $userTextWeight="font-weight-normal", $buttonAlign="text-left", $buttonLayout="border-0",
                               $buttonIcon=" ", $buttonIconLR="left", $imagePosition="1", $imagePositionVertical="align-self-center",
                               $contentPositionVertical="align-self-center", $contentPadding=0, $contentBorder=false, $contentBorderColor="#dddddd",
                               $contentBorderRounded=0, $buttonColor="primary", $contentMarginInsideX="mx-0",
                               $contentBorderShadows="none", $contentBorderShadowsHover=false, $titleColor="text-primary", $summaryColor="text-dark",
-                              $categoryColor="text-primary", $createdDateColor="text-primary",  $titleMarginT="mt-0", $titleMarginB="mb-0",
-                              $summaryMarginT="mt-0", $summaryMarginB="mb-0",  $categoryMarginT="mt-0", $categoryMarginB="mb-0",  $createdDateMarginT="mt-0",
-                              $createdDateMarginB="mb-0",  $buttonMarginT="mt-0", $buttonMarginB="mb-0"  )
+                              $categoryColor="text-primary", $createdDateColor="text-primary", $userColor="text-primary",  $titleMarginT="mt-0", $titleMarginB="mb-0",
+                              $summaryMarginT="mt-0", $summaryMarginB="mb-0",  $categoryMarginT="mt-0", $categoryMarginB="mb-0",  $createdDateMarginT="mt-0", $createdDateMarginB="mb-0",
+                              $userMarginT="mt-0", $userMarginB="mb-0",  $buttonMarginT="mt-0", $buttonMarginB="mb-0"  )
   {
 
     $this->item = $item;
@@ -163,6 +172,7 @@ class ItemList extends Component
     $this->withViewMoreButton = $withViewMoreButton;
     $this->viewMoreButtonLabel = $viewMoreButtonLabel;
     $this->withCreatedDate = $withCreatedDate;
+    $this->withUser = $withUser;
     $this->formatCreatedDate = $formatCreatedDate;
     $this->withCategory = $withCategory;
     $this->withSummary = $withSummary;
@@ -200,6 +210,10 @@ class ItemList extends Component
     $this->createdDateTextSize = $createdDateTextSize;
     $this->createdDateTextWeight = $createdDateTextWeight;
 
+    $this->userAlign = $userAlign;
+    $this->userTextSize = $userTextSize;
+    $this->userTextWeight = $userTextWeight;
+
     $this->buttonAlign = $buttonAlign;
     $this->buttonLayout = $buttonLayout;
     $this->buttonIcon = $buttonIcon;
@@ -223,6 +237,7 @@ class ItemList extends Component
     $this->summaryColor=$summaryColor;
     $this->categoryColor=$categoryColor;
     $this->createdDateColor=$createdDateColor;
+    $this->userColor=$userColor;
 
     $this->titleMarginT=$titleMarginT;
     $this->titleMarginB=$titleMarginB;
@@ -232,6 +247,8 @@ class ItemList extends Component
     $this->categoryMarginB=$categoryMarginB;
     $this->createdDateMarginT=$createdDateMarginT;
     $this->createdDateMarginB=$createdDateMarginB;
+    $this->userMarginT=$userMarginT;
+    $this->userMarginB=$userMarginB;
     $this->buttonMarginT=$buttonMarginT;
     $this->buttonMarginB=$buttonMarginB;
 

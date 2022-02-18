@@ -1,5 +1,5 @@
 <div class="item-layout item-list-layout-2 position-relative">
-    <x-isite::edit-link link="{{$editLink}}{{$item->id}}" tooltip="{{$tooltipEditLink}}"/>
+  <x-isite::edit-link link="{{$editLink}}{{$item->id}}" tooltip="{{$tooltipEditLink}}"/>
   <div class="card card-category bg-white border-0">
     @if(isset($item->url) && !empty($item->url))
       <a href="{{$item->url}}">
@@ -32,6 +32,17 @@
                 <a href="{{$item->url}}" target="{{$target}}">
                   @endif
                   <div class="date">{{ $item->created_at->format($formatCreatedDate) }}</div>
+                  @if(isset($item->url) && !empty($item->url))
+                </a>
+              @endif
+            </div>
+          @endif
+          @if($withUser && ( isset($item->user)))
+            <div class="col-12 item-user">
+              @if(isset($item->url) && !empty($item->url))
+                <a href="{{$item->url}}" target="{{$target}}">
+                  @endif
+                  <div class="user">Por: {{$item->user->present()->fullname()}}</div>
                   @if(isset($item->url) && !empty($item->url))
                 </a>
               @endif
