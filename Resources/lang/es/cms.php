@@ -337,6 +337,7 @@ return [
     "winner" => "Ganador | Ganadores",
     "creator" => "Creador | Creadores",
     "inverse" => "Reverso",
+    "provider" => "Proveedor | Preveedores"
   ],
   "message" => [
     "notFound" => "Lo sentimos, no hay nada aquí",

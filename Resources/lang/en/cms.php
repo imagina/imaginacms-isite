@@ -331,7 +331,8 @@ return [
     "resource" => "Resource | Resources",
     "winner" => "Winner | Winners",
     "creator" => "Creator | Creators",
-    "inverse" => "Inverse"
+    "inverse" => "Inverse",
+    "provider" => "Provider | Providers"
   ],
   "message" => [
     "notFound" => "Sorry, nothing here",
