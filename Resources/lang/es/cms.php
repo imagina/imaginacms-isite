@@ -336,7 +336,7 @@ return [
     "resource" => "Recurso | Recursos",
     "winner" => "Ganador | Ganadores",
     "creator" => "Creador | Creadores",
-    "inverse" => "Reverso",
+    "inverse" => "Inversa | Inversas",
     "provider" => "Proveedor | Preveedores"
   ],
   "message" => [
