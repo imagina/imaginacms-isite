@@ -332,7 +332,8 @@ return [
     "winner" => "Winner | Winners",
     "creator" => "Creator | Creators",
     "inverse" => "Inverse",
-    "provider" => "Provider | Providers"
+    "provider" => "Provider | Providers",
+    "chart" => "Chart | Charts"
   ],
   "message" => [
     "notFound" => "Sorry, nothing here",
