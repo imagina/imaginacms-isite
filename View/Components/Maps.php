@@ -25,7 +25,7 @@ class Maps extends Component
    * @return void
    */
   public function __construct($lat, $lng, $locationName = 'Ubicacion', $title = null, $zoom = 16, $classes = '',
-                              $id = null, $mapId = null)
+                              $id = 1, $mapId = null)
   {
     $this->lat = $lat;
     $this->lng = $lng;
