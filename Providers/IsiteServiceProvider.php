@@ -70,6 +70,7 @@ class IsiteServiceProvider extends ServiceProvider
     $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'settings-fields'), "asgard.isite.settings-fields");
     $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'permissions'), "asgard.isite.permissions");
     $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'deprecated-settings'), "asgard.isite.deprecated-settings");
+    $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'cmsPages'), "asgard.isite.cmsPages");
     $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
     $app = $this->app;
@@ -167,7 +168,7 @@ class IsiteServiceProvider extends ServiceProvider
                 return new \Modules\Isite\Repositories\Cache\CacheDomainDecorator($repository);
             }
         );
-       
+
         $this->app->bind(
             'Modules\Isite\Repositories\LayoutRepository',
             function () {
