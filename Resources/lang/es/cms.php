@@ -338,7 +338,8 @@ return [
     "creator" => "Creador | Creadores",
     "inverse" => "Inversa | Inversas",
     "provider" => "Proveedor | Preveedores",
-    "chart" => "Grafica | Graficas"
+    "chart" => "Grafica | Graficas",
+    "subtitle" => "Subtitulo | Subtitulos"
   ],
   "message" => [
     "notFound" => "Lo sentimos, no hay nada aquí",

@@ -333,7 +333,8 @@ return [
     "creator" => "Creator | Creators",
     "inverse" => "Inverse",
     "provider" => "Provider | Providers",
-    "chart" => "Chart | Charts"
+    "chart" => "Chart | Charts",
+    "subtitle" => "Subtitle | Subtitles"
   ],
   "message" => [
     "notFound" => "Sorry, nothing here",
