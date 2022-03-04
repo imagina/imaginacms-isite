@@ -4,8 +4,7 @@
 		<a class="item" data-toggle="collapse" href="#collapseOption-{{$option->id}}" role="button" aria-expanded="{{$isExpanded ? 'true' : 'false'}}"
 		   aria-controls="collapseOption-{{$option->id}}" class="{{$isExpanded ? '' : 'collapsed'}}">
 	  		
-	  		<h5 class="p-3 border-top border-bottom">
-	  			<i class="fa fa angle float-right" aria-hidden="true"></i>
+	  		<h5 class="position-relative p-3 border-top border-bottom">
 	  			{{$option->title}}
 	  		</h5>
 	  		
@@ -18,8 +17,10 @@
 		  	<div class="col-12">
 		  		
 		  		<div class="list-option-values">
-
-				  	@foreach($option->children ?? [] as $option)
+						@php($children = $option->children)
+	
+						@if($children->isNotEmpty())
+				  	@foreach($children as $option)
 
 				  		<div class="mr-2 mb-2 tagBoxs">
 
@@ -37,7 +38,7 @@
                         </div>
 
 				  	@endforeach
-				  	
+				  	@endif
 
 		  		</div>
 
@@ -46,7 +47,15 @@
 		</div>
 
 	</div>
-
-	
-
+	<style>
+		.option .item h5:after {
+			font-family: FontAwesome;
+			content:"\f107";
+			color: grey;
+			float: right;
+		}
+		.option .item.collapsed h5:after {
+			content:"\f105";
+		}
+	</style>
 </div>

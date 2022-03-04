@@ -31,7 +31,7 @@ class Checkbox extends Component
   /*
   * Attributes
   */
-  public $options;
+  protected $options;
   public $selectedOptions;
   
   /*
@@ -62,11 +62,11 @@ class Checkbox extends Component
     $this->childrenClasses = $childrenClasses;
     
     $this->selectedOptions = [];
-    
-    // Not Listener, get options
-    if (empty($this->listener)) {
-      $this->getData($this->params);
-    }
+    // Testing
+    //\Log::info("NAME: ".$this->name."- GET DATA PARAMS:".json_encode($params));
+  
+    $this->selectedOptions = $params["filter"][$this->repoAttribute] ?? [];
+   
     
   }
   
@@ -119,10 +119,7 @@ class Checkbox extends Component
   public function getData($params)
   {
     
-    // Testing
-    //\Log::info("NAME: ".$this->name."- GET DATA PARAMS:".json_encode($params));
-    
-    $this->selectedOptions = $params["filter"][$this->repoAttribute] ?? [];
+   
     
     // Params From Config
     if (!empty($this->params))
@@ -131,6 +128,10 @@ class Checkbox extends Component
     //\Log::info("NAME: ".$this->name."- PARAMS:".json_encode($params));
     
     $this->options = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params)));
+  
+    if($this->options->isNotEmpty())
+      $this->options = $this->options->toTree();
+    //dd($this->options);
   }
   
   /*
@@ -148,6 +149,11 @@ class Checkbox extends Component
   */
   public function render()
   {
+  
+    // Not Listener, get options
+    if (empty($this->listener)) {
+      $this->getData($this->params);
+    }
     
     // Validation to Is Expanded
     $count = count(array_intersect($this->options ? $this->options->pluck("id")->toArray() : [], $this->selectedOptions));
