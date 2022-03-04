@@ -328,7 +328,13 @@ return [
     "outbound" => "Outbound",
     "payOut" => "Payout",
     "account" => "Account | Accounts",
-    "resource" => "Resource | Resources"
+    "resource" => "Resource | Resources",
+    "winner" => "Winner | Winners",
+    "creator" => "Creator | Creators",
+    "inverse" => "Inverse",
+    "provider" => "Provider | Providers",
+    "chart" => "Chart | Charts",
+    "subtitle" => "Subtitle | Subtitles"
   ],
   "message" => [
     "notFound" => "Sorry, nothing here",
