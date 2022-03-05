@@ -871,4 +871,15 @@ return [
       'newValueMode' => 'add-unique'
     ]
   ],
+  'locationSite' => [
+    'value' => '',
+    'name' => 'isite::locationSite',
+    'type' => 'positionMarkerMap',
+    'colClass' => "col-12",
+    'groupName' => 'maps',
+    'groupTitle' => 'isite::common.maps.groupMaps',
+    'props' => [
+      'label' => 'isite::common.maps.labelLocationSite'
+    ]
+  ],
 ];
