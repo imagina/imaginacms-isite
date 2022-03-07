@@ -334,7 +334,8 @@ return [
     "inverse" => "Inverse",
     "provider" => "Provider | Providers",
     "chart" => "Chart | Charts",
-    "subtitle" => "Subtitle | Subtitles"
+    "subtitle" => "Subtitle | Subtitles",
+    "currentPlan" => "Current plan"
   ],
   "message" => [
     "notFound" => "Sorry, nothing here",
