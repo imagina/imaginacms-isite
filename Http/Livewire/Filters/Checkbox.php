@@ -3,6 +3,7 @@
 namespace Modules\Isite\Http\Livewire\Filters;
 
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class Checkbox extends Component
 {
@@ -128,8 +129,8 @@ class Checkbox extends Component
     //\Log::info("NAME: ".$this->name."- PARAMS:".json_encode($params));
     
     $this->options = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params)));
-  
-    if($this->options->isNotEmpty())
+
+    if($this->options->isNotEmpty() && Str::contains($this->repoMethod,"Category"))
       $this->options = $this->options->toTree();
     //dd($this->options);
   }

@@ -1,6 +1,6 @@
 <div class="filter-{{$type}} filter-{{$type}}-layout-{{$layout}} filter-{{$name}}">
 
-@if($options && count($options)>0)
+@if($this->options && count($this->options)>0)
 
 	<div class="title">
         <a class="item mb-3" data-toggle="collapse" href="#collapse-{{$name}}" role="button" aria-expanded="{{$isExpanded ? 'true' : 'false'}}" aria-controls="collapse-{{$name}}"
@@ -24,8 +24,8 @@
 		  		
 		  			<div class="list-{{$name}}">
 
-		  				@if(!empty($options))
-				  			@foreach($options as $option)
+		  				@if(!empty($this->options))
+				  			@foreach($this->options as $option)
 				  				<div class="mr-2 mb-2 tagBoxs">
                                     <input 
                                     	type="checkbox" 

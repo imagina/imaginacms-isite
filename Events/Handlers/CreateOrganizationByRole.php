@@ -38,6 +38,7 @@ class CreateOrganizationByRole
   
           $organization->domains()->create([
             'domain' => $data["organization"]["domain"] ?? $organization->slug,
+            'type' => 'default'
           ]);
         }
       }

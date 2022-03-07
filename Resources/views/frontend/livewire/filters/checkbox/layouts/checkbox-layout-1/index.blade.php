@@ -1,6 +1,6 @@
 <div class="filter-{{$type}} filter-{{$type}}-layout-{{$layout}} filter-{{$name}}">
   
-  @if($options && count($options)>0)
+  @if($this->options && count($this->options)>0)
     
     <div class="title">
       <a class="item mb-3" data-toggle="collapse" href="#collapse-{{$name}}" role="button"
@@ -25,8 +25,8 @@
             
             <div class="list-{{$name}}">
               
-              @if(!empty($options))
-                @foreach($options as $option)
+              @if(!empty($this->options))
+                @foreach($this->options as $option)
                   
                   @php
                     if(is_array($option))
