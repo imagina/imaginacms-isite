@@ -44,7 +44,7 @@ return [
       "subHeader" => [
         "refresh" => true,
         "breadcrumb" => [
-          "qsite.organizations"
+          "isite_cms_admin_organizations"
         ]
       ]
     ],
@@ -87,7 +87,7 @@ return [
       "path" => "/",
       "name" => "app.home",
       "layout" => "qsite/_layouts/master.vue",
-      "page" => "qsite/_pages/admin/index.vue",
+      "page" => "qsite/_pages/main/index.vue",
       "title" => "isite.cms.sidebar.pageHome",
       "icon" => "fas fa-home",
       "authenticated" => true,
