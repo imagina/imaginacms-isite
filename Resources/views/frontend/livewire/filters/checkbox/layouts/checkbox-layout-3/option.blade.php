@@ -1,61 +1,67 @@
 <div class="option option-{{$option->id}} mb-4 {{$childrenClasses}}">
+
   <div class="title">
-    <a class="item {{$position}}" data-toggle="collapse" href="#collapseOption-{{$option->id}}" role="button"
-       aria-expanded="@if($position == 1 & $firstIsExpanded) {{$firstIsExpanded ? 'true' : 'false'}} @else {{$isExpanded ? 'true' : 'false'}}  @endif"
-       aria-controls="collapseOption-{{$option->id}}"
-       class="@if($position == 1 & $firstIsExpanded) {{$firstIsExpanded ? '' : 'collapsed'}} @else {{$isExpanded ? '' : 'collapsed'}} @endif">
-      <h5 class="p-3 border-top border-bottom">
-        <i class="fa fa angle float-right" aria-hidden="true"></i>
+    <a
+      class="item {{$position}} @if($position == 1 & $firstIsExpanded) {{$firstIsExpanded ? '' : 'collapsed'}} @else {{$isExpanded ? '' : 'collapsed'}} @endif"
+      data-toggle="collapse" href="#collapseOption-{{$option->id}}" role="button"
+      aria-expanded="@if($position == 1 & $firstIsExpanded) {{$firstIsExpanded ? 'true' : 'false'}} @else {{$isExpanded ? 'true' : 'false'}}  @endif"
+      aria-controls="collapseOption-{{$option->id}}">
+
+      <h5 class="position-relative p-3 border-top border-bottom">
         {{$option->title}}
       </h5>
+
     </a>
   </div>
 
-	<div class="content position-relative">
-		<div class="collapse {{$isExpanded ? 'show' : ''}}" id="collapseOption-{{$option->id}}">
-		  <div class="row">
-		  	<div class="col-12">
-		  		
-		  		<div class="list-option-values">
-						@php($children = $option->children)
+  <div class="content position-relative">
+    <div
+      class="collapse @if($position == 1 & $firstIsExpanded) {{$firstIsExpanded ? 'show' : ''}} @else {{$isExpanded ? 'show' : ''}} @endif"
+      id="collapseOption-{{$option->id}}">
+      <div class="row">
+        <div class="col-12">
 
-						@if($children->isNotEmpty())
-				  	@foreach($children as $option)
+          <div class="list-option-values">
+            @php($children = $option->children)
 
-				  		<div class="mr-2 mb-2 tagBoxs">
+            @if($children->isNotEmpty())
+              @foreach($children as $option)
 
-                            <input
-                                type="checkbox"
-                                name="{{$name}}{{$option->id}}"
-                                id="{{$name}}{{$option->id}}"
-                                value="{{$option->id}}"
-                                wire:model="selectedOptions">
+                <div class="mr-2 mb-2 tagBoxs">
 
-                            <label for="{{$name}}{{$option->id}}">
-                                <span>{{$option->name ?? $option->title}}</span>
-                            </label>
+                  <input
+                    type="checkbox"
+                    name="{{$name}}{{$option->id}}"
+                    id="{{$name}}{{$option->id}}"
+                    value="{{$option->id}}"
+                    wire:model="selectedOptions">
 
-                        </div>
+                  <label for="{{$name}}{{$option->id}}">
+                    <span>{{$option->name ?? $option->title}}</span>
+                  </label>
 
-				  	@endforeach
-				  	@endif
+                </div>
 
-		  		</div>
+              @endforeach
+            @endif
 
-		  	</div>
-		  </div>
-		</div>
+          </div>
 
-	</div>
-	<style>
-		.option .item h5:after {
-			font-family: FontAwesome;
-			content:"\f107";
-			color: grey;
-			float: right;
-		}
-		.option .item.collapsed h5:after {
-			content:"\f105";
-		}
-	</style>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <style>
+      .option .item h5:after {
+          font-family: FontAwesome;
+          content: "\f107";
+          color: grey;
+          float: right;
+      }
+
+      .option .item.collapsed h5:after {
+          content: "\f105";
+      }
+  </style>
 </div>

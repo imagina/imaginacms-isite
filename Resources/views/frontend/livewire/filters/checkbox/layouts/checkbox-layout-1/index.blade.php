@@ -1,9 +1,9 @@
 <div class="filter-{{$type}} filter-{{$type}}-layout-{{$layout}} filter-{{$name}}">
-  @if($options && count($options)>0)
+  @if($this->options && count($this->options)>0)
     <div class="title">
-      <a class="item mb-3" id="collapse-{{$name}}" data-toggle="collapse" href="#collapse-{{$name}}" role="button"
-         aria-expanded="{{$isExpanded ? 'true' : 'false'}}" aria-controls="collapse-{{$name}}"
-         class="{{$isExpanded ? '' : 'collapsed'}}">
+      <a class="item mb-3 {{$isExpanded ? '' : 'collapsed'}}" id="collapse-{{$name}}" data-toggle="collapse"
+         href="#collapse-{{$name}}" role="button"
+         aria-expanded="{{$isExpanded ? 'true' : 'false'}}" aria-controls="collapse-{{$name}}">
         <h5 class="p-3 border-top border-bottom">
           <i class="fa angle float-right" aria-hidden="true"></i>
           {{$title}}
@@ -17,8 +17,8 @@
         <div class="row">
           <div class="col-12">
             <div class="list-{{$name}}">
-              @if(!empty($options))
-                @foreach($options as $option)
+              @if(!empty($this->options))
+                @foreach($this->options as $option)
                   @php
                     if(is_array($option))
                       $option = json_decode(json_encode($option), FALSE);
