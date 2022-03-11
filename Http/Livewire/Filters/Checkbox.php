@@ -24,6 +24,8 @@ class Checkbox extends Component
   public $layout;
   public $classes;
   public $params;
+  public $firstIsExpanded;
+  public $position;
   
   public $wrapperClasses;
   public $childrenClasses;
@@ -38,11 +40,11 @@ class Checkbox extends Component
     * Runs once, immediately after the component is instantiated,
     * but before render() is called
     */
-  public function mount($title, $name, $status = true, $isExpanded = true, $type, $repository, $emitTo, $repoAction,
+  public function mount($title, $name, $status = true, $isExpanded = true, $firstIsExpanded = false, $type, $repository, $emitTo, $repoAction,
                         $repoAttribute, $listener, $repoMethod = 'getItemsBy', $layout = 'checkbox-layout-1',
                         $classes = 'col-12', $params = [], $wrapperClasses = 'row', $childrenClasses = 'col-12')
   {
-    
+    $position = 1;
     $this->title = trans($title);
     $this->name = $name;
     $this->status = $status;
@@ -57,6 +59,8 @@ class Checkbox extends Component
     $this->layout = $layout;
     $this->classes = $classes;
     $this->params = $params;
+    $this->firstIsExpanded = $firstIsExpanded;
+    $this->position = $position ;
     
     $this->wrapperClasses = $wrapperClasses;
     $this->childrenClasses = $childrenClasses;
@@ -151,7 +155,7 @@ class Checkbox extends Component
     
     // Validation to Is Expanded
     $count = count(array_intersect($this->options ? $this->options->pluck("id")->toArray() : [], $this->selectedOptions));
-    
+
     if ($count) $this->isExpanded = true;
     
     
