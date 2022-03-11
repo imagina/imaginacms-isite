@@ -11,27 +11,51 @@
     </a>
   </div>
 
-  <div class="content position-relative">
-    <div class="collapse @if($position == 1 & $firstIsExpanded) {{$firstIsExpanded ? 'show' : ''}} @else {{$isExpanded ? 'show' : ''}} @endif" id="collapseOption-{{$option->id}}">
-      <div class="row">
-        <div class="col-12">
-          <div class="list-option-values">
-            @foreach($option->children ?? [] as $option)
-              <div class="mr-2 mb-2 tagBoxs">
-                <input
-                  type="checkbox"
-                  name="{{$name}}{{$option->id}}"
-                  id="{{$name}}{{$option->id}}"
-                  value="{{$option->id}}"
-                  wire:model="selectedOptions">
-                <label for="{{$name}}{{$option->id}}">
-                  <span>{{$option->name ?? $option->title}}</span>
-                </label>
-              </div>
-            @endforeach
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="content position-relative">
+		<div class="collapse {{$isExpanded ? 'show' : ''}}" id="collapseOption-{{$option->id}}">
+		  <div class="row">
+		  	<div class="col-12">
+		  		
+		  		<div class="list-option-values">
+						@php($children = $option->children)
+
+						@if($children->isNotEmpty())
+				  	@foreach($children as $option)
+
+				  		<div class="mr-2 mb-2 tagBoxs">
+
+                            <input
+                                type="checkbox"
+                                name="{{$name}}{{$option->id}}"
+                                id="{{$name}}{{$option->id}}"
+                                value="{{$option->id}}"
+                                wire:model="selectedOptions">
+
+                            <label for="{{$name}}{{$option->id}}">
+                                <span>{{$option->name ?? $option->title}}</span>
+                            </label>
+
+                        </div>
+
+				  	@endforeach
+				  	@endif
+
+		  		</div>
+
+		  	</div>
+		  </div>
+		</div>
+
+	</div>
+	<style>
+		.option .item h5:after {
+			font-family: FontAwesome;
+			content:"\f107";
+			color: grey;
+			float: right;
+		}
+		.option .item.collapsed h5:after {
+			content:"\f105";
+		}
+	</style>
 </div>

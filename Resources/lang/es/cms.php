@@ -337,7 +337,11 @@ return [
     "winner" => "Ganador | Ganadores",
     "creator" => "Creador | Creadores",
     "inverse" => "Inversa | Inversas",
-    "provider" => "Proveedor | Preveedores"
+    "provider" => "Proveedor | Preveedores",
+    "chart" => "Grafica | Graficas",
+    "subtitle" => "Subtitulo | Subtitulos",
+    "currentPlan" => "Plan actual",
+    "item" => "Elemento | Elementos"
   ],
   "message" => [
     "notFound" => "Lo sentimos, no hay nada aquí",

@@ -53,7 +53,10 @@ class Filters extends Component
   {
 
     //\Log::info("FILTERS - GETDATA - PARAMS: ".json_encode($params));
-
+    if (isset($params["goToUrl"])) {
+      $this->goToUrl = $params["goToUrl"];
+    }
+    
     if (isset($params["filter"])) {
 
       $filterName = $params['name'];

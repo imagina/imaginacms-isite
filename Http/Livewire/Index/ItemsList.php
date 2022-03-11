@@ -47,6 +47,9 @@ class ItemsList extends Component
   public $uniqueItemListRendered;
   public $emitItemListRenderedName;
 
+  //Item List Unique Class
+  public $itemListUniqueClass;
+
   protected $paginationTheme = 'bootstrap';
   protected $emitItemListRendered;
 
@@ -105,6 +108,7 @@ class ItemsList extends Component
     $this->validateNameEmitListRendered();
     list($this->editLink, $this->tooltipEditLink) = getEditLink($this->repository);
 
+    $this->itemListUniqueClass = "unique-class-".$this->id;
   }
 
   /*
