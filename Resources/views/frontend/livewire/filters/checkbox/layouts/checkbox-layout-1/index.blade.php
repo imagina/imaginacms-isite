@@ -1,7 +1,7 @@
 <div class="filter-{{$type}} filter-{{$type}}-layout-{{$layout}} filter-{{$name}}">
   @if($this->options && count($this->options)>0)
     <div class="title">
-      <a class="item mb-3 {{$isExpanded ? '' : 'collapsed'}}" id="collapse-{{$name}}" data-toggle="collapse"
+      <a class="item mb-3 {{$isExpanded ? '' : 'collapsed'}}" data-toggle="collapse"
          href="#collapse-{{$name}}" role="button"
          aria-expanded="{{$isExpanded ? 'true' : 'false'}}" aria-controls="collapse-{{$name}}">
         <h5 class="p-3 border-top border-bottom">

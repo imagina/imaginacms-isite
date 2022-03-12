@@ -25,9 +25,6 @@ class Checkbox extends Component
   public $layout;
   public $classes;
   public $params;
-  public $firstIsExpanded;
-  public $position;
-  public $parentId;
 
   public $wrapperClasses;
   public $childrenClasses;
@@ -44,10 +41,9 @@ class Checkbox extends Component
     */
   public function mount($title, $name, $status = true, $isExpanded = true, $type, $repository, $emitTo, $repoAction,
                         $repoAttribute, $listener, $repoMethod = 'getItemsBy', $layout = 'checkbox-layout-1',
-                        $classes = 'col-12', $params = [], $wrapperClasses = 'row', $childrenClasses = 'col-12',
-                        $firstIsExpanded = false, $parentId = 0)
+                        $classes = 'col-12', $params = [], $wrapperClasses = 'row', $childrenClasses = 'col-12')
   {
-    $position = 1;
+
     $this->title = trans($title);
     $this->name = $name;
     $this->status = $status;
@@ -62,9 +58,6 @@ class Checkbox extends Component
     $this->layout = $layout;
     $this->classes = $classes;
     $this->params = $params;
-    $this->firstIsExpanded = $firstIsExpanded;
-    $this->position = $position;
-    $this->parentId = $parentId;
 
     $this->wrapperClasses = $wrapperClasses;
     $this->childrenClasses = $childrenClasses;
@@ -128,6 +121,7 @@ class Checkbox extends Component
   {
 
 
+
     // Params From Config
     if (!empty($this->params))
       $params = array_merge_recursive($params, $this->params);
@@ -136,7 +130,7 @@ class Checkbox extends Component
 
     $this->options = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params)));
 
-    if ($this->options->isNotEmpty() && Str::contains($this->repoMethod, "Category"))
+    if ($this->options->isNotEmpty() && Str::contains($this->repository, "Category"))
       $this->options = $this->options->toTree();
     //dd($this->options);
   }
