@@ -340,7 +340,8 @@ return [
     "provider" => "Proveedor | Preveedores",
     "chart" => "Grafica | Graficas",
     "subtitle" => "Subtitulo | Subtitulos",
-    "currentPlan" => "Plan actual"
+    "currentPlan" => "Plan actual",
+    "item" => "Elemento | Elementos"
   ],
   "message" => [
     "notFound" => "Lo sentimos, no hay nada aquí",

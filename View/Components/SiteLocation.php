@@ -6,16 +6,15 @@ use Illuminate\View\Component;
 use Modules\Media\Entities\File;
 use Modules\Setting\Entities\Setting;
 
-class Maps extends Component
+class SiteLocation extends Component
 {
-//  public $optionMap;
   public $lat;
   public $lng;
   public $title;
   public $locationName;
   public $classes;
   public $zoom;
-  public $id;
+  public $settingLocationMap;
   public $mapId;
   public $settingMap;
 
@@ -24,18 +23,18 @@ class Maps extends Component
    *
    * @return void
    */
-  public function __construct($lat, $lng, $locationName = 'Ubicacion', $title = null, $zoom = 16, $classes = '',
-                              $id = 1, $mapId = null)
+  public function __construct($title = null, $zoom = 16, $classes = 'SiteLocation')
   {
-    $this->lat = $lat;
-    $this->lng = $lng;
-    $this->locationName = $locationName;
     $this->title = $title;
     $this->zoom = $zoom;
     $this->classes = $classes;
-    $this->id = $id;
-    $this->mapId = 'map_canvas_' . setting('isite::mapInShow') . '_' . $id;
+    $this->mapId = 'map_canvas_'.setting('isite::mapInShow').'SiteLocation';
+    $this->settingLocationMap = json_decode(setting('isite::locationSite'));
+    $this->lat = $this->settingLocationMap->lat;
+    $this->lng = $this->settingLocationMap->lng;
+    $this->locationName = @setting('core::site-name');
     $this->settingMap = setting('isite::mapInShow');
+
   }
 
   /**

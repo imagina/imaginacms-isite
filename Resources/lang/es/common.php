@@ -159,6 +159,7 @@ return [
   ],
   'maps' => [
     'groupMaps' => 'Mapas',
-    'mapsLabel' => 'Mapas en el sitio'
+    'mapsLabel' => 'Mapas en el sitio',
+    'labelLocationSite' => 'Ubicación Sede Principal'
   ]
 ];

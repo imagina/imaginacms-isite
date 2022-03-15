@@ -335,7 +335,8 @@ return [
     "provider" => "Provider | Providers",
     "chart" => "Chart | Charts",
     "subtitle" => "Subtitle | Subtitles",
-    "currentPlan" => "Current plan"
+    "currentPlan" => "Current plan",
+    "item" => "Item | Items"
   ],
   "message" => [
     "notFound" => "Sorry, nothing here",

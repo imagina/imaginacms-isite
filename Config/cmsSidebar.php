@@ -2,6 +2,7 @@
 
 return [
   "admin" => [
+    "isite_cms_main_home",
     [
       "title" => "isite.cms.sidebar.adminGroup",
       "icon" => "fas fa-chess-rook",
@@ -13,5 +14,7 @@ return [
     ],
     "isite_cms_admin_index"
   ],
-  "panel" => [],
+  "panel" => [
+    "isite_cms_main_home"
+  ],
 ];
