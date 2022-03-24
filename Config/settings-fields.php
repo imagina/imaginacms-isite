@@ -882,4 +882,23 @@ return [
       'label' => 'isite::common.maps.labelLocationSite'
     ]
   ],
+  'tenantWithCentralData' => [
+    'value' => [],
+    'name' => 'isite::tenantWithCentralData',
+    'groupName' => 'tenantConfiguration',
+    'groupTitle' => 'isite::common.settings.tenant.group',
+    'type' => 'select',
+    'columns' => 'col-6',
+    'props' => [
+      'label' => 'isite::common.settings.tenant.tenantWithCentralData',
+      'useInput' => false,
+      'useChips' => true,
+      'multiple' => true,
+      'hideDropdownIcon' => true,
+      'newValueMode' => 'add-unique',
+      'options' => [
+        ['label' => 'isite::common.settings.tenant.entities.setting', 'value' => 'setting'],
+      ]
+    ]
+  ],
 ];
