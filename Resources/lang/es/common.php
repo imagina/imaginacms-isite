@@ -53,6 +53,13 @@ return [
     'googleClient' => 'Cliente Google',
     'facebookClient' => 'Cliente Facebook',
     'facebookAppId' => 'App Id Facebook',
+    'tenant' => [
+      'group' => 'Inquilinos',
+      'tenantWithCentralData' => 'Entidades con data central',
+      'entities' => [
+        'setting' => 'Settings'
+      ],
+    ],
   ],
   'settingHints' => [
     'phones' => "Ingresa un número telefónico y presiona enter",
