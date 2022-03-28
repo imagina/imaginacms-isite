@@ -48,6 +48,14 @@ return [
       "label" => "Label",
       "icon-label" => "Icon",
     ],
+    'tenant' => [
+      'group' => 'Tenants',
+      'tenantWithCentralData' => 'Entities with central data',
+      'entities' => [
+        'setting' => 'Settings',
+        'page' => 'Pages',
+      ],
+    ],
     'googleClient' => 'Google Client',
     'facebookClient' => 'Facebook Client',
     'facebookAppId' => 'Facebook App Id',

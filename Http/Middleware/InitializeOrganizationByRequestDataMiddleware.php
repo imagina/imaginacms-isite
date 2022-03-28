@@ -23,13 +23,17 @@ class InitializeOrganizationByRequestDataMiddleware extends BaseApiController
   public function handle(Request $request, Closure $next)
   {
     try {
+      //Add optional guard API
+      \Auth::shouldUse('api');
       
       $query = $request->query();
       $header = $request->header();
+      
       $organizations = \Auth::user()->organizations;
       $organizationSelected = null;
       $organizations = $organizations->pluck("id")->toArray() ?? null;
       //si existe un payload con header o query solicitando inicializar un tenant
+      
       if (isset($query["organizationId"]) || isset($header["organizationid"])) {
         /*
          * si el auth user no tiene organizaciones asignadas se le deja inicializar el tenant

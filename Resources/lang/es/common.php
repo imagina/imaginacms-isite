@@ -57,7 +57,8 @@ return [
       'group' => 'Inquilinos',
       'tenantWithCentralData' => 'Entidades con data central',
       'entities' => [
-        'setting' => 'Settings'
+        'setting' => 'Settings',
+        'page' => 'Páginas',
       ],
     ],
   ],

@@ -898,6 +898,7 @@ return [
       'newValueMode' => 'add-unique',
       'options' => [
         ['label' => 'isite::common.settings.tenant.entities.setting', 'value' => 'setting'],
+        ['label' => 'isite::common.settings.tenant.entities.page', 'value' => 'page'],
       ]
     ]
   ],
