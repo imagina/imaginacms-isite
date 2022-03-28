@@ -25,13 +25,13 @@
     <div class="item-content {{$col2}} {{$contentPositionVertical}}">
 
       @if($withTitle)
-        <div class=" {{$orderClasses["title"] ?? 'order-1'}} item-title {{$titleAlign}} ">
+              <div class=" {{$orderClasses["title"] ?? 'order-1'}} item-title  ">
           @if(isset($item->url) && !empty($item->url))
-            <a href="{{$item->url}}" target="{{$target}}">
+                      <a href="{{$item->url}}" target="{{$target}}" class="{{$titleColor}}">
               @endif
-              <h3
-                class="title {{$titleTextWeight}} {{$titleTextTransform}} {{$titleColor}} {{$titleMarginT}} {{$titleMarginB}}">
-                {{$item->title ?? $item->name}}
+                          <h3 class="title d-flex align-items-center {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}} {{$titleMarginT}} {{$titleMarginB}} {{$contentMarginInsideX}}">
+                              @if($titleVineta) <i class="{{$titleVineta}} {{$titleVinetaColor}} mr-2"></i>  @endif
+                              <span> {{$item->title ?? $item->name}}</span>
               </h3>
               @if(isset($item->url) && !empty($item->url))
             </a>
@@ -93,19 +93,20 @@
         </div>
       @endif
       @if($withViewMoreButton)
-        <div class="{{$orderClasses["viewMoreButton"] ?? 'order-6'}} item-view-more-button {{$buttonAlign}}">
+              <div class="{{$orderClasses["viewMoreButton"] ?? 'order-5'}} item-view-more-button {{$buttonAlign}}">
           @if(isset($item->url) && !empty($item->url))
-            <a href="{{$item->url}}"
-               class="btn btn{{strpos($buttonLayout,'outline') !== false ? '-outline' : ''}}-{{$buttonColor}} {{$buttonLayout}} view-more-button {{$buttonMarginT}} {{$buttonMarginB}}"
-               target="{{$target}}">
-              @endif
-
-              @if($buttonIconLR=="left") <i class="{{$buttonIcon}} mr-1"></i>  @endif
-              {{trans($viewMoreButtonLabel)}}
-              @if($buttonIconLR=="right") <i class="{{$buttonIcon}} ml-1"></i>  @endif
-
-              @if(isset($item->url) && !empty($item->url))
-            </a>
+                      <x-isite::button :style="$buttonLayout"
+                                       :buttonClasses="$buttonSize.' view-more-button '.$buttonLayout.' '.$buttonMarginT.' '.$buttonMarginB.' '.$contentMarginInsideX"
+                                       :href="$item->url"
+                                       :withIcon="$buttonIconLR"
+                                       :iconPosition="$buttonIconLR"
+                                       :iconClass="$buttonIcon"
+                                       :withLabel="true"
+                                       :color="$buttonColor"
+                                       :label="trans($viewMoreButtonLabel)"
+                                       :target="$target"
+                                       :sizeLabel="$buttonTextSize"
+                      />
           @endif
         </div>
       @endif
@@ -117,6 +118,12 @@
 
 
 <style>
+    .item-list-layout-7 .card-item {
+        background-color: {{$itemBackgroundColor}};
+    }
+    .item-list-layout-7 .card-item:hover {
+        background-color: {{$itemBackgroundColorHover}};
+    }
     .item-list-layout-7 .item-image picture:before {
         border-radius: {{$imageBorderRadio}}px;
         top: {{$imagePadding}}px;
@@ -141,8 +148,8 @@
     }
 
     .item-list-layout-7 .item-border {
-        padding: {{$contentPadding}}px;
-        border-width: {{$contentBorder==false ? 0 : 1}}px;
+        padding:{{$contentPadding + $imagePadding}}px;
+        border-width: {{$contentBorder}}px;
         border-style: solid;
         border-color: {{$contentBorderColor}};
         border-radius: {{$contentBorderRounded}}px;
@@ -165,17 +172,21 @@
 
     .item-list-layout-7 .item-title .title {
         font-size: {{$titleTextSize}}px;
+        letter-spacing: {{$titleLetterSpacing}}px;
     }
 
     .item-list-layout-7 .item-summary .summary {
         font-size: {{$summaryTextSize}}px;
+        letter-spacing: {{$summaryLetterSpacing}}px;
     }
 
     .item-list-layout-7 .item-category .category {
         font-size: {{$categoryTextSize}}px;
+        letter-spacing: {{$categoryLetterSpacing}}px;
     }
 
     .item-list-layout-7 .item-created-date .created-date {
         font-size: {{$createdDateTextSize}}px;
+        letter-spacing: {{$createdDateLetterSpacing}}px;
     }
 </style>
