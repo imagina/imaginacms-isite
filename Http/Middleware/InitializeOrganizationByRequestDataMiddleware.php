@@ -23,8 +23,7 @@ class InitializeOrganizationByRequestDataMiddleware extends BaseApiController
   public function handle(Request $request, Closure $next)
   {
     try {
-      //Add optional guard API
-      \Auth::shouldUse('api');
+
       
       $query = $request->query();
       $header = $request->header();
