@@ -885,7 +885,7 @@ return [
   'tenantWithCentralData' => [
     'value' => [],
     'name' => 'isite::tenantWithCentralData',
-    'groupName' => 'tenantConfiguration',
+    'groupName' => 'tenants',
     'groupTitle' => 'isite::common.settings.tenant.group',
     'type' => 'select',
     'columns' => 'col-6',
