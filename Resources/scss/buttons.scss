@@ -92,6 +92,34 @@ $theme-color: map-merge(
 }
 
 //
+// Button Sizes
+//
+/* Sin padding de los lados */
+.button-link {
+  padding: 0;
+}
+/* pequeno */
+.button-small {
+  padding: 6px 15px;
+}
+/* normal */
+.button-normal {
+  padding: 10px 20px;
+}
+/* mediano */
+.button-big {
+  padding: 15px 30px;
+}
+/* Cuadrado*/
+.button-square {
+  padding: 10px;
+}
+/* Espaciado x */
+.button-padding-x {
+  padding: 0 6px;
+}
+
+//
 // Button Style
 //
 /* Linea lateral, botones juntos */
@@ -120,28 +148,21 @@ $theme-color: map-merge(
   }
 }
 
-
-
-//
-// Button Sizes
-//
-/* Sin padding de los lados */
-.button-link {
-  padding: 0;
+.button-icon {
+  padding: 0 !important;
+  display: inline-flex !important;
+  justify-content: center;
+  align-items: center;
+  &.button-normal {
+    width: 35px;
+    height: 35px;
 }
-/* pequeno */
-.button-small {
-  padding: 5px 15px;
+  &.button-small {
+    width: 28px;
+    height: 28px;
 }
-/* normal */
-.button-normal {
-  padding: 10px 20px;
+  &.button-big {
+    width: 50px;
+    height: 50px;
 }
-/* mediano */
-.button-big {
-  padding: 15px 30px;
-}
-/* Cuadrado*/
-.button-square {
-  padding: 10px;
 }

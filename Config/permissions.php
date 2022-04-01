@@ -10,6 +10,7 @@ return [
   ],
   'isite.master.records' => [
     'manage' => 'isite::master.record.manage',
+    'manage' => 'isite::master.record.manage',
     'index' => 'isite::master.record.list resource',
     'edit' => 'isite::master.record.edit resource',
     'create' => 'isite::master.record.create resource',

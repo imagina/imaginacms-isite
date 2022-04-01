@@ -110,6 +110,9 @@ class ItemList extends Component
   public $itemBackgroundColor;
   public $itemBackgroundColorHover;
 
+  public $titleHeight;
+  public $summaryHeight;
+
   
   /**
    * Create a new component instance.
@@ -173,8 +176,8 @@ class ItemList extends Component
 															$itemComponentTarget = "_self",
 															$itemListLayout = null,
                               $positionNumber = null,
-															$imageAspect="auto",
-															$imageObject="unset",
+                              $imageAspect="1/1",
+                              $imageObject="cover",
 															$imageBorderRadio=0,
                               $imageBorderStyle = "solid",
 															$imageBorderWidth=0,
@@ -187,7 +190,7 @@ class ItemList extends Component
 															$titleAlign="",
 															$titleTextSize="20",
                               $titleTextWeight="font-weight-bold",
-															$titleTextTransform="font-weight-normal",
+                              $titleTextTransform="",
 															$summaryAlign="text-left",
                               $summaryTextSize="16",
 															$summaryTextWeight="font-weight-normal",
@@ -208,7 +211,7 @@ class ItemList extends Component
 															$imagePositionVertical="align-self-center",
                               $contentPositionVertical="align-self-center",
 															$contentPadding=0,
-															$contentBorder=false,
+                              $contentBorder=0,
 															$contentBorderColor="#dddddd",
                               $contentBorderRounded=0,
 															$buttonColor="primary",
@@ -220,7 +223,7 @@ class ItemList extends Component
                               $categoryColor="text-primary",
 															$createdDateColor="text-primary",
 															$userColor="text-primary",
-															$titleMarginT="mt-0",
+															$titleMarginT="mt-2",
 															$titleMarginB="mb-0",
                               $summaryMarginT="mt-0",
 															$summaryMarginB="mb-0",
@@ -238,10 +241,12 @@ class ItemList extends Component
                               $createdDateLetterSpacing=0,
                               $titleVineta="",
                               $titleVinetaColor="text-dark",
-                              $buttonSize="",
+                              $buttonSize="button-normal",
                               $buttonTextSize=16,
-                              $itemBackgroundColor="#ffffff",
-                              $itemBackgroundColorHover="#ffffff")
+                              $itemBackgroundColor="none",
+                              $itemBackgroundColorHover="none",
+                              $titleHeight="20",
+                              $summaryHeight="100" )
   {
 
     $this->item = $item;
@@ -347,6 +352,9 @@ class ItemList extends Component
     $this->itemBackgroundColor=$itemBackgroundColor;
     $this->itemBackgroundColorHover=$itemBackgroundColorHover;
 
+    $this->titleHeight=$titleHeight;
+    $this->summaryHeight=$summaryHeight;
+
 
 
     if (!empty($parentAttributes))
@@ -432,6 +440,8 @@ class ItemList extends Component
     isset($parentAttributes["buttonTextSize"]) ? $this->buttonTextSize = $parentAttributes["buttonTextSize"] : false;
     isset($parentAttributes["itemBackgroundColor"]) ? $this->itemBackgroundColor = $parentAttributes["itemBackgroundColor"] : false;
     isset($parentAttributes["itemBackgroundColorHover"]) ? $this->itemBackgroundColorHover = $parentAttributes["itemBackgroundColorHover"] : false;
+    isset($parentAttributes["titleHeight"]) ? $this->titleHeight = $parentAttributes["titleHeight"] : false;
+    isset($parentAttributes["summaryHeight"]) ? $this->summaryHeight = $parentAttributes["summaryHeight"] : false;
     //isset($parentAttributes[""]) ? $this-> = $parentAttributes[""] : false;
     
   }
