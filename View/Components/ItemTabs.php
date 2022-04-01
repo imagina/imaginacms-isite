@@ -8,11 +8,10 @@ use Modules\Setting\Entities\Setting;
 
 class ItemTabs extends Component
 {
-  public $tabs;
-  public $classes;
-  public $categoryId;
+  public $settingTabs;
   public $title;
   public $subtitle;
+
   public $componentParams;
   public $componentResponsive;
   public $componentRepository;
@@ -25,26 +24,37 @@ class ItemTabs extends Component
   public $componentItemComponentAttributes;
   public $componentNavText;
   public $componentModuleName;
+  public $componentName;
+  public $componentNameSpace;
   public $componentFilter;
+  public $componentUse;
 
   /**
    * Create a new component instance.
    *
    * @return void
    */
-  public function __construct($tabs = [], $categoryId, $classes = null, $componentUse = 'item-list',
-                              $title = null, $subtitle = null, $componentParams = null,
+  public function __construct($settingTabs = null,
+                              $componentUse = 'item-list',
+                              $title = null,
+                              $subtitle = null,
+                              $componentParams = null,
                               $componentRepository = 'Modules\Iblog\Repositories\PostRepository',
                               $componentResponsive = '[0 => ["items" =>  2],640 => ["items" => 2],992 => ["items" => 4]]',
-                              $componentEntity = 'Modules\Iblog\Entities\Category', $componentMargin = '10',
-                              $componentItemsBySlide = '1', $componentEntityName = 'Post', $componentShowTitle = 'false',
-                              $componentConfigLayoutIndex = 'config("asgard.isite.config.layoutIndexItemTabs")',
-                              $componentItemComponentAttributes = 'config("asgard.isite.config.indexItemListAttributesItemTabs")',
-                              $componentNavText = '["<i class=\"fa fa-angle-left\'></i>","<i class=\"fa fa fa-angle-right\"></i>"]',
-                              $componentModuleName = 'Iblog', $componentFilter = 'category')
+                              $componentEntity = 'Modules\Iblog\Entities\Category',
+                              $componentMargin = '10',
+                              $componentItemsBySlide = '1',
+                              $componentEntityName = 'Post',
+                              $componentShowTitle = 'false',
+                              $componentConfigLayoutIndex = [],
+                              $componentItemComponentAttributes = [],
+                              $componentNavText = '[`<i class=\"fa fa-angle-left\"></i>`,`<i class=\"fa fa fa-angle-right\"></i>`]',
+                              $componentModuleName = 'Iblog',
+                              $componentFilter = 'category',
+                              $componentName = "isite::item-list",
+                              $componentNameSpace = "Modules\Isite\View\Components\ItemList")
   {
-    $this->tabs = $tabs ?? setting('isite::itemsTabs');
-    $this->categoryId = $categoryId;
+    $this->settingTabs = $settingTabs ?? setting('isite::itemsTabs');
     $this->componentUse = $componentUse ?? 'item-list';
     $this->title = $title;
     $this->subtitle = $subtitle;
@@ -56,11 +66,14 @@ class ItemTabs extends Component
     $this->componentItemsBySlide = $componentItemsBySlide ?? '1';
     $this->componentEntityName = $componentEntityName ?? 'Post';
     $this->componentShowTitle = $componentShowTitle ?? 'false';
-    $this->componentConfigLayoutIndex = $componentConfigLayoutIndex ?? 'config("asgard.isite.config.layoutIndexItemTabs")';
-    $this->componentItemComponentAttributes = $componentItemComponentAttributes ?? 'config("asgard.isite.config.indexItemListAttributesItemTabs")';
-    $this->componentNavText = $componentNavText ?? '["<i class=\"fa fa-angle-left\'></i>","<i class=\"fa fa fa-angle-right\"></i>"]';
-    $this->componentModuleName = $componentModuleName ?? 'Iblog';
-    $this->componentFilter = $componentFilter ?? 'category';
+    $this->componentConfigLayoutIndex = count($componentConfigLayoutIndex) ? $componentConfigLayoutIndex : config("asgard.isite.config.layoutIndex");
+    $this->componentItemComponentAttributes = count($componentItemComponentAttributes) ? $componentItemComponentAttributes : config('asgard.isite.config.indexItemListAttributesItemTabs');
+    $this->componentNavText = $componentNavText ?? '[`<i class=\"fa fa-angle-left\"></i>`,`<i class=\"fa fa fa-angle-right\"></i>`]';
+    $this->componentModuleName = $componentModuleName;
+    $this->componentFilter = $componentFilter;
+    $this->componentName = $componentName;
+    $this->componentNameSpace = $componentNameSpace;
+
   }
 
   /**
