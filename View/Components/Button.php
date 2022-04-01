@@ -42,7 +42,7 @@ class Button extends Component
     $this->color = $color;
     $this->target = $target;
     $this->sizeLabel = $sizeLabel;
-    $this->dataItemId = $dataItemId;
+    $this->dataItemId =  $dataItemId;
   }
 
 
