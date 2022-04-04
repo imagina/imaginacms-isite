@@ -19,5 +19,10 @@
       <i class="{{$iconClass}}"></i>
   @endif
 </a>
+<style>
+  .button-base span,.button-base i {
+    pointer-events: none;
+  }
+</style>
 
 
