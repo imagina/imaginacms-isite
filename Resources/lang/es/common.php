@@ -1,11 +1,14 @@
 <?php
 
 return [
+  'yes' => "Si",
+  'no' => "No",
   'menu' => [
     'home' => 'Inicio',
     'viewMore' => "Ver más"
   ],
   'settings' => [
+    'legacyStructureCMS' => 'Usar Estructura heredada CMS',
     'logo1' => 'Logo N°1',
     'logo2' => 'Logo N°2',
     'logo3' => 'Logo N°3',

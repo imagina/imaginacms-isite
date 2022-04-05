@@ -1,10 +1,13 @@
 <?php
 
 return [
+  'yes' => "Yes",
+  'no' => "No",
   'menu' => [
     'home' => 'Home'
   ],
   'settings' => [
+    'legacyStructureCMS' => 'Use Legacy Structure CMS',
     'logo1' => 'Logo N°1',
     'logo2' => 'Logo N°2',
     'logo3' => 'Logo N°3',
