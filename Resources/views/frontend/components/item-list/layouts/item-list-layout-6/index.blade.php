@@ -91,7 +91,7 @@
             <a href="{{$item->url}}" target="{{$target}}">
               @endif
               <div
-                class="summary {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}} {{$contentMarginInsideX}}">
+                class="summary {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}} {{$contentMarginInsideX}}" style="height: {{$summaryHeight}}px;">
                 {!! Str::limit( $item->summary ?? $item->description ?? $item->custom_html ?? '', $numberCharactersSummary) !!}
               </div>
               @if(isset($item->url) && !empty($item->url))
@@ -127,62 +127,71 @@
 
   </div>
 <style>
-        #{{$item->slug}}{{$item->id}} .item-image picture:before {
+    #{{$item->slug}}{{$item->id}} .item-image picture:before {
         border-radius: {{$imageBorderRadio}}px;
         top: {{$imagePadding}}px;
         left: {{$imagePadding}}px;
         bottom: {{$imagePadding}}px;
         right: {{$imagePadding}}px;
     }
-        #{{$item->slug}}{{$item->id}} .item-image picture {
+    #{{$item->slug}}{{$item->id}} .item-image picture {
         display: block !important;
         border-radius: {{$imageBorderRadio}}px;
         border-style: {{$imageBorderStyle}};
         border-width: {{$imageBorderWidth}}px;
         border-color: {{$imageBorderColor}};
     }
-        #{{$item->slug}}{{$item->id}} .img-style {
+    #{{$item->slug}}{{$item->id}} .img-style {
         aspect-ratio: {{$imageAspect}};
         object-fit: {{$imageObject}};
         border-radius: {{$imageBorderRadio}}px;
         padding: {{$imagePadding}}px;
     }
-        #{{$item->slug}}{{$item->id}} .card-item {
+    #{{$item->slug}}{{$item->id}} .card-item {
         background-color: {{$itemBackgroundColor}};
         padding: {{$contentPadding}}px;
         border-width: {{$contentBorder}}px;
         border-style: solid;
         border-color: {{$contentBorderColor}};
         border-radius: {{$contentBorderRounded}}px;
-      @if(!$contentBorderShadowsHover)
- box-shadow: {{$contentBorderShadows}};
-    @endif
-
+        @if(!$contentBorderShadowsHover)
+        box-shadow: {{$contentBorderShadows}};
+        @endif
     }
-        #{{$item->slug}}{{$item->id}} .card-item:hover {
+    #{{$item->slug}}{{$item->id}} .card-item:hover {
         background-color: {{$itemBackgroundColorHover}};
-      @if($contentBorderShadowsHover)
- box-shadow: {{$contentBorderShadows}};
-    @endif
-
+        @if($contentBorderShadowsHover)
+        box-shadow: {{$contentBorderShadows}};
+        @endif
     }
-
-        #{{$item->slug}}{{$item->id}} .item-title .title {
+    #{{$item->slug}}{{$item->id}} .item-title .title {
         font-size: {{$titleTextSize}}px;
         letter-spacing: {{$titleLetterSpacing}}px;
     }
-        #{{$item->slug}}{{$item->id}} .item-summary .summary {
+    #{{$item->slug}}{{$item->id}} .item-summary .summary {
         font-size: {{$summaryTextSize}}px;
         letter-spacing: {{$summaryLetterSpacing}}px;
     }
-        #{{$item->slug}}{{$item->id}} .item-category .category {
+    #{{$item->slug}}{{$item->id}} .item-category .category {
         font-size: {{$categoryTextSize}}px;
         letter-spacing: {{$categoryLetterSpacing}}px;
     }
-        #{{$item->slug}}{{$item->id}} .item-created-date .created-date {
+    #{{$item->slug}}{{$item->id}} .item-created-date .created-date {
         font-size: {{$createdDateTextSize}}px;
         letter-spacing: {{$createdDateLetterSpacing}}px;
     }
+    #{{$item->slug}}{{$item->id}} .item-title a:hover {
+         text-decoration: {{$titleTextDecoration}};
+     }
+    #{{$item->slug}}{{$item->id}} .item-summary a:hover {
+         text-decoration: {{$summaryTextDecoration}};
+     }
+    #{{$item->slug}}{{$item->id}} .item-category a:hover {
+         text-decoration: {{$categoryTextDecoration}};
+     }
+    #{{$item->slug}}{{$item->id}} .item-created-date a:hover {
+         text-decoration: {{$createdDateTextDecoration}};
+     }
 </style>
 </div>
 

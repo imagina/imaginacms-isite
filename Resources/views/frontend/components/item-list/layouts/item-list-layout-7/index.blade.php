@@ -3,10 +3,10 @@
   @php $row=""; $col1=""; $col2="image-overlay item-border";  @endphp
   @break
   @case('2')
-  @php $row="row item-border"; $col1="col-lg-6 px-0"; $col2="col-lg-6";  @endphp
+  @php $row="row item-border"; $col1=$columnLeft." px-0"; $col2=$columnRight;  @endphp
   @break
   @case('3')
-  @php $row="row item-border"; $col1="col-lg-6 order-1 px-0"; $col2="col-lg-6 order-0"; @endphp
+  @php $row="row item-border"; $col1=$columnRight." order-1 px-0"; $col2=$columnLeft." order-0"; @endphp
   @break
 @endswitch
 
@@ -123,70 +123,76 @@
 
 
 <style>
-        #{{$item->slug}}{{$item->id}} .card-item {
+    #{{$item->slug}}{{$item->id}} .card-item {
         background-color: {{$itemBackgroundColor}};
     }
-        #{{$item->slug}}{{$item->id}} .card-item:hover {
+    #{{$item->slug}}{{$item->id}} .card-item:hover {
         background-color: {{$itemBackgroundColorHover}};
     }
-        #{{$item->slug}}{{$item->id}} .item-image picture:before {
+    #{{$item->slug}}{{$item->id}} .item-image picture:before {
         border-radius: {{$imageBorderRadio}}px;
         top: {{$imagePadding}}px;
         left: {{$imagePadding}}px;
         bottom: {{$imagePadding}}px;
         right: {{$imagePadding}}px;
     }
-        #{{$item->slug}}{{$item->id}} .item-image picture {
+    #{{$item->slug}}{{$item->id}} .item-image picture {
         display: block !important;
         border-radius: {{$imageBorderRadio}}px;
         border-style: {{$imageBorderStyle}};
         border-width: {{$imageBorderWidth}}px;
         border-color: {{$imageBorderColor}};
     }
-        #{{$item->slug}}{{$item->id}} .img-style {
+    #{{$item->slug}}{{$item->id}} .img-style {
         aspect-ratio: {{$imageAspect}};
         object-fit: {{$imageObject}};
         border-radius: {{$imageBorderRadio}}px;
         padding: {{$imagePadding}}px;
     }
 
-        #{{$item->slug}}{{$item->id}} .item-border {
+    #{{$item->slug}}{{$item->id}} .item-border {
         padding:{{$contentPadding + $imagePadding}}px;
         border-width: {{$contentBorder}}px;
         border-style: solid;
         border-color: {{$contentBorderColor}};
         border-radius: {{$contentBorderRounded}}px;
-      @if(!$contentBorderShadowsHover)
-   box-shadow: {{$contentBorderShadows}};
-    @endif
-
-
-
+        @if(!$contentBorderShadowsHover)
+        box-shadow: {{$contentBorderShadows}};
+        @endif
     }
-        #{{$item->slug}}{{$item->id}} .item-border:hover {
-      @if($contentBorderShadowsHover)
-   box-shadow: {{$contentBorderShadows}};
-    @endif
-
-
-
+    #{{$item->slug}}{{$item->id}} .item-border:hover {
+        @if($contentBorderShadowsHover)
+        box-shadow: {{$contentBorderShadows}};
+        @endif
     }
-        #{{$item->slug}}{{$item->id}} .item-title .title {
+    #{{$item->slug}}{{$item->id}} .item-title .title {
         font-size: {{$titleTextSize}}px;
         letter-spacing: {{$titleLetterSpacing}}px;
     }
-        #{{$item->slug}}{{$item->id}} .item-summary .summary {
+    #{{$item->slug}}{{$item->id}} .item-summary .summary {
         font-size: {{$summaryTextSize}}px;
         letter-spacing: {{$summaryLetterSpacing}}px;
     }
-        #{{$item->slug}}{{$item->id}} .item-category .category {
+    #{{$item->slug}}{{$item->id}} .item-category .category {
         font-size: {{$categoryTextSize}}px;
         letter-spacing: {{$categoryLetterSpacing}}px;
     }
-        #{{$item->slug}}{{$item->id}} .item-created-date .created-date {
+    #{{$item->slug}}{{$item->id}} .item-created-date .created-date {
         font-size: {{$createdDateTextSize}}px;
         letter-spacing: {{$createdDateLetterSpacing}}px;
     }
+    #{{$item->slug}}{{$item->id}} .item-title a:hover {
+         text-decoration: {{$titleTextDecoration}};
+     }
+    #{{$item->slug}}{{$item->id}} .item-summary a:hover {
+         text-decoration: {{$summaryTextDecoration}};
+     }
+    #{{$item->slug}}{{$item->id}} .item-category a:hover {
+         text-decoration: {{$categoryTextDecoration}};
+     }
+    #{{$item->slug}}{{$item->id}} .item-created-date a:hover {
+         text-decoration: {{$createdDateTextDecoration}};
+     }
 </style>
 </div>
 
