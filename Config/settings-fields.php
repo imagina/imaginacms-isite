@@ -902,4 +902,16 @@ return [
       ]
     ]
   ],
+  'legacyStructureCMS' => [
+    'name' => 'isite::legacyStructureCMS',
+    'value' => '0',
+    'type' => 'select',
+    'props' => [
+      'label' => 'isite::common.settings.legacyStructureCMS',
+      'options' => [
+        ['label' => 'isite::common.yes', 'value' => '1'],
+        ['label' => 'isite::common.no', 'value' => '0'],
+      ]
+    ],
+  ],
 ];
