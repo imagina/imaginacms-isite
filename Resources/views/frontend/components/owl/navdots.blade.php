@@ -2,17 +2,20 @@
 <section id="{{$id}}" class="{{$owlBlockStyle}}">
     <div class="{{$containerFluid ? 'container-fluid': 'container'}}">
 
-          <div class="row align-items-center @if($navPosition=='top-right') justify-content-end @endif @if($navPosition=="top-right" && $navPosition=="top-left" || $textAlign=='text-center') my-3 @endif">
+          <div class="row align-items-center @if($navPosition=='top-right') justify-content-end @endif @if($navPosition=="top-right" && $navPosition=="top-left" || $owlTextAlign=='text-center') my-3 @endif">
 
-            <div class="col px-0 {{ $navPosition=="top-left" ? 'order-1':'' }}"  @if($navPosition=="top-right" && $navPosition=="top-left" || $textAlign=='text-center') style="position: absolute; left: 0;" @endif>
-              <div class="title-section {{$textAlign}}" @if($titlePosition==3) style="display: flex; flex-direction: column;" @endif>
+            <div class="col px-0 {{ $navPosition=="top-left" ? 'order-1':'' }}"  @if($navPosition=="top-right" && $navPosition=="top-left" || $owlTextAlign=='text-center') style="position: absolute; left: 0;" @endif>
+              <div class="title-section {{$owlTextAlign}}" @if($owlTextPosition==3) style="display: flex; flex-direction: column;" @endif>
                 @if($title!=="")
-                <h2 class="title {{ $titlePosition==3 ? 'order-1':'' }}">{!! $title !!}</h2>
+                  <h2 class="title {{ $owlTextPosition==3 ? 'order-1':'' }} {{$owlTitleColor}} {{$owlTitleWeight}} {{$owlTitleTransform}} {{$owlTitleMarginT}} {{$owlTitleMarginB}}" style="font-size: {{$owlTitleSize}}px;">
+                    @if($owlTitleVineta) <i class="{{$owlTitleVineta}} {{$owlTitleVinetaColor}} mr-1"></i>  @endif
+                    <span> {!! $title !!}</span>
+                  </h2>
                 @endif
-                @if($subTitle!=="" && $titlePosition!=1)
-                  <h6 class="subtitle">
-                    {!! $subTitle !!}
-                  </h6>
+                @if($subTitle!=="" && $owlTextPosition!=1)
+                    <h6 class="subtitle {{$owlSubtitleColor}} {{$owlSubtitleWeight}} {{$owlSubtitleTransform}} {{$owlSubtitleMarginT}} {{$owlSubtitleMarginB}}" style="font-size: {{$owlSubtitleSize}}px;">
+                      {!! $subTitle !!}
+                    </h6>
                 @endif
               </div>
             </div>
@@ -85,7 +88,7 @@
 
           @endif
 
-            <div class="@if($nav && $navPosition!="center") row py-3 @endif ">
+            <div class=" @if($navPosition!="center") row  py-3 @endif">
               <div id="{{$id}}Carousel" class="owl-carousel owl-theme {{$dotsStyle}}">
                 @php($x = 0) {{-- iterador de items --}}
                 @php($j = 0) {{-- iterador de itemsBySlide --}}
@@ -172,7 +175,8 @@
         autoplayHoverPause: {!! $autoplayHoverPause ? 'true' : 'false' !!},
         nav: false,
         center: {!! $center ? 'true' : 'false' !!},
-        responsive: {!! $responsive !!}
+        responsive: {!! $responsive !!},
+        stagePadding: {!!$stagePadding!!}
       });
     
       $('#{{$id}} .nextBtn').click(function() {
@@ -193,25 +197,41 @@
 
         let sizeButton = document.querySelector('#{{$id}} .prevBtn');
         let width = sizeButton.offsetWidth;
+        console.log('asd');
         let wrapper = document.querySelector('#{{$id}} .wrapper');
         let w = (width)*2;
         if(wrapper != null) {
           wrapper.style.cssText = 'grid-template-columns: '+width+'px calc(100% - '+w+'px) '+width+'px';
         }
 
+      })
+    });
 
-  })
+    @if($navPosition=="center")
+    $(document).ready(function () {
+      createOWL{{$id}}();
 
+      let sizeButton = document.querySelector('#{{$id}} .prevBtn');
+      let width = sizeButton.offsetWidth;
+      let wrapper = document.querySelector('#{{$id}} .wrapper');
+      console.log(width);
+      let w = (width)*2;
+      if(wrapper != null) {
+        wrapper.style.cssText = 'grid-template-columns: '+width+'px calc(100% - '+w+'px) '+width+'px';
+      }
 
-});
+    });
+    @endif
 </script>
   <style>
+    @if($navPosition=="center")
     #{{$id}} .wrapper {
       display: grid;
       align-items: center;
       grid-gap: 10px;
     }
-
+    @endif
+    @if($dotsStyle=="dots-linear")
     #{{$id}} .dots-linear .owl-dots .owl-dot span {
       width: 30px !important;
       height: 5px !important;
@@ -225,7 +245,7 @@
     #{{$id}} .dots-linear .owl-dots .owl-dot:focus {
       outline: 0 !important;
     }
-
+    @endif
 
   </style>
 
