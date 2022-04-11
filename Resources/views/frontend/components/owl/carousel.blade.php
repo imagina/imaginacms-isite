@@ -22,11 +22,30 @@
                   @endif
                   
                   @while(isset($items[$x + $j]) && $j<$itemsBySlide)
-
-                    <x-dynamic-component :positionNumber="$x+$j" :component="$itemComponent" :item="$items[$x + $j]"
-                                         :product="$items[$x + $j]" :layout="$itemLayout"
-                                         :parentAttributes="$attributes" :editLink="$editLink"
-                                         :tooltipEditLink="$tooltipEditLink"/>
+    
+                    <?php
+                    $hash = sha1($itemComponentNamespace);
+                    if (isset($component)) {
+                      $__componentOriginal{$hash} = $component;
+                    }
+                    $component = $__env->getContainer()->make($itemComponentNamespace, array_merge($itemComponentAttributes, [
+                      "item" => $items[$x + $j],
+                      "positionNumber"=>$x+$j,
+                      "layout"=>$itemLayout,
+                      "parentAttributes"=>$attributes,
+                      "editLink"=>$editLink,
+                      "tooltipEditLink"=>$tooltipEditLink
+                    ]));
+                    $component->withName($itemComponent);
+                    if ($component->shouldRender()):
+                      $__env->startComponent($component->resolveView(), $component->data());
+                      if (isset($__componentOriginal{$hash})):
+                        $component = $__componentOriginal{$hash};
+                        unset($__componentOriginal{$hash});
+                      endif;
+                      echo $__env->renderComponent();
+                    endif;
+                    ?>
                     
                     @php($j++)
                   @endwhile

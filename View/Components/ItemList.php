@@ -252,7 +252,7 @@ class ItemList extends Component
     $this->item = $item;
     $this->mediaImage = $mediaImage;
     $this->positionNumber = $positionNumber;
-    $this->view = "isite::frontend.components.item-list.layouts." . ($layout ?? 'item-list-layout-1') . ".index";
+   
     $this->view = $itemComponentView ?? $this->view;
     $this->target = $itemComponentTarget;
     $this->withViewMoreButton = $withViewMoreButton;
@@ -266,6 +266,7 @@ class ItemList extends Component
     $this->orderClasses = !empty($orderClasses) ? $orderClasses : ["photo" => "order-0", "title" => "order-1", "date" => "order-2", "categoryTitle" => "order-3", "summary" => "order-4", "viewMoreButton" => "order-5"];
     $this->editLink = $editLink;
     $this->tooltipEditLink = $tooltipEditLink;
+    $this->layout = $layout;
     $this->itemListLayout = $itemListLayout;
     $this->imageAspect = $imageAspect;
     $this->imageObject = $imageObject;
@@ -354,16 +355,17 @@ class ItemList extends Component
 
     $this->titleHeight=$titleHeight;
     $this->summaryHeight=$summaryHeight;
-
-
-
+    
     if (!empty($parentAttributes))
       $this->getParentAttributes($parentAttributes);
+  
+    $this->view = "isite::frontend.components.item-list.layouts." . ($this->layout ?? 'item-list-layout-1') . ".index";
+  
   }
   
   private function getParentAttributes($parentAttributes)
   {
-    
+   
     isset($parentAttributes["mediaImage"]) ? $this->mediaImage = $parentAttributes["mediaImage"] : false;
     isset($parentAttributes["layout"]) ? $this->layout = $parentAttributes["layout"] : false;
     isset($parentAttributes["withViewMoreButton"]) ? $this->withViewMoreButton = $parentAttributes["withViewMoreButton"] : false;
