@@ -76,11 +76,12 @@ class OwlCarousel extends Component
     $this->owlBlockStyle = $owlBlockStyle;
     $this->itemComponent = $itemComponent ?? "isite::item-list";
     $this->view = $view ?? "isite::frontend.components.owl.carousel";
-    $this->getItems();
     $this->stagePadding = $stagePadding;
     $this->autoplayTimeout = $autoplayTimeout;
     $this->itemComponentAttributes = $itemComponentAttributes;
     $this->itemComponentNamespace = $itemComponentNamespace;
+    $this->getItems();
+  
 
     list($this->editLink, $this->tooltipEditLink) = getEditLink($this->repository);
   }
