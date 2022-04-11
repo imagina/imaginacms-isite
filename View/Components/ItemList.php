@@ -28,6 +28,7 @@ class ItemList extends Component
     public $imageAspect;
     public $imageObject;
     public $imageBorderRadio;
+    public $imageBorderRadioType; // 1 all, 2 top, 3 right, 4 left, 5 bottom
     public $imageBorderStyle;
     public $imageBorderWidth;
     public $imageBorderColor;
@@ -62,6 +63,7 @@ class ItemList extends Component
     public $buttonLayout;
     public $buttonIcon;
     public $buttonIconLR;
+    public $buttonIconColor;
     public $buttonColor;
 
     public $imagePosition;
@@ -72,6 +74,7 @@ class ItemList extends Component
     public $contentBorder;
     public $contentBorderColor;
     public $contentBorderRounded;
+    public $contentBorderRoundedType; // 1 all, 2 top, 3 right, 4 left, 5 bottom
 
     public $contentMarginInsideX;
     public $contentBorderShadows;
@@ -187,13 +190,14 @@ class ItemList extends Component
                                 $imageAspect = "1/1",
                                 $imageObject = "cover",
                                 $imageBorderRadio = 0,
+                                $imageBorderRadioType = "1",
                                 $imageBorderStyle = "solid",
                                 $imageBorderWidth = 0,
                                 $imageBorderColor = "#000000",
                                 $imagePadding = 0,
                                 $withImageOpacity = false,
                                 $imageOpacityColor = "opacity-dark",
-                                $imageOpacityDirection = "opacity-all",
+                                $imageOpacityDirection = "opacity-top",
                                 $withTitle = true,
                                 $titleAlign = "",
                                 $titleTextSize = "20",
@@ -214,6 +218,7 @@ class ItemList extends Component
                                 $buttonAlign = "text-left",
                                 $buttonLayout = "border-0",
                                 $buttonIcon = " ",
+                                $buttonIconColor = null,
                                 $buttonIconLR = "left",
                                 $imagePosition = "1",
                                 $imagePositionVertical = "align-self-center",
@@ -222,6 +227,7 @@ class ItemList extends Component
                                 $contentBorder = 0,
                                 $contentBorderColor = "#dddddd",
                                 $contentBorderRounded = 0,
+                                $contentBorderRoundedType = 1,
                                 $buttonColor = "primary",
                                 $contentMarginInsideX = "mx-0",
                                 $contentBorderShadows = "none",
@@ -285,6 +291,7 @@ class ItemList extends Component
         $this->imageAspect = $imageAspect;
         $this->imageObject = $imageObject;
         $this->imageBorderRadio = $imageBorderRadio;
+        $this->imageBorderRadioType = $imageBorderRadioType;
         $this->imageBorderStyle = $imageBorderStyle;
         $this->imageBorderWidth = $imageBorderWidth;
         $this->imageBorderColor = $imageBorderColor;
@@ -318,6 +325,7 @@ class ItemList extends Component
         $this->buttonAlign = $buttonAlign;
         $this->buttonLayout = $buttonLayout;
         $this->buttonIcon = $buttonIcon;
+        $this->buttonIconColor = $buttonIconColor;
         $this->buttonIconLR = $buttonIconLR;
         $this->buttonColor = $buttonColor;
 
@@ -402,6 +410,7 @@ class ItemList extends Component
         isset($parentAttributes["imageAspect"]) ? $this->imageAspect = $parentAttributes["imageAspect"] : false;
         isset($parentAttributes["imageObject"]) ? $this->imageObject = $parentAttributes["imageObject"] : false;
         isset($parentAttributes["imageBorderRadio"]) ? $this->imageBorderRadio = $parentAttributes["imageBorderRadio"] : false;
+        isset($parentAttributes["imageBorderRadioType"]) ? $this->imageBorderRadioType = $parentAttributes["imageBorderRadioType"] : false;
         isset($parentAttributes["imageBorderStyle"]) ? $this->imageBorderStyle = $parentAttributes["imageBorderStyle"] : false;
         isset($parentAttributes["imageBorderWidth"]) ? $this->imageBorderWidth = $parentAttributes["imageBorderWidth"] : false;
         isset($parentAttributes["imageBorderColor"]) ? $this->imageBorderColor = $parentAttributes["imageBorderColor"] : false;
@@ -426,6 +435,7 @@ class ItemList extends Component
         isset($parentAttributes["buttonAlign"]) ? $this->buttonAlign = $parentAttributes["buttonAlign"] : false;
         isset($parentAttributes["buttonLayout"]) ? $this->buttonLayout = $parentAttributes["buttonLayout"] : false;
         isset($parentAttributes["buttonIcon"]) ? $this->buttonIcon = $parentAttributes["buttonIcon"] : false;
+        isset($parentAttributes["buttonIconColor"]) ? $this->buttonIconColor = $parentAttributes["buttonIconColor"] : false;
         isset($parentAttributes["buttonIconLR"]) ? $this->buttonIconLR = $parentAttributes["buttonIconLR"] : false;
         isset($parentAttributes["buttonColor"]) ? $this->buttonColor = $parentAttributes["buttonColor"] : false;
         isset($parentAttributes["imagePosition"]) ? $this->imagePosition = $parentAttributes["imagePosition"] : false;
@@ -435,6 +445,7 @@ class ItemList extends Component
         isset($parentAttributes["contentBorder"]) ? $this->contentBorder = $parentAttributes["contentBorder"] : false;
         isset($parentAttributes["contentBorderColor"]) ? $this->contentBorderColor = $parentAttributes["contentBorderColor"] : false;
         isset($parentAttributes["contentBorderRounded"]) ? $this->contentBorderRounded = $parentAttributes["contentBorderRounded"] : false;
+        isset($parentAttributes["contentBorderRoundedType"]) ? $this->contentBorderRoundedType = $parentAttributes["contentBorderRoundedType"] : false;
         isset($parentAttributes["contentMarginInsideX"]) ? $this->contentMarginInsideX = $parentAttributes["contentMarginInsideX"] : false;
         isset($parentAttributes["contentBorderShadows"]) ? $this->contentBorderShadows = $parentAttributes["contentBorderShadows"] : false;
         isset($parentAttributes["contentBorderShadowsHover"]) ? $this->contentBorderShadowsHover = $parentAttributes["contentBorderShadowsHover"] : false;
@@ -471,6 +482,8 @@ class ItemList extends Component
         isset($parentAttributes["userColor"]) ? $this->userColor = $parentAttributes["userColor"] : false;
         isset($parentAttributes["userMarginT"]) ? $this->userMarginT = $parentAttributes["userMarginT"] : false;
         isset($parentAttributes["userMarginB"]) ? $this->userMarginB = $parentAttributes["userMarginB"] : false;
+        isset($parentAttributes["columnLeft"]) ? $this->columnLeft = $parentAttributes["columnLeft"] : false;
+        isset($parentAttributes["columnRight"]) ? $this->columnRight = $parentAttributes["columnRight"] : false;
         //isset($parentAttributes[""]) ? $this-> = $parentAttributes[""] : false;
 
     }

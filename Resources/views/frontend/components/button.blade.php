@@ -10,19 +10,12 @@
    {{ !empty($onclick) ? "onclick=".$onclick : "" }} {{ !empty($href) ? "href=".$href : "" }}
         {{ !empty($target) ? "target=".$target : "" }} {{ !empty($dataItemId) ? "data-item-id=".$dataItemId : "" }} style="font-size: {{$sizeLabel}}px; line-height: {{$sizeLabel}}px;">
   @if($withIcon && $iconPosition=="left")
-    <i class="{{$iconClass}}"></i>
+    <i class="{{$iconClass}}" style="color: {{$iconColor}};"></i>
   @endif
   @if($withLabel)
     <span> {{$label}} </span>
   @endif
   @if($withIcon && $iconPosition=="right")
-      <i class="{{$iconClass}}"></i>
+      <i class="{{$iconClass}}" style="color: {{$iconColor}};"></i>
   @endif
 </a>
-<style>
-  .button-base span,.button-base i {
-    pointer-events: none;
-  }
-</style>
-
-

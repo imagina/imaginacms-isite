@@ -35,7 +35,7 @@ $theme-color: map-merge(
     $theme-color
 );
 
-@function oscurecer($color, $porcentaje) {
+@function darken-button($color, $porcentaje) {
   @return unquote('darken('+ $color +', '+ $porcentaje +')');
 }
 
@@ -51,8 +51,8 @@ $theme-color: map-merge(
     &:not(:disabled):not(.disabled).active,
     .show > &.dropdown-toggle {
       color: #ffffff;
-      background-color: oscurecer($value,30%);
-      border-color: oscurecer($value,30%);
+      background-color: darken-button($value,30%);
+      border-color: darken-button($value,30%);
     }*/
     &:hover, &:active, &:focus,
     &:not(:disabled):not(.disabled):active,
@@ -60,7 +60,7 @@ $theme-color: map-merge(
     .show > &.dropdown-toggle {
       color: #ffffff !important;
       background-color: $value !important;
-      border-color: oscurecer($value,30%) !important;
+      border-color: darken-button($value,30%) !important;
     }
   }
 
@@ -153,16 +153,20 @@ $theme-color: map-merge(
   display: inline-flex !important;
   justify-content: center;
   align-items: center;
-  &.button-normal {
-    width: 35px;
-    height: 35px;
+    &.button-normal {
+      width: 35px;
+      height: 35px;
+  }
+    &.button-small {
+      width: 28px;
+      height: 28px;
+  }
+    &.button-big {
+      width: 50px;
+      height: 50px;
+  }
 }
-  &.button-small {
-    width: 28px;
-    height: 28px;
-}
-  &.button-big {
-    width: 50px;
-    height: 50px;
-}
+
+.button-base span,.button-base i {
+  pointer-events: none;
 }
