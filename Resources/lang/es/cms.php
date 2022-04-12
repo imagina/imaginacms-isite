@@ -46,7 +46,6 @@ return [
   "quickSettings" => "Ajustes Rapidos",
   "perzonalizationTitle" => "Bienvenid@ al editor de tu sitio web",
   "perzonalizationDescription" => "De manera fácil, cambia el logo, colores y la información principal de tu página web",
-
   "label" => [
     "delete" => "Eliminar",
     "cancel" => "Cancelar",
@@ -510,7 +509,8 @@ return [
     "showInMenu" => "Mostrar en menu",
     "featured" => "Destacado",
     "sortOrder" => "Orden de prioridad",
-    "availableDate" => "Disponible desde"
+    "availableDate" => "Disponible desde",
+    "createdFromIp" => "Creado desde la IP"
   ],
   "configList" => [
     "loggedAs" => "Registrado como",
