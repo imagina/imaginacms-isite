@@ -12,7 +12,7 @@
   </div>
 
   <div class="content position-relative">
-    <div class="collapse {{$isExpanded ? 'show' : ''}}" id="collapseOption-{{$option->id}}">
+    <div class="collapse {{$isExpanded ? 'show' : ''}}" id="collapseOption-{{$option->id}}" wire:ignore.self>
       <div class="row">
         <div class="col-12">
 
