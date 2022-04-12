@@ -22,7 +22,7 @@
             @if($children->isNotEmpty())
               @foreach($children as $option)
 
-                <div class="mr-2 mb-2 tagBoxs">
+                <div class="custom-checkbox mr-2 mb-2 {{$tagBoxs ? 'tagBoxs' : ''}}">
 
                   <input
                     type="checkbox"
