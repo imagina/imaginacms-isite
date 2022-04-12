@@ -378,6 +378,15 @@ class ItemList extends Component
     $this->titleHeight=$titleHeight;
     $this->summaryHeight=$summaryHeight;
 
+    $this->imageBorderRadioType = $imageBorderRadioType;
+    $this->contentBorderRoundedType = $contentBorderRoundedType;
+    $this->columnLeft = $columnLeft;
+    $this->columnRight = $columnRight;
+    $this->titleTextDecoration = $titleTextDecoration;
+    $this->summaryTextDecoration = $summaryTextDecoration;
+    $this->categoryTextDecoration = $categoryTextDecoration;
+    $this->createdDateTextDecoration = $createdDateTextDecoration;
+
     if (!empty($parentAttributes))
       $this->getParentAttributes($parentAttributes);
 
@@ -466,10 +475,26 @@ class ItemList extends Component
     isset($parentAttributes["itemBackgroundColorHover"]) ? $this->itemBackgroundColorHover = $parentAttributes["itemBackgroundColorHover"] : false;
     isset($parentAttributes["titleHeight"]) ? $this->titleHeight = $parentAttributes["titleHeight"] : false;
     isset($parentAttributes["summaryHeight"]) ? $this->summaryHeight = $parentAttributes["summaryHeight"] : false;
+    isset($parentAttributes["buttonIconColor"]) ? $this->buttonIconColor = $parentAttributes["buttonIconColor"] : false;
+    isset($parentAttributes["imageBorderRadioType"]) ? $this->imageBorderRadioType = $parentAttributes["imageBorderRadioType"] : false;
+    isset($parentAttributes["contentBorderRoundedType"]) ? $this->contentBorderRoundedType = $parentAttributes["contentBorderRoundedType"] : false;
+    isset($parentAttributes["withUser"]) ? $this->withUser = $parentAttributes["withUser"] : false;
+    isset($parentAttributes["userAlign"]) ? $this->userAlign = $parentAttributes["userAlign"] : false;
+    isset($parentAttributes["userTextSize"]) ? $this->userTextSize = $parentAttributes["userTextSize"] : false;
+    isset($parentAttributes["userTextWeigh"]) ? $this->userTextWeigh = $parentAttributes["userTextWeigh"] : false;
+    isset($parentAttributes["userColor"]) ? $this->userColor = $parentAttributes["userColor"] : false;
+    isset($parentAttributes["userMarginT"]) ? $this->userMarginT = $parentAttributes["userMarginT"] : false;
+    isset($parentAttributes["userMarginB"]) ? $this->userMarginB = $parentAttributes["userMarginB"] : false;
+    isset($parentAttributes["columnLeft"]) ? $this->columnLeft = $parentAttributes["columnLeft"] : false;
+    isset($parentAttributes["columnRight"]) ? $this->columnRight = $parentAttributes["columnRight"] : false;
+    isset($parentAttributes["titleTextDecoration"]) ? $this->titleTextDecoration = $parentAttributes["titleTextDecoration"] : false;
+    isset($parentAttributes["summaryTextDecoration"]) ? $this->summaryTextDecoration = $parentAttributes["summaryTextDecoration"] : false;
+    isset($parentAttributes["categoryTextDecoration"]) ? $this->categoryTextDecoration = $parentAttributes["categoryTextDecoration"] : false;
+    isset($parentAttributes["createdDateTextDecoration"]) ? $this->createdDateTextDecoration = $parentAttributes["createdDateTextDecoration"] : false;
     //isset($parentAttributes[""]) ? $this-> = $parentAttributes[""] : false;
-    
+
   }
-  
+
   /**
    * Get the view / contents that represent the component.
    *
