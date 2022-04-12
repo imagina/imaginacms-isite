@@ -35,9 +35,12 @@ class OwlCarousel extends Component
   public $tooltipEditLink;
   public $stagePadding;
   public $autoplayTimeout;
+  public $itemComponentAttributes;
+  public $itemComponentNamespace;
 
-
-
+  
+  
+  
   /**
    * Create a new component instance.
    *
@@ -47,6 +50,7 @@ class OwlCarousel extends Component
                               $autoplayHoverPause = true, $loop = true, $dots = true, $nav = true, $center = false, $responsive = null,
                               $itemLayout = null, $title = "", $subTitle = "", $itemsBySlide = 1, $navText = "",
                               $containerFluid = false, $itemComponent = null, $owlBlockStyle = null, $stagePadding = 0,
+                              $itemComponentAttributes = [], $itemComponentNamespace = "Modules\Isite\View\Components\ItemList",
                               $autoplayTimeout = 5000)
   {
 
@@ -72,9 +76,12 @@ class OwlCarousel extends Component
     $this->owlBlockStyle = $owlBlockStyle;
     $this->itemComponent = $itemComponent ?? "isite::item-list";
     $this->view = $view ?? "isite::frontend.components.owl.carousel";
-    $this->getItems();
     $this->stagePadding = $stagePadding;
     $this->autoplayTimeout = $autoplayTimeout;
+    $this->itemComponentAttributes = $itemComponentAttributes;
+    $this->itemComponentNamespace = $itemComponentNamespace;
+    $this->getItems();
+  
 
     list($this->editLink, $this->tooltipEditLink) = getEditLink($this->repository);
   }
@@ -101,6 +108,7 @@ class OwlCarousel extends Component
         !$this->itemLayout ? $this->itemLayout = setting('icommerce::productListItemLayout') : false;
         if (is_module_enabled("Icommerce") && $this->itemComponent == "isite::item-list") {
           $this->itemComponent = "icommerce::product-list-item";
+          $this->itemComponentNamespace = "Modules\Icommerce\View\Components\ProductListItem";
         }
         break;
     }

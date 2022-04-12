@@ -270,35 +270,35 @@ class ItemList extends Component
     )
     {
 
-        $this->item = $item;
-        $this->mediaImage = $mediaImage;
-        $this->positionNumber = $positionNumber;
-        $this->view = "isite::frontend.components.item-list.layouts." . ($layout ?? 'item-list-layout-1') . ".index";
-        $this->view = $itemComponentView ?? $this->view;
-        $this->target = $itemComponentTarget;
-        $this->withViewMoreButton = $withViewMoreButton;
-        $this->viewMoreButtonLabel = $viewMoreButtonLabel;
-        $this->withCreatedDate = $withCreatedDate;
-        $this->withUser = $withUser;
-        $this->formatCreatedDate = $formatCreatedDate;
-        $this->withCategory = $withCategory;
-        $this->withSummary = $withSummary;
-        $this->numberCharactersSummary = $numberCharactersSummary;
-        $this->orderClasses = !empty($orderClasses) ? $orderClasses : ["photo" => "order-0", "title" => "order-1", "date" => "order-2", "categoryTitle" => "order-3", "summary" => "order-4", "viewMoreButton" => "order-5"];
-        $this->editLink = $editLink;
-        $this->tooltipEditLink = $tooltipEditLink;
-        $this->itemListLayout = $itemListLayout;
-        $this->imageAspect = $imageAspect;
-        $this->imageObject = $imageObject;
-        $this->imageBorderRadio = $imageBorderRadio;
-        $this->imageBorderRadioType = $imageBorderRadioType;
-        $this->imageBorderStyle = $imageBorderStyle;
-        $this->imageBorderWidth = $imageBorderWidth;
-        $this->imageBorderColor = $imageBorderColor;
-        $this->imagePadding = $imagePadding;
-        $this->withImageOpacity = $withImageOpacity;
-        $this->imageOpacityColor = $imageOpacityColor;
-        $this->imageOpacityDirection = $imageOpacityDirection;
+    $this->item = $item;
+    $this->mediaImage = $mediaImage;
+    $this->positionNumber = $positionNumber;
+
+    $this->view = $itemComponentView ?? $this->view;
+    $this->target = $itemComponentTarget;
+    $this->withViewMoreButton = $withViewMoreButton;
+    $this->viewMoreButtonLabel = $viewMoreButtonLabel;
+    $this->withCreatedDate = $withCreatedDate;
+    $this->withUser = $withUser;
+    $this->formatCreatedDate = $formatCreatedDate;
+    $this->withCategory = $withCategory;
+    $this->withSummary = $withSummary;
+    $this->numberCharactersSummary = $numberCharactersSummary;
+    $this->orderClasses = !empty($orderClasses) ? $orderClasses : ["photo" => "order-0", "title" => "order-1", "date" => "order-2", "categoryTitle" => "order-3", "summary" => "order-4", "viewMoreButton" => "order-5"];
+    $this->editLink = $editLink;
+    $this->tooltipEditLink = $tooltipEditLink;
+    $this->layout = $layout;
+    $this->itemListLayout = $itemListLayout;
+    $this->imageAspect = $imageAspect;
+    $this->imageObject = $imageObject;
+    $this->imageBorderRadio = $imageBorderRadio;
+    $this->imageBorderStyle = $imageBorderStyle;
+    $this->imageBorderWidth = $imageBorderWidth;
+    $this->imageBorderColor = $imageBorderColor;
+    $this->imagePadding = $imagePadding;
+    $this->withImageOpacity = $withImageOpacity;
+    $this->imageOpacityColor = $imageOpacityColor;
+    $this->imageOpacityDirection = $imageOpacityDirection;
 
         $this->withTitle = $withTitle;
         $this->titleAlign = $titleAlign;
@@ -375,127 +375,108 @@ class ItemList extends Component
         $this->itemBackgroundColor = $itemBackgroundColor;
         $this->itemBackgroundColorHover = $itemBackgroundColorHover;
 
-        $this->titleHeight = $titleHeight;
-        $this->summaryHeight = $summaryHeight;
+    $this->titleHeight=$titleHeight;
+    $this->summaryHeight=$summaryHeight;
 
-        $this->columnLeft = $columnLeft;
-        $this->columnRight = $columnRight;
-        $this->titleTextDecoration = $titleTextDecoration;
-        $this->summaryTextDecoration = $summaryTextDecoration;
-        $this->categoryTextDecoration = $categoryTextDecoration;
-        $this->createdDateTextDecoration = $createdDateTextDecoration;
+    if (!empty($parentAttributes))
+      $this->getParentAttributes($parentAttributes);
 
+    $this->view = "isite::frontend.components.item-list.layouts." . ($this->layout ?? 'item-list-layout-1') . ".index";
 
-        if (!empty($parentAttributes))
-            $this->getParentAttributes($parentAttributes);
-    }
+  }
 
-    private
-    function getParentAttributes($parentAttributes)
-    {
+  private function getParentAttributes($parentAttributes)
+  {
 
-        isset($parentAttributes["mediaImage"]) ? $this->mediaImage = $parentAttributes["mediaImage"] : false;
-        isset($parentAttributes["layout"]) ? $this->layout = $parentAttributes["layout"] : false;
-        isset($parentAttributes["withViewMoreButton"]) ? $this->withViewMoreButton = $parentAttributes["withViewMoreButton"] : false;
-        isset($parentAttributes["viewMoreButtonLabel"]) ? $this->viewMoreButtonLabel = $parentAttributes["viewMoreButtonLabel"] : false;
-        isset($parentAttributes["withCreatedDate"]) ? $this->withCreatedDate = $parentAttributes["withCreatedDate"] : false;
-        isset($parentAttributes["formatCreatedDate"]) ? $this->formatCreatedDate = $parentAttributes["formatCreatedDate"] : false;
-        isset($parentAttributes["withCategory"]) ? $this->withCategory = $parentAttributes["withCategory"] : false;
-        isset($parentAttributes["withSummary"]) ? $this->withSummary = $parentAttributes["withSummary"] : false;
-        isset($parentAttributes["orderClasses"]) ? $this->orderClasses = !empty($parentAttributes["orderClasses"]) ? $parentAttributes["orderClasses"] : ["photo" => "order-1", "title" => "order-2", "date" => "order-3", "categoryTitle" => "order-4", "summary" => "order-5", "viewMoreButton" => "order-6"] : false;
-        isset($parentAttributes["numberCharactersSummary"]) ? $this->numberCharactersSummary = $parentAttributes["numberCharactersSummary"] : 100;
-        isset($parentAttributes["itemComponentView"]) ? $this->view = $parentAttributes["itemComponentView"] ?? $this->view : false;
-        isset($parentAttributes["target"]) ? $this->target = $parentAttributes["target"] ?? "_self" : false;
-        isset($parentAttributes["itemListLayout"]) ? $this->itemListLayout = $parentAttributes["itemListLayout"] : false;
-        isset($parentAttributes["imageAspect"]) ? $this->imageAspect = $parentAttributes["imageAspect"] : false;
-        isset($parentAttributes["imageObject"]) ? $this->imageObject = $parentAttributes["imageObject"] : false;
-        isset($parentAttributes["imageBorderRadio"]) ? $this->imageBorderRadio = $parentAttributes["imageBorderRadio"] : false;
-        isset($parentAttributes["imageBorderRadioType"]) ? $this->imageBorderRadioType = $parentAttributes["imageBorderRadioType"] : false;
-        isset($parentAttributes["imageBorderStyle"]) ? $this->imageBorderStyle = $parentAttributes["imageBorderStyle"] : false;
-        isset($parentAttributes["imageBorderWidth"]) ? $this->imageBorderWidth = $parentAttributes["imageBorderWidth"] : false;
-        isset($parentAttributes["imageBorderColor"]) ? $this->imageBorderColor = $parentAttributes["imageBorderColor"] : false;
-        isset($parentAttributes["imagePadding"]) ? $this->imagePadding = $parentAttributes["imagePadding"] : false;
-        isset($parentAttributes["withImageOpacity"]) ? $this->withImageOpacity = $parentAttributes["withImageOpacity"] : false;
-        isset($parentAttributes["imageOpacityColor"]) ? $this->imageOpacityColor = $parentAttributes["imageOpacityColor"] : false;
-        isset($parentAttributes["imageOpacityDirection"]) ? $this->imageOpacityDirection = $parentAttributes["imageOpacityDirection"] : false;
-        isset($parentAttributes["withTitle"]) ? $this->withTitle = $parentAttributes["withTitle"] : false;
-        isset($parentAttributes["titleAlign"]) ? $this->titleAlign = $parentAttributes["titleAlign"] : false;
-        isset($parentAttributes["titleTextSize"]) ? $this->titleTextSize = $parentAttributes["titleTextSize"] : false;
-        isset($parentAttributes["titleTextWeight"]) ? $this->titleTextWeight = $parentAttributes["titleTextWeight"] : false;
-        isset($parentAttributes["titleTextTransform"]) ? $this->titleTextTransform = $parentAttributes["titleTextTransform"] : false;
-        isset($parentAttributes["summaryAlign"]) ? $this->summaryAlign = $parentAttributes["summaryAlign"] : false;
-        isset($parentAttributes["summaryTextSize"]) ? $this->summaryTextSize = $parentAttributes["summaryTextSize"] : false;
-        isset($parentAttributes["summaryTextWeight"]) ? $this->summaryTextWeight = $parentAttributes["summaryTextWeight"] : false;
-        isset($parentAttributes["categoryAlign"]) ? $this->categoryAlign = $parentAttributes["categoryAlign"] : false;
-        isset($parentAttributes["categoryTextSize"]) ? $this->categoryTextSize = $parentAttributes["categoryTextSize"] : false;
-        isset($parentAttributes["categoryTextWeight"]) ? $this->categoryTextWeight = $parentAttributes["categoryTextWeight"] : false;
-        isset($parentAttributes["createdDateAlign"]) ? $this->createdDateAlign = $parentAttributes["createdDateAlign"] : false;
-        isset($parentAttributes["createdDateTextSize"]) ? $this->createdDateTextSize = $parentAttributes["createdDateTextSize"] : false;
-        isset($parentAttributes["createdDateTextWeight"]) ? $this->createdDateTextWeight = $parentAttributes["createdDateTextWeight"] : false;
-        isset($parentAttributes["buttonAlign"]) ? $this->buttonAlign = $parentAttributes["buttonAlign"] : false;
-        isset($parentAttributes["buttonLayout"]) ? $this->buttonLayout = $parentAttributes["buttonLayout"] : false;
-        isset($parentAttributes["buttonIcon"]) ? $this->buttonIcon = $parentAttributes["buttonIcon"] : false;
-        isset($parentAttributes["buttonIconColor"]) ? $this->buttonIconColor = $parentAttributes["buttonIconColor"] : false;
-        isset($parentAttributes["buttonIconLR"]) ? $this->buttonIconLR = $parentAttributes["buttonIconLR"] : false;
-        isset($parentAttributes["buttonColor"]) ? $this->buttonColor = $parentAttributes["buttonColor"] : false;
-        isset($parentAttributes["imagePosition"]) ? $this->imagePosition = $parentAttributes["imagePosition"] : false;
-        isset($parentAttributes["imagePositionVertical"]) ? $this->imagePositionVertical = $parentAttributes["imagePositionVertical"] : false;
-        isset($parentAttributes["contentPositionVertical"]) ? $this->contentPositionVertical = $parentAttributes["contentPositionVertical"] : false;
-        isset($parentAttributes["contentPadding"]) ? $this->contentPadding = $parentAttributes["contentPadding"] : false;
-        isset($parentAttributes["contentBorder"]) ? $this->contentBorder = $parentAttributes["contentBorder"] : false;
-        isset($parentAttributes["contentBorderColor"]) ? $this->contentBorderColor = $parentAttributes["contentBorderColor"] : false;
-        isset($parentAttributes["contentBorderRounded"]) ? $this->contentBorderRounded = $parentAttributes["contentBorderRounded"] : false;
-        isset($parentAttributes["contentBorderRoundedType"]) ? $this->contentBorderRoundedType = $parentAttributes["contentBorderRoundedType"] : false;
-        isset($parentAttributes["contentMarginInsideX"]) ? $this->contentMarginInsideX = $parentAttributes["contentMarginInsideX"] : false;
-        isset($parentAttributes["contentBorderShadows"]) ? $this->contentBorderShadows = $parentAttributes["contentBorderShadows"] : false;
-        isset($parentAttributes["contentBorderShadowsHover"]) ? $this->contentBorderShadowsHover = $parentAttributes["contentBorderShadowsHover"] : false;
-        isset($parentAttributes["titleColor"]) ? $this->titleColor = $parentAttributes["titleColor"] : false;
-        isset($parentAttributes["summaryColor"]) ? $this->summaryColor = $parentAttributes["summaryColor"] : false;
-        isset($parentAttributes["categoryColor"]) ? $this->categoryColor = $parentAttributes["categoryColor"] : false;
-        isset($parentAttributes["createdDateColor"]) ? $this->createdDateColor = $parentAttributes["createdDateColor"] : false;
-        isset($parentAttributes["titleMarginT"]) ? $this->titleMarginT = $parentAttributes["titleMarginT"] : false;
-        isset($parentAttributes["titleMarginB"]) ? $this->titleMarginB = $parentAttributes["titleMarginB"] : false;
-        isset($parentAttributes["summaryMarginT"]) ? $this->summaryMarginT = $parentAttributes["summaryMarginT"] : false;
-        isset($parentAttributes["summaryMarginB"]) ? $this->summaryMarginB = $parentAttributes["summaryMarginB"] : false;
-        isset($parentAttributes["categoryMarginT"]) ? $this->categoryMarginT = $parentAttributes["categoryMarginT"] : false;
-        isset($parentAttributes["categoryMarginB"]) ? $this->categoryMarginB = $parentAttributes["categoryMarginB"] : false;
-        isset($parentAttributes["createdDateMarginT"]) ? $this->createdDateMarginT = $parentAttributes["createdDateMarginT"] : false;
-        isset($parentAttributes["createdDateMarginB"]) ? $this->createdDateMarginB = $parentAttributes["createdDateMarginB"] : false;
-        isset($parentAttributes["buttonMarginT"]) ? $this->buttonMarginT = $parentAttributes["buttonMarginT"] : false;
-        isset($parentAttributes["buttonMarginB"]) ? $this->buttonMarginB = $parentAttributes["buttonMarginB"] : false;
-        isset($parentAttributes["titleLetterSpacing"]) ? $this->titleLetterSpacing = $parentAttributes["titleLetterSpacing"] : false;
-        isset($parentAttributes["summaryLetterSpacing"]) ? $this->summaryLetterSpacing = $parentAttributes["summaryLetterSpacing"] : false;
-        isset($parentAttributes["categoryLetterSpacing"]) ? $this->categoryLetterSpacing = $parentAttributes["categoryLetterSpacing"] : false;
-        isset($parentAttributes["createdDateLetterSpacing"]) ? $this->createdDateLetterSpacing = $parentAttributes["createdDateLetterSpacing"] : false;
-        isset($parentAttributes["titleVineta"]) ? $this->titleVineta = $parentAttributes["titleVineta"] : false;
-        isset($parentAttributes["titleVinetaColor"]) ? $this->titleVinetaColor = $parentAttributes["titleVinetaColor"] : false;
-        isset($parentAttributes["buttonSize"]) ? $this->buttonSize = $parentAttributes["buttonSize"] : false;
-        isset($parentAttributes["buttonTextSize"]) ? $this->buttonTextSize = $parentAttributes["buttonTextSize"] : false;
-        isset($parentAttributes["itemBackgroundColor"]) ? $this->itemBackgroundColor = $parentAttributes["itemBackgroundColor"] : false;
-        isset($parentAttributes["itemBackgroundColorHover"]) ? $this->itemBackgroundColorHover = $parentAttributes["itemBackgroundColorHover"] : false;
-        isset($parentAttributes["titleHeight"]) ? $this->titleHeight = $parentAttributes["titleHeight"] : false;
-        isset($parentAttributes["summaryHeight"]) ? $this->summaryHeight = $parentAttributes["summaryHeight"] : false;
-        isset($parentAttributes["withUser"]) ? $this->withUser = $parentAttributes["withUser"] : false;
-        isset($parentAttributes["userAlign"]) ? $this->userAlign = $parentAttributes["userAlign"] : false;
-        isset($parentAttributes["userTextSize"]) ? $this->userTextSize = $parentAttributes["userTextSize"] : false;
-        isset($parentAttributes["userTextWeigh"]) ? $this->userTextWeigh = $parentAttributes["userTextWeigh"] : false;
-        isset($parentAttributes["userColor"]) ? $this->userColor = $parentAttributes["userColor"] : false;
-        isset($parentAttributes["userMarginT"]) ? $this->userMarginT = $parentAttributes["userMarginT"] : false;
-        isset($parentAttributes["userMarginB"]) ? $this->userMarginB = $parentAttributes["userMarginB"] : false;
-        isset($parentAttributes["columnLeft"]) ? $this->columnLeft = $parentAttributes["columnLeft"] : false;
-        isset($parentAttributes["columnRight"]) ? $this->columnRight = $parentAttributes["columnRight"] : false;
-        //isset($parentAttributes[""]) ? $this-> = $parentAttributes[""] : false;
-
-    }
-
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|string
-     */
-    public
-    function render()
-    {
-        return view($this->view);
-    }
+    isset($parentAttributes["mediaImage"]) ? $this->mediaImage = $parentAttributes["mediaImage"] : false;
+    isset($parentAttributes["layout"]) ? $this->layout = $parentAttributes["layout"] : false;
+    isset($parentAttributes["withViewMoreButton"]) ? $this->withViewMoreButton = $parentAttributes["withViewMoreButton"] : false;
+    isset($parentAttributes["viewMoreButtonLabel"]) ? $this->viewMoreButtonLabel = $parentAttributes["viewMoreButtonLabel"] : false;
+    isset($parentAttributes["withCreatedDate"]) ? $this->withCreatedDate = $parentAttributes["withCreatedDate"] : false;
+    isset($parentAttributes["formatCreatedDate"]) ? $this->formatCreatedDate = $parentAttributes["formatCreatedDate"] : false;
+    isset($parentAttributes["withCategory"]) ? $this->withCategory = $parentAttributes["withCategory"] : false;
+    isset($parentAttributes["withSummary"]) ? $this->withSummary = $parentAttributes["withSummary"] : false;
+    isset($parentAttributes["orderClasses"]) ? $this->orderClasses = !empty($parentAttributes["orderClasses"]) ? $parentAttributes["orderClasses"] : ["photo" => "order-1", "title" => "order-2", "date" => "order-3", "categoryTitle" => "order-4", "summary" => "order-5", "viewMoreButton" => "order-6"] : false;
+    isset($parentAttributes["numberCharactersSummary"]) ? $this->numberCharactersSummary = $parentAttributes["numberCharactersSummary"] : 100;
+    isset($parentAttributes["itemComponentView"]) ? $this->view = $parentAttributes["itemComponentView"] ?? $this->view : false;
+    isset($parentAttributes["target"]) ? $this->target = $parentAttributes["target"] ?? "_self" : false;
+    isset($parentAttributes["itemListLayout"]) ? $this->itemListLayout = $parentAttributes["itemListLayout"] : false;
+    isset($parentAttributes["imageAspect"]) ? $this->imageAspect = $parentAttributes["imageAspect"] : false;
+    isset($parentAttributes["imageObject"]) ? $this->imageObject = $parentAttributes["imageObject"] : false;
+    isset($parentAttributes["imageBorderRadio"]) ? $this->imageBorderRadio = $parentAttributes["imageBorderRadio"] : false;
+    isset($parentAttributes["imageBorderStyle"]) ? $this->imageBorderStyle = $parentAttributes["imageBorderStyle"] : false;
+    isset($parentAttributes["imageBorderWidth"]) ? $this->imageBorderWidth = $parentAttributes["imageBorderWidth"] : false;
+    isset($parentAttributes["imageBorderColor"]) ? $this->imageBorderColor = $parentAttributes["imageBorderColor"] : false;
+    isset($parentAttributes["imagePadding"]) ? $this->imagePadding = $parentAttributes["imagePadding"] : false;
+    isset($parentAttributes["withImageOpacity"]) ? $this->withImageOpacity = $parentAttributes["withImageOpacity"] : false;
+    isset($parentAttributes["imageOpacityColor"]) ? $this->imageOpacityColor = $parentAttributes["imageOpacityColor"] : false;
+    isset($parentAttributes["imageOpacityDirection"]) ? $this->imageOpacityDirection = $parentAttributes["imageOpacityDirection"] : false;
+    isset($parentAttributes["withTitle"]) ? $this->withTitle = $parentAttributes["withTitle"] : false;
+    isset($parentAttributes["titleAlign"]) ? $this->titleAlign = $parentAttributes["titleAlign"] : false;
+    isset($parentAttributes["titleTextSize"]) ? $this->titleTextSize = $parentAttributes["titleTextSize"] : false;
+    isset($parentAttributes["titleTextWeight"]) ? $this->titleTextWeight = $parentAttributes["titleTextWeight"] : false;
+    isset($parentAttributes["titleTextTransform"]) ? $this->titleTextTransform = $parentAttributes["titleTextTransform"] : false;
+    isset($parentAttributes["summaryAlign"]) ? $this->summaryAlign = $parentAttributes["summaryAlign"] : false;
+    isset($parentAttributes["summaryTextSize"]) ? $this->summaryTextSize = $parentAttributes["summaryTextSize"] : false;
+    isset($parentAttributes["summaryTextWeight"]) ? $this->summaryTextWeight = $parentAttributes["summaryTextWeight"] : false;
+    isset($parentAttributes["categoryAlign"]) ? $this->categoryAlign = $parentAttributes["categoryAlign"] : false;
+    isset($parentAttributes["categoryTextSize"]) ? $this->categoryTextSize = $parentAttributes["categoryTextSize"] : false;
+    isset($parentAttributes["categoryTextWeight"]) ? $this->categoryTextWeight = $parentAttributes["categoryTextWeight"] : false;
+    isset($parentAttributes["createdDateAlign"]) ? $this->createdDateAlign = $parentAttributes["createdDateAlign"] : false;
+    isset($parentAttributes["createdDateTextSize"]) ? $this->createdDateTextSize = $parentAttributes["createdDateTextSize"] : false;
+    isset($parentAttributes["createdDateTextWeight"]) ? $this->createdDateTextWeight = $parentAttributes["createdDateTextWeight"] : false;
+    isset($parentAttributes["buttonAlign"]) ? $this->buttonAlign = $parentAttributes["buttonAlign"] : false;
+    isset($parentAttributes["buttonLayout"]) ? $this->buttonLayout = $parentAttributes["buttonLayout"] : false;
+    isset($parentAttributes["buttonIcon"]) ? $this->buttonIcon = $parentAttributes["buttonIcon"] : false;
+    isset($parentAttributes["buttonIconLR"]) ? $this->buttonIconLR = $parentAttributes["buttonIconLR"] : false;
+    isset($parentAttributes["buttonColor"]) ? $this->buttonColor = $parentAttributes["buttonColor"] : false;
+    isset($parentAttributes["imagePosition"]) ? $this->imagePosition = $parentAttributes["imagePosition"] : false;
+    isset($parentAttributes["imagePositionVertical"]) ? $this->imagePositionVertical = $parentAttributes["imagePositionVertical"] : false;
+    isset($parentAttributes["contentPositionVertical"]) ? $this->contentPositionVertical = $parentAttributes["contentPositionVertical"] : false;
+    isset($parentAttributes["contentPadding"]) ? $this->contentPadding = $parentAttributes["contentPadding"] : false;
+    isset($parentAttributes["contentBorder"]) ? $this->contentBorder = $parentAttributes["contentBorder"] : false;
+    isset($parentAttributes["contentBorderColor"]) ? $this->contentBorderColor = $parentAttributes["contentBorderColor"] : false;
+    isset($parentAttributes["contentBorderRounded"]) ? $this->contentBorderRounded = $parentAttributes["contentBorderRounded"] : false;
+    isset($parentAttributes["contentMarginInsideX"]) ? $this->contentMarginInsideX = $parentAttributes["contentMarginInsideX"] : false;
+    isset($parentAttributes["contentBorderShadows"]) ? $this->contentBorderShadows = $parentAttributes["contentBorderShadows"] : false;
+    isset($parentAttributes["contentBorderShadowsHover"]) ? $this->contentBorderShadowsHover = $parentAttributes["contentBorderShadowsHover"] : false;
+    isset($parentAttributes["titleColor"]) ? $this->titleColor = $parentAttributes["titleColor"] : false;
+    isset($parentAttributes["summaryColor"]) ? $this->summaryColor = $parentAttributes["summaryColor"] : false;
+    isset($parentAttributes["categoryColor"]) ? $this->categoryColor = $parentAttributes["categoryColor"] : false;
+    isset($parentAttributes["createdDateColor"]) ? $this->createdDateColor = $parentAttributes["createdDateColor"] : false;
+    isset($parentAttributes["titleMarginT"]) ? $this->titleMarginT = $parentAttributes["titleMarginT"] : false;
+    isset($parentAttributes["titleMarginB"]) ? $this->titleMarginB = $parentAttributes["titleMarginB"] : false;
+    isset($parentAttributes["summaryMarginT"]) ? $this->summaryMarginT = $parentAttributes["summaryMarginT"] : false;
+    isset($parentAttributes["summaryMarginB"]) ? $this->summaryMarginB = $parentAttributes["summaryMarginB"] : false;
+    isset($parentAttributes["categoryMarginT"]) ? $this->categoryMarginT = $parentAttributes["categoryMarginT"] : false;
+    isset($parentAttributes["categoryMarginB"]) ? $this->categoryMarginB = $parentAttributes["categoryMarginB"] : false;
+    isset($parentAttributes["createdDateMarginT"]) ? $this->createdDateMarginT = $parentAttributes["createdDateMarginT"] : false;
+    isset($parentAttributes["createdDateMarginB"]) ? $this->createdDateMarginB = $parentAttributes["createdDateMarginB"] : false;
+    isset($parentAttributes["buttonMarginT"]) ? $this->buttonMarginT = $parentAttributes["buttonMarginT"] : false;
+    isset($parentAttributes["buttonMarginB"]) ? $this->buttonMarginB = $parentAttributes["buttonMarginB"] : false;
+    isset($parentAttributes["titleLetterSpacing"]) ? $this->titleLetterSpacing = $parentAttributes["titleLetterSpacing"] : false;
+    isset($parentAttributes["summaryLetterSpacing"]) ? $this->summaryLetterSpacing = $parentAttributes["summaryLetterSpacing"] : false;
+    isset($parentAttributes["categoryLetterSpacing"]) ? $this->categoryLetterSpacing = $parentAttributes["categoryLetterSpacing"] : false;
+    isset($parentAttributes["createdDateLetterSpacing"]) ? $this->createdDateLetterSpacing = $parentAttributes["createdDateLetterSpacing"] : false;
+    isset($parentAttributes["titleVineta"]) ? $this->titleVineta = $parentAttributes["titleVineta"] : false;
+    isset($parentAttributes["titleVinetaColor"]) ? $this->titleVinetaColor = $parentAttributes["titleVinetaColor"] : false;
+    isset($parentAttributes["buttonSize"]) ? $this->buttonSize = $parentAttributes["buttonSize"] : false;
+    isset($parentAttributes["buttonTextSize"]) ? $this->buttonTextSize = $parentAttributes["buttonTextSize"] : false;
+    isset($parentAttributes["itemBackgroundColor"]) ? $this->itemBackgroundColor = $parentAttributes["itemBackgroundColor"] : false;
+    isset($parentAttributes["itemBackgroundColorHover"]) ? $this->itemBackgroundColorHover = $parentAttributes["itemBackgroundColorHover"] : false;
+    isset($parentAttributes["titleHeight"]) ? $this->titleHeight = $parentAttributes["titleHeight"] : false;
+    isset($parentAttributes["summaryHeight"]) ? $this->summaryHeight = $parentAttributes["summaryHeight"] : false;
+    //isset($parentAttributes[""]) ? $this-> = $parentAttributes[""] : false;
+    
+  }
+  
+  /**
+   * Get the view / contents that represent the component.
+   *
+   * @return \Illuminate\Contracts\View\View|string
+   */
+  public function render()
+  {
+    return view($this->view);
+  }
 }
