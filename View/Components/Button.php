@@ -13,6 +13,7 @@ class Button extends Component
   public $withIcon;
   public $iconClass;
   public $iconPosition;
+  public $iconColor;
   public $withLabel;
   public $label;
   public $href;
@@ -28,7 +29,7 @@ class Button extends Component
    */
   public function __construct($style = "", $buttonClasses = "", $onclick="", $withIcon = false, $iconClass = "",
                               $withLabel = false, $label = "", $href = "",  $color="primary",
-                              $target="", $iconPosition="left", $sizeLabel="16", $dataItemId="" )
+                              $target="", $iconPosition="left", $iconColor='currentcolor', $sizeLabel="16", $dataItemId="" )
   {
     $this->style = $style;
     $this->buttonClasses = $buttonClasses;
@@ -36,13 +37,14 @@ class Button extends Component
     $this->withIcon = $withIcon;
     $this->iconClass = $iconClass;
     $this->iconPosition = $iconPosition;
+    $this->iconColor = $iconColor;
     $this->withLabel = $withLabel;
     $this->label = $label;
     $this->href = $href;
     $this->color = $color;
     $this->target = $target;
     $this->sizeLabel = $sizeLabel;
-    $this->dataItemId = $dataItemId;
+    $this->dataItemId =  $dataItemId;
   }
 
 
