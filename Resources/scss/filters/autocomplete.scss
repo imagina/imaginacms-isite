@@ -1,0 +1,38 @@
+#autocompleteLayout2 {
+  #listOptions {
+    width: 49vw !important;
+    position: absolute;
+    max-height: 20em;
+    border: 0 none;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scroll-behavior: inherit;
+
+    #featuredWord {
+      font-weight: bold;
+    }
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background:  #5a5a5a4f;
+    }
+
+
+    option {
+      font-size: 0.8em;
+      padding: 0.3em 1em;
+      background-color: #ffffff;
+      cursor: pointer;
+    }
+
+    /* option active styles */
+    option:hover, option:focus {
+      color: #ffffff;
+      background-color: $primary;
+      outline: 0 none;
+    }
+  }
+}
