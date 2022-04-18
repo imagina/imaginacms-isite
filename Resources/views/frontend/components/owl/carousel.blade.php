@@ -179,8 +179,7 @@
     </div>
   </section>
 
-  @section("scripts-owl")
-    @parent
+
   <script type="text/javascript" defer>
     function createOWL{{$id}}(){
       var owl = $('#{{$id}}Carousel');
@@ -238,7 +237,7 @@
 
   
   </script>
-  @stop
+
 
   <style>
     @if($navPosition=="center")
