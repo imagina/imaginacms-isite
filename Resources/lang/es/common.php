@@ -8,7 +8,6 @@ return [
     'viewMore' => "Ver más"
   ],
   'settings' => [
-    'legacyStructureCMS' => 'Usar Estructura heredada CMS',
     'logo1' => 'Logo N°1',
     'logo2' => 'Logo N°2',
     'logo3' => 'Logo N°3',
@@ -64,6 +63,14 @@ return [
         'page' => 'Páginas',
       ],
     ],
+    'cms' => [
+      'legacyStructureCMS' => 'Usar Estructura heredada CMS',
+      'iadminTheme' => [
+        "title" => "Tema Iadmin",
+        "theme1" => "Tema 1",
+        "theme2" => "Tema 2"
+      ]
+    ]
   ],
   'settingHints' => [
     'phones' => "Ingresa un número telefónico y presiona enter",
@@ -81,7 +88,6 @@ return [
     'tenants' => 'Inquilinos',
     'modalVerifier' => 'Modal Verificador',
     'components' => 'Componentes',
-
     'title' => 'Agrega tu logo',
     'media' => [
       'title' => 'Agrega tu Imagen',
@@ -131,7 +137,10 @@ return [
       'title' => 'Mapas',
       'description' => 'Mapas'
     ],
-
+    'cms' => [
+      'title' => 'CMS',
+      'description' => 'Configuraciones de CMS'
+    ],
   ],
   'messages' => [
     'no items' => 'No existe información disponible'
