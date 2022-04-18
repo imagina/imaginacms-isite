@@ -856,7 +856,7 @@ return [
   ],
   //Components
   'itemsTabs' => [
-    'value' => ['Item-1','Item-2'],
+    'value' => ['Item-1', 'Item-2'],
     'name' => 'isite::itemsTabs',
     'type' => 'select',
     'groupName' => 'components',
@@ -902,15 +902,32 @@ return [
       ]
     ]
   ],
+  //CMS
   'legacyStructureCMS' => [
     'name' => 'isite::legacyStructureCMS',
     'value' => '0',
     'type' => 'select',
+    'groupName' => 'cms',
+    'groupTitle' => 'isite::common.settingGroups.cms',
     'props' => [
-      'label' => 'isite::common.settings.legacyStructureCMS',
+      'label' => 'isite::common.settings.cms.legacyStructureCMS',
       'options' => [
         ['label' => 'isite::common.yes', 'value' => '1'],
         ['label' => 'isite::common.no', 'value' => '0'],
+      ]
+    ],
+  ],
+  'iadminTheme' => [
+    'name' => 'isite::iadminTheme',
+    'value' => '1',
+    'type' => 'select',
+    'groupName' => 'cms',
+    'groupTitle' => 'isite::common.settingGroups.cms',
+    'props' => [
+      'label' => 'isite::common.settings.cms.iadminTheme.title',
+      'options' => [
+        ['label' => 'isite::common.settings.cms.iadminTheme.theme1', 'value' => '1'],
+        ['label' => 'isite::common.settings.cms.iadminTheme.theme2', 'value' => '2'],
       ]
     ],
   ],
