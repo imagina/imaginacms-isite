@@ -79,7 +79,6 @@ class Autocomplete extends Component
     $this->layout = $layout;
     $this->featuredOptions = [];
     $this->collapsable = "";
-  
     $this->searchOptions = json_decode(setting('isearch::listOptionsSearch',null, "[]"));
     $this->featuredOptions = json_decode(setting('isearch::listFeaturedOptionsSearch',null, "[]"));
   }
@@ -189,11 +188,11 @@ class Autocomplete extends Component
   {
     return ['filtersClearValues' => 'clearValues'];
   }
-  
+
   public function autocompleteChangeCollapsable($show){
     $this->collapsable = $show == "show" && $this->collapsable == "show" ? "" : $show;
   }
-  
+
   /*
   * Listener
   * Filter Clear Values
@@ -203,6 +202,11 @@ class Autocomplete extends Component
     $this->search = null;
   }
   
+  public function collapsableInputClick($word){
+    $this->search = $word;
+    $this->updatedSearch();
+  }
+
   public function collapsableInputClick($word){
     $this->search = $word;
     $this->updatedSearch();
