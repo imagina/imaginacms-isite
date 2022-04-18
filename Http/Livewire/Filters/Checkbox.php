@@ -34,6 +34,7 @@ class Checkbox extends Component
   */
   protected $options;
   public $selectedOptions;
+  public $tagBoxs;
 
   /*
     * Runs once, immediately after the component is instantiated,
@@ -41,7 +42,7 @@ class Checkbox extends Component
     */
   public function mount($title, $name, $status = true, $isExpanded = true, $type, $repository, $emitTo, $repoAction,
                         $repoAttribute, $listener, $repoMethod = 'getItemsBy', $layout = 'checkbox-layout-1',
-                        $classes = 'col-12', $params = [], $wrapperClasses = 'row', $childrenClasses = 'col-12')
+                        $classes = 'col-12', $params = [], $wrapperClasses = 'row', $childrenClasses = 'col-12', $tagBoxs = true)
   {
 
     $this->title = trans($title);
@@ -61,6 +62,7 @@ class Checkbox extends Component
 
     $this->wrapperClasses = $wrapperClasses;
     $this->childrenClasses = $childrenClasses;
+    $this->tagBoxs = $tagBoxs;
 
     $this->selectedOptions = [];
     // Testing

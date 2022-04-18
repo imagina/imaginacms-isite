@@ -4,7 +4,7 @@ namespace Modules\Isite\View\Components\Carousel;
 
 use Illuminate\View\Component;
 
-class OwlCarousel extends Component
+class OwlNavDots extends Component
 {
 
 

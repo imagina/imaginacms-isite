@@ -12,7 +12,7 @@
   </div>
 
   <div class="content position-relative">
-    <div class="collapse {{$isExpanded ? 'show' : ''}}" id="collapseOption-{{$option->id}}">
+    <div class="collapse {{$isExpanded ? 'show' : ''}}" id="collapseOption-{{$option->id}}" wire:ignore.self>
       <div class="row">
         <div class="col-12">
 
@@ -22,7 +22,7 @@
             @if($children->isNotEmpty())
               @foreach($children as $option)
 
-                <div class="mr-2 mb-2 tagBoxs">
+                <div class="custom-checkbox mr-2 mb-2 {{$tagBoxs ? 'tagBoxs' : ''}}">
 
                   <input
                     type="checkbox"

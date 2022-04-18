@@ -50,7 +50,8 @@ trait WithProduct
             'price' => $this->price ?? 0,
             'status' => $this->status ?? 1, //ENABLED
             'stock_status' => $this->stock_status ?? 1, //INSTOCK
-            'quantity' => $this->quantity ?? 999999
+            'quantity' => $this->quantity ?? 999999,
+            'shipping' => $this->requiredShipping ?? 1
         ]);
 
     }

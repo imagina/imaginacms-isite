@@ -510,7 +510,8 @@ return [
     "showInMenu" => "Show in Menu",
     "featured" => "Featured",
     "sortOrder" => "Sort Order",
-    "availableDate" => "Available Date"
+    "availableDate" => "Available Date",
+    "createdFromIp" => "Created from IP"
   ],
   "configList" => [
     "loggedAs" => "logged as",

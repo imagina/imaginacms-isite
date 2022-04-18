@@ -79,7 +79,6 @@ class Autocomplete extends Component
     $this->layout = $layout;
     $this->featuredOptions = [];
     $this->collapsable = "";
-
     $this->searchOptions = json_decode(setting('isearch::listOptionsSearch',null, "[]"));
     $this->featuredOptions = json_decode(setting('isearch::listFeaturedOptionsSearch',null, "[]"));
   }
@@ -128,7 +127,7 @@ class Autocomplete extends Component
     );
     if ($this->layout == 'autocomplete-layout-2') {
       $this->results = array_merge_recursive($this->searchOptions, $this->featuredOptions);
-
+      
       if(!empty( $this->search)) {
         $resultBySearch = [];
         foreach ($this->results as $word) {
@@ -201,6 +200,11 @@ class Autocomplete extends Component
   public function clearValues()
   {
     $this->search = null;
+  }
+  
+  public function collapsableInputClick($word){
+    $this->search = $word;
+    $this->updatedSearch();
   }
 
   public function collapsableInputClick($word){

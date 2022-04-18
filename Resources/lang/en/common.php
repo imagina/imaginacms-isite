@@ -7,7 +7,6 @@ return [
     'home' => 'Home'
   ],
   'settings' => [
-    'legacyStructureCMS' => 'Use Legacy Structure CMS',
     'logo1' => 'Logo N°1',
     'logo2' => 'Logo N°2',
     'logo3' => 'Logo N°3',
@@ -62,7 +61,14 @@ return [
     'googleClient' => 'Google Client',
     'facebookClient' => 'Facebook Client',
     'facebookAppId' => 'Facebook App Id',
-
+    'cms' => [
+      'legacyStructureCMS' => 'Use Legacy Structure CMS',
+      'iadminTheme' => [
+        "title" => "Iadmin Theme",
+        "theme1" => "Theme 1",
+        "theme2" => "Theme 2"
+      ]
+    ]
   ],
   'settingHints' => [
     'phones' => "Type a phone number and press enter key",
@@ -113,6 +119,10 @@ return [
     'maps' => [
       'title' => 'Maps',
       'description' => 'Maps'
+    ],
+    'cms' => [
+      'title' => 'CMS',
+      'description' => 'CMS Settings'
     ],
   ],
   'messages' => [
