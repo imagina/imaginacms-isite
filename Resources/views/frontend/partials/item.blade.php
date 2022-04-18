@@ -19,10 +19,10 @@ if (isset($component)) {
 $component = $__env->getContainer()->make($itemComponentNamespace, array_merge($itemComponentAttributes ?? [], [
   "item" => $items[$x + $j],
   "positionNumber"=>$x+$j,
-  "layout"=>$itemLayout ?? "",
+  "layout"=>$itemLayout ?? null,
   "parentAttributes"=>$attributes ?? [],
-  "editLink"=>$editLink ?? "",
-  "tooltipEditLink"=>$tooltipEditLink ?? ""
+  "editLink"=>$editLink ?? null,
+  "tooltipEditLink"=>$tooltipEditLink ?? null
 ]));
 $component->withName($itemComponent);
 if ($component->shouldRender()):
