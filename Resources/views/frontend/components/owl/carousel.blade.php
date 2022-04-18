@@ -101,29 +101,7 @@
 
                     @while(isset($items[$x + $j]) && $j<$itemsBySlide)
     
-                      <?php
-                      $hash = sha1($itemComponentNamespace);
-                      if (isset($component)) {
-                        $__componentOriginal{$hash} = $component;
-                      }
-                      $component = $__env->getContainer()->make($itemComponentNamespace, array_merge($itemComponentAttributes, [
-                        "item" => $items[$x + $j],
-                        "positionNumber"=>$x+$j,
-                        "layout"=>$itemLayout,
-                        "parentAttributes"=>$attributes,
-                        "editLink"=>$editLink,
-                        "tooltipEditLink"=>$tooltipEditLink
-                      ]));
-                      $component->withName($itemComponent);
-                      if ($component->shouldRender()):
-                        $__env->startComponent($component->resolveView(), $component->data());
-                        if (isset($__componentOriginal{$hash})):
-                          $component = $__componentOriginal{$hash};
-                          unset($__componentOriginal{$hash});
-                        endif;
-                        echo $__env->renderComponent();
-                      endif;
-                      ?>
+                      @include("isite::frontend.partials.item")
 
                       @php($j++)
                     @endwhile
