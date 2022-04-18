@@ -201,11 +201,6 @@ class Autocomplete extends Component
   {
     $this->search = null;
   }
-  
-  public function collapsableInputClick($word){
-    $this->search = $word;
-    $this->updatedSearch();
-  }
 
   public function collapsableInputClick($word){
     $this->search = $word;
