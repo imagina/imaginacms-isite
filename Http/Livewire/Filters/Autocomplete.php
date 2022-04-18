@@ -45,7 +45,11 @@ class Autocomplete extends Component
   public $buttonSearch;
   public $updatedSearchFromInput;
   public $goToRouteAlias;
+  public $featuredOptions;
+  public $searchOptions;
+  public $collapsable;
 
+  protected $listeners = ["autocompleteChangeCollapsable"];
   protected $queryString = [
     'search' => ['except' => ''],
   ];
@@ -72,6 +76,12 @@ class Autocomplete extends Component
     $this->repoMethod = $repoMethod;
     $this->goToRouteAlias = $goToRouteAlias;
     $this->params = $params ?? ["filter" => []];
+    $this->layout = $layout;
+    $this->featuredOptions = [];
+    $this->collapsable = "";
+
+    $this->searchOptions = json_decode(setting('isearch::listOptionsSearch',null, "[]"));
+    $this->featuredOptions = json_decode(setting('isearch::listFeaturedOptionsSearch',null, "[]"));
   }
 
   public function hydrate()
@@ -116,6 +126,21 @@ class Autocomplete extends Component
       ['search' => $this->search],
       ['search' => 'required|min:' . $this->minSearchChars]
     );
+    if ($this->layout == 'autocomplete-layout-2') {
+      $this->results = array_merge_recursive($this->searchOptions, $this->featuredOptions);
+
+      if(!empty( $this->search)) {
+        $resultBySearch = [];
+        foreach ($this->results as $word) {
+          if (Str::contains($word, $this->search)) {
+            array_push($resultBySearch, $word);
+          }
+        }
+        $this->results = $resultBySearch;
+      }
+      sort($this->results);
+    } else {
+
     if ($this->search) {
       if ($validatedData->fails()) {
         $this->alert('error', trans('isearch::common.index.Not Valid', ["minSearchChars" => $this->minSearchChars]), config("asgard.isite.config.livewireAlerts"));
@@ -136,6 +161,8 @@ class Autocomplete extends Component
         return $initial;
       });
     }
+    }
+
     return view($this->view, ["results" => $this->results]);
   }
 
@@ -163,6 +190,10 @@ class Autocomplete extends Component
     return ['filtersClearValues' => 'clearValues'];
   }
 
+  public function autocompleteChangeCollapsable($show){
+    $this->collapsable = $show == "show" && $this->collapsable == "show" ? "" : $show;
+  }
+
   /*
   * Listener
   * Filter Clear Values
@@ -170,6 +201,11 @@ class Autocomplete extends Component
   public function clearValues()
   {
     $this->search = null;
+  }
+
+  public function collapsableInputClick($word){
+    $this->search = $word;
+    $this->updatedSearch();
   }
 
 
