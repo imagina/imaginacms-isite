@@ -100,11 +100,30 @@
                     @endif
 
                     @while(isset($items[$x + $j]) && $j<$itemsBySlide)
-
-                      <x-dynamic-component :positionNumber="$x+$j" :component="$itemComponent" :item="$items[$x + $j]"
-                                           :product="$items[$x + $j]" :layout="$itemLayout"
-                                           :parentAttributes="$attributes" :editLink="$editLink"
-                                           :tooltipEditLink="$tooltipEditLink"/>
+    
+                      <?php
+                      $hash = sha1($itemComponentNamespace);
+                      if (isset($component)) {
+                        $__componentOriginal{$hash} = $component;
+                      }
+                      $component = $__env->getContainer()->make($itemComponentNamespace, array_merge($itemComponentAttributes, [
+                        "item" => $items[$x + $j],
+                        "positionNumber"=>$x+$j,
+                        "layout"=>$itemLayout,
+                        "parentAttributes"=>$attributes,
+                        "editLink"=>$editLink,
+                        "tooltipEditLink"=>$tooltipEditLink
+                      ]));
+                      $component->withName($itemComponent);
+                      if ($component->shouldRender()):
+                        $__env->startComponent($component->resolveView(), $component->data());
+                        if (isset($__componentOriginal{$hash})):
+                          $component = $__componentOriginal{$hash};
+                          unset($__componentOriginal{$hash});
+                        endif;
+                        echo $__env->renderComponent();
+                      endif;
+                      ?>
 
                       @php($j++)
                     @endwhile
@@ -160,6 +179,8 @@
     </div>
   </section>
 
+  @section("scripts-owl")
+    @parent
   <script type="text/javascript" defer>
     function createOWL{{$id}}(){
       var owl = $('#{{$id}}Carousel');
@@ -187,42 +208,38 @@
       });
       owl.trigger('refresh.owl.carousel');
     }
+
     document.addEventListener('DOMContentLoaded', function () {
+  
+      function refreshOwl(){
 
-      createOWL{{$id}}();
-
-      window.addEventListener('owlRefreshed', () => {
-        console.warn("123123123")
-        createOWL{{$id}}();
-
-        let sizeButton = document.querySelector('#{{$id}} .prevBtn');
-        let width = sizeButton.offsetWidth;
-        console.log('asd');
-        let wrapper = document.querySelector('#{{$id}} .wrapper');
-        let w = (width)*2;
-        if(wrapper != null) {
-          wrapper.style.cssText = 'grid-template-columns: '+width+'px calc(100% - '+w+'px) '+width+'px';
-        }
-
-      })
-    });
-
-    @if($navPosition=="center")
-    $(document).ready(function () {
-      createOWL{{$id}}();
-
-      let sizeButton = document.querySelector('#{{$id}} .prevBtn');
-      let width = sizeButton.offsetWidth;
-      let wrapper = document.querySelector('#{{$id}} .wrapper');
-      console.log(width);
-      let w = (width)*2;
-      if(wrapper != null) {
-        wrapper.style.cssText = 'grid-template-columns: '+width+'px calc(100% - '+w+'px) '+width+'px';
+          createOWL{{$id}}();
+      
+          let sizeButton = document.querySelector('#{{$id}} .prevBtn');
+          let width = sizeButton.offsetWidth;
+      
+          let wrapper = document.querySelector('#{{$id}} .wrapper');
+          let w = (width)*2;
+          if(wrapper != null) {
+            wrapper.style.cssText = 'grid-template-columns: '+width+'px calc(100% - '+w+'px) '+width+'px';
+          }
+      
+        
       }
-
+      window.addEventListener('owlRefreshed', refreshOwl())
+  
+      createOWL{{$id}}();
+  
+      @if($navPosition=="center")
+        refreshOwl();
+      
+      @endif
     });
-    @endif
+
+  
   </script>
+  @stop
+
   <style>
     @if($navPosition=="center")
     #{{$id}} .wrapper {
