@@ -101,7 +101,7 @@
 
                     @while(isset($items[$x + $j]) && $j<$itemsBySlide)
     
-                      @include("isite::frontend.partials.item")
+                      @include("isite::frontend.partials.item",["item" => $items[$x + $j], "position" => $x + $j])
 
                       @php($j++)
                     @endwhile

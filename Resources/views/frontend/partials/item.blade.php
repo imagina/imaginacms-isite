@@ -17,8 +17,8 @@ if (isset($component)) {
   $__componentOriginal{$hash} = $component;
 }
 $component = $__env->getContainer()->make($itemComponentNamespace, array_merge($itemComponentAttributes ?? [], [
-  "item" => $items[$x + $j],
-  "positionNumber"=>$x+$j,
+  "item" => $item ?? null,
+  "positionNumber"=>$position ?? null,
   "layout"=>$itemLayout ?? null,
   "parentAttributes"=>$attributes ?? [],
   "editLink"=>$editLink ?? null,
