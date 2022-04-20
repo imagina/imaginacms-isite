@@ -6,92 +6,128 @@ use Illuminate\View\Component;
 
 class ItemList extends Component
 {
-  
-  
-  public $item;
-  public $mediaImage;
-  public $view;
-  public $withViewMoreButton;
-  public $viewMoreButtonLabel;
-  public $withCreatedDate;
-  public $withCategory;
-  public $withSummary;
-  public $formatCreatedDate;
-  public $orderClasses;
-  public $numberCharactersSummary;
-  public $editLink;
-  public $tooltipEditLink;
-  public $target;
-  public $itemListLayout;
-  public $positionNumber;
-  public $imageAspect;
-  public $imageObject;
-  public $imageBorderRadio;
-  public $imageBorderStyle;
-  public $imageBorderWidth;
-  public $imageBorderColor;
-  public $imagePadding;
-  public $withImageOpacity;
-  public $imageOpacityColor;
-  public $imageOpacityDirection;
 
-  public $withTitle;
-  public $titleAlign;
-  public $titleTextSize;
-  public $titleTextWeight;
-  public $titleTextTransform;
 
-  public $summaryAlign;
-  public $summaryTextSize;
-  public $summaryTextWeight;
+    public $item;
+    public $mediaImage;
+    public $view;
+    public $withViewMoreButton;
+    public $viewMoreButtonLabel;
+    public $withCreatedDate;
+    public $withCategory;
+    public $withUser;
+    public $withSummary;
+    public $formatCreatedDate;
+    public $orderClasses;
+    public $numberCharactersSummary;
+    public $editLink;
+    public $tooltipEditLink;
+    public $target;
+    public $itemListLayout;
+    public $positionNumber;
+    public $imageAspect;
+    public $imageObject;
+    public $imageBorderRadio;
+    public $imageBorderRadioType; // 1 all, 2 top, 3 right, 4 left, 5 bottom
+    public $imageBorderStyle;
+    public $imageBorderWidth;
+    public $imageBorderColor;
+    public $imagePadding;
+    public $withImageOpacity;
+    public $imageOpacityColor;
+    public $imageOpacityDirection;
 
-  public $categoryAlign;
-  public $categoryTextSize;
-  public $categoryTextWeight;
+    public $withTitle;
+    public $titleAlign;
+    public $titleTextSize;
+    public $titleTextWeight;
+    public $titleTextTransform;
 
-  public $createdDateAlign;
-  public $createdDateTextSize;
-  public $createdDateTextWeight;
+    public $summaryAlign;
+    public $summaryTextSize;
+    public $summaryTextWeight;
 
-  public $buttonAlign;
-  public $buttonLayout;
-  public $buttonIcon;
-  public $buttonIconLR;
-  public $buttonColor;
+    public $categoryAlign;
+    public $categoryTextSize;
+    public $categoryTextWeight;
 
-  public $imagePosition;
-  public $imagePositionVertical;
-  public $contentPositionVertical;
+    public $createdDateAlign;
+    public $createdDateTextSize;
+    public $createdDateTextWeight;
 
-  public $contentPadding;
-  public $contentBorder;
-  public $contentBorderColor;
-  public $contentBorderRounded;
+    public $userAlign;
+    public $userTextSize;
+    public $userTextWeight;
 
-  public $contentMarginInsideX;
-  public $contentBorderShadows;
-  public $contentBorderShadowsHover;
+    public $buttonAlign;
+    public $buttonLayout;
+    public $buttonIcon;
+    public $buttonIconLR;
+    public $buttonIconColor;
+    public $buttonColor;
 
-  public $titleColor;
-  public $summaryColor;
-  public $categoryColor;
-  public $createdDateColor;
+    public $imagePosition;
+    public $imagePositionVertical;
+    public $contentPositionVertical;
 
-  public $titleMarginT;
-  public $titleMarginB;
-  public $summaryMarginT;
-  public $summaryMarginB;
-  public $categoryMarginT;
-  public $categoryMarginB;
-  public $createdDateMarginT;
-  public $createdDateMarginB;
-  public $buttonMarginT;
-  public $buttonMarginB;
+    public $contentPadding;
+    public $contentBorder;
+    public $contentBorderColor;
+    public $contentBorderRounded;
+    public $contentBorderRoundedType; // 1 all, 2 top, 3 right, 4 left, 5 bottom
 
-  
-  /**
-   * Create a new component instance.
-   *
+    public $contentMarginInsideX;
+    public $contentBorderShadows;
+    public $contentBorderShadowsHover;
+
+    public $titleColor;
+    public $summaryColor;
+    public $categoryColor;
+    public $createdDateColor;
+    public $userColor;
+
+    public $titleMarginT;
+    public $titleMarginB;
+    public $summaryMarginT;
+    public $summaryMarginB;
+    public $categoryMarginT;
+    public $categoryMarginB;
+    public $createdDateMarginT;
+    public $createdDateMarginB;
+    public $userMarginT;
+    public $userMarginB;
+    public $buttonMarginT;
+    public $buttonMarginB;
+
+    public $titleLetterSpacing;
+    public $summaryLetterSpacing;
+    public $categoryLetterSpacing;
+    public $createdDateLetterSpacing;
+
+    public $titleVineta;
+    public $titleVinetaColor;
+
+    public $buttonSize;
+    public $buttonTextSize;
+
+    public $itemBackgroundColor;
+    public $itemBackgroundColorHover;
+
+    public $titleHeight;
+    public $summaryHeight;
+
+    public $columnLeft;
+    public $columnRight;
+
+    public $titleTextDecoration;
+    public $summaryTextDecoration;
+    public $categoryTextDecoration;
+    public $createdDateTextDecoration;
+
+
+    /**
+     * Create a new component instance.
+     *
      * @param $item
      * @param string $mediaImage
      * @param string $layout
@@ -131,38 +167,119 @@ class ItemList extends Component
      * @param string $categoryAlign
      * @param string $categoryTextSize
      * @param string $categoryTextWeight
-   */
-  public function __construct($item, $mediaImage = "mainimage", $layout = 'item-list-layout-1', $parentAttributes = null,
-                              $withViewMoreButton = false, $viewMoreButtonLabel = "isite::common.menu.viewMore",
-                              $withCreatedDate = false, $formatCreatedDate = "d \\d\\e M", $orderClasses = [],
-                              $withCategory = false, $withSummary = true, $numberCharactersSummary = 100, $editLink = null,
-                              $tooltipEditLink = null, $itemComponentView = null, $itemComponentTarget = "_self", $itemListLayout = null,
-                              $positionNumber = null, $imageAspect="auto", $imageObject="unset", $imageBorderRadio=0,
-                              $imageBorderStyle = "solid",  $imageBorderWidth=0, $imageBorderColor="#000000",
-                              $imagePadding=0, $withImageOpacity=false, $imageOpacityColor="opacity-dark",
-                              $imageOpacityDirection="opacity-all", $withTitle=true, $titleAlign="text-left", $titleTextSize="20",
-                              $titleTextWeight="font-weight-bold", $titleTextTransform="font-weight-normal", $summaryAlign="text-left",
-                              $summaryTextSize="16", $summaryTextWeight="font-weight-normal",  $categoryAlign="text-left",  $categoryTextSize="18",
-                              $categoryTextWeight="font-weight-normal", $createdDateAlign="text-left", $createdDateTextSize="14",
-                              $createdDateTextWeight="font-weight-normal", $buttonAlign="text-left", $buttonLayout="border-0",
-                              $buttonIcon=" ", $buttonIconLR="left", $imagePosition="1", $imagePositionVertical="align-self-center",
-                              $contentPositionVertical="align-self-center", $contentPadding=0, $contentBorder=false, $contentBorderColor="#dddddd",
-                              $contentBorderRounded=0, $buttonColor="primary", $contentMarginInsideX="mx-0",
-                              $contentBorderShadows="none", $contentBorderShadowsHover=false, $titleColor="text-primary", $summaryColor="text-dark",
-                              $categoryColor="text-primary", $createdDateColor="text-primary",  $titleMarginT="mt-0", $titleMarginB="mb-0",
-                              $summaryMarginT="mt-0", $summaryMarginB="mb-0",  $categoryMarginT="mt-0", $categoryMarginB="mb-0",  $createdDateMarginT="mt-0",
-                              $createdDateMarginB="mb-0",  $buttonMarginT="mt-0", $buttonMarginB="mb-0"  )
-  {
+     */
+    public function __construct($item,
+                                $mediaImage = "mainimage",
+                                $layout = 'item-list-layout-1',
+                                $parentAttributes = null,
+                                $withViewMoreButton = false,
+                                $viewMoreButtonLabel = "isite::common.menu.viewMore",
+                                $withCreatedDate = false,
+                                $withUser = false,
+                                $formatCreatedDate = "d \\d\\e M",
+                                $orderClasses = [],
+                                $withCategory = false,
+                                $withSummary = true,
+                                $numberCharactersSummary = 100,
+                                $editLink = null,
+                                $tooltipEditLink = null,
+                                $itemComponentView = null,
+                                $itemComponentTarget = "_self",
+                                $itemListLayout = null,
+                                $positionNumber = null,
+                                $imageAspect = "1/1",
+                                $imageObject = "cover",
+                                $imageBorderRadio = 0,
+                                $imageBorderRadioType = "1",
+                                $imageBorderStyle = "solid",
+                                $imageBorderWidth = 0,
+                                $imageBorderColor = "#000000",
+                                $imagePadding = 0,
+                                $withImageOpacity = false,
+                                $imageOpacityColor = "opacity-dark",
+                                $imageOpacityDirection = "opacity-top",
+                                $withTitle = true,
+                                $titleAlign = "",
+                                $titleTextSize = "20",
+                                $titleTextWeight = "font-weight-bold",
+                                $titleTextTransform = "",
+                                $summaryAlign = "text-left",
+                                $summaryTextSize = "16",
+                                $summaryTextWeight = "font-weight-normal",
+                                $categoryAlign = "text-left",
+                                $categoryTextSize = "18",
+                                $categoryTextWeight = "font-weight-normal",
+                                $createdDateAlign = "text-left",
+                                $createdDateTextSize = "14",
+                                $createdDateTextWeight = "font-weight-normal",
+                                $userAlign = "text-left",
+                                $userTextSize = "14",
+                                $userTextWeight = "font-weight-normal",
+                                $buttonAlign = "text-left",
+                                $buttonLayout = "border-0",
+                                $buttonIcon = " ",
+                                $buttonIconColor = null,
+                                $buttonIconLR = "left",
+                                $imagePosition = "1",
+                                $imagePositionVertical = "align-self-center",
+                                $contentPositionVertical = "align-self-center",
+                                $contentPadding = 0,
+                                $contentBorder = 0,
+                                $contentBorderColor = "#dddddd",
+                                $contentBorderRounded = 0,
+                                $contentBorderRoundedType = 1,
+                                $buttonColor = "primary",
+                                $contentMarginInsideX = "mx-0",
+                                $contentBorderShadows = "none",
+                                $contentBorderShadowsHover = false,
+                                $titleColor = "text-primary",
+                                $summaryColor = "text-dark",
+                                $categoryColor = "text-primary",
+                                $createdDateColor = "text-primary",
+                                $userColor = "text-primary",
+                                $titleMarginT = "mt-2",
+                                $titleMarginB = "mb-0",
+                                $summaryMarginT = "mt-0",
+                                $summaryMarginB = "mb-0",
+                                $categoryMarginT = "mt-0",
+                                $categoryMarginB = "mb-0",
+                                $createdDateMarginT = "mt-0",
+                                $createdDateMarginB = "mb-0",
+                                $userMarginT = "mt-0",
+                                $userMarginB = "mb-0",
+                                $buttonMarginT = "mt-0",
+                                $buttonMarginB = "mb-0",
+                                $titleLetterSpacing = 0,
+                                $summaryLetterSpacing = 0,
+                                $categoryLetterSpacing = 0,
+                                $createdDateLetterSpacing = 0,
+                                $titleVineta = "",
+                                $titleVinetaColor = "text-dark",
+                                $buttonSize = "button-normal",
+                                $buttonTextSize = 16,
+                                $itemBackgroundColor = "none",
+                                $itemBackgroundColorHover = "none",
+                                $titleHeight = "20",
+                                $summaryHeight = "100",
+                                $columnLeft = "col-lg-6",
+                                $columnRight = "col-lg-6",
+                                $titleTextDecoration = "none",
+                                $summaryTextDecoration = "none",
+                                $categoryTextDecoration = "none",
+                                $createdDateTextDecoration = "none"
+    )
+    {
 
     $this->item = $item;
     $this->mediaImage = $mediaImage;
     $this->positionNumber = $positionNumber;
-    $this->view = "isite::frontend.components.item-list.layouts." . ($layout ?? 'item-list-layout-1') . ".index";
+
     $this->view = $itemComponentView ?? $this->view;
     $this->target = $itemComponentTarget;
     $this->withViewMoreButton = $withViewMoreButton;
     $this->viewMoreButtonLabel = $viewMoreButtonLabel;
     $this->withCreatedDate = $withCreatedDate;
+    $this->withUser = $withUser;
     $this->formatCreatedDate = $formatCreatedDate;
     $this->withCategory = $withCategory;
     $this->withSummary = $withSummary;
@@ -170,6 +287,7 @@ class ItemList extends Component
     $this->orderClasses = !empty($orderClasses) ? $orderClasses : ["photo" => "order-0", "title" => "order-1", "date" => "order-2", "categoryTitle" => "order-3", "summary" => "order-4", "viewMoreButton" => "order-5"];
     $this->editLink = $editLink;
     $this->tooltipEditLink = $tooltipEditLink;
+    $this->layout = $layout;
     $this->itemListLayout = $itemListLayout;
     $this->imageAspect = $imageAspect;
     $this->imageObject = $imageObject;
@@ -182,69 +300,103 @@ class ItemList extends Component
     $this->imageOpacityColor = $imageOpacityColor;
     $this->imageOpacityDirection = $imageOpacityDirection;
 
-    $this->withTitle = $withTitle;
-    $this->titleAlign = $titleAlign;
-    $this->titleTextSize = $titleTextSize;
-    $this->titleTextWeight = $titleTextWeight;
-    $this->titleTextTransform = $titleTextTransform;
+        $this->withTitle = $withTitle;
+        $this->titleAlign = $titleAlign;
+        $this->titleTextSize = $titleTextSize;
+        $this->titleTextWeight = $titleTextWeight;
+        $this->titleTextTransform = $titleTextTransform;
 
-    $this->summaryAlign = $summaryAlign;
-    $this->summaryTextSize = $summaryTextSize;
-    $this->summaryTextWeight = $summaryTextWeight;
+        $this->summaryAlign = $summaryAlign;
+        $this->summaryTextSize = $summaryTextSize;
+        $this->summaryTextWeight = $summaryTextWeight;
 
-    $this->categoryAlign = $categoryAlign;
-    $this->categoryTextSize = $categoryTextSize;
-    $this->categoryTextWeight = $categoryTextWeight;
+        $this->categoryAlign = $categoryAlign;
+        $this->categoryTextSize = $categoryTextSize;
+        $this->categoryTextWeight = $categoryTextWeight;
 
-    $this->createdDateAlign = $createdDateAlign;
-    $this->createdDateTextSize = $createdDateTextSize;
-    $this->createdDateTextWeight = $createdDateTextWeight;
+        $this->createdDateAlign = $createdDateAlign;
+        $this->createdDateTextSize = $createdDateTextSize;
+        $this->createdDateTextWeight = $createdDateTextWeight;
 
-    $this->buttonAlign = $buttonAlign;
-    $this->buttonLayout = $buttonLayout;
-    $this->buttonIcon = $buttonIcon;
-    $this->buttonIconLR = $buttonIconLR;
-    $this->buttonColor=$buttonColor;
+        $this->userAlign = $userAlign;
+        $this->userTextSize = $userTextSize;
+        $this->userTextWeight = $userTextWeight;
 
-    $this->imagePosition = $imagePosition;
-    $this->imagePositionVertical = $imagePositionVertical;
-    $this->contentPositionVertical = $contentPositionVertical;
+        $this->buttonAlign = $buttonAlign;
+        $this->buttonLayout = $buttonLayout;
+        $this->buttonIcon = $buttonIcon;
+        $this->buttonIconColor = $buttonIconColor;
+        $this->buttonIconLR = $buttonIconLR;
+        $this->buttonColor = $buttonColor;
 
-    $this->contentPadding=$contentPadding;
-    $this->contentBorder=$contentBorder;
-    $this->contentBorderColor=$contentBorderColor;
-    $this->contentBorderRounded=$contentBorderRounded;
+        $this->imagePosition = $imagePosition;
+        $this->imagePositionVertical = $imagePositionVertical;
+        $this->contentPositionVertical = $contentPositionVertical;
 
-    $this->contentMarginInsideX=$contentMarginInsideX;
-    $this->contentBorderShadows="$contentBorderShadows";
-    $this->contentBorderShadowsHover=$contentBorderShadowsHover;
+        $this->contentPadding = $contentPadding;
+        $this->contentBorder = $contentBorder;
+        $this->contentBorderColor = $contentBorderColor;
+        $this->contentBorderRounded = $contentBorderRounded;
 
-    $this->titleColor=$titleColor;
-    $this->summaryColor=$summaryColor;
-    $this->categoryColor=$categoryColor;
-    $this->createdDateColor=$createdDateColor;
+        $this->contentMarginInsideX = $contentMarginInsideX;
+        $this->contentBorderShadows = "$contentBorderShadows";
+        $this->contentBorderShadowsHover = $contentBorderShadowsHover;
 
-    $this->titleMarginT=$titleMarginT;
-    $this->titleMarginB=$titleMarginB;
-    $this->summaryMarginT=$summaryMarginT;
-    $this->summaryMarginB=$summaryMarginB;
-    $this->categoryMarginT=$categoryMarginT;
-    $this->categoryMarginB=$categoryMarginB;
-    $this->createdDateMarginT=$createdDateMarginT;
-    $this->createdDateMarginB=$createdDateMarginB;
-    $this->buttonMarginT=$buttonMarginT;
-    $this->buttonMarginB=$buttonMarginB;
+        $this->titleColor = $titleColor;
+        $this->summaryColor = $summaryColor;
+        $this->categoryColor = $categoryColor;
+        $this->createdDateColor = $createdDateColor;
+        $this->userColor = $userColor;
 
+        $this->titleMarginT = $titleMarginT;
+        $this->titleMarginB = $titleMarginB;
+        $this->summaryMarginT = $summaryMarginT;
+        $this->summaryMarginB = $summaryMarginB;
+        $this->categoryMarginT = $categoryMarginT;
+        $this->categoryMarginB = $categoryMarginB;
+        $this->createdDateMarginT = $createdDateMarginT;
+        $this->createdDateMarginB = $createdDateMarginB;
+        $this->userMarginT = $userMarginT;
+        $this->userMarginB = $userMarginB;
+        $this->buttonMarginT = $buttonMarginT;
+        $this->buttonMarginB = $buttonMarginB;
 
+        $this->titleLetterSpacing = $titleLetterSpacing;
+        $this->summaryLetterSpacing = $summaryLetterSpacing;
+        $this->categoryLetterSpacing = $categoryLetterSpacing;
+        $this->createdDateLetterSpacing = $createdDateLetterSpacing;
 
+        $this->titleVineta = $titleVineta;
+        $this->titleVinetaColor = $titleVinetaColor;
+
+        $this->buttonSize = $buttonSize;
+        $this->buttonTextSize = $buttonTextSize;
+
+        $this->itemBackgroundColor = $itemBackgroundColor;
+        $this->itemBackgroundColorHover = $itemBackgroundColorHover;
+
+    $this->titleHeight=$titleHeight;
+    $this->summaryHeight=$summaryHeight;
+
+    $this->imageBorderRadioType = $imageBorderRadioType;
+    $this->contentBorderRoundedType = $contentBorderRoundedType;
+    $this->columnLeft = $columnLeft;
+    $this->columnRight = $columnRight;
+    $this->titleTextDecoration = $titleTextDecoration;
+    $this->summaryTextDecoration = $summaryTextDecoration;
+    $this->categoryTextDecoration = $categoryTextDecoration;
+    $this->createdDateTextDecoration = $createdDateTextDecoration;
 
     if (!empty($parentAttributes))
       $this->getParentAttributes($parentAttributes);
+
+    $this->view = "isite::frontend.components.item-list.layouts." . ($this->layout ?? 'item-list-layout-1') . ".index";
+
   }
-  
+
   private function getParentAttributes($parentAttributes)
   {
-    
+
     isset($parentAttributes["mediaImage"]) ? $this->mediaImage = $parentAttributes["mediaImage"] : false;
     isset($parentAttributes["layout"]) ? $this->layout = $parentAttributes["layout"] : false;
     isset($parentAttributes["withViewMoreButton"]) ? $this->withViewMoreButton = $parentAttributes["withViewMoreButton"] : false;
@@ -311,10 +463,38 @@ class ItemList extends Component
     isset($parentAttributes["createdDateMarginB"]) ? $this->createdDateMarginB = $parentAttributes["createdDateMarginB"] : false;
     isset($parentAttributes["buttonMarginT"]) ? $this->buttonMarginT = $parentAttributes["buttonMarginT"] : false;
     isset($parentAttributes["buttonMarginB"]) ? $this->buttonMarginB = $parentAttributes["buttonMarginB"] : false;
+    isset($parentAttributes["titleLetterSpacing"]) ? $this->titleLetterSpacing = $parentAttributes["titleLetterSpacing"] : false;
+    isset($parentAttributes["summaryLetterSpacing"]) ? $this->summaryLetterSpacing = $parentAttributes["summaryLetterSpacing"] : false;
+    isset($parentAttributes["categoryLetterSpacing"]) ? $this->categoryLetterSpacing = $parentAttributes["categoryLetterSpacing"] : false;
+    isset($parentAttributes["createdDateLetterSpacing"]) ? $this->createdDateLetterSpacing = $parentAttributes["createdDateLetterSpacing"] : false;
+    isset($parentAttributes["titleVineta"]) ? $this->titleVineta = $parentAttributes["titleVineta"] : false;
+    isset($parentAttributes["titleVinetaColor"]) ? $this->titleVinetaColor = $parentAttributes["titleVinetaColor"] : false;
+    isset($parentAttributes["buttonSize"]) ? $this->buttonSize = $parentAttributes["buttonSize"] : false;
+    isset($parentAttributes["buttonTextSize"]) ? $this->buttonTextSize = $parentAttributes["buttonTextSize"] : false;
+    isset($parentAttributes["itemBackgroundColor"]) ? $this->itemBackgroundColor = $parentAttributes["itemBackgroundColor"] : false;
+    isset($parentAttributes["itemBackgroundColorHover"]) ? $this->itemBackgroundColorHover = $parentAttributes["itemBackgroundColorHover"] : false;
+    isset($parentAttributes["titleHeight"]) ? $this->titleHeight = $parentAttributes["titleHeight"] : false;
+    isset($parentAttributes["summaryHeight"]) ? $this->summaryHeight = $parentAttributes["summaryHeight"] : false;
+    isset($parentAttributes["buttonIconColor"]) ? $this->buttonIconColor = $parentAttributes["buttonIconColor"] : false;
+    isset($parentAttributes["imageBorderRadioType"]) ? $this->imageBorderRadioType = $parentAttributes["imageBorderRadioType"] : false;
+    isset($parentAttributes["contentBorderRoundedType"]) ? $this->contentBorderRoundedType = $parentAttributes["contentBorderRoundedType"] : false;
+    isset($parentAttributes["withUser"]) ? $this->withUser = $parentAttributes["withUser"] : false;
+    isset($parentAttributes["userAlign"]) ? $this->userAlign = $parentAttributes["userAlign"] : false;
+    isset($parentAttributes["userTextSize"]) ? $this->userTextSize = $parentAttributes["userTextSize"] : false;
+    isset($parentAttributes["userTextWeigh"]) ? $this->userTextWeigh = $parentAttributes["userTextWeigh"] : false;
+    isset($parentAttributes["userColor"]) ? $this->userColor = $parentAttributes["userColor"] : false;
+    isset($parentAttributes["userMarginT"]) ? $this->userMarginT = $parentAttributes["userMarginT"] : false;
+    isset($parentAttributes["userMarginB"]) ? $this->userMarginB = $parentAttributes["userMarginB"] : false;
+    isset($parentAttributes["columnLeft"]) ? $this->columnLeft = $parentAttributes["columnLeft"] : false;
+    isset($parentAttributes["columnRight"]) ? $this->columnRight = $parentAttributes["columnRight"] : false;
+    isset($parentAttributes["titleTextDecoration"]) ? $this->titleTextDecoration = $parentAttributes["titleTextDecoration"] : false;
+    isset($parentAttributes["summaryTextDecoration"]) ? $this->summaryTextDecoration = $parentAttributes["summaryTextDecoration"] : false;
+    isset($parentAttributes["categoryTextDecoration"]) ? $this->categoryTextDecoration = $parentAttributes["categoryTextDecoration"] : false;
+    isset($parentAttributes["createdDateTextDecoration"]) ? $this->createdDateTextDecoration = $parentAttributes["createdDateTextDecoration"] : false;
     //isset($parentAttributes[""]) ? $this-> = $parentAttributes[""] : false;
-    
+
   }
-  
+
   /**
    * Get the view / contents that represent the component.
    *

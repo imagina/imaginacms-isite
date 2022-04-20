@@ -14,9 +14,11 @@ return [
     "adminOrganizationForm" => "Form"
   ],
   "crud" => [
-    "denyPermissions" => "Insufficient permissions",
-    "showAsList" => "Show as list",
-    "showAsCard" => "Show as card"
+    "message" => [
+      "denyPermissions" => "Insufficient permissions",
+      "showAsList" => "Show as list",
+      "showAsCard" => "Show as card"
+    ]
   ],
   "newRecommendation" => "New Recommendation",
   "updateRecommendation" => "Update Recomendation",
@@ -49,6 +51,7 @@ return [
     "delete" => "Delete",
     "cancel" => "Cancel",
     "cancelled" => "Cancelled",
+    "approved" => "Approved",
     "open" => "Open",
     "close" => "Close",
     "closed" => "Closed",
@@ -324,7 +327,16 @@ return [
     "inbound" => "Inbound",
     "outbound" => "Outbound",
     "payOut" => "Payout",
-    "account" => "Account | Accounts"
+    "account" => "Account | Accounts",
+    "resource" => "Resource | Resources",
+    "winner" => "Winner | Winners",
+    "creator" => "Creator | Creators",
+    "inverse" => "Inverse",
+    "provider" => "Provider | Providers",
+    "chart" => "Chart | Charts",
+    "subtitle" => "Subtitle | Subtitles",
+    "currentPlan" => "Current plan",
+    "item" => "Item | Items"
   ],
   "message" => [
     "notFound" => "Sorry, nothing here",
@@ -498,7 +510,8 @@ return [
     "showInMenu" => "Show in Menu",
     "featured" => "Featured",
     "sortOrder" => "Sort Order",
-    "availableDate" => "Available Date"
+    "availableDate" => "Available Date",
+    "createdFromIp" => "Created from IP"
   ],
   "configList" => [
     "loggedAs" => "logged as",

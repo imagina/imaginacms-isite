@@ -1,6 +1,8 @@
 <?php
 
 return [
+  'yes' => "Si",
+  'no' => "No",
   'menu' => [
     'home' => 'Inicio',
     'viewMore' => "Ver más"
@@ -13,7 +15,9 @@ return [
     'favicon' => 'Favicon',
     'addressBar' => 'Color de la barra de direcciones',
     'brandPrimary' => 'Color Primario',
+    'primaryContrast' => 'Contraste Primario',
     'brandSecondary' => 'Color Secundario',
+    'secondaryContrast' => 'Contraste Secundario',
     'brandTertiary' => 'Color Terciario',
     'brandPositive' => 'Color Positivo',
     'brandNegative' => 'Color Negativo',
@@ -53,6 +57,22 @@ return [
     'googleClient' => 'Cliente Google',
     'facebookClient' => 'Cliente Facebook',
     'facebookAppId' => 'App Id Facebook',
+    'tenant' => [
+      'group' => 'Inquilinos',
+      'tenantWithCentralData' => 'Entidades con data central',
+      'entities' => [
+        'setting' => 'Settings',
+        'page' => 'Páginas',
+      ],
+    ],
+    'cms' => [
+      'legacyStructureCMS' => 'Usar Estructura heredada CMS',
+      'iadminTheme' => [
+        "title" => "Tema Iadmin",
+        "theme1" => "Tema 1",
+        "theme2" => "Tema 2"
+      ]
+    ]
   ],
   'settingHints' => [
     'phones' => "Ingresa un número telefónico y presiona enter",
@@ -70,7 +90,6 @@ return [
     'tenants' => 'Inquilinos',
     'modalVerifier' => 'Modal Verificador',
     'components' => 'Componentes',
-
     'title' => 'Agrega tu logo',
     'media' => [
       'title' => 'Agrega tu Imagen',
@@ -120,7 +139,10 @@ return [
       'title' => 'Mapas',
       'description' => 'Mapas'
     ],
-
+    'cms' => [
+      'title' => 'CMS',
+      'description' => 'Configuraciones de CMS'
+    ],
   ],
   'messages' => [
     'no items' => 'No existe información disponible'
@@ -159,6 +181,7 @@ return [
   ],
   'maps' => [
     'groupMaps' => 'Mapas',
-    'mapsLabel' => 'Mapas en el sitio'
+    'mapsLabel' => 'Mapas en el sitio',
+    'labelLocationSite' => 'Ubicación Sede Principal'
   ]
 ];

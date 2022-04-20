@@ -1,6 +1,3 @@
-@php
-$id = rand(1, 100);
-@endphp
 <div class="col-12">
   @if(isset($title) && !empty($title))
     <p class="subtitle h3">{{$title}}</p>

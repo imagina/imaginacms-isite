@@ -1,6 +1,8 @@
 <?php
 
 return [
+  'yes' => "Yes",
+  'no' => "No",
   'menu' => [
     'home' => 'Home'
   ],
@@ -12,7 +14,9 @@ return [
     'favicon' => 'Favicon',
     'addressBar' => 'Address bar color',
     'brandPrimary' => 'Primary Color',
+    'primaryContrast' => 'Primary Contrast',
     'brandSecondary' => 'Secondary Color',
+    'secondaryContrast' => 'Secondary Contrast',
     'brandTertiary' => 'Tertiary Color',
     'brandPositive' => 'Positive Color',
     'brandNegative' => 'Negative Color',
@@ -48,10 +52,25 @@ return [
       "label" => "Label",
       "icon-label" => "Icon",
     ],
+    'tenant' => [
+      'group' => 'Tenants',
+      'tenantWithCentralData' => 'Entities with central data',
+      'entities' => [
+        'setting' => 'Settings',
+        'page' => 'Pages',
+      ],
+    ],
     'googleClient' => 'Google Client',
     'facebookClient' => 'Facebook Client',
     'facebookAppId' => 'Facebook App Id',
-
+    'cms' => [
+      'legacyStructureCMS' => 'Use Legacy Structure CMS',
+      'iadminTheme' => [
+        "title" => "Iadmin Theme",
+        "theme1" => "Theme 1",
+        "theme2" => "Theme 2"
+      ]
+    ]
   ],
   'settingHints' => [
     'phones' => "Type a phone number and press enter key",
@@ -102,6 +121,10 @@ return [
     'maps' => [
       'title' => 'Maps',
       'description' => 'Maps'
+    ],
+    'cms' => [
+      'title' => 'CMS',
+      'description' => 'CMS Settings'
     ],
   ],
   'messages' => [

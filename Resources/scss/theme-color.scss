@@ -4,7 +4,7 @@
   border-color: var(--primary);
 }
 
-.btn-primary:hover, .btn-primary:active, .btn-primary:focus, .btn-primary:visited,
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus,
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
   color: white;
   background-color: var(--primary);
@@ -17,10 +17,79 @@
   border-color: var(--primary);
 }
 
-.btn-outline-primary:hover, .btn-outline-primary:active, .btn-outline-primary:focus, .btn-outline-primary:visited,
+.btn-outline-primary:hover, .btn-outline-primary:active, .btn-outline-primary:focus,
 .btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active, .show > .btn-outline-primary.dropdown-toggle {
   color: white;
   background-color: var(--primary);
   border-color: var(--primary);
 }
 
+
+$theme-color: () !default;
+$theme-color: map-merge(
+    (
+            "secondary":  var(--secondary),
+            "dark":       var(--dark),
+            "info":       var(--info),
+            "warning":    var(--warning),
+            "danger":     var(--danger),
+    ),
+    $theme-color
+);
+
+@function darken($color, $porcentaje) {
+  @return unquote('darken('+ $color +', '+ $porcentaje +')');
+}
+
+@each $color, $value in $theme-color {
+  .btn-#{$color} {
+    color: #ffffff;
+    background-color: $value;
+    border-color: $value;
+    /*&:hover, &:active, &:focus, &:visited,
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active,
+    .show > &.dropdown-toggle {
+      color: #ffffff;
+      background-color: oscurecer($value,30%);
+      border-color: oscurecer($value,30%);
+    }*/
+    &:hover, &:active, &:focus,
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active,
+    .show > &.dropdown-toggle {
+      color: #ffffff !important;
+      background-color: $value !important;
+      border-color: oscurecer($value,30%) !important;
+    }
+  }
+
+  .btn-outline-#{$color} {
+    color: $value !important;
+    border-color: $value;
+    background-color: #ffffff;
+    /*&:hover, &:active, &:focus, &:visited {
+      background-color: $value;
+      border-color: $value;
+      color: #ffffff;
+    }*/
+    &:hover, &:active, &:focus,
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active,
+    .show > &.dropdown-toggle {
+      background-color: $value;
+      border-color: $value;
+      color: #ffffff !important;
+    }
+  }
+
+  .text-#{$color} {
+    color: $value !important;
+  }
+
+}
+
+
+//
+// Button Sizes
+//

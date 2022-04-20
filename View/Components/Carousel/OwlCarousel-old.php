@@ -62,8 +62,7 @@ class OwlCarousel extends Component
     public $owlSubtitleTransform;
     public $owlSubtitleLetterSpacing;
 
-    public $itemComponentAttributes;
-    public $itemComponentNamespace;
+    public $componentItemAttributes;
     public $stagePadding;
 
 
@@ -118,8 +117,7 @@ class OwlCarousel extends Component
                                 $owlSubtitleWeight = "font-weight-normal",
                                 $owlSubtitleTransform = null,
                                 $owlSubtitleLetterSpacing = 0,
-                                $itemComponentAttributes = [],
-                                $itemComponentNamespace = null,
+                                $componentItemAttributes = [],
                                 $stagePadding = 0 )
     {
 
@@ -135,7 +133,6 @@ class OwlCarousel extends Component
         $this->responsiveClass = $responsiveClass;
         $this->autoplay = $autoplay;
         $this->autoplayHoverPause = $autoplayHoverPause;
-        
         $this->repository = $repository;
         $this->params = $params;
         $this->itemLayout = $itemLayout;
@@ -145,7 +142,7 @@ class OwlCarousel extends Component
         $this->containerFluid = $containerFluid;
         $this->owlBlockStyle = $owlBlockStyle;
         $this->itemComponent = $itemComponent ?? "isite::item-list";
-        $this->view = $view ?? "isite::frontend.components.owl.carousel";
+        $this->view = $view ?? "isite::frontend.components.owl.navdots";
         $this->getItems();
 
         $this->navIcon = $navIcon;
@@ -175,9 +172,8 @@ class OwlCarousel extends Component
         $this->owlSubtitleTransform = $owlSubtitleTransform;
         $this->owlSubtitleLetterSpacing = $owlSubtitleLetterSpacing;
         $this->stagePadding = $stagePadding;
-        $this->itemComponentNamespace =  $itemComponentNamespace ?? "Modules\Isite\View\Components\ItemList";
-        $this->itemComponentAttributes = count($itemComponentAttributes) ? $itemComponentAttributes : config('asgard.isite.config.indexItemListAttributesCarousel');
 
+        $this->componentItemAttributes = count($componentItemAttributes) ? $componentItemAttributes : config('asgard.isite.config.indexItemListAttributesCarousel');
 
 
         list($this->editLink, $this->tooltipEditLink) = getEditLink($this->repository);
@@ -207,7 +203,6 @@ class OwlCarousel extends Component
                 !$this->itemLayout ? $this->itemLayout = setting('icommerce::productListItemLayout') : false;
                 if (is_module_enabled("Icommerce") && $this->itemComponent == "isite::item-list") {
                     $this->itemComponent = "icommerce::product-list-item";
-                    $this->itemComponentNamespace = "Modules\Icommerce\View\Components\ProductListItem";
                 }
                 break;
         }

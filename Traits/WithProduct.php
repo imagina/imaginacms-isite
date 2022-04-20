@@ -3,6 +3,7 @@
 
 namespace Modules\Isite\Traits;
 
+use Modules\Icommerce\Entities\Product;
 
 /**
 * Trait to create a product with data from an Entity
@@ -49,7 +50,8 @@ trait WithProduct
             'price' => $this->price ?? 0,
             'status' => $this->status ?? 1, //ENABLED
             'stock_status' => $this->stock_status ?? 1, //INSTOCK
-            'quantity' => $this->quantity ?? 999999
+            'quantity' => $this->quantity ?? 999999,
+            'shipping' => $this->requiredShipping ?? 1
         ]);
 
     }
@@ -61,11 +63,13 @@ trait WithProduct
      */
     public function products()
     {
+      
         return $this->morphMany("Modules\Icommerce\Entities\Product", 'entity');
     }
 
     public function getProductAttribute(){
-        return $this->products->first();
+     return Product::query()->where('entity_type', get_class($this))
+      ->where('entity_id', $this->id)->withoutTenancy()->first();
     }
 
 }

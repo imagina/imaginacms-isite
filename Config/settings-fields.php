@@ -82,17 +82,6 @@ return [
     ]
   ],
   //Colors
-  'brandAddressBar' => [
-    'value' => null,
-    'name' => 'isite::brandAddressBar',
-    'type' => 'inputColor',
-    'groupName' => 'colors',
-    'groupTitle' => 'isite::common.settingGroups.colors',
-    'colClass' => 'col-12 col-md-6',
-    'props' => [
-      'label' => 'isite::common.settings.addressBar'
-    ]
-  ],
   'brandPrimary' => [
     'value' => null,
     'name' => 'isite::brandPrimary',
@@ -105,6 +94,18 @@ return [
       'label' => 'isite::common.settings.brandPrimary'
     ]
   ],
+  'primaryContrast' => [
+    'value' => null,
+    'name' => 'isite::primaryContrast',
+    'type' => 'inputColor',
+    'groupName' => 'colors',
+    'groupTitle' => 'isite::common.settingGroups.colors',
+    'colClass' => 'col-12 col-md-6',
+    'quickSetting' => true,
+    'props' => [
+      'label' => 'isite::common.settings.primaryContrast'
+    ]
+  ],
   'brandSecondary' => [
     'value' => null,
     'name' => 'isite::brandSecondary',
@@ -115,6 +116,29 @@ return [
     'quickSetting' => true,
     'props' => [
       'label' => 'isite::common.settings.brandSecondary'
+    ]
+  ],
+  'secondaryContrast' => [
+    'value' => null,
+    'name' => 'isite::secondaryContrast',
+    'type' => 'inputColor',
+    'groupName' => 'colors',
+    'groupTitle' => 'isite::common.settingGroups.colors',
+    'colClass' => 'col-12 col-md-6',
+    'quickSetting' => true,
+    'props' => [
+      'label' => 'isite::common.settings.secondaryContrast'
+    ]
+  ],
+  'brandAddressBar' => [
+    'value' => null,
+    'name' => 'isite::brandAddressBar',
+    'type' => 'inputColor',
+    'groupName' => 'colors',
+    'groupTitle' => 'isite::common.settingGroups.colors',
+    'colClass' => 'col-12 col-md-6',
+    'props' => [
+      'label' => 'isite::common.settings.addressBar'
     ]
   ],
   'brandAccent' => [
@@ -856,7 +880,7 @@ return [
   ],
   //Components
   'itemsTabs' => [
-    'value' => ['Item-1','Item-2'],
+    'value' => ['Item-1', 'Item-2'],
     'name' => 'isite::itemsTabs',
     'type' => 'select',
     'groupName' => 'components',
@@ -870,5 +894,65 @@ return [
       'hint' => 'isite::common.settingHints.itemsTabs',
       'newValueMode' => 'add-unique'
     ]
+  ],
+  'locationSite' => [
+    'value' => '',
+    'name' => 'isite::locationSite',
+    'type' => 'positionMarkerMap',
+    'colClass' => "col-12",
+    'groupName' => 'maps',
+    'groupTitle' => 'isite::common.maps.groupMaps',
+    'props' => [
+      'label' => 'isite::common.maps.labelLocationSite'
+    ]
+  ],
+  'tenantWithCentralData' => [
+    'value' => [],
+    'name' => 'isite::tenantWithCentralData',
+    'groupName' => 'tenants',
+    'groupTitle' => 'isite::common.settings.tenant.group',
+    'type' => 'select',
+    'columns' => 'col-6',
+    'props' => [
+      'label' => 'isite::common.settings.tenant.tenantWithCentralData',
+      'useInput' => false,
+      'useChips' => true,
+      'multiple' => true,
+      'hideDropdownIcon' => true,
+      'newValueMode' => 'add-unique',
+      'options' => [
+        ['label' => 'isite::common.settings.tenant.entities.setting', 'value' => 'setting'],
+        ['label' => 'isite::common.settings.tenant.entities.page', 'value' => 'page'],
+      ]
+    ]
+  ],
+  //CMS
+  'legacyStructureCMS' => [
+    'name' => 'isite::legacyStructureCMS',
+    'value' => '0',
+    'type' => 'select',
+    'groupName' => 'cms',
+    'groupTitle' => 'isite::common.settingGroups.cms',
+    'props' => [
+      'label' => 'isite::common.settings.cms.legacyStructureCMS',
+      'options' => [
+        ['label' => 'isite::common.yes', 'value' => '1'],
+        ['label' => 'isite::common.no', 'value' => '0'],
+      ]
+    ],
+  ],
+  'iadminTheme' => [
+    'name' => 'isite::iadminTheme',
+    'value' => '1',
+    'type' => 'select',
+    'groupName' => 'cms',
+    'groupTitle' => 'isite::common.settingGroups.cms',
+    'props' => [
+      'label' => 'isite::common.settings.cms.iadminTheme.title',
+      'options' => [
+        ['label' => 'isite::common.settings.cms.iadminTheme.theme1', 'value' => '1'],
+        ['label' => 'isite::common.settings.cms.iadminTheme.theme2', 'value' => '2'],
+      ]
+    ],
   ],
 ];

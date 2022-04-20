@@ -14,9 +14,11 @@ return [
     "adminOrganizationForm" => "Formulario"
   ],
   "crud" => [
-    "denyPermissions" => "Permisos insuficientes",
-    "showAsList" => "Ver como lista",
-    "showAsCard" => "Ver como tarjetas"
+    "message" => [
+      "denyPermissions" => "Permisos insuficientes",
+      "showAsList" => "Ver como lista",
+      "showAsCard" => "Ver como tarjetas"
+    ]
   ],
   "newRecommendation" => "Nueva Recomendación",
   "updateRecommendation" => "Actualizar Recomendación",
@@ -44,11 +46,11 @@ return [
   "quickSettings" => "Ajustes Rapidos",
   "perzonalizationTitle" => "Bienvenid@ al editor de tu sitio web",
   "perzonalizationDescription" => "De manera fácil, cambia el logo, colores y la información principal de tu página web",
-
   "label" => [
     "delete" => "Eliminar",
     "cancel" => "Cancelar",
     "cancelled" => "Cancelado",
+    "approved" => "Aprovado",
     "open" => "Abierto",
     "close" => "Cerrar",
     "closed" => "Cerrado",
@@ -329,7 +331,16 @@ return [
     "inbound" => "Entrada",
     "outbound" => "Salida",
     "payOut" => "Método de Cobro | Mètodos de cobro",
-    "account" => "Cuenta | Cuentas"
+    "account" => "Cuenta | Cuentas",
+    "resource" => "Recurso | Recursos",
+    "winner" => "Ganador | Ganadores",
+    "creator" => "Creador | Creadores",
+    "inverse" => "Inversa | Inversas",
+    "provider" => "Proveedor | Preveedores",
+    "chart" => "Grafica | Graficas",
+    "subtitle" => "Subtitulo | Subtitulos",
+    "currentPlan" => "Plan actual",
+    "item" => "Elemento | Elementos"
   ],
   "message" => [
     "notFound" => "Lo sentimos, no hay nada aquí",
@@ -498,7 +509,8 @@ return [
     "showInMenu" => "Mostrar en menu",
     "featured" => "Destacado",
     "sortOrder" => "Orden de prioridad",
-    "availableDate" => "Disponible desde"
+    "availableDate" => "Disponible desde",
+    "createdFromIp" => "Creado desde la IP"
   ],
   "configList" => [
     "loggedAs" => "Registrado como",
