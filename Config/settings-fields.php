@@ -82,17 +82,6 @@ return [
     ]
   ],
   //Colors
-  'brandAddressBar' => [
-    'value' => null,
-    'name' => 'isite::brandAddressBar',
-    'type' => 'inputColor',
-    'groupName' => 'colors',
-    'groupTitle' => 'isite::common.settingGroups.colors',
-    'colClass' => 'col-12 col-md-6',
-    'props' => [
-      'label' => 'isite::common.settings.addressBar'
-    ]
-  ],
   'brandPrimary' => [
     'value' => null,
     'name' => 'isite::brandPrimary',
@@ -105,6 +94,18 @@ return [
       'label' => 'isite::common.settings.brandPrimary'
     ]
   ],
+  'primaryContrast' => [
+    'value' => null,
+    'name' => 'isite::primaryContrast',
+    'type' => 'inputColor',
+    'groupName' => 'colors',
+    'groupTitle' => 'isite::common.settingGroups.colors',
+    'colClass' => 'col-12 col-md-6',
+    'quickSetting' => true,
+    'props' => [
+      'label' => 'isite::common.settings.primaryContrast'
+    ]
+  ],
   'brandSecondary' => [
     'value' => null,
     'name' => 'isite::brandSecondary',
@@ -115,6 +116,29 @@ return [
     'quickSetting' => true,
     'props' => [
       'label' => 'isite::common.settings.brandSecondary'
+    ]
+  ],
+  'secondaryContrast' => [
+    'value' => null,
+    'name' => 'isite::secondaryContrast',
+    'type' => 'inputColor',
+    'groupName' => 'colors',
+    'groupTitle' => 'isite::common.settingGroups.colors',
+    'colClass' => 'col-12 col-md-6',
+    'quickSetting' => true,
+    'props' => [
+      'label' => 'isite::common.settings.secondaryContrast'
+    ]
+  ],
+  'brandAddressBar' => [
+    'value' => null,
+    'name' => 'isite::brandAddressBar',
+    'type' => 'inputColor',
+    'groupName' => 'colors',
+    'groupTitle' => 'isite::common.settingGroups.colors',
+    'colClass' => 'col-12 col-md-6',
+    'props' => [
+      'label' => 'isite::common.settings.addressBar'
     ]
   ],
   'brandAccent' => [
