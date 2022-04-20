@@ -101,7 +101,7 @@ class OwlCarousel extends Component
                                 $navColor = "primary",
                                 $navSizeButton = "",
                                 $navStyleButton = "",
-                                $owlTextPosition = 1,
+                                $owlTextPosition = 2,
                                 $owlTitleMarginT = "mt-0",
                                 $owlTitleMarginB = "mb-0",
                                 $owlTitleColor = null,
