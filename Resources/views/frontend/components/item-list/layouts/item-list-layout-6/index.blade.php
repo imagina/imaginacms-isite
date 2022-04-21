@@ -139,7 +139,7 @@
         @case('4')
             @php $imageRadio="0 ".$imageBorderRadio."px ".$imageBorderRadio."px 0";  @endphp
         @break
-        @case('4')
+        @case('5')
             @php $imageRadio="0 0 ".$imageBorderRadio."px ".$imageBorderRadio."px"; @endphp
         @break
         @default
@@ -157,7 +157,7 @@
         @case('4')
         @php $contentRadio="0 ".$contentBorderRounded."px ".$contentBorderRounded."px 0";  @endphp
         @break
-        @case('4')
+        @case('5')
         @php $contentRadio="0 0 ".$contentBorderRounded."px ".$contentBorderRounded."px"; @endphp
         @break
         @default
