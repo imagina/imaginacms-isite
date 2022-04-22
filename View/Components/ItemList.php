@@ -33,6 +33,7 @@ class ItemList extends Component
     public $imageBorderWidth;
     public $imageBorderColor;
     public $imagePadding;
+    public $imagePicturePadding;
     public $withImageOpacity;
     public $imageOpacityColor;
     public $imageOpacityDirection;
@@ -123,6 +124,10 @@ class ItemList extends Component
     public $summaryTextDecoration;
     public $categoryTextDecoration;
     public $createdDateTextDecoration;
+    
+    public $id;
+    public $imageRadio;
+    public $contentRadio;
 
 
     /**
@@ -195,6 +200,7 @@ class ItemList extends Component
                                 $imageBorderWidth = 0,
                                 $imageBorderColor = "#000000",
                                 $imagePadding = 0,
+                                $imagePicturePadding = 0,
                                 $withImageOpacity = false,
                                 $imageOpacityColor = "opacity-dark",
                                 $imageOpacityDirection = "opacity-top",
@@ -296,6 +302,7 @@ class ItemList extends Component
     $this->imageBorderWidth = $imageBorderWidth;
     $this->imageBorderColor = $imageBorderColor;
     $this->imagePadding = $imagePadding;
+    $this->imagePicturePadding = $imagePicturePadding;
     $this->withImageOpacity = $withImageOpacity;
     $this->imageOpacityColor = $imageOpacityColor;
     $this->imageOpacityDirection = $imageOpacityDirection;
@@ -389,7 +396,52 @@ class ItemList extends Component
 
     if (!empty($parentAttributes))
       $this->getParentAttributes($parentAttributes);
-
+  
+    $this->id = "item".preg_replace( '/[^a-z0-9 ]/i', '', $item->slug ?? $item->title ?? $item->name ?? "").$item->id.uniqid();
+  
+      // 1 all, 2 top, 3 right, 4 left, 5 bottom
+      switch($this->imageBorderRadioType){
+        case '2':
+         $this->imageRadio=$this->imageBorderRadio."px ".$this->imageBorderRadio."px 0 0";
+        break;
+        case '3':
+          $this->imageRadio=$this->imageBorderRadio."px 0 0 ".$this->imageBorderRadio."px";
+        break;
+        case '4':
+          $this->imageRadio="0 ".$this->imageBorderRadio."px ".$this->imageBorderRadio."px 0";
+        break;
+        case '5':
+          $this->imageRadio="0 0 ".$this->imageBorderRadio."px ".$this->imageBorderRadio."px";
+        break;
+        default:
+          $this->imageRadio=$this->imageBorderRadio."px";
+        break;
+    
+      }
+      
+  
+    //{{-- 1 all, 2 top, 3 right, 4 left, 5 bottom --}}
+    switch($this->contentBorderRoundedType){
+      case '2':
+      $this->contentRadio=$this->contentBorderRounded."px ".$this->contentBorderRounded."px 0 0";
+      break;
+      case '3':
+        $this->contentRadio=$this->contentBorderRounded."px 0 0 ".$this->contentBorderRounded."px";
+      break;
+      case '4':
+        $this->contentRadio="0 ".$this->contentBorderRounded."px ".$this->contentBorderRounded."px 0";
+      break;
+      case '5':
+        $this->contentRadio="0 0 ".$this->contentBorderRounded."px ".$this->contentBorderRounded."px";
+      break;
+      default:
+        $this->contentRadio=$this->contentBorderRounded."px";
+      break;
+    
+    }
+    
+    
+    
     $this->view = "isite::frontend.components.item-list.layouts." . ($this->layout ?? 'item-list-layout-1') . ".index";
 
   }

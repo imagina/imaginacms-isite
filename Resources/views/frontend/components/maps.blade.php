@@ -32,7 +32,13 @@
       .openPopup();
   </script>
 @else
+
   <script>
+
+@if(!isset($inModal) || !$inModal)
+
+document.addEventListener("DOMContentLoaded", function () {
+@endif
     function initMap() {
       const position = {lat: {{$lat}}, lng: {{$lng}}};
       const map = new google.maps.Map(document.getElementById("{{$mapId}}"), {
@@ -44,5 +50,11 @@
         map: map,
       });
     }
+
+	initMap();
+@if(!isset($inModal) || !$inModal)
+ });
+@endif
+
   </script>
 @endif
