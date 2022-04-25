@@ -181,5 +181,35 @@ return [
       'title' => 'isite::common.settingGroups.maps.title',
       'description' => 'isite::common.settingGroups.maps.description'
     ],
-  ]
+  ],
+
+  /*
+  |--------------------------------------------------------------------------
+  | Define config to list layout 4
+  |--------------------------------------------------------------------------
+  */
+    "indexItemListAttributesMain" => [
+        'withCreatedDate' => true,
+        'withSummary'=> false,
+        'layout' => 'item-list-layout-6',
+        'imageAspect' => '4/3',
+        'titleColor'=>'text-dark',
+        'createdDateColor'=>'text-light',
+        'formatCreatedDate'=>'d \d\e M, Y',
+        'titleHeight' => 'auto',
+    ],
+    "indexItemListAttributesList" => [
+        'withCreatedDate' => true,
+        'withSummary'=> false,
+        'layout' => 'item-list-layout-7',
+        'imageAspect' => '16/9',
+        'imagePosition' => '3',
+        'summaryTextSize' => '14',
+        'titleHeight' => 'auto',
+        'titleColor'=>'text-dark',
+        'createdDateColor'=>'text-light',
+        'formatCreatedDate'=>'d \d\e M, Y',
+        'titleTextSize'=>18,
+        'contentPositionVertical' => 'align-self-start'
+    ],
 ];
