@@ -12,6 +12,7 @@ return [
     'logo2' => 'Logo N°2',
     'logo3' => 'Logo N°3',
     'logoIadmin' => 'Logo Iadmin',
+    'logoIadminSM' => 'Logo Iadmin SM',
     'favicon' => 'Favicon',
     'addressBar' => 'Color de la barra de direcciones',
     'brandPrimary' => 'Color Primario',
