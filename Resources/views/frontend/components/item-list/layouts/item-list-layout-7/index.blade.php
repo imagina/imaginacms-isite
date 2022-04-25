@@ -4,10 +4,10 @@
   @php $row=""; $col1=""; $col2="image-overlay item-border";  @endphp
   @break
   @case('2')
-  @php $row="item-border"; $col1=$columnLeft." px-0"; $col2=$columnRight;  @endphp
+  @php $row="item-border"; $col1=$columnLeft." "; $col2=$columnRight;  @endphp
   @break
   @case('3')
-  @php $row="item-border"; $col1=$columnRight." order-1 px-0"; $col2=$columnLeft." order-0"; @endphp
+  @php $row="item-border"; $col1=$columnRight." order-1 "; $col2=$columnLeft." order-0"; @endphp
   @break
 @endswitch
 
