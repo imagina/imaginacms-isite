@@ -1,4 +1,4 @@
-@php $d=rand(1,200); @endphp
+
 @switch($imagePosition)
   @case('1')
   @php $row=""; $col1=""; $col2="image-overlay item-border";  @endphp
@@ -11,7 +11,7 @@
   @break
 @endswitch
 
-<div id="{{$item->slug}}{{$item->id}}{{$d}}" class="item-layout item-list-layout-7 position-relative">
+<div id="{{$id}}" class="item-layout item-list-layout-7 position-relative">
 
   <x-isite::edit-link link="{{$editLink}}{{$item->id}}" tooltip="{{$tooltipEditLink}}"/>
   <div class="card-item {{$row}}">
@@ -123,85 +123,38 @@
     </div>
   </div>
 
-    {{-- 1 all, 2 top, 3 right, 4 left, 5 bottom --}}
-    @switch($imageBorderRadioType)
-        @case('2')
-        @php $imageRadio=$imageBorderRadio."px ".$imageBorderRadio."px 0 0";  @endphp
-        @break
-        @case('3')
-        @php $imageRadio=$imageBorderRadio."px 0 0 ".$imageBorderRadio."px";  @endphp
-        @break
-        @case('4')
-        @php $imageRadio="0 ".$imageBorderRadio."px ".$imageBorderRadio."px 0";  @endphp
-        @break
-        @case('5')
-        @php $imageRadio="0 0 ".$imageBorderRadio."px ".$imageBorderRadio."px"; @endphp
-        @break
-        @default
-        @php $imageRadio=$imageBorderRadio."px";  @endphp
-        @break
-    @endswitch
-    {{-- 1 all, 2 top, 3 right, 4 left, 5 bottom --}}
-    @switch($contentBorderRoundedType)
-        @case('2')
-        @php $contentRadio=$contentBorderRounded."px ".$contentBorderRounded."px 0 0";  @endphp
-        @break
-        @case('3')
-        @php $contentRadio=$contentBorderRounded."px 0 0 ".$contentBorderRounded."px";  @endphp
-        @break
-        @case('4')
-        @php $contentRadio="0 ".$contentBorderRounded."px ".$contentBorderRounded."px 0";  @endphp
-        @break
-        @case('5')
-        @php $contentRadio="0 0 ".$contentBorderRounded."px ".$contentBorderRounded."px"; @endphp
-        @break
-        @default
-        @php $contentRadio=$contentBorderRounded."px";  @endphp
-        @break
-    @endswitch
 <style>
-    #{{$item->slug}}{{$item->id}}{{$d}} .card-item {
+    #{{$id}} .card-item {
         background-color: {{$itemBackgroundColor}};
     }
-    #{{$item->slug}}{{$item->id}}{{$d}} .card-item:hover {
+    #{{$id}} .card-item:hover {
         background-color: {{$itemBackgroundColorHover}};
     }
-    #{{$item->slug}}{{$item->id}}{{$d}} .item-image picture:before {
+    #{{$id}} .item-image picture:before {
         border-radius: {{$imageRadio}};
         top: {{$imagePadding}}px;
         left: {{$imagePadding}}px;
         bottom: {{$imagePadding}}px;
         right: {{$imagePadding}}px;
     }
-    @if($imagePadding==0)
-        #{{$item->slug}}{{$item->id}}{{$d}} .item-image picture {
+
+        #{{$id}} .item-image picture {
              display: block !important;
+           padding: {{$imagePicturePadding}}px;
         }
-        #{{$item->slug}}{{$item->id}}{{$d}} .img-style {
+        #{{$id}} .img-style {
              border-radius: {{$imageRadio}};
              border-style: {{$imageBorderStyle}};
              border-width: {{$imageBorderWidth}}px;
              border-color: {{$imageBorderColor}};
              aspect-ratio: {{$imageAspect}};
              object-fit: {{$imageObject}};
+           padding: {{$imagePadding}}px;
          }
-    @else
-        #{{$item->slug}}{{$item->id}}{{$d}} .item-image picture {
-             display: block !important;
-             border-radius: {{$imageRadio}};
-             border-style: {{$imageBorderStyle}};
-             border-width: {{$imageBorderWidth}}px;
-             border-color: {{$imageBorderColor}};
-        }
-        #{{$item->slug}}{{$item->id}}{{$d}} .img-style {
-             aspect-ratio: {{$imageAspect}};
-             object-fit: {{$imageObject}};
-             border-radius: {{$imageRadio}};
-             padding: {{$imagePadding}}px;
-    @endif
+
 
     @if($contentBorderShadows=='none')
-        #{{$item->slug}}{{$item->id}}{{$d}} .item-border {
+        #{{$id}} .item-border {
             padding:{{$contentPadding + $imagePadding}}px;
             border-width: {{$contentBorder}}px;
             border-style: solid;
@@ -209,7 +162,7 @@
             border-radius: {{$contentRadio}};
         }
     @else
-        #{{$item->slug}}{{$item->id}}{{$d}} .item-border {
+        #{{$id}} .item-border {
             padding:{{$contentPadding + $imagePadding}}px;
             border-width: {{$contentBorder}}px;
             border-style: solid;
@@ -221,39 +174,39 @@
             margin: 10px 0;
         }
         @if($contentBorderShadowsHover)
-        #{{$item->slug}}{{$item->id}}{{$d}} .item-border:hover {
+        #{{$id}} .item-border:hover {
             box-shadow: {{$contentBorderShadows}};
         }
         @endif
 
     @endif
 
-    #{{$item->slug}}{{$item->id}}{{$d}} .item-title .title {
+    #{{$id}} .item-title .title {
         font-size: {{$titleTextSize}}px;
         letter-spacing: {{$titleLetterSpacing}}px;
     }
-    #{{$item->slug}}{{$item->id}}{{$d}} .item-summary .summary {
+    #{{$id}} .item-summary .summary {
         font-size: {{$summaryTextSize}}px;
         letter-spacing: {{$summaryLetterSpacing}}px;
     }
-    #{{$item->slug}}{{$item->id}}{{$d}} .item-category .category {
+    #{{$id}} .item-category .category {
         font-size: {{$categoryTextSize}}px;
         letter-spacing: {{$categoryLetterSpacing}}px;
     }
-    #{{$item->slug}}{{$item->id}}{{$d}} .item-created-date .created-date {
+    #{{$id}} .item-created-date .created-date {
         font-size: {{$createdDateTextSize}}px;
         letter-spacing: {{$createdDateLetterSpacing}}px;
     }
-    #{{$item->slug}}{{$item->id}}{{$d}} .item-title a:hover {
+    #{{$id}} .item-title a:hover {
          text-decoration: {{$titleTextDecoration}};
      }
-    #{{$item->slug}}{{$item->id}}{{$d}} .item-summary a:hover {
+    #{{$id}} .item-summary a:hover {
          text-decoration: {{$summaryTextDecoration}};
      }
-    #{{$item->slug}}{{$item->id}}{{$d}} .item-category a:hover {
+    #{{$id}} .item-category a:hover {
          text-decoration: {{$categoryTextDecoration}};
      }
-    #{{$item->slug}}{{$item->id}}{{$d}} .item-created-date a:hover {
+    #{{$id}} .item-created-date a:hover {
          text-decoration: {{$createdDateTextDecoration}};
      }
 </style>

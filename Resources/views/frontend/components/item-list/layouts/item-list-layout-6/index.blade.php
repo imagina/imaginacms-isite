@@ -1,5 +1,4 @@
-@php $d=rand(200,400); @endphp
-<div id="{{$item->slug}}{{$item->id}}{{$d}}" class="item-layout item-list-layout-6 position-relative ">
+<div id="{{$id}}" class="item-layout item-list-layout-6 position-relative ">
   <x-isite::edit-link link="{{$editLink}}{{$item->id}}" tooltip="{{$tooltipEditLink}}"/>
   <div class="card-item">
     <div class="row align-items-center">
@@ -128,44 +127,9 @@
     </div>
 
   </div>
-    {{-- 1 all, 2 top, 3 right, 4 left, 5 bottom --}}
-    @switch($imageBorderRadioType)
-        @case('2')
-            @php $imageRadio=$imageBorderRadio."px ".$imageBorderRadio."px 0 0";  @endphp
-        @break
-        @case('3')
-            @php $imageRadio=$imageBorderRadio."px 0 0 ".$imageBorderRadio."px";  @endphp
-        @break
-        @case('4')
-            @php $imageRadio="0 ".$imageBorderRadio."px ".$imageBorderRadio."px 0";  @endphp
-        @break
-        @case('5')
-            @php $imageRadio="0 0 ".$imageBorderRadio."px ".$imageBorderRadio."px"; @endphp
-        @break
-        @default
-            @php $imageRadio=$imageBorderRadio."px";  @endphp
-        @break
-    @endswitch
-    {{-- 1 all, 2 top, 3 right, 4 left, 5 bottom --}}
-    @switch($contentBorderRoundedType)
-        @case('2')
-        @php $contentRadio=$contentBorderRounded."px ".$contentBorderRounded."px 0 0";  @endphp
-        @break
-        @case('3')
-        @php $contentRadio=$contentBorderRounded."px 0 0 ".$contentBorderRounded."px";  @endphp
-        @break
-        @case('4')
-        @php $contentRadio="0 ".$contentBorderRounded."px ".$contentBorderRounded."px 0";  @endphp
-        @break
-        @case('5')
-        @php $contentRadio="0 0 ".$contentBorderRounded."px ".$contentBorderRounded."px"; @endphp
-        @break
-        @default
-        @php $contentRadio=$contentBorderRounded."px";  @endphp
-        @break
-    @endswitch
+
 <style>
-    #{{$item->slug}}{{$item->id}}{{$d}} .item-image picture:before {
+    #{{$id}} .item-image picture:before {
         border-radius: {{$imageRadio}};
         top: {{$imagePadding}}px;
         left: {{$imagePadding}}px;
@@ -173,36 +137,24 @@
         right: {{$imagePadding}}px;
     }
 
-    @if($imagePadding==0)
-    #{{$item->slug}}{{$item->id}}{{$d}} .item-image picture {
-         display: block !important;
-    }
-    #{{$item->slug}}{{$item->id}}{{$d}} .img-style {
-         border-radius: {{$imageRadio}};
-         border-style: {{$imageBorderStyle}};
-         border-width: {{$imageBorderWidth}}px;
-         border-color: {{$imageBorderColor}};
-         aspect-ratio: {{$imageAspect}};
-         object-fit: {{$imageObject}};
-    }
-    @else
-    #{{$item->slug}}{{$item->id}}{{$d}} .item-image picture {
-         display: block !important;
-         border-radius: {{$imageRadio}};
-         border-style: {{$imageBorderStyle}};
-         border-width: {{$imageBorderWidth}}px;
-         border-color: {{$imageBorderColor}};
-    }
-    #{{$item->slug}}{{$item->id}}{{$d}} .img-style {
-         aspect-ratio: {{$imageAspect}};
-         object-fit: {{$imageObject}};
 
-         border-radius: {{$imageRadio}};
-         padding: {{$imagePadding}}px;
+    #{{$id}} .item-image picture {
+         display: block !important;
+        padding: {{$imagePicturePadding}}px;
+    }
+
+    #{{$id}} .img-style {
+       border-radius: {{$imageRadio}};
+       border-style: {{$imageBorderStyle}};
+       border-width: {{$imageBorderWidth}}px;
+       border-color: {{$imageBorderColor}};
+       aspect-ratio: {{$imageAspect}};
+       object-fit: {{$imageObject}};
+       padding: {{$imagePadding}}px;
      }
-    @endif
 
-    #{{$item->slug}}{{$item->id}}{{$d}} .card-item {
+
+    #{{$id}} .card-item {
         background-color: {{$itemBackgroundColor}};
         padding: {{$contentPadding}}px;
         border-width: {{$contentBorder}}px;
@@ -216,38 +168,38 @@
              margin: 10px 0;
         @endif
     }
-    #{{$item->slug}}{{$item->id}}{{$d}} .card-item:hover {
+    #{{$id}} .card-item:hover {
         background-color: {{$itemBackgroundColorHover}};
         @if($contentBorderShadowsHover)
         box-shadow: {{$contentBorderShadows}};
         @endif
     }
-    #{{$item->slug}}{{$item->id}}{{$d}} .item-title .title {
+    #{{$id}} .item-title .title {
         font-size: {{$titleTextSize}}px;
         letter-spacing: {{$titleLetterSpacing}}px;
     }
-    #{{$item->slug}}{{$item->id}}{{$d}} .item-summary .summary {
+    #{{$id}} .item-summary .summary {
         font-size: {{$summaryTextSize}}px;
         letter-spacing: {{$summaryLetterSpacing}}px;
     }
-    #{{$item->slug}}{{$item->id}}{{$d}} .item-category .category {
+    #{{$id}} .item-category .category {
         font-size: {{$categoryTextSize}}px;
         letter-spacing: {{$categoryLetterSpacing}}px;
     }
-    #{{$item->slug}}{{$item->id}}{{$d}} .item-created-date .created-date {
+    #{{$id}} .item-created-date .created-date {
         font-size: {{$createdDateTextSize}}px;
         letter-spacing: {{$createdDateLetterSpacing}}px;
     }
-    #{{$item->slug}}{{$item->id}}{{$d}} .item-title a:hover {
+    #{{$id}} .item-title a:hover {
          text-decoration: {{$titleTextDecoration}};
      }
-    #{{$item->slug}}{{$item->id}}{{$d}} .item-summary a:hover {
+    #{{$id}} .item-summary a:hover {
          text-decoration: {{$summaryTextDecoration}};
      }
-    #{{$item->slug}}{{$item->id}}{{$d}} .item-category a:hover {
+    #{{$id}} .item-category a:hover {
          text-decoration: {{$categoryTextDecoration}};
      }
-    #{{$item->slug}}{{$item->id}}{{$d}} .item-created-date a:hover {
+    #{{$id}} .item-created-date a:hover {
          text-decoration: {{$createdDateTextDecoration}};
      }
 </style>
