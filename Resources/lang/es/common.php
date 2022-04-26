@@ -64,6 +64,8 @@ return [
       'entities' => [
         'setting' => 'Settings',
         'page' => 'Páginas',
+        'slider' => 'Sliders',
+        'slide' => 'Slides',
       ],
     ],
     'cms' => [

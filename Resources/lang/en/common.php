@@ -59,6 +59,8 @@ return [
       'entities' => [
         'setting' => 'Settings',
         'page' => 'Pages',
+        'slider' => 'Sliders',
+        'slide' => 'Slides',
       ],
     ],
     'googleClient' => 'Google Client',

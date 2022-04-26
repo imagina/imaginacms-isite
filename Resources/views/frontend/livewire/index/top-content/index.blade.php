@@ -15,15 +15,15 @@
 					@include('isite::frontend.livewire.index.top-content.total-items')
 				</div>
 
-				@if(isset($responsiveTopContent['order']) && $responsiveTopContent['order'])
+			
 				{{-- Filter - Order By --}}
 				<div class="col-lg-5">
-
+					@if(isset($responsiveTopContent['order']) && $responsiveTopContent['order'])
 					<livewire:isite::filter-order-by key="filter-order-by"
 					:config="config('asgard.'.$moduleName.'.config.orderBy')"/>
-
+					@endif
 				</div>
-				@endif
+				
 				
 				{{-- Change Layout --}}
 				<div class="col-lg-3">

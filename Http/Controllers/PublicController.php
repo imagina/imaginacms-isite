@@ -48,7 +48,7 @@ class PublicController extends BaseApiController
   
     if(isset($page->id)){
       $controller = app("Modules\Page\Http\Controllers\PublicController");
-      return $controller->uri($page);
+      return $controller->home($page);
     }
     
     

@@ -91,7 +91,7 @@ class Organization extends BaseTenant
     $slug = $this->domains->first()->domain ?? $this->slug;
     $domains = $this->domains;
     if ($slug)
-      return $domains->where("type","custom")->first()->domain ?? $domains->where("type","default")->first()->domain.Str::remove('https://', env('APP_URL', 'localhost'));
+      return 'https://'.($domains->where("type","custom")->first()->domain ?? $domains->where("type","default")->first()->domain).".".Str::remove('https://', env('APP_URL', 'localhost'))."/tienda";
     else
       return "";
 
