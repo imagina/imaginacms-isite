@@ -67,6 +67,20 @@ return [
       'entityId' => null
     ]
   ],
+  'logoIadminSM' => [
+    'value' => (object)['isite::logoIadminSM' => null],
+    'name' => 'medias_single',
+    'fakeFieldName' => 'isite::logoIadminSM',
+    'type' => 'media',
+    'groupName' => 'media',
+    'groupTitle' => 'isite::common.settingGroups.media',
+    'props' => [
+      'label' => 'isite::common.settings.logoIadminSM',
+      'zone' => 'isite::logoIadminSM',
+      'entity' => "Modules\Setting\Entities\Setting",
+      'entityId' => null
+    ]
+  ],
   'favicon' => [
     'value' => (object)['isite::favicon' => null],
     'name' => 'medias_single',
@@ -923,6 +937,8 @@ return [
       'options' => [
         ['label' => 'isite::common.settings.tenant.entities.setting', 'value' => 'setting'],
         ['label' => 'isite::common.settings.tenant.entities.page', 'value' => 'page'],
+        ['label' => 'isite::common.settings.tenant.entities.slider', 'value' => 'slider'],
+        ['label' => 'isite::common.settings.tenant.entities.slide', 'value' => 'slide'],
       ]
     ]
   ],

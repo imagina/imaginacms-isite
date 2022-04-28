@@ -11,6 +11,7 @@ return [
     'logo2' => 'Logo N°2',
     'logo3' => 'Logo N°3',
     'logoIadmin' => 'Logo Iadmin',
+    'logoIadmin' => 'Logo Iadmin SM',
     'favicon' => 'Favicon',
     'addressBar' => 'Address bar color',
     'brandPrimary' => 'Primary Color',
@@ -58,6 +59,8 @@ return [
       'entities' => [
         'setting' => 'Settings',
         'page' => 'Pages',
+        'slider' => 'Sliders',
+        'slide' => 'Slides',
       ],
     ],
     'googleClient' => 'Google Client',

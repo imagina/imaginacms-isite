@@ -340,7 +340,10 @@ return [
     "chart" => "Grafica | Graficas",
     "subtitle" => "Subtitulo | Subtitulos",
     "currentPlan" => "Plan actual",
-    "item" => "Elemento | Elementos"
+    "item" => "Elemento | Elementos",
+    "showing" => "Mostrando",
+    "entry" => "Entrada | Entradas",
+    "of" => "De"
   ],
   "message" => [
     "notFound" => "Lo sentimos, no hay nada aquí",

@@ -95,7 +95,7 @@ class ItemsList extends Component
     $this->moduleParams = $params;
     $this->page = $this->moduleParams['page'] ?? 1;
     $this->take = $this->moduleParams['take'] ?? 12;
-    $this->responsiveTopContent = $responsiveTopContent ?? ["mobile" => true, "desktop" => true];
+    $this->responsiveTopContent = $responsiveTopContent ?? ["mobile" => true, "desktop" => true, "order" => true];
     $this->showTitle = $showTitle;
     $this->pagination = $pagination ? array_merge(['show' => true, 'type' => 'normal'], $pagination) : ['show' => true, 'type' => 'normal'];
     $this->itemModal = $itemModal ?? ["mobile" => false, "desktop" => false, "idModal" => 'modal_' . $this->id];
