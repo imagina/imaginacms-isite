@@ -336,7 +336,10 @@ return [
     "chart" => "Chart | Charts",
     "subtitle" => "Subtitle | Subtitles",
     "currentPlan" => "Current plan",
-    "item" => "Item | Items"
+    "item" => "Item | Items",
+    "showing" => "Showing",
+    "entry" => "Entry | Entries",
+    "of" => "Of"
   ],
   "message" => [
     "notFound" => "Sorry, nothing here",

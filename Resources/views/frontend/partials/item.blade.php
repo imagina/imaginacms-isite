@@ -16,14 +16,14 @@ $hash = sha1($itemComponentNamespace);
 if (isset($component)) {
   $__componentOriginal{$hash} = $component;
 }
-$component = $__env->getContainer()->make($itemComponentNamespace, array_merge($itemComponentAttributes ?? [], [
+$component = $__env->getContainer()->make($itemComponentNamespace, array_merge([
   "item" => $item ?? null,
   "positionNumber"=>$position ?? null,
   "layout"=>$itemLayout ?? null,
   "parentAttributes"=>$attributes ?? [],
   "editLink"=>$editLink ?? null,
   "tooltipEditLink"=>$tooltipEditLink ?? null
-]));
+],$itemComponentAttributes ?? []));
 $component->withName($itemComponent);
 if ($component->shouldRender()):
   $__env->startComponent($component->resolveView(), $component->data());
