@@ -11,7 +11,7 @@
   @break
 @endswitch
 
-<div id="{{$id}}" class="item-layout item-list-layout-7 position-relative">
+<div id="{{$id}}" class="item-layout item-list-layout-7 position-relative {{$itemMarginB}}">
 
   <x-isite::edit-link link="{{$editLink}}{{$item->id}}" tooltip="{{$tooltipEditLink}}"/>
   <div class="card-item {{$row}}">
@@ -31,9 +31,9 @@
               @if(isset($item->url) && !empty($item->url))
                           <a href="{{$item->url}}" target="{{$target}}" class="{{$titleColor}}">
                   @endif
-                              <h3 class="title d-flex align-items-center {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}} {{$titleMarginT}} {{$titleMarginB}} {{$contentMarginInsideX}}"  style="height: {{$titleHeight}}px;">
+                              <h3 class="title d-flex {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}} {{$titleMarginT}} {{$titleMarginB}} {{$contentMarginInsideX}}"  style="height: {{$titleHeight}}px;">
                                   @if($titleVineta) <i class="{{$titleVineta}} {{$titleVinetaColor}} mr-2"></i>  @endif
-                                  <span> {{$item->title ?? $item->name}}</span>
+                                  <span>{!! Str::limit( $item->title ?? $item->name ?? '', $numberCharactersTitle) !!}</span>
                   </h3>
                   @if(isset($item->url) && !empty($item->url))
                 </a>
