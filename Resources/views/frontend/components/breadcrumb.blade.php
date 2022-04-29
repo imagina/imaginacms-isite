@@ -1,4 +1,4 @@
-<!-- Schema.org to the -->
+<!-- Schema.org to the breadcrumb -->
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",

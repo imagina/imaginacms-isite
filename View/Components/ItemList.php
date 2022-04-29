@@ -439,11 +439,10 @@ class ItemList extends Component
       break;
     
     }
-    
-    
-    
-    $this->view = "isite::frontend.components.item-list.layouts." . ($this->layout ?? 'item-list-layout-1') . ".index";
-
+  
+  
+      if(!isset($parentAttributes["itemComponentView"]))
+        $this->view = "isite::frontend.components.item-list.layouts." . ($this->layout ?? 'item-list-layout-1') . ".index";
   }
 
   private function getParentAttributes($parentAttributes)
