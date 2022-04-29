@@ -1,6 +1,4 @@
-
 <div id="{{$id}}" class="item-layout item-list-layout-6 position-relative {{$itemMarginB}}">
-
   <x-isite::edit-link link="{{$editLink}}{{$item->id}}" tooltip="{{$tooltipEditLink}}"/>
   <div class="card-item">
     <div class="row align-items-center">
@@ -36,9 +34,9 @@
           <a href="{{$item->url}}" target="{{$target}}" class="{{$titleColor}}">
               @endif
 
-            <h3 class="title d-flex {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}} {{$titleMarginT}} {{$titleMarginB}} {{$contentMarginInsideX}}" style="height: {{$titleHeight}}px;">
+            <h3 class="title d-flex align-items-center {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}}  {{$titleMarginT}} {{$titleMarginB}} {{$contentMarginInsideX}}" style="height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;">
                 @if($titleVineta) <i class="{{$titleVineta}} {{$titleVinetaColor}} mr-2"></i>  @endif
-                    <span>{!! Str::limit( $item->title ?? $item->name ?? '', $numberCharactersTitle) !!}</span>
+                <span> {{$item->title ?? $item->name}}</span>
               </h3>
               @if(isset($item->url) && !empty($item->url))
             </a>
@@ -50,7 +48,8 @@
           @if(isset($item->url)&& !empty($item->url))
             <a href="{{$item->url}}" target="{{$target}}">
               @endif
-              <div class="created-date {{$createdDateTextWeight}} {{$createdDateColor}} {{$createdDateMarginT}} {{$createdDateMarginB}} {{$contentMarginInsideX}}">
+              <div
+                class="created-date {{$createdDateTextWeight}} {{$createdDateColor}} {{$createdDateMarginT}} {{$createdDateMarginB}} {{$contentMarginInsideX}}">
                 {{ $item->created_at->format($formatCreatedDate) }}
               </div>
               @if(isset($item->url) && !empty($item->url))
@@ -138,12 +137,12 @@
         right: {{$imagePadding}}px;
     }
 
-
+   
     #{{$id}} .item-image picture {
          display: block !important;
         padding: {{$imagePicturePadding}}px;
     }
-
+    
     #{{$id}} .img-style {
        border-radius: {{$imageRadio}};
        border-style: {{$imageBorderStyle}};
@@ -153,7 +152,7 @@
        object-fit: {{$imageObject}};
        padding: {{$imagePadding}}px;
      }
-
+ 
 
     #{{$id}} .card-item {
         background-color: {{$itemBackgroundColor}};
@@ -205,8 +204,6 @@
      }
 </style>
 </div>
-
-
 
 
 

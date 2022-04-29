@@ -86,7 +86,8 @@
               @if(isset($item->url) && !empty($item->url))
                 <a href="{{$item->url}}" target="{{$target}}">
                   @endif
-                              <div class="summary {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}}" style="height: {{$summaryHeight}}px;">
+                
+                              <div class="summary {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}}" style="height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;">
                     {!! Str::limit( $item->summary ?? $item->description ?? $item->custom_html ?? '', $numberCharactersSummary) !!}
                   </div>
                   @if(isset($item->url) && !empty($item->url))

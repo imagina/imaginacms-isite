@@ -269,8 +269,8 @@ class ItemList extends Component
                                 $buttonTextSize = 16,
                                 $itemBackgroundColor = "none",
                                 $itemBackgroundColorHover = "none",
-                                $titleHeight = "auto",
-                                $summaryHeight = "auto",
+                                $titleHeight = null,
+                                $summaryHeight = "100",
                                 $columnLeft = "col-lg-6",
                                 $columnRight = "col-lg-6",
                                 $titleTextDecoration = "none",
@@ -450,11 +450,10 @@ class ItemList extends Component
       break;
     
     }
-    
-    
-    
-    $this->view = "isite::frontend.components.item-list.layouts." . ($this->layout ?? 'item-list-layout-1') . ".index";
 
+
+      if(!isset($parentAttributes["itemComponentView"]))
+        $this->view = "isite::frontend.components.item-list.layouts." . ($this->layout ?? 'item-list-layout-1') . ".index";
   }
 
   private function getParentAttributes($parentAttributes)

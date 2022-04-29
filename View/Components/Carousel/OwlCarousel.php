@@ -82,7 +82,7 @@ class OwlCarousel extends Component
                                 $autoplayHoverPause = true,
                                 $loop = true,
                                 $dots = true,
-                                $nav = true,
+                                $nav = false,
                                 $center = false,
                                 $responsive = null,
                                 $itemLayout = null,
