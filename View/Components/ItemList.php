@@ -265,7 +265,7 @@ class ItemList extends Component
                                 $buttonTextSize = 16,
                                 $itemBackgroundColor = "none",
                                 $itemBackgroundColorHover = "none",
-                                $titleHeight = "20",
+                                $titleHeight = null,
                                 $summaryHeight = "100",
                                 $columnLeft = "col-lg-6",
                                 $columnRight = "col-lg-6",
