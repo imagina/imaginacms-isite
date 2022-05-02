@@ -190,6 +190,7 @@ class ItemList extends Component
                                 $tooltipEditLink = null,
                                 $itemComponentView = null,
                                 $itemComponentTarget = "_self",
+                                $target = "_self",
                                 $itemListLayout = null,
                                 $positionNumber = null,
                                 $imageAspect = "1/1",
@@ -281,7 +282,7 @@ class ItemList extends Component
     $this->positionNumber = $positionNumber;
 
     $this->view = $itemComponentView ?? $this->view;
-    $this->target = $itemComponentTarget;
+    $this->target = $itemComponentTarget ?? $target ?? "_self";
     $this->withViewMoreButton = $withViewMoreButton;
     $this->viewMoreButtonLabel = $viewMoreButtonLabel;
     $this->withCreatedDate = $withCreatedDate;
