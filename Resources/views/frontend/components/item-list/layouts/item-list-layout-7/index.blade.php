@@ -4,14 +4,14 @@
   @php $row=""; $col1=""; $col2="image-overlay item-border";  @endphp
   @break
   @case('2')
-  @php $row="item-border"; $col1=$columnLeft." px-0"; $col2=$columnRight;  @endphp
+  @php $row="item-border"; $col1=$columnLeft." "; $col2=$columnRight;  @endphp
   @break
   @case('3')
-  @php $row="item-border"; $col1=$columnRight." order-1 px-0"; $col2=$columnLeft." order-0"; @endphp
+  @php $row="item-border"; $col1=$columnRight." order-1 "; $col2=$columnLeft." order-0"; @endphp
   @break
 @endswitch
 
-<div id="{{$id}}" class="item-layout item-list-layout-7 position-relative">
+<div id="{{$id}}" class="item-layout item-list-layout-7 position-relative {{$itemMarginB}}">
 
   <x-isite::edit-link link="{{$editLink}}{{$item->id}}" tooltip="{{$tooltipEditLink}}"/>
   <div class="card-item {{$row}}">
@@ -31,9 +31,9 @@
               @if(isset($item->url) && !empty($item->url))
                           <a href="{{$item->url}}" target="{{$target}}" class="{{$titleColor}}">
                   @endif
-                              <h3 class="title d-flex align-items-center {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}} {{$titleMarginT}} {{$titleMarginB}} {{$contentMarginInsideX}}"  style="height: {{$titleHeight}}px;">
+                              <h3 class="title d-flex {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}} {{$titleMarginT}} {{$titleMarginB}} {{$contentMarginInsideX}}"  style="height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;">
                                   @if($titleVineta) <i class="{{$titleVineta}} {{$titleVinetaColor}} mr-2"></i>  @endif
-                                  <span> {{$item->title ?? $item->name}}</span>
+                                  <span>{!! Str::limit( $item->title ?? $item->name ?? '', $numberCharactersTitle) !!}</span>
                   </h3>
                   @if(isset($item->url) && !empty($item->url))
                 </a>
@@ -87,7 +87,7 @@
                 <a href="{{$item->url}}" target="{{$target}}">
                   @endif
                 
-                              <div class="summary {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}}" style="height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;">
+                              <div class="summary {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}}" style="height: @if($summaryHeight) {{$summaryHeight}}px @else auto @endif;">
                     {!! Str::limit( $item->summary ?? $item->description ?? $item->custom_html ?? '', $numberCharactersSummary) !!}
                   </div>
                   @if(isset($item->url) && !empty($item->url))
@@ -123,7 +123,7 @@
         </div>
     </div>
   </div>
-  
+
 <style>
     #{{$id}} .card-item {
         background-color: {{$itemBackgroundColor}};
@@ -138,7 +138,7 @@
         bottom: {{$imagePadding}}px;
         right: {{$imagePadding}}px;
     }
-     
+
         #{{$id}} .item-image picture {
              display: block !important;
            padding: {{$imagePicturePadding}}px;

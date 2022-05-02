@@ -1,4 +1,4 @@
-<div id="{{$id}}" class="item-layout item-list-layout-6 position-relative ">
+<div id="{{$id}}" class="item-layout item-list-layout-6 position-relative {{$itemMarginB}}">
   <x-isite::edit-link link="{{$editLink}}{{$item->id}}" tooltip="{{$tooltipEditLink}}"/>
   <div class="card-item">
     <div class="row align-items-center">
@@ -91,7 +91,7 @@
             <a href="{{$item->url}}" target="{{$target}}">
               @endif
               <div
-                class="summary {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}} {{$contentMarginInsideX}}" style="height: {{$summaryHeight}}px;">
+                class="summary {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}} {{$contentMarginInsideX}}" style="height: @if($summaryHeight) {{$summaryHeight}}px @else auto @endif;">
                 {!! Str::limit( $item->summary ?? $item->description ?? $item->custom_html ?? '', $numberCharactersSummary) !!}
               </div>
               @if(isset($item->url) && !empty($item->url))

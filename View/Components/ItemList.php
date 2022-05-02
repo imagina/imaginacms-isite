@@ -129,6 +129,10 @@ class ItemList extends Component
     public $imageRadio;
     public $contentRadio;
 
+    public $titleAlignVertical;
+    public $numberCharactersTitle;
+    public $itemMarginB;
+
 
     /**
      * Create a new component instance.
@@ -272,7 +276,10 @@ class ItemList extends Component
                                 $titleTextDecoration = "none",
                                 $summaryTextDecoration = "none",
                                 $categoryTextDecoration = "none",
-                                $createdDateTextDecoration = "none"
+                                $createdDateTextDecoration = "none",
+                                $titleAlignVertical = "align-items-start",
+                                $numberCharactersTitle = 200,
+                                $itemMarginB = ""
     )
     {
 
@@ -307,80 +314,80 @@ class ItemList extends Component
     $this->imageOpacityColor = $imageOpacityColor;
     $this->imageOpacityDirection = $imageOpacityDirection;
 
-        $this->withTitle = $withTitle;
-        $this->titleAlign = $titleAlign;
-        $this->titleTextSize = $titleTextSize;
-        $this->titleTextWeight = $titleTextWeight;
-        $this->titleTextTransform = $titleTextTransform;
+    $this->withTitle = $withTitle;
+    $this->titleAlign = $titleAlign;
+    $this->titleTextSize = $titleTextSize;
+    $this->titleTextWeight = $titleTextWeight;
+    $this->titleTextTransform = $titleTextTransform;
 
-        $this->summaryAlign = $summaryAlign;
-        $this->summaryTextSize = $summaryTextSize;
-        $this->summaryTextWeight = $summaryTextWeight;
+    $this->summaryAlign = $summaryAlign;
+    $this->summaryTextSize = $summaryTextSize;
+    $this->summaryTextWeight = $summaryTextWeight;
 
-        $this->categoryAlign = $categoryAlign;
-        $this->categoryTextSize = $categoryTextSize;
-        $this->categoryTextWeight = $categoryTextWeight;
+    $this->categoryAlign = $categoryAlign;
+    $this->categoryTextSize = $categoryTextSize;
+    $this->categoryTextWeight = $categoryTextWeight;
 
-        $this->createdDateAlign = $createdDateAlign;
-        $this->createdDateTextSize = $createdDateTextSize;
-        $this->createdDateTextWeight = $createdDateTextWeight;
+    $this->createdDateAlign = $createdDateAlign;
+    $this->createdDateTextSize = $createdDateTextSize;
+    $this->createdDateTextWeight = $createdDateTextWeight;
 
-        $this->userAlign = $userAlign;
-        $this->userTextSize = $userTextSize;
-        $this->userTextWeight = $userTextWeight;
+    $this->userAlign = $userAlign;
+    $this->userTextSize = $userTextSize;
+    $this->userTextWeight = $userTextWeight;
 
-        $this->buttonAlign = $buttonAlign;
-        $this->buttonLayout = $buttonLayout;
-        $this->buttonIcon = $buttonIcon;
-        $this->buttonIconColor = $buttonIconColor;
-        $this->buttonIconLR = $buttonIconLR;
-        $this->buttonColor = $buttonColor;
+    $this->buttonAlign = $buttonAlign;
+    $this->buttonLayout = $buttonLayout;
+    $this->buttonIcon = $buttonIcon;
+    $this->buttonIconColor = $buttonIconColor;
+    $this->buttonIconLR = $buttonIconLR;
+    $this->buttonColor = $buttonColor;
 
-        $this->imagePosition = $imagePosition;
-        $this->imagePositionVertical = $imagePositionVertical;
-        $this->contentPositionVertical = $contentPositionVertical;
+    $this->imagePosition = $imagePosition;
+    $this->imagePositionVertical = $imagePositionVertical;
+    $this->contentPositionVertical = $contentPositionVertical;
 
-        $this->contentPadding = $contentPadding;
-        $this->contentBorder = $contentBorder;
-        $this->contentBorderColor = $contentBorderColor;
-        $this->contentBorderRounded = $contentBorderRounded;
+    $this->contentPadding = $contentPadding;
+    $this->contentBorder = $contentBorder;
+    $this->contentBorderColor = $contentBorderColor;
+    $this->contentBorderRounded = $contentBorderRounded;
 
-        $this->contentMarginInsideX = $contentMarginInsideX;
-        $this->contentBorderShadows = "$contentBorderShadows";
-        $this->contentBorderShadowsHover = $contentBorderShadowsHover;
+    $this->contentMarginInsideX = $contentMarginInsideX;
+    $this->contentBorderShadows = "$contentBorderShadows";
+    $this->contentBorderShadowsHover = $contentBorderShadowsHover;
 
-        $this->titleColor = $titleColor;
-        $this->summaryColor = $summaryColor;
-        $this->categoryColor = $categoryColor;
-        $this->createdDateColor = $createdDateColor;
-        $this->userColor = $userColor;
+    $this->titleColor = $titleColor;
+    $this->summaryColor = $summaryColor;
+    $this->categoryColor = $categoryColor;
+    $this->createdDateColor = $createdDateColor;
+    $this->userColor = $userColor;
 
-        $this->titleMarginT = $titleMarginT;
-        $this->titleMarginB = $titleMarginB;
-        $this->summaryMarginT = $summaryMarginT;
-        $this->summaryMarginB = $summaryMarginB;
-        $this->categoryMarginT = $categoryMarginT;
-        $this->categoryMarginB = $categoryMarginB;
-        $this->createdDateMarginT = $createdDateMarginT;
-        $this->createdDateMarginB = $createdDateMarginB;
-        $this->userMarginT = $userMarginT;
-        $this->userMarginB = $userMarginB;
-        $this->buttonMarginT = $buttonMarginT;
-        $this->buttonMarginB = $buttonMarginB;
+    $this->titleMarginT = $titleMarginT;
+    $this->titleMarginB = $titleMarginB;
+    $this->summaryMarginT = $summaryMarginT;
+    $this->summaryMarginB = $summaryMarginB;
+    $this->categoryMarginT = $categoryMarginT;
+    $this->categoryMarginB = $categoryMarginB;
+    $this->createdDateMarginT = $createdDateMarginT;
+    $this->createdDateMarginB = $createdDateMarginB;
+    $this->userMarginT = $userMarginT;
+    $this->userMarginB = $userMarginB;
+    $this->buttonMarginT = $buttonMarginT;
+    $this->buttonMarginB = $buttonMarginB;
 
-        $this->titleLetterSpacing = $titleLetterSpacing;
-        $this->summaryLetterSpacing = $summaryLetterSpacing;
-        $this->categoryLetterSpacing = $categoryLetterSpacing;
-        $this->createdDateLetterSpacing = $createdDateLetterSpacing;
+    $this->titleLetterSpacing = $titleLetterSpacing;
+    $this->summaryLetterSpacing = $summaryLetterSpacing;
+    $this->categoryLetterSpacing = $categoryLetterSpacing;
+    $this->createdDateLetterSpacing = $createdDateLetterSpacing;
 
-        $this->titleVineta = $titleVineta;
-        $this->titleVinetaColor = $titleVinetaColor;
+    $this->titleVineta = $titleVineta;
+    $this->titleVinetaColor = $titleVinetaColor;
 
-        $this->buttonSize = $buttonSize;
-        $this->buttonTextSize = $buttonTextSize;
+    $this->buttonSize = $buttonSize;
+    $this->buttonTextSize = $buttonTextSize;
 
-        $this->itemBackgroundColor = $itemBackgroundColor;
-        $this->itemBackgroundColorHover = $itemBackgroundColorHover;
+    $this->itemBackgroundColor = $itemBackgroundColor;
+    $this->itemBackgroundColorHover = $itemBackgroundColorHover;
 
     $this->titleHeight=$titleHeight;
     $this->summaryHeight=$summaryHeight;
@@ -393,6 +400,10 @@ class ItemList extends Component
     $this->summaryTextDecoration = $summaryTextDecoration;
     $this->categoryTextDecoration = $categoryTextDecoration;
     $this->createdDateTextDecoration = $createdDateTextDecoration;
+
+    $this->titleAlignVertical = $titleAlignVertical;
+    $this->numberCharactersTitle = $numberCharactersTitle;
+    $this->itemMarginB = $itemMarginB;
 
     if (!empty($parentAttributes))
       $this->getParentAttributes($parentAttributes);
@@ -439,8 +450,8 @@ class ItemList extends Component
       break;
     
     }
-  
-  
+
+
       if(!isset($parentAttributes["itemComponentView"]))
         $this->view = "isite::frontend.components.item-list.layouts." . ($this->layout ?? 'item-list-layout-1') . ".index";
   }
