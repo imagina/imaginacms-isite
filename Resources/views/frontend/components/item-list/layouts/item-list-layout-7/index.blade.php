@@ -15,7 +15,7 @@
 
   <x-isite::edit-link link="{{$editLink}}{{$item->id}}" tooltip="{{$tooltipEditLink}}"/>
   <div class="card-item {{$row}}">
-    <div class="{{$imagePosition!='1' ? 'row' : ''}}">
+    <div class="{{$imagePosition!='1' ? 'row no-gutters' : ''}}">
         @if(method_exists ( $item, "mediaFiles" ) )
           <div class="item-image {{$col1}} {{$imagePositionVertical}} @if($withImageOpacity) {{$imageOpacityColor}} {{$imageOpacityDirection}} @endif">
             <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
