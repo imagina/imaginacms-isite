@@ -33,9 +33,8 @@ class Lists extends Component
     public $columnLeft;
     public $columnRight;
     public $orderColumnMain; // 0 - 1
-    public $positionContent; // bottom - top
-    public $content;
-    public $contentUrl;
+    public $preListContentView;
+    public $postListContentView;
     public $emptyItems;
     public $itemComponent;
     public $itemComponentAttributesMain;
@@ -61,9 +60,8 @@ class Lists extends Component
                                 $columnLeft = "col-lg-8",
                                 $columnRight = "col-lg-4",
                                 $orderColumnMain = 0,
-                                $positionContent = "bottom",
-                                $content=null,
-                                $contentUrl=null,
+                                $preListContentView="",
+                                $postListContentView="",
                                 $titleAlign = "text-left",
                                 $titleLineMarginY= "mt-3 mb-4",
                                 $titleColor = null,
@@ -98,7 +96,8 @@ class Lists extends Component
         $this->columnLeft = $columnLeft;
         $this->columnRight = $columnRight;
         $this->orderColumnMain = $orderColumnMain;
-        $this->positionContent = $positionContent;
+        $this->preListContentView  = $preListContentView;
+        $this->postListContentView  = $postListContentView;
         $this->titleAlign = $titleAlign;
         $this->titleLineMarginY = $titleLineMarginY;
         $this->titleColor = $titleColor;
@@ -108,13 +107,10 @@ class Lists extends Component
         $this->titleWeight = $titleWeight;
         $this->titleTransform = $titleTransform;
         $this->titleLetterSpacing = $titleLetterSpacing;
-        $this->content = $content;
-        $this->contentUrl = $contentUrl;
         $this->itemComponent = $itemComponent ?? "isite::item-list";
         $this->itemComponentNamespace =  $itemComponentNamespace ?? "Modules\Isite\View\Components\ItemList";
         $this->itemComponentAttributesMain = count($itemComponentAttributesMain) ? $itemComponentAttributesMain : config('asgard.isite.config.indexItemListAttributesMain');
         $this->itemComponentAttributesList = count($itemComponentAttributesList) ? $itemComponentAttributesList : config('asgard.isite.config.indexItemListAttributesList');
-
 
     }
 
@@ -123,7 +119,7 @@ class Lists extends Component
     {
 
         return [
-            "include" => $this->params["include"] ?? [],
+            "include" => $this->params["include"] ?? ['files'],
             "take" => $this->params["take"] ?? 12,
             "page" => $this->params["page"] ?? 1,
             "filter" => $this->params["filter"] ?? [],

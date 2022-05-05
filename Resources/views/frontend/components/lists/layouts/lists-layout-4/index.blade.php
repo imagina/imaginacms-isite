@@ -17,10 +17,9 @@
             @include("isite::frontend.partials.item",["itemLayout" => $itemComponentAttributesMain['layout'], "itemComponentAttributes" => $itemComponentAttributesMain, "item" => $items[0]])
         </div>
         <div class="list-column-2 {{$columnRight}}">
-            @if($positionContent=="top" && $content)
+            @if(!empty($preListContentView))
                 <div class="mb-4">
-                    <x-media::single-image :url="$contentUrl ?? null" :setting="$content"  :alt="$title ?? ''" imgClasses="list-image-bottom"/>
-                    <x-isite::edit-link :link="'/iadmin/#/site/index/?settingName='.$content"/>
+                    @include($preListContentView)
                 </div>
             @endif
             <div class="list-extra">
@@ -33,12 +32,11 @@
                 @endforeach
 
             </div>
-            @if($positionContent=="bottom" && $content)
-                <div class="mt-4">
-                    <x-media::single-image :url="$contentUrl ?? null" :setting="$content"  :alt="$title ?? ''" imgClasses="list-image-bottom"/>
-                    <x-isite::edit-link :link="'/iadmin/#/site/index/?settingName='.$content"/>
+              @if(!empty($postListContentView))
+                <div class="mb-4">
+                  @include($postListContentView)
                 </div>
-            @endif
+              @endif
         </div>
     </div>
 </div>
