@@ -46,6 +46,7 @@ class ItemsList extends Component
   public $tooltipEditLink = "";
   public $uniqueItemListRendered;
   public $emitItemListRenderedName;
+  public $disableFilters;
 
   //Item List Unique Class
   public $itemListUniqueClass;
@@ -78,7 +79,8 @@ class ItemsList extends Component
     $itemComponentNamespace = "Modules\Isite\View\Components\ItemList", $itemListLayout = null, $moduleName = "isite",
     $entityName = "item", $itemComponentName = "isite::item-list", $params = [], $responsiveTopContent = null,
     $showTitle = true, $pagination = null, $configOrderBy = null, $configLayoutIndex = null, $itemComponentAttributes = [],
-    $itemModal = null, $carouselAttributes = null, $uniqueItemListRendered = false, $title = null, $description = null
+    $itemModal = null, $carouselAttributes = null, $uniqueItemListRendered = false, $title = null, $description = null,
+    $disableFilters = false
   )
   {
     $this->moduleName = strtolower($moduleName);
@@ -109,6 +111,8 @@ class ItemsList extends Component
     list($this->editLink, $this->tooltipEditLink) = getEditLink($this->repository);
 
     $this->itemListUniqueClass = "unique-class-".$this->id;
+    $this->disableFilters = $disableFilters;
+    
   }
 
   /*
@@ -150,10 +154,14 @@ class ItemsList extends Component
   */
   public function getData($params)
   {
+    
+    
     //\Log::info("ITEMLIST - GETDATA - PARAMS: ".json_encode($params));
     if (isset($params["filter"])) {
       $this->emitItemListRendered = true;
-      $this->filter = array_merge($this->filter, $params["filter"]);
+      if(!$this->disableFilters)
+        $this->filter = array_merge($this->filter, $params["filter"]);
+      
       $this->resetPage();
     }
     if (isset($params["order"])) {
@@ -161,6 +169,7 @@ class ItemsList extends Component
       $this->orderBy = $params['order'];
       $this->resetPage();
     }
+    
   }
 
   /*
