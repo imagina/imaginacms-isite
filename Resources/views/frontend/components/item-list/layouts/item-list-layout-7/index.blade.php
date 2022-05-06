@@ -140,20 +140,19 @@
         right: {{$imagePadding}}px;
     }
 
-        #{{$id}} .item-image picture {
-             display: block !important;
-           padding: {{$imagePicturePadding}}px;
-        }
-        #{{$id}} .img-style {
-             border-radius: {{$imageRadio}};
-             border-style: {{$imageBorderStyle}};
-             border-width: {{$imageBorderWidth}}px;
-             border-color: {{$imageBorderColor}};
-             aspect-ratio: {{$imageAspect}};
-             object-fit: {{$imageObject}};
-           padding: {{$imagePadding}}px;
-         }
-
+    #{{$id}} .item-image picture {
+         display: block !important;
+       padding: {{$imagePicturePadding}}px;
+    }
+    #{{$id}} .img-style {
+         border-radius: {{$imageRadio}};
+         border-style: {{$imageBorderStyle}};
+         border-width: {{$imageBorderWidth}}px;
+         border-color: {{$imageBorderColor}};
+         aspect-ratio: {{$imageAspect}};
+         object-fit: {{$imageObject}};
+       padding: {{$imagePadding}}px;
+     }
 
     @if($contentBorderShadows=='none')
         #{{$id}} .item-border {
@@ -211,6 +210,11 @@
     #{{$id}} .item-created-date a:hover {
          text-decoration: {{$createdDateTextDecoration}};
      }
+    #{{$id}} .item-content {
+       padding-left: {{$contentPaddingLeft}}px;
+       padding-right: {{$contentPaddingRight}}px;
+    }
+
 </style>
 </div>
 
