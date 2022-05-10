@@ -36,7 +36,7 @@
 
             <h3 class="title d-flex align-items-center {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}}  {{$titleMarginT}} {{$titleMarginB}} {{$contentMarginInsideX}}" style="height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;">
                 @if($titleVineta) <i class="{{$titleVineta}} {{$titleVinetaColor}} mr-2"></i>  @endif
-                <span> {{$item->title ?? $item->name}}</span>
+                <span> {!! Str::limit( $item->title ?? $item->name ?? '', $numberCharactersTitle) !!}  </span>
               </h3>
               @if(isset($item->url) && !empty($item->url))
             </a>

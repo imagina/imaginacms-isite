@@ -133,6 +133,8 @@ class ItemList extends Component
     public $numberCharactersTitle;
     public $itemMarginB;
 
+    public $contentPaddingLeft; /* padding de contenido de layout 7 sin overlay left */
+    public $contentPaddingRight; /* padding de contenido de layout 7 sin overlay right */
 
     /**
      * Create a new component instance.
@@ -238,7 +240,7 @@ class ItemList extends Component
                                 $contentBorder = 0,
                                 $contentBorderColor = "#dddddd",
                                 $contentBorderRounded = 0,
-                                $contentBorderRoundedType = 1,
+                                $contentBorderRoundedType = "1",
                                 $buttonColor = "primary",
                                 $contentMarginInsideX = "mx-0",
                                 $contentBorderShadows = "none",
@@ -280,7 +282,9 @@ class ItemList extends Component
                                 $createdDateTextDecoration = "none",
                                 $titleAlignVertical = "align-items-start",
                                 $numberCharactersTitle = 200,
-                                $itemMarginB = ""
+                                $itemMarginB = "",
+                                $contentPaddingLeft = 15,
+                                $contentPaddingRight = 15
     )
     {
 
@@ -406,24 +410,40 @@ class ItemList extends Component
     $this->numberCharactersTitle = $numberCharactersTitle;
     $this->itemMarginB = $itemMarginB;
 
+    $this->contentPaddingLeft = $contentPaddingLeft;
+    $this->contentPaddingRight = $contentPaddingRight;
+
     if (!empty($parentAttributes))
       $this->getParentAttributes($parentAttributes);
   
     $this->id = "item".preg_replace( '/[^a-z0-9 ]/i', '', $item->slug ?? $item->title ?? $item->name ?? "").$item->id.uniqid();
-  
-      // 1 all, 2 top, 3 right, 4 left, 5 bottom
+
+
+      //{{-- 1 all, 2 top, 3 right, 4 left, 5 bottom, 6 top right, 7 top left, 8 bottom right, 9 top left --}}
       switch($this->imageBorderRadioType){
         case '2':
          $this->imageRadio=$this->imageBorderRadio."px ".$this->imageBorderRadio."px 0 0";
         break;
         case '3':
-          $this->imageRadio=$this->imageBorderRadio."px 0 0 ".$this->imageBorderRadio."px";
+            $this->imageRadio="0 ".$this->imageBorderRadio."px ".$this->imageBorderRadio."px 0";
         break;
         case '4':
-          $this->imageRadio="0 ".$this->imageBorderRadio."px ".$this->imageBorderRadio."px 0";
+            $this->imageRadio=$this->imageBorderRadio."px 0 0 ".$this->imageBorderRadio."px";
         break;
         case '5':
           $this->imageRadio="0 0 ".$this->imageBorderRadio."px ".$this->imageBorderRadio."px";
+        break;
+        case '6':
+            $this->imageRadio=$this->imageBorderRadio."px 0 ".$this->imageBorderRadio."px ".$this->imageBorderRadio."px";
+        break;
+        case '7':
+            $this->imageRadio="0 ".$this->imageBorderRadio."px ".$this->imageBorderRadio."px ".$this->imageBorderRadio."px";
+        break;
+        case '8':
+            $this->imageRadio=$this->imageBorderRadio."px ".$this->imageBorderRadio."px 0 ".$this->imageBorderRadio."px";
+        break;
+        case '9':
+            $this->imageRadio=$this->imageBorderRadio."px ".$this->imageBorderRadio."px ".$this->imageBorderRadio."px 0";
         break;
         default:
           $this->imageRadio=$this->imageBorderRadio."px";
@@ -432,19 +452,31 @@ class ItemList extends Component
       }
       
   
-    //{{-- 1 all, 2 top, 3 right, 4 left, 5 bottom --}}
+    //{{-- 1 all, 2 top, 3 right, 4 left, 5 bottom, 6 top right, 7 top left, 8 bottom right, 9 top left --}}
     switch($this->contentBorderRoundedType){
       case '2':
       $this->contentRadio=$this->contentBorderRounded."px ".$this->contentBorderRounded."px 0 0";
       break;
       case '3':
-        $this->contentRadio=$this->contentBorderRounded."px 0 0 ".$this->contentBorderRounded."px";
+          $this->contentRadio="0 ".$this->contentBorderRounded."px ".$this->contentBorderRounded."px 0";
       break;
       case '4':
-        $this->contentRadio="0 ".$this->contentBorderRounded."px ".$this->contentBorderRounded."px 0";
+          $this->contentRadio=$this->contentBorderRounded."px 0 0 ".$this->contentBorderRounded."px";
       break;
       case '5':
         $this->contentRadio="0 0 ".$this->contentBorderRounded."px ".$this->contentBorderRounded."px";
+      break;
+      case '6':
+          $this->contentRadio=$this->contentBorderRounded."px 0 ".$this->contentBorderRounded."px ".$this->contentBorderRounded."px";
+      break;
+      case '7':
+          $this->contentRadio="0 ".$this->contentBorderRounded."px ".$this->contentBorderRounded."px ".$this->contentBorderRounded."px";
+      break;
+      case '8':
+          $this->contentRadio=$this->contentBorderRounded."px ".$this->contentBorderRounded."px 0 ".$this->contentBorderRounded."px";
+      break;
+      case '9':
+          $this->contentRadio=$this->contentBorderRounded."px ".$this->contentBorderRounded."px ".$this->contentBorderRounded."px 0";
       break;
       default:
         $this->contentRadio=$this->contentBorderRounded."px";

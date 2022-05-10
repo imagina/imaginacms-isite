@@ -1,48 +1,48 @@
 @if(!$emptyItems)
-<section id="{{$id}}" class="{{$owlBlockStyle}}">
+  <section id="{{$id}}" class="{{$owlBlockStyle}}">
     <div class="{{$containerFluid ? 'container-fluid': 'container'}}">
 
-          <div class="row align-items-center @if($navPosition=='top-right') justify-content-end @endif @if($navPosition=="top-right" && $navPosition=="top-left" || $owlTextAlign=='text-center') my-3 @endif">
+      <div class="row align-items-center @if($navPosition=='top-right') justify-content-end @endif @if(($navPosition=="top-right" || $navPosition=="top-left") && $owlTextAlign=="text-center") my-3 @endif">
 
-            <div class="col px-0 {{ $navPosition=="top-left" ? 'order-1':'' }}"  @if($navPosition=="top-right" && $navPosition=="top-left" || $owlTextAlign=='text-center') style="position: absolute; left: 0;" @endif>
-              <div class="title-section {{$owlTextAlign}}" @if($owlTextPosition==3) style="display: flex; flex-direction: column;" @endif>
-                @if($title!=="")
-                  <h2 class="title {{ $owlTextPosition==3 ? 'order-1':'' }} {{$owlTitleColor}} {{$owlTitleWeight}} {{$owlTitleTransform}} {{$owlTitleMarginT}} {{$owlTitleMarginB}}" style="font-size: {{$owlTitleSize}}px;">
-                    @if($owlTitleVineta) <i class="{{$owlTitleVineta}} {{$owlTitleVinetaColor}} mr-1"></i>  @endif
-                    <span> {!! $title !!}</span>
-                  </h2>
-                @endif
-                @if($subTitle!=="" && $owlTextPosition!=1)
-                    <h6 class="subtitle {{$owlSubtitleColor}} {{$owlSubtitleWeight}} {{$owlSubtitleTransform}} {{$owlSubtitleMarginT}} {{$owlSubtitleMarginB}}" style="font-size: {{$owlSubtitleSize}}px;">
-                      {!! $subTitle !!}
-                    </h6>
-                @endif
-              </div>
-            </div>
-
-            @if($nav && $navPosition=="top-left" || $nav && $navPosition=="top-right")
-              <div class="col-auto {{ $navPosition=="top-left" ? 'order-0 pl-0': 'pr-0' }}">
-
-                <x-isite::button :style="$navStyleButton"
-                                 :buttonClasses="'prevBtn d-inline-block my-2  '.$navSizeButton.' '.$navStyleButton"
-                                 :withIcon="true"
-                                 :iconClass="'fa fa-'.$navIcon.'-left'"
-                                 :withLabel="false"
-                                 :color="$navColor"
-                                 :sizeLabel="$navSizeLabel"
-                />
-
-                <x-isite::button :style="$navStyleButton"
-                                 :buttonClasses="'nextBtn d-inline-block my-2  '.$navSizeButton.' '.$navStyleButton"
-                                 :withIcon="true"
-                                 :iconClass="'fa fa-'.$navIcon.'-right'"
-                                 :withLabel="false"
-                                 :color="$navColor"
-                                 :sizeLabel="$navSizeLabel"
-                />
-              </div>
+        <div class="col px-0 {{ $navPosition=="top-left" ? 'order-1':'' }}"  @if(($navPosition=="top-right" || $navPosition=="top-left") && $owlTextAlign=="text-center") style="position: absolute; left: 0;" @endif>
+          <div class="title-section {{$owlTextAlign}}" @if($owlTextPosition==3) style="display: flex; flex-direction: column;" @endif>
+            @if($title!=="")
+              <h2 class="title {{ $owlTextPosition==3 ? 'order-1':'' }} {{$owlTitleColor}} {{$owlTitleWeight}} {{$owlTitleTransform}} {{$owlTitleMarginT}} {{$owlTitleMarginB}}" style="font-size: {{$owlTitleSize}}px;">
+                @if($owlTitleVineta) <i class="{{$owlTitleVineta}} {{$owlTitleVinetaColor}} mr-1"></i>  @endif
+                <span> {!! $title !!}</span>
+              </h2>
+            @endif
+            @if($subTitle!=="" && $owlTextPosition!=1)
+              <h6 class="subtitle {{$owlSubtitleColor}} {{$owlSubtitleWeight}} {{$owlSubtitleTransform}} {{$owlSubtitleMarginT}} {{$owlSubtitleMarginB}}" style="font-size: {{$owlSubtitleSize}}px;">
+                {!! $subTitle !!}
+              </h6>
             @endif
           </div>
+        </div>
+
+        @if($nav && $navPosition=="top-left" || $nav && $navPosition=="top-right")
+          <div class="col-auto {{ $navPosition=="top-left" ? 'order-0 pl-0': 'pr-0' }}">
+
+            <x-isite::button :style="$navStyleButton"
+                             :buttonClasses="'prevBtn d-inline-block my-2  '.$navSizeButton.' '.$navStyleButton"
+                             :withIcon="true"
+                             :iconClass="'fa fa-'.$navIcon.'-left'"
+                             :withLabel="false"
+                             :color="$navColor"
+                             :sizeLabel="$navSizeLabel"
+            />
+
+            <x-isite::button :style="$navStyleButton"
+                             :buttonClasses="'nextBtn d-inline-block my-2  '.$navSizeButton.' '.$navStyleButton"
+                             :withIcon="true"
+                             :iconClass="'fa fa-'.$navIcon.'-right'"
+                             :withLabel="false"
+                             :color="$navColor"
+                             :sizeLabel="$navSizeLabel"
+            />
+          </div>
+        @endif
+      </div>
 
 
       @if($nav && $navPosition=="top-center")
@@ -72,49 +72,46 @@
 
 
 
-          @if($nav && $navPosition=="center")
-          <div class="row wrapper">
-            <div>
+      @if($nav && $navPosition=="center")
+        <div class="row wrapper">
+          <div>
 
-              <x-isite::button :style="$navStyleButton"
-                               :buttonClasses="'prevBtn d-inline-block my-2  '.$navSizeButton.' '.$navStyleButton"
-                               :withIcon="true"
-                               :iconClass="'fa fa-'.$navIcon.'-left'"
-                               :withLabel="false"
-                               :color="$navColor"
-                               :sizeLabel="$navSizeLabel"
-              />
-            </div>
+            <x-isite::button :style="$navStyleButton"
+                             :buttonClasses="'prevBtn d-inline-block my-2  '.$navSizeButton.' '.$navStyleButton"
+                             :withIcon="true"
+                             :iconClass="'fa fa-'.$navIcon.'-left'"
+                             :withLabel="false"
+                             :color="$navColor"
+                             :sizeLabel="$navSizeLabel"
+            />
+          </div>
 
           @endif
 
-            <div class=" @if($navPosition!="center") row  py-3 @endif">
-              <div id="{{$id}}Carousel" class="owl-carousel owl-theme {{$dotsStyle}}">
-                @php($x = 0) {{-- iterador de items --}}
-                @php($j = 0) {{-- iterador de itemsBySlide --}}
-                @while(isset($items[$x]))
-                  @php($j = 0)
-                  @if($itemsBySlide > 1)
+          <div class=" @if($navPosition!="center") row  py-3 @endif">
+            <div id="{{$id}}Carousel" class="owl-carousel owl-theme {{$dotsStyle}}">
+              @php($x = 0) {{-- iterador de items --}}
+              @php($j = 0) {{-- iterador de itemsBySlide --}}
+              @while(isset($items[$x]))
+                @php($j = 0)
+                @if($itemsBySlide > 1)
 
-                    <div class="items-by-slide">
-                      @endif
+                  <div class="items-by-slide">
+                    @endif
 
-                      @while(isset($items[$x + $j]) && $j<$itemsBySlide)
+                    @while(isset($items[$x + $j]) && $j<$itemsBySlide)
 
-                        <x-dynamic-component :positionNumber="$x+$j" :component="$itemComponent" :item="$items[$x + $j]"
-                                             :product="$items[$x + $j]" :layout="$itemLayout"
-                                             :parentAttributes="$attributes" :editLink="$editLink"
-                                             :tooltipEditLink="$tooltipEditLink"/>
+                      @include("isite::frontend.partials.item",["item" => $items[$x + $j], "position" => $x + $j])
 
-                        @php($j++)
-                      @endwhile
-                      @if($itemsBySlide > 1)
-                    </div>
-                  @endif
-                  @php($x+=$itemsBySlide)
-                @endwhile
-              </div>
+                      @php($j++)
+                    @endwhile
+                    @if($itemsBySlide > 1)
+                  </div>
+                @endif
+                @php($x+=$itemsBySlide)
+              @endwhile
             </div>
+          </div>
 
           @if($nav && $navPosition=="center")
             <div>
@@ -128,34 +125,34 @@
               />
 
             </div>
-          </div>
-          @endif
+        </div>
+      @endif
 
 
-          @if($nav && $navPosition=="bottom")
-            <div class="text-center">
+      @if($nav && $navPosition=="bottom")
+        <div class="text-center">
 
-              <x-isite::button :style="$navStyleButton"
-                               :buttonClasses="'prevBtn d-inline-block my-2 '.$navSizeButton.' '.$navStyleButton"
-                               :withIcon="true"
-                               :iconClass="'fa fa-'.$navIcon.'-left'"
-                               :withLabel="false"
-                               :color="$navColor"
-                               :sizeLabel="$navSizeLabel"
-              />
+          <x-isite::button :style="$navStyleButton"
+                           :buttonClasses="'prevBtn d-inline-block my-2 '.$navSizeButton.' '.$navStyleButton"
+                           :withIcon="true"
+                           :iconClass="'fa fa-'.$navIcon.'-left'"
+                           :withLabel="false"
+                           :color="$navColor"
+                           :sizeLabel="$navSizeLabel"
+          />
 
-              <x-isite::button :style="$navStyleButton"
-                               :buttonClasses="'nextBtn d-inline-block my-2  '.$navSizeButton.' '.$navStyleButton"
-                               :withIcon="true"
-                               :iconClass="'fa fa-'.$navIcon.'-right'"
-                               :withLabel="false"
-                               :color="$navColor"
-                               :sizeLabel="$navSizeLabel"
-              />
+          <x-isite::button :style="$navStyleButton"
+                           :buttonClasses="'nextBtn d-inline-block my-2  '.$navSizeButton.' '.$navStyleButton"
+                           :withIcon="true"
+                           :iconClass="'fa fa-'.$navIcon.'-right'"
+                           :withLabel="false"
+                           :color="$navColor"
+                           :sizeLabel="$navSizeLabel"
+          />
 
 
-            </div>
-          @endif
+        </div>
+      @endif
 
     </div>
   </section>
@@ -168,7 +165,6 @@
         loop: {!! $loop ? 'true' : 'false' !!},
         lazyLoad: true,
         margin: {!! $margin !!},
-        {!! !empty($navText) ? 'navText: '.$navText."," : "" !!}
         dots: {!! $dots ? 'true' : 'false' !!},
         responsiveClass: {!! $responsiveClass ? 'true' : 'false' !!},
         autoplay: {!! $autoplay ? 'true' : 'false' !!},
@@ -176,7 +172,8 @@
         nav: false,
         center: {!! $center ? 'true' : 'false' !!},
         responsive: {!! $responsive !!},
-        stagePadding: {!!$stagePadding!!}
+        stagePadding: {!!$stagePadding!!},
+        {!! !empty($navText) ? 'navText: '.$navText."," : "" !!}
       });
     
       $('#{{$id}} .nextBtn').click(function() {
