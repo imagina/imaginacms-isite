@@ -66,6 +66,8 @@ class OwlCarousel extends Component
     public $itemComponentNamespace;
     public $stagePadding;
 
+    public $titleUrl;
+    public $titleTarget;
 
     /**
      * Create a new component instance.
@@ -120,7 +122,10 @@ class OwlCarousel extends Component
                                 $owlSubtitleLetterSpacing = 0,
                                 $itemComponentAttributes = [],
                                 $itemComponentNamespace = null,
-                                $stagePadding = 0 )
+                                $stagePadding = 0,
+                                $titleUrl = null,
+                                $titleTarget = "_self"
+    )
     {
 
         $this->emptyItems = false;
@@ -146,7 +151,7 @@ class OwlCarousel extends Component
         $this->owlBlockStyle = $owlBlockStyle;
         $this->itemComponent = $itemComponent ?? "isite::item-list";
         $this->view = $view ?? "isite::frontend.components.owl.carousel";
-      $this->itemComponentNamespace =  $itemComponentNamespace ?? "Modules\Isite\View\Components\ItemList";
+        $this->itemComponentNamespace =  $itemComponentNamespace ?? "Modules\Isite\View\Components\ItemList";
         $this->getItems();
 
         $this->navIcon = $navIcon;
@@ -176,6 +181,8 @@ class OwlCarousel extends Component
         $this->owlSubtitleTransform = $owlSubtitleTransform;
         $this->owlSubtitleLetterSpacing = $owlSubtitleLetterSpacing;
         $this->stagePadding = $stagePadding;
+        $this->titleUrl = $titleUrl;
+        $this->titleTarget = $titleTarget;
         
         $this->itemComponentAttributes = $itemComponentAttributes;
 
