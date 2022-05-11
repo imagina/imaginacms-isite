@@ -7,14 +7,14 @@
         <div class="col px-0 {{ $navPosition=="top-left" ? 'order-1':'' }}"  @if(($navPosition=="top-right" || $navPosition=="top-left") && $owlTextAlign=="text-center") style="position: absolute; left: 0;" @endif>
           <div class="title-section {{$owlTextAlign}}" @if($owlTextPosition==3) style="display: flex; flex-direction: column;" @endif>
             @if($title!=="")
-              @if($titleUrl)
-              <a href="{{$titleUrl}}" target="{{$titleTarget}}" style="text-decoration: none;">
+              @if($owlTitleUrl)
+              <a href="{{$owlTitleUrl}}" target="{{$owlTitleTarget}}" style="text-decoration: none;">
               @endif
               <h2 class="title {{ $owlTextPosition==3 ? 'order-1':'' }} {{$owlTitleColor}} {{$owlTitleWeight}} {{$owlTitleTransform}} {{$owlTitleMarginT}} {{$owlTitleMarginB}}" style="font-size: {{$owlTitleSize}}px;">
                 @if($owlTitleVineta) <i class="{{$owlTitleVineta}} {{$owlTitleVinetaColor}} mr-1"></i>  @endif
                 <span> {!! $title !!}</span>
               </h2>
-              @if($titleUrl)
+              @if($owlTitleUrl)
               </a>
               @endif
             @endif

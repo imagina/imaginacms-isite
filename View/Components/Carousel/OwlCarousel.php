@@ -66,8 +66,8 @@ class OwlCarousel extends Component
     public $itemComponentNamespace;
     public $stagePadding;
 
-    public $titleUrl;
-    public $titleTarget;
+    public $owlTitleUrl;
+    public $owlTitleTarget;
 
     /**
      * Create a new component instance.
@@ -123,8 +123,8 @@ class OwlCarousel extends Component
                                 $itemComponentAttributes = [],
                                 $itemComponentNamespace = null,
                                 $stagePadding = 0,
-                                $titleUrl = null,
-                                $titleTarget = "_self"
+                                $owlTitleUrl = null,
+                                $owlTitleTarget = "_self"
     )
     {
 
@@ -181,8 +181,8 @@ class OwlCarousel extends Component
         $this->owlSubtitleTransform = $owlSubtitleTransform;
         $this->owlSubtitleLetterSpacing = $owlSubtitleLetterSpacing;
         $this->stagePadding = $stagePadding;
-        $this->titleUrl = $titleUrl;
-        $this->titleTarget = $titleTarget;
+        $this->owlTitleUrl = $owlTitleUrl;
+        $this->owlTitleTarget = $owlTitleTarget;
         
         $this->itemComponentAttributes = $itemComponentAttributes;
 
