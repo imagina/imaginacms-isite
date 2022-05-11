@@ -181,6 +181,8 @@
     #{{$id}} .item-summary .summary {
         font-size: {{$summaryTextSize}}px;
         letter-spacing: {{$summaryLetterSpacing}}px;
+        line-height: {{$summaryLineHeight}}px;
+        overflow: hidden;
     }
     #{{$id}} .item-category .category {
         font-size: {{$categoryTextSize}}px;

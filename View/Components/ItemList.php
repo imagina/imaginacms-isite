@@ -136,6 +136,8 @@ class ItemList extends Component
     public $contentPaddingLeft; /* padding de contenido de layout 7 sin overlay left */
     public $contentPaddingRight; /* padding de contenido de layout 7 sin overlay right */
 
+    public $summaryLineHeight;
+
     /**
      * Create a new component instance.
      *
@@ -284,7 +286,8 @@ class ItemList extends Component
                                 $numberCharactersTitle = 200,
                                 $itemMarginB = "",
                                 $contentPaddingLeft = 15,
-                                $contentPaddingRight = 15
+                                $contentPaddingRight = 15,
+                                $summaryLineHeight = 20
     )
     {
 
@@ -412,6 +415,8 @@ class ItemList extends Component
 
     $this->contentPaddingLeft = $contentPaddingLeft;
     $this->contentPaddingRight = $contentPaddingRight;
+
+    $this->summaryLineHeight = $summaryLineHeight;
 
     if (!empty($parentAttributes))
       $this->getParentAttributes($parentAttributes);
