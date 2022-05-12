@@ -63,6 +63,7 @@ class OwlNavDots extends Component
     public $owlSubtitleLetterSpacing;
 
     public $componentItemAttributes;
+    public $itemComponentNamespace;
     public $stagePadding;
 
 
@@ -118,6 +119,7 @@ class OwlNavDots extends Component
                                 $owlSubtitleTransform = null,
                                 $owlSubtitleLetterSpacing = 0,
                                 $componentItemAttributes = [],
+                                $itemComponentNamespace = null,
                                 $stagePadding = 0 )
     {
 
@@ -143,6 +145,7 @@ class OwlNavDots extends Component
         $this->owlBlockStyle = $owlBlockStyle;
         $this->itemComponent = $itemComponent ?? "isite::item-list";
         $this->view = $view ?? "isite::frontend.components.owl.navdots";
+        $this->itemComponentNamespace =  $itemComponentNamespace ?? "Modules\Isite\View\Components\ItemList";
         $this->getItems();
 
         $this->navIcon = $navIcon;

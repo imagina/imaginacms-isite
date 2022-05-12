@@ -2,9 +2,9 @@
   <section id="{{$id}}" class="{{$owlBlockStyle}}">
     <div class="{{$containerFluid ? 'container-fluid': 'container'}}">
 
-      <div class="row align-items-center @if($navPosition=='top-right') justify-content-end @endif @if($navPosition=="top-right" && $navPosition=="top-left" || $owlTextAlign=='text-center') my-3 @endif">
+      <div class="row align-items-center @if($navPosition=='top-right') justify-content-end @endif @if(($navPosition=="top-right" || $navPosition=="top-left") && $owlTextAlign=="text-center") my-3 @endif">
 
-        <div class="col px-0 {{ $navPosition=="top-left" ? 'order-1':'' }}"  @if($navPosition=="top-right" && $navPosition=="top-left" || $owlTextAlign=='text-center') style="position: absolute; left: 0;" @endif>
+        <div class="col px-0 {{ $navPosition=="top-left" ? 'order-1':'' }}"  @if(($navPosition=="top-right" || $navPosition=="top-left") && $owlTextAlign=="text-center") style="position: absolute; left: 0;" @endif>
           <div class="title-section {{$owlTextAlign}}" @if($owlTextPosition==3) style="display: flex; flex-direction: column;" @endif>
             @if($title!=="")
               <h2 class="title {{ $owlTextPosition==3 ? 'order-1':'' }} {{$owlTitleColor}} {{$owlTitleWeight}} {{$owlTitleTransform}} {{$owlTitleMarginT}} {{$owlTitleMarginB}}" style="font-size: {{$owlTitleSize}}px;">
@@ -166,7 +166,6 @@
         loop: {!! $loop ? 'true' : 'false' !!},
         lazyLoad: true,
         margin: {!! $margin !!},
-        {!! !empty($navText) ? 'navText: '.$navText."," : "" !!}
         dots: {!! $dots ? 'true' : 'false' !!},
         responsiveClass: {!! $responsiveClass ? 'true' : 'false' !!},
         autoplay: {!! $autoplay ? 'true' : 'false' !!},
@@ -174,7 +173,8 @@
         autoplayHoverPause: {!! $autoplayHoverPause ? 'true' : 'false' !!},
         center: {!! $center ? 'true' : 'false' !!},
         responsive: {!! $responsive !!},
-        stagePadding: {!!$stagePadding!!}
+        stagePadding: {!!$stagePadding!!},
+        {!! !empty($navText) ? 'navText: '.$navText."," : "" !!}
       });
 
       $('#{{$id}} .nextBtn').click(function() {
@@ -209,7 +209,6 @@
   
       @if($navPosition=="center")
         refreshOwl();
-      
       @endif
     });
 
