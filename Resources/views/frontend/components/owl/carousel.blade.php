@@ -170,8 +170,8 @@
         dots: {!! $dots ? 'true' : 'false' !!},
         responsiveClass: {!! $responsiveClass ? 'true' : 'false' !!},
         autoplay: {!! $autoplay ? 'true' : 'false' !!},
+        nav: {!! $nav ? 'true' : 'false' !!},
         autoplayHoverPause: {!! $autoplayHoverPause ? 'true' : 'false' !!},
-        nav: false,
         center: {!! $center ? 'true' : 'false' !!},
         responsive: {!! $responsive !!},
         stagePadding: {!!$stagePadding!!}

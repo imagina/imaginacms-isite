@@ -757,7 +757,7 @@ return [
       'label' => 'isite::pdf.settings.pdf.text.Information_content',
     ]
   ],
-
+  
   //Roles to register
   'rolesToTenant' => [
     "onlySuperAdmin" => true,
@@ -774,6 +774,28 @@ return [
     'loadOptions' => [
       'apiRoute' => 'apiRoutes.quser.roles',
       'select' => ['label' => 'name', 'id' => 'id']
+    ]
+  ],
+  
+  //Default Tenant Status
+  'defaultTenantStatus' => [
+    'value' => true,
+    'name' => 'isite::defaultTenantStatus',
+    'type' => 'select',
+    'groupName' => 'tenants',
+    'groupTitle' => 'isite::common.settingGroups.tenants',
+    'colClass' => 'col-6',
+    'props' => [
+      'label' => 'isite::pdf.settings.defaultTenantStatus',
+      'useInput' => false,
+      'useChips' => false,
+      'multiple' => false,
+      'hideDropdownIcon' => true,
+      'newValueMode' => 'add-unique',
+      'options' => [
+        ['label' => 'Activo', 'value' => true],
+        ['label' => 'Inactivo', 'value' => false]
+      ]
     ]
   ],
 

@@ -176,7 +176,7 @@ class OwlCarousel extends Component
         $this->owlSubtitleTransform = $owlSubtitleTransform;
         $this->owlSubtitleLetterSpacing = $owlSubtitleLetterSpacing;
         $this->stagePadding = $stagePadding;
-        
+
         $this->itemComponentAttributes = $itemComponentAttributes;
 
 
