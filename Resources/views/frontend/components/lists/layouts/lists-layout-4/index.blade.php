@@ -3,10 +3,16 @@
         @if($title!=="")
             <div class="col-12">
                 <div class="title-section {{$titleAlign}}">
+                    @if($titleUrl)
+                    <a href="{{$titleUrl}}" target="{{$titleTarget}}" style="text-decoration: none;">
+                    @endif
                     <h2 class="title {{$titleColor}} {{$titleWeight}} {{$titleTransform}} mb-0" style="font-size: {{$titleSize}}px;">
                         @if($titleVineta) <i class="{{$titleVineta}} {{$titleVinetaColor}} mr-1"></i>  @endif
                         <span> {!! $title !!}</span>
                     </h2>
+                    @if($titleUrl)
+                    </a>
+                    @endif
                 </div>
                 <hr class="{{$titleLineMarginY}}">
             </div>
