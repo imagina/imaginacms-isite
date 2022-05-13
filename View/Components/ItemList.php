@@ -421,7 +421,7 @@ class ItemList extends Component
     if (!empty($parentAttributes))
       $this->getParentAttributes($parentAttributes);
   
-    $this->id = "item".preg_replace( '/[^a-z0-9 ]/i', '', $item->slug ?? $item->title ?? $item->name ?? "").$item->id.uniqid();
+    $this->id = "item".preg_replace( '/[^a-z0-9]/i', '', $item->slug ?? $item->title ?? $item->name ?? "").$item->id.uniqid();
 
 
       //{{-- 1 all, 2 top, 3 right, 4 left, 5 bottom, 6 top right, 7 top left, 8 bottom right, 9 top left --}}
