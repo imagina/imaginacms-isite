@@ -925,6 +925,7 @@ return [
     'name' => 'isite::tenantWithCentralData',
     'groupName' => 'tenants',
     'groupTitle' => 'isite::common.settings.tenant.group',
+    "onlySuperAdmin" => true,
     'type' => 'select',
     'columns' => 'col-6',
     'props' => [
