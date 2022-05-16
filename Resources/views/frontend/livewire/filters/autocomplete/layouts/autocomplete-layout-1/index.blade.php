@@ -9,7 +9,6 @@
                aria-haspopup="true"
                aria-expanded="false"
                role="button"
-               style="width: 100%; max-width: 520px;"
                class="input-group dropdown-toggle">
             <div class="input-group">
               <input type="text" id="input_search" wire:model.debounce.500ms="search"
