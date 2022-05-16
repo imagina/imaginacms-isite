@@ -209,11 +209,11 @@
       
         
       }
-      window.addEventListener('owlRefreshed', refreshOwl())
+
+     createOWL{{$id}}();
   
-      createOWL{{$id}}();
-  
-      @if($navPosition=="center")
+      @if($nav && $navPosition=="center")
+        window.addEventListener('owlRefreshed', refreshOwl())
         refreshOwl();
       @endif
     });
@@ -223,7 +223,7 @@
 
 
   <style>
-    @if($navPosition=="center")
+    @if($nav && $navPosition=="center")
     #{{$id}} .wrapper {
       display: grid;
       align-items: center;
