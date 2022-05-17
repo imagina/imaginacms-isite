@@ -339,7 +339,9 @@ return [
     "item" => "Item | Items",
     "showing" => "Showing",
     "entry" => "Entry | Entries",
-    "of" => "Of"
+    "of" => "Of",
+    "zone" => "Zone | Zones",
+    "waterMark" => "Water Mark"
   ],
   "message" => [
     "notFound" => "Sorry, nothing here",

@@ -343,7 +343,9 @@ return [
     "item" => "Elemento | Elementos",
     "showing" => "Mostrando",
     "entry" => "Entrada | Entradas",
-    "of" => "De"
+    "of" => "De",
+    "zone" => "Zona | Zonas",
+    "waterMark" => "Marca de Agua"
   ],
   "message" => [
     "notFound" => "Lo sentimos, no hay nada aquí",
