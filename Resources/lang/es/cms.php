@@ -345,7 +345,9 @@ return [
     "entry" => "Entrada | Entradas",
     "of" => "De",
     "zone" => "Zona | Zonas",
-    "waterMark" => "Marca de Agua"
+    "waterMark" => "Marca de Agua",
+    "position" => "Posición | Posiciones",
+    "axis" => "Eje | Ejes"
   ],
   "message" => [
     "notFound" => "Lo sentimos, no hay nada aquí",
@@ -524,6 +526,15 @@ return [
     "leaveImpersonating" => "Dejar de suplantar",
     "clearCache" => "Limpiar cache",
     "goToSite" => "Ver el sitio"
-  ]
+  ],
+  "topLeft" => "Arriba-Izquierda",
+  "top" => "Arriba",
+  "topRight" => "Arriba-Derecha",
+  "left" => "Izquierda",
+  "center" => "Centro",
+  "right" => "Derecha",
+  "bottomLeft" => "Abajo-Izquierda",
+  "bottom" => "Abajo",
+  "bottomRight" => "Abajo-Derecha"
 ];
 

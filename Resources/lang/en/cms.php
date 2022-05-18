@@ -341,7 +341,9 @@ return [
     "entry" => "Entry | Entries",
     "of" => "Of",
     "zone" => "Zone | Zones",
-    "waterMark" => "Water Mark"
+    "waterMark" => "Water Mark",
+    "position" => "Position | Positions",
+    "axis" => "Axis | Axes"
   ],
   "message" => [
     "notFound" => "Sorry, nothing here",
@@ -525,6 +527,15 @@ return [
     "leaveImpersonating" => "Leave impersonating",
     "clearCache" => "Clear cache",
     "goToSite" => "Go to site"
-  ]
+  ],
+  "topLeft" => "Top-Left",
+  "top" => "Top",
+  "topRight" => "Top-Right",
+  "left" => "Left",
+  "center" => "Center",
+  "right" => "Right",
+  "bottomLeft" => "Bottom-Left",
+  "bottom" => "Bottom",
+  "bottomRight" => "Bottom-Right"
 ];
 
