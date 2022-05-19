@@ -343,7 +343,9 @@ return [
     "zone" => "Zone | Zones",
     "waterMark" => "Water Mark",
     "position" => "Position | Positions",
-    "axis" => "Axis | Axes"
+    "axis" => "Axis | Axes",
+    "audio" => "Audio | Audios",
+    "ratio" => "Ratio | Ratios"
   ],
   "message" => [
     "notFound" => "Sorry, nothing here",

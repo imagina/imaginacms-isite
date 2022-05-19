@@ -347,7 +347,9 @@ return [
     "zone" => "Zona | Zonas",
     "waterMark" => "Marca de Agua",
     "position" => "Posición | Posiciones",
-    "axis" => "Eje | Ejes"
+    "axis" => "Eje | Ejes",
+    "audio" => "Audio | Audios",
+    "ratio" => "Proporción | Proporciones"
   ],
   "message" => [
     "notFound" => "Lo sentimos, no hay nada aquí",
