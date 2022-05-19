@@ -407,7 +407,8 @@ return [
     "hintUseChips" => "Ingrese el valor y presione Enter",
     "finishRegister" => "Falta poco para terminar tu registro",
     "ready" => "Todo está listo",
-    "noRegistered" => "Aún no estás registrado"
+    "noRegistered" => "Aún no estás registrado",
+    "hintFilterByQuery" => "Escribe 3 o más caracteres para buscar opciones"
   ],
   "form" => [
     "id" => "ID",

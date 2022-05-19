@@ -407,8 +407,9 @@ return [
     "mustContainAlphanumeric" => "Must contain only alphanumeric",
     "hintUseChips" => "Ingrese el valor y presione enter",
     "finishRegister" => "There is little left to finish your registration...",
-    "ready" => "Todo está listo",
-    "noRegistered" => "You are not registered yet"
+    "ready" => "Ready",
+    "noRegistered" => "You are not registered yet",
+    "hintFilterByQuery" => "Type 3 or more characters to search for options"
   ],
   "form" => [
     "id" => "ID",
