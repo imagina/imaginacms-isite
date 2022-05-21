@@ -345,7 +345,7 @@ return [
     "entry" => "Entrada | Entradas",
     "of" => "De",
     "zone" => "Zona | Zonas",
-    "waterMark" => "Marca de Agua",
+    "watermark" => "Marca de Agua",
     "position" => "Posición | Posiciones",
     "axis" => "Eje | Ejes",
     "audio" => "Audio | Audios",

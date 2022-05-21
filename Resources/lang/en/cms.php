@@ -341,7 +341,7 @@ return [
     "entry" => "Entry | Entries",
     "of" => "Of",
     "zone" => "Zone | Zones",
-    "waterMark" => "Water Mark",
+    "watermark" => "Watermark",
     "position" => "Position | Positions",
     "axis" => "Axis | Axes",
     "audio" => "Audio | Audios",
