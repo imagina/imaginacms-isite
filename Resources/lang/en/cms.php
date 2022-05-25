@@ -521,7 +521,8 @@ return [
     "featured" => "Featured",
     "sortOrder" => "Sort Order",
     "availableDate" => "Available Date",
-    "createdFromIp" => "Created from IP"
+    "createdFromIp" => "Created from IP",
+    "requestedBy" => "Requested By"
   ],
   "configList" => [
     "loggedAs" => "logged as",

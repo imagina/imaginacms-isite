@@ -520,7 +520,8 @@ return [
     "featured" => "Destacado",
     "sortOrder" => "Orden de prioridad",
     "availableDate" => "Disponible desde",
-    "createdFromIp" => "Creado desde la IP"
+    "createdFromIp" => "Creado desde la IP",
+    "requestedBy" => "Solicitado Por"
   ],
   "configList" => [
     "loggedAs" => "Registrado como",
