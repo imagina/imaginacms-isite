@@ -138,6 +138,10 @@ class ItemList extends Component
 
     public $summaryLineHeight;
 
+    public $withImage;
+    public $imageWidth;
+    public $imageAlign;
+
     /**
      * Create a new component instance.
      *
@@ -287,7 +291,10 @@ class ItemList extends Component
                                 $itemMarginB = "",
                                 $contentPaddingLeft = 15,
                                 $contentPaddingRight = 15,
-                                $summaryLineHeight = 20
+                                $summaryLineHeight = 20,
+                                $withImage = true,
+                                $imageWidth = 100,
+                                $imageAlign = 'left'
     )
     {
 
@@ -417,6 +424,10 @@ class ItemList extends Component
     $this->contentPaddingRight = $contentPaddingRight;
 
     $this->summaryLineHeight = $summaryLineHeight;
+
+    $this->withImage = $withImage;
+    $this->imageWidth = $imageWidth;
+    $this->imageAlign = $imageAlign;
 
     if (!empty($parentAttributes))
       $this->getParentAttributes($parentAttributes);
