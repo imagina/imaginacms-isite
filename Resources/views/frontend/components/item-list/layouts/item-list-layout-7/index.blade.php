@@ -16,12 +16,12 @@
   <x-isite::edit-link link="{{$editLink}}{{$item->id}}" tooltip="{{$tooltipEditLink}}"/>
   <div class="card-item {{$row}}">
     <div class="{{$imagePosition!='1' ? 'row no-gutters' : ''}}">
-        @if(method_exists ( $item, "mediaFiles" ) )
+        @if(method_exists ( $item, "mediaFiles" ) && $withImage )
 
           <div class="item-image {{$col1}} {{$imagePositionVertical}} @if($withImageOpacity) {{$imageOpacityColor}} {{$imageOpacityDirection}} @endif">
             <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
-                                   :url="$item->url ?? null" :isMedia="true" width="100%" :target="$target"
-                                   imgClasses="img-style"
+                                   :url="$item->url ?? null" :isMedia="true"  :target="$target"
+                                   imgClasses="img-style" imgStyles="width: {{$imageWidth}}%;"
                                    :mediaFiles="$item->mediaFiles()" :zone="$mediaImage ?? 'mainimage'"/>
           </div>
         @endif
@@ -32,7 +32,7 @@
               @if(isset($item->url) && !empty($item->url))
                           <a href="{{$item->url}}" target="{{$target}}" class="{{$titleColor}}">
                   @endif
-                              <h3 class="title d-flex {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}} {{$titleMarginT}} {{$titleMarginB}} {{$contentMarginInsideX}}"  style="height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;">
+                              <h3 class="title d-flex {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}} {{$titleMarginT}} {{$titleMarginB}}"  style="height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;">
                                   @if($titleVineta) <i class="{{$titleVineta}} {{$titleVinetaColor}} mr-2"></i>  @endif
                                   <span>{!! Str::limit( $item->title ?? $item->name ?? '', $numberCharactersTitle) !!}</span>
                   </h3>
@@ -141,8 +141,9 @@
     }
 
     #{{$id}} .item-image picture {
-         display: block !important;
-       padding: {{$imagePicturePadding}}px;
+        display: block !important;
+        padding: {{$imagePicturePadding}}px;
+        text-align: {{$imageAlign}};
     }
     #{{$id}} .img-style {
          border-radius: {{$imageRadio}};
@@ -189,6 +190,8 @@
     #{{$id}} .item-summary .summary {
         font-size: {{$summaryTextSize}}px;
         letter-spacing: {{$summaryLetterSpacing}}px;
+        line-height: {{$summaryLineHeight}}px;
+        overflow: hidden;
     }
     #{{$id}} .item-category .category {
         font-size: {{$categoryTextSize}}px;
@@ -211,8 +214,10 @@
          text-decoration: {{$createdDateTextDecoration}};
      }
     #{{$id}} .item-content {
-       padding-left: {{$contentPaddingLeft}}px;
-       padding-right: {{$contentPaddingRight}}px;
+        @if($imagePosition!=='1')
+        padding-left: {{$contentPaddingLeft}}px;
+        padding-right: {{$contentPaddingRight}}px;
+        @endif
     }
 
 </style>

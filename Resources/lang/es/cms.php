@@ -343,7 +343,13 @@ return [
     "item" => "Elemento | Elementos",
     "showing" => "Mostrando",
     "entry" => "Entrada | Entradas",
-    "of" => "De"
+    "of" => "De",
+    "zone" => "Zona | Zonas",
+    "watermark" => "Marca de Agua",
+    "position" => "Posición | Posiciones",
+    "axis" => "Eje | Ejes",
+    "audio" => "Audio | Audios",
+    "ratio" => "Proporción | Proporciones"
   ],
   "message" => [
     "notFound" => "Lo sentimos, no hay nada aquí",
@@ -401,7 +407,8 @@ return [
     "hintUseChips" => "Ingrese el valor y presione Enter",
     "finishRegister" => "Falta poco para terminar tu registro",
     "ready" => "Todo está listo",
-    "noRegistered" => "Aún no estás registrado"
+    "noRegistered" => "Aún no estás registrado",
+    "hintFilterByQuery" => "Escribe 3 o más caracteres para buscar opciones"
   ],
   "form" => [
     "id" => "ID",
@@ -513,7 +520,8 @@ return [
     "featured" => "Destacado",
     "sortOrder" => "Orden de prioridad",
     "availableDate" => "Disponible desde",
-    "createdFromIp" => "Creado desde la IP"
+    "createdFromIp" => "Creado desde la IP",
+    "requestedBy" => "Solicitado Por"
   ],
   "configList" => [
     "loggedAs" => "Registrado como",
@@ -522,6 +530,15 @@ return [
     "leaveImpersonating" => "Dejar de suplantar",
     "clearCache" => "Limpiar cache",
     "goToSite" => "Ver el sitio"
-  ]
+  ],
+  "topLeft" => "Arriba-Izquierda",
+  "top" => "Arriba",
+  "topRight" => "Arriba-Derecha",
+  "left" => "Izquierda",
+  "center" => "Centro",
+  "right" => "Derecha",
+  "bottomLeft" => "Abajo-Izquierda",
+  "bottom" => "Abajo",
+  "bottomRight" => "Abajo-Derecha"
 ];
 

@@ -7,10 +7,16 @@
         <div class="col px-0 {{ $navPosition=="top-left" ? 'order-1':'' }}"  @if(($navPosition=="top-right" || $navPosition=="top-left") && $owlTextAlign=="text-center") style="position: absolute; left: 0;" @endif>
           <div class="title-section {{$owlTextAlign}}" @if($owlTextPosition==3) style="display: flex; flex-direction: column;" @endif>
             @if($title!=="")
+              @if($owlTitleUrl)
+              <a href="{{$owlTitleUrl}}" target="{{$owlTitleTarget}}" style="text-decoration: none;">
+              @endif
               <h2 class="title {{ $owlTextPosition==3 ? 'order-1':'' }} {{$owlTitleColor}} {{$owlTitleWeight}} {{$owlTitleTransform}} {{$owlTitleMarginT}} {{$owlTitleMarginB}}" style="font-size: {{$owlTitleSize}}px;">
                 @if($owlTitleVineta) <i class="{{$owlTitleVineta}} {{$owlTitleVinetaColor}} mr-1"></i>  @endif
                 <span> {!! $title !!}</span>
               </h2>
+              @if($owlTitleUrl)
+              </a>
+              @endif
             @endif
             @if($subTitle!=="" && $owlTextPosition!=1)
               <h6 class="subtitle {{$owlSubtitleColor}} {{$owlSubtitleWeight}} {{$owlSubtitleTransform}} {{$owlSubtitleMarginT}} {{$owlSubtitleMarginB}}" style="font-size: {{$owlSubtitleSize}}px;">
@@ -169,8 +175,8 @@
         dots: {!! $dots ? 'true' : 'false' !!},
         responsiveClass: {!! $responsiveClass ? 'true' : 'false' !!},
         autoplay: {!! $autoplay ? 'true' : 'false' !!},
+        nav: {!! $nav ? 'true' : 'false' !!},
         autoplayHoverPause: {!! $autoplayHoverPause ? 'true' : 'false' !!},
-        nav: false,
         center: {!! $center ? 'true' : 'false' !!},
         responsive: {!! $responsive !!},
         stagePadding: {!!$stagePadding!!},
@@ -200,14 +206,13 @@
           if(wrapper != null) {
             wrapper.style.cssText = 'grid-template-columns: '+width+'px calc(100% - '+w+'px) '+width+'px';
           }
-      
-        
+
       }
-      window.addEventListener('owlRefreshed', refreshOwl())
+
+     createOWL{{$id}}();
   
-      createOWL{{$id}}();
-  
-      @if($navPosition=="center")
+      @if($nav && $navPosition=="center")
+        window.addEventListener('owlRefreshed', refreshOwl())
         refreshOwl();
       @endif
     });
@@ -217,11 +222,23 @@
 
 
   <style>
-    @if($navPosition=="center")
+    @if($nav && $navPosition=="center")
     #{{$id}} .wrapper {
       display: grid;
       align-items: center;
       grid-gap: 10px;
+    }
+    @media (max-width: 768px) {
+        #{{$id}} .wrapper {
+            grid-template-columns: 1fr 1fr !important;
+        }
+        #{{$id}} .wrapper > div:nth-child(1) {
+             text-align: right;
+         }
+        #{{$id}} .wrapper > div:nth-child(2) {
+             grid-row: 1/1;
+             grid-column: 1/3;
+        }
     }
     @endif
     @if($dotsStyle=="dots-linear")

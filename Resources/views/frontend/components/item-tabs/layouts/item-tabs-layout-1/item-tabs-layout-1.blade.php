@@ -37,7 +37,7 @@
           <x-isite::carousel.owl-carousel
                   id="carouselCategoryHome{{$item->id}}"
                   repository="{{$componentRepository}}"
-                  :params="['take' => 8, 'filter' => ['order' => ['way' => 'desc'],'$componentFilter' => [$item->id]]]"
+                  :params="['take' => 8, 'filter' => ['order' => ['way' => 'desc'],$componentFilter => $item->id]]"
                   :margin="$componentMargin"
                   :itemsBySlide="$componentItemsBySlide"
                   :navText="$componentNavText"

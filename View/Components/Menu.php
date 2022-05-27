@@ -61,10 +61,10 @@ class Menu extends Component
   private function getItems(){
 
     $params = $this->makeParamsFunction();
-
-
+    
     if($this->repository){
       $items = app($this->repository)->getItemsBy(json_decode(json_encode($params)));
+   
       if($items->isNotEmpty())
         $this->items = $items->toTree();
     }

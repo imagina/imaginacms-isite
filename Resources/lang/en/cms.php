@@ -339,7 +339,13 @@ return [
     "item" => "Item | Items",
     "showing" => "Showing",
     "entry" => "Entry | Entries",
-    "of" => "Of"
+    "of" => "Of",
+    "zone" => "Zone | Zones",
+    "watermark" => "Watermark",
+    "position" => "Position | Positions",
+    "axis" => "Axis | Axes",
+    "audio" => "Audio | Audios",
+    "ratio" => "Ratio | Ratios"
   ],
   "message" => [
     "notFound" => "Sorry, nothing here",
@@ -401,8 +407,9 @@ return [
     "mustContainAlphanumeric" => "Must contain only alphanumeric",
     "hintUseChips" => "Ingrese el valor y presione enter",
     "finishRegister" => "There is little left to finish your registration...",
-    "ready" => "Todo está listo",
-    "noRegistered" => "You are not registered yet"
+    "ready" => "Ready",
+    "noRegistered" => "You are not registered yet",
+    "hintFilterByQuery" => "Type 3 or more characters to search for options"
   ],
   "form" => [
     "id" => "ID",
@@ -514,7 +521,8 @@ return [
     "featured" => "Featured",
     "sortOrder" => "Sort Order",
     "availableDate" => "Available Date",
-    "createdFromIp" => "Created from IP"
+    "createdFromIp" => "Created from IP",
+    "requestedBy" => "Requested By"
   ],
   "configList" => [
     "loggedAs" => "logged as",
@@ -523,6 +531,15 @@ return [
     "leaveImpersonating" => "Leave impersonating",
     "clearCache" => "Clear cache",
     "goToSite" => "Go to site"
-  ]
+  ],
+  "topLeft" => "Top-Left",
+  "top" => "Top",
+  "topRight" => "Top-Right",
+  "left" => "Left",
+  "center" => "Center",
+  "right" => "Right",
+  "bottomLeft" => "Bottom-Left",
+  "bottom" => "Bottom",
+  "bottomRight" => "Bottom-Right"
 ];
 

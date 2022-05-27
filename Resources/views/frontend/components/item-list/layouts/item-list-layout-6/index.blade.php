@@ -16,12 +16,12 @@
 
       @else
 
-        @if(method_exists ( $item, "mediaFiles" ) )
+        @if(method_exists ( $item, "mediaFiles" ) && $withImage )
           <div
             class="col-12 {{$orderClasses["photo"] ?? 'order-0'}} item-image @if($withImageOpacity) {{$imageOpacityColor}} {{$imageOpacityDirection}} @endif">
             <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
-                                   :url="$item->url ?? null" :isMedia="true" width="100%" imgClasses="img-style"
-                                   :target="$target" :mediaFiles="$item->mediaFiles()"
+                                   :url="$item->url ?? null" :isMedia="true"  imgClasses="img-style"
+                                   :target="$target" :mediaFiles="$item->mediaFiles()" imgStyles="width: {{$imageWidth}}%;"
                                    :zone="$mediaImage ?? 'mainimage'"/>
 
           </div>
@@ -139,8 +139,9 @@
 
    
     #{{$id}} .item-image picture {
-         display: block !important;
+        display: block !important;
         padding: {{$imagePicturePadding}}px;
+        text-align: {{$imageAlign}};
     }
     
     #{{$id}} .img-style {
@@ -181,6 +182,8 @@
     #{{$id}} .item-summary .summary {
         font-size: {{$summaryTextSize}}px;
         letter-spacing: {{$summaryLetterSpacing}}px;
+        line-height: {{$summaryLineHeight}}px;
+        overflow: hidden;
     }
     #{{$id}} .item-category .category {
         font-size: {{$categoryTextSize}}px;

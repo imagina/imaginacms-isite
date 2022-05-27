@@ -1,38 +1,14 @@
-.btn-primary {
-  color: white;
-  background-color: var(--primary);
-  border-color: var(--primary);
-}
-
-.btn-primary:hover, .btn-primary:active, .btn-primary:focus,
-.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
-  color: white;
-  background-color: var(--primary);
-  border-color: var(--primary);
-}
-
-
-.btn-outline-primary {
-  color: var(--primary);
-  border-color: var(--primary);
-}
-
-.btn-outline-primary:hover, .btn-outline-primary:active, .btn-outline-primary:focus,
-.btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active, .show > .btn-outline-primary.dropdown-toggle {
-  color: white;
-  background-color: var(--primary);
-  border-color: var(--primary);
-}
-
-
 $theme-color: () !default;
 $theme-color: map-merge(
     (
+            "primary":    var(--primary),
             "secondary":  var(--secondary),
+            "success":    var(--success),
             "dark":       var(--dark),
             "info":       var(--info),
             "warning":    var(--warning),
             "danger":     var(--danger),
+            "light":      var(--light),
     ),
     $theme-color
 );
@@ -87,9 +63,13 @@ $theme-color: map-merge(
     color: $value !important;
   }
 
+  a.text-#{$color} {
+    color: $value !important;
+  }
+
+  .bg-#{$color} {
+    background-color: $value !important;
+  }
+
 }
 
-
-//
-// Button Sizes
-//

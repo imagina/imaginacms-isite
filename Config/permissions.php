@@ -33,6 +33,8 @@ return [
     'index-all' => 'isite::organizations.list resource',
     'edit' => 'isite::organizations.edit resource',
     'create' => 'isite::organizations.create resource',
+    'edit-status' => 'isite::organizations.create resource',
+    'edit-featured' => 'isite::organizations.create resource',
   ],
   'isite.icruds' => [
     'manage' => 'isite::icruds.manage resource',

@@ -136,6 +136,12 @@ class ItemList extends Component
     public $contentPaddingLeft; /* padding de contenido de layout 7 sin overlay left */
     public $contentPaddingRight; /* padding de contenido de layout 7 sin overlay right */
 
+    public $summaryLineHeight;
+
+    public $withImage;
+    public $imageWidth;
+    public $imageAlign;
+
     /**
      * Create a new component instance.
      *
@@ -284,7 +290,11 @@ class ItemList extends Component
                                 $numberCharactersTitle = 200,
                                 $itemMarginB = "",
                                 $contentPaddingLeft = 15,
-                                $contentPaddingRight = 15
+                                $contentPaddingRight = 15,
+                                $summaryLineHeight = 20,
+                                $withImage = true,
+                                $imageWidth = 100,
+                                $imageAlign = 'left'
     )
     {
 
@@ -413,10 +423,16 @@ class ItemList extends Component
     $this->contentPaddingLeft = $contentPaddingLeft;
     $this->contentPaddingRight = $contentPaddingRight;
 
+    $this->summaryLineHeight = $summaryLineHeight;
+
+    $this->withImage = $withImage;
+    $this->imageWidth = $imageWidth;
+    $this->imageAlign = $imageAlign;
+
     if (!empty($parentAttributes))
       $this->getParentAttributes($parentAttributes);
   
-    $this->id = "item".preg_replace( '/[^a-z0-9 ]/i', '', $item->slug ?? $item->title ?? $item->name ?? "").$item->id.uniqid();
+    $this->id = "item".preg_replace( '/[^a-z0-9]/i', '', $item->slug ?? $item->title ?? $item->name ?? "").$item->id.uniqid();
 
 
       //{{-- 1 all, 2 top, 3 right, 4 left, 5 bottom, 6 top right, 7 top left, 8 bottom right, 9 top left --}}

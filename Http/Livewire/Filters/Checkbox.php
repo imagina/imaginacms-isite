@@ -121,12 +121,11 @@ class Checkbox extends Component
   */
   public function getData($params)
   {
-
-
+    
 
     // Params From Config
     if (!empty($this->params))
-      $params = array_merge_recursive($params, $this->params);
+      $params = array_replace_recursive($params, $this->params);
 
     //\Log::info("NAME: ".$this->name."- PARAMS:".json_encode($params));
 

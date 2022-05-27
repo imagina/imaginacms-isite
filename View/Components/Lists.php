@@ -40,6 +40,8 @@ class Lists extends Component
     public $itemComponentAttributesMain;
     public $itemComponentAttributesList;
     public $itemComponentNamespace;
+    public $titleUrl;
+    public $titleTarget;
 
 
     /**
@@ -74,7 +76,9 @@ class Lists extends Component
                                 $itemComponent = null,
                                 $itemComponentAttributesMain = [],
                                 $itemComponentAttributesList = [],
-                                $itemComponentNamespace = null
+                                $itemComponentNamespace = null,
+                                $titleUrl = null,
+                                $titleTarget = "_self"
     )
     {
 
@@ -111,7 +115,8 @@ class Lists extends Component
         $this->itemComponentNamespace =  $itemComponentNamespace ?? "Modules\Isite\View\Components\ItemList";
         $this->itemComponentAttributesMain = count($itemComponentAttributesMain) ? $itemComponentAttributesMain : config('asgard.isite.config.indexItemListAttributesMain');
         $this->itemComponentAttributesList = count($itemComponentAttributesList) ? $itemComponentAttributesList : config('asgard.isite.config.indexItemListAttributesList');
-
+        $this->titleUrl = $titleUrl;
+        $this->titleTarget = $titleTarget;
     }
 
     private
