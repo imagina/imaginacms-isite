@@ -22,18 +22,7 @@
   }
 }
 
-$theme-color: () !default;
-$theme-color: map-merge(
-    (
-            "primary":    var(--primary),
-            "secondary":  var(--secondary),
-            "dark":       var(--dark),
-            "info":       var(--info),
-            "warning":    var(--warning),
-            "danger":     var(--danger),
-    ),
-    $theme-color
-);
+
 
 @function darken-button($color, $porcentaje) {
   @return unquote('darken('+ $color +', '+ $porcentaje +')');
@@ -85,10 +74,6 @@ $theme-color: map-merge(
     }
   }
 
-  .text-#{$color} {
-    color: $value !important;
-  }
-
 }
 
 //
@@ -100,7 +85,7 @@ $theme-color: map-merge(
 }
 /* pequeno */
 .button-small {
-  padding: 6px 15px;
+  padding: 7.5px 15px;
 }
 /* normal */
 .button-normal {

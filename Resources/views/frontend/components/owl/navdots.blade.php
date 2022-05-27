@@ -227,6 +227,18 @@
       align-items: center;
       grid-gap: 10px;
     }
+    @media (max-width: 768px) {
+    #{{$id}} .wrapper {
+      grid-template-columns: 1fr 1fr !important;
+    }
+    #{{$id}} .wrapper > div:nth-child(1) {
+       text-align: right;
+     }
+    #{{$id}} .wrapper > div:nth-child(2) {
+       grid-row: 1/1;
+       grid-column: 1/3;
+     }
+    }
     @endif
     @if($dotsStyle=="dots-linear")
     #{{$id}} .dots-linear .owl-dots .owl-dot span {
