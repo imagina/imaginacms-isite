@@ -163,5 +163,14 @@ return [
   'maps' => [
     'groupMaps' => 'Maps',
     'mapsLabel' => 'Maps in the site'
-  ]
+  ],
+  'feeds' => [
+    'titlePosts' => 'All new posts on ',
+    'titleProducts' => 'All new products in',
+  ],
+  'whatsapp' => [
+    'labelWhatsappLayout5' => 'Talk later?',
+    'titleWhatsappLayout5' => 'WhatsApp',
+    'descriptionWhatsappLayout5' => 'Hi, how can we help you?',
+  ],
 ];
