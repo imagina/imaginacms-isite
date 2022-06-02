@@ -186,6 +186,7 @@
     #{{$id}} .item-title .title {
         font-size: {{$titleTextSize}}px;
         letter-spacing: {{$titleLetterSpacing}}px;
+        overflow: hidden;
     }
     #{{$id}} .item-summary .summary {
         font-size: {{$summaryTextSize}}px;
