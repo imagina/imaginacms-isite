@@ -414,6 +414,7 @@ return [
   "form" => [
     "id" => "ID",
     "title" => "Title | Title",
+    "h1" => "Título H1",
     "caption" => "Caption | Captions",
     "firstName" => "First Name | First Name",
     "lastName" => "Last Name | Last Name",
