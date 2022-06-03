@@ -186,5 +186,14 @@ return [
     'groupMaps' => 'Mapas',
     'mapsLabel' => 'Mapas en el sitio',
     'labelLocationSite' => 'Ubicación Sede Principal'
-  ]
+  ],
+  'feeds' => [
+    'titlePosts' => 'Todas las nuevas publicaciones en ',
+    'titleProducts' => 'Todos los nuevos productos en ',
+  ],
+  'whatsapp' => [
+    'labelWhatsappLayout5' => '¿Hablamos?',
+    'titleWhatsappLayout5' => 'WhatsApp',
+    'descriptionWhatsappLayout5' => 'Hola, ¿En que podemos ayudarte?',
+  ],
 ];
