@@ -73,7 +73,7 @@
 
 
       @if($nav && $navPosition=="center")
-        <div class="row wrapper">
+        <div class="wrapper">
           <div>
 
             <x-isite::button :style="$navStyleButton"
@@ -212,7 +212,7 @@
       let width = sizeButton.offsetWidth;
       let wrapper = document.querySelector('#{{$id}} .wrapper');
       console.log(width);
-      let w = (width)*2;
+      let w = (width)*2 + 20;
       if(wrapper != null) {
         wrapper.style.cssText = 'grid-template-columns: '+width+'px calc(100% - '+w+'px) '+width+'px';
       }
@@ -225,7 +225,9 @@
     #{{$id}} .wrapper {
       display: grid;
       align-items: center;
-      grid-gap: 10px;
+      grid-gap: 5px;
+      margin-right: -25px;
+      margin-left: -15px;
     }
     @media (max-width: 768px) {
     #{{$id}} .wrapper {
