@@ -413,6 +413,7 @@ return [
   "form" => [
     "id" => "ID",
     "title" => "Título | Titulos",
+    "h1" => "Título H1",
     "caption" => "Subtítulo | Subtítulos",
     "firstName" => "Nombre | Nombres",
     "lastName" => "Apellido | Apellidos",
