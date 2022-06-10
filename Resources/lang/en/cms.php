@@ -345,7 +345,8 @@ return [
     "position" => "Position | Positions",
     "axis" => "Axis | Axes",
     "audio" => "Audio | Audios",
-    "ratio" => "Ratio | Ratios"
+    "ratio" => "Ratio | Ratios",
+    "format" => "Format | Formats"
   ],
   "message" => [
     "notFound" => "Sorry, nothing here",

@@ -349,7 +349,8 @@ return [
     "position" => "Posición | Posiciones",
     "axis" => "Eje | Ejes",
     "audio" => "Audio | Audios",
-    "ratio" => "Proporción | Proporciones"
+    "ratio" => "Proporción | Proporciones",
+    "format" => "Formato | Formatos"
   ],
   "message" => [
     "notFound" => "Lo sentimos, no hay nada aquí",
