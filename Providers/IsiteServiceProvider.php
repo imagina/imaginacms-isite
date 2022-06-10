@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Core\Events\BuildingSidebar;
 use Modules\Core\Events\LoadingBackendTranslations;
+use Modules\Isite\Console\GenerateSitemapCommand;
 use Modules\Isite\Events\Handlers\RegisterIsiteSidebar;
 use Modules\Isite\Http\Middleware\CaptchaMiddleware;
 use Illuminate\Support\Facades\Blade;
@@ -41,6 +42,7 @@ class IsiteServiceProvider extends ServiceProvider
   public function register()
   {
     $this->registerBindings();
+    $this->registerCommands();
     $this->app['events']->listen(BuildingSidebar::class, RegisterIsiteSidebar::class);
 
     $this->app['events']->listen(LoadingBackendTranslations::class, function (LoadingBackendTranslations $event) {
@@ -243,6 +245,16 @@ class IsiteServiceProvider extends ServiceProvider
 
     Livewire::component('isite::filter-order-by', \Modules\Isite\Http\Livewire\Index\Filters\OrderBy::class);
 
+  }
+
+  /**
+   * Register the console commands
+   */
+  private function registerCommands()
+  {
+    $this->commands([
+      GenerateSitemapCommand::class,
+    ]);
   }
 
 }
