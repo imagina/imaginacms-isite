@@ -409,7 +409,8 @@ return [
     "finishRegister" => "Falta poco para terminar tu registro",
     "ready" => "Todo está listo",
     "noRegistered" => "Aún no estás registrado",
-    "hintFilterByQuery" => "Escribe 3 o más caracteres para buscar opciones"
+    "hintFilterByQuery" => "Escribe 3 o más caracteres para buscar opciones",
+    "invalidFormat" => "Formato invalido"
   ],
   "form" => [
     "id" => "ID",
