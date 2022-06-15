@@ -345,7 +345,8 @@ return [
     "position" => "Position | Positions",
     "axis" => "Axis | Axes",
     "audio" => "Audio | Audios",
-    "ratio" => "Ratio | Ratios"
+    "ratio" => "Ratio | Ratios",
+    "format" => "Format | Formats"
   ],
   "message" => [
     "notFound" => "Sorry, nothing here",
@@ -409,7 +410,8 @@ return [
     "finishRegister" => "There is little left to finish your registration...",
     "ready" => "Ready",
     "noRegistered" => "You are not registered yet",
-    "hintFilterByQuery" => "Type 3 or more characters to search for options"
+    "hintFilterByQuery" => "Type 3 or more characters to search for options",
+    "invalidFormat" => "Invalid format"
   ],
   "form" => [
     "id" => "ID",
