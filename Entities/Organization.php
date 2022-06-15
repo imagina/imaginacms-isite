@@ -85,15 +85,21 @@ class Organization extends BaseTenant
 
   public function getUrlAttribute()
   {
-
     $currentLocale = \LaravelLocalization::getCurrentLocale();
-
-    $slug = $this->domains->first()->domain ?? $this->slug;
+    
     $domains = $this->domains;
-    if ($slug)
-      return 'https://'.($domains->where("type","custom")->first()->domain ?? $domains->where("type","default")->first()->domain).".".Str::remove('https://', env('APP_URL', 'localhost'))."/tienda";
-    else
-      return "";
+    $tenantRouteAlias = setting("isite::tenantRouteAlias",null,"site");
+    
+      $customDomain = $domains->where("type","custom")->first()->domain ?? null;
+      $defaultDomain = $domains->where("type","default")->first()->domain ?? $this->slug ?? null;
+      
+      if(!empty($customDomain)){
+        return $customDomain;
+      }elseif(!empty($defaultDomain)){
+        return tenant_route($defaultDomain.".".Str::remove('https://', env('APP_URL', 'localhost')), \LaravelLocalization::getCurrentLocale() . ".$tenantRouteAlias");
+      }else{
+        return "";
+      }
 
   }
 

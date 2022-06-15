@@ -96,7 +96,7 @@ class PublicController extends BaseApiController
    */
   public function uri($slug)
   {
- 
+
     //Pimero buscamos el path completo en el slug del post, si existe redirige
     $postRepository = app("Modules\Iblog\Repositories\PostRepository");
     $post = $postRepository->getItem($slug,json_decode(json_encode(["filter" => ["field" => "slug"]])));
@@ -137,7 +137,7 @@ class PublicController extends BaseApiController
       $controller = app("Modules\Page\Http\Controllers\PublicController");
       return $controller->uri($page,$slug);
     }
-  
+
     return response()->view('errors.404', [], 404);
   }
   

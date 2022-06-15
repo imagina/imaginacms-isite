@@ -18,5 +18,5 @@ $locale = LaravelLocalization::setLocale() ?: App::getLocale();
  */
 $router->any('{uri}', [
   'uses' => 'PublicController@uri',
-  'as' => 'site',
+  'as' => $locale.'.site',
 ])->where('uri', '.*');

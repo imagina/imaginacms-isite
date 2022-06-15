@@ -35,6 +35,7 @@
 
   <a id="tagHelper" data-toggle="collapse" href="#entityS" role="button" aria-expanded="false" aria-controls="entityS"
      class="collapsed d-none"></a>
+
   <div class=" collapse {{$collapsable}} multi-collapse position-absolute bg-white" id="entityS" style="     top: 110%;
     left: 0;
     min-width: 100%;
@@ -56,7 +57,9 @@
     </div>
   </div>
 </div>
+@if(!empty($results))
 </div>
+@endif
 
 @section('scripts')
   @parent
