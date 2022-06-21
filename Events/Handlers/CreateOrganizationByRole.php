@@ -2,8 +2,10 @@
 
 namespace Modules\Isite\Events\Handlers;
 
-
 use Modules\Isite\Entities\Organization;
+
+// Events
+use Modules\Isite\Events\OrganizationWasCreated;
 
 class CreateOrganizationByRole
 {
@@ -36,11 +38,13 @@ class CreateOrganizationByRole
   
           $organization->users()->sync([$user->id => ['role_id' => $userRole->id]]);
           
-  
           $organization->domains()->create([
             'domain' => $data["organization"]["domain"] ?? $organization->slug,
             'type' => 'default'
           ]);
+
+          event(new OrganizationWasCreated($organization));
+
         }
       }
       
