@@ -88,7 +88,7 @@ class Organization extends BaseTenant
     $currentLocale = \LaravelLocalization::getCurrentLocale();
     
     $domains = $this->domains;
-    $tenantRouteAlias = setting("isite::tenantRouteAlias",null,"site");
+    $tenantRouteAlias = setting("isite::tenantRouteAlias",null,"site",true);
     
       $customDomain = $domains->where("type","custom")->first()->domain ?? null;
       $defaultDomain = $domains->where("type","default")->first()->domain ?? $this->slug ?? null;

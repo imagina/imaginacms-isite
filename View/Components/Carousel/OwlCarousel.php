@@ -143,7 +143,7 @@ class OwlCarousel extends Component
         
         $this->repository = $repository;
         $this->params = $params;
-        $this->itemLayout = $itemLayout;
+        $this->itemLayout = $itemLayout ?? $itemComponentAttributes["itemLayout"] ?? null;
         $this->title = $title;
         $this->itemsBySlide = $itemsBySlide;
         $this->subTitle = $subTitle;
