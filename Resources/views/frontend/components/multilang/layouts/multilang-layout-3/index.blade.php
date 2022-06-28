@@ -1,85 +1,84 @@
-<div id="multilanglayout3" class="multilang">
-
-    <form action="">
-        <div class="selectbox">
-            <div class="select" id="select">
-                <div class="contenido-select">
-                    <h4 class="titulo">Selecciona tu Idioma</h4>
-                </div>
-                <i class="fas fa-angle-down" aria-hidden="true"></i>
-      
-            </div>
-      
-            <div class="opciones" id="opciones">
-            
-      <a href="#" class="opcion"value="es">
+<div id="multiLangLayout3" class="multi-lang">
+  
+  <div class="dropdown">
+    <?php
+    $hash = sha1($butonComponentNamespace);
+    if (isset($component)) {
+      $__componentOriginal{$hash} = $component;
+    }
+    $component = $__env->getContainer()->make($butonComponentNamespace, array_merge([
+      'idButton' => 'buttonDropdownMultilang',
+      'label' => $longText ? config('available-locales')[LaravelLocalization::getCurrentLocale()]['native'] : LaravelLocalization::getCurrentLocale(),
+      'withLabel' => true,
+      'buttonClasses' => 'btn btn-sm dropdown-toggle text-capitalize'
+    ], $buttonComponentAtributtes ?? []));
+    $component->withName($butonComponent);
+    if ($component->shouldRender()):
+      $__env->startComponent($component->resolveView(), $component->data());
+      if (isset($__componentOriginal{$hash})):
+        $component = $__componentOriginal{$hash};
+        unset($__componentOriginal{$hash});
+      endif;
+      echo $__env->renderComponent();
+    endif;
+    ?>
+    
+    <div class="dropdown-menu dropdown-menu-right  p-2" aria-labelledby="{{$component->idButton}}">
+      @foreach($locales as $locale)
+        @if($showImage)
+          <?php
+          $hash = sha1($imageComponentNamespace);
+          if (isset($component)) {
+            $__componentOriginal{$hash} = $component;
+          }
+          $component = $__env->getContainer()->make($imageComponentNamespace, array_merge([
+            'src' => url('modules/isite/img/locales/' . $locale . '.jpg'),
+            'imgStyles' => 'width: 35px; height: 30px; object-fit:cover',
+            'imgClasses' =>'rounded-circle mx-2'
+          ], $imageComponentAtributtes ?? []));
+          $component->withName($butonComponent);
+          if ($component->shouldRender()):
+            $__env->startComponent($component->resolveView(), $component->data());
+            if (isset($__componentOriginal{$hash})):
+              $component = $__componentOriginal{$hash};
+              unset($__componentOriginal{$hash});
+            endif;
+            echo $__env->renderComponent();
+          endif;
+          ?>
+        @endif
+  
+      @if($showButton)
+          <?php
+          $hash = sha1($butonComponentNamespace);
+          if (isset($component)) {
+            $__componentOriginal{$hash} = $component;
+          }
+          $component = $__env->getContainer()->make($butonComponentNamespace, array_merge([
+            'label' => $longText ? config('available-locales')[$locale]['native'] : $locale,
+            'href' => $locale,
+            'withLabel' => true,
+            'buttonClasses' => 'text-white text-left btn-lg border-0 text-capitalize',
+            'style' => 'outline'
+          ], $buttonDropDownItemComponentAtributtes ?? []));
+          $component->withName($butonComponent);
+          if ($component->shouldRender()):
+            $__env->startComponent($component->resolveView(), $component->data());
+            if (isset($__componentOriginal{$hash})):
+              $component = $__componentOriginal{$hash};
+              unset($__componentOriginal{$hash});
+            endif;
+            echo $__env->renderComponent();
+          endif;
+          ?>
+        @endif
         
-                    <div class="contenido-opcion">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPK_QCwe-IppY2_cLHpqbDoorQga-wVE4TUw&usqp=CAU" alt="">
-                        <div class="textos">
-                            <h4 class="titulo">Spanish</h4>
-                        </div>
-                    </div>
-        
-                </a>
-      <hr>
-                <a href="#" class="opcion"value="en">
-                    <div class="contenido-opcion">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg/1200px-Flag_of_the_United_Kingdom_%283-5%29.svg.png" alt="">
-                        <div class="textos">
-                            <h4 class="titulo">English</h4>
-                        </div>
-                    </div>
-                </a>
-      <hr>
-                <a href="#" class="opcion">
-                    <div class="contenido-opcion" value="al">
-                        <img src="https://media.istockphoto.com/vectors/germany-flag-vector-id166012239?k=20&m=166012239&s=612x612&w=0&h=yA820ncZYE7wNzPWlwuA1gFynXokkO2qdDVl8SXJx1M=" alt="">
-                        <div class="textos">
-                            <h4 class="titulo">German</h4>
-                        </div>
-                    </div>
-        
-                </a>
-      <hr>
-                <a href="#" class="opcion">
-        
-                    <div class="contenido-opcion" value="ca">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Flag_of_Catalonia.svg/1200px-Flag_of_Catalonia.svg.png" alt="">
-                        <div class="textos">
-                            <h4 class="titulo">Catalan</h4>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <input type="hidden" name="pais" id="inputSelect" value="">
-    </form>
-
+      @endforeach
+    </div>
+  </div>
 </div>
+<script type="text/javascript">
+  let $buttonDropdownMultiLang = document.getElementById('{{$component->idButton}}')
+  $buttonDropdownMultiLang.setAttribute('data-toggle', 'dropdown')
+</script>
 
-@section('scripts')
-    @parent
-    <script type="text/javascript">
-       const select = document.querySelector('#select');
-const opciones = document.querySelector('#opciones');
-const contenidoSelect = document.querySelector('#select .contenido-select');
-const hiddenInput = document.querySelector('#inputSelect');
-
-document.querySelectorAll('#opciones > .opcion').forEach((opcion) => {
-	opcion.addEventListener('click', (e) => {
-		e.preventDefault();
-		contenidoSelect.innerHTML = e.currentTarget.innerHTML;
-		select.classList.toggle('active');
-		opciones.classList.toggle('active');
-		hiddenInput.value = e.currentTarget.querySelector('.titulo').innerText;
-	});
-});
-
-select.addEventListener('click', () => {
-	select.classList.toggle('active');
-	opciones.classList.toggle('active');
-});
-    </script>
-@stop
