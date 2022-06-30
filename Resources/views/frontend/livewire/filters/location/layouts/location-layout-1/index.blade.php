@@ -19,16 +19,18 @@
 	        </div>
 	    </div>
 
-	  	@if(!empty($radio))
-		    <div class="search-location-radius">
-		        <select id="select-radius" wire:model="selectedRadio">
-                    <option value="all">Todo</option>
-		        	@foreach($radio['values'] as $key => $value)
-			            <option value="{{$value}}">{{$value}} {{$radio['measure']}}</option>
-			        @endforeach
-		        </select>
-		    </div>
-		@endif
+        @if($findByLngLat)
+    	  	@if(!empty($radio))
+    		    <div class="search-location-radius">
+    		        <select id="select-radius" wire:model="selectedRadio">
+                        <option value="all">Todo</option>
+    		        	@foreach($radio['values'] as $key => $value)
+    			            <option value="{{$value}}">{{$value}} {{$radio['measure']}}</option>
+    			        @endforeach
+    		        </select>
+    		    </div>
+    		@endif
+        @endif
 
 
 	</div>
@@ -123,6 +125,7 @@
 
                         var component_type = types[j];
                         if(componentMap.hasOwnProperty(component_type)){
+                            //console.log(placeAC[i])
                             if(component_type=="locality")
                                 inforPlace[0] = placeAC[i]['short_name']
 
