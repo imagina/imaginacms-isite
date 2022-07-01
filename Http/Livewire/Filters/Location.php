@@ -39,6 +39,7 @@ class Location extends Component
     public $countryCode;
     public $province;
     public $city;
+    public $neighborhood;
 
     /*
     * Attributes To Type "location-2"
@@ -174,6 +175,7 @@ class Location extends Component
             $emitInfor['country'] = $this->country;
             $emitInfor['province'] = $this->province;
             $emitInfor['city'] = $this->city;
+            $emitInfor['neighborhood'] = $this->neighborhood;
             $emitInfor['radio'] = $this->selectedRadio;
             $emitInfor['lat'] = $this->lat;
             $emitInfor['lng'] = $this->lng;  
