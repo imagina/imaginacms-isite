@@ -117,23 +117,35 @@
                     country: 'country',
                     locality: 'locality',
                     administrative_area_level_1 : 'administrative_area_level_1',
+                    administrative_area_level_2 : 'administrative_area_level_2',
                 };
 
                 for(var i = 0; i < placeAC.length; i++){
                     var types = placeAC[i].types; // get types array of each component
+                    //console.log(types)
                     for(var j = 0; j < types.length; j++){
 
                         var component_type = types[j];
+                        //console.log(component_type)
+
                         if(componentMap.hasOwnProperty(component_type)){
                             //console.log(placeAC[i])
+
+                            //neighborhood
                             if(component_type=="locality")
                                 inforPlace[0] = placeAC[i]['short_name']
 
-                            if(component_type=="administrative_area_level_1")
+                            //City
+                            if(component_type=="administrative_area_level_2")
                                 inforPlace[1] = placeAC[i]['short_name']
 
-                            if(component_type=="country")
+                            //Department
+                            if(component_type=="administrative_area_level_1")
                                 inforPlace[2] = placeAC[i]['short_name']
+
+                            if(component_type=="country")
+                                inforPlace[3] = placeAC[i]['short_name']
+
                         }
                     }
                 }
@@ -172,9 +184,12 @@
 
                 placeInformation = getPlaceInfor(near_place.address_components)
 
-                @this.city = placeInformation[0]
-                @this.province = placeInformation[1]
-                @this.country = placeInformation[2]
+                //console.warn(placeInformation)
+
+                @this.neighborhood = placeInformation[0]
+                @this.city = placeInformation[1]
+                @this.province = placeInformation[2] //Department
+                @this.country = placeInformation[3]
 
                 @this.lat = near_place.geometry.location.lat();
                 @this.lng = near_place.geometry.location.lng();
