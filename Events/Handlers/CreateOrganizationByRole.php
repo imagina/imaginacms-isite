@@ -43,6 +43,8 @@ class CreateOrganizationByRole
             'type' => 'default'
           ]);
 
+          tenancy()->initialize($organization->id);
+
           event(new OrganizationWasCreated($organization));
 
         }
