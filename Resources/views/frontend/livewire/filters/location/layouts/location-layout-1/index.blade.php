@@ -118,6 +118,7 @@
                     locality: 'locality',
                     administrative_area_level_1 : 'administrative_area_level_1',
                     administrative_area_level_2 : 'administrative_area_level_2',
+                    route : 'route',
                 };
 
                 for(var i = 0; i < placeAC.length; i++){
@@ -132,8 +133,13 @@
                             //console.log(placeAC[i])
 
                             //neighborhood
-                            if(component_type=="locality")
+                            if(component_type=="locality"){
                                 inforPlace[0] = placeAC[i]['short_name']
+                            }else{
+                                if(component_type=="route"){
+                                    inforPlace[0] = placeAC[i]['short_name']
+                                }
+                            }
 
                             //City
                             if(component_type=="administrative_area_level_2")
@@ -184,7 +190,7 @@
 
                 placeInformation = getPlaceInfor(near_place.address_components)
 
-                //console.warn(placeInformation)
+                console.warn(placeInformation)
 
                 @this.neighborhood = placeInformation[0]
                 @this.city = placeInformation[1]
