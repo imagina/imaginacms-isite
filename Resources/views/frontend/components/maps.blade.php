@@ -1,4 +1,4 @@
-<div class="col-12">
+<div class="component-map map-{{$settingMap}} col-12">
   @if(isset($title) && !empty($title))
     <p class="subtitle h3">{{$title}}</p>
     <hr>
@@ -7,11 +7,11 @@
     <div class="map bg-light">
       @if($settingMap == 'googleMaps')
         <div class="content">
-          <div id="{{$mapId}}" class="{{$classes}} maps-component" style="width:100%; height:314px"></div>
+          <div id="{{$mapId}}" class="{{$classes}} maps-component" style="width:{{$mapWidth}}; height:{{$mapHeight}}"></div>
         </div>
       @elseif($settingMap == 'openStreet')
         <div class="content">
-          <div id="{{$mapId}}" class="map map-home" style="width:100%; height:314px;"></div>
+          <div id="{{$mapId}}" class="map map-home" style="width:{{$mapWidth}}; height:{{$mapHeight}}"></div>
         </div>
       @endif
     </div>
@@ -19,8 +19,12 @@
 </div>
 
 @if($settingMap == 'openStreet')
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css">
-  <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+        integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+        crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+          integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+          crossorigin=""></script>
   <script>
     var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
