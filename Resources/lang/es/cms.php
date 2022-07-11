@@ -542,6 +542,7 @@ return [
   "right" => "Derecha",
   "bottomLeft" => "Abajo-Izquierda",
   "bottom" => "Abajo",
-  "bottomRight" => "Abajo-Derecha"
+  "bottomRight" => "Abajo-Derecha",
+  "selectedRows" => "{num} Filas seleccionadas"
 ];
 

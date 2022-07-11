@@ -543,6 +543,7 @@ return [
   "right" => "Right",
   "bottomLeft" => "Bottom-Left",
   "bottom" => "Bottom",
-  "bottomRight" => "Bottom-Right"
+  "bottomRight" => "Bottom-Right",
+  "selectedRows" => "{num} selected rows"
 ];
 
