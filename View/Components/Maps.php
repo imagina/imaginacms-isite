@@ -18,7 +18,9 @@ class Maps extends Component
   public $id;
   public $mapId;
   public $settingMap;
-	public $inModal;
+  public $inModal;
+  public $mapWidth;
+  public $mapHeight;
 
   /**
    * Create a new component instance.
@@ -26,7 +28,7 @@ class Maps extends Component
    * @return void
    */
   public function __construct($lat, $lng, $locationName = 'Ubicacion', $title = null, $zoom = 16, $classes = '',
-                              $id = 1, $mapId = null, $inModal=false)
+                              $id = 1, $mapId = null, $inModal = false, $mapWidth = '100%', $mapHeight = '314px')
   {
     $this->lat = $lat;
     $this->lng = $lng;
@@ -37,7 +39,9 @@ class Maps extends Component
     $this->id = $id;
     $this->mapId = 'map_canvas_' . setting('isite::mapInShow') . '_' . $id;
     $this->settingMap = setting('isite::mapInShow');
-$this->inModal=$inModal;
+    $this->inModal = $inModal;
+    $this->mapWidth = $mapWidth;
+    $this->mapHeight = $mapHeight;
   }
 
   /**
