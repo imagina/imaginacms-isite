@@ -4,6 +4,8 @@ namespace Modules\Isite\View\Components;
 
 use Illuminate\View\Component;
 
+use Modules\Setting\Entities\Setting;
+
 class Whatsapp extends Component
 {
 
@@ -29,6 +31,7 @@ class Whatsapp extends Component
   public $numbers;
   public $editButton;
   public $notNumber;
+  public $central;
   /**
    * Create a new component instance.
    *
@@ -38,7 +41,7 @@ class Whatsapp extends Component
     $layout = 'whatsapp-layout-1', $title = '', $id = 'whatsappComponent', $mask = 1,
     $icon = 'fa fa-whatsapp', $alignment = 'dropleft', $parentAttributes = [],
     $top = '50%', $bottom = null, $right = null, $left= null, $type = '', $size = 'lg', $iconLabel = '',
-    $notNumber = true, $numbers = [], $editButton = true
+    $notNumber = true, $numbers = [], $editButton = true, $central = false
   )
   {
     $this->layout = $layout ?? 'whatsapp-layout-1';
@@ -59,7 +62,10 @@ class Whatsapp extends Component
     $this->notNumber = $notNumber ?? true;
     $this->numbers = $numbers ?? null;
     $this->editButton = $editButton ?? true;
- 
+    
+    $this->central = $central;
+
+    //dd($this->central,$central);
   }
 
   private function setParentAttributes($parentAttributes)
@@ -85,9 +91,10 @@ class Whatsapp extends Component
         ];
         
         for($i=0;$i<3;$i++) {
-          if(empty($this->numbers))
-            $item = json_decode(setting('isite::whatsapp'.($i+1)));
-          else
+          if(empty($this->numbers)){
+           
+            $item = json_decode(setting('isite::whatsapp'.($i+1),null,'',$this->central));
+          }else
             $item = (object)($this->numbers[$i] ?? []);
           
             if(!empty($item->callingCode) && !empty($item->number)){
