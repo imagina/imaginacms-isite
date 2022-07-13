@@ -4,25 +4,29 @@ namespace Modules\Isite\View\Components\Contact;
 
 use Illuminate\View\Component;
 
+use Modules\Setting\Entities\Setting;
+
 class Emails extends Component
 {
   public $emails;
   public $icon;
   public $showIcon;
+  public $central;
 
   /**
    * Create a new component instance.
    *
    * @return void
    */
-  public function __construct($icon = "fa fa-envelope", $showIcon = true, $emails = null)
+  public function __construct($icon = "fa fa-envelope", $showIcon = true, $emails = null, $central = false)
   {
     $this->icon = $icon;
     $this->showIcon = $showIcon;
     if(!empty($emails)){
       $this->emails = !is_array($emails) ? [$emails] : $emails;
-    }else
-      $this->emails = json_decode(setting("isite::emails", null, "[]"));
+    }else{
+      $this->emails = json_decode(setting("isite::emails", null, "[]",$central));
+    }
   }
 
   /**
