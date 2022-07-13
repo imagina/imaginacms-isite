@@ -1,8 +1,8 @@
 # imaginacms-isite
 
-# Components
+## Components
 
-# Edit Button
+#### Edit Button
 
 The main function of the edit button component is to generate a redirection only for the Page administrators, the component fulfills the function of showing buttons to edit content of the web page from the administrator of the web page, generating support for the administrators when they want to change the content of the page.
 
@@ -40,7 +40,7 @@ The edit button component has required parameters and optional parameters to mee
 
   <- idButton="editSlider" ->
   
-Applications
+**Applications**
 
 Currently, the edit button is implemented automatically in most components such as sliders among others, since they can be generated automatically, on the other hand, at the moment to generate an edit button of a setting of any module, the following command line must be fulfilled, which will call the edit button and will take us to edit the setting that we need.
 
