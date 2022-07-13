@@ -66,6 +66,8 @@ return [
         'page' => 'Páginas',
         'slider' => 'Sliders',
         'slide' => 'Slides',
+        'menu' => 'Menus',
+        'menuitem' => 'Menus Items',
       ],
     ],
     'cms' => [

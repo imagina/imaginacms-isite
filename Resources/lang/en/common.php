@@ -61,6 +61,8 @@ return [
         'page' => 'Pages',
         'slider' => 'Sliders',
         'slide' => 'Slides',
+        'menu' => 'Menus',
+        'menuitem' => 'Menus Items',
       ],
     ],
     'googleClient' => 'Google Client',

@@ -962,6 +962,8 @@ return [
         ['label' => 'isite::common.settings.tenant.entities.page', 'value' => 'page'],
         ['label' => 'isite::common.settings.tenant.entities.slider', 'value' => 'slider'],
         ['label' => 'isite::common.settings.tenant.entities.slide', 'value' => 'slide'],
+        ['label' => 'isite::common.settings.tenant.entities.menu', 'value' => 'menu'],
+        ['label' => 'isite::common.settings.tenant.entities.menuitem', 'value' => 'menuitem'],
       ]
     ]
   ],
