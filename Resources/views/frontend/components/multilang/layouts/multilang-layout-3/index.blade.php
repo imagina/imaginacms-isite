@@ -60,8 +60,8 @@
             $component = $__env->getContainer()->make($imageComponentNamespace, array_merge([
               'src' => url('modules/isite/img/locales/' . $locale . '.jpg'),
               'imgStyles' => 'width: 30px; height: 30px; object-fit:cover',
-              'imgClasses' => 'rounded-circle  ml-3 mr-2',
-              'url' => $locale,
+              'imgClasses' => 'rounded-circle ml-3 mr-2',
+              'href' => url($locale),
             ], $imageComponentAtributtes ?? []));
             $component->withName($imageComponent);
             if ($component->shouldRender()):
@@ -83,7 +83,7 @@
             }
             $component = $__env->getContainer()->make($butonComponentNamespace, array_merge([
               'label' => $longTextDrop ? config('available-locales')[$locale]['native'] : $locale,
-              'href' => $locale,
+              'href' => url($locale),
               'withLabel' => true,
               'buttonClasses' => 'text-white text-left btn-lg border-0 text-capitalize text-bold',
               'style' => 'outline'
