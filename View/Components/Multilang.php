@@ -43,7 +43,7 @@ class Multilang extends Component
                               $showImage = true
   )
   {
-    $this->view = "isite::frontend.components.multilang.layouts.multilang-layout-3.index";
+    $this->view = "isite::frontend.components.multilang.layouts.".$layout.".index";
     $this->locales = json_decode(setting("core::locales"));
 
     $this->butonComponentNamespace = $butonComponentNamespace;
