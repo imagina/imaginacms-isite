@@ -35,4 +35,33 @@ The previous line shows the route that the link parameter must take to make the 
 
 Remember that optional parameters do not generate errors if they are not sent, otherwise the required parameters can generate an error when assigning them.  
 </details>
+
+<details><summary>Maps</summary>
+
+The maps component has the function of rendering maps of desired locations by means of a latitude and longitude of the location, the component can render maps of openstreet and google maps, the choice of the map is made according to a setting in which it is chosen which maps the component is going to use, also remember that to use google maps you must have a key that is entered in another setting from the administrator.
+
+For its correct operation, the component has the following parameters:
+
+| **Params** | **Required** | **Default value** | **Type** | **Options** | **Description** |
+| :---: | :---: | :---: | :---: | :---: | :--- |
+| `lat` | YES | - | decimal | `lat="4.427950"` | In this parameter, the location is assigned based on the latitude of the site, these measurements are of the decimal type and can be a negative or positive number depending on the location. |
+| `lng`	| YES | - | decimal | `lng="-75.213492"` | In this parameter, the location is assigned based on the length of the site, these measurements are of the decimal type and can be a negative or positive number depending on the location. |
+| `locationName` | NO | 'Ubicacion' | Text | `locationName="University of Tolima"` | In this parameter, the name of the place to which you want to locate is assigned, this parameter generates a mark on the map which allows users to find the location more efficiently. |
+| `title` | NO | Null | Text | `title="University of Tolima, Ibague"` | In this parameter the title of the entire component section is assigned, this parameter can be null and if it is null the title section will be disabled. |
+| `zoom` | NO | 16 | Num | `zoom="16"` | In this parameter, the view of the vicinity from which the map will be displayed is assigned, this parameter receives integer numerical values. | 
+| `classes` | NO | ' ' | Text | `classes="py-3 maps-university"` | In this parameter are the classes that are needed for the styles or column options among others of the map. |
+| `id` | NO | 1 | Num | `id=3` | In this parameter a number is assigned which serves to identify the map, in case there are two different maps on the same page, with this parameter it is sought to completely identify the map and that it can be differentiated from others. |
+| `inModal` | NO | false | Boolean | `inModal="true"` |	 In this parameter it is assigned if the component is going to be used in a modal or not, by default the parameter is set to "false", therefore, normally the component is not rendered in modals and that is the function of this parameter. |
+| `mapWidth` | NO | `'100%'` | Percentages or pixels | `mapWidth='50%'` | In this parameter it is assigned if the size is width for the map, this parameter receives percentages and measurement values. |
+| `mapHeight` | NO | `'314px'` | Percentages or pixels | `mapHeight='314px'` | In this parameter it is assigned if the size is high for the map, this parameter receives percentages and measurement values. |
   
+**Applications**
+
+The following example shows how to call the maps component along with all the parameters already mentioned above.
+
+  ```ruby
+  <x-isite::Maps lat="4.427950" lng="-75.213492" locationName="University of Tolima" title="University of Tolima, Ibague" zoom="16" classes="py-3 maps-university" id=3 inModal="false" mapWidth='50%' mapHeight='314px'/> 
+  ```
+
+</details>
+
