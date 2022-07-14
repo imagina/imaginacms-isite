@@ -1,3 +1,30 @@
 #multiLangLayout3 {
-width: 50px;
+  .dropdown {
+    display: flex;
+  }
+
+  .dropdown-menu {
+    box-shadow: rgb(0 0 0 / 9%) 0px 24px 46px, rgb(0 0 0 / 28%) 0px 3px 10px;
+    border: 0;
+    top: 26px !important;
+    border-radius: 7px;
+
+    &:before {
+      content: " ";
+      position: absolute;
+      background: white;
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+      height: 12px;
+      width: 22px;
+      right: 12px;
+      top: -11px;
+    }
+
+    .item-dropdown {
+      border-bottom: 0.1px solid #0000004d;
+      &:last-child{
+        border-bottom: 0;
+      }
+    }
+  }
 }
