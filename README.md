@@ -2,9 +2,11 @@
 
 ## Components
 
-<details><summary>Edit Button</summary>
+#### Edit Button
 
 The main function of the edit button component is to generate a redirection only for the Page administrators, the component fulfills the function of showing buttons to edit content of the web page from the administrator of the web page, generating support for the administrators when they want to change the content of the page.
+
+<details><summary>View more</summary>
 
 The edit button component has required parameters and optional parameters to meet the needs of the clients, the parameters of this component are the following:
 
