@@ -4,6 +4,7 @@ namespace Modules\Isite\Console;
 
 use Illuminate\Console\Command;
 use Spatie\Sitemap\SitemapGenerator;
+use Spatie\Crawler\Crawler;
 
 class GenerateSitemapCommand extends Command
 {
@@ -15,6 +16,11 @@ class GenerateSitemapCommand extends Command
   {
     // modify this to your own needs
     SitemapGenerator::create(config('app.url'))
+      ->configureCrawler(function (Crawler $crawler) {
+        $crawler->setMaximumDepth(3);
+        $crawler->setParseableMimeTypes(['text/html', 'text/plain']);
+      })
       ->writeToFile(public_path('sitemap.xml'));
+    \Log::info('Sitemap Generate successfully');
   }
 }
