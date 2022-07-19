@@ -13,7 +13,7 @@
         'imgStyles' => 'width: 50px; height: 27px;',
         'url' => $locale,
       ], $imageComponentAtributtes ?? []));
-      $component->withName($butonComponent);
+      $component->withName($imageComponent);
       if ($component->shouldRender()):
         $__env->startComponent($component->resolveView(), $component->data());
         if (isset($__componentOriginal{$hash})):
@@ -33,7 +33,7 @@
       }
       $component = $__env->getContainer()->make($butonComponentNamespace, array_merge([
         'label' => $locale,
-        'href' => $locale,
+        'href' => url($locale),
         'withLabel' => true,
         'buttonClasses' => 'btn px-2 border-0 text-capitalize',
       ], $buttonComponentAtributtes ?? []));

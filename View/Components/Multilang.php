@@ -16,6 +16,7 @@ class Multilang extends Component
   public $butonComponent;
   public $showButton;
   public $longText;
+  public $longTextDrop;
 
   public $imageComponentAtributtes;
   public $imageComponentNamespace;
@@ -34,6 +35,7 @@ class Multilang extends Component
                               $buttonDropDownItemComponentAtributtes = [],
                               $showButton = true,
                               $longText = true,
+                              $longTextDrop = true,
 
                               $imageComponentNamespace = "Modules\Media\View\Components\SingleImage",
                               $imageComponent = "media::single-image",
@@ -41,7 +43,7 @@ class Multilang extends Component
                               $showImage = true
   )
   {
-    $this->view = "isite::frontend.components.multilang.layouts.$layout.index";
+    $this->view = "isite::frontend.components.multilang.layouts.multilang-layout-3.index";
     $this->locales = json_decode(setting("core::locales"));
 
     $this->butonComponentNamespace = $butonComponentNamespace;
@@ -50,6 +52,8 @@ class Multilang extends Component
     $this->buttonDropDownItemComponentAtributtes = $buttonDropDownItemComponentAtributtes;
     $this->showButton = $showButton;
     $this->longText = $longText;
+    $this->longTextDrop = $longTextDrop;
+
 
     $this->imageComponentNamespace = $imageComponentNamespace;
     $this->imageComponent = $imageComponent;
