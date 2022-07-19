@@ -95,6 +95,7 @@ return [
     'tenants' => 'Inquilinos',
     'modalVerifier' => 'Modal Verificador',
     'components' => 'Componentes',
+    'sitemap' => 'Mapa Del Sitio',
     'title' => 'Agrega tu logo',
     'media' => [
       'title' => 'Agrega tu Imagen',
@@ -197,5 +198,8 @@ return [
     'labelWhatsappLayout5' => '¿Hablamos?',
     'titleWhatsappLayout5' => 'WhatsApp',
     'descriptionWhatsappLayout5' => 'Hola, ¿En que podemos ayudarte?',
+  ],
+  'sitemap' => [
+    'labelSitemapDepth' => 'Profundidad Del Mapa Del Sitio',
   ],
 ];

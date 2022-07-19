@@ -17,7 +17,7 @@ class GenerateSitemapCommand extends Command
     // modify this to your own needs
     SitemapGenerator::create(config('app.url'))
       ->configureCrawler(function (Crawler $crawler) {
-        $crawler->setMaximumDepth(3);
+        $crawler->setMaximumDepth(setting('isite::sitemapDepth'));
         $crawler->setParseableMimeTypes(['text/html', 'text/plain']);
       })
       ->writeToFile(public_path('sitemap.xml'));
