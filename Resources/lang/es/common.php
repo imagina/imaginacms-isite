@@ -76,7 +76,8 @@ return [
         "title" => "Tema Iadmin",
         "theme1" => "Tema 1",
         "theme2" => "Tema 2"
-      ]
+      ],
+      'showGoToSiteButton' => 'Mostrar boton "Ver Sitio"'
     ]
   ],
   'settingHints' => [
