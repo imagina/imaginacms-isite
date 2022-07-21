@@ -12,6 +12,14 @@ $locale = LaravelLocalization::setLocale() ?: App::getLocale();
 //]);
 //
 
+(!empty(json_decode(setting("isite::rolesToTenant",null,"[]")))) ?
+  $middlewares = [
+    'universal',
+    \Stancl\Tenancy\Middleware\InitializeTenancyByDomain::class,
+    \Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain::class
+  ] :
+  $middlewares = [];
+
 
 /**
  *
@@ -19,4 +27,5 @@ $locale = LaravelLocalization::setLocale() ?: App::getLocale();
 $router->any('{uri}', [
   'uses' => 'PublicController@uri',
   'as' => $locale.'.site',
+  'middleware' => $middlewares
 ])->where('uri', '.*');
