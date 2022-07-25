@@ -180,6 +180,7 @@
         center: {!! $center ? 'true' : 'false' !!},
         responsive: {!! $responsive !!},
         stagePadding: {!!$stagePadding!!},
+        autoplayTimeout: {{$autoplayTimeout}},
         {!! !empty($navText) ? 'navText: '.$navText."," : "" !!}
       });
 
