@@ -18,7 +18,8 @@
         "barryvdh/laravel-dompdf": "^0.9.0",
         "imagina/ischedulable-module": "^v8.x-dev",
         "imagina/ifillable-module": "^v8.x-dev",
-        "spatie/laravel-sitemap": "^5.8"
+        "spatie/laravel-sitemap": "^5.8",
+        "spatie/robots-txt": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.0",

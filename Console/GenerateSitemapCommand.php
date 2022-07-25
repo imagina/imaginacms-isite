@@ -5,6 +5,7 @@ namespace Modules\Isite\Console;
 use Illuminate\Console\Command;
 use Spatie\Sitemap\SitemapGenerator;
 use Spatie\Crawler\Crawler;
+use Spatie\Robots\Robots as Robots;
 
 class GenerateSitemapCommand extends Command
 {
@@ -22,5 +23,10 @@ class GenerateSitemapCommand extends Command
       })
       ->writeToFile(public_path('sitemap.xml'));
     \Log::info('Sitemap Generate successfully');
+    if (setting('isite::activeGenerateRobotsFile') == 1) {
+      $robots = Robots::create(setting('isite::userAgentRobots'))
+        ->withTxt(__DIR__ . '/public/robots.txt');
+      \Log::info('Robots.txt Generate successfully');
+    }
   }
 }
