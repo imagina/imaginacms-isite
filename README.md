@@ -6,8 +6,6 @@
 
 The main function of the edit button component is to generate a redirection only for the Page administrators, the component fulfills the function of showing buttons to edit content of the web page from the administrator of the web page, generating support for the administrators when they want to change the content of the page.
 
-<details><summary>View more</summary>
-
 The edit button component has required parameters and optional parameters to meet the needs of the clients, the parameters of this component are the following:
 
 | **Params** | **Required** | **Default value** | **Type** | **Options** | **Description** |
@@ -35,10 +33,9 @@ The previous line shows the route that the link parameter must take to make the 
   <x-isite::edit-link link="/iadmin/#/site/settings?settings=settingTest&module=icustom" tooltip="Edit Setting settingTest" classes="py-5 edit-button-settingName" top="35%" bottom="15%" right="85%" left="45%" idButton="editSettingTest"/> 
   ```
 
-Remember that optional parameters do not generate errors if they are not sent, otherwise the required parameters can generate an error when assigning them.  
-</details>
+Remember that optional parameters do not generate errors if they are not sent, otherwise the required parameters can generate an error when assigning them. 
 
-<details><summary>Maps</summary>
+#### Maps
 
 The maps component has the function of rendering maps of desired locations by means of a latitude and longitude of the location, the component can render maps of openstreet and google maps, the choice of the map is made according to a setting in which it is chosen which maps the component is going to use, also remember that to use google maps you must have a key that is entered in another setting from the administrator.
 
@@ -64,6 +61,4 @@ The following example shows how to call the maps component along with all the pa
   ```ruby
   <x-isite::Maps lat="4.427950" lng="-75.213492" locationName="University of Tolima" title="University of Tolima, Ibague" zoom="16" classes="py-3 maps-university" id=3 inModal="false" mapWidth='50%' mapHeight='314px'/> 
   ```
-
-</details>
 
