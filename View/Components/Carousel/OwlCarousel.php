@@ -33,6 +33,7 @@ class OwlCarousel extends Component
     public $owlBlockStyle;
     public $editLink;
     public $tooltipEditLink;
+    public $autoplayTimeout;
 
     public $navIcon;
     public $navSizeLabel;
@@ -68,6 +69,7 @@ class OwlCarousel extends Component
 
     public $owlTitleUrl;
     public $owlTitleTarget;
+
 
     /**
      * Create a new component instance.
@@ -124,7 +126,8 @@ class OwlCarousel extends Component
                                 $itemComponentNamespace = null,
                                 $stagePadding = 0,
                                 $owlTitleUrl = null,
-                                $owlTitleTarget = "_self"
+                                $owlTitleTarget = "_self",
+                                $autoplayTimeout = 5000
     )
     {
 
@@ -140,6 +143,7 @@ class OwlCarousel extends Component
         $this->responsiveClass = $responsiveClass;
         $this->autoplay = $autoplay;
         $this->autoplayHoverPause = $autoplayHoverPause;
+        $this->autoplayTimeout = $autoplayTimeout;
         
         $this->repository = $repository;
         $this->params = $params;

@@ -757,7 +757,7 @@ return [
       'label' => 'isite::pdf.settings.pdf.text.Information_content',
     ]
   ],
-  
+
   //Roles to register
   'rolesToTenant' => [
     "onlySuperAdmin" => true,
@@ -776,7 +776,7 @@ return [
       'select' => ['label' => 'name', 'id' => 'id']
     ]
   ],
-  
+
   //Default Tenant Status
   'defaultTenantStatus' => [
     'value' => true,
@@ -1005,6 +1005,19 @@ return [
     'groupTitle' => 'isite::common.settingGroups.sitemap',
     'props' => [
       'label' => 'isite::common.sitemap.labelSitemapDepth'
-    ]
+    ],
+  'showGoToSiteButton' => [
+    'name' => 'isite::showGoToSiteButton',
+    'value' => '1',
+    'type' => 'select',
+    'groupName' => 'cms',
+    'groupTitle' => 'isite::common.settingGroups.cms',
+    'props' => [
+      'label' => 'isite::common.settings.cms.showGoToSiteButton',
+      'options' => [
+        ['label' => 'isite::common.yes', 'value' => '1'],
+        ['label' => 'isite::common.no', 'value' => '0'],
+      ]
+    ],
   ],
 ];
