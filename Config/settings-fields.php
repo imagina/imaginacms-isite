@@ -1006,6 +1006,7 @@ return [
     'props' => [
       'label' => 'isite::common.sitemap.labelSitemapDepth'
     ],
+  ],
   'showGoToSiteButton' => [
     'name' => 'isite::showGoToSiteButton',
     'value' => '1',
@@ -1019,5 +1020,28 @@ return [
         ['label' => 'isite::common.no', 'value' => '0'],
       ]
     ],
+  ],
+  'userAgentRobots' => [
+    'value' => '*',
+    'name' => 'isite::userAgentRobots',
+    'type' => 'input',
+    'colClass' => "col-12",
+    'groupName' => 'sitemap',
+    'groupTitle' => 'isite::common.settingGroups.sitemap',
+    'props' => [
+      'label' => 'isite::common.sitemap.labelUserAgentRobots'
+    ]
+  ],
+  'activeGenerateRobotsFile' => [
+    'value' => "0",
+    'name' => 'isite::activeGenerateRobotsFile',
+    'type' => 'checkbox',
+    'groupName' => 'sitemap',
+    'groupTitle' => 'isite::common.settingGroups.sitemap',
+    'props' => [
+      'label' => 'isite::common.sitemap.labelActiveGenerateRobotsFile',
+      'trueValue' => "1",
+      'falseValue' => "0",
+    ]
   ],
 ];
