@@ -1,18 +1,12 @@
 <section id="contentTaps">
   <h3 class="text-center title-1">{{$title}}</h3>
   <h5 class="text-center subtitle">{{$subtitle}}</h5>
-  @if(isset($settingTabs))
-    @php
-      $categories = json_decode(setting($settingTabs,null,"[]"));
-    @endphp
-  @endif
-
+ 
   @if(isset($categories) && count($categories)>0)
     <ul class="nav nav-tabs products-tabs" role="tablist">
         @php($counter = 0)
-        @foreach($categories as $itemTabId)
+        @foreach($categories as $itemTab)
           @php($counter++)
-          @php($itemTab = $componentEntity::find($itemTabId))
           @php($counter == 1 ? $state = 'active' : $state = ' ')
           <li class="nav-item">
             <a class="nav-link {{$state}}" id="product-tab-{{$itemTab->id}}"
@@ -27,7 +21,6 @@
       @php($counter = 0)
       @foreach($categories as $item)
 
-        @php($item = $componentEntity::find($item))
         @if(isset($componentUse) && $componentUse != 'item-list')
           @php($counter++)
           @php($counter == 1 ? $state = 'show active' : $state = ' ')
@@ -65,7 +58,7 @@
     </div>
   @else
     <div class="alert alert-danger my-5 w-75 mx-auto" role="alert">
-      No existen categorias asociadas al setting: "{{$settingTabs}}"
+      No existen categorias destacadas para los Tabs
     </div>
   @endif
 </section>
