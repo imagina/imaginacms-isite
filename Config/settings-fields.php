@@ -996,6 +996,16 @@ return [
       ]
     ],
   ],
+  'sitemapDepth' => [
+    'value' => 5,
+    'name' => 'isite::sitemapDepth',
+    'type' => 'input',
+    'colClass' => "col-12",
+    'groupName' => 'sitemap',
+    'groupTitle' => 'isite::common.settingGroups.sitemap',
+    'props' => [
+      'label' => 'isite::common.sitemap.labelSitemapDepth'
+    ],
   'showGoToSiteButton' => [
     'name' => 'isite::showGoToSiteButton',
     'value' => '1',

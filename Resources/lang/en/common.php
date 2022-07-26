@@ -84,6 +84,7 @@ return [
     'emails' => "Type an email and press enter key",
   ],
   'settingGroups' => [
+    'sitemap' => 'Sitemap',
     'media' => [
       'title' => 'Media',
       'description' => 'Media'
@@ -175,5 +176,8 @@ return [
     'labelWhatsappLayout5' => 'Talk later?',
     'titleWhatsappLayout5' => 'WhatsApp',
     'descriptionWhatsappLayout5' => 'Hi, how can we help you?',
+  ],
+  'sitemap' => [
+    'labelSitemapDepth' => 'Sitemap Depth',
   ],
 ];
