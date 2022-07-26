@@ -22,6 +22,13 @@ class Organization extends BaseTenant
     'create' => 'Modules\Isite\Http\Requests\CreateOrganizationRequest',
     'update' => 'Modules\Isite\Http\Requests\UpdateOrganizationRequest',
   ];
+  public $dispatchesEventsWithBindings = [
+    'updated' => [
+      [
+        'path' => 'Modules\Isite\Events\OrganizationWasUpdated'
+      ]
+    ]  
+  ];
   protected $table = 'isite__organizations';
   public $translatedAttributes = [
     'title',
