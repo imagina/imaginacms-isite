@@ -46,7 +46,8 @@ class Organization extends BaseTenant
     'category_id',
     'status',
     'enable',
-    'sort_order'
+    'sort_order',
+    'layout_id'
   ];
   protected $casts = [
     'options' => 'array',
@@ -60,6 +61,7 @@ class Organization extends BaseTenant
       'user_id',
       'featured',
       'permissions',
+      'layout_id',
       'status',
       'sort_order',
       'category_id',
