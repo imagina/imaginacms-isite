@@ -30,6 +30,7 @@ return [
     "duplicateLang" => 'Reemplazar <b class="text-primary">{lang}</b> con...',
     "maintenancePage" => "Sitio en mantenimiento",
     "copyToClipboard" => "Tu información se guardó en el portapapeles",
+    "copyDisclosureLink" => "El enlace de divulgación se ha copiado en el portapapeles",
     "failedCopyToClipboard" => "No fue posible usar el portapapeles",
     "lastReport" => "Ultimo reporte",
     "newReport" => "Nuevo reporte",
@@ -47,6 +48,7 @@ return [
   "perzonalizationTitle" => "Bienvenid@ al editor de tu sitio web",
   "perzonalizationDescription" => "De manera fácil, cambia el logo, colores y la información principal de tu página web",
   "label" => [
+    "copyDisclosureLink" => "Copiar enlace",
     "delete" => "Eliminar",
     "cancel" => "Cancelar",
     "cancelled" => "Cancelado",

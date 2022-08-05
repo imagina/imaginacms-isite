@@ -123,6 +123,10 @@ return [
       'secondaryimage' => 'single',
       'gallery' => 'multiple',
     ],
+    'layout' => [
+      'mainimage' => 'single',
+      'gallery' => 'multiple',
+    ],
   ],
 
   "settingGroups" => [

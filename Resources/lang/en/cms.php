@@ -30,6 +30,7 @@ return [
     "duplicateLang" => 'Replace <b class="text-primary">{lang}</b> with...',
     "maintenancePage" => "System maintenance",
     "copyToClipboard" => "Your information is on clipboard",
+    "copyDisclosureLink" => "The disclosure link is on clipboard",
     "failedCopyToClipboard" => "Could no possible use clipboard",
     "lastReport" => "Last Report",
     "newReport" => "New Report",
@@ -48,6 +49,7 @@ return [
   "perzonalizationDescription" => "Easily change the logo, colors and the main information of your website",
 
   "label" => [
+    "copyDisclosureLink" => "Copy disclosure link",
     "delete" => "Delete",
     "cancel" => "Cancel",
     "cancelled" => "Cancelled",
