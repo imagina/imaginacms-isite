@@ -1044,4 +1044,30 @@ return [
       'falseValue' => "0",
     ]
   ],
+  'defaultLayout' => [
+    'value' => null,
+    'name' => 'isite::defaultLayout',
+    "onlySuperAdmin" => true,
+    'type' => 'select',
+    'colClass' => 'col-6',
+    'props' => [
+      'label' => 'isite::common.settings.defaultLayout',
+      'hint' => 'isite::common.settingHints.defaultLayout',
+      'useInput' => false,
+      'useChips' => false,
+      'multiple' => false,
+      'hideDropdownIcon' => true,
+      'newValueMode' => 'add-unique',
+      'options' => [
+        ['label' => 'Layout Tienda 1', 'value' => 1],
+      ]
+      // OJO falta que monten el crud en Frontend
+      /*
+      'loadOptions' => [
+          'apiRoute' => 'apiRoutes.qsite.layouts', //apiRoute to request
+          'select' => ['label' => 'title', 'id' => 'id'], //Define fields to config select
+      ]
+      */
+    ]
+  ],
 ];
