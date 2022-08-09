@@ -1,5 +1,8 @@
 @extends('layouts.master')
 
+@section('title')
+  {{isset($category->title)? $category->title: trans("isite::organizations.plural")}}  | @parent
+@stop
 
 @section('content')
 
