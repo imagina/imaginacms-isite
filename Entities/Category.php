@@ -51,7 +51,7 @@ class Category extends CrudModel
     $url = "";
     $currentLocale = \LaravelLocalization::getCurrentLocale();
 
-    //$url = route($currentLocale . '.isite.organizations.index.category',[$this->slug]);
+    $url = route($currentLocale . '.isite.organizations.index.category',[$this->slug]);
 
     return $url;
   }
