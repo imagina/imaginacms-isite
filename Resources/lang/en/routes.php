@@ -4,8 +4,8 @@ return [
   
   'organizations' => [
     'index' => [
-      'index' => 'organizaciones',
-      'category' => 'organizacion/c/{categorySlug}',
+      'index' => 'organizations',
+      'category' => 'organizations/c/{categorySlug}',
     ]
   ]
 
