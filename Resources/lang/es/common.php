@@ -78,13 +78,15 @@ return [
         "theme2" => "Tema 2"
       ],
       'showGoToSiteButton' => 'Mostrar boton "Ver Sitio"'
-    ]
+    ],
+    'defaultLayout' => 'Layout Default',
   ],
   'settingHints' => [
     'phones' => "Ingresa un número telefónico y presiona enter",
     'addresses' => "Ingresa una dirección y presiona enter",
     'emails' => "Ingresa un correo electrónico y presiona enter",
     'itemsTabs' => "Ingresa un titulo para identificar los tabs",
+    'defaultLayout' => "Se asignara cuando se cree una organización",
   ],
   'settingGroups' => [
     'media' => 'Media',

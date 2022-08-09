@@ -33,7 +33,8 @@ class CreateOrganizationByRole
           $organization = Organization::create(array_merge([
             'user_id' => $user->id,
             'title' => $user->present()->fullname,
-            'status' => json_decode(setting("isite::defaultTenantStatus",null, "true"))
+            'status' => json_decode(setting("isite::defaultTenantStatus",null, "true")),
+            'layout_id' => json_decode(setting("isite::defaultLayout",null, null))
           ],$data["organization"] ?? []));
   
           $organization->users()->sync([$user->id => ['role_id' => $userRole->id]]);
