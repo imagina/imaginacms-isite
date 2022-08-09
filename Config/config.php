@@ -216,4 +216,50 @@ return [
         'titleTextSize'=>18,
         'contentPositionVertical' => 'align-self-start'
     ],
+
+  /*
+  |--------------------------------------------------------------------------
+  | Define config to organizations
+  |--------------------------------------------------------------------------
+  */
+
+  'organizations' => [
+
+    'layoutIndex' => [
+      'default' => 'three',
+      'options' => [
+        'four' => [
+          'name' => 'four',
+          'class' => 'col-6 col-md-4 col-lg-3',
+          'icon' => 'fa fa-th-large',
+          'status' => true
+        ],
+        'three' => [
+          'name' => 'three',
+          'class' => 'col-6 col-md-4 col-lg-4',
+          'icon' => 'fa fa-square-o',
+          'status' => true
+        ],
+        'one' => [
+          'name' => 'one',
+          'class' => 'col-12',
+          'icon' => 'fa fa-align-justify',
+          'status' => true
+        ],
+      ]
+    ],
+
+    "indexItemListAttributes" => [
+      'withViewMoreButton'=>false,
+      'withCategory'=>false,
+      'withSummary'=>false,
+      'withCreatedDate'=>false,
+      'layout'=>'item-list-layout-6'   
+    ]
+
+  ]
+
+  
+
+
 ];

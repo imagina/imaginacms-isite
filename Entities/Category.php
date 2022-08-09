@@ -48,7 +48,12 @@ class Category extends CrudModel
   public function getUrlAttribute()
   {
     
-    return ""; //TODO: falta definir la lógica de esta url pública
+    $url = "";
+    $currentLocale = \LaravelLocalization::getCurrentLocale();
+
+    //$url = route($currentLocale . '.isite.organizations.index.category',[$this->slug]);
+
+    return $url;
   }
   
   public function getLftName()
