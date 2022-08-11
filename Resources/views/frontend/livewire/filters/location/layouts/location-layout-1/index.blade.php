@@ -131,7 +131,7 @@
                         //console.log(component_type)
 
                         if(componentMap.hasOwnProperty(component_type)){
-                            //console.log(placeAC[i])
+                            console.log(placeAC[i])
 
                             //neighborhood
                             if(component_type=="locality"){
@@ -198,8 +198,10 @@
 
                 console.warn(placeInformation)
 
+                //Para que tome locality or route
                 var neighb = placeInformation[0]
 
+                //Pero a veces lo retorna asi
                 //Validando por si es sublocality_level_1
                 if (typeof placeInformation[4] !== 'undefined') {
                     neighb = placeInformation[4]
