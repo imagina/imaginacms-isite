@@ -5,6 +5,8 @@ namespace Modules\Isite\Repositories\Eloquent;
 use Modules\Isite\Repositories\CategoryRepository;
 use Modules\Core\Icrud\Repositories\Eloquent\EloquentCrudRepository;
 
+use Illuminate\Database\Eloquent\Builder;
+
 class EloquentCategoryRepository extends EloquentCrudRepository implements CategoryRepository
 {
   /**
@@ -64,4 +66,39 @@ class EloquentCategoryRepository extends EloquentCrudRepository implements Categ
     //Response
     return $model;
   }
+
+  /**
+   * Find a resource by the given slug
+   *
+   * @param string $slug
+   * @return object
+   */
+  public function findBySlug($slug)
+  {
+    if (method_exists($this->model, 'translations')) {
+      
+      
+      $query = $this->model->whereHas('translations', function (Builder $q) use ($slug) {
+        $q->where('slug', $slug);
+      })->with('translations', 'parent', 'children');
+      
+    } else
+      $query = $this->model->where('slug', $slug)->with('translations', 'parent', 'children');
+
+    $entitiesWithCentralData = json_decode(setting("isite::tenantWithCentralData",null,"[]"));
+    $tenantWithCentralData = in_array("categories",$entitiesWithCentralData);
+
+    if ($tenantWithCentralData && isset(tenant()->id)) {
+      $model = $this->model;
+
+      $query->withoutTenancy();
+      $query->where(function ($query) use ($model) {
+        $query->where($model->qualifyColumn(BelongsToTenant::$tenantIdColumn), tenant()->getTenantKey())
+          ->orWhereNull($model->qualifyColumn(BelongsToTenant::$tenantIdColumn));
+      });
+    }
+    
+    return $query->first();
+  }
+
 }

@@ -78,7 +78,7 @@ class Organization extends BaseTenant
 
   public function category()
   {
-    return $this->belognsTo(Category::class);
+    return $this->belongsTo(Category::class);
   }
 
   public function domains()
