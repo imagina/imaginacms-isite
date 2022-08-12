@@ -41,14 +41,14 @@
               @endif
             </div>
           @endif
-          @if($withCreatedDate && isset($item->created_at))
+          @if($withCreatedDate)
             <div class=" {{$orderClasses["date"] ?? 'order-2'}} item-created-date {{$createdDateAlign}}">
               @if(isset($item->url)&& !empty($item->url))
                 <a href="{{$item->url}}" target="{{$target}}">
                   @endif
                   <div
                     class="created-date {{$createdDateTextWeight}} {{$createdDateColor}} {{$createdDateMarginT}} {{$createdDateMarginB}}">
-                    {{ $item->created_at->format($formatCreatedDate) }}
+                    {{ $date }}
                   </div>
                   @if(isset($item->url) && !empty($item->url))
                 </a>
