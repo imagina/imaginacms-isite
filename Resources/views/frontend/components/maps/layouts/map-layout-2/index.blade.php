@@ -18,6 +18,27 @@
     </div>
   </div>
 </div>
+@foreach($locations as $location)
+  <div class="modal fade" id="featureModal-{{$location->id}}" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title text-primary">{{$location->title ?? $location->name}}</h4>
+          <br>
+        </div>
+        <div class="modal-footer row">
+          <div class="col-6">
+            {{$location->description}}
+          </div>
+          <div class="col-6">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+@endforeach
 
 @if($settingMap == 'openStreet')
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
@@ -27,37 +48,26 @@
           integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
           crossorigin=""></script>
   <script>
-    var osmUrl = '{{$mapStyle}}',
+    var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      osm = L.tileLayer(osmUrl, {maxZoom: {{$maxZoom}}, minZoom: {{$minZoom}}, attribution: osmAttrib});
-    var map = L.map('{{$mapId}}').setView([{{$centerLat}}, {{$centerLng}}], {{$zoom}}).addLayer(osm);
-    @if(isset($imageIcon) && !is_null($imageIcon))
-    var mapIcon = L.icon({
-      iconUrl: '{{$imageIcon}}',
-      className: '{{$markerMapClasses}}',
-      iconSize: [{{$iconWidth}}, {{$iconHeight}}], // size of the icon
-      iconAnchor: [{{$iconMarginLeft}}, {{$iconMarginTop}}], // point of the icon which will correspond to marker's location
-    });
-    @endif
+      osm = L.tileLayer(osmUrl, {maxZoom: {{$zoom}}, attribution: osmAttrib});
+    var map = L.map('{{$mapId}}').setView([{{$lat}}, {{$lng}}], {{$zoom}}).addLayer(osm);
     @foreach($locations as $location)
-    var myMarker = L.marker([{{$location['lat']}}, {{$location['lng']}}], @if(isset($imageIcon) && !is_null($imageIcon)){icon: mapIcon}@endif)
+    var myMarker = L.marker([{{$location->options->locationMap->lat}}, {{$location->options->locationMap->lng}}])
       .addTo(map)
-      .bindPopup('{{$location['title']}}')
+      .bindPopup('{{$location->title ?? $location->name}}')
       .openPopup();
-    @if(isset($mapEvent) & !is_null($mapEvent))
+
     myMarker.on({
       click: function (e) {
-        window.livewire.emit('{{$mapEvent}}', {{$location['id']}});
+        $("#featureModal-{{$location->id}}").modal("show");
       }
     });
-    @endif
     @endforeach
   </script>
-
+@else
   <script>
-
     @if(!isset($inModal) || !$inModal)
-
     document.addEventListener("DOMContentLoaded", function () {
       @endif
       function initMap() {
@@ -66,16 +76,17 @@
           zoom: {{$zoom}},
           center: position,
         });
+        @foreach($locations as $location)
         const marker = new google.maps.Marker({
-          position: position,
+          position: {lat: {{$location->lat}}, lng: {{$location->lng}}},
           map: map,
         });
+        @endforeach
       }
 
       initMap();
       @if(!isset($inModal) || !$inModal)
     });
     @endif
-
   </script>
 @endif
