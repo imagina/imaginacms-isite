@@ -68,6 +68,7 @@ return [
     'googleClient' => 'Google Client',
     'facebookClient' => 'Facebook Client',
     'facebookAppId' => 'Facebook App Id',
+    'microsoftClientId' => 'Microsoft Client Id',
     'cms' => [
       'legacyStructureCMS' => 'Use Legacy Structure CMS',
       'iadminTheme' => [
