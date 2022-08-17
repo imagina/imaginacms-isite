@@ -180,5 +180,6 @@ return [
   ],
   'sitemap' => [
     'labelSitemapDepth' => 'Sitemap Depth',
+    'labelActiveGenerateRobotsFile' => 'Sitemap With Robots.txt File',
   ],
 ];
