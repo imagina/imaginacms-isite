@@ -68,6 +68,7 @@ return [
     'googleClient' => 'Google Client',
     'facebookClient' => 'Facebook Client',
     'facebookAppId' => 'Facebook App Id',
+    'microsoftClientId' => 'Microsoft Client Id',
     'cms' => [
       'legacyStructureCMS' => 'Use Legacy Structure CMS',
       'iadminTheme' => [
@@ -179,5 +180,6 @@ return [
   ],
   'sitemap' => [
     'labelSitemapDepth' => 'Sitemap Depth',
+    'labelActiveGenerateRobotsFile' => 'Sitemap With Robots.txt File',
   ],
 ];

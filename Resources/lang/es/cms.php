@@ -48,6 +48,10 @@ return [
   "perzonalizationTitle" => "Bienvenid@ al editor de tu sitio web",
   "perzonalizationDescription" => "De manera fácil, cambia el logo, colores y la información principal de tu página web",
   "label" => [
+    "continueWith"=> "Continuar con",
+    "facebook"=> "Facebook",
+    "google"=> "Google",
+    "microsoft"=> "Microsoft",
     "copyDisclosureLink" => "Copiar enlace",
     "delete" => "Eliminar",
     "cancel" => "Cancelar",
