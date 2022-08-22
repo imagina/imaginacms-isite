@@ -757,7 +757,7 @@ return [
       'label' => 'isite::pdf.settings.pdf.text.Information_content',
     ]
   ],
-  
+
   //Roles to register
   'rolesToTenant' => [
     "onlySuperAdmin" => true,
@@ -776,7 +776,7 @@ return [
       'select' => ['label' => 'name', 'id' => 'id']
     ]
   ],
-  
+
   //Default Tenant Status
   'defaultTenantStatus' => [
     'value' => true,
@@ -995,5 +995,90 @@ return [
         ['label' => 'isite::common.settings.cms.iadminTheme.theme2', 'value' => '2'],
       ]
     ],
+  ],
+  'sitemapDepth' => [
+    'value' => 5,
+    'name' => 'isite::sitemapDepth',
+    'type' => 'input',
+    'colClass' => "col-12",
+    'groupName' => 'sitemap',
+    'groupTitle' => 'isite::common.settingGroups.sitemap',
+    'props' => [
+      'label' => 'isite::common.sitemap.labelSitemapDepth'
+    ],
+  ],
+  'showGoToSiteButton' => [
+    'name' => 'isite::showGoToSiteButton',
+    'value' => '1',
+    'type' => 'select',
+    'groupName' => 'cms',
+    'groupTitle' => 'isite::common.settingGroups.cms',
+    'props' => [
+      'label' => 'isite::common.settings.cms.showGoToSiteButton',
+      'options' => [
+        ['label' => 'isite::common.yes', 'value' => '1'],
+        ['label' => 'isite::common.no', 'value' => '0'],
+      ]
+    ],
+  ],
+  'userAgentRobots' => [
+    'value' => '*',
+    'name' => 'isite::userAgentRobots',
+    'type' => 'input',
+    'colClass' => "col-12",
+    'groupName' => 'sitemap',
+    'groupTitle' => 'isite::common.settingGroups.sitemap',
+    'props' => [
+      'label' => 'isite::common.sitemap.labelUserAgentRobots'
+    ]
+  ],
+  'activeGenerateRobotsFile' => [
+    'value' => "0",
+    'name' => 'isite::activeGenerateRobotsFile',
+    'type' => 'checkbox',
+    'groupName' => 'sitemap',
+    'groupTitle' => 'isite::common.settingGroups.sitemap',
+    'props' => [
+      'label' => 'isite::common.sitemap.labelActiveGenerateRobotsFile',
+      'trueValue' => "1",
+      'falseValue' => "0",
+    ]
+  ],
+  'defaultLayout' => [
+    'value' => null,
+    'name' => 'isite::defaultLayout',
+    "onlySuperAdmin" => true,
+    'type' => 'select',
+    'colClass' => 'col-6',
+    'props' => [
+      'label' => 'isite::common.settings.defaultLayout',
+      'hint' => 'isite::common.settingHints.defaultLayout',
+      'useInput' => false,
+      'useChips' => false,
+      'multiple' => false,
+      'hideDropdownIcon' => true,
+      'newValueMode' => 'add-unique',
+      'options' => [
+        ['label' => 'Layout Tienda 1', 'value' => 1],
+      ]
+      // OJO falta que monten el crud en Frontend
+      /*
+      'loadOptions' => [
+          'apiRoute' => 'apiRoutes.qsite.layouts', //apiRoute to request
+          'select' => ['label' => 'title', 'id' => 'id'], //Define fields to config select
+      ]
+      */
+    ]
+  ],
+  //Microsoft APP ID
+  'microsoftClientId' => [
+    'value' => "",
+    'name' => 'isite::microsoftClientId',
+    'type' => 'input',
+    'groupName' => 'apiKeys',
+    'groupTitle' => 'isite::common.settingGroups.apiKeys',
+    'props' => [
+      'label' => 'isite::common.settings.microsoftClientId'
+    ]
   ],
 ];

@@ -22,6 +22,13 @@ class Organization extends BaseTenant
     'create' => 'Modules\Isite\Http\Requests\CreateOrganizationRequest',
     'update' => 'Modules\Isite\Http\Requests\UpdateOrganizationRequest',
   ];
+  public $dispatchesEventsWithBindings = [
+    'updated' => [
+      [
+        'path' => 'Modules\Isite\Events\OrganizationWasUpdated'
+      ]
+    ]  
+  ];
   protected $table = 'isite__organizations';
   public $translatedAttributes = [
     'title',
@@ -39,7 +46,8 @@ class Organization extends BaseTenant
     'category_id',
     'status',
     'enable',
-    'sort_order'
+    'sort_order',
+    'layout_id'
   ];
   protected $casts = [
     'options' => 'array',
@@ -53,6 +61,7 @@ class Organization extends BaseTenant
       'user_id',
       'featured',
       'permissions',
+      'layout_id',
       'status',
       'sort_order',
       'category_id',
@@ -69,7 +78,7 @@ class Organization extends BaseTenant
 
   public function category()
   {
-    return $this->belognsTo(Category::class);
+    return $this->belongsTo(Category::class);
   }
 
   public function domains()

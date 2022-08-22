@@ -11,13 +11,18 @@ use Route;
 use Modules\Ihelpers\Http\Controllers\Api\BaseApiController;
 use Illuminate\Support\Str;
 
+use Modules\Isite\Repositories\CategoryRepository;
+
 class PublicController extends BaseApiController
 {
   protected $auth;
+  public $category;
   
-  public function __construct()
-  {
+  public function __construct(
+    CategoryRepository $category
+  ){
     parent::__construct();
+    $this->category = $category;
   }
   
   public function homepage(Request $request)
@@ -94,7 +99,7 @@ class PublicController extends BaseApiController
    * @param $slug
    * @return \Illuminate\View\View
    */
-  public function uri($slug)
+  public function uri($slug,Request $request)
   {
 
     //Pimero buscamos el path completo en el slug del post, si existe redirige
@@ -140,5 +145,53 @@ class PublicController extends BaseApiController
 
     return response()->view('errors.404', [], 404);
   }
+
+  /*
+  * Organization Index
+  */
+  public function index(Request $request)
+  {
+    $argv = explode("/", $request->path());
+    $slug = end($argv);
+    
+    $tpl = 'isite::frontend.organizations.index';
+    $ttpl = 'isite.organizations.index';
+
+    if (view()->exists($ttpl)) $tpl = $ttpl;
+
+    $category = null;
+    
+    if ($slug && $slug !=trans('isite::routes.organizations.index.index')) {
+      
+      $category = $this->category->findBySlug($slug);
+      
+      if (isset($category->id)) {
+        
+        $ptpl = "isite.category.{$category->parent_id}%.index";
+        if ($category->parent_id != 0 && view()->exists($ptpl)) {
+          $tpl = $ptpl;
+        }
+        
+        $ctpl = "isite.category.{$category->id}.index";
+        if (view()->exists($ctpl)) $tpl = $ctpl;
+        
+        $ctpl = "isite.category.{$category->id}%.index";
+        if (view()->exists($ctpl)) $tpl = $ctpl;
+        
+      
+      } else {
+        return response()->view('errors.404', [], 404);
+      }
+      
+      
+    }
   
+    $title = (isset($category->id) ? ($category->h1_title ?? $category->title) : trans('isite::organizations.plural'));
+
+    return view($tpl,compact('title','category'));
+
+
+  }
+
+
 }

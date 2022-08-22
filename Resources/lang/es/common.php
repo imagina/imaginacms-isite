@@ -58,6 +58,7 @@ return [
     'googleClient' => 'Cliente Google',
     'facebookClient' => 'Cliente Facebook',
     'facebookAppId' => 'App Id Facebook',
+    'microsoftClientId' => 'Cliente Microsoft',
     'tenant' => [
       'group' => 'Inquilinos',
       'tenantWithCentralData' => 'Entidades con data central',
@@ -76,14 +77,17 @@ return [
         "title" => "Tema Iadmin",
         "theme1" => "Tema 1",
         "theme2" => "Tema 2"
-      ]
-    ]
+      ],
+      'showGoToSiteButton' => 'Mostrar boton "Ver Sitio"'
+    ],
+    'defaultLayout' => 'Layout Default',
   ],
   'settingHints' => [
     'phones' => "Ingresa un número telefónico y presiona enter",
     'addresses' => "Ingresa una dirección y presiona enter",
     'emails' => "Ingresa un correo electrónico y presiona enter",
     'itemsTabs' => "Ingresa un titulo para identificar los tabs",
+    'defaultLayout' => "Se asignara cuando se cree una organización",
   ],
   'settingGroups' => [
     'media' => 'Media',
@@ -95,6 +99,7 @@ return [
     'tenants' => 'Inquilinos',
     'modalVerifier' => 'Modal Verificador',
     'components' => 'Componentes',
+    'sitemap' => 'Mapa Del Sitio',
     'title' => 'Agrega tu logo',
     'media' => [
       'title' => 'Agrega tu Imagen',
@@ -181,7 +186,6 @@ return [
     'tooltipAddress' => 'Editar direccion',
     'tooltipEmail' => 'Editar correo electronico',
     'tooltipPhone' => 'Editar telefono',
-    'tooltipLogo' => 'Editar este logo',
     'tooltipAd' => 'Editar este anuncio',
   ],
   'maps' => [
@@ -197,5 +201,10 @@ return [
     'labelWhatsappLayout5' => '¿Hablamos?',
     'titleWhatsappLayout5' => 'WhatsApp',
     'descriptionWhatsappLayout5' => 'Hola, ¿En que podemos ayudarte?',
+  ],
+  'sitemap' => [
+    'labelSitemapDepth' => 'Profundidad Del Mapa Del Sitio',
+    'labelUserAgentRobots' => 'Agentes De Busqueda Para El Archivo Robots.txt',
+    'labelActiveGenerateRobotsFile' => 'Sitemap Con Archivo Robots.txt',
   ],
 ];
