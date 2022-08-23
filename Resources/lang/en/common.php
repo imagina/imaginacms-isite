@@ -4,7 +4,8 @@ return [
   'yes' => "Yes",
   'no' => "No",
   'menu' => [
-    'home' => 'Home'
+    'home' => 'Home',
+    'viewMore' => "View more"
   ],
   'settings' => [
     'logo1' => 'Logo N°1',
