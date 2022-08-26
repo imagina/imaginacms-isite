@@ -62,6 +62,8 @@
     "autoload": {
         "psr-4": {
             "Modules\\Isite\\": ""
-        }
+        },
+        "exclude-from-classmap": ["vendor/mcamara/laravel-localization/src/Mcamara/LaravelLocalization/LaravelLocalization.php"],
+        "files": ["Modules/Isite/Overrides/LaravelLocalization.php"]
     }
 }

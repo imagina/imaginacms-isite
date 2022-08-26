@@ -81,6 +81,7 @@ class Autocomplete extends Component
     $this->collapsable = "";
     $this->searchOptions = json_decode(setting('isearch::listOptionsSearch',null, "[]"));
     $this->featuredOptions = json_decode(setting('isearch::listFeaturedOptionsSearch',null, "[]"));
+ 
   }
 
   public function hydrate()
@@ -109,6 +110,7 @@ class Autocomplete extends Component
 
   private function makeParamsFunction(): array
   {
+ 
     return [
       "include" => $this->params["include"] ?? ['category'],
       "take" => $this->params["take"] ?? 12,
@@ -121,6 +123,7 @@ class Autocomplete extends Component
   public function render()
   {
     $params = $this->makeParamsFunction();
+
     $validatedData = Validator::make(
       ['search' => $this->search],
       ['search' => 'required|min:' . $this->minSearchChars]
@@ -144,7 +147,7 @@ class Autocomplete extends Component
       if ($validatedData->fails()) {
         $this->alert('error', trans('isearch::common.index.Not Valid', ["minSearchChars" => $this->minSearchChars]), config("asgard.isite.config.livewireAlerts"));
       } else {
-
+       // \App::setLocale($this->locale);
         $this->results = $this->searchRepository()->getItemsBy(json_decode(json_encode($params)));
       }
       $search = Str::lower($this->search);
@@ -167,8 +170,10 @@ class Autocomplete extends Component
 
   public function goToIndex()
   {
-    $locale = LaravelLocalization::setLocale() ?: \App::getLocale();
+    $locale = locale();
+
     $route = $this->goToRouteAlias;
+
     if (!empty($this->search)) {
       if (!Route::has($route)) { //if route does not exist without locale, pass route with locale
         $route = $locale . '.' . $route;
@@ -176,7 +181,8 @@ class Autocomplete extends Component
       if (!Route::has($route)) { //if route with locale does not exist either, pass the isearch default route
         $route = $locale . '.isearch.search';
       }
-      $this->redirect(\URL::route($route) . '?search=' . $this->search);
+     
+      $this->redirect(LaravelLocalization::localizeUrl(route($route,null,false),$locale) . '?search=' . $this->search);
     }
   }
 
