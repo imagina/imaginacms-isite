@@ -24,29 +24,32 @@
       endif;
       ?>
     @endif
-    @if($showImage)
-      <?php
-      $hash = sha1($imageComponentNamespace);
-      if (isset($component)) {
-        $__componentOriginal{$hash} = $component;
-      }
-      $component = $__env->getContainer()->make($imageComponentNamespace, array_merge([
-        'src' => url('modules/isite/img/locales/' . LaravelLocalization::getCurrentLocale() . '.jpg'),
-        'imgStyles' => '  width: 35px; height: 33px; object-fit: cover;',
-        'imgClasses' => 'rounded-circle mx-2',
-        'url' => LaravelLocalization::getCurrentLocale(),
-      ], $imageComponentAtributtes ?? []));
-      $component->withName($imageComponent);
-      if ($component->shouldRender()):
-        $__env->startComponent($component->resolveView(), $component->data());
-        if (isset($__componentOriginal{$hash})):
-          $component = $__componentOriginal{$hash};
-          unset($__componentOriginal{$hash});
+    
+    <div id="imageDropdownMultilang" data-toggle="dropdown">
+      @if($showImage)
+        <?php
+        $hash = sha1($imageComponentNamespace);
+        if (isset($component)) {
+          $__componentOriginal{$hash} = $component;
+        }
+        $component = $__env->getContainer()->make($imageComponentNamespace, array_merge([
+          'src' => url('modules/isite/img/locales/' . LaravelLocalization::getCurrentLocale() . '.jpg'),
+          'imgStyles' => '  width: 35px; height: 33px; object-fit: cover;',
+          'imgClasses' => 'rounded-circle mx-2',
+          'url' => LaravelLocalization::getCurrentLocale(),
+        ], $imageComponentAtributtes ?? []));
+        $component->withName($imageComponent);
+        if ($component->shouldRender()):
+          $__env->startComponent($component->resolveView(), $component->data());
+          if (isset($__componentOriginal{$hash})):
+            $component = $__componentOriginal{$hash};
+            unset($__componentOriginal{$hash});
+          endif;
+          echo $__env->renderComponent();
         endif;
-        echo $__env->renderComponent();
-      endif;
-      ?>
-    @endif
+        ?>
+      @endif
+    </div>
     
     <div class="dropdown-menu dropdown-menu-right py-0" aria-labelledby="{{$component->idButton}}">
       @foreach($locales as $locale)
@@ -105,7 +108,8 @@
   </div>
 </div>
 <script type="text/javascript">
-  let $buttonDropdownMultiLang = document.getElementById('{{$component->idButton}}')
-  $buttonDropdownMultiLang.setAttribute('data-toggle', 'dropdown')
+  $(document).ready(function () {
+    $("#{{$component->idButton}}").attr('data-toggle', 'dropdown');
+  })
 </script>
 
