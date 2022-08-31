@@ -107,6 +107,10 @@ class Select extends Component
     //\Log::info("NAME: ".$this->name."- PARAMS:".json_encode($params));
   
     $this->options = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params)));
+
+    //Show the select only if there is more than 1 option
+    if(count($this->options)<2)
+      $this->status = false;
   
   }
   
