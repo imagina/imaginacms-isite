@@ -55,7 +55,8 @@ class Filters extends Component
 
 
   /*
-  * LISTENER
+  * LISTENER - filtersGetData
+  * Filters are grouped to then emit them with their data
   */
   public function getDataFromFilters($params)
   {
