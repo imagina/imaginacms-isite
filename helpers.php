@@ -66,6 +66,10 @@ if (!function_exists('getEditLink')) {
         $editLink = "/iadmin/#/iplaces/places/index?edit=";
         $tooltipEditLink = trans("isite::common.editLink.tooltipPlace");
         break;
+      case 'Modules\Iplaces\Repositories\CategoryRepository':
+        $editLink = "/iadmin/#/iplaces/categories/index?edit=";
+        $tooltipEditLink = trans("isite::common.editLink.tooltipCategory");
+        break;
         default:
           switch ($componentName) {
             case 'logo':

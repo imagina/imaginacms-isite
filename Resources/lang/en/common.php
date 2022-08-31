@@ -163,7 +163,6 @@ return [
     'tooltipAddress' => 'Edit address',
     'tooltipEmail' => 'Edit Email',
     'tooltipPhone' => 'Edit Phone',
-    'tooltipLogo' => 'Edit Logo',
     'tooltipAd' => 'Editar Ad',
   ],
   'maps' => [
