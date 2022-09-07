@@ -30,6 +30,7 @@ class Select extends Component
   public $withSubtitle;
   public $getDataAfterSelected;
   public $entityTitle;
+  public $showFirstOptionSelect;
   
   /*
   * Attributes
@@ -42,7 +43,7 @@ class Select extends Component
     */
   public function mount($title, $name, $status = true, $isExpanded = true, $type, $repository, $emitTo, $repoAction,
                         $repoAttribute, $listener, $repoMethod = 'getItemsBy', $layout = 'select-layout-1',
-                        $classes = 'col-12', $params = [], $isCollapsable = true, $withTitle = true, $withSubtitle = true, $getDataAfterSelected = false,$defaultSelectedSetting=null,$entityTitle=null)
+                        $classes = 'col-12', $params = [], $isCollapsable = true, $withTitle = true, $withSubtitle = true, $getDataAfterSelected = false,$defaultSelectedSetting=null,$entityTitle=null, $showFirstOptionSelect=true)
   {
     
     $this->title = trans($title);
@@ -65,7 +66,8 @@ class Select extends Component
     $this->withSubtitle = $withSubtitle;
     $this->getDataAfterSelected = $getDataAfterSelected;
     $this->entityTitle = $entityTitle;
-    
+    $this->showFirstOptionSelect = $showFirstOptionSelect;
+
     $this->getData();
   }
   
@@ -107,6 +109,10 @@ class Select extends Component
     //\Log::info("NAME: ".$this->name."- PARAMS:".json_encode($params));
   
     $this->options = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params)));
+
+    //Show the select only if there is more than 1 option
+    if(count($this->options)<2)
+      $this->status = false;
   
   }
   

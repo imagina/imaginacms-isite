@@ -55,7 +55,8 @@ class Filters extends Component
 
 
   /*
-  * LISTENER
+  * LISTENER - filtersGetData
+  * Filters are grouped to then emit them with their data
   */
   public function getDataFromFilters($params)
   {
@@ -81,12 +82,18 @@ class Filters extends Component
     }
     //\Log::info("getDataFromFilters|filtersValues: ".json_encode($this->filtersValues));
    
-    //Only one time
-    //\Log::info("getDataFromFilters|FirstRequest: ".$this->firstRequest);
+    
+    /*
+      Esto se comento xq en tu san agustin, cuando se agrego
+      el buscador superior en el index (Theme), agrupaba el 
+      search en un array cuando debia ser la variable basica de livewire
+    */
+    /*
     if($this->firstRequest==false){
       $this->addParamsToFiltersValuesFromUrl();
       $this->firstRequest = true;
     }
+    */
    
     // remove d-none frontend
     $this->dispatchBrowserEvent('filters-after-get-data');
