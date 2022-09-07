@@ -179,8 +179,9 @@ class Autocomplete extends Component
         $route = $locale . '.' . $route;
       }
       if (!Route::has($route)) { //if route with locale does not exist either, pass the isearch default route
-        $route = $locale . '.isearch.search';
+        $route = 'isearch.search';
       }
+      
      
       $this->redirect(LaravelLocalization::localizeUrl(route($route,null,false),$locale) . '?search=' . $this->search);
     }
