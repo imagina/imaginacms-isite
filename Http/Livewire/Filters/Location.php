@@ -178,11 +178,11 @@ class Location extends Component
             $emitInfor['neighborhood'] = $this->neighborhood;
             $emitInfor['radio'] = $this->selectedRadio;
             $emitInfor['lat'] = $this->lat;
-            $emitInfor['lng'] = $this->lng;  
-
+            $emitInfor['lng'] = $this->lng;
+            $emitInfor['findByLngLat'] = $this->findByLngLat;
         }
 
-        $emitInfor['findByLngLat'] = $this->findByLngLat;
+        
         
         // Emit To (config file - parent filter or items list)
         $this->emit($this->emitTo,[
