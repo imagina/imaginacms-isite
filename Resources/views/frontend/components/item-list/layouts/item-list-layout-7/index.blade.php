@@ -153,6 +153,7 @@
          aspect-ratio: {{$imageAspect}};
          object-fit: {{$imageObject}};
        padding: {{$imagePadding}}px;
+       display: inline-flex;
      }
 
     @if($contentBorderShadows=='none')
