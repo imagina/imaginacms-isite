@@ -137,7 +137,8 @@ return [
     ],
   ],
   'messages' => [
-    'no items' => 'Not Information available'
+    'no items' => 'Not Information available',
+    'tokensValidate' => 'The token has expired'
   ],
   'sort' => [
     'title' => 'Order',
