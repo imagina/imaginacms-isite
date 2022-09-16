@@ -2,12 +2,10 @@
 
 namespace Modules\Isite\Entities;
 
-use Astrotomic\Translatable\Translatable;
 use Modules\Core\Icrud\Entities\CrudModel;
 
 class Revision extends CrudModel
 {
-  use Translatable;
 
   protected $table = 'isite__revisions';
   public $transformer = 'Modules\Isite\Transformers\RevisionTransformer';
@@ -25,7 +23,6 @@ class Revision extends CrudModel
     'deleting' => [],
     'deleted' => []
   ];
-  public $translatedAttributes = [];
   protected $fillable = [
     'revisionable_type',
     'revisionable_id',

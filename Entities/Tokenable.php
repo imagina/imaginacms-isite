@@ -28,7 +28,8 @@ class Tokenable extends CrudModel
     'expires_at',
     'entity_id',
     'entity_type',
-    'unique',
+    'uses',
+    'used',
   ];
   public function selfRestore()
   {

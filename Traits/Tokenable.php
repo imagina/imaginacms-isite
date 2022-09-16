@@ -7,7 +7,7 @@ use Modules\Isite\Entities\Tokenable as Token;
 
 trait Tokenable
 {
-  public function generateToken($expiresAt = null, $unique = 0)
+  public function generateToken($expiresAt = null, $usesToken = 0)
   {
     $expiresAt = $expiresAt ?? setting('isite::timeExpiredToken');
     $today = date("Y-m-d h:i:s");
@@ -23,41 +23,53 @@ trait Tokenable
       'expires_at' => $expiresAt,
       'entity_id' => $this->id,
       'entity_type' => $this->entity,
-      'unique' => $unique,
+      'uses' => $usesToken,
+      'used' => 0,
     ));
   }
 
   public function validateToken($token, $selfThrow = false)
   {
+    $today = date("Y-m-d h:i:s");
     //Search the token
-    $token = Token::where("token", $token)->first();
-
-    //Instance the default response
-    $response = false;
+    $token = Token::where("token", $token)
+      ->where("expires_at",">=",$today)
+      ->where(function ($query){
+        $query->where("uses",0)
+          ->orWhereRaw("used < uses");
+      })->first();
 
     //If exist the token
-    if ($token) {
+    if (isset($token->id)) {
       //Validate if token expires
-      $today = date("Y-m-d h:i:s");
-      if ($token->expires_at >= $today) $response = true;
 
-      //Validate when delete the token
-      if (!$response || $token->unique == 1) Token::where("token", $token->token)->forceDelete();
+      if ($token->uses >= 1) {
+        $token->used++;
+        $token->save();
+      }
+
+      //Clear all tokens expired
+      $this->clearTokens();
+
+      return true;
+    }else{
+      if ($selfThrow) throw new \Exception(trans('isite::common.messages.tokensValidate'), 403);
+
+      return false;
     }
 
-    //Clear tokens
-    $this->clearTokens();
 
-    if (!$response && $selfThrow) throw new \Exception(trans('isite::common.messages.tokensValidate'), 403);
-
-    //Response
-    return $response;
   }
 
   /** Delete token by token column */
   public function clearTokens()
   {
     $today = date("Y-m-d h:i:s");
-    Token::whereDate("expires_at", '<', $today)->forceDelete();
+    Token::whereDate("expires_at", '<', $today)->orWhere(
+      function ($query){
+        $query->where("uses",">",0)
+          ->whereRaw("used >= uses");
+      }
+    )->delete();
   }
 }

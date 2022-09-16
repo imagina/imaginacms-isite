@@ -16,10 +16,11 @@ class CreateIsiteTokenablesTable extends Migration
       $table->engine = 'InnoDB';
       $table->increments('id');
       $table->string('token');
-      $table->datetime('expires_at');
+      $table->datetime('expires_at')->index();
       $table->integer('entity_id');
       $table->string('entity_type');
-      $table->integer('unique')->default(0);
+      $table->integer('uses');
+      $table->integer('used');
       $table->timestamps();
       $table->auditStamps();
     });
