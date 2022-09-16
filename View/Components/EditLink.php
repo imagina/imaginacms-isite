@@ -18,6 +18,7 @@ class EditLink extends Component
   public $tooltip;
   public $classes;
   public $idButton;
+  public $item;
 
   /**
    * Create a new component instance.
@@ -25,7 +26,7 @@ class EditLink extends Component
    * @return void
    */
   public function __construct($link, $tooltip = null, $classes = null, $top = null,
-                              $bottom = null, $right = null, $left= null, $idButton = null)
+                              $bottom = null, $right = null, $left = null, $idButton = null, $item = null)
   {
     $this->top = $top ?? '15%';
     $this->bottom = $bottom ?? 'unset';
@@ -35,18 +36,23 @@ class EditLink extends Component
     $this->canAccess = false;
     $this->tooltip = $tooltip ?? trans("isite::common.editLink.tooltip");
     $user = \Auth::user();
+    $this->item = $item;
 
-    if(isset($user->id)){
+    if (isset($user->id)) {
       $permissionController = app("Modules\Ihelpers\Http\Controllers\Api\PermissionsApiController");
       $permissions = $permissionController->getAll(["userId" => $user->id]);
 
-      if(isset($permissions['isite.edit-link.manage']) && $permissions['isite.edit-link.manage']){
-        $this->canAccess = true ;
+      if (isset($permissions['isite.edit-link.manage']) && $permissions['isite.edit-link.manage']) {
+        $this->canAccess = true;
       }
     }
-
-
+    if (isset($item->id)) {
+      if ($link == "/iadmin/#/slider/show/" . $item->id) {
+        $this->link = "/iadmin/#/slider/show/" . $item->slider_id . "?edit=" . $item->id;
+      }
+    }
   }
+
   /**
    * Get the view / contents that represent the component.
    *
