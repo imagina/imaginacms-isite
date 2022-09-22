@@ -78,10 +78,6 @@ trait RevisionableTrait
       $model->preSave();
     });
 
-    static::created(function ($model) {
-      $model->postCreate();
-    });
-
     static::deleted(function ($model) {
       $model->preSave();
       $model->postDelete();
