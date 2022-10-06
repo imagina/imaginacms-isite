@@ -89,7 +89,7 @@
                   @endif
                 
                               <div class="summary {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}}" style="height: @if($summaryHeight) {{$summaryHeight}}px @else auto @endif;">
-                    {!! Str::limit( $item->summary ?? $item->description ?? $item->custom_html ?? '', $numberCharactersSummary) !!}
+                                {!! $summary !!}
                   </div>
                   @if(isset($item->url) && !empty($item->url))
                 </a>
