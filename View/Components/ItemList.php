@@ -7,8 +7,8 @@ use Illuminate\Support\Str;
 
 class ItemList extends Component
 {
-  
-  
+
+
   public $item;
   public $mediaImage;
   public $view;
@@ -38,56 +38,56 @@ class ItemList extends Component
   public $withImageOpacity;
   public $imageOpacityColor;
   public $imageOpacityDirection;
-  
+
   public $withTitle;
   public $titleAlign;
   public $titleTextSize;
   public $titleTextWeight;
   public $titleTextTransform;
-  
+
   public $summaryAlign;
   public $summaryTextSize;
   public $summaryTextWeight;
-  
+
   public $categoryAlign;
   public $categoryTextSize;
   public $categoryTextWeight;
-  
+
   public $createdDateAlign;
   public $createdDateTextSize;
   public $createdDateTextWeight;
-  
+
   public $userAlign;
   public $userTextSize;
   public $userTextWeight;
-  
+
   public $buttonAlign;
   public $buttonLayout;
   public $buttonIcon;
   public $buttonIconLR;
   public $buttonIconColor;
   public $buttonColor;
-  
+
   public $imagePosition;
   public $imagePositionVertical;
   public $contentPositionVertical;
-  
+
   public $contentPadding;
   public $contentBorder;
   public $contentBorderColor;
   public $contentBorderRounded;
   public $contentBorderRoundedType; // 1 all, 2 top, 3 right, 4 left, 5 bottom
-  
+
   public $contentMarginInsideX;
   public $contentBorderShadows;
   public $contentBorderShadowsHover;
-  
+
   public $titleColor;
   public $summaryColor;
   public $categoryColor;
   public $createdDateColor;
   public $userColor;
-  
+
   public $titleMarginT;
   public $titleMarginB;
   public $summaryMarginT;
@@ -100,52 +100,52 @@ class ItemList extends Component
   public $userMarginB;
   public $buttonMarginT;
   public $buttonMarginB;
-  
+
   public $titleLetterSpacing;
   public $summaryLetterSpacing;
   public $categoryLetterSpacing;
   public $createdDateLetterSpacing;
-  
+
   public $titleVineta;
   public $titleVinetaColor;
-  
+
   public $buttonSize;
   public $buttonTextSize;
-  
+
   public $itemBackgroundColor;
   public $itemBackgroundColorHover;
-  
+
   public $titleHeight;
   public $summaryHeight;
-  
+
   public $columnLeft;
   public $columnRight;
-  
+
   public $titleTextDecoration;
   public $summaryTextDecoration;
   public $categoryTextDecoration;
   public $createdDateTextDecoration;
-  
+
   public $id;
   public $imageRadio;
   public $contentRadio;
-  
+
   public $titleAlignVertical;
   public $numberCharactersTitle;
   public $itemMarginB;
-  
+
   public $contentPaddingLeft; /* padding de contenido de layout 7 sin overlay left */
   public $contentPaddingRight; /* padding de contenido de layout 7 sin overlay right */
-  
+
   public $summaryLineHeight;
-  
+
   public $withImage;
   public $imageWidth;
   public $imageAlign;
-  
+
   public $date;
   public $summary;
-  
+
   /**
    * Create a new component instance.
    *
@@ -303,7 +303,7 @@ class ItemList extends Component
                               $summaryWithLimit = true
   )
   {
-    
+
     $this->item = $item;
     $this->mediaImage = $mediaImage;
     $this->positionNumber = $positionNumber;
@@ -333,55 +333,55 @@ class ItemList extends Component
     $this->withImageOpacity = $withImageOpacity;
     $this->imageOpacityColor = $imageOpacityColor;
     $this->imageOpacityDirection = $imageOpacityDirection;
-    
+
     $this->withTitle = $withTitle;
     $this->titleAlign = $titleAlign;
     $this->titleTextSize = $titleTextSize;
     $this->titleTextWeight = $titleTextWeight;
     $this->titleTextTransform = $titleTextTransform;
-    
+
     $this->summaryAlign = $summaryAlign;
     $this->summaryTextSize = $summaryTextSize;
     $this->summaryTextWeight = $summaryTextWeight;
-    
+
     $this->categoryAlign = $categoryAlign;
     $this->categoryTextSize = $categoryTextSize;
     $this->categoryTextWeight = $categoryTextWeight;
-    
+
     $this->createdDateAlign = $createdDateAlign;
     $this->createdDateTextSize = $createdDateTextSize;
     $this->createdDateTextWeight = $createdDateTextWeight;
-    
+
     $this->userAlign = $userAlign;
     $this->userTextSize = $userTextSize;
     $this->userTextWeight = $userTextWeight;
-    
+
     $this->buttonAlign = $buttonAlign;
     $this->buttonLayout = $buttonLayout;
     $this->buttonIcon = $buttonIcon;
     $this->buttonIconColor = $buttonIconColor;
     $this->buttonIconLR = $buttonIconLR;
     $this->buttonColor = $buttonColor;
-    
+
     $this->imagePosition = $imagePosition;
     $this->imagePositionVertical = $imagePositionVertical;
     $this->contentPositionVertical = $contentPositionVertical;
-    
+
     $this->contentPadding = $contentPadding;
     $this->contentBorder = $contentBorder;
     $this->contentBorderColor = $contentBorderColor;
     $this->contentBorderRounded = $contentBorderRounded;
-    
+
     $this->contentMarginInsideX = $contentMarginInsideX;
     $this->contentBorderShadows = "$contentBorderShadows";
     $this->contentBorderShadowsHover = $contentBorderShadowsHover;
-    
+
     $this->titleColor = $titleColor;
     $this->summaryColor = $summaryColor;
     $this->categoryColor = $categoryColor;
     $this->createdDateColor = $createdDateColor;
     $this->userColor = $userColor;
-    
+
     $this->titleMarginT = $titleMarginT;
     $this->titleMarginB = $titleMarginB;
     $this->summaryMarginT = $summaryMarginT;
@@ -394,24 +394,24 @@ class ItemList extends Component
     $this->userMarginB = $userMarginB;
     $this->buttonMarginT = $buttonMarginT;
     $this->buttonMarginB = $buttonMarginB;
-    
+
     $this->titleLetterSpacing = $titleLetterSpacing;
     $this->summaryLetterSpacing = $summaryLetterSpacing;
     $this->categoryLetterSpacing = $categoryLetterSpacing;
     $this->createdDateLetterSpacing = $createdDateLetterSpacing;
-    
+
     $this->titleVineta = $titleVineta;
     $this->titleVinetaColor = $titleVinetaColor;
-    
+
     $this->buttonSize = $buttonSize;
     $this->buttonTextSize = $buttonTextSize;
-    
+
     $this->itemBackgroundColor = $itemBackgroundColor;
     $this->itemBackgroundColorHover = $itemBackgroundColorHover;
-    
+
     $this->titleHeight = $titleHeight;
     $this->summaryHeight = $summaryHeight;
-    
+
     $this->imageBorderRadioType = $imageBorderRadioType;
     $this->contentBorderRoundedType = $contentBorderRoundedType;
     $this->columnLeft = $columnLeft;
@@ -420,28 +420,30 @@ class ItemList extends Component
     $this->summaryTextDecoration = $summaryTextDecoration;
     $this->categoryTextDecoration = $categoryTextDecoration;
     $this->createdDateTextDecoration = $createdDateTextDecoration;
-    
+
     $this->titleAlignVertical = $titleAlignVertical;
     $this->numberCharactersTitle = $numberCharactersTitle;
     $this->itemMarginB = $itemMarginB;
-    
+
     $this->contentPaddingLeft = $contentPaddingLeft;
     $this->contentPaddingRight = $contentPaddingRight;
-    
+
     $this->summaryLineHeight = $summaryLineHeight;
-    
+
     $this->withImage = $withImage;
     $this->imageWidth = $imageWidth;
     $this->imageAlign = $imageAlign;
-  
-    
+
+
     if(!empty($summaryField)){
       //In case to show a fake field options example "options.secondaryDescription"
       if(Str::contains($summaryField,'options')){
         $summaryField = explode(".",$summaryField);
-        
+
         if(isset($summaryField[1]) && !empty($summaryField[1])){
-          $this->summary = $item->options->{$summaryField[1]} ?? $item->options[$summaryField[1]];
+          $options = json_decode(json_encode($item->options));
+          if(!empty($options)  && isset($options->{$summaryField[1]}))
+            $this->summary = $options->{$summaryField[1]};
         }
       }else{
         $this->summary = $item->{$summaryField} ?? "";
@@ -449,15 +451,15 @@ class ItemList extends Component
     }else{
       $this->summary = $item->summary ?? $item->description ?? $item->custom_html ?? "";
     }
-    
+
     if($summaryWithLimit) $this->summary = Str::limit($this->summary,$this->numberCharactersSummary);
-    
+
     if (!empty($parentAttributes))
       $this->getParentAttributes($parentAttributes);
-    
+
     $this->id = "item" . preg_replace('/[^a-z0-9]/i', '', $item->slug ?? $item->title ?? $item->name ?? "") . $item->id . uniqid();
-    
-    
+
+
     //{{-- 1 all, 2 top, 3 right, 4 left, 5 bottom, 6 top right, 7 top left, 8 bottom right, 9 top left --}}
     switch ($this->imageBorderRadioType) {
       case '2':
@@ -487,10 +489,10 @@ class ItemList extends Component
       default:
         $this->imageRadio = $this->imageBorderRadio . "px";
         break;
-      
+
     }
-    
-    
+
+
     //{{-- 1 all, 2 top, 3 right, 4 left, 5 bottom, 6 top right, 7 top left, 8 bottom right, 9 top left --}}
     switch ($this->contentBorderRoundedType) {
       case '2':
@@ -520,12 +522,12 @@ class ItemList extends Component
       default:
         $this->contentRadio = $this->contentBorderRounded . "px";
         break;
-      
+
     }
-    
+
     if (!isset($parentAttributes["itemComponentView"]))
       $this->view = "isite::frontend.components.item-list.layouts." . ($this->layout ?? 'item-list-layout-1') . ".index";
-    
+
     if (isset($item->date_available) && !empty($item->date_available)) {
       $this->date = $item->date_available->format($formatCreatedDate);
     } elseif (isset($item->created_at) && !empty($item->created_at)) {
@@ -534,10 +536,10 @@ class ItemList extends Component
       $this->withCreatedDate = false;
     }
   }
-  
+
   private function getParentAttributes($parentAttributes)
   {
-    
+
     isset($parentAttributes["mediaImage"]) ? $this->mediaImage = $parentAttributes["mediaImage"] : false;
     isset($parentAttributes["layout"]) ? $this->layout = $parentAttributes["layout"] : false;
     isset($parentAttributes["withViewMoreButton"]) ? $this->withViewMoreButton = $parentAttributes["withViewMoreButton"] : false;
@@ -562,10 +564,10 @@ class ItemList extends Component
     isset($parentAttributes["imageOpacityColor"]) ? $this->imageOpacityColor = $parentAttributes["imageOpacityColor"] : false;
     isset($parentAttributes["imageOpacityDirection"]) ? $this->imageOpacityDirection = $parentAttributes["imageOpacityDirection"] : false;
     isset($parentAttributes["withTitle"]) ? $this->withTitle = $parentAttributes["withTitle"] : false;
-    
-    
+
+
   }
-  
+
   /**
    * Get the view / contents that represent the component.
    *
