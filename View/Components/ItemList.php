@@ -3,6 +3,7 @@
 namespace Modules\Isite\View\Components;
 
 use Illuminate\View\Component;
+use Illuminate\Support\Str;
 
 class ItemList extends Component
 {
@@ -143,6 +144,7 @@ class ItemList extends Component
   public $imageAlign;
   
   public $date;
+  public $summary;
   
   /**
    * Create a new component instance.
@@ -296,14 +298,15 @@ class ItemList extends Component
                               $summaryLineHeight = 20,
                               $withImage = true,
                               $imageWidth = 100,
-                              $imageAlign = 'left'
+                              $imageAlign = 'left',
+                              $summaryField = null,
+                              $summaryWithLimit = true
   )
   {
     
     $this->item = $item;
     $this->mediaImage = $mediaImage;
     $this->positionNumber = $positionNumber;
-    
     $this->view = $itemComponentView ?? $this->view;
     $this->target = $itemComponentTarget ?? $target ?? "_self";
     $this->withViewMoreButton = $withViewMoreButton;
@@ -430,6 +433,24 @@ class ItemList extends Component
     $this->withImage = $withImage;
     $this->imageWidth = $imageWidth;
     $this->imageAlign = $imageAlign;
+  
+    
+    if(!empty($summaryField)){
+      //In case to show a fake field options example "options.secondaryDescription"
+      if(Str::contains($summaryField,'options')){
+        $summaryField = explode(".",$summaryField);
+        
+        if(isset($summaryField[1]) && !empty($summaryField[1])){
+          $this->summary = $item->options->{$summaryField[1]} ?? $item->options[summaryField[1]];
+        }
+      }else{
+        $this->summary = $item->{$summaryField} ?? "";
+      }
+    }else{
+      $this->summary = $item->summary ?? $item->description ?? $item->custom_html ?? "";
+    }
+    
+    if($summaryWithLimit) $this->summary = Str::limit($this->summary,$this->numberCharactersSummary);
     
     if (!empty($parentAttributes))
       $this->getParentAttributes($parentAttributes);
