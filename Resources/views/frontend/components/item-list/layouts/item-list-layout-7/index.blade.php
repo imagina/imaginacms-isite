@@ -13,7 +13,7 @@
 
 <div id="{{$id}}" class="item-layout item-list-layout-7 position-relative {{$itemMarginB}}">
 
-  <x-isite::edit-link link="{{$editLink}}{{$item->id}}" tooltip="{{$tooltipEditLink}}"/>
+  <x-isite::edit-link link="{{$editLink}}{{$item->id}}" :item="$item" tooltip="{{$tooltipEditLink}}"/>
   <div class="card-item {{$row}}">
     <div class="{{$imagePosition!='1' ? 'row no-gutters' : ''}}">
         @if(method_exists ( $item, "mediaFiles" ) && $withImage )
@@ -153,6 +153,7 @@
          aspect-ratio: {{$imageAspect}};
          object-fit: {{$imageObject}};
        padding: {{$imagePadding}}px;
+       display: inline-flex;
      }
 
     @if($contentBorderShadows=='none')

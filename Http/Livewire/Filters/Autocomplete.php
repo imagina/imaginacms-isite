@@ -143,26 +143,16 @@ class Autocomplete extends Component
       sort($this->results);
     } else {
 
-    if ($this->search) {
-      if ($validatedData->fails()) {
-        $this->alert('error', trans('isearch::common.index.Not Valid', ["minSearchChars" => $this->minSearchChars]), config("asgard.isite.config.livewireAlerts"));
-      } else {
-       // \App::setLocale($this->locale);
-        $this->results = $this->searchRepository()->getItemsBy(json_decode(json_encode($params)));
-      }
-      $search = Str::lower($this->search);
-      $this->results = $this->results->sortByDesc(function ($item, $key) use ($search) {
-        $initial = 0;
-        $haystack = Str::lower($item->title ?? $item->name);
-        $bits_of_haystack = explode(' ', $haystack);
-        foreach (explode(" ", $search) as $substring) {
-          if (empty($substring) || !in_array($substring, $bits_of_haystack))
-            continue; // skip this needle if it doesn't exist as a whole word
-          $initial += substr_count($haystack, $substring);
+      if ($this->search) {
+        if ($validatedData->fails()) {
+          $this->alert('error', trans('isearch::common.index.Not Valid', ["minSearchChars" => $this->minSearchChars]), config("asgard.isite.config.livewireAlerts"));
+        } else {
+         // \App::setLocale($this->locale);
+          $this->results = $this->searchRepository()->getItemsBy(json_decode(json_encode($params)));
         }
-        return $initial;
-      });
-    }
+       
+      }
+
     }
 
     return view($this->view, ["results" => $this->results]);

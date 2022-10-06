@@ -137,7 +137,8 @@ return [
     ],
   ],
   'messages' => [
-    'no items' => 'Not Information available'
+    'no items' => 'Not Information available',
+    'tokensValidate' => 'The token has expired'
   ],
   'sort' => [
     'title' => 'Order',
@@ -163,7 +164,6 @@ return [
     'tooltipAddress' => 'Edit address',
     'tooltipEmail' => 'Edit Email',
     'tooltipPhone' => 'Edit Phone',
-    'tooltipLogo' => 'Edit Logo',
     'tooltipAd' => 'Editar Ad',
   ],
   'maps' => [

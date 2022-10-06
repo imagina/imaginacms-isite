@@ -59,6 +59,7 @@ return [
     'facebookClient' => 'Cliente Facebook',
     'facebookAppId' => 'App Id Facebook',
     'microsoftClientId' => 'Cliente Microsoft',
+    'labelTimeExpiredToken' => 'Tiempo caducidad Tokens Descarga (Dias)',
     'tenant' => [
       'group' => 'Inquilinos',
       'tenantWithCentralData' => 'Entidades con data central',
@@ -101,6 +102,7 @@ return [
     'components' => 'Componentes',
     'sitemap' => 'Mapa Del Sitio',
     'title' => 'Agrega tu logo',
+    'groupNameTimeToken' => 'Tokens',
     'media' => [
       'title' => 'Agrega tu Imagen',
       'description' => 'Agregar el logo de tu empresa'
@@ -155,7 +157,8 @@ return [
     ],
   ],
   'messages' => [
-    'no items' => 'No existe información disponible'
+    'no items' => 'No existe información disponible',
+    'tokensValidate' => 'El token a expirado'
   ],
   'form' => [
     'validations' => [

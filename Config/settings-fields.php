@@ -1081,4 +1081,14 @@ return [
       'label' => 'isite::common.settings.microsoftClientId'
     ]
   ],
+  'timeExpiredToken' => [
+    'value' => 1,
+    'name' => 'isite::timeExpiredToken',
+    'type' => 'input',
+    'groupName' => 'tokens',
+    'groupTitle' => 'isite::common.settingGroups.groupNameTimeToken',
+    'props' => [
+      'label' => 'isite::common.settings.labelTimeExpiredToken'
+    ]
+  ],
 ];

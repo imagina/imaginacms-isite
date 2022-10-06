@@ -58,13 +58,17 @@ if (!function_exists('getEditLink')) {
         $editLink = "/iadmin/#/blog/categories/index?edit=";
         $tooltipEditLink = trans("isite::common.editLink.tooltipCategory");
         break;
-      case 'Modules\Slider\Repositories\SlideRepository':
+      case 'Modules\Slider\Repositories\SlideRepository'||'Modules\Slider\Repositories\SlideApiRepository':
         $editLink = "/iadmin/#/slider/show/";
         $tooltipEditLink = trans("isite::common.editLink.tooltipSlide");
         break;
       case 'Modules\Iplaces\Repositories\PlaceRepository':
         $editLink = "/iadmin/#/iplaces/places/index?edit=";
         $tooltipEditLink = trans("isite::common.editLink.tooltipPlace");
+        break;
+      case 'Modules\Iplaces\Repositories\CategoryRepository':
+        $editLink = "/iadmin/#/iplaces/categories/index?edit=";
+        $tooltipEditLink = trans("isite::common.editLink.tooltipCategory");
         break;
         default:
           switch ($componentName) {
