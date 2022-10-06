@@ -441,7 +441,7 @@ class ItemList extends Component
         $summaryField = explode(".",$summaryField);
         
         if(isset($summaryField[1]) && !empty($summaryField[1])){
-          $this->summary = $item->options->{$summaryField[1]} ?? $item->options[summaryField[1]];
+          $this->summary = $item->options->{$summaryField[1]} ?? $item->options[$summaryField[1]];
         }
       }else{
         $this->summary = $item->{$summaryField} ?? "";
