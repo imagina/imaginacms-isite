@@ -21,4 +21,9 @@ $router->group(['prefix' => '/site'/*,'middleware' => ['auth:api']*/], function 
     'uses' => 'SiteApiController@cacheClear',
     //'middleware' => ['auth:api']
   ]);
+  $router->post('/', [
+    'as' => 'api.isite.create',
+    'uses' => 'SiteApiController@create',
+    //'middleware' => ['auth:api']
+  ]);
 });

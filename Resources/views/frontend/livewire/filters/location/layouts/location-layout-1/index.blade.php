@@ -19,18 +19,16 @@
 	        </div>
 	    </div>
 
-        @if($findByLngLat)
-    	  	@if(!empty($radio))
-    		    <div class="search-location-radius">
-    		        <select id="select-radius" wire:model="selectedRadio">
-                        <option value="all">Todo</option>
-    		        	@foreach($radio['values'] as $key => $value)
-    			            <option value="{{$value}}">{{$value}} {{$radio['measure']}}</option>
-    			        @endforeach
-    		        </select>
-    		    </div>
-    		@endif
-        @endif
+	  	@if(!empty($radio))
+		    <div class="search-location-radius">
+		        <select id="select-radius" wire:model="selectedRadio">
+                    <option value="all">Todo</option>
+		        	@foreach($radio['values'] as $key => $value)
+			            <option value="{{$value}}">{{$value}} {{$radio['measure']}}</option>
+			        @endforeach
+		        </select>
+		    </div>
+		@endif
 
 
 	</div>
@@ -117,47 +115,22 @@
                     country: 'country',
                     locality: 'locality',
                     administrative_area_level_1 : 'administrative_area_level_1',
-                    administrative_area_level_2 : 'administrative_area_level_2',
-                    route : 'route',
-                    sublocality_level_1: 'sublocality_level_1'
                 };
 
                 for(var i = 0; i < placeAC.length; i++){
                     var types = placeAC[i].types; // get types array of each component
-                    //console.log(types)
                     for(var j = 0; j < types.length; j++){
 
                         var component_type = types[j];
-                        //console.log(component_type)
-
                         if(componentMap.hasOwnProperty(component_type)){
-                            console.log(placeAC[i])
-
-                            //neighborhood
-                            if(component_type=="locality"){
+                            if(component_type=="locality")
                                 inforPlace[0] = placeAC[i]['short_name']
-                            }else{
-                                if(component_type=="route"){
-                                    inforPlace[0] = placeAC[i]['short_name']
-                                }
-                            }
 
-                            //neighborhood - extra para prioridad
-                            if(component_type=="sublocality_level_1"){
-                                inforPlace[4] = placeAC[i]['short_name']
-                            }
-
-                            //City
-                            if(component_type=="administrative_area_level_2")
+                            if(component_type=="administrative_area_level_1")
                                 inforPlace[1] = placeAC[i]['short_name']
 
-                            //Department
-                            if(component_type=="administrative_area_level_1")
-                                inforPlace[2] = placeAC[i]['short_name']
-
                             if(component_type=="country")
-                                inforPlace[3] = placeAC[i]['short_name']
-
+                                inforPlace[2] = placeAC[i]['short_name']
                         }
                     }
                 }
@@ -196,22 +169,9 @@
 
                 placeInformation = getPlaceInfor(near_place.address_components)
 
-                console.warn(placeInformation)
-
-                //Para que tome locality or route
-                var neighb = placeInformation[0]
-
-                //Pero a veces lo retorna asi
-                //Validando por si es sublocality_level_1
-                if (typeof placeInformation[4] !== 'undefined') {
-                    neighb = placeInformation[4]
-                }
-
-                @this.neighborhood = neighb
-
-                @this.city = placeInformation[1]
-                @this.province = placeInformation[2] //Department
-                @this.country = placeInformation[3]
+                @this.city = placeInformation[0]
+                @this.province = placeInformation[1]
+                @this.country = placeInformation[2]
 
                 @this.lat = near_place.geometry.location.lat();
                 @this.lng = near_place.geometry.location.lng();

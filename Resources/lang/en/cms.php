@@ -30,7 +30,6 @@ return [
     "duplicateLang" => 'Replace <b class="text-primary">{lang}</b> with...',
     "maintenancePage" => "System maintenance",
     "copyToClipboard" => "Your information is on clipboard",
-    "copyDisclosureLink" => "The disclosure link is on clipboard",
     "failedCopyToClipboard" => "Could no possible use clipboard",
     "lastReport" => "Last Report",
     "newReport" => "New Report",
@@ -49,11 +48,6 @@ return [
   "perzonalizationDescription" => "Easily change the logo, colors and the main information of your website",
 
   "label" => [
-    "continueWith"=> "Continue with",
-    "facebook"=> "Facebook",
-    "google"=> "Google",
-    "microsoft"=> "Microsoft",
-    "copyDisclosureLink" => "Copy disclosure link",
     "delete" => "Delete",
     "cancel" => "Cancel",
     "cancelled" => "Cancelled",
@@ -351,8 +345,7 @@ return [
     "position" => "Position | Positions",
     "axis" => "Axis | Axes",
     "audio" => "Audio | Audios",
-    "ratio" => "Ratio | Ratios",
-    "format" => "Format | Formats"
+    "ratio" => "Ratio | Ratios"
   ],
   "message" => [
     "notFound" => "Sorry, nothing here",
@@ -416,8 +409,7 @@ return [
     "finishRegister" => "There is little left to finish your registration...",
     "ready" => "Ready",
     "noRegistered" => "You are not registered yet",
-    "hintFilterByQuery" => "Type 3 or more characters to search for options",
-    "invalidFormat" => "Invalid format"
+    "hintFilterByQuery" => "Type 3 or more characters to search for options"
   ],
   "form" => [
     "id" => "ID",
@@ -549,7 +541,6 @@ return [
   "right" => "Right",
   "bottomLeft" => "Bottom-Left",
   "bottom" => "Bottom",
-  "bottomRight" => "Bottom-Right",
-  "selectedRows" => "{num} selected rows"
+  "bottomRight" => "Bottom-Right"
 ];
 

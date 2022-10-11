@@ -4,7 +4,9 @@ namespace Modules\Isite\Entities;
 
 use Astrotomic\Translatable\Translatable;
 use Stancl\Tenancy\Database\Models\Tenant as BaseTenant;
+use Stancl\Tenancy\Contracts\TenantWithDatabase;
 use Stancl\Tenancy\Database\Concerns\HasDomains;
+use Stancl\Tenancy\Database\Concerns\HasDatabase;
 use Modules\Core\Support\Traits\AuditTrait;
 use Illuminate\Support\Str;
 use Modules\Media\Support\Traits\MediaRelation;
@@ -13,9 +15,9 @@ use Modules\Core\Icrud\Traits\hasEventsWithBindings;
 use Modules\Ifillable\Traits\isFillable;
 use Modules\Setting\Entities\Setting;
 
-class Organization extends BaseTenant
+class Organization extends BaseTenant implements TenantWithDatabase
 {
-  use AuditTrait, Translatable, HasDomains, MediaRelation, Schedulable, hasEventsWithBindings, isFillable;
+  use AuditTrait, Translatable, HasDatabase, HasDomains, MediaRelation, Schedulable, hasEventsWithBindings, isFillable;
 
   public $transformer = 'Modules\Isite\Transformers\OrganizationTransformer';
   public $requestValidation = [
@@ -94,7 +96,7 @@ class Organization extends BaseTenant
 
   public function getUrlAttribute()
   {
-    $currentLocale = \LaravelLocalization::getCurrentLocale();
+    $currentLocale = locale();
     
     $domains = $this->domains;
     $tenantRouteAlias = setting("isite::tenantRouteAlias",null,"site",true);
@@ -105,11 +107,15 @@ class Organization extends BaseTenant
       if(!empty($customDomain)){
         return $customDomain;
       }elseif(!empty($defaultDomain)){
-        return tenant_route($defaultDomain.".".Str::remove('https://', env('APP_URL', 'localhost')), \LaravelLocalization::getCurrentLocale() . ".$tenantRouteAlias");
+        return tenant_route($defaultDomain.".".Str::remove('https://', env('APP_URL', 'localhost')), $currentLocale . ".$tenantRouteAlias");
       }else{
         return "";
       }
 
+  }
+  
+  public function getDomainAttribute(){
+    return parse_url($this->url, PHP_URL_HOST);
   }
 
   public function users()

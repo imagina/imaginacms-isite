@@ -18,14 +18,6 @@ class Filters extends Component
 
   public $filtersValues = [];
 
-  // Validation to firt request params from URL
-  public $filter = [];
-  public $firstRequest = false;
-
-  protected $queryString = [
-    'filter'
-  ];
-
   /**
    * Listeners
    */
@@ -55,14 +47,12 @@ class Filters extends Component
 
 
   /*
-  * LISTENER - filtersGetData
-  * Filters are grouped to then emit them with their data
+  * LISTENER
   */
   public function getDataFromFilters($params)
   {
 
-    //\Log::info("getDataFromFilters|params: ".json_encode($params));
-
+    //\Log::info("FILTERS - GETDATA - PARAMS: ".json_encode($params));
     if (isset($params["goToUrl"])) {
       $this->goToUrl = $params["goToUrl"];
     }
@@ -73,39 +63,18 @@ class Filters extends Component
 
       $this->filtersValues[$filterName] = $params["filter"];
 
-      //\Log::info("getDataFromFilters|filterName: {$filterName}: " . json_encode($this->filtersValues[$filterName]));
+      \Log::info("FILTER {$filterName}: " . json_encode($this->filtersValues[$filterName]));
 
       // Example like btn search
       if (isset($params['eventUpdateItemsList']) && $params['eventUpdateItemsList'])
         $this->updateItemsList();
 
     }
-    //\Log::info("getDataFromFilters|filtersValues: ".json_encode($this->filtersValues));
-   
-    //Only one time
-    //\Log::info("getDataFromFilters|FirstRequest: ".$this->firstRequest);
-    if($this->firstRequest==false){
-      $this->addParamsToFiltersValuesFromUrl();
-      $this->firstRequest = true;
-    }
-   
+
+    \Log::info("FILTERS: " . json_encode($this->filtersValues));
+
     // remove d-none frontend
     $this->dispatchBrowserEvent('filters-after-get-data');
-  }
-
-  /*
-  *If you receive parameters in the first request
-  */
-  public function addParamsToFiltersValuesFromUrl(){
-    
-    //\Log::info("getDataFromFilters|addParamsToFiltersValuesFromUrl");
-    if(!empty($this->filter)){
-      foreach ($this->filter as $name => $value) {
-        $params = [$name => $value];
-        $this->filtersValues[$name] = $params;
-      }
-    }
-    
   }
 
   /*

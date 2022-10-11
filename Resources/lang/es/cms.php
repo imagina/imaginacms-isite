@@ -30,7 +30,6 @@ return [
     "duplicateLang" => 'Reemplazar <b class="text-primary">{lang}</b> con...',
     "maintenancePage" => "Sitio en mantenimiento",
     "copyToClipboard" => "Tu información se guardó en el portapapeles",
-    "copyDisclosureLink" => "El enlace de divulgación se ha copiado en el portapapeles",
     "failedCopyToClipboard" => "No fue posible usar el portapapeles",
     "lastReport" => "Ultimo reporte",
     "newReport" => "Nuevo reporte",
@@ -48,11 +47,6 @@ return [
   "perzonalizationTitle" => "Bienvenid@ al editor de tu sitio web",
   "perzonalizationDescription" => "De manera fácil, cambia el logo, colores y la información principal de tu página web",
   "label" => [
-    "continueWith"=> "Continuar con",
-    "facebook"=> "Facebook",
-    "google"=> "Google",
-    "microsoft"=> "Microsoft",
-    "copyDisclosureLink" => "Copiar enlace",
     "delete" => "Eliminar",
     "cancel" => "Cancelar",
     "cancelled" => "Cancelado",
@@ -355,8 +349,7 @@ return [
     "position" => "Posición | Posiciones",
     "axis" => "Eje | Ejes",
     "audio" => "Audio | Audios",
-    "ratio" => "Proporción | Proporciones",
-    "format" => "Formato | Formatos"
+    "ratio" => "Proporción | Proporciones"
   ],
   "message" => [
     "notFound" => "Lo sentimos, no hay nada aquí",
@@ -415,8 +408,7 @@ return [
     "finishRegister" => "Falta poco para terminar tu registro",
     "ready" => "Todo está listo",
     "noRegistered" => "Aún no estás registrado",
-    "hintFilterByQuery" => "Escribe 3 o más caracteres para buscar opciones",
-    "invalidFormat" => "Formato invalido"
+    "hintFilterByQuery" => "Escribe 3 o más caracteres para buscar opciones"
   ],
   "form" => [
     "id" => "ID",
@@ -548,7 +540,6 @@ return [
   "right" => "Derecha",
   "bottomLeft" => "Abajo-Izquierda",
   "bottom" => "Abajo",
-  "bottomRight" => "Abajo-Derecha",
-  "selectedRows" => "{num} Filas seleccionadas"
+  "bottomRight" => "Abajo-Derecha"
 ];
 

@@ -12,7 +12,11 @@ $locale = LaravelLocalization::setLocale() ?: App::getLocale();
 //]);
 //
 
-(!empty(json_decode(setting("isite::rolesToTenant",null,"[]")))) ?
+(
+  !empty(json_decode(setting("isite::rolesToTenant",null,"[]")))
+
+
+) ?
   $middlewares = [
     'universal',
     \Stancl\Tenancy\Middleware\InitializeTenancyByDomain::class,
@@ -37,7 +41,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function (Router $r
 
 });
 
-
+$router->get('/', [
+  'uses' => '\Modules\Page\Http\Controllers\PublicController@homepage',
+  'as' => 'homepage',
+  'middleware' => $middlewares
+]);
 
 /**
  *

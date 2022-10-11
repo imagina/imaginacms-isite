@@ -6,14 +6,16 @@ use Modules\Isite\Entities\Organization;
 
 // Events
 use Modules\Isite\Events\OrganizationWasCreated;
+use Modules\Isite\Services\TenantService;
 
 class CreateOrganizationByRole
 {
+  public $tenantService;
   
-  /**
-   * @var Mailer
-   */
-  
+  public function __construct(TenantService $tenantService)
+  {
+    $this->tenantService = $tenantService;
+  }
   
   public function handle($event)
   {
@@ -30,18 +32,13 @@ class CreateOrganizationByRole
       foreach ($roles as $userRole){
         if(in_array($userRole->id,$rolesToTenant) && !$allReadyTenant){
           $allReadyTenant = true;
-          $organization = Organization::create(array_merge([
-            'user_id' => $user->id,
-            'title' => $user->present()->fullname,
-            'status' => json_decode(setting("isite::defaultTenantStatus",null, "true")),
-            'layout_id' => json_decode(setting("isite::defaultLayout",null, null))
-          ],$data["organization"] ?? []));
-  
-          $organization->users()->sync([$user->id => ['role_id' => $userRole->id]]);
           
-          $organization->domains()->create([
-            'domain' => $data["organization"]["domain"] ?? $organization->slug,
-            'type' => 'default'
+          $organization = $this->tenantService->createTenant([
+            "user" => $user,
+            "title" => $user->present()->fullname,
+            "domain" => $data["organization"]["domain"] ?? null,
+            "role" => $userRole,
+            "organization" => $data["organization"] ?? []
           ]);
 
           tenancy()->initialize($organization->id);

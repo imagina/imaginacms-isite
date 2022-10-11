@@ -1070,15 +1070,4 @@ return [
       */
     ]
   ],
-  //Microsoft APP ID
-  'microsoftClientId' => [
-    'value' => "",
-    'name' => 'isite::microsoftClientId',
-    'type' => 'input',
-    'groupName' => 'apiKeys',
-    'groupTitle' => 'isite::common.settingGroups.apiKeys',
-    'props' => [
-      'label' => 'isite::common.settings.microsoftClientId'
-    ]
-  ],
 ];

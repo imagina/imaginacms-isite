@@ -58,7 +58,6 @@ return [
     'googleClient' => 'Cliente Google',
     'facebookClient' => 'Cliente Facebook',
     'facebookAppId' => 'App Id Facebook',
-    'microsoftClientId' => 'Cliente Microsoft',
     'tenant' => [
       'group' => 'Inquilinos',
       'tenantWithCentralData' => 'Entidades con data central',
@@ -186,6 +185,7 @@ return [
     'tooltipAddress' => 'Editar direccion',
     'tooltipEmail' => 'Editar correo electronico',
     'tooltipPhone' => 'Editar telefono',
+    'tooltipLogo' => 'Editar este logo',
     'tooltipAd' => 'Editar este anuncio',
   ],
   'maps' => [
@@ -204,7 +204,5 @@ return [
   ],
   'sitemap' => [
     'labelSitemapDepth' => 'Profundidad Del Mapa Del Sitio',
-    'labelUserAgentRobots' => 'Agentes De Busqueda Para El Archivo Robots.txt',
-    'labelActiveGenerateRobotsFile' => 'Sitemap Con Archivo Robots.txt',
   ],
 ];

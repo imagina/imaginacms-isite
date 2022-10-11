@@ -20,9 +20,7 @@
           <label>{{$title}}</label>
         @endif
         <select class="form-control" name="select" wire:model="selected">
-          @if($showFirstOptionSelect)
-            <option value="NULL">Seleccione un(a) {{$entityTitle ?? $title}}</option>
-          @endif
+          <option value="NULL">Seleccione un(a) {{$title}}</option>
           @foreach($options as $item)
             <option value="{{$item->id}}">{{$item->title ?? $item->name}}</option>
           @endforeach

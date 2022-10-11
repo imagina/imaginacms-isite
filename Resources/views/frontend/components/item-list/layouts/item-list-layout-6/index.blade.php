@@ -34,7 +34,7 @@
           <a href="{{$item->url}}" target="{{$target}}" class="{{$titleColor}}">
               @endif
 
-            <h3 class="title d-flex {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}}  {{$titleMarginT}} {{$titleMarginB}} {{$contentMarginInsideX}}" style="height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;">
+            <h3 class="title d-flex align-items-center {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}}  {{$titleMarginT}} {{$titleMarginB}} {{$contentMarginInsideX}}" style="height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;">
                 @if($titleVineta) <i class="{{$titleVineta}} {{$titleVinetaColor}} mr-2"></i>  @endif
                 <span> {!! Str::limit( $item->title ?? $item->name ?? '', $numberCharactersTitle) !!}  </span>
               </h3>
@@ -43,14 +43,14 @@
           @endif
         </div>
       @endif
-      @if($withCreatedDate)
+      @if($withCreatedDate && isset($item->created_at))
         <div class="col-12 {{$orderClasses["date"] ?? 'order-2'}} item-created-date {{$createdDateAlign}}">
           @if(isset($item->url)&& !empty($item->url))
             <a href="{{$item->url}}" target="{{$target}}">
               @endif
               <div
                 class="created-date {{$createdDateTextWeight}} {{$createdDateColor}} {{$createdDateMarginT}} {{$createdDateMarginB}} {{$contentMarginInsideX}}">
-                {{ $date }}
+                {{ $item->created_at->format($formatCreatedDate) }}
               </div>
               @if(isset($item->url) && !empty($item->url))
             </a>
@@ -178,7 +178,6 @@
     #{{$id}} .item-title .title {
         font-size: {{$titleTextSize}}px;
         letter-spacing: {{$titleLetterSpacing}}px;
-         overflow: hidden;
     }
     #{{$id}} .item-summary .summary {
         font-size: {{$summaryTextSize}}px;
