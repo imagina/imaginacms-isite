@@ -32,7 +32,7 @@
               @if(isset($item->url) && !empty($item->url))
                           <a href="{{$item->url}}" target="{{$target}}" class="{{$titleColor}}">
                   @endif
-                              <h3 class="title d-flex {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}} {{$titleMarginT}} {{$titleMarginB}}"  style="height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;">
+                              <h3 class="title d-flex {{$item->url==="" ? $titleColor : '' }} {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}} {{$titleMarginT}} {{$titleMarginB}}"  style="height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;">
                                   @if($titleVineta) <i class="{{$titleVineta}} {{$titleVinetaColor}} mr-2"></i>  @endif
                                   <span>{!! Str::limit( $item->title ?? $item->name ?? '', $numberCharactersTitle) !!}</span>
                   </h3>
@@ -87,10 +87,10 @@
               @if(isset($item->url) && !empty($item->url))
                 <a href="{{$item->url}}" target="{{$target}}">
                   @endif
-                
-                              <div class="summary {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}}" style="height: @if($summaryHeight) {{$summaryHeight}}px @else auto @endif;">
-                                {!! $summary !!}
-                  </div>
+
+                    <div class="summary {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}} {{$contentMarginInsideX}}" style="height: @if($summaryHeight) {{$summaryHeight}}px @else auto @endif;">
+                        {!! Str::limit( $item->summary ?? $item->description ?? $item->custom_html ?? '', $numberCharactersSummary) !!}
+                    </div>
                   @if(isset($item->url) && !empty($item->url))
                 </a>
               @endif
