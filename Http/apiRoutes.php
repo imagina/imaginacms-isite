@@ -52,7 +52,14 @@ $router->group(['prefix' => '/isite/v1'], function (Router $router) {
       'controller' => 'TypeableApiController',
       //'middleware' => ['create' => [], 'index' => [], 'show' => [], 'update' => [], 'delete' => [], 'restore' => []]
     ]);
+    $router->apiCrud([
+      'module' => 'isite',
+      'prefix' => 'blocks',
+      'controller' => 'blockApiController',
+      //'middleware' => ['create' => [], 'index' => [], 'show' => [], 'update' => [], 'delete' => [], 'restore' => []]
+    ]);
 // append
+
 
 
 

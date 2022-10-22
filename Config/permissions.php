@@ -76,7 +76,16 @@ return [
         'destroy' => 'isite::typeables.destroy resource',
         'restore' => 'isite::typeables.restore resource',
     ],
+    'isite.blocks' => [
+        'manage' => 'isite::blocks.manage resource',
+        'index' => 'isite::blocks.list resource',
+        'create' => 'isite::blocks.create resource',
+        'edit' => 'isite::blocks.edit resource',
+        'destroy' => 'isite::blocks.destroy resource',
+        'restore' => 'isite::blocks.restore resource',
+    ],
 // append
+
 
 
 
