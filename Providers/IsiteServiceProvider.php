@@ -74,7 +74,6 @@ class IsiteServiceProvider extends ServiceProvider
     $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'deprecated-settings'), "asgard.isite.deprecated-settings");
     $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'cmsPages'), "asgard.isite.cmsPages");
     $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'cmsSidebar'), "asgard.isite.cmsSidebar");
-    $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'blocks'), "asgard.isite.blocks");
     $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
     $app = $this->app;
@@ -195,18 +194,6 @@ class IsiteServiceProvider extends ServiceProvider
                 }
 
                 return new \Modules\Isite\Repositories\Cache\CacheTypeableDecorator($repository);
-            }
-        );
-        $this->app->bind(
-            'Modules\Isite\Repositories\blockRepository',
-            function () {
-                $repository = new \Modules\Isite\Repositories\Eloquent\EloquentblockRepository(new \Modules\Isite\Entities\block());
-
-                if (! config('app.cache')) {
-                    return $repository;
-                }
-
-                return new \Modules\Isite\Repositories\Cache\CacheblockDecorator($repository);
             }
         );
 // add bindings
