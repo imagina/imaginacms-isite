@@ -5,8 +5,9 @@
     <div class="row">
       <div class="col-8 offset-2">
         <x-isite::block
-          itemComponentNamespace='Modules\Isite\View\Components\ItemList'
-          itemComponent="isite::item-list"
+          :itemComponentNamespace='$itemComponentNamespace'
+          :itemComponent='$itemComponent'
+          :itemComponentAttributes='$itemComponentAttributes'
         />
       </div>
     </div>
