@@ -38,10 +38,7 @@
           endif;
           ?>
         @endif
-      @else
-        @livewire($itemComponent,
-        $itemComponentAttributes
-        )
+        @livewire($itemComponent, $itemComponentAttributes)
       @endif
     </div>
   </div>
