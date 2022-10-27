@@ -5,6 +5,8 @@ namespace Modules\Isite\View\Components;
 use Illuminate\Support\Facades\Route;
 use Illuminate\View\Component;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Collective\Html\Componentable;
+use Illuminate\Support\Facades\Blade;
 
 class Block extends Component
 {
@@ -27,7 +29,8 @@ class Block extends Component
   public $itemComponentNamespace;
   public $itemComponent;
   public $itemComponentAttributes;
-  public $componentLivewire;
+  public $isLivewire;
+  public $isBlade;
 
   public function __construct(
 
@@ -48,8 +51,7 @@ class Block extends Component
     $componentIsite = "",
     $itemComponentNamespace = null,
     $itemComponent = null,
-    $itemComponentAttributes = null,
-    $componentLivewire = null
+    $itemComponentAttributes = []
   )
 
   {
@@ -93,10 +95,20 @@ class Block extends Component
     $this->itemComponentNamespace = $itemComponentNamespace;
     $this->itemComponent = $itemComponent;
     $this->itemComponentAttributes = $itemComponentAttributes;
-    $this->componentLivewire = $componentLivewire;
 
-    if (!is_null($this->componentLivewire)){
-      $existComponentLivewire = app('Livewire\LivewireComponentsFinder')->find($this->componentLivewire);
+    $this->isLivewire = false;
+    $this->isBlade = false;
+    if (!is_null($this->itemComponent)) {
+      $finder = app('Livewire\LivewireManager');
+      try {
+        $this->isLivewire = $finder->getClass($this->itemComponent);
+
+      } catch (\Exception $e) {
+
+      }
+      if (!is_null($this->isLivewire)) {
+        $this->itemComponentNamespace = $this->isLivewire;
+      }
     }
   }
 
@@ -105,7 +117,8 @@ class Block extends Component
    *
    * @return \Illuminate\View\View|string
    */
-  public function render()
+  public
+  function render()
   {
     return view("isite::frontend.components.blocks");
   }

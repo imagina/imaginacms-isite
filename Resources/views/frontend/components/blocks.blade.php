@@ -19,11 +19,11 @@
       </div>
     @endif
     <div id="component{{$id}}">
-      @if(empty($componentLivewire))
+      @if(is_null($isLivewire))
         @if(!empty($itemComponentNamespace))
           <?php
           $hash = sha1($itemComponentNamespace);
-          if (isset($component)) {
+          if(isset($component)) {
             $__componentOriginal{$hash} = $component;
           }
           $component = $__env->getContainer()->make($itemComponentNamespace, $itemComponentAttributes ?? []);
@@ -39,9 +39,9 @@
           ?>
         @endif
       @else
-        @livewire({{$componentLivewire}},[
-        "layout" => "search-layout-1"
-        ])
+        @livewire($itemComponent,
+        $itemComponentAttributes
+        )
       @endif
     </div>
   </div>
