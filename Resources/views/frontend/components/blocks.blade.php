@@ -38,10 +38,6 @@
           endif;
           ?>
         @endif
-      @else
-        @livewire({{$componentLivewire}},[
-        "layout" => "search-layout-1"
-        ])
       @endif
     </div>
   </div>
