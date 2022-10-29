@@ -204,11 +204,16 @@ class PublicController extends BaseApiController
     $params = $request->all();
     $itemComponentNamespace = $params['itemComponentNamespace'] ?? null;
     $itemComponent = $params['itemComponent'] ?? [];
-    $itemComponentAttributes = $params['itemComponentAttributes'] ?? [];
+    $itemComponentAttributes = json_decode($params['itemComponentAttributes'] ?? "[]");
+    $itemComponentEntity = json_decode($params['itemComponentEntity'] ?? "[]");
 
-    dd($itemComponentNamespace, $itemComponent, $itemComponentAttributes);
+    //dd($itemComponentNamespace, $itemComponent, $itemComponentEntity, $itemComponentAttributes);
 
-    return view('isite::frontend.blocks',
-      compact('itemComponentNamespace', 'itemComponent', 'itemComponentAttributes'));
+    return view('isite::frontend.blocks', compact(
+      'itemComponentNamespace',
+      'itemComponent',
+      'itemComponentEntity',
+      'itemComponentAttributes'
+    ));
   }
 }
