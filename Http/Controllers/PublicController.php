@@ -202,13 +202,13 @@ class PublicController extends BaseApiController
   public function blockPreview(Request $request)
   {
     $params = $request->all();
-    $attributes = (array)json_decode($params["attributes"] ?? "{}");
-    $itemComponentNamespace = $params['item_component_namespace'];
-    $itemComponent = $params['item_component'];
-    $itemComponentAttributes = $params['item_component_attributes'] ?? [];
-    $item = Post::find(3);
+    $itemComponentNamespace = $params['itemComponentNamespace'] ?? null;
+    $itemComponent = $params['itemComponent'] ?? [];
+    $itemComponentAttributes = $params['itemComponentAttributes'] ?? [];
+
+    dd($itemComponentNamespace, $itemComponent, $itemComponentAttributes);
 
     return view('isite::frontend.blocks',
-      compact('attributes', 'item', 'itemComponentNamespace', 'itemComponent','itemComponentAttributes'));
+      compact('itemComponentNamespace', 'itemComponent', 'itemComponentAttributes'));
   }
 }

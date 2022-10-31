@@ -74,6 +74,7 @@ class IsiteServiceProvider extends ServiceProvider
     $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'deprecated-settings'), "asgard.isite.deprecated-settings");
     $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'cmsPages'), "asgard.isite.cmsPages");
     $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'cmsSidebar'), "asgard.isite.cmsSidebar");
+    $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'blocks'), "asgard.isite.blocks");
     $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
 
     $app = $this->app;
