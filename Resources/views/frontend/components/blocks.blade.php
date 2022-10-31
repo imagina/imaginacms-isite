@@ -19,7 +19,7 @@
       </div>
     @endif
     <div id="component{{$id}}">
-      @if(is_null($isLivewire))
+      @if(!$isLivewire)
         @if(!empty($itemComponentNamespace))
           <?php
           $hash = sha1($itemComponentNamespace);
