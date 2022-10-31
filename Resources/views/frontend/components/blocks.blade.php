@@ -23,7 +23,7 @@
         @if(!empty($itemComponentNamespace))
           <?php
           $hash = sha1($itemComponentNamespace);
-          if(isset($component)) {
+          if (isset($component)) {
             $__componentOriginal{$hash} = $component;
           }
           $component = $__env->getContainer()->make($itemComponentNamespace, $itemComponentAttributes ?? []);
@@ -38,6 +38,7 @@
           endif;
           ?>
         @endif
+      @else
         @livewire($itemComponent, $itemComponentAttributes)
       @endif
     </div>
@@ -45,12 +46,12 @@
 </section>
 
 <style>
-    #container{{$id}}       {
+    #container{{$id}}        {
         position: relative;
     }
 
     @if(!empty($overlay))
-       #overlay{{$id}}       {
+       #overlay{{$id}}        {
         position: absolute;
         width: 100%;
         height: 100%;
