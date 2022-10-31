@@ -53,7 +53,6 @@ return [
     "google"=> "Google",
     "microsoft"=> "Microsoft",
     "copyDisclosureLink" => "Copiar enlace",
-    "copyEmbedHtml" => "Copiar insertar",
     "delete" => "Eliminar",
     "cancel" => "Cancelar",
     "cancelled" => "Cancelado",

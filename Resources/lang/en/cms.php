@@ -54,7 +54,6 @@ return [
     "google"=> "Google",
     "microsoft"=> "Microsoft",
     "copyDisclosureLink" => "Copy disclosure link",
-    "copyEmbedHtml" => "Copy embed",
     "delete" => "Delete",
     "cancel" => "Cancel",
     "cancelled" => "Cancelled",
