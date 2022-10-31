@@ -31,6 +31,7 @@ class Block extends Component
   public $itemComponentAttributes;
   public $isLivewire;
   public $isBlade;
+  public $view;
 
   public function __construct(
 
@@ -95,19 +96,27 @@ class Block extends Component
     $this->itemComponentNamespace = $itemComponentNamespace;
     $this->itemComponent = $itemComponent;
     $this->itemComponentAttributes = $itemComponentAttributes;
-
     $this->isLivewire = false;
     $this->isBlade = false;
+    $this->view = "isite::frontend.components.blocks";
+
     if (!is_null($this->itemComponent)) {
       $finder = app('Livewire\LivewireManager');
       try {
         $this->isLivewire = $finder->getClass($this->itemComponent);
-
-      } catch (\Exception $e) {
-
-      }
-      if (!is_null($this->isLivewire)) {
         $this->itemComponentNamespace = $this->isLivewire;
+        $this->isLivewire = true;
+      } catch (\Exception $e) {
+      }
+      if (!$this->isLivewire) {
+        try {
+          $this->isBlade = app($itemComponentNamespace);
+          $this->isBlade = true;
+        } catch (\Exception $e) {
+        }
+      }
+      if (!$this->isBlade && !$this->isLivewire) {
+        $this->view = "isite::frontend.components.blocks-error";
       }
     }
   }
@@ -120,7 +129,7 @@ class Block extends Component
   public
   function render()
   {
-    return view("isite::frontend.components.blocks");
+    return view($this->view);
   }
 }
 
