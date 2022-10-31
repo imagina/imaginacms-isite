@@ -1,5 +1,7 @@
 <?php
 
+$vAttributes = config("asgard.isite.standardValuesForBlocksAttributes");
+
 return [
   "isiteItem" => [
     "title" => "Elemento",
@@ -1231,14 +1233,14 @@ return [
     ],
     "attributes" => [
       "general" => [
-        "title" => "Genera",
+        "title" => "General",
         "fields" => [
           "loop" => [
             "name" => "loop",
             "value" => "1",
             "type" => "select",
             "props" => [
-              "label" => "Loop",
+              "label" => "loop",
               "options" => [
                 ["label" => "Si", "value" => "1"],
                 ["label" => "No", "value" => "0"]
@@ -1250,13 +1252,410 @@ return [
             "value" => "1",
             "type" => "select",
             "props" => [
-              "label" => "Loop",
+              "label" => "Autoplay",
               "options" => [
                 ["label" => "Si", "value" => "1"],
                 ["label" => "No", "value" => "0"]
               ]
             ]
           ],
+          "center" => [
+            "name" => "center",
+            "value" => "0",
+            "type" => "select",
+            "props" => [
+              "label" => "Center",
+              "options" => [
+                ["label" => "Si", "value" => "1"],
+                ["label" => "No", "value" => "0"]
+              ]
+            ]
+          ],
+          "autoplayHoverPause" => [
+            "name" => "autoplayHoverPause",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "AutoplayHoverPause",
+              "options" => [
+                ["label" => "Si", "value" => "1"],
+                ["label" => "No", "value" => "0"]
+              ]
+            ]
+          ],
+          "ContainerFluid" => [
+            "name" => "ContainerFluid",
+            "value" => "0",
+            "type" => "select",
+            "props" => [
+              "label" => "ContainerFluid",
+              "options" => [
+                ["label" => "Si", "value" => "1"],
+                ["label" => "No", "value" => "0"]
+              ]
+            ]
+          ],
+          "Margin" => [
+            "name" => "Margin",
+            "type" => "input",
+            "props" => [
+              "label" => "1",
+              "type" => "number"
+            ]
+          ],
+          "responsive" => [
+            "name" => "responsive",
+            "type" => "input",
+            "props" => [
+              "label" => "Responsive"
+            ]
+          ]
+        ]
+      ],
+      "navydots" => [
+        "title" => "navydots",
+        "fields" => [
+          "nav" => [
+            "name" => "nav",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "mostrar",
+              "options" => [
+                ["label" => "Si", "value" => "1"],
+                ["label" => "No", "value" => "0"]
+              ]
+            ]
+          ],
+          "navPosition" => [
+            "name" => "navPosition",
+            "type" => "select",
+            "props" => [
+              "label" => "Posicion",
+              "options" => [
+                ["label" => "Laterales", "value" => "center"],
+                ["label" => "Superior derecha", "value" => "top-right"],
+                ["label" => "Superior izquierda", "value" => "top-left"],
+                ["label" => "Inferior centrado", "value" => "bottom"],
+                ["label" => "Superior centrado", "value" => "top-center"]
+              ]
+            ]
+          ],
+          "navStyleButton" => [
+            "name" => "navStyleButton",
+            "type" => "select",
+            "props" => [
+              "label" => "Estilo de Borde",
+              "options" => [
+                ["label" => "Sólo Texto", "value" => ""],
+                ["label" => "Border a un lado", "value" => "button-line-side"],
+                ["label" => "Botones Semi Cuadrados", "value" => "rounded"],
+                ["label" => "Botones Redondos", "value" => "rounded-pill"],
+                ["label" => "Botones Cuadrados", "value" => "rounded-0"],
+                ["label" => "Botones Outline Semi Cuadrados", "value" => "outline rounded"],
+                ["label" => "Botones Outline Redondos", "value" => "outline rounded-pill"],
+                ["label" => "Botones Outline Cuadrados", "value" => "outline rounded-0"]
+              ]
+            ]
+          ],
+          "navSizeButton" => [
+            "name" => "navSizeButton",
+            "type" => "select",
+            "props" => [
+              "label" => "Espaciado",
+              "options" => [
+                ["label" => "Normal", "value" => "button-normal"],
+                ["label" => "Sin espaciado", "value" => "button-link"],
+                ["label" => "Pequeño", "value" => "button-small"],
+                ["label" => "Grande", "value" => "button-big"]
+              ]
+            ]
+          ],
+          "navColor" => [
+            "name" => "navColor",
+            "type" => "select",
+            "props" => [
+              "label" => "color",
+              "options" => [
+                ["label" => "Primary", "value" => "Primary"],
+                ["label" => "Secondary", "value" => "Secondary"],
+                ["label" => "Warning", "value" => "Warning"],
+                ["label" => "Info", "value" => "Info"],
+                ["label" => "Danger", "value" => "Danger"],
+                ["label" => "Dark", "value" => "Dark"],
+                ["label" => "Light", "value" => "Light"]
+              ]
+            ]
+          ],
+          "navIcon" => [
+            "name" => "navIcon",
+            "type" => "select",
+            "props" => [
+              "label" => "Nombre",
+              "options" => [
+                ["label" => "arrow", "value" => "arrow"],
+                ["label" => "arrow-circle", "value" => "arrow-circle"],
+                ["label" => "angle", "value" => "angle"],
+                ["label" => "angle-double", "value" => "angle-double"],
+                ["label" => "chevron", "value" => "chevron"],
+                ["label" => "chevron-circle", "value" => "chevron-circle"],
+                ["label" => "caret", "value" => "caret"],
+                ["label" => "long-arrow", "value" => "long-arrow"],
+                ["label" => "caret-square-o", "value" => "caret-square-o"]
+              ]
+            ]
+          ],
+          "navSizeLabel" => [
+            "name" => "navSizeLabel",
+            "type" => "input",
+            "props" => [
+              "label" => "Tamano",
+              "type" => "number"
+            ]
+          ],
+          "dots" => [
+            "name" => "dots",
+            "value" => "0",
+            "type" => "select",
+            "props" => [
+              "label" => "mostrar",
+              "options" => [
+                ["label" => "Si", "value" => "1"],
+                ["label" => "No", "value" => "0"]
+              ]
+            ]
+          ],
+          "dotsStyle" => [
+            "name" => "dotsStyle",
+            "type" => "select",
+            "props" => [
+              "label" => "Estilos",
+              "options" => [
+                ["label" => "dots-linear", "value" => "Barras"],
+                ["label" => "dots-circle", "value" => "Circulos"],
+              ]
+            ]
+          ]
+        ]
+      ],
+      "texto" => [
+        "title" => "texto",
+        "fields" => [
+          "owlTextAlign" => [
+            "name" => "owlTextAlign",
+            "type" => "select",
+            "props" => [
+              "label" => "alineacion",
+              "options" => [
+                ["label" => "Izquierda", "value" => "text-left"],
+                ["label" => "Derecha", "value" => "text-right"],
+                ["label" => "Centro", "value" => "text-center"]
+              ]
+            ]
+          ],
+          "owlTextPosition" => [
+            "name" => "owlTextPosition",
+            "type" => "select",
+            "props" => [
+              "label" => "Posicion",
+              "options" => [
+                ["label" => "Solo título", "value" => "1"],
+                ["label" => "Título con descripción abajo", "value" => "2"],
+                ["label" => "Título abajo con descripción arriba", "value" => "3"]
+              ]
+            ]
+          ],
+          "owlTitleSize" => [
+            "name" => "owlTitleSize",
+            "type" => "select",
+            "props" => [
+              "label" => "Tamaño",
+              "type" => "number"
+            ]
+          ],
+          "owlTitleTransform" => [
+            "name" => "owlTitleTransform",
+            "type" => "select",
+            "props" => [
+              "label" => "Transformar",
+              "options" => [
+                ["label" => "Mayuscula", "value" => "text-uppercase"],
+                ["label" => "Minuscula", "value" => "text-lowercase"],
+                ["label" => "Letra capital", "value" => "text-capitalize"]
+              ]
+            ]
+          ],
+          "owlTitleColor" => [
+            "name" => "owlTitleColor",
+            "type" => "select",
+            "props" => [
+              "label" => "Color",
+              "options" => $vAttributes["optColors"]
+            ]
+          ],
+          "owlTitleColor2" => [
+            "name" => "owlTitleColor",
+            "type" => "select",
+            "props" => [
+              "label" => "Color",
+              "options" => $vAttributes["optColors"]
+            ]
+          ],
+          "owlTitleMarginT" => [
+            "name" => "owlTitleMarginT",
+            "type" => "select",
+            "props" => [
+              "label" => "Margen superior",
+              "options" => [
+                ["label" => "Margen 0", "value" => "mt-0"],
+                ["label" => "Margen 1", "value" => "mt-1"],
+                ["label" => "Margen 2", "value" => "mt-2"],
+                ["label" => "Margen 3", "value" => "mt-3"],
+                ["label" => "Margen 4", "value" => "mt-4"],
+                ["label" => "Margen 5", "value" => "mt-5"]
+              ]
+            ]
+          ],
+          "owlTitleMarginB" => [
+            "name" => "owlTitleMarginB",
+            "type" => "select",
+            "props" => [
+              "label" => "Margen inferior",
+              "options" => [
+                ["label" => "Margen 0", "value" => "mt-0"],
+                ["label" => "Margen 1", "value" => "mt-1"],
+                ["label" => "Margen 2", "value" => "mt-2"],
+                ["label" => "Margen 3", "value" => "mt-3"],
+                ["label" => "Margen 4", "value" => "mt-4"],
+                ["label" => "Margen 5", "value" => "mt-5"]
+              ]
+            ]
+          ],
+          "owlTitleWeight" => [
+            "name" => "owlTitleWeight",
+            "type" => "select",
+            "props" => [
+              "label" => "Negrita",
+              "options" => [
+                ["label" => "Texto en negrita", "value" => "font-weight-bold"],
+                ["label" => "Texto en negrita (relativo al elemento principal)", "value" => "font-weight-bolder"],
+                ["label" => "Texto de peso normal", "value" => "font-weight-normal"],
+                ["label" => "Texto ligero", "value" => "font-weight-light"],
+                ["label" => "Texto más ligero (en relación con el elemento principal)", "value" => "font-weight-lighter"],
+                ["label" => "Texto en cursiva", "value" => "font-italic"]
+              ]
+            ]
+          ],
+          "owlTitleLetterSpacing" => [
+            "name" => "owlTitleLetterSpacing",
+            "type" => "input",
+            "props" => [
+              "label" => "Espacio entre letras",
+              "type" => "number"
+            ]
+          ],
+          "owlTitleVineta" => [
+            "name" => "owlTitleVineta",
+            "type" => "input",
+            "props" => [
+              "label" => "Icon"
+            ]
+          ],
+          "titleVinetaColor" => [
+            "name" => "titleVinetaColor",
+            "type" => "select",
+            "props" => [
+              "label" => "Color",
+              "options" => [
+                ["label" => "Primary", "value" => "text-Primary"],
+                ["label" => "secondary", "value" => "text-secondary"],
+                ["label" => "warning", "value" => "text-warning"],
+                ["label" => "Info", "value" => "text-info"],
+                ["label" => "Danger", "value" => "text-Danger"],
+                ["label" => "Dark", "value" => "text-Dark"],
+                ["label" => "Light", "value" => "text-Light"],
+                ["label" => "White", "value" => "text-White"]
+              ]
+            ]
+          ],
+          "owlSubtitleSize" => [
+            "name" => "owlSubtitleSize",
+            "type" => "input",
+            "props" => [
+              "label" => "Tamaño Fuente",
+              "type" => "number"
+            ]
+          ],
+          "owlSubtitleColor" => [
+            "name" => "owlSubtitleColor",
+            "type" => "select",
+            "props" => [
+              "label" => "Color",
+              "options" => [
+                ["label" => "Primary", "value" => "text-Primary"],
+                ["label" => "secondary", "value" => "text-secondary"],
+                ["label" => "warning", "value" => "text-warning"],
+                ["label" => "Info", "value" => "text-info"],
+                ["label" => "Danger", "value" => "text-Danger"],
+                ["label" => "Dark", "value" => "text-Dark"],
+                ["label" => "Light", "value" => "text-Light"],
+                ["label" => "White", "value" => "text-White"]
+              ]
+            ]
+          ],
+          "owlTitleMarginT" => [
+            "name" => "owlTitleMarginT",
+            "type" => "select",
+            "props" => [
+              "label" => "Margen superior",
+              "options" => [
+                ["label" => "Margen 0", "value" => "mt-0"],
+                ["label" => "Margen 1", "value" => "mt-1"],
+                ["label" => "Margen 2", "value" => "mt-2"],
+                ["label" => "Margen 3", "value" => "mt-3"],
+                ["label" => "Margen 4", "value" => "mt-4"],
+                ["label" => "Margen 5", "value" => "mt-5"]
+              ]
+            ]
+          ],
+          "owlTitleMarginB" => [
+            "name" => "owlTitleMarginB",
+            "type" => "select",
+            "props" => [
+              "label" => "Margen inferior",
+              "options" => [
+                ["label" => "Margen 0", "value" => "mt-0"],
+                ["label" => "Margen 1", "value" => "mt-1"],
+                ["label" => "Margen 2", "value" => "mt-2"],
+                ["label" => "Margen 3", "value" => "mt-3"],
+                ["label" => "Margen 4", "value" => "mt-4"],
+                ["label" => "Margen 5", "value" => "mt-5"]
+              ]
+            ]
+          ],
+          "owlSubtitleWeight" => [
+            "name" => "owlSubtitleWeight",
+            "type" => "select",
+            "props" => [
+              "label" => "Negrita",
+              "options" => [
+                ["label" => "Texto en negrita", "value" => "font-weight-bold"],
+                ["label" => "Texto en negrita (relativo al elemento principal)", "value" => "font-weight-bolder"],
+                ["label" => "Texto de peso normal", "value" => "font-weight-normal"],
+                ["label" => "Texto ligero", "value" => "font-weight-light"],
+                ["label" => "Texto más ligero (en relación con el elemento principal)", "value" => "font-weight-lighter"],
+                ["label" => "Texto en cursiva", "value" => "font-italic"]
+              ]
+            ]
+          ],
+          "owlSubtitleLetterSpacing" => [
+            "name" => "owlSubtitleLetterSpacing",
+            "type" => "input",
+            "props" => [
+              "label" => "Espacio entre letras",
+              "type" => "number"
+            ]
+          ]
         ]
       ]
     ]
