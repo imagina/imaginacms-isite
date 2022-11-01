@@ -110,8 +110,7 @@ class Block extends Component
       }
       if (!$this->isLivewire) {
         try {
-          $this->isBlade = app($itemComponentNamespace);
-          $this->isBlade = true;
+          $this->isBlade = class_exists($itemComponentNamespace);
         } catch (\Exception $e) {
         }
       }
