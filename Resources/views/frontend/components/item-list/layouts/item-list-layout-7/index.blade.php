@@ -25,7 +25,14 @@
                                    :mediaFiles="$item->mediaFiles()" :zone="$mediaImage ?? 'mainimage'"/>
           </div>
         @endif
-        <div class="item-content {{$col2}} {{$contentPositionVertical}}">
+
+        @if($containerActive)
+            <div class="{{$containerType}} image-overlay">
+                <div class="row h-100 {{$containerJustify}} {{$containerAlign}}">
+                    <div class="{{$containerColumn}}">
+        @else
+            <div class="item-content {{$col2}} {{$contentPositionVertical}}">
+        @endif
 
           @if($withTitle)
                   <div class=" {{$orderClasses["title"] ?? 'order-1'}} item-title  ">
@@ -121,7 +128,15 @@
             </div>
           @endif
 
-        </div>
+
+        @if($containerActive)
+                    </div>
+                </div>
+            </div>
+        @else
+            </div>
+        @endif
+
     </div>
   </div>
 
