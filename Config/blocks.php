@@ -6,6 +6,7 @@ return [
   "isiteItem" => [
     "title" => "Elemento",
     "systemName" => "isite::item-list",
+    "nameSpace" => "Modules\Isite\View\Components\ItemList",
     "content" => [
       [
         "label" => "Post",
@@ -1216,7 +1217,7 @@ return [
     "systemName" => "isite::carousel.owl-carousel",
     "nameSpace" => "Modules\Isite\View\Components\Carousel\OwlCarousel",
     "childBlocks" => [
-      "item" => "isite::item-list"
+      "itemComponentAttributes" => "isite::item-list"
     ],
     "content" => [
       [
@@ -1299,7 +1300,7 @@ return [
             "name" => "Margin",
             "type" => "input",
             "props" => [
-              "label" => "1",
+              "label" => "Margen",
               "type" => "number"
             ]
           ],
@@ -1490,7 +1491,7 @@ return [
             "type" => "select",
             "props" => [
               "label" => "Color",
-              "options" => $vAttributes["optColors"]
+              "options" => $vAttributes["textColors"]
             ]
           ],
           "owlTitleColor2" => [
@@ -1498,7 +1499,7 @@ return [
             "type" => "select",
             "props" => [
               "label" => "Color",
-              "options" => $vAttributes["optColors"]
+              "options" => $vAttributes["textColors"]
             ]
           ],
           "owlTitleMarginT" => [
