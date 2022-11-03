@@ -1,5 +1,5 @@
 <div id="{{$id}}" class="item-layout item-list-layout-6 position-relative {{$itemMarginB}}">
-  <x-isite::edit-link link="{{$editLink}}{{$item->id}}" :item="$item" tooltip="{{$tooltipEditLink}}"/>
+  <x-isite::edit-link link="{{$editLink}}{{$item->id}}" tooltip="{{$tooltipEditLink}}"/>
   <div class="card-item">
     <div class="row align-items-center">
 
@@ -34,10 +34,11 @@
           <a href="{{$item->url}}" target="{{$target}}" class="{{$titleColor}}">
               @endif
 
-            <h3 class="title d-flex {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}}  {{$titleMarginT}} {{$titleMarginB}} {{$contentMarginInsideX}}" style="height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;">
+            <h3 class="title d-flex {{empty($item->url) ? $titleColor : '' }} {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}}  {{$titleMarginT}} {{$titleMarginB}} {{$contentMarginInsideX}}" style="height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;">
                 @if($titleVineta) <i class="{{$titleVineta}} {{$titleVinetaColor}} mr-2"></i>  @endif
                 <span> {!! Str::limit( $item->title ?? $item->name ?? '', $numberCharactersTitle) !!}  </span>
               </h3>
+
               @if(isset($item->url) && !empty($item->url))
             </a>
           @endif

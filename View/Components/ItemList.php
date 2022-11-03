@@ -146,6 +146,12 @@ class ItemList extends Component
   public $date;
   public $summary;
 
+  public $containerActive;
+  public $containerType;
+  public $containerJustify;
+  public $containerAlign;
+  public $containerColumn;
+
   /**
    * Create a new component instance.
    *
@@ -300,7 +306,12 @@ class ItemList extends Component
                               $imageWidth = 100,
                               $imageAlign = 'left',
                               $summaryField = null,
-                              $summaryWithLimit = true
+                              $summaryWithLimit = true,
+                              $containerActive = false,
+                              $containerType = "container",
+                              $containerJustify = "justify-content-center",
+                              $containerAlign = "align-items-center",
+                              $containerColumn = "col-lg-10"
   )
   {
 
@@ -433,6 +444,12 @@ class ItemList extends Component
     $this->withImage = $withImage;
     $this->imageWidth = $imageWidth;
     $this->imageAlign = $imageAlign;
+
+    $this->containerActive = $containerActive;
+    $this->containertype = $containerType;
+    $this->containerJustify = $containerJustify;
+    $this->containerAlign = $containerAlign;
+    $this->containerColumn = $containerColumn;
 
 
     if(!empty($summaryField)){
