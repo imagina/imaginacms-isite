@@ -3,7 +3,7 @@
 @section("content")
   <div class="container">
     <div class="row">
-      <div class="col-8 offset-2">
+      <div class="col-10 offset-1">
         <x-isite::block :blockConfig="$blockConfig"/>
       </div>
     </div>

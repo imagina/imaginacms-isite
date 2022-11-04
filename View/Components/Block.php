@@ -183,6 +183,9 @@ class Block extends Component
             $this->componentConfig["attributes"]["repository"] = $entity->type;
             $this->componentConfig["attributes"]["params"] = (array)$entity->params;
             break;
+          case 'slider::slider.Owl':
+            $this->componentConfig["attributes"]["id"] = $entity->id;
+            break;
         }
       }
     }

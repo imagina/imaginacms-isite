@@ -1,7 +1,7 @@
 <?php
 
 return [
-  "bgColor" => [
+  "bgColor"=>[
     ["label" => "Primary", "value" => "bg-Primary"],
     ["label" => "secondary", "value" => "bg-secondary"],
     ["label" => "success", "value" => "bg-success"],
@@ -12,7 +12,7 @@ return [
     ["label" => "dark", "value" => "bg-dark"],
     ["label" => "White", "value" => "bg-White"]
   ],
-  "opacityColor" => [
+  "opacityColor"=>[
     ["label" => "Primary", "value" => "opacity-Primary"],
     ["label" => "secondary", "value" => "opacity-secondary"],
     ["label" => "success", "value" => "opacity-success"],
@@ -33,7 +33,7 @@ return [
     ["label" => "Light", "value" => "text-Light"],
     ["label" => "White", "value" => "text-White"]
   ],
-  "marginB" => [
+  "marginB"=>[
     ["label" => "0", "value" => "mb-0"],
     ["label" => "4px", "value" => "mb-1"],
     ["label" => "8px", "value" => "mb-2"],
@@ -41,7 +41,7 @@ return [
     ["label" => "24px", "value" => "mb-4"],
     ["label" => "48px", "value" => "mb-5"]
   ],
-  "marginT" => [
+  "marginT"=>[
     ["label" => "0px", "value" => "mt-0"],
     ["label" => "4px", "value" => "mt-1"],
     ["label" => "8px", "value" => "mt-2"],
@@ -49,7 +49,7 @@ return [
     ["label" => "24px", "value" => "mt-4"],
     ["label" => "48px", "value" => "mt-5"]
   ],
-  "marginR" => [
+  "marginR"=>[
     ["label" => "0px", "value" => "mr-0"],
     ["label" => "4px", "value" => "mr-1"],
     ["label" => "8px", "value" => "mr-2"],
@@ -57,7 +57,7 @@ return [
     ["label" => "24px", "value" => "mr-4"],
     ["label" => "48px", "value" => "mr-5"]
   ],
-  "marginL" => [
+  "marginL"=>[
     ["label" => "0px", "value" => "ml-0"],
     ["label" => "4px", "value" => "ml-1"],
     ["label" => "8px", "value" => "ml-2"],
@@ -65,36 +65,36 @@ return [
     ["label" => "24px", "value" => "ml-4"],
     ["label" => "48px", "value" => "ml-5"]
   ],
-  "contentBorderRoundedType" => [
-    ["label" => "Todo", "value" => "1"],
-    ["label" => "Arriba", "value" => "2"],
-    ["label" => "Derecha", "value" => "3"],
-    ["label" => "Izquierda", "value" => "4"],
-    ["label" => "Abajo", "value" => "5"],
-    ["label" => "Arriba Derecha", "value" => "6"],
-    ["label" => "Arriba Izquierda", "value" => "7"],
-    ["label" => "Abajo Derecha", "value" => "8"],
-    ["label" => "Abajo Izquierda", "value" => "9"]
+  "contentBorderRoundedType"=>[
+      ["label" => "Todo", "value" => "1"],
+      ["label" => "Arriba", "value" => "2"],
+      ["label" => "Derecha", "value" => "3"],
+      ["label" => "Izquierda", "value" => "4"],
+      ["label" => "Abajo", "value" => "5"],
+      ["label" => "Arriba Derecha", "value" => "6"],
+      ["label" => "Arriba Izquierda", "value" => "7"],
+      ["label" => "Abajo Derecha", "value" => "8"],
+      ["label" => "Abajo Izquierda", "value" => "9"]
   ],
-  "validation" => [
+  "validation"=>[
     ["label" => "Si", "value" => "1"],
     ["label" => "No", "value" => "0"]
   ],
-  "TextWeight" => [
+  "TextWeight"=>[
     ["label" => "Texto en negrita", "value" => "font-weight-bold"],
-    ["label" => "Texto en negrita (relativo al elemento principal)", "value" => "font-weight-bolder"],
-    ["label" => "Texto de peso normal", "value" => "font-weight-normal"],
-    ["label" => "Texto ligero", "value" => "font-weight-light"],
-    ["label" => "Texto más ligero (en relación con el elemento principal)", "value" => "font-weight-lighter"],
-    ["label" => "Texto en cursiva", "value" => "font-italic"]
+      ["label" => "Texto en negrita (relativo al elemento principal)", "value" => "font-weight-bolder"],
+      ["label" => "Texto de peso normal", "value" => "font-weight-normal"],
+      ["label" => "Texto ligero", "value" => "font-weight-light"],
+      ["label" => "Texto más ligero (en relación con el elemento principal)", "value" => "font-weight-lighter"],
+      ["label" => "Texto en cursiva", "value" => "font-italic"]
   ],
-  "textDecoration" => [
-    ["label" => "Sin decoracion", "value" => "none"],
-    ["label" => "underline", "value" => "underline"],
-    ["label" => "overline", "value" => "overline"],
-    ["label" => "line-through", "value" => "line-through"]
+  "textDecoration"=>[
+      ["label" => "Sin decoracion", "value" => "none"],
+      ["label" => "underline", "value" => "underline"],
+      ["label" => "overline", "value" => "overline"],
+      ["label" => "line-through", "value" => "line-through"]
   ],
-  "optionOneToFive" => [
+  "optionOneToFive"=>[
     ["label" => "0", "value" => "0"],
     ["label" => "1", "value" => "1"],
     ["label" => "2", "value" => "2"],
@@ -111,15 +111,19 @@ return [
     ["label" => "Botones Outline Redondos", "value" => "outline rounded-pill"],
     ["label" => "Botones Outline Cuadrados", "value" => "outline rounded-0"]
   ],
-  "buttonType" => [
+  "buttonType"=>[
     ["label" => "Normal", "value" => "button-normal"],
     ["label" => "Sin espaciado", "value" => "button-link"],
     ["label" => "Pequeño", "value" => "button-small"],
     ["label" => "Grande", "value" => "button-big"]
   ],
-  "align" => [
+  "align"=>[
     ["label" => "Centrado", "value" => "text-center"],
     ["label" => "Derecha", "value" => "text-right"],
     ["label" => "Izquierda", "value" => "text-left"]
+  ],
+  "booleanValidation"=>[
+    ["label" => "true", "value" => "true"],
+    ["label" => "false", "value" => "false"]
   ]
 ];
