@@ -4,11 +4,7 @@
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
-        <x-isite::block
-          :itemComponentNamespace='$itemComponentNamespace'
-          :itemComponent='$itemComponent'
-          :itemComponentAttributes='$itemComponentAttributes'
-        />
+        <x-isite::block :blockConfig="$blockConfig"/>
       </div>
     </div>
   </div>

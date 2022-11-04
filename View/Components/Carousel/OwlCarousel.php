@@ -77,7 +77,7 @@ class OwlCarousel extends Component
      * @return void
      */
     public function __construct($repository,
-                                $id,
+                                $id = null,
                                 $view = null,
                                 $params = [],
                                 $margin = 10,
@@ -133,7 +133,7 @@ class OwlCarousel extends Component
 
         $this->emptyItems = false;
         $this->loop = $loop;
-        $this->id = $id;
+        $this->id = $id ?? uniqid();
         $this->dots = $dots;
         $this->nav = $nav;
         $this->center = $center;
@@ -144,7 +144,7 @@ class OwlCarousel extends Component
         $this->autoplay = $autoplay;
         $this->autoplayHoverPause = $autoplayHoverPause;
         $this->autoplayTimeout = $autoplayTimeout;
-        
+
         $this->repository = $repository;
         $this->params = $params;
         $this->itemLayout = $itemLayout ?? $itemComponentAttributes["itemLayout"] ?? null;
@@ -187,7 +187,7 @@ class OwlCarousel extends Component
         $this->stagePadding = $stagePadding;
         $this->owlTitleUrl = $owlTitleUrl;
         $this->owlTitleTarget = $owlTitleTarget;
-        
+
         $this->itemComponentAttributes = $itemComponentAttributes;
 
 
@@ -221,7 +221,7 @@ class OwlCarousel extends Component
                     $this->itemComponent = "icommerce::product-list-item";
                     $this->itemComponentNamespace = "Modules\Icommerce\View\Components\ProductListItem";
                     $this->itemComponentAttributes["layout"]="product-list-item-layout-1";
-                  
+
                 }
                 break;
         }
