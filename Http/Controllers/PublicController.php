@@ -102,7 +102,7 @@ class PublicController extends BaseApiController
   public function uri($slug,Request $request)
   {
     try {
-  
+ 
       //revoke api routes
       if(Str::contains($slug,"api"))  return response("",404);
       

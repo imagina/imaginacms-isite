@@ -195,10 +195,13 @@ class TenantService
     //Activate the modules of the plan in the Tenant DB
     $this->activatePlan(array_merge($data, ["organization_id" => $organization->id, "role" => $role]));
     
+    //Seed again Page and Menu to enable the sidebar in the iadmin
+    $this->reseedPageAndMenu(array_merge($data, ["organization_id" => $organization->id, "role" => $role]));
+    
     
     //Authenticating user in the Tenant DB
     $authData = $this->authenticateUser(array_merge($userCentralData, ["organization_id" => $organization->id]));
-  
+
     
     \Log::info("----------------------------------------------------------");
     \Log::info("Tenant {{$organization->id}} successfully created");
@@ -355,7 +358,7 @@ class TenantService
   
   public function postInstallCommands($data)
   {
-  
+    
     \Log::info("----------------------------------------------------------");
     \Log::info("Post Install Commands");
     \Log::info("----------------------------------------------------------");
@@ -374,5 +377,22 @@ class TenantService
       \Artisan::call('tenants:run', $options);
       \Log::info(\Artisan::output());
     }
+    
   }
+  
+  public function reseedPageAndMenu($data)
+  {
+    
+    \Log::info("----------------------------------------------------------");
+    \Log::info("Reseed Page and Menu");
+    \Log::info("----------------------------------------------------------");
+    
+    if (isset($data["organization_id"]))
+      tenancy()->initialize($data["organization_id"]);
+    
+    \Artisan::call('module:seed', ['module' => 'Page']);
+    \Log::info(\Artisan::output());
+    \Artisan::call('module:seed', ['module' => 'Menu']);
+      \Log::info(\Artisan::output());
+    }
 }

@@ -99,7 +99,7 @@ class Organization extends BaseTenant implements TenantWithDatabase
     $currentLocale = locale();
     
     $domains = $this->domains;
-    $tenantRouteAlias = setting("isite::tenantRouteAlias",null,"site",true);
+    $tenantRouteAlias = setting("isite::tenantRouteAlias",null,"homepage",true);
     
       $customDomain = $domains->where("type","custom")->first()->domain ?? null;
       $defaultDomain = $domains->where("type","default")->first()->domain ?? $this->slug ?? null;

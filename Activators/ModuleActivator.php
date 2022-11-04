@@ -114,7 +114,9 @@ class ModuleActivator implements ActivatorInterface
   
     
     if(!isset($module->id)){
-      if(in_array(Str::lower($name),config("asgard.core.config.CoreModules"))){
+      $lowerName = Str::lower($name);
+
+      if(in_array($lowerName,json_decode($this->files->get($this->statusesFile), true))){
         $module = new IModule([
           "alias" => Str::lower($name),
           "name" => $name,
@@ -147,7 +149,7 @@ class ModuleActivator implements ActivatorInterface
   }
   
   public function throwModuleIfNotExist($module){
-    if(!isset($module->id))if(!isset($module->id))  throw new \Exception("The module $name doesn't exist in the database",400);
+    if(!isset($module->id))  throw new \Exception("The module $name doesn't exist in the database",400);
   }
   /**
    * @inheritDoc
