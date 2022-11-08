@@ -10,6 +10,8 @@ use Modules\Iprofile\Repositories\UserApiRepository;
 use Route;
 use Modules\Ihelpers\Http\Controllers\Api\BaseApiController;
 use Illuminate\Support\Str;
+use Modules\Isite\Entities\block;
+use Modules\Iblog\Entities\Post;
 
 use Modules\Isite\Repositories\CategoryRepository;
 
@@ -105,38 +107,38 @@ class PublicController extends BaseApiController
  
       //revoke api routes
       if(Str::contains($slug,"api"))  return response("",404);
-      
-      //Pimero buscamos el path completo en el slug del post, si existe redirige
-      $postRepository = app("Modules\Iblog\Repositories\PostRepository");
-      $post = $postRepository->getItem($slug, json_decode(json_encode(["filter" => ["field" => "slug"]])));
-  
-      //el post debe tener un campo falso urlCoder con valor onlyPost que habilite al posts para accederse unicamente con su slug como url
-      if (isset($post->id) && isset($post->options->urlCoder) && $post->options->urlCoder == "onlyPost") {
+
+    //Pimero buscamos el path completo en el slug del post, si existe redirige
+    $postRepository = app("Modules\Iblog\Repositories\PostRepository");
+    $post = $postRepository->getItem($slug, json_decode(json_encode(["filter" => ["field" => "slug"]])));
+
+    //el post debe tener un campo falso urlCoder con valor onlyPost que habilite al posts para accederse unicamente con su slug como url
+    if (isset($post->id) && isset($post->options->urlCoder) && $post->options->urlCoder == "onlyPost") {
+      $controller = app("Modules\Iblog\Http\Controllers\PublicController");
+      return $controller->show($post);
+    }
+
+    //Segundo, busamos el path completo en el slug de la categoria
+    $categoryRepository = app("Modules\Iblog\Repositories\CategoryRepository");
+    $category = $categoryRepository->getItem($slug, json_decode(json_encode(["filter" => ["field" => "slug"]])));
+
+    if (isset($category->id)) {
+      $controller = app("Modules\Iblog\Http\Controllers\PublicController");
+      return $controller->index($category);
+    }
+
+    //Tercero, buscamos el path menos el ultimo en una categoria, si existe, buscamos el ultimo path en un post con la categoria, redirigimos
+    $arg = explode("/", $slug);
+    $category = $categoryRepository->getItem(Str::remove("/" . end($arg), $slug), json_decode(json_encode(["filter" => ["field" => "slug"]])));
+
+    if (isset($category->id)) {
+      $post = $postRepository->getItem(end($arg), json_decode(json_encode(["filter" => ["categories" => $category->id, "field" => "slug"]])));
+
+      if (isset($post->id)) {
         $controller = app("Modules\Iblog\Http\Controllers\PublicController");
         return $controller->show($post);
       }
-  
-      //Segundo, busamos el path completo en el slug de la categoria
-      $categoryRepository = app("Modules\Iblog\Repositories\CategoryRepository");
-      $category = $categoryRepository->getItem($slug, json_decode(json_encode(["filter" => ["field" => "slug"]])));
-  
-      if (isset($category->id)) {
-        $controller = app("Modules\Iblog\Http\Controllers\PublicController");
-        return $controller->index($category);
-      }
-  
-      //Tercero, buscamos el path menos el ultimo en una categoria, si existe, buscamos el ultimo path en un post con la categoria, redirigimos
-      $arg = explode("/", $slug);
-      $category = $categoryRepository->getItem(Str::remove("/" . end($arg), $slug), json_decode(json_encode(["filter" => ["field" => "slug"]])));
-  
-      if (isset($category->id)) {
-        $post = $postRepository->getItem(end($arg), json_decode(json_encode(["filter" => ["categories" => $category->id, "field" => "slug"]])));
-    
-        if (isset($post->id)) {
-          $controller = app("Modules\Iblog\Http\Controllers\PublicController");
-          return $controller->show($post);
-        }
-      }
+    }
     }catch(\Exception $e){
       
       \Log::info($e->getMessage());
@@ -162,7 +164,7 @@ class PublicController extends BaseApiController
   {
     $argv = explode("/", $request->path());
     $slug = end($argv);
-    
+
     $tpl = 'isite::frontend.organizations.index';
     $ttpl = 'isite.organizations.index';
 
@@ -173,17 +175,17 @@ class PublicController extends BaseApiController
     if ($slug && $slug !=trans('isite::routes.organizations.index.index')) {
       
       $category = $this->category->findBySlug($slug);
-      
+
       if (isset($category->id)) {
-        
+
         $ptpl = "isite.category.{$category->parent_id}%.index";
         if ($category->parent_id != 0 && view()->exists($ptpl)) {
           $tpl = $ptpl;
         }
-        
+
         $ctpl = "isite.category.{$category->id}.index";
         if (view()->exists($ctpl)) $tpl = $ctpl;
-        
+
         $ctpl = "isite.category.{$category->id}%.index";
         if (view()->exists($ctpl)) $tpl = $ctpl;
         
@@ -191,16 +193,30 @@ class PublicController extends BaseApiController
       } else {
         return response()->view('errors.404', [], 404);
       }
-      
-      
+
+
     }
-  
+
     $title = (isset($category->id) ? ($category->h1_title ?? $category->title) : trans('isite::organizations.plural'));
 
-    return view($tpl,compact('title','category'));
+    return view($tpl, compact('title', 'category'));
 
 
   }
 
-
+  /*
+  * Organization Index
+  */
+  public function blockPreview(Request $request)
+  {
+    $params = $request->all();
+    //Instance the blockConfig
+    $blockConfig = [
+      "component" => json_decode($params['component'] ?? "[]"),
+      "entity" => json_decode($params['entity'] ?? "[]"),
+      "attributes" => json_decode($params['attributes'] ?? "[]")
+    ];
+    //Render view
+    return view('isite::frontend.blocks', compact('blockConfig'));
+  }
 }

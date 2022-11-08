@@ -42,6 +42,14 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function (Router $r
 
 });
 
+/** @var Router $router */
+Route::group(['prefix' => "blocks/preview"], function (Router $router) use ($locale) {
+  $router->get("/", [
+    'as' => 'isite.blocks.preview',
+    'uses' => 'PublicController@blockPreview',
+  ]);
+});
+
 $router->get('/', [
   'uses' => '\Modules\Page\Http\Controllers\PublicController@homepage',
   'as' => $locale.'.homepage',

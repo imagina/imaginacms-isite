@@ -33,6 +33,7 @@ class OwlCarousel extends Component
     public $owlBlockStyle;
     public $editLink;
     public $tooltipEditLink;
+    public $autoplayTimeout;
 
     public $navIcon;
     public $navSizeLabel;
@@ -69,13 +70,14 @@ class OwlCarousel extends Component
     public $owlTitleUrl;
     public $owlTitleTarget;
 
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
     public function __construct($repository,
-                                $id,
+                                $id = null,
                                 $view = null,
                                 $params = [],
                                 $margin = 10,
@@ -124,13 +126,14 @@ class OwlCarousel extends Component
                                 $itemComponentNamespace = null,
                                 $stagePadding = 0,
                                 $owlTitleUrl = null,
-                                $owlTitleTarget = "_self"
+                                $owlTitleTarget = "_self",
+                                $autoplayTimeout = 5000
     )
     {
 
         $this->emptyItems = false;
         $this->loop = $loop;
-        $this->id = $id;
+        $this->id = $id ?? uniqid();
         $this->dots = $dots;
         $this->nav = $nav;
         $this->center = $center;
@@ -140,10 +143,11 @@ class OwlCarousel extends Component
         $this->responsiveClass = $responsiveClass;
         $this->autoplay = $autoplay;
         $this->autoplayHoverPause = $autoplayHoverPause;
-        
+        $this->autoplayTimeout = $autoplayTimeout;
+
         $this->repository = $repository;
         $this->params = $params;
-        $this->itemLayout = $itemLayout;
+        $this->itemLayout = $itemLayout ?? $itemComponentAttributes["itemLayout"] ?? null;
         $this->title = $title;
         $this->itemsBySlide = $itemsBySlide;
         $this->subTitle = $subTitle;
@@ -183,7 +187,7 @@ class OwlCarousel extends Component
         $this->stagePadding = $stagePadding;
         $this->owlTitleUrl = $owlTitleUrl;
         $this->owlTitleTarget = $owlTitleTarget;
-        
+
         $this->itemComponentAttributes = $itemComponentAttributes;
 
 
@@ -217,7 +221,7 @@ class OwlCarousel extends Component
                     $this->itemComponent = "icommerce::product-list-item";
                     $this->itemComponentNamespace = "Modules\Icommerce\View\Components\ProductListItem";
                     $this->itemComponentAttributes["layout"]="product-list-item-layout-1";
-                  
+
                 }
                 break;
         }

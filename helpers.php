@@ -1,17 +1,17 @@
 <?php
 
 if (!function_exists('alternate')) {
-  
+
   function alternate($model)
   {
-    
+
     $alternate = [];
     $supportedLocales = config("laravellocalization.supportedLocales");
-    
+
     if(count($supportedLocales) == 1) return $alternate;
-    
+
     $translations = $model->getTranslationsArray() ?? [];
-    
+
     foreach ($translations as $locale => $data) {
       if(isset($data['slug'])){
         $href = \URL::to('/'.$locale.'/'.$data['slug']);
@@ -20,19 +20,19 @@ if (!function_exists('alternate')) {
           "link" => "<link rel='alternate' hreflang='$locale' href='$href'>"
         ];
       }
-      
+
     }
-    
+
     return $alternate;
-    
+
   }
 }
 
 if (!function_exists('getEditLink')) {
-  
+
   function getEditLink($repository = null, $componentName = null)
   {
-  
+
     switch ($repository) {
       case 'Modules\Iad\Repositories\AdRepository':
         $editLink = "/iadmin/#/ad/ads/update/";
@@ -58,7 +58,7 @@ if (!function_exists('getEditLink')) {
         $editLink = "/iadmin/#/blog/categories/index?edit=";
         $tooltipEditLink = trans("isite::common.editLink.tooltipCategory");
         break;
-      case 'Modules\Slider\Repositories\SlideRepository':
+      case 'Modules\Slider\Repositories\SlideRepository'||'Modules\Slider\Repositories\SlideApiRepository':
         $editLink = "/iadmin/#/slider/show/";
         $tooltipEditLink = trans("isite::common.editLink.tooltipSlide");
         break;
@@ -66,13 +66,17 @@ if (!function_exists('getEditLink')) {
         $editLink = "/iadmin/#/iplaces/places/index?edit=";
         $tooltipEditLink = trans("isite::common.editLink.tooltipPlace");
         break;
+      case 'Modules\Iplaces\Repositories\CategoryRepository':
+        $editLink = "/iadmin/#/iplaces/categories/index?edit=";
+        $tooltipEditLink = trans("isite::common.editLink.tooltipCategory");
+        break;
         default:
           switch ($componentName) {
             case 'logo':
               $editLink = "/iadmin/#/iplaces/places/index?edit=";
               $tooltipEditLink = trans("isite::common.editLink.tooltipLogo");
               break;
-              
+
             default:
               $editLink = "/iadmin/#";
               $tooltipEditLink = trans("isite::common.editLink.tooltip");
@@ -80,7 +84,65 @@ if (!function_exists('getEditLink')) {
           }
         break;
     }
-    
+
     return [ $editLink, $tooltipEditLink];
+  }
+}
+
+if (!function_exists('isiteFormatMoney')) {
+
+  function isiteFormatMoney($value, $showCurrencyCode = false)
+  {
+    $format = (object)(Config::get('asgard.icommerce.config.formatmoney') ?? [
+        'decimals' => 0,
+        'dec_point' => '',
+        'housands_sep' => '.'
+      ]);
+
+    $numberFormat = number_format($value, $format->decimals, $format->dec_point, $format->housands_sep);
+
+    if ($showCurrencyCode) {
+      $currency = Currency::whereStatus(Status::ENABLED)->where('default_currency', '=', 1)->first();
+      $numberFormat = $numberFormat . " " . $currency->code;
+    }
+
+    return $numberFormat;
+
+  }
+
+}
+
+if (!function_exists('generatePassword')) {
+  function generatePassword($length = 12, $add_dashes = false, $available_sets = 'luds')
+  {
+    $sets = array();
+    if (strpos($available_sets, 'l') !== false)
+      $sets[] = 'abcdefghjkmnpqrstuvwxyz';
+    if (strpos($available_sets, 'u') !== false)
+      $sets[] = 'ABCDEFGHJKMNPQRSTUVWXYZ';
+    if (strpos($available_sets, 'd') !== false)
+      $sets[] = '23456789';
+    if (strpos($available_sets, 's') !== false)
+      $sets[] = '!@#$%&*?/_-+';
+    $all = '';
+    $password = '';
+    foreach ($sets as $set) {
+      $password .= $set[array_rand(str_split($set))];
+      $all .= $set;
+    }
+    $all = str_split($all);
+    for ($i = 0; $i < $length - count($sets); $i++)
+      $password .= $all[array_rand($all)];
+    $password = str_shuffle($password);
+    if (!$add_dashes)
+      return $password;
+    $dash_len = floor(sqrt($length));
+    $dash_str = '';
+    while (strlen($password) > $dash_len) {
+      $dash_str .= substr($password, 0, $dash_len) . '-';
+      $password = substr($password, $dash_len);
+    }
+    $dash_str .= $password;
+    return $dash_str;
   }
 }

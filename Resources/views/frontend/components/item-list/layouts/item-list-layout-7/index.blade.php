@@ -13,7 +13,7 @@
 
 <div id="{{$id}}" class="item-layout item-list-layout-7 position-relative {{$itemMarginB}}">
 
-  <x-isite::edit-link link="{{$editLink}}{{$item->id}}" tooltip="{{$tooltipEditLink}}"/>
+  <x-isite::edit-link link="{{$editLink}}{{$item->id}}" :item="$item" tooltip="{{$tooltipEditLink}}"/>
   <div class="card-item {{$row}}">
     <div class="{{$imagePosition!='1' ? 'row no-gutters' : ''}}">
         @if(method_exists ( $item, "mediaFiles" ) && $withImage )
@@ -25,14 +25,21 @@
                                    :mediaFiles="$item->mediaFiles()" :zone="$mediaImage ?? 'mainimage'"/>
           </div>
         @endif
-        <div class="item-content {{$col2}} {{$contentPositionVertical}}">
+
+        @if($containerActive)
+            <div class="{{$containerType}} image-overlay">
+                <div class="row h-100 {{$containerJustify}} {{$containerAlign}}">
+                    <div class="{{$containerColumn}}">
+        @else
+            <div class="item-content {{$col2}} {{$contentPositionVertical}}">
+        @endif
 
           @if($withTitle)
                   <div class=" {{$orderClasses["title"] ?? 'order-1'}} item-title  ">
               @if(isset($item->url) && !empty($item->url))
                           <a href="{{$item->url}}" target="{{$target}}" class="{{$titleColor}}">
                   @endif
-                              <h3 class="title d-flex {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}} {{$titleMarginT}} {{$titleMarginB}}"  style="height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;">
+                              <h3 class="title d-flex {{empty($item->url) ? $titleColor : '' }} {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}} {{$titleMarginT}} {{$titleMarginB}}"  style="height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;">
                                   @if($titleVineta) <i class="{{$titleVineta}} {{$titleVinetaColor}} mr-2"></i>  @endif
                                   <span>{!! Str::limit( $item->title ?? $item->name ?? '', $numberCharactersTitle) !!}</span>
                   </h3>
@@ -87,10 +94,10 @@
               @if(isset($item->url) && !empty($item->url))
                 <a href="{{$item->url}}" target="{{$target}}">
                   @endif
-                
-                              <div class="summary {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}}" style="height: @if($summaryHeight) {{$summaryHeight}}px @else auto @endif;">
-                    {!! Str::limit( $item->summary ?? $item->description ?? $item->custom_html ?? '', $numberCharactersSummary) !!}
-                  </div>
+
+                    <div class="summary {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}} {{$contentMarginInsideX}}" style="height: @if($summaryHeight) {{$summaryHeight}}px @else auto @endif;">
+                        {!! $summary !!}
+                    </div>
                   @if(isset($item->url) && !empty($item->url))
                 </a>
               @endif
@@ -121,7 +128,15 @@
             </div>
           @endif
 
-        </div>
+
+        @if($containerActive)
+                    </div>
+                </div>
+            </div>
+        @else
+            </div>
+        @endif
+
     </div>
   </div>
 
@@ -153,6 +168,7 @@
          aspect-ratio: {{$imageAspect}};
          object-fit: {{$imageObject}};
        padding: {{$imagePadding}}px;
+       display: inline-flex;
      }
 
     @if($contentBorderShadows=='none')

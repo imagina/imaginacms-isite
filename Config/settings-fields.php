@@ -1070,4 +1070,41 @@ return [
       */
     ]
   ],
+  //Microsoft APP ID
+  'microsoftClientId' => [
+    'value' => "",
+    'name' => 'isite::microsoftClientId',
+    'type' => 'input',
+    'groupName' => 'apiKeys',
+    'groupTitle' => 'isite::common.settingGroups.apiKeys',
+    'props' => [
+      'label' => 'isite::common.settings.microsoftClientId'
+    ]
+  ],
+  'timeExpiredToken' => [
+    'value' => 1,
+    'name' => 'isite::timeExpiredToken',
+    'type' => 'input',
+    'groupName' => 'tokens',
+    'groupTitle' => 'isite::common.settingGroups.groupNameTimeToken',
+    'props' => [
+      'label' => 'isite::common.settings.labelTimeExpiredToken'
+    ]
+  ],
+  //N8N
+  'n8nUrl' => [
+    "onlySuperAdmin" => true,
+    'name' => 'isite::n8nUrl',
+    'value' => "https://nflow.imaginacolombia.com",
+    'type' => 'input',
+    'groupName' => 'N8N',
+    'groupTitle' => 'N8N',
+    'columns' => 'col-12 col-md-6',
+    'help' => [
+      "description" => "URL for N8N node, it will be used for send action through this platform"
+    ],
+    'props' => [
+      'label' => 'N8N Url'
+    ]
+  ],
 ];

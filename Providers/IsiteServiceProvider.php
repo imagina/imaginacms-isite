@@ -76,7 +76,9 @@ class IsiteServiceProvider extends ServiceProvider
     $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'cmsPages'), "asgard.isite.cmsPages");
     $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'cmsSidebar'), "asgard.isite.cmsSidebar");
     //$this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
-
+    $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'standardValuesForBlocksAttributes'), "asgard.isite.standardValuesForBlocksAttributes");
+    $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'blocks'), "asgard.isite.blocks");
+  
     $app = $this->app;
 
     $this->app['validator']->extend('icaptcha', function ($attribute, $value) use ($app) {
