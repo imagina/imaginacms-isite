@@ -17,7 +17,7 @@ class IsiteDatabaseSeeder extends Seeder
     {
       Model::unguard();
   
-      $this->call(IcommerceModuleTableSeeder::class);
+      $this->call(IsiteModuleTableSeeder::class);
       
       $settings = app('Modules\Setting\Repositories\SettingRepository');
 
