@@ -1468,5 +1468,146 @@ return [
         ]
       ]
     ]
+  ],
+  "itemsList" => [
+    "title" => "itemsList",
+    "systemName" => "isite::items-list",
+    "nameSpace" => "livewire",
+    "content" => [
+      [
+        "label" => "Post",
+        "value" => "Modules\Iblog\Entities\Post"
+      ],
+      [
+        "label" => "Category",
+        "value" => "Modules\Iblog\Entities\Category"
+      ]
+    ],
+    "attributes" => [
+      "general" => [
+        "title" => "General",
+        "fields" => [
+          "title" => [
+            "name" => "title",
+            "type" => "input",
+            "props" => [
+              "label" => "titulo"
+            ]
+          ],
+          "itemListLayout" => [
+            "name" => "itemListLayout",
+            "type" => "input",
+            "props" => [
+              "label" => "layout del item list"
+            ]
+          ],
+          "params" => [
+            "name" => "params",
+            "value" => "[]",
+            "type" => "Json",
+            "props" => [
+              "label" => "parametros del itemsList"
+            ]
+          ],
+          "viewMoreButtonLabel" => [
+            "name" => "viewMoreButtonLabel",
+            "value" => "isite::common.menu.viewMore",
+            "type" => "input",
+            "props" => [
+              "label" => "ver boton del label"
+            ]
+          ],
+          "responsiveTopContent" => [
+            "name" => "responsiveTopContent",
+            "value" => ["mobile" => true, "desktop" => true, "order" => true],
+            "type" => "json",
+            "props" => [
+              "label" => "contenido responsivo"
+            ]
+          ],
+          "withUser" => [
+            "name" => "withUser",
+            "value" => "false",
+            "type" => "select",
+            "props" => [
+              "label" => "con usuario",
+              "options" => $vAttributes["booleanValidation"]
+            ]
+          ],
+          "showTitle" => [
+            "name" => "showTitle",
+            "value" => "true",
+            "type" => "select",
+            "props" => [
+              "label" => "mostrar titulo",
+              "options" => $vAttributes["booleanValidation"]
+            ]
+          ],
+          "pagination" => [
+            "name" => "pagination",
+            "value" => ['show' => true, 'type' => 'normal'],
+            "type" => "json",
+            "props" => [
+              "label" => "paginacion"
+            ]
+          ],
+          "configOrderBy" => [
+            "name" => "configOrderBy",
+            "type" => "input",
+            "props" => [
+              "label" => "orden de configuracion por"
+            ]
+          ],
+          "configLayoutIndex" => [
+            "name" => "configLayoutIndex",
+            "type" => "input",
+            "props" => [
+              "label" => "configuracion del layout"
+            ]
+          ],
+          "itemModal" => [
+            "name" => "itemModal",
+            "value" => ["mobile" => false, "desktop" => false, "idModal" => 'modal_1'],
+            "type" => "json",
+            "props" => [
+              "label" => "item modal"
+            ]
+          ],
+          "carouselAttributes" => [
+            "name" => "carouselAttributes",
+            "type" => "json",
+            "props" => [
+              "label" => "atributos del carrusel"
+            ]
+          ],
+          "uniqueItemListRendered" => [
+            "name" => "uniqueItemListRendered",
+            "value" => "false",
+            "type" => "select",
+            "props" => [
+              "label" => "renderizar un unico item list",
+              "options" => $vAttributes["booleanValidation"]
+            ]
+          ],
+          "description" => [
+            "name" => "description",
+            "value" => null,
+            "type" => "input",
+            "props" => [
+              "label" => "descripcion"
+            ]
+          ],
+          "disableFilters" => [
+            "name" => "disableFilters",
+            "value" => "false",
+            "type" => "select",
+            "props" => [
+              "label" => "desabilitar filtros",
+              "options" => $vAttributes["booleanValidation"]
+            ]
+          ]
+        ]
+      ]
+    ]
   ]
 ];
