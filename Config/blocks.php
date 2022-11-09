@@ -3,29 +3,13 @@
 $vAttributes = config("asgard.isite.standardValuesForBlocksAttributes");
 
 return [
-  "isiteItem" => [
-    "title" => "Elemento",
-    "systemName" => "isite::item-list",
-    "nameSpace" => "Modules\Isite\View\Components\ItemList",
-    "content" => [
-      [
-        "label" => "Post",
-        "value" => "Modules\Iblog\Entities\Post",
-        "loadOptions" => [
-          "apiRoute" => "apiRoutes.qblog.posts"
-        ]
-      ],
-      [
-        "label" => "Category",
-        "value" => "Modules\Iblog\Entities\Category",
-        "loadOptions" => [
-          "apiRoute" => "apiRoutes.qblog.categories"
-        ]
-      ]
-    ],
+  "block" => [
+    "title" => "Bloque",
+    "systemName" => "x-isite::block",
+    "nameSpace" => "Modules\Isite\View\Components\Block",
     "attributes" => [
       "general" => [
-        "title" => "General",
+        "title" => "Genera",
         "fields" => [
           "layout" => [
             "name" => "layout",
@@ -130,6 +114,267 @@ return [
             "type" => "select",
             "props" => [
               "label" => "Mostrar Sombra en hover mouse",
+              "options" => [
+                ["label" => "Si", "value" => "1"],
+                ["label" => "No", "value" => "0"]
+              ]
+            ]
+          ],
+          "container" => [
+            "name" => "container",
+            "value" => "container",
+            "type" => "select",
+            "props" => [
+              "label" => "tipo de contenedor",
+              "options" => [
+                ["label" => "container-fluid", "value" => "container-fluid"],
+                ["label" => "container", "value" => "container"]
+              ]
+            ]
+          ],
+          "id" => [
+            "name" => "id",
+            "type" => "input",
+            "props" => [
+              "label" => "Ingresar el id",
+              "type" => "text"
+            ]
+          ],
+          "columns" => [
+            "name" => "columns",
+            "type" => "input",
+            "props" => [
+              "label" => "columnas",
+              "type" => "number"
+            ]
+          ],
+          "borderForm" => [
+            "name" => "borderForm",
+            "value" => "rounded-0",
+            "type" => "select",
+            "props" => [
+              "label" => "background container",
+              "options" => [
+                ["label" => "todos los lados", "value" => "rounded"],
+                ["label" => "esquinas arriba redondeado", "value" => "rounded-top"],
+                ["label" => "esquinas de la derecha redondeado", "value" => "rounded-right"],
+                ["label" => "esquinas de abajo redondeado", "value" => "rounded-bottom"],
+                ["label" => "esquinas de la izquierda redondeado", "value" => "rounded-left"],
+                ["label" => "en ciruclo", "value" => "rounded-circle"],
+                ["label" => "por defecto", "value" => "rounded-0"]
+              ]
+            ]
+          ],
+          "display" => [
+            "name" => "display",
+            "value" => "none",
+            "type" => "select",
+            "props" => [
+              "label" => "display container",
+              "options" => [
+                ["label" => "none", "value" => "none"],
+                ["label" => "inline", "value" => "inline"],
+                ["label" => "inline-block", "value" => "inline-block"],
+                ["label" => "block", "value" => "block"],
+                ["label" => "table", "value" => "table"],
+                ["label" => "table-cell", "value" => "table-cell"],
+                ["label" => "table-row", "value" => "table-row"],
+                ["label" => "flex", "value" => "flex"],
+                ["label" => "inline-flex", "value" => "inline-flex"],
+              ]
+            ]
+          ],
+          "widthContainer" => [
+            "name" => "widthContainer",
+            "type" => "input",
+            "props" => [
+              "label" => "width container",
+              "type" => "number"
+            ]
+          ],
+          "heightContainer" => [
+            "name" => "heightContainer",
+            "type" => "input",
+            "props" => [
+              "label" => "width container",
+              "type" => "number"
+            ]
+          ],
+          "backgrounds" => [
+            "name" => "backgrounds",
+            "type" => "json",
+            "value" => "[{'position':'',
+                          'size':'',
+                          'repeat':'',
+                          'color':'',
+                          'backgroundAttachment':''
+                        }]",
+            "props" => [
+              "label" => "datos json",
+            ]
+          ],
+          "paddingX" => [
+            "name" => "paddingX",
+            "type" => "input",
+            "props" => [
+              "label" => "padding large",
+              "type" => "number"
+            ]
+          ],
+          "paddingY" => [
+            "name" => "paddingY",
+            "type" => "input",
+            "props" => [
+              "label" => "padding lenght",
+              "type" => "number"
+            ]
+          ],
+          "marginX" => [
+            "name" => "marginX",
+            "type" => "input",
+            "props" => [
+              "label" => "margin large",
+              "type" => "number"
+            ]
+          ],
+          "marginY" => [
+            "name" => "marginY",
+            "type" => "input",
+            "props" => [
+              "label" => "margin lenght",
+              "type" => "number"
+            ]
+          ],
+          "overlay" => [
+            "name" => "overlay",
+            "value" => "false",
+            "type" => "input",
+            "props" => [
+              "label" => "display container",
+              "options" => [
+                ["label" => "false", "value" => "false"],
+                ["label" => "true", "value" => "true"]
+              ]
+            ]
+          ],
+          "backgroundColor" => [
+            "name" => "backgroundColor",
+            "type" => "inputColor",
+            "props" => [
+              "label" => "color"
+            ]
+          ],
+        ]
+      ]
+    ]
+  ],
+  "isiteItem" => [
+    "title" => "Elemento",
+    "systemName" => "isite::item-list",
+    "nameSpace" => "Modules\Isite\View\Components\ItemList",
+    "internal" => true,
+    "attributes" => [
+      "general" => [
+        "title" => "General",
+        "fields" => [
+          "layout" => [
+            "name" => "layout",
+            "value" => "item-list-layout-6",
+            "type" => "select",
+            "props" => [
+              "label" => "Layout",
+              "options" => [
+                ["label" => "Layout 6 (Contenido Individual Vertical)", "value" => "item-list-layout-6"],
+                ["label" => "Layout 7 (Textos - Imagenes)", "value" => "item-list-layout-7"]
+              ]
+            ]
+          ],
+          "contentPadding" => [
+            "name" => "contentPadding",
+            "type" => "input",
+            "props" => [
+              "label" => "Espacio Externo",
+              "type" => "number"
+            ]
+          ],
+          "itemMarginB" => [
+            "name" => "itemMarginB",
+            "value" => "",
+            "type" => "select",
+            "props" => [
+              "label" => "Espacio Inferior",
+              "options" => $vAttributes["marginB"]
+            ]
+          ],
+          "contentBorderRounded" => [
+            "name" => "contentBorderRounded",
+            "value" => "",
+            "type" => "input",
+            "props" => [
+              "label" => "Borde Redondeado",
+              "type" => "number"
+            ]
+          ],
+          "contentBorderRoundedType" => [
+            "name" => "contentBorderRoundedType",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Posición del Borde",
+              "options" => $vAttributes["contentBorderRoundedType"]
+            ]
+          ],
+          "contentBorder" => [
+            "name" => "contentBorder",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Grosor del Borde",
+              "options" => [
+                ["label" => "1px", "value" => "1"],
+                ["label" => "2px", "value" => "2"],
+                ["label" => "3px", "value" => "3"],
+                ["label" => "4px", "value" => "4"],
+                ["label" => "5px", "value" => "5"]
+              ]
+            ]
+          ],
+          "contentBorderColor" => [
+            "name" => "contentBorderColor",
+            "type" => "inputColor",
+            "props" => [
+              "label" => "Color Del Borde"
+            ]
+          ],
+          "itemBackgroundColor" => [
+            "name" => "itemBackgroundColor",
+            "type" => "inputColor",
+            "props" => [
+              "label" => "Color del Fondo"
+            ]
+          ],
+          "itemBackgroundColorHover" => [
+            "name" => "itemBackgroundColorHover",
+            "type" => "inputColor",
+            "props" => [
+              "label" => "Color del Fondo (Hover)"
+            ]
+          ],
+          "contentBorderShadows" => [
+            "name" => "contentBorderShadows",
+            "value" => "none",
+            "type" => "select",
+            "props" => [
+              "label" => "Tamaño de la Sombra",
+              "options" => $vAttributes["contentBorderShadows"]
+            ]
+          ],
+          "contentBorderShadowsHover" => [
+            "name" => "contentBorderShadowsHover",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar Sombra en hover mouse",
               "options" => $vAttributes["validation"]
             ]
           ]
@@ -143,7 +388,7 @@ return [
             "type" => "select",
             "props" => [
               "label" => "Margen en los lados de los textos",
-              "options" => $vAttributes["marginT"]
+              "options" => $vAttributes["marginX"]
             ]
           ],
           "withTitle" => [
@@ -196,11 +441,7 @@ return [
             "type" => "select",
             "props" => [
               "label" => "Vertical",
-              "options" => [
-                ["label" => "arriba", "value" => "align-items-start"],
-                ["label" => "centro", "value" => "align-items-center"],
-                ["label" => "abajo", "value" => "align-items-end"],
-              ]
+              "options" => $vAttributes["alignItems"]
             ]
           ],
           "titleMarginT" => [
@@ -306,12 +547,7 @@ return [
             "type" => "select",
             "props" => [
               "label" => "Alineación",
-              "options" => [
-                ["label" => "Centrado", "value" => "text-center"],
-                ["label" => "Derecha", "value" => "text-right"],
-                ["label" => "Izquierda", "value" => "text-left"],
-                ["label" => "Justificado", "value" => "text-justify"]
-              ]
+              "options" => $vAttributes["textAlign"]
             ]
           ],
           "summaryColor" => [
@@ -576,339 +812,325 @@ return [
                 ]
               ]
             ]
-          ],
-          "boton" => [
-            "title" => "Botón",
-            "fields" => [
-              "withViewMoreButton" => [
-                "name" => "withViewMoreButton",
-                "value" => "1",
-                "type" => "select",
-                "props" => [
-                  "label" => "Mostrar",
-                  "options" => $vAttributes["validation"]
-                ]
-              ],
-              "buttonLayout" => [
-                "name" => "buttonLayout",
-                "value" => "rounded-pill",
-                "type" => "select",
-                "props" => [
-                  "label" => "Estilo de Botones",
-                  "options" => $vAttributes["buttonStyle"]
-                ]
-              ],
-              "buttonSize" => [
-                "name" => "buttonSize",
-                "value" => "button-normal",
-                "type" => "select",
-                "props" => [
-                  "label" => "Espaciado",
-                  "options" => $vAttributes["buttonType"]
-                ]
-              ],
-              "buttonAlign" => [
-                "name" => "buttonAlign",
-                "value" => "text-center",
-                "type" => "select",
-                "props" => [
-                  "label" => "Alineación",
-                  "options" => $vAttributes["align"]
-                ]
-              ],
-              "buttonColor" => [
-                "name" => "buttonColor",
-                "value" => "primary",
-                "type" => "select",
-                "props" => [
-                  "label" => "Color",
-                  "options" => $vAttributes["bgColor"]
-                ]
-              ],
-              "buttonMarginT" => [
-                "name" => "buttonMarginT",
-                "value" => "mt-0",
-                "type" => "select",
-                "props" => [
-                  "label" => "Margen superior",
-                  "options" => $vAttributes["marginT"]
-                ]
-              ],
-              "buttonMarginB" => [
-                "name" => "buttonMarginB",
-                "value" => "mt-0",
-                "type" => "select",
-                "props" => [
-                  "label" => "Margen Inferior",
-                  "options" => $vAttributes["marginB"]
-                ]
-              ],
-              "buttonTextSize" => [
-                "name" => "buttonTextSize",
-                "type" => "input",
-                "props" => [
-                  "label" => "Tamaño del texto",
-                  "type" => "number"
-                ]
-              ],
-              "buttonOrder" => [
-                "name" => "buttonOrder",
-                "value" => "1",
-                "type" => "select",
-                "props" => [
-                  "label" => "Orden",
-                  "options" => $vAttributes["optionOneToFive"]
-                ]
-              ],
-              "viewMoreButtonLabel" => [
-                "name" => "viewMoreButtonLabel",
-                "type" => "input",
-                "props" => [
-                  "label" => "Texto (Agregar Traducción)"
-                ]
-              ],
-              "buttonIcon" => [
-                "name" => "buttonIcon",
-                "type" => "input",
-                "props" => [
-                  "label" => "Tipo de Icono"
-                ]
-              ],
-              "buttonIconLR" => [
-                "name" => "buttonIconLR",
-                "value" => "left",
-                "type" => "select",
-                "props" => [
-                  "label" => "Posición del icono",
-                  "options" => [
-                    ["label" => "Izquierda", "value" => "left"],
-                    ["label" => "Derecha", "value" => "right"]
-                  ]
-                ]
-              ],
+          ]
+        ]
+      ],
+      "boton" => [
+        "title" => "Botón",
+        "fields" => [
+          "withViewMoreButton" => [
+            "name" => "withViewMoreButton",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar",
+              "options" => $vAttributes["validation"]
             ]
           ],
-          "imagen" => [
-            "title" => "imagen",
-            "fields" => [
-              "Imagen" => [
-                "title" => "Imagen",
-                "name" => "withViewMoreButton",
-                "value" => "1",
-                "type" => "select",
-                "props" => [
-                  "label" => "Mostrar",
-                  "options" => $vAttributes["validation"]
-                ]
-              ],
-              "mediaImage" => [
-                "name" => "mediaImage",
-                "type" => "select",
-                "props" => [
-                  "label" => "Tipo",
-                  "options" => [
-                    ["label" => "Principal", "value" => "mainimage"],
-                    ["label" => "Secundaria", "value" => "secondaryimage"],
-                  ]
-                ]
-              ],
-              "imagePosition" => [
-                "name" => "imagePosition",
-                "type" => "select",
-                "props" => [
-                  "label" => "Posición",
-                  "options" => [
-                    ["label" => "Overlay", "value" => "1"],
-                    ["label" => "Derecha", "value" => "2"],
-                    ["label" => "Izquierda", "value" => "3"]
-                  ]
-                ]
-              ],
-              "imagePositionVertical" => [
-                "name" => "imagePositionVertical",
-                "type" => "select",
-                "props" => [
-                  "label" => "Alineación Vertical",
-                  "options" => [
-                    ["label" => "arriba", "value" => "align-self-start"],
-                    ["label" => "centrado", "value" => "align-self-center"],
-                    ["label" => "abajo", "value" => "align-self-end"]
-                  ]
-                ]
-              ],
-              "columnLeft" => [
-                "name" => "columnLeft",
-                "type" => "input",
-                "props" => [
-                  "label" => "Tamaño Columna Izquierda"
-                ]
-              ],
-              "columnRight" => [
-                "name" => "columnRight",
-                "type" => "input",
-                "props" => [
-                  "label" => "Tamaño Columna Derecha"
-                ]
-              ],
-              "imageWidth" => [
-                "name" => "imageWidth",
-                "type" => "input",
-                "props" => [
-                  "label" => "Tamaño Columna Derecha",
-                  "type" => "number"
-                ]
-              ],
-              "imageAlign" => [
-                "name" => "imageAlign",
-                "type" => "select",
-                "props" => [
-                  "label" => "Alineación Horizontal",
-                  "options" => $vAttributes["align"]
-                ]
-              ],
-              "imagePadding" => [
-                "name" => "imagePadding",
-                "type" => "input",
-                "props" => [
-                  "label" => "Espaciado antes del borde",
-                  "type" => "number"
-                ]
-              ],
-              "imagePicturePadding" => [
-                "name" => "imagePicturePadding",
-                "type" => "input",
-                "props" => [
-                  "label" => "Espaciado luego del borde",
-                  "type" => "number"
-                ]
-              ],
-              "imageAspect" => [
-                "name" => "imageAspect",
-                "type" => "select",
-                "props" => [
-                  "label" => "Aspect-ratio",
-                  "options" => [
-                    ["label" => "auto", "value" => "auto"],
-                    ["label" => "1/1", "value" => "1/1"],
-                    ["label" => "3/2", "value" => "3/2"],
-                    ["label" => "4/3", "value" => "4/3"],
-                    ["label" => "4/5", "value" => "4/5"],
-                    ["label" => "16/9", "value" => "16/9"],
-                    ["label" => "21/9", "value" => "21/9"]
-                  ]
-                ]
-              ],
-              "imageObject" => [
-                "name" => "imageObject",
-                "type" => "select",
-                "props" => [
-                  "label" => "object-fit",
-                  "options" => [
-                    ["label" => "contain", "value" => "contain"],
-                    ["label" => "cover", "value" => "cover"],
-                    ["label" => "fill", "value" => "fill"],
-                    ["label" => "Inicial", "value" => "Inicial"],
-                    ["label" => "Revert", "value" => "Revert"],
-                    ["label" => "scale-down", "value" => "Scale Down"],
-                    ["label" => "Unset", "value" => "Unset"],
-                    ["label" => "none", "value" => "none"]
-                  ]
-                ]
-              ],
-              "imageBorderRadio" => [
-                "name" => "imageBorderRadio",
-                "type" => "input",
-                "props" => [
-                  "label" => "Redondeado",
-                  "type" => "number"
-                ]
-              ],
-              "imageBorderRadioType" => [
-                "name" => "imageBorderRadioType",
-                "type" => "select",
-                "props" => [
-                  "label" => "Posición",
-                  "options" => $vAttributes["contentBorderRoundedType"]
-                ]
-              ],
-              "imageBorderWidth" => [
-                "name" => "imageBorderWidth",
-                "type" => "select",
-                "props" => [
-                  "label" => "Ancho",
-                  "options" => $vAttributes["optionOneToFive"]
-                ]
-              ],
-              "imageBorderStyle" => [
-                "name" => "imageBorderStyle",
-                "type" => "select",
-                "props" => [
-                  "label" => "Estilo",
-                  "options" => [
-                    ["label" => "None", "value" => "None"],
-                    ["label" => "Hidden", "value" => "Hidden"],
-                    ["label" => "Dotted", "value" => "Dotted"],
-                    ["label" => "Dashed", "value" => "Dashed"],
-                    ["label" => "Solid", "value" => "Solid"],
-                    ["label" => "Double", "value" => "Double"],
-                    ["label" => "Groove", "value" => "Groove"],
-                    ["label" => "Ridge", "value" => "Ridge"],
-                    ["label" => "Inset", "value" => "Inset"],
-                    ["label" => "Outset", "value" => "Outset"]
-                  ]
-                ]
-              ],
-              "imageBorderColor" => [
-                "name" => "imageBorderColor",
-                "type" => "inputColor",
-                "props" => [
-                  "label" => "Color"
-                ]
-              ],
-              "withImageOpacity" => [
-                "name" => "withViewMoreButton",
-                "value" => "1",
-                "type" => "select",
-                "props" => [
-                  "label" => "Mostrar",
-                  "options" => $vAttributes["validation"]
-                ]
-              ],
-              "imageOpacityColor" => [
-                "name" => "imageOpacityColor",
-                "type" => "select",
-                "props" => [
-                  "label" => "Color",
-                  "options" => $vAttributes["opacityColor"]
-                ]
-              ],
-              "imageOpacityDirection" => [
-                "name" => "imageOpacityDirection",
-                "type" => "select",
-                "props" => [
-                  "label" => "Dirección",
-                  "options" => [
-                    ["label" => "Claro", "value" => "opacity-left"],
-                    ["label" => "Oscuro", "value" => "opacity-right"],
-                    ["label" => "Primary", "value" => "opacity-top"],
-                    ["label" => "Secondary", "value" => "opacity-bottom"],
-                    ["label" => "completo", "value" => "opacity-all"]
-                  ]
-                ]
+          "buttonLayout" => [
+            "name" => "buttonLayout",
+            "value" => "rounded-pill",
+            "type" => "select",
+            "props" => [
+              "label" => "Estilo de Botones",
+              "options" => $vAttributes["buttonStyle"]
+            ]
+          ],
+          "buttonSize" => [
+            "name" => "buttonSize",
+            "value" => "button-normal",
+            "type" => "select",
+            "props" => [
+              "label" => "Espaciado",
+              "options" => $vAttributes["buttonType"]
+            ]
+          ],
+          "buttonAlign" => [
+            "name" => "buttonAlign",
+            "value" => "text-center",
+            "type" => "select",
+            "props" => [
+              "label" => "Alineación",
+              "options" => $vAttributes["align"]
+            ]
+          ],
+          "buttonColor" => [
+            "name" => "buttonColor",
+            "value" => "primary",
+            "type" => "select",
+            "props" => [
+              "label" => "Color",
+              "options" => $vAttributes["bgColor"]
+            ]
+          ],
+          "buttonMarginT" => [
+            "name" => "buttonMarginT",
+            "value" => "mt-0",
+            "type" => "select",
+            "props" => [
+              "label" => "Margen superior",
+              "options" => $vAttributes["marginT"]
+            ]
+          ],
+          "buttonMarginB" => [
+            "name" => "buttonMarginB",
+            "value" => "mt-0",
+            "type" => "select",
+            "props" => [
+              "label" => "Margen Inferior",
+              "options" => $vAttributes["marginB"]
+            ]
+          ],
+          "buttonTextSize" => [
+            "name" => "buttonTextSize",
+            "type" => "input",
+            "props" => [
+              "label" => "Tamaño del texto",
+              "type" => "number"
+            ]
+          ],
+          "buttonOrder" => [
+            "name" => "buttonOrder",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Orden",
+              "options" => $vAttributes["optionOneToFive"]
+            ]
+          ],
+          "viewMoreButtonLabel" => [
+            "name" => "viewMoreButtonLabel",
+            "type" => "input",
+            "props" => [
+              "label" => "Texto (Agregar Traducción)"
+            ]
+          ],
+          "buttonIcon" => [
+            "name" => "buttonIcon",
+            "type" => "input",
+            "props" => [
+              "label" => "Tipo de Icono"
+            ]
+          ],
+          "buttonIconLR" => [
+            "name" => "buttonIconLR",
+            "value" => "left",
+            "type" => "select",
+            "props" => [
+              "label" => "Posición del icono",
+              "options" => [
+                ["label" => "Izquierda", "value" => "left"],
+                ["label" => "Derecha", "value" => "right"]
+              ]
+            ]
+          ],
+        ]
+      ],
+      "imagen" => [
+        "title" => "imagen",
+        "fields" => [
+          "Imagen" => [
+            "title" => "Imagen",
+            "name" => "withViewMoreButton",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
+          "mediaImage" => [
+            "name" => "mediaImage",
+            "type" => "input",
+            "value" => "mainimage",
+            "props" => [
+              "label" => "Zona"
+            ]
+          ],
+          "imagePosition" => [
+            "name" => "imagePosition",
+            "type" => "select",
+            "props" => [
+              "label" => "Posición",
+              "options" => $vAttributes["imagePosition"]
+            ]
+          ],
+          "imagePositionVertical" => [
+            "name" => "imagePositionVertical",
+            "type" => "select",
+            "props" => [
+              "label" => "Alineación Vertical",
+              "options" => $vAttributes["positionVertical"]
+            ]
+          ],
+          "columnLeft" => [
+            "name" => "columnLeft",
+            "type" => "input",
+            "props" => [
+              "label" => "Tamaño Columna Izquierda"
+            ]
+          ],
+          "columnRight" => [
+            "name" => "columnRight",
+            "type" => "input",
+            "props" => [
+              "label" => "Tamaño Columna Derecha"
+            ]
+          ],
+          "imageWidth" => [
+            "name" => "imageWidth",
+            "value" => "100%",
+            "type" => "input",
+            "props" => [
+              "label" => "Tamaño imagen",
+            ]
+          ],
+          "imageAlign" => [
+            "name" => "imageAlign",
+            "type" => "select",
+            "props" => [
+              "label" => "Alineación de la imagen",
+              "options" => $vAttributes["align"]
+            ]
+          ],
+          "imagePadding" => [
+            "name" => "imagePadding",
+            "type" => "input",
+            "props" => [
+              "label" => "Espaciado antes del borde",
+              "type" => "number"
+            ]
+          ],
+          "imagePicturePadding" => [
+            "name" => "imagePicturePadding",
+            "type" => "input",
+            "props" => [
+              "label" => "Espaciado luego del borde",
+              "type" => "number"
+            ]
+          ],
+          "imageAspect" => [
+            "name" => "imageAspect",
+            "type" => "select",
+            "props" => [
+              "label" => "Aspect-ratio",
+              "options" => [
+                ["label" => "auto", "value" => "auto"],
+                ["label" => "1/1", "value" => "1/1"],
+                ["label" => "3/2", "value" => "3/2"],
+                ["label" => "4/3", "value" => "4/3"],
+                ["label" => "4/5", "value" => "4/5"],
+                ["label" => "16/9", "value" => "16/9"],
+                ["label" => "21/9", "value" => "21/9"]
+              ]
+            ]
+          ],
+          "imageObject" => [
+            "name" => "imageObject",
+            "type" => "select",
+            "props" => [
+              "label" => "object-fit",
+              "options" => [
+                ["label" => "contain", "value" => "contain"],
+                ["label" => "cover", "value" => "cover"],
+                ["label" => "fill", "value" => "fill"],
+                ["label" => "Inicial", "value" => "Inicial"],
+                ["label" => "Revert", "value" => "Revert"],
+                ["label" => "scale-down", "value" => "Scale Down"],
+                ["label" => "Unset", "value" => "Unset"],
+                ["label" => "none", "value" => "none"]
+              ]
+            ]
+          ],
+          "imageBorderRadio" => [
+            "name" => "imageBorderRadio",
+            "type" => "input",
+            "props" => [
+              "label" => "Redondeado",
+              "type" => "number"
+            ]
+          ],
+          "imageBorderRadioType" => [
+            "name" => "imageBorderRadioType",
+            "type" => "select",
+            "props" => [
+              "label" => "Posición",
+              "options" => $vAttributes["contentBorderRoundedType"]
+            ]
+          ],
+          "imageBorderWidth" => [
+            "name" => "imageBorderWidth",
+            "type" => "select",
+            "props" => [
+              "label" => "Ancho",
+              "options" => $vAttributes["optionOneToFive"]
+            ]
+          ],
+          "imageBorderStyle" => [
+            "name" => "imageBorderStyle",
+            "type" => "select",
+            "props" => [
+              "label" => "Estilo",
+              "options" => [
+                ["label" => "None", "value" => "None"],
+                ["label" => "Hidden", "value" => "Hidden"],
+                ["label" => "Dotted", "value" => "Dotted"],
+                ["label" => "Dashed", "value" => "Dashed"],
+                ["label" => "Solid", "value" => "Solid"],
+                ["label" => "Double", "value" => "Double"],
+                ["label" => "Groove", "value" => "Groove"],
+                ["label" => "Ridge", "value" => "Ridge"],
+                ["label" => "Inset", "value" => "Inset"],
+                ["label" => "Outset", "value" => "Outset"]
+              ]
+            ]
+          ],
+          "imageBorderColor" => [
+            "name" => "imageBorderColor",
+            "type" => "inputColor",
+            "props" => [
+              "label" => "Color"
+            ]
+          ],
+          "withImageOpacity" => [
+            "name" => "withViewMoreButton",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
+          "imageOpacityColor" => [
+            "name" => "imageOpacityColor",
+            "type" => "select",
+            "props" => [
+              "label" => "Color",
+              "options" => $vAttributes["opacityColor"]
+            ]
+          ],
+          "imageOpacityDirection" => [
+            "name" => "imageOpacityDirection",
+            "type" => "select",
+            "props" => [
+              "label" => "Dirección",
+              "options" => [
+                ["label" => "Claro", "value" => "opacity-left"],
+                ["label" => "Oscuro", "value" => "opacity-right"],
+                ["label" => "Primary", "value" => "opacity-top"],
+                ["label" => "Secondary", "value" => "opacity-bottom"],
+                ["label" => "completo", "value" => "opacity-all"]
               ]
             ]
           ]
         ]
-      ],
-    ]
+      ]
+    ],
   ],
   "isiteCarousel" => [
     "title" => "Carousel",
     "systemName" => "isite::carousel.owl-carousel",
     "nameSpace" => "Modules\Isite\View\Components\Carousel\OwlCarousel",
-    "childBlocks" => [
-      "itemComponentAttributes" => "isite::item-list"
-    ],
     "content" => [
       [
         "label" => "Post",
@@ -921,6 +1143,9 @@ return [
           "apiRoute" => "apiRoutes.qblog.categories"
         ]
       ]
+    ],
+    "childBlocks" => [
+      "itemComponentAttributes" => "isite::item-list"
     ],
     "attributes" => [
       "general" => [
@@ -1240,474 +1465,6 @@ return [
               "type" => "number"
             ]
           ]
-        ]
-      ]
-    ]
-  ],
-  "wrapper" => [
-    "title" => "Wrapper",
-    "systemName" => "x-isite::block",
-    "nameSpace" => "Modules\Isite\View\Components\Block",
-    "attributes" => [
-      "general" => [
-        "title" => "Genera",
-        "fields" => [
-          "layout" => [
-            "name" => "layout",
-            "value" => "item-list-layout-6",
-            "type" => "select",
-            "props" => [
-              "label" => "Layout",
-              "options" => [
-                ["label" => "Layout 6 (Contenido Individual Vertical)", "value" => "item-list-layout-6"],
-                ["label" => "Layout 7 (Textos - Imagenes)", "value" => "item-list-layout-7"]
-              ]
-            ]
-          ],
-          "contentPadding" => [
-            "name" => "contentPadding",
-            "type" => "input",
-            "props" => [
-              "label" => "Espacio Externo",
-              "type" => "number"
-            ]
-          ],
-          "itemMarginB" => [
-            "name" => "itemMarginB",
-            "value" => "",
-            "type" => "select",
-            "props" => [
-              "label" => "Espacio Inferior",
-              "options" => $vAttributes["marginB"]
-            ]
-          ],
-          "contentBorderRounded" => [
-            "name" => "contentBorderRounded",
-            "value" => "",
-            "type" => "input",
-            "props" => [
-              "label" => "Borde Redondeado",
-              "type" => "number"
-            ]
-          ],
-          "contentBorderRoundedType" => [
-            "name" => "contentBorderRoundedType",
-            "value" => "1",
-            "type" => "select",
-            "props" => [
-              "label" => "Posición del Borde",
-              "options" => $vAttributes["contentBorderRoundedType"]
-            ]
-          ],
-          "contentBorder" => [
-            "name" => "contentBorder",
-            "value" => "1",
-            "type" => "select",
-            "props" => [
-              "label" => "Grosor del Borde",
-              "options" => [
-                ["label" => "1px", "value" => "1"],
-                ["label" => "2px", "value" => "2"],
-                ["label" => "3px", "value" => "3"],
-                ["label" => "4px", "value" => "4"],
-                ["label" => "5px", "value" => "5"]
-              ]
-            ]
-          ],
-          "contentBorderColor" => [
-            "name" => "contentBorderColor",
-            "type" => "inputColor",
-            "props" => [
-              "label" => "Color Del Borde"
-            ]
-          ],
-          "itemBackgroundColor" => [
-            "name" => "itemBackgroundColor",
-            "type" => "inputColor",
-            "props" => [
-              "label" => "Color del Fondo"
-            ]
-          ],
-          "itemBackgroundColorHover" => [
-            "name" => "itemBackgroundColorHover",
-            "type" => "inputColor",
-            "props" => [
-              "label" => "Color del Fondo (Hover)"
-            ]
-          ],
-          "contentBorderShadows" => [
-            "name" => "contentBorderShadows",
-            "value" => "none",
-            "type" => "select",
-            "props" => [
-              "label" => "Tamaño de la Sombra",
-              "options" => [
-                ["label" => "Sin Sombra", "value" => "none"],
-                ["label" => "Pequeña", "value" => "0 .125rem .25rem rgba(0,0,0,.075)"],
-                ["label" => "Mediana", "value" => "0 .5rem 1rem rgba(0,0,0,.15)"],
-                ["label" => "Grande", "value" => "0 1rem 3rem rgba(0,0,0,.175)"]
-              ]
-            ]
-          ],
-          "contentBorderShadowsHover" => [
-            "name" => "contentBorderShadowsHover",
-            "value" => "1",
-            "type" => "select",
-            "props" => [
-              "label" => "Mostrar Sombra en hover mouse",
-              "options" => [
-                ["label" => "Si", "value" => "1"],
-                ["label" => "No", "value" => "0"]
-              ]
-            ]
-          ],
-          "container" => [
-            "name" => "container",
-            "value" => "container",
-            "type" => "select",
-            "props" => [
-              "label" => "tipo de contenedor",
-              "options" => [
-                ["label" => "container-fluid", "value" => "container-fluid"],
-                ["label" => "container", "value" => "container"]
-              ]
-            ]
-          ],
-          "id" => [
-            "name" => "id",
-            "type" => "input",
-            "props" => [
-              "label" => "Ingresar el id",
-              "type" => "text"
-            ]
-          ],
-          "columns" => [
-            "name" => "columns",
-            "type" => "input",
-            "props" => [
-              "label" => "columnas",
-              "type" => "number"
-            ]
-          ],
-          "borderForm" => [
-            "name" => "borderForm",
-            "value" => "rounded-0",
-            "type" => "select",
-            "props" => [
-              "label" => "background container",
-              "options" => [
-                ["label" => "todos los lados", "value" => "rounded"],
-                ["label" => "esquinas arriba redondeado", "value" => "rounded-top"],
-                ["label" => "esquinas de la derecha redondeado", "value" => "rounded-right"],
-                ["label" => "esquinas de abajo redondeado", "value" => "rounded-bottom"],
-                ["label" => "esquinas de la izquierda redondeado", "value" => "rounded-left"],
-                ["label" => "en ciruclo", "value" => "rounded-circle"],
-                ["label" => "por defecto", "value" => "rounded-0"]
-              ]
-            ]
-          ],
-          "display" => [
-            "name" => "display",
-            "value" => "none",
-            "type" => "select",
-            "props" => [
-              "label" => "display container",
-              "options" => [
-                ["label" => "none", "value" => "none"],
-                ["label" => "inline", "value" => "inline"],
-                ["label" => "inline-block", "value" => "inline-block"],
-                ["label" => "block", "value" => "block"],
-                ["label" => "table", "value" => "table"],
-                ["label" => "table-cell", "value" => "table-cell"],
-                ["label" => "table-row", "value" => "table-row"],
-                ["label" => "flex", "value" => "flex"],
-                ["label" => "inline-flex", "value" => "inline-flex"],
-              ]
-            ]
-          ],
-          "widthContainer" => [
-            "name" => "widthContainer",
-            "type" => "input",
-            "props" => [
-              "label" => "width container",
-              "type" => "number"
-            ]
-          ],
-          "heightContainer" => [
-            "name" => "heightContainer",
-            "type" => "input",
-            "props" => [
-              "label" => "width container",
-              "type" => "number"
-            ]
-          ],
-          "backgrounds" => [
-            "name" => "backgrounds",
-            "type" => "json",
-            "value" => "[{'position':'',
-                          'size':'',
-                          'repeat':'',
-                          'color':'',
-                          'backgroundAttachment':''
-                        }]",
-            "props" => [
-              "label" => "datos json",
-            ]
-          ],
-          "paddingX" => [
-            "name" => "paddingX",
-            "type" => "input",
-            "props" => [
-              "label" => "padding large",
-              "type" => "number"
-            ]
-          ],
-          "paddingY" => [
-            "name" => "paddingY",
-            "type" => "input",
-            "props" => [
-              "label" => "padding lenght",
-              "type" => "number"
-            ]
-          ],
-          "marginX" => [
-            "name" => "marginX",
-            "type" => "input",
-            "props" => [
-              "label" => "margin large",
-              "type" => "number"
-            ]
-          ],
-          "marginY" => [
-            "name" => "marginY",
-            "type" => "input",
-            "props" => [
-              "label" => "margin lenght",
-              "type" => "number"
-            ]
-          ],
-          "overlay" => [
-            "name" => "overlay",
-            "value" => "false",
-            "type" => "input",
-            "props" => [
-              "label" => "display container",
-              "options" => [
-                ["label" => "false", "value" => "false"],
-                ["label" => "true", "value" => "true"]
-              ]
-            ]
-          ],
-          "backgroundColor" => [
-            "name" => "backgroundColor",
-            "type" => "inputColor",
-            "props" => [
-              "label" => "color"
-            ]
-          ],
-        ]
-      ]
-    ]
-  ],
-  "sliderOwl" => [
-    "title" => "sliderOwl",
-    "systemName" => "slider::slider.Owl",
-    "nameSpace" => "Modules\Slider\View\Components\Slider\Owl",
-    "content" => [
-      [
-        "label" => "Slider",
-        "value" => "Modules\Slider\Entities\Slider",
-        "loadOptions" => [
-          "apiRoute" => "apiRoutes.qslider.sliders",
-          "select" => ["label" => "name", "id" => "id"]
-        ]
-      ]
-    ],
-    "childBlocks" => [
-      "itemComponentAttributes" => "isite::item-list"
-    ],
-    "attributes" => [
-      "general" => [
-        "title" => "general",
-        "fields" => [
-          "layout" => [
-            "name" => "layout",
-            "value" => "slider-owl-layout-5",
-            "type" => "input",
-            "props" => [
-              "label" => "layout"
-            ]
-          ],
-          "height" => [
-            "name" => "height",
-            "value" => "500px",
-            "type" => "input",
-            "props" => [
-              "label" => "height slider",
-            ]
-          ],
-          "autoplay" => [
-            "name" => "autoplay",
-            "value" => "true",
-            "type" => "select",
-            "props" => [
-              "label" => "autoplay",
-              "options" => $vAttributes["booleanValidation"]
-            ]
-          ],
-          "margin" => [
-            "name" => "margin",
-            "value" => "0",
-            "type" => "input",
-            "props" => [
-              "label" => "margin slider",
-              "type" => "number"
-            ]
-          ],
-          "autoplayHoverPause" => [
-            "name" => "autoplayHoverPause",
-            "value" => "true",
-            "type" => "select",
-            "props" => [
-              "label" => "autoplayHoverPause",
-              "options" => $vAttributes["booleanValidation"]
-            ]
-          ],
-          "loop" => [
-            "name" => "loop",
-            "value" => "true",
-            "type" => "select",
-            "props" => [
-              "label" => "slider loop",
-              "options" => $vAttributes["booleanValidation"]
-            ]
-          ],
-          "dots" => [
-            "name" => "dots",
-            "value" => "true",
-            "type" => "select",
-            "props" => [
-              "label" => "slider dots",
-              "options" => $vAttributes["booleanValidation"]
-            ]
-          ],
-          "dotsPosition" => [
-            "name" => "dotsPosition",
-            "value" => "center",
-            "type" => "select",
-            "props" => [
-              "label" => "dots position",
-              "options" => [
-                ["label" => "Centrado", "value" => "center"],
-                ["label" => "Derecha", "value" => "right"],
-                ["label" => "Izquierda", "value" => "left"],
-                ["label" => "Izquierda vertical", "value" => ",left-vertical"],
-                ["label" => "Derecha vertical", "value" => ",right-vertical"]
-              ]
-            ]
-          ],
-          "dotsStyle" => [
-            "name" => "dotsStyle",
-            "value" => "line",
-            "type" => "select",
-            "props" => [
-              "label" => "dots style",
-              "options" => [
-                ["label" => "Circulo", "value" => "circle"],
-                ["label" => "Cuadrado", "value" => "square"],
-                ["label" => "linea", "value" => "line"]
-              ]
-            ]
-          ],
-          "nav" => [
-            "name" => "nav",
-            "value" => "true",
-            "type" => "select",
-            "props" => [
-              "label" => "nav",
-              "options" => $vAttributes["booleanValidation"]
-            ]
-          ],
-          "navText" => [
-            "name" => "navText",
-            "value" => "",
-            "type" => "input",
-            "props" => [
-              "label" => "nav text",
-            ]
-          ],
-          "autoplayTimeOut" => [
-            "name" => "autoplayTimeOut",
-            "value" => "5000",
-            "type" => "input",
-            "props" => [
-              "label" => "autoplayTimeOut",
-              "type" => "number"
-            ]
-          ],
-          "imgObjectFit" => [
-            "name" => "imgObjectFit",
-            "value" => "cover",
-            "type" => "select",
-            "props" => [
-              "label" => "imgObjectFit",
-              "options" => [
-                ["label" => "Cover", "value" => "Cover"],
-                ["label" => "fill", "value" => "fill"],
-                ["label" => "Contain", "value" => "Contain"],
-                ["label" => "none", "value" => "none"],
-                ["label" => "Scale-Down", "value" => "Scale-Down"]
-              ]
-            ]
-          ],
-          "responsiveClass" => [
-            "name" => "responsiveClass",
-            "value" => "false",
-            "type" => "select",
-            "props" => [
-              "label" => "responsiveClass",
-              "options" => $vAttributes["booleanValidation"]
-            ]
-          ],
-          "responsive" => [
-            "name" => "responsive",
-            "value" => "none",
-            "type" => "input",
-            "props" => [
-              "label" => "responsive"
-            ]
-          ],
-          "stagePadding" => [
-            "name" => "stagePadding",
-            "value" => "0",
-            "type" => "input",
-            "props" => [
-              "label" => "stagePadding",
-              "type" => "number"
-            ]
-          ],
-          "view" => [
-            "name" => "view",
-            "value" => null,
-            "type" => "input",
-            "props" => [
-              "label" => "view",
-            ]
-          ],
-          "navPosition" => [
-            "name" => "navPosition",
-            "value" => "lateral",
-            "type" => "select",
-            "props" => [
-              "label" => "navPosition",
-              "options" => [
-                ["label" => "lateral", "value" => "lateral"],
-                ["label" => "center-bottom", "value" => "center-bottom"],
-                ["label" => "left-bottom", "value" => "left-bottom"],
-                ["label" => "right-bottom", "value" => "right-bottom"]
-              ]
-            ]
-          ],
         ]
       ]
     ]

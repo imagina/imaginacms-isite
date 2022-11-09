@@ -49,10 +49,13 @@ return [
   "perzonalizationDescription" => "Easily change the logo, colors and the main information of your website",
 
   "label" => [
-    "continueWith"=> "Continue with",
-    "facebook"=> "Facebook",
-    "google"=> "Google",
-    "microsoft"=> "Microsoft",
+    "attribute" => "Attribute | Attributes",
+    "content" => "Content | Contents",
+    "component" => "Component",
+    "continueWith" => "Continue with",
+    "facebook" => "Facebook",
+    "google" => "Google",
+    "microsoft" => "Microsoft",
     "copyDisclosureLink" => "Copy disclosure link",
     "delete" => "Delete",
     "cancel" => "Cancel",
