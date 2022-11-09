@@ -7,6 +7,7 @@ return [
     "title" => "Bloque",
     "systemName" => "x-isite::block",
     "nameSpace" => "Modules\Isite\View\Components\Block",
+    "internal" => true,
     "attributes" => [
       "general" => [
         "title" => "Genera",
@@ -1470,7 +1471,7 @@ return [
     ]
   ],
   "itemsList" => [
-    "title" => "itemsList",
+    "title" => "Lista de Elementos",
     "systemName" => "isite::items-list",
     "nameSpace" => "livewire",
     "content" => [
