@@ -125,5 +125,97 @@ return [
   "booleanValidation"=>[
     ["label" => "true", "value" => "true"],
     ["label" => "false", "value" => "false"]
+  ],
+  "formatCreatedDate"=>[
+    ["label" => "25 de Feb", "value" => "d\\d\\e M"],
+    ["label" => "01/01/2022", "value" => "d/m/Y"],
+    ["label" => "01-01-2022", "value" => "d-m-Y"],
+    ["label" => "06 de Mar, 2021", "value" => "d \d\e M, Y"]
+  ],
+  "imageAspect"=>[
+    ["label" => "auto", "value" => "auto"],
+    ["label" => "1/1", "value" => "1/1"],
+    ["label" => "3/2", "value" => "3/2"],
+    ["label" => "4/3", "value" => "4/3"],
+    ["label" => "4/5", "value" => "4/5"],
+    ["label" => "16/9", "value" => "16/9"],
+    ["label" => "21/9", "value" => "21/9"]
+  ],
+  "imageObject"=>[
+    ["label" => "contain", "value" => "contain"],
+    ["label" => "cover", "value" => "cover"],
+    ["label" => "fill", "value" => "fill"],
+    ["label" => "Inicial", "value" => "Inicial"],
+    ["label" => "Revert", "value" => "Revert"],
+    ["label" => "scale-down", "value" => "Scale Down"],
+    ["label" => "Unset", "value" => "Unset"],
+    ["label" => "none", "value" => "none"]
+  ],
+  "imageBorderStyle"=>[
+    ["label" => "None", "value" => "None"],
+    ["label" => "Hidden", "value" => "Hidden"],
+    ["label" => "Dotted", "value" => "Dotted"],
+    ["label" => "Dashed", "value" => "Dashed"],
+    ["label" => "Solid", "value" => "Solid"],
+    ["label" => "Double", "value" => "Double"],
+    ["label" => "Groove", "value" => "Groove"],
+    ["label" => "Ridge", "value" => "Ridge"],
+    ["label" => "Inset", "value" => "Inset"],
+    ["label" => "Outset", "value" => "Outset"]
+  ],
+  "opacityDirection"=>[
+    ["label" => "Claro", "value" => "opacity-left"],
+    ["label" => "Oscuro", "value" => "opacity-right"],
+    ["label" => "Primary", "value" => "opacity-top"],
+    ["label" => "Secondary", "value" => "opacity-bottom"],
+    ["label" => "completo", "value" => "opacity-all"]
+  ],
+  "titleAlign"=>[
+    ["label" => "centrado", "value" => "justify-content-center text-center"],
+    ["label" => "derecha", "value" => "justify-content-end text-right"],
+    ["label" => "izquierda", "value" => ""]
+  ],
+  "textAlign"=>[
+    ["label" => "Centrado", "value" => "text-center"],
+    ["label" => "Derecha", "value" => "text-right"],
+    ["label" => "Izquierda", "value" => "text-left"],
+    ["label" => "Justificado", "value" => "text-justify"]
+  ],
+  "imagePosition"=>[
+    ["label" => "Overlay", "value" => "1"],
+    ["label" => "Derecha", "value" => "2"],
+    ["label" => "Izquierda", "value" => "3"]
+  ],
+  "positionVertical"=>[
+    ["label" => "arriba", "value" => "align-self-start"],
+    ["label" => "centrado", "value" => "align-self-center"],
+    ["label" => "abajo", "value" => "align-self-end"]
+  ],
+  "marginX"=>[
+    ["label" => "mx-0", "value" => "mx-0"],
+    ["label" => "mx-1", "value" => "mx-1"],
+    ["label" => "mx-2", "value" => "mx-2"],
+    ["label" => "mx-3", "value" => "mx-3"],
+    ["label" => "mx-4", "value" => "mx-4"],
+    ["label" => "mx-5", "value" => "mx-5"]
+  ],
+  "contentBorderShadows"=>[
+    ["label" => "Sin Sombra", "value" => "none"],
+    ["label" => "Pequeña", "value" => "0 .125rem .25rem rgba(0,0,0,.075)"],
+    ["label" => "Mediana", "value" => "0 .5rem 1rem rgba(0,0,0,.15)"],
+    ["label" => "Grande", "value" => "0 1rem 3rem rgba(0,0,0,.175)"]
+  ],
+  "columns"=>[
+    ["label" => "col-lg-2", "value" => "col-lg-2"],
+    ["label" => "col-lg-4", "value" => "col-lg-4"],
+    ["label" => "col-lg-6", "value" => "col-lg-6"],
+    ["label" => "col-lg-8", "value" => "col-lg-8"],
+    ["label" => "col-lg-10", "value" => "col-lg-10"],
+    ["label" => "col-lg-12", "value" => "col-lg-12"]
+  ],
+  "alignItems"=>[
+    ["label" => "arriba", "value" => "align-items-start"],
+    ["label" => "centro", "value" => "align-items-center"],
+    ["label" => "abajo", "value" => "align-items-end"]
   ]
 ];
