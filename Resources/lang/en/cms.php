@@ -49,6 +49,13 @@ return [
   "perzonalizationDescription" => "Easily change the logo, colors and the main information of your website",
 
   "label" => [
+    "recipient" => "Recipient | Recipients",
+    "when" => "When",
+    "run" => "Run",
+    "currentTime" => "Current Time",
+    "exactTime" => "Exact time",
+    "inBefore" => "In Before",
+    "inAfter" => "In After",
     "attribute" => "Attribute | Attributes",
     "content" => "Content | Contents",
     "component" => "Component",
