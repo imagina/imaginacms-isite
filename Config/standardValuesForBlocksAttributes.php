@@ -263,6 +263,6 @@ return [
     ],
     "dotStyle" => [
         ["label" => "Barras", "value" => "dots-linear"],
-        ["label" => "Circulos", "value" => "dots-linear"]
+        ["label" => "Circulos", "value" => "dots-circle"]
     ]
 ];
