@@ -101,7 +101,7 @@ class OwlCarousel extends Component
                                 $owlTextAlign = "text-left",
                                 $navPosition = "bottom",
                                 $navSizeLabel = "20",
-                                $dotsStyle = "linear",
+                                $dotsStyle = "dots-linear",
                                 $navColor = "primary",
                                 $navSizeButton = "",
                                 $navStyleButton = "",
