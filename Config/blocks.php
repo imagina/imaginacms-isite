@@ -160,6 +160,7 @@ return [
                         "name" => "layout",
                         "value" => "item-list-layout-6",
                         "type" => "select",
+                        'columns' => 'col-12',
                         "props" => [
                             "label" => "Layout",
                             "options" => [
@@ -262,6 +263,7 @@ return [
                         "name" => "orderClasses",
                         "value" => ["photo" => "order-0", "title" => "order-1", "date" => "order-2", "categoryTitle" => "order-3", "summary" => "order-4", "viewMoreButton" => "order-5"],
                         "type" => "json",
+                        "columns" => "col-12",
                         "props" => [
                             "label" => "Orden de los elementos"
                         ]
@@ -901,18 +903,21 @@ return [
                     ],
                     "imageWidth" => [
                         "name" => "imageWidth",
-                        "value" => "100%",
+                        "value" => "100",
                         "type" => "input",
                         "props" => [
-                            "label" => "Tamaño imagen",
+                            "label" => "Tamaño imagen (%)",
+                            "type" => "number",
+                            "min" => "0",
+                            "max" => "100",
                         ]
                     ],
                     "imageAlign" => [
                         "name" => "imageAlign",
                         "type" => "select",
                         "props" => [
-                            "label" => "Alineación de la imagen",
-                            "options" => $vAttributes["align"]
+                            "label" => "Alineación horizontal",
+                            "options" => $vAttributes["imageAlign"]
                         ]
                     ],
                     "imagePadding" => [
@@ -933,17 +938,19 @@ return [
                     ],
                     "imageAspect" => [
                         "name" => "imageAspect",
+                        "value" => "1/1",
                         "type" => "select",
                         "props" => [
-                            "label" => "Aspect-ratio",
+                            "label" => "Aspect Ratio",
                             "options" => $vAttributes["imageAspect"]
                         ]
                     ],
                     "imageObject" => [
                         "name" => "imageObject",
+                        "value" => "cover",
                         "type" => "select",
                         "props" => [
-                            "label" => "object-fit",
+                            "label" => "Object fit",
                             "options" => $vAttributes["imageObject"]
                         ]
                     ],
@@ -951,7 +958,7 @@ return [
                         "name" => "imageBorderRadio",
                         "type" => "input",
                         "props" => [
-                            "label" => "Redondeado",
+                            "label" => "Redondeado del borde",
                             "type" => "number"
                         ]
                     ],
@@ -959,7 +966,7 @@ return [
                         "name" => "imageBorderRadioType",
                         "type" => "select",
                         "props" => [
-                            "label" => "Posición",
+                            "label" => "Posición del redondeado del borde",
                             "options" => $vAttributes["contentBorderRoundedType"]
                         ]
                     ],
@@ -967,7 +974,7 @@ return [
                         "name" => "imageBorderWidth",
                         "type" => "select",
                         "props" => [
-                            "label" => "Ancho",
+                            "label" => "Ancho del Borde",
                             "options" => $vAttributes["optionOneToFive"]
                         ]
                     ],
@@ -975,7 +982,7 @@ return [
                         "name" => "imageBorderStyle",
                         "type" => "select",
                         "props" => [
-                            "label" => "Estilo",
+                            "label" => "Estilo del Borde",
                             "options" => $vAttributes["imageBorderStyle"]
                         ]
                     ],
@@ -983,15 +990,15 @@ return [
                         "name" => "imageBorderColor",
                         "type" => "inputColor",
                         "props" => [
-                            "label" => "Color"
+                            "label" => "Color del Borde"
                         ]
                     ],
                     "withImageOpacity" => [
-                        "name" => "withViewMoreButton",
-                        "value" => "1",
+                        "name" => "withImageOpacity",
+                        "value" => "0",
                         "type" => "select",
                         "props" => [
-                            "label" => "Mostrar",
+                            "label" => "Mostrar Opacidad",
                             "options" => $vAttributes["validation"]
                         ]
                     ],
@@ -999,7 +1006,7 @@ return [
                         "name" => "imageOpacityColor",
                         "type" => "select",
                         "props" => [
-                            "label" => "Color",
+                            "label" => "Color de Opacidad",
                             "options" => $vAttributes["opacityColor"]
                         ]
                     ],
@@ -1007,14 +1014,8 @@ return [
                         "name" => "imageOpacityDirection",
                         "type" => "select",
                         "props" => [
-                            "label" => "Dirección",
-                            "options" => [
-                                ["label" => "Claro", "value" => "opacity-left"],
-                                ["label" => "Oscuro", "value" => "opacity-right"],
-                                ["label" => "Primary", "value" => "opacity-top"],
-                                ["label" => "Secondary", "value" => "opacity-bottom"],
-                                ["label" => "completo", "value" => "opacity-all"]
-                            ]
+                            "label" => "Dirección de Opacidad",
+                            "options" => $vAttributes["opacityDirection"]
                         ]
                     ]
                 ]
@@ -1139,6 +1140,7 @@ return [
                         "name" => "responsive",
                         "value" => [0 => ["items" => 1], 640 => ["items" => 2], 992 => ["items" => 4]],
                         "type" => "json",
+                        'columns' => 'col-12',
                         "props" => [
                             "label" => "Responsive"
                         ]
@@ -1220,7 +1222,7 @@ return [
                     ],
                     "dotsStyle" => [
                         "name" => "dotsStyle",
-                        "value" => "arrow",
+                        "value" => "dots-linear",
                         "type" => "select",
                         "props" => [
                             "label" => "Estilos (dots)",
@@ -1332,6 +1334,22 @@ return [
                         "type" => "input",
                         "props" => [
                             "label" => "Icon (Titulo)"
+                        ]
+                    ],
+                    "owlTitleUrl" => [
+                        "name" => "owlTitleUrl",
+                        "type" => "input",
+                        "props" => [
+                            "label" => "Url (Titulo)"
+                        ]
+                    ],
+                    "owlTitleTarget" => [
+                        "name" => "owlTitleTarget",
+                        "value" => "_self",
+                        "type" => "select",
+                        "props" => [
+                            "label" => "Target (Titulo)",
+                            "options" => $vAttributes["target"]
                         ]
                     ],
                     "owlTitleVinetaColor" => [
