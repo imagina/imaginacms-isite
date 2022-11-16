@@ -168,11 +168,11 @@ class Block extends Component
       //Instance the default Attributes by component
       $attributes = $this->blockConfig->attributes ?? [];
       //Set component attirbutes
-      $this->componentConfig["attributes"] = (array)($attributes->componentAttributes ?? []);
+      $this->componentConfig["attributes"] = json_decode(json_encode($attributes->componentAttributes ?? []), true);
       //Set child Attributes
       foreach ($attributes as $name => $attr) {
         if (!in_array($name, ["componentAttributes", "blockAttributes"])) {
-          $this->componentConfig["attributes"][$name] = (array)$attr;
+          $this->componentConfig["attributes"][$name] = json_decode(json_encode($attr), true);
         }
       }
       //Set the entity attributes by component
@@ -181,10 +181,15 @@ class Block extends Component
         switch ($this->blockConfig->component->systemName) {
           case 'isite::carousel.owl-carousel':
             $this->componentConfig["attributes"]["repository"] = $entity->type;
-            $this->componentConfig["attributes"]["params"] = (array)$entity->params;
+            $this->componentConfig["attributes"]["params"] = json_decode(json_encode($entity->params), true);
             break;
           case 'slider::slider.Owl':
             $this->componentConfig["attributes"]["id"] = $entity->id;
+            break;
+          case 'isite::items-list':
+            $entityTypeExploded = explode("\\", str_replace("/", "\\", $entity->type));
+            $this->componentConfig["attributes"]["moduleName"] = $entityTypeExploded[1];
+            $this->componentConfig["attributes"]["entityName"] = $entityTypeExploded[3];
             break;
         }
       }
