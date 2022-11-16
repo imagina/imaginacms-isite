@@ -97,6 +97,7 @@ class ModuleActivator implements ActivatorInterface
    */
   public function enable(Module $module): void
   {
+  
     $this->setActiveByName($module->getName(), true);
   }
   
@@ -111,12 +112,12 @@ class ModuleActivator implements ActivatorInterface
   public function findModuleByName($name){
   
     $module = IModule::where("alias",Str::lower($name))->first();
-  
-    
+
     if(!isset($module->id)){
       $lowerName = Str::lower($name);
-
+   
       if(in_array($lowerName,json_decode($this->files->get($this->statusesFile), true))){
+       // if(in_array($lowerName,config("asgard.core.config.CoreModules"))){
         $module = new IModule([
           "alias" => Str::lower($name),
           "name" => $name,
@@ -145,10 +146,11 @@ class ModuleActivator implements ActivatorInterface
    */
   public function setActive(Module $module, bool $active): void
   {
+
     $this->setActiveByName($module->getName(), $active);
   }
   
-  public function throwModuleIfNotExist($module){
+  public function throwModuleIfNotExist($module,$name){
     if(!isset($module->id))  throw new \Exception("The module $name doesn't exist in the database",400);
   }
   /**
@@ -156,13 +158,13 @@ class ModuleActivator implements ActivatorInterface
    */
   public function setActiveByName(string $name, bool $status): void
   {
-  
+
     $module = $this->findModuleByName($name);
    
-    $this->throwModuleIfNotExist($module);
+    $this->throwModuleIfNotExist($module,$name);
     
     $module->enabled = $status;
-    
+   
     $module->save();
     
     $this->modulesStatuses[$name] = $status;

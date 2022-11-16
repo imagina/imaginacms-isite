@@ -8,6 +8,7 @@ use Modules\Iprofile\Http\Controllers\Api\AuthApiController;
 use Modules\Isite\Entities\Module;
 use Modules\Isite\Entities\Organization;
 use Modules\Core\Console\Installers\Scripts\UserProviders\SentinelInstaller;
+use Modules\Isite\Transformers\OrganizationTransformer;
 use Modules\User\Entities\Sentinel\User;
 use Modules\User\Repositories\UserRepository;
 use Illuminate\Support\Str;
@@ -195,9 +196,6 @@ class TenantService
     //Activate the modules of the plan in the Tenant DB
     $this->activatePlan(array_merge($data, ["organization_id" => $organization->id, "role" => $role]));
     
-    //Seed again Page and Menu to enable the sidebar in the iadmin
-    $this->reseedPageAndMenu(array_merge($data, ["organization_id" => $organization->id, "role" => $role]));
-    
     
     //Authenticating user in the Tenant DB
     $authData = $this->authenticateUser(array_merge($userCentralData, ["organization_id" => $organization->id]));
@@ -206,12 +204,11 @@ class TenantService
     \Log::info("----------------------------------------------------------");
     \Log::info("Tenant {{$organization->id}} successfully created");
     \Log::info("----------------------------------------------------------");
-    
 
     return [
-      "credentials" => $userCentralData,
+      "credentials" => $userCentralData["credentials"],
       "authData" => $authData,
-      "organization" => $organization,
+      "organization" => new OrganizationTransformer($organization),
       "redirectUrl" => "https://".$domain . "/iadmin?authbearer=" . str_replace("Bearer ", "",$authData->data->bearer)."&expiresatbearer=".urlencode($authData->data->expiresDate)
     ];
   }
@@ -246,28 +243,49 @@ class TenantService
     !is_array($data["plan"]) ? $plans = [$data["plan"]] : false;
     
     foreach ($allPlans as $plan => $modules) {
-      
-      \Log::info("Activating Plan: $plan");
-      
       if (in_array($plan, $plans)) {
         
-        foreach ($modules as $module) {
-          $moduleName = ucfirst($module);
-          \Artisan::call('db:seed', ['--class' => "Modules\\$moduleName\Database\Seeders\\" . $moduleName . "ModuleTableSeeder"]);
-          \Log::info(\Artisan::output());
-          \Artisan::call('module:migrate', ['module' => $moduleName]);
-          \Log::info(\Artisan::output());
-          \Artisan::call('module:seed', ['module' => $moduleName]);
-          \Log::info(\Artisan::output());
-        }
-  
-        \Log::info("----------------------------------------------------------");
-        \Log::info("Turn on all modules permissions for the Admin Role in the Tenant DB for the plan: $plan");
-        \Log::info("----------------------------------------------------------");
-        $this->activateModulesPermissionsInRole($modules, $data["role"]);
+        \Log::info("Activating Plan: $plan");
+        $this->activateModule(["organization_id" => $data["organization_id"], "module" => $modules]);
         
       }
     }
+  }
+  
+  public function activateModule($data){
+  
+    if(!isset($data["module"]) || !isset($data["organization_id"])){
+      throw new \Exception("Missing module or organization_id parameters",400);
+    }
+    
+    \Log::info("----------------------------------------------------------");
+    \Log::info("Activating Module");
+    \Log::info("----------------------------------------------------------");
+  
+    if (!isset(tenant()->id))
+      tenancy()->initialize($data["organization_id"]);
+    
+    $module = $data["module"];
+      !is_array($module) ? $module = [$module] : false;
+  
+      foreach ($module as $moduleName) {
+        $moduleName = ucfirst($moduleName);
+        \Log::info("Activating Module: $moduleName");
+        \Artisan::call('db:seed', ['--class' => "Modules\\$moduleName\Database\Seeders\\" . $moduleName . "ModuleTableSeeder"]);
+        \Log::info(\Artisan::output());
+        \Artisan::call('module:migrate', ['module' => $moduleName]);
+        \Log::info(\Artisan::output());
+        \Artisan::call('module:seed', ['module' => $moduleName]);
+        \Log::info(\Artisan::output());
+  
+        \Log::info("----------------------------------------------------------");
+        \Log::info("Turn on all modules permissions for the Admin Role in the Tenant DB for the module: $moduleName");
+        \Log::info("----------------------------------------------------------");
+  
+        $role = Role::where("slug", "admin")->first();
+        $this->activateModulesPermissionsInRole($moduleName, $data["role"] ?? $role);
+      }
+      $this->reseedPageAndMenu($data);
   }
   
   public function migrateCoreModules($data)

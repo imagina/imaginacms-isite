@@ -380,21 +380,40 @@ class SiteApiController extends BaseApiController
    * @param Request $request
    */
   public function create(Request $request){
-  
+    
     $data = $request->input('attributes');
     
-    //try {
+   // try {
     
     $response = $this->tenantService->createTenantInMultiDatabase($data);
-      
-      //Response
-      $response = ["data" => $response];
-   //   \DB::commit();//Commit to DataBase
-   /* } catch (\Exception $e) {
-      \DB::rollback();//Rollback to Data Base
-      $status = $this->getStatusError($e->getCode());
-      $response = ["errors" => $e->getMessage()];
-    }*/
+    
+    //Response
+    $response = ["data" => $response];
+    //  \DB::commit();//Commit to DataBase
+//     } catch (\Exception $e) {
+//      // \DB::rollback();//Rollback to Data Base
+//       $status = $this->getStatusError($e->getCode());
+//       $response = ["errors" => $e->getMessage()];
+//     }
+    return response()->json($response, $status ?? 200);
+  }
+  
+  public function activateModule(Request $request){
+    
+    $data = $request->input('attributes');
+    
+    try {
+    
+    $response = $this->tenantService->activateModule($data);
+    
+    //Response
+    $response = ["data" => $response];
+       \DB::commit();//Commit to DataBase
+     } catch (\Exception $e) {
+       \DB::rollback();//Rollback to Data Base
+       $status = $this->getStatusError($e->getCode());
+       $response = ["errors" => $e->getMessage()];
+     }
     return response()->json($response, $status ?? 200);
   }
 }

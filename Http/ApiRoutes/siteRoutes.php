@@ -26,4 +26,9 @@ $router->group(['prefix' => '/site'/*,'middleware' => ['auth:api']*/], function 
     'uses' => 'SiteApiController@create',
     //'middleware' => ['auth:api']
   ]);
+  $router->post('/activate-module', [
+    'as' => 'api.isite.activate-module',
+    'uses' => 'SiteApiController@activateModule',
+    //'middleware' => ['auth:api']
+  ]);
 });
