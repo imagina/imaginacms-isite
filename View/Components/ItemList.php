@@ -446,7 +446,7 @@ class ItemList extends Component
     $this->imageAlign = $imageAlign;
 
     $this->containerActive = $containerActive;
-    $this->containertype = $containerType;
+    $this->containerType = $containerType;
     $this->containerJustify = $containerJustify;
     $this->containerAlign = $containerAlign;
     $this->containerColumn = $containerColumn;
