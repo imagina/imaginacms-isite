@@ -14,14 +14,14 @@ class Block extends Component
   public $container, $id, $columns, $background, $borderForm, $display,
     $widthContainer, $heightContainer, $backgrounds, $paddingX, $paddingY,
     $marginX, $marginY, $overlay, $backgroundColor, $componentIsite, $componentType, $isBlade, $view,
-    $systemName, $blockConfig, $componentConfig;
+    $systemName, $blockConfig, $componentConfig, $blockClasses;
 
   public function __construct(
-    $container = "container",
+    $container = null,
     $id = null,
-    $columns = "col-12",
-    $borderForm = "",
-    $display = "inherit",
+    $columns = null,
+    $borderForm = null,
+    $display = null,
     $widthContainer = "100%",
     $heightContainer = "auto",
     $backgrounds = [],
@@ -33,7 +33,8 @@ class Block extends Component
     $backgroundColor = "",
     $componentIsite = "",
     $systemName = null,
-    $blockConfig = []
+    $blockConfig = [],
+    $blockClasses = ""
   )
   {
     //Get all params
@@ -73,6 +74,7 @@ class Block extends Component
     $this->view = "isite::frontend.components.blocks";
     $this->blockConfig = $params["blockConfig"];
     $this->systemName = $params["systemName"];
+    $this->blockClasses = $params["blockClasses"];
   }
 
   /**
