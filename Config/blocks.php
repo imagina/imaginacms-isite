@@ -505,7 +505,7 @@ return [
                     ],
                     "summaryAlign" => [
                         "name" => "summaryAlign",
-                        "value" => "16",
+                        "value" => "text-left",
                         "type" => "select",
                         "props" => [
                             "label" => "Alineación",
@@ -522,6 +522,7 @@ return [
                     ],
                     "summaryMarginT" => [
                         "name" => "summaryMarginT",
+                        "value" => "mt-0",
                         "type" => "select",
                         "props" => [
                             "label" => "Margen superior",
@@ -530,6 +531,7 @@ return [
                     ],
                     "summaryMarginB" => [
                         "name" => "summaryMarginB",
+                        "value" => "mb-0",
                         "type" => "select",
                         "props" => [
                             "label" => "Margen inferior",
@@ -562,6 +564,7 @@ return [
                     ],
                     "numberCharactersSummary" => [
                         "name" => "numberCharactersSummary",
+                        "value" => "100",
                         "type" => "input",
                         "props" => [
                             "label" => "Número de caracteres permitidos",
@@ -570,6 +573,7 @@ return [
                     ],
                     "summaryHeight" => [
                         "name" => "summaryHeight",
+                        "value" => "",
                         "type" => "input",
                         "props" => [
                             "label" => "Alto maximo",
@@ -815,7 +819,7 @@ return [
                     ],
                     "buttonMarginB" => [
                         "name" => "buttonMarginB",
-                        "value" => "mt-0",
+                        "value" => "mb-3",
                         "type" => "select",
                         "props" => [
                             "label" => "Margen Inferior",
