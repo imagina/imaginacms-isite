@@ -182,6 +182,13 @@ class Block extends Component
           case 'isite::carousel.owl-carousel':
             $this->componentConfig["attributes"]["repository"] = $entity->type;
             $this->componentConfig["attributes"]["params"] = json_decode(json_encode($entity->params), true);
+            //Replace the itemComponentAttributes for IcommerceItem
+            if ($entity->type == "Modules\Icommerce\Repositories\ProductRepository") {
+              if (isset($this->componentConfig["attributes"]["productItemComponentAttributes"])) {
+                $this->componentConfig["attributes"]["itemComponentAttributes"] = $this->componentConfig["attributes"]["productItemComponentAttributes"];
+                unset($this->componentConfig["attributes"]["productItemComponentAttributes"]);
+              }
+            }
             break;
           case 'slider::slider.Owl':
             $this->componentConfig["attributes"]["id"] = $entity->id;
