@@ -1,6 +1,6 @@
 <section id="block{{$id}}">
   <div id="container{{$id}}"
-       class="{{$container}} {{$columns}} {{$borderForm}} {{$display}}"
+       class="{{$container}} {{$columns}} {{$borderForm}} {{$display}} {{$blockClasses}}"
        style="
          width:{{$widthContainer}};
          height:{{$heightContainer}};
