@@ -13,15 +13,10 @@ return [
         ["label" => "White", "value" => "white"]
     ],
     "opacityColor" => [
+        ["label" => "Claro", "value" => "opacity-light"],
+        ["label" => "Oscuro", "value" => "opacity-dark"],
         ["label" => "Primary", "value" => "opacity-primary"],
         ["label" => "Secondary", "value" => "opacity-secondary"],
-        ["label" => "Success", "value" => "opacity-success"],
-        ["label" => "Danger", "value" => "opacity-danger"],
-        ["label" => "Warning", "value" => "opacity-warning"],
-        ["label" => "Info", "value" => "opacity-info"],
-        ["label" => "Light", "value" => "opacity-light"],
-        ["label" => "Dark", "value" => "opacity-dark"],
-        ["label" => "White", "value" => "opacity-white"]
     ],
     "textColors" => [
         ["label" => "Primary", "value" => "text-primary"],
@@ -170,11 +165,16 @@ return [
         ["label" => "Outset", "value" => "outset"]
     ],
     "opacityDirection" => [
-        ["label" => "Claro", "value" => "opacity-left"],
-        ["label" => "Oscuro", "value" => "opacity-right"],
-        ["label" => "Primary", "value" => "opacity-top"],
-        ["label" => "Secondary", "value" => "opacity-bottom"],
+        ["label" => "Izquierda - Derecha", "value" => "opacity-left"],
+        ["label" => "Derecha - Izquierda", "value" => "opacity-right"],
+        ["label" => "Arriba - Abajo", "value" => "opacity-top"],
+        ["label" => "Abajo - Arriba", "value" => "opacity-bottom"],
         ["label" => "Completo", "value" => "opacity-all"]
+    ],
+    "imageAlign" => [
+        ["label" => "Izquierda", "value" => "left"],
+        ["label" => "Centrado", "value" => "center"],
+        ["label" => "Derecha", "value" => "right"]
     ],
     "titleAlign" => [
         ["label" => "centrado", "value" => "justify-content-center text-center"],
@@ -263,6 +263,12 @@ return [
     ],
     "dotStyle" => [
         ["label" => "Barras", "value" => "dots-linear"],
-        ["label" => "Circulos", "value" => "dots-circle"]
+        ["label" => "Circulos", "value" => "dots-circular"]
+    ],
+    "target" => [
+        ["label" => "_blank", "value" => "_blank"],
+        ["label" => "_self", "value" => "_self"],
+        ["label" => "_parent", "value" => "_parent"],
+        ["label" => "_top", "value" => "_top"]
     ]
 ];
