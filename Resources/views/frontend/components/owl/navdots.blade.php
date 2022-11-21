@@ -208,9 +208,9 @@
     $(document).ready(function () {
       createOWL{{$id}}();
 
-      let sizeButton = document.querySelector('#{{$id}} .prevBtn');
+      let sizeButton = document.querySelector('[id="{{$id}}"] .prevBtn');
       let width = sizeButton.offsetWidth;
-      let wrapper = document.querySelector('#{{$id}} .wrapper');
+      let wrapper = document.querySelector('[id="{{$id}}"] .wrapper');
       console.log(width);
       let w = (width)*2 + 20;
       if(wrapper != null) {
