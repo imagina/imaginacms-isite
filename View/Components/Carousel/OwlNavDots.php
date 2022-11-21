@@ -125,7 +125,7 @@ class OwlNavDots extends Component
 
         $this->emptyItems = false;
         $this->loop = $loop;
-        $this->id = $id;
+        $this->id = $id ?? uniqid('owlc');
         $this->dots = $dots;
         $this->nav = $nav;
         $this->center = $center;
