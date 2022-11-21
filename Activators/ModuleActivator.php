@@ -116,8 +116,8 @@ class ModuleActivator implements ActivatorInterface
     if(!isset($module->id)){
       $lowerName = Str::lower($name);
    
-      if(in_array($lowerName,json_decode($this->files->get($this->statusesFile), true))){
-       // if(in_array($lowerName,config("asgard.core.config.CoreModules"))){
+      //if(in_array($lowerName,json_decode($this->files->get($this->statusesFile), true))){
+        if(in_array($lowerName,config("asgard.core.config.CoreModules"))){
         $module = new IModule([
           "alias" => Str::lower($name),
           "name" => $name,
@@ -151,7 +151,7 @@ class ModuleActivator implements ActivatorInterface
   }
   
   public function throwModuleIfNotExist($module,$name){
-    if(!isset($module->id))  throw new \Exception("The module $name doesn't exist in the database",400);
+    if(!isset($module->id) && !isset($module->name)) throw new \Exception("The module $name doesn't exist in the database",400);
   }
   /**
    * @inheritDoc
@@ -161,6 +161,21 @@ class ModuleActivator implements ActivatorInterface
 
     $module = $this->findModuleByName($name);
    
+    if(!isset($module->id)){
+      $lowerName = Str::lower($name);
+      
+      if(in_array($lowerName,json_decode($this->files->get($this->statusesFile), true))){
+        $module = new IModule([
+          "alias" => Str::lower($name),
+          "name" => $name,
+          "enabled" => true
+        ]);
+
+      }
+      
+    }
+ 
+
     $this->throwModuleIfNotExist($module,$name);
     
     $module->enabled = $status;

@@ -29,6 +29,7 @@ class Module extends CrudModel
     "name"
   ];
   protected $fillable = [
+    "alias",
     "permissions",
     "settings",
     "crud_fields",
