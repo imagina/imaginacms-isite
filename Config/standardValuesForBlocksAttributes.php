@@ -83,6 +83,12 @@ return [
         ["label" => "Texto más ligero (en relación con el elemento principal)", "value" => "font-weight-lighter"],
         ["label" => "Texto en cursiva", "value" => "font-italic"]
     ],
+    "fontWeight" => [
+        ["label" => "Texto en negrita", "value" => "bold"],
+        ["label" => "Texto en negrita (relativo al elemento principal)", "value" => "bolder"],
+        ["label" => "Texto de peso normal", "value" => "normal"],
+        ["label" => "Texto más ligero (en relación con el elemento principal)", "value" => "lighter"]
+    ],
     "textTransform" => [
         ["label" => "Normal", "value" => ""],
         ["label" => "Mayuscula", "value" => "text-uppercase"],
@@ -124,8 +130,8 @@ return [
         ["label" => "Izquierda", "value" => "text-left"]
     ],
     "booleanValidation" => [
-        ["label" => "true", "value" => "true"],
-        ["label" => "false", "value" => "false"]
+        ["label" => "Si", "value" => true],
+        ["label" => "No", "value" => false]
     ],
     "formatCreatedDate" => [
         ["label" => "25 de Feb", "value" => "d\\d\\e M"],
@@ -270,5 +276,18 @@ return [
         ["label" => "_self", "value" => "_self"],
         ["label" => "_parent", "value" => "_parent"],
         ["label" => "_top", "value" => "_top"]
-    ]
+    ],
+    "ribbonStyle" => [
+        ["label" => "Bandera", "value" => "flag"],
+        ["label" => "Circulo", "value" => "circle"],
+        ["label" => "Cuadrado", "value" => "square"]
+    ],
+    "ribbonPosition" => [
+        ["label" => "Superior Derecha", "value" => "top-right"],
+        ["label" => "Superior Izquierda", "value" => "top-left"]
+    ],
+    "imageAspectProduct" => [
+        ["label" => "Aspect 1:1", "value" => "1-1"],
+        ["label" => "Aspect 4:3", "value" => "4-3"]
+    ],
 ];

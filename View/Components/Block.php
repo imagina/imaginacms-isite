@@ -14,7 +14,7 @@ class Block extends Component
   public $container, $id, $columns, $background, $borderForm, $display,
     $widthContainer, $heightContainer, $backgrounds, $paddingX, $paddingY,
     $marginX, $marginY, $overlay, $backgroundColor, $componentIsite, $componentType, $isBlade, $view,
-    $systemName, $blockConfig, $componentConfig, $blockClasses;
+    $systemName, $blockConfig, $componentConfig, $blockClasses, $blockStyle, $row;
 
   public function __construct(
     $container = null,
@@ -34,7 +34,9 @@ class Block extends Component
     $componentIsite = "",
     $systemName = null,
     $blockConfig = [],
-    $blockClasses = ""
+    $blockClasses = "",
+    $blockStyle = "",
+    $row = ""
   )
   {
     //Get all params
@@ -75,6 +77,8 @@ class Block extends Component
     $this->blockConfig = $params["blockConfig"];
     $this->systemName = $params["systemName"];
     $this->blockClasses = $params["blockClasses"];
+    $this->blockStyle = $params["blockStyle"];
+    $this->row = $params["row"];
   }
 
   /**
