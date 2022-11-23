@@ -119,6 +119,7 @@ class TenantService
       $role = Role::where("slug", config("tenancy.defaultCentralRole"))->first();
     }
     
+    
     //Create the user in current DB
     \Log::info("----------------------------------------------------------");
     \Log::info("Creating central user with email: ".$data["email"]);
