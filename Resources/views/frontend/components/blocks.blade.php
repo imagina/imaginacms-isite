@@ -1,5 +1,8 @@
 <section id="block{{$blockConfig->attributes->mainblock->id ?? $id}}"
          class="{{$blockConfig->attributes->mainblock->blockClasses ?? $blockClasses}}">
+
+    <x-isite::edit-link link="/iadmin/#/builder/blocks/" tooltip="{{$tooltipEditLink}}"/>
+
     @if($blockConfig->attributes->mainblock->overlay ?? $overlay)
     <!--Overlay-->
     <div id="overlay{{$blockConfig->attributes->mainblock->id ?? $id}}"></div>
@@ -58,6 +61,11 @@
     @if($blockConfig->attributes->mainblock->blockStyle)
           {{$blockConfig->attributes->mainblock->blockStyle}}
     @endif
+
+    #block{{$blockConfig->attributes->mainblock->id ?? $id}} > .editLink  {
+        top: 5% !important;
+        left: 2% !important;
+    }
 
     @if(!empty($blockConfig->attributes->mainblock->overlay))
        #overlay{{$blockConfig->attributes->mainblock->id ?? $id}} {
