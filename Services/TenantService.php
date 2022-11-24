@@ -197,6 +197,8 @@ class TenantService
     //Activate the modules of the plan in the Tenant DB
     $this->activatePlan(array_merge($data, ["organization_id" => $organization->id, "role" => $role]));
     
+    //TODO
+    //clonar BD de layout a la actual dependiendo del parametro layout(optional)
     
     //Authenticating user in the Tenant DB
     $authData = $this->authenticateUser(array_merge($userCentralData, ["organization_id" => $organization->id]));
