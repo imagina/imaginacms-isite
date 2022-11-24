@@ -1,69 +1,79 @@
-<section id="block{{$id}}">
-  <div id="container{{$id}}"
-       class="{{$container}} {{$columns}} {{$borderForm}} {{$display}} {{$blockClasses}}"
-       style="
-         width:{{$widthContainer}};
-         height:{{$heightContainer}};
-         background:{{$background}};
-         background-color:{{$backgroundColor}};
-         padding:{{$paddingX.' '.$paddingY}};
-         margin:{{$marginX.' '.$marginY}};
-         ">
+<section id="block{{$blockConfig->attributes->mainblock->id ?? $id}}"
+         class="{{$blockConfig->attributes->mainblock->blockClasses ?? $blockClasses}}">
+
+    <x-isite::edit-link link="/iadmin/#/builder/blocks/" tooltip="{{$tooltipEditLink}}"/>
+
+    @if($blockConfig->attributes->mainblock->overlay ?? $overlay)
     <!--Overlay-->
-    @if(!empty($overlay))
-      <div id="overlay{{$id}}"></div>
+    <div id="overlay{{$blockConfig->attributes->mainblock->id ?? $id}}"></div>
     @endif
-    <!--Dynamic Component-->
-    <div id="component{{$id}}">
-      @php
-        $componentName = $componentConfig["systemName"];
-        $nameSpace = $componentConfig["nameSpace"];
-        $attributes = $componentConfig["attributes"];
-      @endphp
+    <div id="container{{$blockConfig->attributes->mainblock->id ?? $id}}"
+         class="{{$blockConfig->attributes->mainblock->container ?? $container}}">
+        <div class="row {{$blockConfig->attributes->mainblock->row ?? $row}}">
+            <div class="{{$blockConfig->attributes->mainblock->columns ?? $columns}} ">
 
-      <!--blade Component-->
-      @if($componentType == "blade")
-        @if(!empty($nameSpace))
-          <?php
-          $hash = sha1($nameSpace);
-          if (isset($component)) {
-            $__componentOriginal{$hash} = $component;
-          }
-          $component = $__env->getContainer()->make($nameSpace, $attributes ?? []);
-          $component->withName($componentName);
-          if ($component->shouldRender()):
-            $__env->startComponent($component->resolveView(), $component->data());
-            if (isset($__componentOriginal{$hash})):
-              $component = $__componentOriginal{$hash};
-              unset($__componentOriginal{$hash});
-            endif;
-            echo $__env->renderComponent();
-          endif;
-          ?>
-        @endif
-      @endif
-      <!--Livewire Component-->
-      @if($componentType == "livewire")
-        @livewire($componentName, $attributes)
-      @endif
+            <!--Dynamic Component-->
+                <div id="component{{$blockConfig->attributes->mainblock->id ?? $id}}">
+                @php
+                    $componentName = $componentConfig["systemName"];
+                    $nameSpace = $componentConfig["nameSpace"];
+                    $attributes = $componentConfig["attributes"];
+                @endphp
+
+                <!--blade Component-->
+                @if($componentType == "blade")
+                    @if(!empty($nameSpace))
+                        <?php
+                        $hash = sha1($nameSpace);
+                        if (isset($component)) {
+                            $__componentOriginal{$hash} = $component;
+                        }
+                        $component = $__env->getContainer()->make($nameSpace, $attributes ?? []);
+                        $component->withName($componentName);
+                        if ($component->shouldRender()):
+                            $__env->startComponent($component->resolveView(), $component->data());
+                            if (isset($__componentOriginal{$hash})):
+                                $component = $__componentOriginal{$hash};
+                                unset($__componentOriginal{$hash});
+                            endif;
+                            echo $__env->renderComponent();
+                        endif;
+                        ?>
+                    @endif
+                @endif
+                <!--Livewire Component-->
+                    @if($componentType == "livewire")
+                        @livewire($componentName, $attributes)
+                    @endif
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
-
 <style>
-  #container{{$id}}       {
-    position: relative;
-  }
 
-  @if(!empty($overlay))
-       #overlay{{$id}}       {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0%;
-    right: 0%;
-    background-color: {{$overlay["color"] ?? 'rgba(0,0,0,0.5)'}};
-    z-index: {{$overlay["z-index"] ?? 2}};
-  }
-  @endif
+    #block{{$blockConfig->attributes->mainblock->id ?? $id}}  {
+        position: relative;
+        @if($blockConfig->attributes->mainblock->backgroundColor)
+        background: {{$blockConfig->attributes->mainblock->backgroundColor}};
+        @endif
+    }
+    @if($blockConfig->attributes->mainblock->blockStyle)
+          {{$blockConfig->attributes->mainblock->blockStyle}}
+    @endif
+
+    #block{{$blockConfig->attributes->mainblock->id ?? $id}} > .editLink  {
+        top: 5% !important;
+        left: 2% !important;
+    }
+
+    @if(!empty($blockConfig->attributes->mainblock->overlay))
+       #overlay{{$blockConfig->attributes->mainblock->id ?? $id}} {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0%;
+        right: 0%;
+        }
+    @endif
 </style>
