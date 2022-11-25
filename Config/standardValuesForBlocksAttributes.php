@@ -231,6 +231,7 @@ return [
         ["label" => "Abajo", "value" => "align-items-end"]
     ],
     "containers" => [
+        ["label" => "Sin Container", "value" => ""],
         ["label" => "container", "value" => "container"],
         ["label" => "container-sm", "value" => "container-sm"],
         ["label" => "container-md", "value" => "container-md"],

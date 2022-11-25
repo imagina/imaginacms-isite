@@ -22,7 +22,7 @@ return [
           ],
           "container" => [
             "name" => "container",
-            "value" => "container",
+            "value" => "",
             "type" => "select",
             "props" => [
               "label" => "Tipo de contenedor",
