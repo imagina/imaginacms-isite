@@ -68,3 +68,21 @@
     @endif
   </div>
 </div>
+
+
+<style>
+    #infoContactComponent .title-section {
+        color: {{$colorTitleSection}};
+        font-size: {{$fontSizeTitleSection}}px;
+    }
+
+    #infoContactComponent .title-contact {
+        color: {{$colorTitleContact}};
+        font-size: {{$fontSizeTitleContact}}px;
+    }
+
+    #infoContactComponent i {
+        color: {{$colorIcons}};
+        font-size: {{$fontSizeIcons}}px;
+    }
+</style>

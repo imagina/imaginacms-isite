@@ -44,6 +44,12 @@ class InfoContact extends Component
   public $marginX;
   public $alainSocialNetwork;
   public $layoutSocialNetwork;
+  public $colorTitleSection;
+  public $fontSizeTitleSection;
+  public $colorTitleContact;
+  public $fontSizeTitleContact;
+  public $colorIcons;
+  public $fontSizeIcons;
 
   /**
    * Create a new component instance.
@@ -61,7 +67,9 @@ class InfoContact extends Component
                               $AlainTitleInfoContact = 'text-left', $container = 'container', $withIconPhone = true,
                               $withIconAddress = true, $withIconEmail = true, $border = '', $paddingY = '',
                               $paddingX = '', $marginY = '', $marginX = '', $alainSocialNetwork = 'justify-content-left',
-                              $layoutSocialNetwork = 'social-layout-1'
+                              $layoutSocialNetwork = 'social-layout-1', $colorTitleSection = '000000FF',
+                              $fontSizeTitleSection = '16', $colorTitleContact = '000000FF', $fontSizeTitleContact = '16',
+                              $colorIcons = '000000FF', $fontSizeIcons = '16'
   )
   {
     $this->withPhone = $withPhone;
@@ -100,6 +108,12 @@ class InfoContact extends Component
     $this->marginX = $marginX;
     $this->alainSocialNetwork = $alainSocialNetwork;
     $this->layoutSocialNetwork = $layoutSocialNetwork;
+    $this->colorTitleSection = $colorTitleSection;
+    $this->fontSizeTitleSection = $fontSizeTitleSection;
+    $this->colorTitleContact = $colorTitleContact;
+    $this->fontSizeTitleContact = $fontSizeTitleContact;
+    $this->colorIcons = $colorIcons;
+    $this->fontSizeIcons = $fontSizeIcons;
   }
 
   /**
