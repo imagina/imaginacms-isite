@@ -50,6 +50,7 @@ class InfoContact extends Component
   public $fontSizeTitleContact;
   public $colorIcons;
   public $fontSizeIcons;
+  public $orderInfo;
 
   /**
    * Create a new component instance.
@@ -69,7 +70,7 @@ class InfoContact extends Component
                               $paddingX = '', $marginY = '', $marginX = '', $alainSocialNetwork = 'justify-content-left',
                               $layoutSocialNetwork = 'social-layout-1', $colorTitleSection = '000000FF',
                               $fontSizeTitleSection = '16', $colorTitleContact = '000000FF', $fontSizeTitleContact = '16',
-                              $colorIcons = '000000FF', $fontSizeIcons = '16'
+                              $colorIcons = '000000FF', $fontSizeIcons = '16', $orderInfo = []
   )
   {
     $this->withPhone = $withPhone;
@@ -114,6 +115,8 @@ class InfoContact extends Component
     $this->fontSizeTitleContact = $fontSizeTitleContact;
     $this->colorIcons = $colorIcons;
     $this->fontSizeIcons = $fontSizeIcons;
+    $this->orderInfo = !empty($orderInfo) ? $orderInfo : ["phone" => "order-0", "address" => "order-1", "email" => "order-2", "socialNetworks" => "order-3"];
+
   }
 
   /**
