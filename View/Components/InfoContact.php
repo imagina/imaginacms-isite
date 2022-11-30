@@ -37,20 +37,23 @@ class InfoContact extends Component
   public $withIconPhone;
   public $withIconAddress;
   public $withIconEmail;
-  public $border;
-  public $paddingY;
-  public $paddingX;
-  public $marginY;
-  public $marginX;
+  public $contentBorderType;
+  public $contentPaddingY;
+  public $contentPaddingX;
+  public $contentMarginY;
+  public $contentMarginX;
   public $alainSocialNetwork;
   public $layoutSocialNetwork;
   public $colorTitleSection;
   public $fontSizeTitleSection;
+  public $colorSubtitleSection;
+  public $fontSizeSubtitleSection;
   public $colorTitleContact;
   public $fontSizeTitleContact;
   public $colorIcons;
   public $fontSizeIcons;
   public $orderInfo;
+  public $contentBorder;
 
   /**
    * Create a new component instance.
@@ -66,11 +69,14 @@ class InfoContact extends Component
                               $withIconComponentEmail = true, $AlainTitle = 'text-left', $AlainSubtitle = 'text-left',
                               $AlainIcons = 'justify-content-left', $AlainInfoContact = 'justify-content-left',
                               $AlainTitleInfoContact = 'text-left', $container = 'container', $withIconPhone = true,
-                              $withIconAddress = true, $withIconEmail = true, $border = '', $paddingY = '',
-                              $paddingX = '', $marginY = '', $marginX = '', $alainSocialNetwork = 'justify-content-left',
-                              $layoutSocialNetwork = 'social-layout-1', $colorTitleSection = '000000FF',
-                              $fontSizeTitleSection = '16', $colorTitleContact = '000000FF', $fontSizeTitleContact = '16',
-                              $colorIcons = '000000FF', $fontSizeIcons = '16', $orderInfo = []
+                              $withIconAddress = true, $withIconEmail = true, $contentBorderType = '',
+                              $contentPaddingY = '', $contentPaddingX = '', $contentMarginY = '', $contentMarginX = '',
+                              $alainSocialNetwork = 'justify-content-left', $layoutSocialNetwork = 'social-layout-1',
+                              $colorTitleSection = '000000FF', $fontSizeTitleSection = '16',
+                              $colorTitleContact = '000000FF', $fontSizeTitleContact = '16', $colorIcons = '000000FF',
+                              $fontSizeIcons = '16', $orderInfo = [], $contentBorder = '1',
+                              $layout = 'info-contact-layout-1', $colorSubtitleSection = '000000FF',
+                              $fontSizeSubtitleSection = '16'
   )
   {
     $this->withPhone = $withPhone;
@@ -102,11 +108,11 @@ class InfoContact extends Component
     $this->AlainIcons = $AlainIcons;
     $this->AlainInfoContact = $AlainInfoContact;
     $this->container = $container;
-    $this->border = $border;
-    $this->paddingY = $paddingY;
-    $this->paddingX = $paddingX;
-    $this->marginY = $marginY;
-    $this->marginX = $marginX;
+    $this->contentBorderType = $contentBorderType;
+    $this->contentPaddingY = $contentPaddingY;
+    $this->contentPaddingX = $contentPaddingX;
+    $this->contentMarginY = $contentMarginY;
+    $this->contentMarginX = $contentMarginX;
     $this->alainSocialNetwork = $alainSocialNetwork;
     $this->layoutSocialNetwork = $layoutSocialNetwork;
     $this->colorTitleSection = $colorTitleSection;
@@ -116,7 +122,11 @@ class InfoContact extends Component
     $this->colorIcons = $colorIcons;
     $this->fontSizeIcons = $fontSizeIcons;
     $this->orderInfo = !empty($orderInfo) ? $orderInfo : ["phone" => "order-0", "address" => "order-1", "email" => "order-2", "socialNetworks" => "order-3"];
-
+    $this->colorSubtitleSection = $colorSubtitleSection;
+    $this->fontSizeSubtitleSection = $fontSizeSubtitleSection;
+    $this->contentBorder = $contentBorder;
+    $this->layout = $layout;
+    $this->view = "isite::frontend.components.info-contact.layouts.".$this->layout.".index";
   }
 
   /**
@@ -127,6 +137,6 @@ class InfoContact extends Component
   public
   function render()
   {
-    return view('isite::frontend.components.info-contact');
+    return view($this->view);
   }
 }

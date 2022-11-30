@@ -11,8 +11,10 @@
       </div>
     @endif
     @if($withPhone)
-      <div class="component-phone {{$orderInfo['phone']}}">
-        <div class="row {{$border}} {{$paddingY}} {{$paddingX}} {{$marginY}} {{$marginX}}">
+      <div
+        class="info component-phone {{$orderInfo['phone']}} {{$contentBorderType}} {{$contentPaddingY}}
+        {{$contentPaddingX}} {{$contentMarginY}} {{$contentMarginX}}">
+        <div class="row">
           @if($withIconPhone)
             <div class="col-12 col-md-1 col-lg-2">
               <i class="{{$iconPhone}}"></i>
@@ -30,8 +32,10 @@
       </div>
     @endif
     @if($withAddress)
-      <div class="component-address {{$orderInfo['address']}}">
-        <div class="row {{$border}} {{$paddingY}} {{$paddingX}} {{$marginY}} {{$marginX}}">
+      <div
+        class="info component-address {{$orderInfo['address']}} {{$contentBorderType}} {{$contentPaddingY}}
+        {{$contentPaddingX}} {{$contentMarginY}} {{$contentMarginX}}">
+        <div class="row">
           @if($withIconAddress)
             <div class="col-12 col-md-1 col-lg-2">
               <i class="{{$iconAddress}}"></i>
@@ -49,8 +53,9 @@
       </div>
     @endif
     @if($withEmail)
-      <div class="component-email {{$orderInfo['email']}}">
-        <div class="row {{$border}} {{$paddingY}} {{$paddingX}} {{$marginY}} {{$marginX}}">
+      <div class="info component-email {{$orderInfo['email']}} {{$contentBorderType}} {{$contentPaddingY}}
+      {{$contentPaddingX}} {{$contentMarginY}} {{$contentMarginX}}">
+        <div class="row">
           @if($withIconEmail)
             <div class="col-12 col-md-1 col-lg-2">
               <i class="{{$iconEmail}}"></i>
@@ -68,8 +73,10 @@
       </div>
     @endif
     @if($withSocialNetworks)
-      <div class="component-social-networks {{$orderInfo['socialNetworks']}}">
-        <div class="row {{$alainSocialNetwork}} {{$border}} {{$paddingY}} {{$paddingX}} {{$marginY}} {{$marginX}} ">
+      <div
+        class="info component-social-networks {{$orderInfo['socialNetworks']}} {{$contentBorderType}}
+        {{$contentPaddingY}} {{$contentPaddingX}} {{$contentMarginY}} {{$contentMarginX}}">
+        <div class="row {{$alainSocialNetwork}}">
           <x-isite::social :layout="$layoutSocialNetwork"/>
         </div>
       </div>
@@ -79,9 +86,23 @@
 
 
 <style>
+
+    #infoContactComponent .info {
+      @if(!empty($contentBorderType) || $contentBorderType = "")
+        border-width: {{$contentBorder}}px;
+        border-style: solid;
+        border-color: {{$contentBorderColor}};
+    @endif
+}
+
     #infoContactComponent .title-section {
         color: {{$colorTitleSection}};
         font-size: {{$fontSizeTitleSection}}px;
+    }
+
+    #infoContactComponent .subtitle-section {
+        color: {{$colorSubtitleSection}};
+        font-size: {{$fontSizeSubtitleSection}}px;
     }
 
     #infoContactComponent .title-contact {
