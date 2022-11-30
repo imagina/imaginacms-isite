@@ -1619,5 +1619,509 @@ return [
         ]
       ]
     ]
-  ]
+  ],
+  "infoContact" => [
+    "title" => "Información De Contacto",
+    "systemName" => "isite::InfoContact",
+    "nameSpace" => "Modules\Isite\View\Components\InfoContact",
+    "attributes" => [
+      "general" => [
+        "title" => "General",
+        "fields" => [
+          "layout" => [
+            "name" => "layout",
+            "value" => "info-contact-layout-1",
+            "type" => "select",
+            "props" => [
+              "label" => "Plantilla Para Información De Contacto",
+              "options" => [
+                ["label" => "Información De Contacto Plantilla 1", "value" => "info-contact-layout-1"],
+              ]
+            ]
+          ],
+          "withTitle" => [
+            "name" => "withTitle",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar Titulo",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
+          "title" => [
+            "name" => "title",
+            "type" => "input",
+            "props" => [
+              "label" => "titulo"
+            ]
+          ],
+          "AlainTitle" => [
+            "name" => "AlainTitle",
+            "value" => "text-left",
+            "type" => "select",
+            "props" => [
+              "label" => "Alineación del titulo",
+              "options" => [
+                ["label" => "Alineación a la Izquierda", "value" => "text-left"],
+                ["label" => "Alineación a la Derecha", "value" => "text-right"],
+                ["label" => "Alineación Centrado", "value" => "text-center"],
+              ]
+            ]
+          ],
+          "withSubtitle" => [
+            "name" => "withSubtitle",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar Subtitulo",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
+          "subtitle" => [
+            "name" => "subtitle",
+            "type" => "input",
+            "props" => [
+              "label" => "subtitle"
+            ]
+          ],
+          "AlainSubtitle" => [
+            "name" => "AlainSubtitle",
+            "value" => "text-left",
+            "type" => "select",
+            "props" => [
+              "label" => "Alineación del subtitulo",
+              "options" => [
+                ["label" => "Alineación a la Izquierda", "value" => "text-left"],
+                ["label" => "Alineación a la Derecha", "value" => "text-right"],
+                ["label" => "Alineación Centrado", "value" => "text-center"],
+              ]
+            ]
+          ],
+          "AlainIcons" => [
+            "name" => "AlainIcons",
+            "value" => "justify-content-left",
+            "type" => "select",
+            "props" => [
+              "label" => "Alineación Iconos Personalizados",
+              "options" => [
+                ["label" => "Alineación a la Izquierda", "value" => "justify-content-left"],
+                ["label" => "Alineación a la Derecha", "value" => "justify-content-right"],
+                ["label" => "Alineación Centrado", "value" => "justify-content-center"],
+              ]
+            ]
+          ],
+          "AlainInfoContact" => [
+            "name" => "AlainInfoContact",
+            "value" => "justify-content-left",
+            "type" => "select",
+            "props" => [
+              "label" => "Alineación Información",
+              "options" => [
+                ["label" => "Alineación a la Izquierda", "value" => "justify-content-left"],
+                ["label" => "Alineación a la Derecha", "value" => "justify-content-right"],
+                ["label" => "Alineación Centrado", "value" => "justify-content-center"],
+              ]
+            ]
+          ],
+          "AlainTitleInfoContact" => [
+            "name" => "AlainTitleInfoContact",
+            "value" => "justify-content-left",
+            "type" => "select",
+            "props" => [
+              "label" => "Alineación Titulo Información",
+              "options" => [
+                ["label" => "Alineación a la Izquierda", "value" => "justify-content-left"],
+                ["label" => "Alineación a la Derecha", "value" => "justify-content-right"],
+                ["label" => "Alineación Centrado", "value" => "justify-content-center"],
+              ]
+            ]
+          ],
+          "orderInfo" => [
+            "name" => "orderInfo",
+            "value" => ["phone" => "order-0", "address" => "order-1", "email" => "order-2", "socialNetworks" => "order-3"],
+            "type" => "json",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Orden de los elementos"
+            ]
+          ],
+          "container" => [
+            "name" => "container",
+            "value" => "container",
+            "type" => "select",
+            "props" => [
+              "label" => "Tipo de contenedor",
+              "options" => $vAttributes["containers"]
+            ]
+          ],
+          "contentPaddingY" => [
+            "name" => "contentPaddingY",
+            "value" => "",
+            "type" => "select",
+            "props" => [
+              "label" => "Padding en Eje Y Bloque Información",
+              "options" => [
+                ["label" => "Sin Padding", "value" => ""],
+                ["label" => "Padding de 1 Pixel", "value" => "py-1"],
+                ["label" => "Padding de 2 Pixel", "value" => "py-2"],
+                ["label" => "Padding de 3 Pixel", "value" => "py-3"],
+                ["label" => "Padding de 4 Pixel", "value" => "py-4"],
+                ["label" => "Padding de 5 Pixel", "value" => "py-5"],
+              ]
+            ]
+          ],
+          "contentPaddingX" => [
+            "name" => "contentPaddingX",
+            "value" => "",
+            "type" => "select",
+            "props" => [
+              "label" => "Padding en Eje X Bloque Información",
+              "options" => [
+                ["label" => "Sin Padding", "value" => ""],
+                ["label" => "Padding de 1 Pixel", "value" => "px-1"],
+                ["label" => "Padding de 2 Pixel", "value" => "px-2"],
+                ["label" => "Padding de 3 Pixel", "value" => "px-3"],
+                ["label" => "Padding de 4 Pixel", "value" => "px-4"],
+                ["label" => "Padding de 5 Pixel", "value" => "px-5"],
+              ]
+            ]
+          ],
+          "contentMarginY" => [
+            "name" => "contentMarginY",
+            "value" => "",
+            "type" => "select",
+            "props" => [
+              "label" => "Margin en Eje Y Bloque Información",
+              "options" => [
+                ["label" => "Sin Margin", "value" => ""],
+                ["label" => "Margin de 1 Pixel", "value" => "my-1"],
+                ["label" => "Margin de 2 Pixel", "value" => "my-2"],
+                ["label" => "Margin de 3 Pixel", "value" => "my-3"],
+                ["label" => "Margin de 4 Pixel", "value" => "my-4"],
+                ["label" => "Margin de 5 Pixel", "value" => "my-5"],
+              ]
+            ]
+          ],
+          "contentMarginX" => [
+            "name" => "contentMarginX",
+            "value" => "",
+            "type" => "select",
+            "props" => [
+              "label" => "Margin en Eje X Bloque Información",
+              "options" => [
+                ["label" => "Sin Margin", "value" => ""],
+                ["label" => "Margin de 1 Pixel", "value" => "mx-1"],
+                ["label" => "Margin de 2 Pixel", "value" => "mx-2"],
+                ["label" => "Margin de 3 Pixel", "value" => "mx-3"],
+                ["label" => "Margin de 4 Pixel", "value" => "mx-4"],
+                ["label" => "Margin de 5 Pixel", "value" => "mx-5"],
+              ]
+            ]
+          ],
+          "contentBorderType" => [
+            "name" => "contentBorderType",
+            "value" => "",
+            "type" => "select",
+            "props" => [
+              "label" => "Tipo de Borde Bloque Información",
+              "options" => [
+                ["label" => "Sin Borde", "value" => ""],
+                ["label" => "Borde Completo", "value" => "border"],
+                ["label" => "Borde Arriba", "value" => "border-top"],
+                ["label" => "Borde Derecha", "value" => "border-right"],
+                ["label" => "Borde Abajo", "value" => "border-bottom"],
+                ["label" => "Borde Izquierda", "value" => "border-left"],
+              ]
+            ]
+          ],
+          "contentBorder" => [
+            "name" => "contentBorder",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Grosor del Borde Bloque Información",
+              "options" => [
+                ["label" => "0", "value" => "0"],
+                ["label" => "1px", "value" => "1"],
+                ["label" => "2px", "value" => "2"],
+                ["label" => "3px", "value" => "3"],
+                ["label" => "4px", "value" => "4"],
+                ["label" => "5px", "value" => "5"]
+              ]
+            ]
+          ],
+          "contentBorderColor" => [
+            "name" => "contentBorderColor",
+            "type" => "inputColor",
+            "props" => [
+              "label" => "Color Del Borde Bloque Información"
+            ]
+          ],
+          "fontSizeTitleSection" => [
+            "name" => "fontSizeTitleSection",
+            "type" => "input",
+            "props" => [
+              "label" => "Tamaño de fuente Titulo Principal",
+              "type" => "number"
+            ]
+          ],
+          "colorTitleSection" => [
+            "name" => "colorTitleSection",
+            "type" => "inputColor",
+            "props" => [
+              "label" => "Color Titulo Principal"
+            ]
+          ],
+          "fontSizeSubtitleSection" => [
+            "name" => "fontSizeTitleSection",
+            "type" => "input",
+            "props" => [
+              "label" => "Tamaño de fuente Titulo Principal",
+              "type" => "number"
+            ]
+          ],
+          "colorSubtitleSection" => [
+            "name" => "colorTitleSection",
+            "type" => "inputColor",
+            "props" => [
+              "label" => "Color Titulo Principal"
+            ]
+          ],
+          "fontSizeTitleContact" => [
+            "name" => "fontSizeTitleContact",
+            "type" => "input",
+            "props" => [
+              "label" => "Tamaño de fuente Titulo Información",
+              "type" => "number"
+            ]
+          ],
+          "colorTitleContact" => [
+            "name" => "colorTitleContact",
+            "type" => "inputColor",
+            "props" => [
+              "label" => "Color Titulo Información"
+            ]
+          ],
+          "fontSizeIcons" => [
+            "name" => "fontSizeIcons",
+            "type" => "input",
+            "props" => [
+              "label" => "Tamaño de fuente Iconos",
+              "type" => "number"
+            ]
+          ],
+          "colorIcons" => [
+            "name" => "colorTitleContact",
+            "type" => "inputColor",
+            "props" => [
+              "label" => "Color Iconos"
+            ]
+          ],
+        ]
+      ],
+      "phone" => [
+        "title" => "Sección Teléfono",
+        "fields" => [
+          "withPhone" => [
+            "name" => "withPhone",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar Teléfono",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
+          "withTitlePhone" => [
+            "name" => "withTitlePhone",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar Titulo Teléfono",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
+          "titlePhone" => [
+            "name" => "titlePhone",
+            "type" => "input",
+            "props" => [
+              "label" => "Titulo Teléfono"
+            ]
+          ],
+          "withIconCustomPhone" => [
+            "name" => "withIconCustomPhone",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar Icono Personalizado",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
+          "iconCustomPhone" => [
+            "name" => "iconCustomPhone",
+            "type" => "input",
+            "props" => [
+              "label" => "Icono Personalizado Teléfono"
+            ]
+          ],
+          "withIconComponentPhone" => [
+            "name" => "withIconComponentPhone",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar Icono Componente",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
+        ]
+      ],
+      "address" => [
+        "title" => "Sección Dirección",
+        "fields" => [
+          "withAddress" => [
+            "name" => "withAddress",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar Dirección",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
+          "withTitleAddress" => [
+            "name" => "withTitleAddress",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar Titulo Dirección",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
+          "titleAddress" => [
+            "name" => "titleAddress",
+            "type" => "input",
+            "props" => [
+              "label" => "Titulo Dirección"
+            ]
+          ],
+          "withIconCustomAddress" => [
+            "name" => "withIconCustomAddress",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar Icono Personalizado",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
+          "iconCustomAddress" => [
+            "name" => "iconCustomAddress",
+            "type" => "input",
+            "props" => [
+              "label" => "Icono Personalizado Dirección"
+            ]
+          ],
+          "withIconComponentAddress" => [
+            "name" => "withIconComponentAddress",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar Icono Componente",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
+        ]
+      ],
+      "email" => [
+        "title" => "Sección Correo Electrónico",
+        "fields" => [
+          "withEmail" => [
+            "name" => "withEmail",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar Correo Electrónico",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
+          "withTitleEmail" => [
+            "name" => "withTitleEmail",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar Titulo Correo Electrónico",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
+          "titleEmail" => [
+            "name" => "titleEmail",
+            "type" => "input",
+            "props" => [
+              "label" => "Titulo Correo Electrónico"
+            ]
+          ],
+          "withIconCustomEmail" => [
+            "name" => "withIconCustomEmail",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar Icono Personalizado",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
+          "iconCustomEmail" => [
+            "name" => "iconCustomEmail",
+            "type" => "input",
+            "props" => [
+              "label" => "Icono Personalizado Correo Electrónico"
+            ]
+          ],
+          "withIconComponentEmail" => [
+            "name" => "withIconComponentEmail",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar Icono Componente",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
+        ]
+      ],
+      "socialNetworks" => [
+        "title" => "Sección Redes Sociales",
+        "fields" => [
+          "withSocialNetworks" => [
+            "name" => "withSocialNetworks",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar Redes Sociales",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
+          "layoutSocialNetwork" => [
+            "name" => "layoutSocialNetwork",
+            "value" => "social-layout-1",
+            "type" => "select",
+            "props" => [
+              "label" => "Plantilla Para Redes Sociales",
+              "options" => [
+                ["label" => "Redes Sociales Plantilla 1", "value" => "social-layout-1"],
+              ]
+            ]
+          ],
+          "alainSocialNetwork" => [
+            "name" => "alainSocialNetwork",
+            "value" => "justify-content-left",
+            "type" => "select",
+            "props" => [
+              "label" => "Alineación Redes Sociales",
+              "options" => [
+                ["label" => "Alineación a la Izquierda", "value" => "justify-content-left"],
+                ["label" => "Alineación a la Derecha", "value" => "justify-content-right"],
+                ["label" => "Alineación Centrado", "value" => "justify-content-center"],
+              ]
+            ]
+          ],
+        ]
+      ],
+    ]
+  ],
 ];
