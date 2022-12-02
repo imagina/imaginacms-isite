@@ -195,13 +195,32 @@ class TenantService
     
     
     //Activate the modules of the plan in the Tenant DB
-    $this->activatePlan(array_merge($data, ["organization_id" => $organization->id, "role" => $role]));
+    if(isset($data['plan']) && !is_null($data['plan'])){
+
+      $this->activatePlan(array_merge($data, ["organization_id" => $organization->id, "role" => $role]));
+      
+    }else{
+      
+      //Validation config layout
+      if(isset($data['layout']) && !is_null($data['layout'])){
+
+        //Get layout configuration
+        $layoutConfig = config("tenancy.layouts.".$data['layout']);
+
+        //Set plan value
+        $data['plan'] =  $layoutConfig['plan'];
+        $this->activatePlan(array_merge($data, ["organization_id" => $organization->id, "role" => $role]));
+      
+        //Proccess to clone DB and Media
+        $this->cloneTenancyLayout($data,$layoutConfig,$organization);
+
+      }else{
+        \Log::info("Layout configuration is NULL");
+      }
+
+    }
     
-    if(isset($data["module"]) && !empty($data["module"]))
-      $this->activateModule(array_merge($data, ["role" => $role]));
     
-    //TODO
-    //clonar BD de layout a la actual dependiendo del parametro layout(optional)
     
     //Authenticating user in the Tenant DB
     $authData = $this->authenticateUser(array_merge($userCentralData, ["organization_id" => $organization->id]));
@@ -256,6 +275,12 @@ class TenantService
         
       }
     }
+
+    //Active extra modules
+    if(isset($data["module"]) && !empty($data["module"]))
+      $this->activateModule($data);
+    
+
   }
   
   public function activateModule($data){
@@ -418,5 +443,150 @@ class TenantService
     \Log::info(\Artisan::output());
     \Artisan::call('module:seed', ['module' => 'Menu']);
       \Log::info(\Artisan::output());
+  }
+
+  public function cloneTenancyLayout(array $data,array $layoutConfig,object $organization)
+  {
+    \Log::info("----------------------------------------------------------");
+    \Log::info("Clone Tenancy Layout Proccess");
+    \Log::info("----------------------------------------------------------");
+
+    $orgId = $layoutConfig['organizationId'];
+    \Log::info("Layout - OrganizationId: ".$orgId);
+
+    //Tenant donde esta guardado el layout
+    $orgLayout = \DB::connection("mysql")->table("isite__organizations")
+    ->where("id",$orgId)
+    ->first();
+
+    // Process DB
+    $this->cloneTenancyDB($orgLayout,$organization);
+
+    // Process Media
+    $this->cloneTenancyMedia($orgId,$organization);
+    
+  }
+
+  public function cloneTenancyDB(object $orgLayout,object $organization)
+  {
+
+    \Log::info("========== Clone Tenancy DB ==========");
+
+    $dataToConnect = json_decode($orgLayout->data);
+    \Log::info("Connect to Tenancy DB Name: ".$dataToConnect->tenancy_db_name);
+
+    // Get mysql data to connection
+    $dataMySql = config('database.connections.mysql');
+    $dataMySqlTenant = [
+      "database" => $dataToConnect->tenancy_db_name,
+      "username" => $dataToConnect->tenancy_db_username,
+      "password" => $dataToConnect->tenancy_db_password
+    ];
+
+    // Add new data
+    $newDataConnection = array_merge($dataMySql,$dataMySqlTenant);
+
+    // Set new connection
+    config(['database.connections.newConnectionTenant' => $newDataConnection]);
+    \DB::purge('newConnectionTenant');
+    \DB::reconnect('newConnectionTenant');
+    
+    // Get tables to new connection
+    $tables = \DB::connection("newConnectionTenant")->select("SHOW TABLES");
+    \Log::info("Tables Total: ".count($tables));
+    \Log::info("Preparing to copy in OrganizationId: ".$organization->id);
+
+    //Only name tables
+    $tables = array_map('current',$tables);
+
+    $this->checkTablesAndCopy($tables,$organization);
+    
+    // Esto creo q no es necesario
+    //\DB::disconnect('newConnectionTenant');
+
+    \Log::info("========== Clone Tenancy DB FINISHED ==========");
+
+  }
+
+  public function checkTablesAndCopy(array $tables,object $organization){
+
+    // Desactive validation to insert data from organization layout
+    \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+    $notIncludeTables = config("tenancy.notIncludeTablesToCopy");
+
+    // Check tables
+    foreach($tables as $table)
+    {
+      
+      if(!in_array($table,$notIncludeTables)){
+        // Get all data
+        $dataToCopy = \DB::connection("newConnectionTenant")->select("SELECT * FROM ".$table);
+        if(!is_null($dataToCopy) && count($dataToCopy)>0){
+          \Log::info("Copying data from Table: ".$table);
+  
+          //Data to copy in each row
+          foreach ($dataToCopy as $data) {
+
+            $data = (array)$data;
+
+            //Change organization id if exist
+            if(isset($data['organization_id']) && !is_null($data['organization_id']))
+                $data['organization_id'] = $organization->id;
+
+            //search if exist id
+            $existId = \DB::table($table)->select("id")->where("id","=",$data["id"])->get();
+            
+            //Not exist , so insert data
+            if(count($existId)==0){
+              \DB::table($table)->insert($data);
+            }else{
+              //Extra validations
+              $this->validationPages($table,$data);
+            }
+            
+          }
+        }
+      }
+
     }
+
+    // Active again
+    \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+  }
+
+
+  public function validationPages(string $table, array $data)
+  {
+
+    if($table=="page__pages"){
+      //Only pages Home, Us , Contact
+      if($data['id']==1 || $data['id']==2 || $data['id']==3){
+        //Update
+        \DB::table($table)->where("id","=",$data['id'])->update([
+          "template" => $data["template"],
+          "system_name"=> $data["system_name"],
+          "organization_id"=> $data["organization_id"]
+        ]);
+      }
+    }
+
+  }
+
+  public function cloneTenancyMedia(int $orgIdLayout,object $organization)
+  {
+    \Log::info("========== Clone Tenancy MEDIA ==========");
+
+    $source = public_path('organization'. $orgIdLayout.'/assets/media');
+    $to = public_path('organization'. $organization->id.'/assets/media');  
+
+    \Log::info("Copy - source: ".$source);
+    \Log::info("Copy - to: ".$to);
+
+    \File::copyDirectory($source, $to);
+
+    \Log::info("========== Clone Tenancy MEDIA FINISHED ==========");
+  }
+
 }
