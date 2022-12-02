@@ -291,4 +291,10 @@ return [
         ["label" => "Aspect 1:1", "value" => "1-1"],
         ["label" => "Aspect 4:3", "value" => "4-3"]
     ],
+    "embedResponsive" => [
+        ["label" => "Aspect 21:9", "value" => "embed-responsive-21by9"],
+        ["label" => "Aspect 16:9", "value" => "embed-responsive-16by9"],
+        ["label" => "Aspect 4:3", "value" => "embed-responsive-4by3"],
+        ["label" => "Aspect 1:1", "value" => "embed-responsive-1by1"]
+    ],
 ];
