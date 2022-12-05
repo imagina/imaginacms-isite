@@ -8,6 +8,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Collective\Html\Componentable;
 use Illuminate\Support\Facades\Blade;
 use Modules\Ibuilder\Entities\Block as BlockEntity;
+use Modules\Ifillable\Transformers\FieldTransformer;
 
 class Block extends Component
 {
@@ -118,12 +119,18 @@ class Block extends Component
     //If not get blockConfig then search by systemName
     if (!is_array($this->blockConfig) || !count($this->blockConfig)) {
       if ($this->systemName) {
-        $block = BlockEntity::where("system_name", $this->systemName)->first();
+        $block = BlockEntity::where("system_name", $this->systemName)->with('fields')->first();
         if ($block) {
+          //Parse block Attributes
+          $blockAttributes = $block->attributes->toArray();
+          //Get and add block Fields in attributes
+          $blockFields = $block->formatFillableToModel(fieldTransformer::collection($block->fields));
+          $blockAttributes["componentAttributes"] = array_merge(($blockAttributes["componentAttributes"] ?? []), $blockFields);
+          //nstance the blockConfig
           $this->blockConfig = [
             "component" => $block->component,
             "entity" => $block->entity,
-            "attributes" => $block->attributes
+            "attributes" => $blockAttributes
           ];
         }
       }

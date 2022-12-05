@@ -22,7 +22,7 @@ return [
           ],
           "container" => [
             "name" => "container",
-            "value" => "container",
+            "value" => "container-fluid",
             "type" => "select",
             "props" => [
               "label" => "Tipo de contenedor",
@@ -261,14 +261,14 @@ return [
           ],
           "itemBackgroundColor" => [
             "name" => "itemBackgroundColor",
-            "type" => "inputColor",
+            "type" => "input",
             "props" => [
               "label" => "Color del Fondo"
             ]
           ],
           "itemBackgroundColorHover" => [
             "name" => "itemBackgroundColorHover",
-            "type" => "inputColor",
+            "type" => "input",
             "props" => [
               "label" => "Color del Fondo (Hover)"
             ]
@@ -892,6 +892,14 @@ return [
               ]
             ]
           ],
+          "viewMoreButtonLabel" => [
+            "name" => "viewMoreButtonLabel",
+            "value" => " ",
+            "type" => "input",
+            "props" => [
+              "label" => "Texto del botón",
+            ]
+          ]
         ]
       ],
       "imagen" => [
@@ -1618,6 +1626,326 @@ return [
           ]
         ]
       ]
+    ]
+  ],
+  "custom" => [
+    "title" => "Entorno Custom",
+    "systemName" => "isite::block-custom",
+    "nameSpace" => "Modules\Isite\View\Components\BlockCustom",
+    "contentFields" => [
+      "titleCustom" => [
+        "name" => "titleCustom",
+        "type" => "input",
+        "isTranslatable" => true,
+        "props" => [
+          "label" => "Texto (titulo)"
+        ]
+      ],
+      "subTitleCustom" => [
+        "name" => "subTitleCustom",
+        "type" => "input",
+        "isTranslatable" => true,
+        "props" => [
+          "label" => "Texto (Subtitulo)"
+        ]
+      ],
+      "summaryCustom" => [
+        "name" => "summaryCustom",
+        "type" => "input",
+        "columns" => "col-12",
+        "isTranslatable" => true,
+        "props" => [
+          "label" => "Texto (Resumen)",
+          'type' => 'textarea',
+          'rows' => 4,
+        ]
+      ],
+    ],
+    "attributes" => [
+      "general" => [
+        "title" => "General",
+        "fields" => [
+          "position" => [
+            "name" => "position",
+            "value" => "1",
+            "type" => "select",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Posicion de los elementos",
+              "options" => [
+                ["label" => "Una columna", "value" => "1"],
+                ["label" => "Dos columna con imagen a la derecha", "value" => "2"],
+                ["label" => "Dos columna con imagen a la izquierda", "value" => "3"],
+                ["label" => "Dos columna con video a la derecha", "value" => "4"],
+                ["label" => "Dos columna con video a la izquierda", "value" => "5"]
+              ],
+            ]
+          ],
+          "mediaClasses" => [
+            "name" => "mediaClasses",
+            "type" => "input",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Clases en Imagen o Video"
+            ]
+          ],
+          "contentClasses" => [
+            "name" => "contentClasses",
+            "type" => "input",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Clases en contenido"
+            ]
+          ],
+          "gridColumns" => [
+            "name" => "gridColumns",
+            "value" => "repeat(2, minmax(0, 1fr))",
+            "type" => "input",
+            "props" => [
+              "label" => "Ancho de columnas"
+            ]
+          ],
+          "gridGap" => [
+            "name" => "gridGap",
+            "value" => "15px",
+            "type" => "input",
+            "props" => [
+              "label" => "Espacio entre columnas"
+            ]
+          ],
+
+          "orderClasses" => [
+            "name" => "orderClasses",
+            "value" => ["video" => "order-0", "image" => "order-1", "title" => "order-2", "subtitle" => "order-3", "summary" => "order-4", "buttom" => "order-5"],
+            "type" => "json",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Orden de los elementos"
+            ]
+          ],
+        ]
+      ],
+      "text" => [
+        "title" => "Contenido",
+        "fields" => [
+          "titleClasses" => [
+            "name" => "titleClasses",
+            "type" => "input",
+            "columns" => "col-md-7",
+            "props" => [
+              "label" => "Clases (titulo)"
+            ]
+          ],
+          "titleSize" => [
+            "name" => "titleSize",
+            "type" => "input",
+            "columns" => "col-md-5",
+            "props" => [
+              "label" => "Tamaño Fuente (titulo)"
+            ]
+          ],
+          "subTitleClasses" => [
+            "name" => "subTitleClasses",
+            "type" => "input",
+            "columns" => "col-md-7",
+            "props" => [
+              "label" => "Clases (Subtitulo)"
+            ]
+          ],
+          "subTitleSize" => [
+            "name" => "subTitleSize",
+            "type" => "input",
+            "columns" => "col-md-5",
+            "props" => [
+              "label" => "Tamaño Fuente (Subtitulo)"
+            ]
+          ],
+          "summaryClasses" => [
+            "name" => "summaryClasses",
+            "type" => "input",
+            "columns" => "col-md-7",
+            "props" => [
+              "label" => "Clases (Resumen)"
+            ]
+          ],
+          "summarySize" => [
+            "name" => "summarySize",
+            "type" => "input",
+            "columns" => "col-md-5",
+            "props" => [
+              "label" => "Tamaño Fuente (Resumen)"
+            ]
+          ],
+
+        ]
+      ],
+      "media" => [
+        "title" => "Imagen y Video",
+        "fields" => [
+          "image" => [
+            "name" => "image",
+            "type" => "input",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Url de la Imagen"
+            ]
+          ],
+          "imageOnClasses" => [
+            "name" => "imageOnClasses",
+            "type" => "input",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Clases sobre (Imagen)"
+            ]
+          ],
+          "imageInClasses" => [
+            "name" => "imageInClasses",
+            "type" => "input",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Clases en (Imagen)"
+            ]
+          ],
+          "imageStyles" => [
+            "name" => "imageStyles",
+            "type" => "input",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Estilos adicionales (Imagen)"
+            ]
+          ],
+          "video" => [
+            "name" => "video",
+            "type" => "input",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Url del video"
+            ]
+          ],
+          "videoResponsive" => [
+            "name" => "videoResponsive",
+            "type" => "select",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Responsive (Video)",
+              "options" => $vAttributes["embedResponsive"]
+            ]
+          ],
+          "videoClasses" => [
+            "name" => "videoClasses",
+            "type" => "input",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Clases (Video)"
+            ]
+          ],
+        ]
+      ],
+      "boton" => [
+        "title" => "Boton",
+        "fields" => [
+          "withButton" => [
+            "name" => "withButton",
+            "value" => "0",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
+          "buttonLabel" => [
+            "name" => "buttonLabel",
+            "type" => "input",
+            "props" => [
+              "label" => "Texto"
+            ]
+          ],
+          "buttonSizeLabel" => [
+            "name" => "buttonSizeLabel",
+            "type" => "input",
+            "props" => [
+              "label" => "Tamaño del texto",
+              "type" => "number"
+            ]
+          ],
+          "buttonIconClass" => [
+            "name" => "buttonIconClass",
+            "type" => "input",
+            "props" => [
+              "label" => "Tipo de Icono"
+            ]
+          ],
+          "buttonIconPosition" => [
+            "name" => "buttonIconPosition",
+            "value" => "left",
+            "type" => "select",
+            "props" => [
+              "label" => "Posición del icono",
+              "options" => [
+                ["label" => "Izquierda", "value" => "left"],
+                ["label" => "Derecha", "value" => "right"]
+              ]
+            ]
+          ],
+          "buttonLayout" => [
+            "name" => "buttonLayout",
+            "value" => "rounded-pill",
+            "type" => "select",
+            "props" => [
+              "label" => "Estilo de Botones",
+              "options" => $vAttributes["buttonStyle"]
+            ]
+          ],
+          "buttonStyle" => [
+            "name" => "buttonStyle",
+            "value" => "button-normal",
+            "type" => "select",
+            "props" => [
+              "label" => "Espaciado",
+              "options" => $vAttributes["buttonType"]
+            ]
+          ],
+          "buttonClasses" => [
+            "name" => "buttonClasses",
+            "type" => "input",
+            "props" => [
+              "label" => "Clases en general",
+            ]
+          ],
+          "buttonAlign" => [
+            "name" => "buttonAlign",
+            "type" => "select",
+            "props" => [
+              "label" => "Alineación",
+              "options" => $vAttributes["align"]
+            ]
+          ],
+          "buttonHref" => [
+            "name" => "buttonHref",
+            "type" => "input",
+            "props" => [
+              "label" => "Enlace"
+            ]
+          ],
+          "buttonTarget" => [
+            "name" => "buttonTarget",
+            "type" => "select",
+            "props" => [
+              "label" => "Target",
+              "options" => $vAttributes["target"]
+            ]
+          ],
+          "buttonColor" => [
+            "name" => "buttonColor",
+            "value" => "primary",
+            "type" => "select",
+            "props" => [
+              "label" => "Color",
+              "options" => $vAttributes["bgColor"]
+            ]
+          ],
+        ]
+      ],
     ]
   ],
   "infoContact" => [
