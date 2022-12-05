@@ -561,8 +561,8 @@ class TenantService
   {
 
     if($table=="page__pages"){
-      //Only pages Home, Us , Contact
-      if($data['id']==1 || $data['id']==2 || $data['id']==3){
+      //Not include all pages
+      if($data['type']!="cms"){
         //Update
         \DB::table($table)->where("id","=",$data['id'])->update([
           "template" => $data["template"],
@@ -570,6 +570,7 @@ class TenantService
           "organization_id"=> $data["organization_id"]
         ]);
       }
+
     }
 
   }
