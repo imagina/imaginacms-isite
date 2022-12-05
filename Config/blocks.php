@@ -1873,18 +1873,18 @@ return [
             ]
           ],
           "fontSizeSubtitleSection" => [
-            "name" => "fontSizeTitleSection",
+            "name" => "fontSizeSubtitleSection",
             "type" => "input",
             "props" => [
-              "label" => "Tamaño de fuente Titulo Principal",
+              "label" => "Tamaño de fuente Subtitulo",
               "type" => "number"
             ]
           ],
           "colorSubtitleSection" => [
-            "name" => "colorTitleSection",
+            "name" => "colorSubtitleSection",
             "type" => "inputColor",
             "props" => [
-              "label" => "Color Titulo Principal"
+              "label" => "Color Subtitulo"
             ]
           ],
           "fontSizeTitleContact" => [
