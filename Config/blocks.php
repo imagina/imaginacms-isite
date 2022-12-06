@@ -1952,6 +1952,24 @@ return [
     "title" => "Información De Contacto",
     "systemName" => "isite::InfoContact",
     "nameSpace" => "Modules\Isite\View\Components\InfoContact",
+    "contentFields" => [
+      "title" => [
+        "name" => "title",
+        "type" => "input",
+        "isTranslatable" => true,
+        "props" => [
+          "label" => "Titulo"
+        ]
+      ],
+      "subtitle" => [
+        "name" => "subtitle",
+        "type" => "input",
+        "isTranslatable" => true,
+        "props" => [
+          "label" => "Subtitle"
+        ]
+      ],
+    ],
     "attributes" => [
       "general" => [
         "title" => "General",
@@ -1976,15 +1994,8 @@ return [
               "options" => $vAttributes["validation"]
             ]
           ],
-          "title" => [
-            "name" => "title",
-            "type" => "input",
-            "props" => [
-              "label" => "titulo"
-            ]
-          ],
-          "AlainTitle" => [
-            "name" => "AlainTitle",
+          "alignTitle" => [
+            "name" => "alignTitle",
             "value" => "text-left",
             "type" => "select",
             "props" => [
@@ -2005,15 +2016,8 @@ return [
               "options" => $vAttributes["validation"]
             ]
           ],
-          "subtitle" => [
-            "name" => "subtitle",
-            "type" => "input",
-            "props" => [
-              "label" => "subtitle"
-            ]
-          ],
-          "AlainSubtitle" => [
-            "name" => "AlainSubtitle",
+          "alignSubtitle" => [
+            "name" => "alignSubtitle",
             "value" => "text-left",
             "type" => "select",
             "props" => [
@@ -2025,8 +2029,8 @@ return [
               ]
             ]
           ],
-          "AlainIcons" => [
-            "name" => "AlainIcons",
+          "alignIcons" => [
+            "name" => "alignIcons",
             "value" => "justify-content-left",
             "type" => "select",
             "props" => [
@@ -2038,8 +2042,8 @@ return [
               ]
             ]
           ],
-          "AlainInfoContact" => [
-            "name" => "AlainInfoContact",
+          "alignInfoContact" => [
+            "name" => "alignInfoContact",
             "value" => "justify-content-left",
             "type" => "select",
             "props" => [
@@ -2051,8 +2055,8 @@ return [
               ]
             ]
           ],
-          "AlainTitleInfoContact" => [
-            "name" => "AlainTitleInfoContact",
+          "alignTitleInfoContact" => [
+            "name" => "alignTitleInfoContact",
             "value" => "justify-content-left",
             "type" => "select",
             "props" => [
@@ -2201,18 +2205,18 @@ return [
             ]
           ],
           "fontSizeSubtitleSection" => [
-            "name" => "fontSizeTitleSection",
+            "name" => "fontSizeSubtitleSection",
             "type" => "input",
             "props" => [
-              "label" => "Tamaño de fuente Titulo Principal",
+              "label" => "Tamaño de fuente Subtitulo",
               "type" => "number"
             ]
           ],
           "colorSubtitleSection" => [
-            "name" => "colorTitleSection",
+            "name" => "colorSubtitleSection",
             "type" => "inputColor",
             "props" => [
-              "label" => "Color Titulo Principal"
+              "label" => "Color Subtitulo"
             ]
           ],
           "fontSizeTitleContact" => [
@@ -2435,8 +2439,8 @@ return [
               ]
             ]
           ],
-          "alainSocialNetwork" => [
-            "name" => "alainSocialNetwork",
+          "alignSocialNetwork" => [
+            "name" => "alignSocialNetwork",
             "value" => "justify-content-left",
             "type" => "select",
             "props" => [
@@ -2450,6 +2454,226 @@ return [
           ],
         ]
       ],
+    ]
+  ],
+  "map" => [
+    "title" => "Mapa",
+    "systemName" => "isite::Maps",
+    "nameSpace" => "Modules\Isite\View\Components\Maps",
+    "contentFields" => [
+      "title" => [
+        "name" => "title",
+        "type" => "input",
+        "isTranslatable" => true,
+        "props" => [
+          "label" => "Titulo"
+        ]
+      ],
+      "locationName" => [
+        "name" => "locationName",
+        "type" => "input",
+        "isTranslatable" => true,
+        "props" => [
+          "label" => "Nombre De La Ubicación"
+        ]
+      ],
+    ],
+    "attributes" => [
+      "general" => [
+        "title" => "General",
+        "fields" => [
+          'inputLocation' => [
+            'value' => null,
+            'name' => 'inputLocation',
+            'type' => 'positionMarkerMap',
+            'colClass' => 'col-12',
+            'props' => [
+              'label' => 'Mapa',
+            ]
+          ],
+          "mapStyle" => [
+            "name" => "mapStyle",
+            "value" => "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+            "type" => "select",
+            "props" => [
+              "label" => "Estilo Para Mapa",
+              "options" => [
+                ["label" => "Mapa Estilo 1", "value" => "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"],
+              ]
+            ]
+          ],
+          "lat" => [
+            'value' => '4.442452',
+            "name" => "lat",
+            "type" => "input",
+            "props" => [
+              "label" => "Latitud Ubicación (Opcional)",
+            ]
+          ],
+          "lng" => [
+            'value' => '-75.238074',
+            "name" => "lng",
+            "type" => "input",
+            "props" => [
+              "label" => "Longitud Ubicación (Opcional)",
+            ]
+          ],
+          "classes" => [
+            'value' => '',
+            "name" => "classes",
+            "type" => "input",
+            "props" => [
+              "label" => "Clases",
+            ]
+          ],
+          "zoom" => [
+            'value' => 16,
+            "name" => "zoom",
+            "type" => "input",
+            "props" => [
+              "label" => "Zoom",
+              "type" => "number"
+            ]
+          ],
+          "maxZoom" => [
+            'value' => 20,
+            "name" => "maxZoom",
+            "type" => "input",
+            "props" => [
+              "label" => "Zoom Maximo Permitido En El Mapa",
+              "type" => "number"
+            ]
+          ],
+          "minZoom" => [
+            'value' => 2,
+            "name" => "minZoom",
+            "type" => "input",
+            "props" => [
+              "label" => "Zoom Mínimo Permitido En El Mapa",
+              "type" => "number"
+            ]
+          ],
+          "id" => [
+            'value' => 1,
+            "name" => "id",
+            "type" => "input",
+            "props" => [
+              "label" => "Identificador",
+              "type" => "number"
+            ]
+          ],
+          "inModal" => [
+            "name" => "inModal",
+            "value" => "0",
+            "type" => "select",
+            "props" => [
+              "label" => "Mapa Para modal",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
+          "mapWidth" => [
+            'value' => '100%',
+            "name" => "mapWidth",
+            "type" => "input",
+            "props" => [
+              "label" => "Ancho Del Mapa",
+            ]
+          ],
+          "mapHeight" => [
+            'value' => '314px',
+            "name" => "mapHeight",
+            "type" => "input",
+            "props" => [
+              "label" => "Altura Del Mapa",
+            ]
+          ],
+          "imageIcon" => [
+            'value' => null,
+            "name" => "imageIcon",
+            "type" => "input",
+            "props" => [
+              "label" => "Url Imagen Icono Ubicación (Opcional)",
+            ]
+          ],
+          "markerMapClasses" => [
+            'value' => 'marker-map-class',
+            "name" => "markerMapClasses",
+            "type" => "input",
+            "props" => [
+              "label" => "Clases Para El Icono (Opcional)",
+            ]
+          ],
+          "iconHeight" => [
+            'value' => 42,
+            "name" => "iconHeight",
+            "type" => "input",
+            "props" => [
+              "label" => "Altura Icono",
+              "type" => "number"
+            ]
+          ],
+          "iconWidth" => [
+            'value' => 28,
+            "name" => "iconWidth",
+            "type" => "input",
+            "props" => [
+              "label" => "Anchor Icono",
+              "type" => "number"
+            ]
+          ],
+          "withTitle" => [
+            "name" => "withTitle",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar Titulo",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
+          "alignTitle" => [
+            "name" => "alignTitle",
+            "value" => "text-left",
+            "type" => "select",
+            "props" => [
+              "label" => "Alineación del titulo",
+              "options" => [
+                ["label" => "Alineación a la Izquierda", "value" => "text-left"],
+                ["label" => "Alineación a la Derecha", "value" => "text-right"],
+                ["label" => "Alineación Centrado", "value" => "text-center"],
+              ]
+            ]
+          ],
+          "fontSizeTitle" => [
+            "name" => "fontSizeTitle",
+            "type" => "input",
+            "props" => [
+              "label" => "Tamaño de fuente Titulo Principal",
+              "type" => "number"
+            ]
+          ],
+          "colorTitle" => [
+            "name" => "colorTitle",
+            "type" => "inputColor",
+            "props" => [
+              "label" => "Color Titulo Principal"
+            ]
+          ],
+          "colorTitleByClass" => [
+            "name" => "colorTitleByClass",
+            "value" => "text-primary",
+            "type" => "select",
+            "props" => [
+              "label" => "Color del Titulo",
+              "options" => [
+                ["label" => "Texto en Color Primario", "value" => "text-primary"],
+                ["label" => "Texto en Color Secundario", "value" => "text-secondary"],
+                ["label" => "Texto en Color Negro", "value" => "text-dark"],
+                ["label" => "Texto en Color Blanco", "value" => "text-white"],
+              ]
+            ]
+          ],
+        ]
+      ]
     ]
   ],
 ];

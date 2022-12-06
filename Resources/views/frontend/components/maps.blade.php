@@ -1,7 +1,8 @@
 <div class="component-map map-{{$settingMap}} col-12">
-  @if(isset($title) && !empty($title))
-    <p class="subtitle h3">{{$title}}</p>
-    <hr>
+  @if($withTitle)
+    <div class="title-section {{$alignTitle}}">
+      {{$title}}
+    </div>
   @endif
   <div class="section-map">
     <div class="map bg-light">
@@ -18,6 +19,15 @@
     </div>
   </div>
 </div>
+
+<style>
+
+    .component-map .title-section {
+        color: {{$colorTitleSection}};
+        font-size: {{$fontSizeTitleSection}}px;
+    }
+
+</style>
 
 @if($settingMap == 'openStreet')
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
@@ -79,3 +89,4 @@
 
   </script>
 @endif
+
