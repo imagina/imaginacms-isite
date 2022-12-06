@@ -38,7 +38,7 @@ class Maps extends Component
   public $mapEvent;
   public $inputLocation;
   public $withTitle;
-  public $AlainTitle;
+  public $alignTitle;
   public $fontSizeTitle;
   public $colorTitle;
   public $colorTitleByClass;
@@ -54,7 +54,7 @@ class Maps extends Component
                               $imageIcon = null, $mapStyle = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
                               $maxZoom = 20, $minZoom = 2, $markerMapClasses = 'marker-map-class', $iconHeight = 42,
                               $iconWidth = 28, $mapEvent = null, $iconMarginLeft = 11, $iconMarginTop = 47,
-                              $inputLocation = null, $withTitle = false, $AlainTitle = 'text-left',
+                              $inputLocation = null, $withTitle = false, $alignTitle = 'text-left',
                               $fontSizeTitle = '14', $colorTitle = null, $colorTitleByClass = 'text-primary'
   )
   {
@@ -79,7 +79,7 @@ class Maps extends Component
       $this->lng = $this->inputLocation['lng'];
     }
     $this->withTitle = $withTitle;
-    $this->AlainTitle = $AlainTitle;
+    $this->alignTitle = $alignTitle;
     $this->fontSizeTitle = $fontSizeTitle;
     $this->colorTitle = $colorTitle;
     $this->colorTitleByClass = $colorTitleByClass;

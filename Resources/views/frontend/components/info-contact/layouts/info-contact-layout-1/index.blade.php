@@ -1,12 +1,12 @@
 <div id="infoContactComponent">
   <div class="{{$container}}">
     @if($withTitle)
-      <div class="title-section {{$AlainTitle}}">
+      <div class="title-section {{$alignTitle}}">
         {{$title}}
       </div>
     @endif
     @if($withSubtitle)
-      <div class="subtitle-section {{$AlainSubtitle}}">
+      <div class="subtitle-section {{$alignSubtitle}}">
         {{$subtitle}}
       </div>
     @endif
@@ -22,7 +22,7 @@
           @endif
           <div class="col-10">
             @if($withTitlePhone)
-              <div class="title-contact {{$AlainTitleInfoContact}}">
+              <div class="title-contact {{$alignTitleInfoContact}}">
                 {{$titlePhone}}
               </div>
             @endif
@@ -43,7 +43,7 @@
           @endif
           <div class="col-10 order-2">
             @if($withTitleAddress)
-              <div class="title-contact {{$AlainTitleInfoContact}}">
+              <div class="title-contact {{$alignTitleInfoContact}}">
                 {{$titleAddress}}
               </div>
             @endif
@@ -63,7 +63,7 @@
           @endif
           <div class="col-10 order-1">
             @if($withTitleEmail)
-              <div class="title-contact {{$AlainTitleInfoContact}}">
+              <div class="title-contact {{$alignTitleInfoContact}}">
                 {{$titleEmail}}
               </div>
             @endif
@@ -76,7 +76,7 @@
       <div
         class="info component-social-networks {{$orderInfo['socialNetworks']}} {{$contentBorderType}}
         {{$contentPaddingY}} {{$contentPaddingX}} {{$contentMarginY}} {{$contentMarginX}}">
-        <div class="row {{$alainSocialNetwork}}">
+        <div class="row {{$alignSocialNetwork}}">
           <x-isite::social :layout="$layoutSocialNetwork"/>
         </div>
       </div>

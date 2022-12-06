@@ -1994,8 +1994,8 @@ return [
               "options" => $vAttributes["validation"]
             ]
           ],
-          "AlainTitle" => [
-            "name" => "AlainTitle",
+          "alignTitle" => [
+            "name" => "alignTitle",
             "value" => "text-left",
             "type" => "select",
             "props" => [
@@ -2016,8 +2016,8 @@ return [
               "options" => $vAttributes["validation"]
             ]
           ],
-          "AlainSubtitle" => [
-            "name" => "AlainSubtitle",
+          "alignSubtitle" => [
+            "name" => "alignSubtitle",
             "value" => "text-left",
             "type" => "select",
             "props" => [
@@ -2029,8 +2029,8 @@ return [
               ]
             ]
           ],
-          "AlainIcons" => [
-            "name" => "AlainIcons",
+          "alignIcons" => [
+            "name" => "alignIcons",
             "value" => "justify-content-left",
             "type" => "select",
             "props" => [
@@ -2042,8 +2042,8 @@ return [
               ]
             ]
           ],
-          "AlainInfoContact" => [
-            "name" => "AlainInfoContact",
+          "alignInfoContact" => [
+            "name" => "alignInfoContact",
             "value" => "justify-content-left",
             "type" => "select",
             "props" => [
@@ -2055,8 +2055,8 @@ return [
               ]
             ]
           ],
-          "AlainTitleInfoContact" => [
-            "name" => "AlainTitleInfoContact",
+          "alignTitleInfoContact" => [
+            "name" => "alignTitleInfoContact",
             "value" => "justify-content-left",
             "type" => "select",
             "props" => [
@@ -2439,8 +2439,8 @@ return [
               ]
             ]
           ],
-          "alainSocialNetwork" => [
-            "name" => "alainSocialNetwork",
+          "alignSocialNetwork" => [
+            "name" => "alignSocialNetwork",
             "value" => "justify-content-left",
             "type" => "select",
             "props" => [
@@ -2630,8 +2630,8 @@ return [
               "options" => $vAttributes["validation"]
             ]
           ],
-          "AlainTitle" => [
-            "name" => "AlainTitle",
+          "alignTitle" => [
+            "name" => "alignTitle",
             "value" => "text-left",
             "type" => "select",
             "props" => [
