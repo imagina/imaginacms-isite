@@ -10,6 +10,7 @@ return [
         "isite_cms_admin_organizations",
         "isite_cms_admin_categories",
         "isite_cms_admin_icruds",
+        "isite_cms_admin_layouts",
       ]
     ],
     "isite_cms_admin_index"

@@ -11,7 +11,9 @@ return [
     "adminOrganization" => "Organizations List",
     "adminCategories" => "Categories",
     "adminIcruds" => "Icruds",
-    "adminOrganizationForm" => "Form"
+    "adminOrganizationForm" => "Form",
+    "adminBlocks" => "Blocks",
+    "adminLayouts" => "Layouts"
   ],
   "crud" => [
     "message" => [
@@ -20,6 +22,10 @@ return [
       "showAsCard" => "Show as card"
     ]
   ],
+  "newBlock" => "New Block",
+  "updateBlock" => "Update Block",
+  "newLayout" => "New Layout",
+  "updateLayout" => "Update Layout",
   "newRecommendation" => "New Recommendation",
   "updateRecommendation" => "Update Recomendation",
   "deleteRecommendation" => "Delete Recommendation",
@@ -49,6 +55,7 @@ return [
   "perzonalizationDescription" => "Easily change the logo, colors and the main information of your website",
 
   "label" => [
+    "path" => "Path",
     "recipient" => "Recipient | Recipients",
     "when" => "When",
     "run" => "Run",
