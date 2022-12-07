@@ -565,7 +565,6 @@ class TenantService
       if($data['type']!="cms"){
         //Update
         \DB::table($table)->where("id","=",$data['id'])->update([
-          "template" => $data["template"],
           "system_name"=> $data["system_name"],
           "organization_id"=> $data["organization_id"]
         ]);
