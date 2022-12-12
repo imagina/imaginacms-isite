@@ -53,8 +53,8 @@ return [
   "quickSettings" => "Quick Settings",
   "perzonalizationTitle" => "Welcome to the editor of your website",
   "perzonalizationDescription" => "Easily change the logo, colors and the main information of your website",
-
   "label" => [
+    "template" => "Template | Templates",
     "path" => "Path",
     "recipient" => "Recipient | Recipients",
     "when" => "When",
