@@ -13,6 +13,7 @@ return [
         ["label" => "White", "value" => "white"]
     ],
     "opacityColor" => [
+        ["label" => "Custom", "value" => "opacity-custom"],
         ["label" => "Claro", "value" => "opacity-light"],
         ["label" => "Oscuro", "value" => "opacity-dark"],
         ["label" => "Primary", "value" => "opacity-primary"],

@@ -11,10 +11,10 @@
   @break
 @endswitch
 
-<div id="{{$id}}" class="item-layout item-list-layout-7 position-relative {{$itemMarginB}}">
+<div id="{{$id}}" class="item-layout item-list-layout-7 position-relative overflow-hidden {{$itemMarginB}}">
 
   <x-isite::edit-link link="{{$editLink}}{{$item->id}}" :item="$item" tooltip="{{$tooltipEditLink}}"/>
-  <div class="card-item {{$row}}">
+  <div class="card-item {{$row}} @if($imageOpacityHover) opacity-with-hover @else opacity-without-hover @endif">
     <div class="{{$imagePosition!='1' ? 'row no-gutters' : ''}}">
         @if(method_exists ( $item, "mediaFiles" ) && $withImage )
 
@@ -29,7 +29,7 @@
         @if($containerActive)
             <div class="{{$containerType}} image-overlay">
                 <div class="row h-100 {{$containerJustify}} {{$containerAlign}}">
-                    <div class="{{$containerColumn}}">
+                    <div class="{{$containerColumn}} style-content">
         @else
             <div class="item-content {{$col2}} {{$contentPositionVertical}}">
         @endif
@@ -147,12 +147,53 @@
     #{{$id}} .card-item:hover {
         background-color: {{$itemBackgroundColorHover}};
     }
+    @if((!$imageOpacityHover) && $withImageOpacity && ($imageOpacityColor=='opacity-custom'))
+    #{{$id}} .item-image picture {
+        position: relative;
+        display: block !important;
+        overflow: hidden;
+    }
+    @endif
+
+    @if($imageOpacityHover && $withImageOpacity)
+    @if($imagePosition=="1")
+    #{{$id}} .card-item .item-content {
+        opacity: 0;
+    }
+    #{{$id}} .card-item:hover .item-content {
+        opacity: 1;
+    }
+    @endif
+    #{{$id}} .card-item:hover .item-image picture {
+        position: relative;
+        display: block !important;
+        overflow: hidden;
+        transition: background 0.5s ease-out;
+    }
+    #{{$id}} .card-item:hover .item-image picture:before {
+         border-radius: {{$imageRadio}};
+         top: {{$imagePadding}}px;
+         left: {{$imagePadding}}px;
+         bottom: {{$imagePadding}}px;
+         right: {{$imagePadding}}px;
+         @if($imageOpacityColor=='opacity-custom')
+         content: "";
+         position: absolute;
+         background: {{$imageOpacityCustom}};
+         @endif
+    }
+    @endif
     #{{$id}} .item-image picture:before {
         border-radius: {{$imageRadio}};
         top: {{$imagePadding}}px;
         left: {{$imagePadding}}px;
         bottom: {{$imagePadding}}px;
         right: {{$imagePadding}}px;
+        @if((!$imageOpacityHover) && $withImageOpacity && ($imageOpacityColor=='opacity-custom'))
+            content: "";
+            position: absolute;
+            background: {{$imageOpacityCustom}};
+        @endif
     }
 
     #{{$id}} .item-image picture {
@@ -173,7 +214,10 @@
 
     @if($contentBorderShadows=='none')
         #{{$id}} .item-border {
-            padding:{{$contentPadding + $imagePadding}}px;
+            padding-left: {{$contentPaddingL + $imagePadding}}px;
+            padding-right: {{$contentPaddingR + $imagePadding}}px;
+            padding-top: {{$contentPaddingT + $imagePadding}}px;
+            padding-bottom: {{$contentPaddingB + $imagePadding}}px;
             border-width: {{$contentBorder}}px;
             border-style: solid;
             border-color: {{$contentBorderColor}};
@@ -181,7 +225,10 @@
         }
     @else
         #{{$id}} .item-border {
-            padding:{{$contentPadding + $imagePadding}}px;
+            padding-left: {{$contentPaddingL + $imagePadding}}px;
+            padding-right: {{$contentPaddingR + $imagePadding}}px;
+            padding-top: {{$contentPaddingT + $imagePadding}}px;
+            padding-bottom: {{$contentPaddingB + $imagePadding}}px;
             border-width: {{$contentBorder}}px;
             border-style: solid;
             border-color: {{$contentBorderColor}};
@@ -189,7 +236,7 @@
             @if(!$contentBorderShadowsHover)
             box-shadow: {{$contentBorderShadows}};
             @endif
-            margin: 10px 0;
+            margin: 5px;
         }
         @if($contentBorderShadowsHover)
         #{{$id}} .item-border:hover {
@@ -236,7 +283,13 @@
         padding-right: {{$contentPaddingRight}}px;
         @endif
     }
-
+    #{{$id}} .style-content {
+         background: {{$contentBackground}};
+         padding-left: {{$contentPaddingL}}px;
+         padding-right: {{$contentPaddingR}}px;
+         padding-top: {{$contentPaddingT}}px;
+         padding-bottom: {{$contentPaddingB}}px;
+    }
 </style>
 </div>
 

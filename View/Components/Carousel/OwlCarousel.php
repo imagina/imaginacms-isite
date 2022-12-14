@@ -69,6 +69,8 @@ class OwlCarousel extends Component
 
     public $owlTitleUrl;
     public $owlTitleTarget;
+    public $mouseDrag;
+    public $touchDrag;
 
 
     /**
@@ -127,7 +129,9 @@ class OwlCarousel extends Component
                                 $stagePadding = 0,
                                 $owlTitleUrl = null,
                                 $owlTitleTarget = "_self",
-                                $autoplayTimeout = 5000
+                                $autoplayTimeout = 5000,
+                                $mouseDrag = true,
+                                $touchDrag = true
     )
     {
 
@@ -187,10 +191,9 @@ class OwlCarousel extends Component
         $this->stagePadding = $stagePadding;
         $this->owlTitleUrl = $owlTitleUrl;
         $this->owlTitleTarget = $owlTitleTarget;
-
+        $this->mouseDrag = $mouseDrag;
+        $this->touchDrag = $touchDrag;
         $this->itemComponentAttributes = $itemComponentAttributes;
-
-
 
         list($this->editLink, $this->tooltipEditLink) = getEditLink($this->repository);
     }
