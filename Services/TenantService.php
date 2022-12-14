@@ -540,6 +540,9 @@ class TenantService
             //Not exist , so insert data
             if(count($existId)==0){
               \DB::table($table)->insert($data);
+
+              $this->validationOrganization($table,$data,$organization);
+
             }else{
               //Extra validations
               $this->validationPages($table,$data);
@@ -569,6 +572,19 @@ class TenantService
           "organization_id"=> $data["organization_id"]
         ]);
       }
+
+    }
+
+  }
+
+  public function validationOrganization(string $table, array $data,object $organization){
+
+    if($table=="isite__organizations"){
+     
+        //Update
+        \DB::table($table)->where("id","=",$data['id'])->update([
+          "id" => $organization->id
+        ]);
 
     }
 
