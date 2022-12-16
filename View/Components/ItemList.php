@@ -152,6 +152,14 @@ class ItemList extends Component
   public $containerAlign;
   public $containerColumn;
 
+  public $contentPaddingL;
+  public $contentPaddingR;
+  public $contentPaddingT;
+  public $contentPaddingB;
+  public $contentBackground;
+  public $imageOpacityCustom;
+  public $imageOpacityHover;
+
   /**
    * Create a new component instance.
    *
@@ -311,7 +319,14 @@ class ItemList extends Component
                               $containerType = "container",
                               $containerJustify = "justify-content-center",
                               $containerAlign = "align-items-center",
-                              $containerColumn = "col-lg-10"
+                              $containerColumn = "col-lg-10",
+                              $contentPaddingL = 0,
+                              $contentPaddingR = 0,
+                              $contentPaddingT = 0,
+                              $contentPaddingB = 0,
+                              $contentBackground = "",
+                              $imageOpacityCustom = "",
+                              $imageOpacityHover = false
   )
   {
 
@@ -451,6 +466,20 @@ class ItemList extends Component
     $this->containerAlign = $containerAlign;
     $this->containerColumn = $containerColumn;
 
+    $this->contentPaddingL = $contentPaddingL;
+    $this->contentPaddingR = $contentPaddingR;
+    $this->contentPaddingT = $contentPaddingT;
+    $this->contentPaddingB = $contentPaddingB;
+    $this->contentBackground = $contentBackground;
+    $this->imageOpacityCustom = $imageOpacityCustom;
+    $this->imageOpacityHover = $imageOpacityHover;
+
+    if($contentPadding>0) {
+        $this->contentPaddingL = $contentPadding;
+        $this->contentPaddingR = $contentPadding;
+        $this->contentPaddingT = $contentPadding;
+        $this->contentPaddingB = $contentPadding;
+    }
 
     if(!empty($summaryField)){
       //In case to show a fake field options example "options.secondaryDescription"

@@ -19,6 +19,8 @@
       </a>
     @endif
   @endforeach
-  <x-isite::whatsapp :parentAttributes="$whatsappAttributes" layout="whatsapp-layout-2" :editButton="false"/>
+  @if($withWhatsapp)
+    <x-isite::whatsapp :parentAttributes="$whatsappAttributes" layout="whatsapp-layout-2" :editButton="false"/>
+  @endif
 </div>
 

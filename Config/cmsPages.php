@@ -77,7 +77,22 @@ return [
       "subHeader" => [
         "refresh" => true
       ]
-    ]
+    ],
+    "layouts" => [
+      "permission" => "isite.layouts.manage",
+      "activated" => true,
+      "path" => "/site/layouts",
+      "name" => "qsite.admin.layouts.index",
+      "crud" => "qsite/_crud/layouts",
+      "page" => "qcrud/_pages/admin/crudPage",
+      "layout" => "qsite/_layouts/master.vue",
+      "title" => "isite.cms.sidebar.adminLayouts",
+      "icon" => "fas fa-layer-group",
+      "authenticated" => true,
+      "subHeader" => [
+        "refresh" => true
+      ]
+    ],
   ],
   'panel' => [],
   'main' => [

@@ -59,7 +59,7 @@
         @endif
     }
     @if($blockConfig->attributes->mainblock->blockStyle)
-          {{$blockConfig->attributes->mainblock->blockStyle}}
+          {!!$blockConfig->attributes->mainblock->blockStyle!!}
     @endif
 
     #block{{$blockConfig->attributes->mainblock->id ?? $id}} > .editLink  {

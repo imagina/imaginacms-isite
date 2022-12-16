@@ -28,11 +28,11 @@ class InfoContact extends Component
   public $withIconComponentAddress;
   public $withIconComponentPhone;
   public $withIconComponentEmail;
-  public $AlainTitle;
-  public $AlainSubtitle;
-  public $AlainIcons;
-  public $AlainTitleInfoContact;
-  public $AlainInfoContact;
+  public $alignTitle;
+  public $alignSubtitle;
+  public $alignIcons;
+  public $alignTitleInfoContact;
+  public $alignInfoContact;
   public $container;
   public $withIconPhone;
   public $withIconAddress;
@@ -42,7 +42,7 @@ class InfoContact extends Component
   public $contentPaddingX;
   public $contentMarginY;
   public $contentMarginX;
-  public $alainSocialNetwork;
+  public $alignSocialNetwork;
   public $layoutSocialNetwork;
   public $colorTitleSection;
   public $fontSizeTitleSection;
@@ -66,12 +66,12 @@ class InfoContact extends Component
                               $withTitlePhone = true, $withTitleAddress = true, $withTitleEmail = true,
                               $iconAddress = 'fa fa-map-marker', $iconPhone = 'fa fa-phone', $iconEmail = 'fa fa-envelope',
                               $withIconComponentAddress = true, $withIconComponentPhone = true,
-                              $withIconComponentEmail = true, $AlainTitle = 'text-left', $AlainSubtitle = 'text-left',
-                              $AlainIcons = 'justify-content-left', $AlainInfoContact = 'justify-content-left',
-                              $AlainTitleInfoContact = 'text-left', $container = 'container', $withIconPhone = true,
+                              $withIconComponentEmail = true, $alignTitle = 'text-left', $alignSubtitle = 'text-left',
+                              $alignIcons = 'justify-content-left', $alignInfoContact = 'justify-content-left',
+                              $alignTitleInfoContact = 'text-left', $container = 'container', $withIconPhone = true,
                               $withIconAddress = true, $withIconEmail = true, $contentBorderType = '',
                               $contentPaddingY = '', $contentPaddingX = '', $contentMarginY = '', $contentMarginX = '',
-                              $alainSocialNetwork = 'justify-content-left', $layoutSocialNetwork = 'social-layout-1',
+                              $alignSocialNetwork = 'justify-content-left', $layoutSocialNetwork = 'social-layout-1',
                               $colorTitleSection = '000000FF', $fontSizeTitleSection = '16',
                               $colorTitleContact = '000000FF', $fontSizeTitleContact = '16', $colorIcons = '000000FF',
                               $fontSizeIcons = '16', $orderInfo = [], $contentBorder = '1',
@@ -102,18 +102,18 @@ class InfoContact extends Component
     $this->withIconComponentAddress = $withIconComponentAddress;
     $this->withIconComponentPhone = $withIconComponentPhone;
     $this->withIconComponentEmail = $withIconComponentEmail;
-    $this->AlainTitle = $AlainTitle;
-    $this->AlainSubtitle = $AlainSubtitle;
-    $this->AlainTitleInfoContact = $AlainTitleInfoContact;
-    $this->AlainIcons = $AlainIcons;
-    $this->AlainInfoContact = $AlainInfoContact;
+    $this->alignTitle = $alignTitle;
+    $this->alignSubtitle = $alignSubtitle;
+    $this->alignTitleInfoContact = $alignTitleInfoContact;
+    $this->alignIcons = $alignIcons;
+    $this->alignInfoContact = $alignInfoContact;
     $this->container = $container;
     $this->contentBorderType = $contentBorderType;
     $this->contentPaddingY = $contentPaddingY;
     $this->contentPaddingX = $contentPaddingX;
     $this->contentMarginY = $contentMarginY;
     $this->contentMarginX = $contentMarginX;
-    $this->alainSocialNetwork = $alainSocialNetwork;
+    $this->alignSocialNetwork = $alignSocialNetwork;
     $this->layoutSocialNetwork = $layoutSocialNetwork;
     $this->colorTitleSection = $colorTitleSection;
     $this->fontSizeTitleSection = $fontSizeTitleSection;

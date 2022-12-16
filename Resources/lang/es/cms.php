@@ -11,7 +11,9 @@ return [
     "adminOrganization" => "Lista de Organizaciónes",
     "adminCategories" => "Categorias",
     "adminIcruds" => "Icruds",
-    "adminOrganizationForm" => "Formulario"
+    "adminOrganizationForm" => "Formulario",
+    "adminBlocks" => "Bloques",
+    "adminLayouts" => "Layouts"
   ],
   "crud" => [
     "message" => [
@@ -20,6 +22,10 @@ return [
       "showAsCard" => "Ver como tarjetas"
     ]
   ],
+  "newBlock" => "Nuevo Bloque",
+  "updateBlock" => "Actualizar Bloque",
+  "newLayout" => "Nuevo Layout",
+  "updateLayout" => "Actualizar Layout",
   "newRecommendation" => "Nueva Recomendación",
   "updateRecommendation" => "Actualizar Recomendación",
   "deleteRecommendation" => "Eliminar Recomendación",
@@ -48,6 +54,8 @@ return [
   "perzonalizationTitle" => "Bienvenid@ al editor de tu sitio web",
   "perzonalizationDescription" => "De manera fácil, cambia el logo, colores y la información principal de tu página web",
   "label" => [
+    "template" => "Plantilla | Plantillas",
+    "path" => "Path",
     "recipient" => "Destinatario | Destinatarios",
     "when" => "Cuando",
     "run" => "Ejecutar",
