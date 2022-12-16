@@ -1,4 +1,4 @@
-<div class="component-map map-{{$settingMap}} col-12">
+<div class="component-map map-{{$settingMap}}">
   @if($withTitle)
     <div class="title-section {{$alignTitle}}">
       {{$title}}

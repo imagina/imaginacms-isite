@@ -194,7 +194,8 @@ return [
   'maps' => [
     'groupMaps' => 'Mapas',
     'mapsLabel' => 'Mapas en el sitio',
-    'labelLocationSite' => 'Ubicación Sede Principal'
+    'labelLocationSite' => 'Ubicación Sede Principal',
+    'labelLocationName' => 'Nombre Sede Principal',
   ],
   'feeds' => [
     'titlePosts' => 'Todas las nuevas publicaciones en ',

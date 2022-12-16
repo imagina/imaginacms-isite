@@ -1,28 +1,30 @@
 <div id="infoContactComponent">
   <div class="{{$container}}">
     @if($withTitle)
-      <div class="title-section {{$alignTitle}}">
+      <div class="title-section {{$alignTitle}} {{$titlePaddingY}} {{$titlePaddingX}} {{$titleSectionColorByClass}}">
         {{$title}}
       </div>
     @endif
     @if($withSubtitle)
-      <div class="subtitle-section {{$alignSubtitle}}">
+      <div class="subtitle-section {{$alignSubtitle}} {{$subtitlePaddingY}} {{$subtitlePaddingX}}
+      {{$subtitleSectionColorByClass}}">
         {{$subtitle}}
       </div>
     @endif
     @if($withPhone)
       <div
-        class="info component-phone {{$orderInfo['phone']}} {{$contentBorderType}} {{$contentPaddingY}}
+        class="info component-phone {{$orderInfo['phone']}} {{$contentPaddingY}}
         {{$contentPaddingX}} {{$contentMarginY}} {{$contentMarginX}}">
         <div class="row">
           @if($withIconPhone)
-            <div class="col-12 col-md-1 col-lg-2">
+            <div class="col-12 col-md-1 col-lg-2 {{$alignIcons}} {{$iconsPaddingY}}
+            {{$iconsPaddingX}} {{$iconsMarginY}} {{$iconsMarginX}}">
               <i class="{{$iconPhone}}"></i>
             </div>
           @endif
           <div class="col-10">
             @if($withTitlePhone)
-              <div class="title-contact {{$alignTitleInfoContact}}">
+              <div class="title-contact {{$alignTitleInfoContact}} {{$titleContactColorByClass}}">
                 {{$titlePhone}}
               </div>
             @endif
@@ -33,17 +35,18 @@
     @endif
     @if($withAddress)
       <div
-        class="info component-address {{$orderInfo['address']}} {{$contentBorderType}} {{$contentPaddingY}}
+        class="info component-address {{$orderInfo['address']}} {{$contentPaddingY}}
         {{$contentPaddingX}} {{$contentMarginY}} {{$contentMarginX}}">
         <div class="row">
           @if($withIconAddress)
-            <div class="col-12 col-md-1 col-lg-2">
+            <div class="col-12 col-md-1 col-lg-2 {{$alignIcons}} {{$iconsPaddingY}}
+            {{$iconsPaddingX}} {{$iconsMarginY}} {{$iconsMarginX}}">
               <i class="{{$iconAddress}}"></i>
             </div>
           @endif
           <div class="col-10 order-2">
             @if($withTitleAddress)
-              <div class="title-contact {{$alignTitleInfoContact}}">
+              <div class="title-contact {{$alignTitleInfoContact}} {{$titleContactColorByClass}}">
                 {{$titleAddress}}
               </div>
             @endif
@@ -53,17 +56,18 @@
       </div>
     @endif
     @if($withEmail)
-      <div class="info component-email {{$orderInfo['email']}} {{$contentBorderType}} {{$contentPaddingY}}
+      <div class="info component-email {{$orderInfo['email']}} {{$contentPaddingY}}
       {{$contentPaddingX}} {{$contentMarginY}} {{$contentMarginX}}">
         <div class="row">
           @if($withIconEmail)
-            <div class="col-12 col-md-1 col-lg-2">
+            <div class="col-12 col-md-1 col-lg-2 {{$alignIcons}} {{$iconsPaddingY}}
+            {{$iconsPaddingX}} {{$iconsMarginY}} {{$iconsMarginX}}">
               <i class="{{$iconEmail}}"></i>
             </div>
           @endif
           <div class="col-10 order-1">
             @if($withTitleEmail)
-              <div class="title-contact {{$alignTitleInfoContact}}">
+              <div class="title-contact {{$alignTitleInfoContact}} {{$titleContactColorByClass}}">
                 {{$titleEmail}}
               </div>
             @endif
@@ -74,7 +78,7 @@
     @endif
     @if($withSocialNetworks)
       <div
-        class="info component-social-networks {{$orderInfo['socialNetworks']}} {{$contentBorderType}}
+        class="info component-social-networks {{$orderInfo['socialNetworks']}}
         {{$contentPaddingY}} {{$contentPaddingX}} {{$contentMarginY}} {{$contentMarginX}}">
         <div class="row {{$alignSocialNetwork}}">
           <x-isite::social :layout="$layoutSocialNetwork"/>
@@ -89,11 +93,12 @@
 
     #infoContactComponent .info {
       @if(!empty($contentBorderType) || $contentBorderType = "")
-        border-width: {{$contentBorder}}px;
-        border-style: solid;
-        border-color: {{$contentBorderColor}};
+      {{$contentBorderType}}-width: {{$contentBorder}}px;
+      {{$contentBorderType}}-style: solid;
+      {{$contentBorderType}}-color: {{$contentBorderColor}};
     @endif
-}
+
+    }
 
     #infoContactComponent .title-section {
         color: {{$colorTitleSection}};
