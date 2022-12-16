@@ -203,20 +203,4 @@ class PublicController extends BaseApiController
 
 
   }
-
-  /*
-  * Organization Index
-  */
-  public function blockPreview(Request $request)
-  {
-    $params = $request->all();
-    //Instance the blockConfig
-    $blockConfig = [
-      "component" => json_decode($params['component'] ?? "[]"),
-      "entity" => json_decode($params['entity'] ?? "[]"),
-      "attributes" => json_decode($params['attributes'] ?? "[]")
-    ];
-    //Render view
-    return view('isite::frontend.blocks', compact('blockConfig'));
-  }
 }

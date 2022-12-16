@@ -252,6 +252,16 @@ return [
     'groupTitle' => 'isite::common.settingGroups.socialNetworks',
     'props' => ['label' => 'Instagram']
   ],
+  'tiktok' => [
+    'value' => null,
+    'name' => 'tiktok',
+    'fakeFieldName' => 'isite::socialNetworks',
+    'type' => 'input',
+    'isTranslatable' => true,
+    'groupName' => 'socialNetworks',
+    'groupTitle' => 'isite::common.settingGroups.socialNetworks',
+    'props' => ['label' => 'TikTok']
+  ],
   'Linkedin' => [
     'value' => null,
     'name' => 'linkedin',

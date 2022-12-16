@@ -231,6 +231,7 @@ return [
         ["label" => "Abajo", "value" => "align-items-end"]
     ],
     "containers" => [
+        ["label" => "Sin Container", "value" => ""],
         ["label" => "container", "value" => "container"],
         ["label" => "container-sm", "value" => "container-sm"],
         ["label" => "container-md", "value" => "container-md"],
@@ -289,5 +290,11 @@ return [
     "imageAspectProduct" => [
         ["label" => "Aspect 1:1", "value" => "1-1"],
         ["label" => "Aspect 4:3", "value" => "4-3"]
+    ],
+    "embedResponsive" => [
+        ["label" => "Aspect 21:9", "value" => "embed-responsive-21by9"],
+        ["label" => "Aspect 16:9", "value" => "embed-responsive-16by9"],
+        ["label" => "Aspect 4:3", "value" => "embed-responsive-4by3"],
+        ["label" => "Aspect 1:1", "value" => "embed-responsive-1by1"]
     ],
 ];
