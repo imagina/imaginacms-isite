@@ -416,4 +416,26 @@ class SiteApiController extends BaseApiController
      }
     return response()->json($response, $status ?? 200);
   }
+
+  public function tenantUpdate(Request $request){
+    
+    
+    $data = $request->input('attributes');
+    
+    try {
+    
+      $response = $this->tenantService->updateTenant($data);
+    
+      //Response
+      $response = ["data" => "Tenant Updated"];
+   
+    } catch (\Exception $e) {
+
+      $status = $this->getStatusError($e->getCode());
+      $response = ["errors" => $e->getMessage()];
+    }
+    return response()->json($response, $status ?? 200);
+  }
+
+
 }
