@@ -1,6 +1,6 @@
 <div id="{{$id}}" class="item-layout item-list-layout-6 position-relative {{$itemMarginB}}">
   <x-isite::edit-link link="{{$editLink}}{{$item->id}}" :item="$item" tooltip="{{$tooltipEditLink}}"/>
-  <div class="card-item">
+  <div class="card-item @if($imageOpacityHover) opacity-with-hover @else opacity-without-hover @endif">
     <div class="row align-items-center">
 
       @if(isset($item->type) && $item->type=="video")
@@ -136,13 +136,38 @@
         left: {{$imagePadding}}px;
         bottom: {{$imagePadding}}px;
         right: {{$imagePadding}}px;
+        @if((!$imageOpacityHover) && $withImageOpacity && ($imageOpacityColor=='opacity-custom'))
+            content: "";
+            position: absolute;
+            background: {{$imageOpacityCustom}};
+        @endif
     }
-
+    @if($imageOpacityHover && $withImageOpacity)
+    #{{$id}} .card-item:hover .item-image picture {
+         position: relative;
+         display: block !important;
+         overflow: hidden;
+         transition: background 0.5s ease-out;
+     }
+    #{{$id}} .card-item:hover .item-image picture:before {
+         border-radius: {{$imageRadio}};
+         top: {{$imagePadding}}px;
+         left: {{$imagePadding}}px;
+         bottom: {{$imagePadding}}px;
+         right: {{$imagePadding}}px;
+         @if($imageOpacityColor=='opacity-custom')
+         content: "";
+         position: absolute;
+         background: {{$imageOpacityCustom}};
+         @endif
+    }
+    @endif
    
     #{{$id}} .item-image picture {
         display: block !important;
         padding: {{$imagePicturePadding}}px;
         text-align: {{$imageAlign}};
+        position: relative;
     }
     
     #{{$id}} .img-style {
@@ -159,7 +184,10 @@
 
     #{{$id}} .card-item {
         background-color: {{$itemBackgroundColor}};
-        padding: {{$contentPadding}}px;
+        padding-left: {{$contentPaddingL}}px;
+        padding-right: {{$contentPaddingR}}px;
+        padding-top: {{$contentPaddingT}}px;
+        padding-bottom: {{$contentPaddingB}}px;
         border-width: {{$contentBorder}}px;
         border-style: solid;
         border-color: {{$contentBorderColor}};
@@ -168,7 +196,7 @@
         box-shadow: {{$contentBorderShadows}};
         @endif
         @if($contentBorderShadows)
-             margin: 10px 0;
+             margin: 5px;
         @endif
     }
     #{{$id}} .card-item:hover {

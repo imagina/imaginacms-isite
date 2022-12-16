@@ -181,6 +181,8 @@
         responsive: {!! $responsive !!},
         stagePadding: {!!$stagePadding!!},
         autoplayTimeout: {{$autoplayTimeout}},
+        mouseDrag: {!! $mouseDrag ? 'true' : 'false' !!},
+        touchDrag: {!! $touchDrag ? 'true' : 'false' !!},
         {!! !empty($navText) ? 'navText: '.$navText."," : "" !!}
       });
 
