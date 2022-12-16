@@ -57,7 +57,8 @@ class Social extends Component
 
     $settingRepository = app('Modules\Setting\Repositories\SettingRepository');
     $settingSocial = $settingRepository->findByName('isite::socialNetworks');
-    $createdAtSetting = $settingSocial->getAttributes()['created_at'];
+
+    $createdAtSetting = (isset($settingSocial) && !empty($settingSocial)) ? $settingSocial->getAttributes()['created_at'] : now();
     
     foreach ($items as $key => $value) {
       if ($createdAtSetting > '2022-08-29 00:00:00') {
