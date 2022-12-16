@@ -22,10 +22,12 @@
 
 <style>
 
-    .component-map .title-section {
+    @if(!empty($colorTitleSection) && !empty($fontSizeTitleSection))
+      .component-map .title-section {
         color: {{$colorTitleSection}};
         font-size: {{$fontSizeTitleSection}}px;
     }
+  @endif
 
 </style>
 
