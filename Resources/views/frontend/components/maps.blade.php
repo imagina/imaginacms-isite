@@ -1,4 +1,4 @@
-<div class="component-map map-{{$settingMap}} col-12">
+<div class="component-map map-{{$settingMap}}">
   @if($withTitle)
     <div class="title-section {{$alignTitle}}">
       {{$title}}
@@ -22,10 +22,12 @@
 
 <style>
 
-    .component-map .title-section {
+    @if(!empty($colorTitleSection) && !empty($fontSizeTitleSection))
+      .component-map .title-section {
         color: {{$colorTitleSection}};
         font-size: {{$fontSizeTitleSection}}px;
     }
+  @endif
 
 </style>
 
