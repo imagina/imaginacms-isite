@@ -941,8 +941,18 @@ return [
       'newValueMode' => 'add-unique'
     ]
   ],
+  'locationName' => [
+    'name' => 'isite::locationName',
+    'value' => null,
+    'type' => 'input',
+    'groupName' => 'maps',
+    'groupTitle' => 'isite::common.maps.groupMaps',
+    'props' => [
+      'label' => 'isite::common.maps.labelLocationName'
+    ],
+  ],
   'locationSite' => [
-    'value' => '',
+    'value' => '{"title" : "Ubicación", "lat" : 4.646920449476433, "lng" : -74.07857977257274}',
     'name' => 'isite::locationSite',
     'type' => 'positionMarkerMap',
     'colClass' => "col-12",

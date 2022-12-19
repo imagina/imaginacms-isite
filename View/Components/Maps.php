@@ -42,25 +42,29 @@ class Maps extends Component
   public $fontSizeTitle;
   public $colorTitle;
   public $colorTitleByClass;
+  public $colorTitleSection;
+  public $fontSizeTitleSection;
 
   /**
    * Create a new component instance.
    *
    * @return void
    */
-  public function __construct($lat = '11111111', $lng = '22222222', $locationName = 'Ubicacion', $title = 'Mapa',
+  public function __construct($lat = null, $lng = null, $locationName = null, $title = 'Mapa',
                               $zoom = 16, $classes = '', $id = 1, $mapId = null, $inModal = false, $mapWidth = '100%',
                               $mapHeight = '314px', $layout = 'map-layout-1', $locations = [], $view = null,
                               $imageIcon = null, $mapStyle = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
                               $maxZoom = 20, $minZoom = 2, $markerMapClasses = 'marker-map-class', $iconHeight = 42,
                               $iconWidth = 28, $mapEvent = null, $iconMarginLeft = 11, $iconMarginTop = 47,
                               $inputLocation = null, $withTitle = false, $alignTitle = 'text-left',
-                              $fontSizeTitle = '14', $colorTitle = null, $colorTitleByClass = 'text-primary'
+                              $fontSizeTitle = '14', $colorTitle = null, $colorTitleByClass = 'text-primary',
+                              $colorTitleSection = "#000000", $fontSizeTitleSection = "24"
   )
   {
-    $this->lat = $lat;
-    $this->lng = $lng;
-    $this->locationName = $locationName;
+    $defaultMap = json_decode(setting('isite::locationSite'));
+    $this->lat = $lat ?? $defaultMap->lat;
+    $this->lng = $lng ?? $defaultMap->lng;
+    $this->locationName = $locationName ?? setting('isite::locationName') ?? setting('core::site-name');
     $this->title = $title;
     $this->zoom = $zoom;
     $this->classes = $classes;
@@ -74,7 +78,7 @@ class Maps extends Component
     $this->view = "isite::frontend.components.maps";
     $this->mapStyle = $mapStyle;
     $this->inputLocation = $inputLocation;
-    if (!is_null($inputLocation)){
+    if (!is_null($inputLocation)) {
       $this->lat = $this->inputLocation['lat'];
       $this->lng = $this->inputLocation['lng'];
     }
@@ -84,7 +88,8 @@ class Maps extends Component
     $this->colorTitle = $colorTitle;
     $this->colorTitleByClass = $colorTitleByClass;
     $locationsMap = [];
-    array_push($locationsMap, ['lat' => $this->lat, 'lng' => $this->lng, 'title' => $locationName, 'id' => $id]);
+    array_push($locationsMap, ['lat' => $this->lat, 'lng' => $this->lng, 'title' => $this->locationName,
+      'id' => $id]);
     foreach ($locations as $key => $location) {
       array_push($locationsMap, [
         'lat' => $location["lat"],
@@ -114,6 +119,8 @@ class Maps extends Component
     $this->iconMarginLeft = $iconMarginLeft;
     $this->iconMarginTop = $iconMarginTop;
     $this->mapEvent = $mapEvent;
+    $this->colorTitleSection = $colorTitleSection;
+    $this->fontSizeTitleSection = $fontSizeTitleSection;
   }
 
   /**

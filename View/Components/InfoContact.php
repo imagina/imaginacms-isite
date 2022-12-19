@@ -54,6 +54,18 @@ class InfoContact extends Component
   public $fontSizeIcons;
   public $orderInfo;
   public $contentBorder;
+  public $contentBorderColor;
+  public $titlePaddingY;
+  public $titlePaddingX;
+  public $subtitlePaddingY;
+  public $subtitlePaddingX;
+  public $iconsPaddingY;
+  public $iconsPaddingX;
+  public $iconsMarginY;
+  public $iconsMarginX;
+  public $titleSectionColorByClass;
+  public $subtitleSectionColorByClass;
+  public $titleContactColorByClass;
 
   /**
    * Create a new component instance.
@@ -72,11 +84,15 @@ class InfoContact extends Component
                               $withIconAddress = true, $withIconEmail = true, $contentBorderType = '',
                               $contentPaddingY = '', $contentPaddingX = '', $contentMarginY = '', $contentMarginX = '',
                               $alignSocialNetwork = 'justify-content-left', $layoutSocialNetwork = 'social-layout-1',
-                              $colorTitleSection = '000000FF', $fontSizeTitleSection = '16',
+                              $colorTitleSection = '000000FF', $fontSizeTitleSection = '24',
                               $colorTitleContact = '000000FF', $fontSizeTitleContact = '16', $colorIcons = '000000FF',
                               $fontSizeIcons = '16', $orderInfo = [], $contentBorder = '1',
                               $layout = 'info-contact-layout-1', $colorSubtitleSection = '000000FF',
-                              $fontSizeSubtitleSection = '16'
+                              $fontSizeSubtitleSection = '16', $contentBorderColor = '000000FF', $titlePaddingY = '',
+                              $titlePaddingX = '', $subtitlePaddingY = '', $subtitlePaddingX = '', $iconsPaddingY = '',
+                              $iconsPaddingX = '', $iconsMarginY = '', $iconsMarginX = '',
+                              $titleSectionColorByClass = 'text-primary', $subtitleSectionColorByClass = 'text-dark',
+                              $titleContactColorByClass = 'text-primary'
   )
   {
     $this->withPhone = $withPhone;
@@ -126,7 +142,19 @@ class InfoContact extends Component
     $this->fontSizeSubtitleSection = $fontSizeSubtitleSection;
     $this->contentBorder = $contentBorder;
     $this->layout = $layout;
-    $this->view = "isite::frontend.components.info-contact.layouts.".$this->layout.".index";
+    $this->view = "isite::frontend.components.info-contact.layouts." . $this->layout . ".index";
+    $this->contentBorderColor = $contentBorderColor;
+    $this->titlePaddingY = $titlePaddingY;
+    $this->titlePaddingX = $titlePaddingX;
+    $this->subtitlePaddingY = $subtitlePaddingY;
+    $this->subtitlePaddingX = $subtitlePaddingX;
+    $this->iconsPaddingY = $iconsPaddingY;
+    $this->iconsPaddingX = $iconsPaddingX;
+    $this->iconsMarginY = $iconsMarginY;
+    $this->iconsMarginX = $iconsMarginX;
+    $this->titleSectionColorByClass = $titleSectionColorByClass;
+    $this->subtitleSectionColorByClass = $subtitleSectionColorByClass;
+    $this->titleContactColorByClass = $titleContactColorByClass;
   }
 
   /**
