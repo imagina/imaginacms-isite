@@ -429,7 +429,7 @@ class TenantService
     
   }
   
-  public function reseedPageAndMenu($data)
+  public function reseedPageAndMenu($data=null)
   {
     
     \Log::info("----------------------------------------------------------");
@@ -603,6 +603,42 @@ class TenantService
     \File::copyDirectory($source, $to);
 
     \Log::info("========== Clone Tenancy MEDIA FINISHED ==========");
+  }
+
+  public function updateTenant($data){
+
+    \Log::info("----------------------------------------------------------");
+    \Log::info("Update Organization...");
+    \Log::info("----------------------------------------------------------");
+
+    if(isset($data['tenantId'])){
+      $this->proccessUpdateTenant($data['tenantId']);
+    }else{
+      //TODO
+      //buscar todos los tenants activos 
+      //Actualizalos (foreach) llamando al mismo metodo proccessUpdateTenant($organizationId)
+    }
+
+  }
+
+  public function proccessUpdateTenant($organizationId){
+
+    \Log::info("Proccess Update - OrganizationId: ".$organizationId);
+    
+    tenancy()->initialize($organizationId);
+
+    //All migrations
+    \Artisan::call('module:migrate');
+    \Log::info(\Artisan::output());
+    
+    //All seeder
+    \Artisan::call('module:seed');
+    \Log::info(\Artisan::output());
+  
+    $this->reseedPageAndMenu();
+
+    \Log::info("Proccess Update - FINISHED - OrganizationId:".$organizationId);
+
   }
 
 }
