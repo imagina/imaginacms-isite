@@ -80,7 +80,7 @@ return [
       ],
     ]
   ],
-
+  
   /*Layout Posts itemTabs - Index */
   'layoutIndexItemTabs' => [
     'default' => 'three',
@@ -254,22 +254,12 @@ return [
       'withCategory'=>false,
       'withSummary'=>false,
       'withCreatedDate'=>false,
-      'layout'=>'item-list-layout-6'
+      'layout'=>'item-list-layout-6'   
     ]
 
-  ],
-
-
-
-  /*
-   |--------------------------------------------------------------------------
-   | Define format money
-   |--------------------------------------------------------------------------
-   */
-  'siteFormatmoney' => [
-    'decimals' => 0,
-    'dec_point' => '',
-    'housands_sep' => '.'
   ]
+
+  
+
 
 ];

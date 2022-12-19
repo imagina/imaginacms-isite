@@ -7,7 +7,7 @@
 	  			<i class="fa angle float-right" aria-hidden="true"></i>
 	  			{{$title}}
 	  		</h5>
-
+	  		
 		</a>
 	</div>
 
@@ -16,7 +16,7 @@
 		@include('isite::frontend.partials.preloader')
 
 		<div class="collapse multi-collapse {{$isExpanded ? 'show' : ''}} mb-2" id="collapse-{{$name}}">
-
+			
 			<input type="text" id="amount-{{$name}}" class="amount border-0 text-primary font-weight-bold mb-2" readonly>
 
 			<input type="hidden" id="valueMin" name="valueMin" wire:model="valueMin">
@@ -24,7 +24,7 @@
 
 			<input type="hidden" id="selValueMin-{{$name}}" name="selValueMin" wire:model="selValueMin">
 			<input type="hidden" id="selValueMax-{{$name}}" name="selValueMax" wire:model="selValueMax">
-
+			
 			<div class="mx-3">
 				<div id="slider-range-{{$name}}" wire:ignore></div>
 
@@ -68,16 +68,16 @@
 		      	step: step,
 		      	values: [selNewPriceMin, selNewPriceMax],
 		      	slide: function( event, ui ) {
-		        	$( "#amount-{{$name}}" ).val( "$" + ui.values[ 0 ].toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&.").toString().slice(0,-3) + " - $" + ui.values[ 1 ].toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&.").toString().slice(0,-3) );
+		        	$( "#amount-{{$name}}" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
 
 		        	$( "#selValueMin-{{$name}}" ).val(ui.values[ 0 ]);
 		        	$( "#selValueMax-{{$name}}" ).val(ui.values[ 1 ]);
 		      	}
 		    });
 
-		    $( "#amount-{{$name}}" ).val( "$" + $( "#slider-range-{{$name}}" ).slider( "values", 0 ).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&.").toString().slice(0,-3) +
-	      " - $" + $( "#slider-range-{{$name}}" ).slider( "values", 1 ).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&.").toString().slice(0,-3) );
-
+		    $( "#amount-{{$name}}" ).val( "$" + $( "#slider-range-{{$name}}" ).slider( "values", 0 ) +
+	      " - $" + $( "#slider-range-{{$name}}" ).slider( "values", 1 ) );
+			
 		}
 
 		/*
@@ -87,7 +87,7 @@
 		var defPriceMax = {{$valueMax}};
 
 		createSlider(defPriceMin,defPriceMax,0,1,1000)
-
+		
 
 	    /*
 		* Listener Filter Prices Update

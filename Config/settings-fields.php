@@ -811,7 +811,7 @@ return [
 
   //Tenant route alias
   'tenantRouteAlias' => [
-    'value' => "",
+    'value' => "homepage",
     'name' => 'isite::tenantRouteAlias',
     "onlySuperAdmin" => true,
     'type' => 'input',

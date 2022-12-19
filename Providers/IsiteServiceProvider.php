@@ -9,6 +9,7 @@ use Modules\Core\Traits\CanPublishConfiguration;
 use Modules\Core\Events\BuildingSidebar;
 use Modules\Core\Events\LoadingBackendTranslations;
 use Modules\Isite\Console\GenerateSitemapCommand;
+use Modules\Isite\Console\TenantModuleMigrateCommand;
 use Modules\Isite\Events\Handlers\RegisterIsiteSidebar;
 use Modules\Isite\Http\Middleware\CaptchaMiddleware;
 use Illuminate\Support\Facades\Blade;
@@ -74,10 +75,10 @@ class IsiteServiceProvider extends ServiceProvider
     $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'deprecated-settings'), "asgard.isite.deprecated-settings");
     $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'cmsPages'), "asgard.isite.cmsPages");
     $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'cmsSidebar'), "asgard.isite.cmsSidebar");
+    //$this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'standardValuesForBlocksAttributes'), "asgard.isite.standardValuesForBlocksAttributes");
     $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'blocks'), "asgard.isite.blocks");
-    $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
-
+  
     $app = $this->app;
 
     $this->app['validator']->extend('icaptcha', function ($attribute, $value) use ($app) {
@@ -198,6 +199,18 @@ class IsiteServiceProvider extends ServiceProvider
                 return new \Modules\Isite\Repositories\Cache\CacheTypeableDecorator($repository);
             }
         );
+        $this->app->bind(
+            'Modules\Isite\Repositories\ModuleRepository',
+            function () {
+                $repository = new \Modules\Isite\Repositories\Eloquent\EloquentModuleRepository(new \Modules\Isite\Entities\Module());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Isite\Repositories\Cache\CacheModuleDecorator($repository);
+            }
+        );
 // add bindings
 
 
@@ -257,6 +270,7 @@ class IsiteServiceProvider extends ServiceProvider
   {
     $this->commands([
       GenerateSitemapCommand::class,
+      TenantModuleMigrateCommand::class
     ]);
   }
 
