@@ -290,6 +290,11 @@
          padding-top: {{$contentPaddingT}}px;
          padding-bottom: {{$contentPaddingB}}px;
     }
+    @media (max-width: 575.98px) {
+        #{{$id}} .image-overlay {
+            position: relative;
+        }
+    }
 </style>
 </div>
 
