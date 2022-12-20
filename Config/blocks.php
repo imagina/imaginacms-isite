@@ -996,6 +996,15 @@ return [
               "options" => $vAttributes["imageAspect"]
             ]
           ],
+          "imageAspectMobile" => [
+            "name" => "imageAspectMobile",
+            "value" => "1/1",
+            "type" => "select",
+            "props" => [
+              "label" => "Aspect Ratio Mobile",
+              "options" => $vAttributes["imageAspect"]
+            ]
+          ],
           "imageObject" => [
             "name" => "imageObject",
             "value" => "cover",
