@@ -22,7 +22,7 @@ return [
           ],
           "container" => [
             "name" => "container",
-            "value" => "container-fluid",
+            "value" => "",
             "type" => "select",
             "props" => [
               "label" => "Tipo de contenedor",
@@ -172,7 +172,7 @@ return [
             "props" => [
               "label" => "Bloque de Estilos",
               'type' => 'textarea',
-              'rows' => 8,
+              'rows' => 10,
             ]
           ],
         ]
@@ -201,11 +201,35 @@ return [
               ]
             ]
           ],
-          "contentPadding" => [
-            "name" => "contentPadding",
+          "contentPaddingL" => [
+            "name" => "contentPaddingL",
             "type" => "input",
             "props" => [
-              "label" => "Espacio Externo",
+              "label" => "(Izq) Espacio Externo",
+              "type" => "number"
+            ]
+          ],
+          "contentPaddingR" => [
+            "name" => "contentPaddingR",
+            "type" => "input",
+            "props" => [
+              "label" => "(Der) Espacio Externo",
+              "type" => "number"
+            ]
+          ],
+          "contentPaddingT" => [
+            "name" => "contentPaddingT",
+            "type" => "input",
+            "props" => [
+              "label" => "(Arriba) Espacio Externo",
+              "type" => "number"
+            ]
+          ],
+          "contentPaddingB" => [
+            "name" => "contentPaddingB",
+            "type" => "input",
+            "props" => [
+              "label" => "(Abajo) Espacio Externo",
               "type" => "number"
             ]
           ],
@@ -382,6 +406,14 @@ return [
               "label" => "Ancho de Columna",
             ]
           ],
+          "contentBackground" => [
+            "name" => "contentBackground",
+            "columns" => "col-lg-12",
+            "type" => "input",
+            "props" => [
+              "label" => "Color del contenedor",
+            ]
+          ]
         ],
       ],
       "title" => [
@@ -813,7 +845,7 @@ return [
           ],
           "buttonLayout" => [
             "name" => "buttonLayout",
-            "value" => "rounded-pill",
+            "value" => "",
             "type" => "select",
             "props" => [
               "label" => "Estilo de Botones",
@@ -894,7 +926,6 @@ return [
           ],
           "viewMoreButtonLabel" => [
             "name" => "viewMoreButtonLabel",
-            "value" => " ",
             "type" => "input",
             "props" => [
               "label" => "Texto del botón",
@@ -1081,7 +1112,23 @@ return [
               "label" => "Dirección de Opacidad",
               "options" => $vAttributes["opacityDirection"]
             ]
-          ]
+          ],
+          "imageOpacityCustom" => [
+            "name" => "imageOpacityCustom",
+            "type" => "input",
+            "props" => [
+              "label" => "Opacidad Custom"
+            ]
+          ],
+          "imageOpacityHover" => [
+            "name" => "imageOpacityHover",
+            "value" => "0",
+            "type" => "select",
+            "props" => [
+              "label" => "Opacidad en Hover",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
         ]
       ]
     ]
@@ -1218,7 +1265,25 @@ return [
             "props" => [
               "label" => "Responsive"
             ]
-          ]
+          ],
+          "mouseDrag" => [
+            "name" => "mouseDrag",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Arrastre de ratón",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
+          "touchDrag" => [
+            "name" => "touchDrag",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Arrastre por toque",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
         ]
       ],
       "navydots" => [
@@ -1722,7 +1787,6 @@ return [
               "label" => "Espacio entre columnas"
             ]
           ],
-
           "orderClasses" => [
             "name" => "orderClasses",
             "value" => ["video" => "order-0", "image" => "order-1", "title" => "order-2", "subtitle" => "order-3", "summary" => "order-4", "buttom" => "order-5"],
@@ -1785,7 +1849,6 @@ return [
               "label" => "Tamaño Fuente (Resumen)"
             ]
           ],
-
         ]
       ],
       "media" => [
@@ -1898,7 +1961,7 @@ return [
           ],
           "buttonLayout" => [
             "name" => "buttonLayout",
-            "value" => "rounded-pill",
+            "value" => "",
             "type" => "select",
             "props" => [
               "label" => "Estilo de Botones",
