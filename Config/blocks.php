@@ -22,7 +22,7 @@ return [
                     ],
                     "container" => [
                         "name" => "container",
-                        "value" => "",
+                        "value" => "overflow-hidden",
                         "type" => "select",
                         "props" => [
                             "label" => "Tipo de contenedor",
