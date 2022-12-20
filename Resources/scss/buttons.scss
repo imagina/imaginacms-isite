@@ -155,3 +155,35 @@
 .button-base span,.button-base i {
   pointer-events: none;
 }
+
+.button-white {
+  color: #444;
+  background-color: #ffffff;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ffffff;
+  &:hover, &:active, &:focus,
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active,
+  .show > &.dropdown-toggle {
+    color: #444;
+    background-color: var(--light);
+    border-color: var(--light);
+  }
+}
+
+.button-outline-white {
+  color: #ffffff;
+  border-color: #ffffff;
+  background-color: transparent;
+  border-width: 1px;
+  border-style: solid;
+  &:hover, &:active, &:focus,
+  &:not(:disabled):not(.disabled):active,
+  &:not(:disabled):not(.disabled).active,
+  .show > &.dropdown-toggle {
+    background-color: #ffffff;;
+    border-color: #ffffff;
+    color: #444;
+  }
+}
