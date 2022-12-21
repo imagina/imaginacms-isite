@@ -151,6 +151,7 @@ class ItemList extends Component
   public $containerJustify;
   public $containerAlign;
   public $containerColumn;
+  public $isMobile;
 
   public $contentPaddingL;
   public $contentPaddingR;
@@ -224,6 +225,7 @@ class ItemList extends Component
                               $itemListLayout = null,
                               $positionNumber = null,
                               $imageAspect = "1/1",
+                              $imageAspectMobile = null,
                               $imageObject = "cover",
                               $imageBorderRadio = 0,
                               $imageBorderRadioType = "1",
@@ -238,6 +240,7 @@ class ItemList extends Component
                               $withTitle = true,
                               $titleAlign = "",
                               $titleTextSize = "20",
+                              $titleTextSizeMobile = null,
                               $titleTextWeight = "font-weight-bold",
                               $titleTextTransform = "",
                               $summaryAlign = "text-left",
@@ -329,7 +332,17 @@ class ItemList extends Component
                               $imageOpacityHover = false
   )
   {
-
+    $this->isMobile = isMobileDevice();
+    if ($this->isMobile && !is_null($imageAspectMobile)) {
+      $this->imageAspect = $imageAspectMobile;
+    } else {
+      $this->imageAspect = $imageAspect;
+    }
+    if ($this->isMobile && !is_null($titleTextSizeMobile)) {
+      $this->titleTextSize = $titleTextSizeMobile;
+    } else {
+      $this->titleTextSize = $titleTextSize;
+    }
     $this->item = $item;
     $this->mediaImage = $mediaImage;
     $this->positionNumber = $positionNumber;
@@ -348,7 +361,6 @@ class ItemList extends Component
     $this->tooltipEditLink = $tooltipEditLink;
     $this->layout = $layout;
     $this->itemListLayout = $itemListLayout;
-    $this->imageAspect = $imageAspect;
     $this->imageObject = $imageObject;
     $this->imageBorderRadio = $imageBorderRadio;
     $this->imageBorderStyle = $imageBorderStyle;
@@ -362,7 +374,6 @@ class ItemList extends Component
 
     $this->withTitle = $withTitle;
     $this->titleAlign = $titleAlign;
-    $this->titleTextSize = $titleTextSize;
     $this->titleTextWeight = $titleTextWeight;
     $this->titleTextTransform = $titleTextTransform;
 

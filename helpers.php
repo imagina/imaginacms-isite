@@ -8,13 +8,13 @@ if (!function_exists('alternate')) {
     $alternate = [];
     $supportedLocales = config("laravellocalization.supportedLocales");
 
-    if(count($supportedLocales) == 1) return $alternate;
+    if (count($supportedLocales) == 1) return $alternate;
 
     $translations = $model->getTranslationsArray() ?? [];
 
     foreach ($translations as $locale => $data) {
-      if(isset($data['slug'])){
-        $href = \URL::to('/'.$locale.'/'.$data['slug']);
+      if (isset($data['slug'])) {
+        $href = \URL::to('/' . $locale . '/' . $data['slug']);
         $alternate[$locale] = [
           "slug" => $data['slug'],
           "link" => "<link rel='alternate' hreflang='$locale' href='$href'>"
@@ -58,7 +58,7 @@ if (!function_exists('getEditLink')) {
         $editLink = "/iadmin/#/blog/categories/index?edit=";
         $tooltipEditLink = trans("isite::common.editLink.tooltipCategory");
         break;
-      case 'Modules\Slider\Repositories\SlideRepository'||'Modules\Slider\Repositories\SlideApiRepository':
+      case 'Modules\Slider\Repositories\SlideRepository' || 'Modules\Slider\Repositories\SlideApiRepository':
         $editLink = "/iadmin/#/slider/show/";
         $tooltipEditLink = trans("isite::common.editLink.tooltipSlide");
         break;
@@ -70,22 +70,22 @@ if (!function_exists('getEditLink')) {
         $editLink = "/iadmin/#/iplaces/categories/index?edit=";
         $tooltipEditLink = trans("isite::common.editLink.tooltipCategory");
         break;
-        default:
-          switch ($componentName) {
-            case 'logo':
-              $editLink = "/iadmin/#/iplaces/places/index?edit=";
-              $tooltipEditLink = trans("isite::common.editLink.tooltipLogo");
-              break;
+      default:
+        switch ($componentName) {
+          case 'logo':
+            $editLink = "/iadmin/#/iplaces/places/index?edit=";
+            $tooltipEditLink = trans("isite::common.editLink.tooltipLogo");
+            break;
 
-            default:
-              $editLink = "/iadmin/#";
-              $tooltipEditLink = trans("isite::common.editLink.tooltip");
-              breaK;
-          }
+          default:
+            $editLink = "/iadmin/#";
+            $tooltipEditLink = trans("isite::common.editLink.tooltip");
+            break;
+        }
         break;
     }
 
-    return [ $editLink, $tooltipEditLink];
+    return [$editLink, $tooltipEditLink];
   }
 }
 
@@ -144,5 +144,14 @@ if (!function_exists('generatePassword')) {
     }
     $dash_str .= $password;
     return $dash_str;
+  }
+}
+
+if (!function_exists('isMobileDevice')) {
+  function isMobileDevice()
+  {
+    return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo
+|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i"
+      , $_SERVER["HTTP_USER_AGENT"]);
   }
 }
