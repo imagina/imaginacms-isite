@@ -240,6 +240,7 @@ class ItemList extends Component
                               $withTitle = true,
                               $titleAlign = "",
                               $titleTextSize = "20",
+                              $titleTextSizeMobile = null,
                               $titleTextWeight = "font-weight-bold",
                               $titleTextTransform = "",
                               $summaryAlign = "text-left",
@@ -337,6 +338,11 @@ class ItemList extends Component
     } else {
       $this->imageAspect = $imageAspect;
     }
+    if ($this->isMobile && !is_null($titleTextSizeMobile)) {
+      $this->titleTextSize = $titleTextSizeMobile;
+    } else {
+      $this->titleTextSize = $titleTextSize;
+    }
     $this->item = $item;
     $this->mediaImage = $mediaImage;
     $this->positionNumber = $positionNumber;
@@ -368,7 +374,6 @@ class ItemList extends Component
 
     $this->withTitle = $withTitle;
     $this->titleAlign = $titleAlign;
-    $this->titleTextSize = $titleTextSize;
     $this->titleTextWeight = $titleTextWeight;
     $this->titleTextTransform = $titleTextTransform;
 
