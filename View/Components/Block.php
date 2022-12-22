@@ -213,6 +213,17 @@ class Block extends Component
             $this->componentConfig["attributes"]["moduleName"] = $entityTypeExploded[1];
             $this->componentConfig["attributes"]["entityName"] = $entityTypeExploded[3];
             break;
+          case 'isite::lists':
+            $this->componentConfig["attributes"]["repository"] = $entity->type;
+            $this->componentConfig["attributes"]["params"] = json_decode(json_encode($entity->params), true);
+            // Replace the itemComponentAttributes for IcommerceItem
+            if ($entity->type == "Modules\Icommerce\Repositories\ProductRepository") {
+              if (isset($this->componentConfig["attributes"]["productItemComponentAttributes"])) {
+                  $this->componentConfig["attributes"]["itemComponentAttributes"] = $this->componentConfig["attributes"]["productItemComponentAttributes"];
+                  unset($this->componentConfig["attributes"]["productItemComponentAttributes"]);
+              }
+            }
+            break;
         }
       }
     }

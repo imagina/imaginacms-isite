@@ -2757,4 +2757,256 @@ return [
       ]
     ]
   ],
+  "lists" => [
+        "title" => "Listas",
+        "systemName" => "isite::lists",
+        "nameSpace" => "Modules\Isite\View\Components\Lists",
+        "content" => [
+            [
+                "label" => "Post",
+                "value" => "Modules\Iblog\Repositories\PostRepository"
+            ],
+            [
+                "label" => "Categoria de Post",
+                "value" => "Modules\Iblog\Repositories\CategoryRepository"
+            ],
+            [
+                "label" => "Categoria de Productos",
+                "value" => "Modules\Icommerce\Repositories\CategoryRepository"
+            ],
+            [
+                "label" => "Productos",
+                "value" => "Modules\Icommerce\Repositories\ProductRepository"
+            ],
+        ],
+        "childBlocks" => [
+            "itemComponentAttributes" => "isite::item-list",
+            "productItemComponentAttributes" => "icommerce::components.product-list-item"
+        ],
+        "attributes" => [
+            "general" => [
+                "title" => "General",
+                "fields" => [
+                    "id" => [
+                        "name" => "id",
+                        "type" => "input",
+                        "props" => [
+                            "label" => "Identificador",
+                        ]
+                    ],
+                    "layout" => [
+                        "name" => "layout",
+                        "value" => "lists-layout-5",
+                        "type" => "select",
+                        "props" => [
+                            "label" => "layout",
+                            "options" => [
+                                ["label" => "lists-layout-5", "value" => "lists-layout-5"],
+                            ]
+                        ]
+                    ],
+                    "class" => [
+                        "name" => "class",
+                        "value" => "",
+                        "type" => "input",
+                        "columns" => "col-12",
+                        "props" => [
+                            "label" => "Clases General",
+                        ]
+                    ],
+                    "columnLeft" => [
+                        "name" => "columnLeft",
+                        "value" => "col-6 col-md-4 col-lg-3",
+                        "type" => "input",
+                        "columns" => "col-12",
+                        "props" => [
+                            "label" => "Columnas",
+                        ]
+                    ],
+                ]
+            ],
+            "texto" => [
+                "title" => "Texto (Titulo y Subtitulo)",
+                "fields" => [
+                    "textPosition" => [
+                        "name" => "textPosition",
+                        "value" => "2",
+                        "columns" => "col-12",
+                        "type" => "select",
+                        "props" => [
+                            "label" => "Posición",
+                            "options" => [
+                                ["label" => "Solo título", "value" => "1"],
+                                ["label" => "Título con descripción abajo", "value" => "2"],
+                                ["label" => "Título abajo con descripción arriba", "value" => "3"]
+                            ]
+                        ]
+                    ],
+                    "textAlign" => [
+                        "name" => "textAlign",
+                        "value" => "text-left",
+                        "type" => "select",
+                        "props" => [
+                            "label" => "Alineación",
+                            "options" => $vAttributes["align"]
+                        ]
+                    ],
+                    "titleLineMarginY" => [
+                        "name" => "titleLineMarginY",
+                        "value" => "d-none",
+                        "type" => "input",
+                        "props" => [
+                            "label" => "Linea debajo del texto",
+                        ]
+                    ],
+                    "title" => [
+                        "name" => "title",
+                        "type" => "input",
+                        "columns" => "col-12",
+                        "props" => [
+                            "label" => "Titulo",
+                        ]
+                    ],
+                    "titleClasses" => [
+                        "name" => "titleClasses",
+                        "value" => "",
+                        "type" => "input",
+                        "columns" => "col-12",
+                        "props" => [
+                            "label" => "Clases (Titulo)",
+                        ]
+                    ],
+                    "titleSize" => [
+                        "name" => "titleSize",
+                        "type" => "input",
+                        "props" => [
+                            "label" => "Tamaño Fuente (Titulo)",
+                            "type" => "number"
+                        ]
+                    ],
+                    "titleTransform" => [
+                        "name" => "titleTransform",
+                        "type" => "select",
+                        "props" => [
+                            "label" => "Transformar (Titulo)",
+                            "options" => $vAttributes["textTransform"]
+                        ]
+                    ],
+                    "titleColor" => [
+                        "name" => "titleColor",
+                        "type" => "select",
+                        "props" => [
+                            "label" => "Color (Titulo)",
+                            "options" => $vAttributes["textColors"]
+                        ]
+                    ],
+                    "titleWeight" => [
+                        "name" => "titleWeight",
+                        "value" => "font-weight-normal",
+                        "type" => "select",
+                        "props" => [
+                            "label" => "Negrita (Titulo)",
+                            "options" => $vAttributes["textWeight"]
+                        ]
+                    ],
+                    "titleLetterSpacing" => [
+                        "name" => "titleLetterSpacing",
+                        "type" => "input",
+                        "props" => [
+                            "label" => "Espacio entre letras (Titulo)",
+                            "type" => "number"
+                        ]
+                    ],
+                    "titleVineta" => [
+                        "name" => "titleVineta",
+                        "type" => "input",
+                        "props" => [
+                            "label" => "Icon (Titulo)"
+                        ]
+                    ],
+                    "titleUrl" => [
+                        "name" => "titleUrl",
+                        "type" => "input",
+                        "props" => [
+                            "label" => "Url (Titulo)"
+                        ]
+                    ],
+                    "titleTarget" => [
+                        "name" => "titleTarget",
+                        "value" => "_self",
+                        "type" => "select",
+                        "props" => [
+                            "label" => "Target (Titulo)",
+                            "options" => $vAttributes["target"]
+                        ]
+                    ],
+                    "titleVinetaColor" => [
+                        "name" => "titleVinetaColor",
+                        "type" => "select",
+                        "props" => [
+                            "label" => "Color icon (Titulo)",
+                            "options" => $vAttributes["textColors"]
+                        ]
+                    ],
+                    "subtitle" => [
+                        "name" => "subtitle",
+                        "type" => "input",
+                        "columns" => "col-12",
+                        "props" => [
+                            "label" => "Subtitulo",
+                        ]
+                    ],
+                    "subtitleClasses" => [
+                        "name" => "subtitleClasses",
+                        "value" => "",
+                        "type" => "input",
+                        "columns" => "col-12",
+                        "props" => [
+                            "label" => "Clases (Subtitulo)",
+                        ]
+                    ],
+                    "subtitleSize" => [
+                        "name" => "subtitleSize",
+                        "type" => "input",
+                        "props" => [
+                            "label" => "Tamaño Fuente (Subtitulo)",
+                            "type" => "number"
+                        ]
+                    ],
+                    "subtitleColor" => [
+                        "name" => "subtitleColor",
+                        "type" => "select",
+                        "props" => [
+                            "label" => "Color (Subtitulo)",
+                            "options" => $vAttributes["textColors"]
+                        ]
+                    ],
+                    "subtitleTransform" => [
+                        "name" => "subtitleTransform",
+                        "type" => "select",
+                        "props" => [
+                            "label" => "Transformar (Subtitulo)",
+                            "options" => $vAttributes["textTransform"]
+                        ]
+                    ],
+                    "subtitleWeight" => [
+                        "name" => "subtitleWeight",
+                        "type" => "select",
+                        "props" => [
+                            "label" => "Negrita (Subtitulo)",
+                            "options" => $vAttributes["textWeight"]
+                        ]
+                    ],
+                    "subtitleLetterSpacing" => [
+                        "name" => "subtitleLetterSpacing",
+                        "type" => "input",
+                        "props" => [
+                            "label" => "Espacio entre letras (Subtitulo)",
+                            "type" => "number"
+                        ]
+                    ],
+                ]
+            ]
+        ]
+    ],
 ];
