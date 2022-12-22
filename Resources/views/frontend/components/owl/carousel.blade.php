@@ -94,7 +94,7 @@
 
           @endif
 
-          <div class=" @if($navPosition!="center") row  py-3 @endif">
+          <div class="@if($navPosition!="center" || ($nav==false && $navPosition=="center")) row py-3 @endif">
             <div id="{{$id}}Carousel" class="owl-carousel owl-theme {{$dotsStyle}}">
               @php($x = 0) {{-- iterador de items --}}
               @php($j = 0) {{-- iterador de itemsBySlide --}}
