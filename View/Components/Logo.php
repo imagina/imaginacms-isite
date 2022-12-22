@@ -14,8 +14,6 @@ class Logo extends Component
   public $imgClasses;
   public $linkClasses;
   public $central;
-  public $moduleName;
-  public $settingName;
 
   /**
    * Create a new component instance.
@@ -30,9 +28,6 @@ class Logo extends Component
     $this->imgClasses = $imgClasses;
     $this->linkClasses = $linkClasses;
     $setting = Setting::where("name", $this->zone);
-    $this->settingName = $name;
-    $this->moduleName = "isite";
-
     
     if($central)
       $setting->withoutTenancy()

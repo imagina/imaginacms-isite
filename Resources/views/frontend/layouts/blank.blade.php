@@ -13,9 +13,16 @@
   @endif
   <link rel="shortcut icon" href="@setting('isite::favicon')">
   <link rel="canonical" href="{{canonical_url()}}"/>
-  {!! Theme::style('css/app.css?v='.setting('isite::appVersion')) !!}
+  
+  @if(isset(tenant()->id))
+    <link rel="stylesheet" as="style"  href="{{tenant()->url.'/themes/'.strtolower(setting('core::template', null, 'ImaginaTheme')).'/'.'css/app.css?v='.setting('isite::appVersion')}}" />
+    
+    <script src="{{tenant()->url.'/themes/'.strtolower(setting('core::template', null, 'ImaginaTheme')).'/'.'js/app.js?v='.setting('isite::appVersion')}}" ></script>
+  @else
+    {!! Theme::style('css/app.css?v='.setting('isite::appVersion')) !!}
 
-  {!! Theme::script('js/app.js?v='.setting('isite::appVersion')) !!}
+    {!! Theme::script('js/app.js?v='.setting('isite::appVersion')) !!}
+  @endif
 
   @stack('css-stack')
   @livewireStyles
@@ -35,9 +42,15 @@
   @yield('content')
 </div>
 
-
-{!! Theme::style('css/secondary.css?v='.setting('isite::appVersion'),["rel" => "preload", "as" => "style", "onload" => "this.onload=null;this.rel='stylesheet'"]) !!}
-{!! Theme::script('js/secondary.js?v='.setting('isite::appVersion'),["defer" => true]) !!}
+@if(isset(tenant()->id))
+  <link href="{{tenant()->url.'/themes/'.strtolower(setting('core::template', null, 'ImaginaTheme')).'/'.'css/secondary.css?v='.setting('isite::appVersion')}}" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  
+  <script src="{{tenant()->url.'/themes/'.strtolower(setting('core::template', null, 'ImaginaTheme')).'/'.'js/secondary.js?v='.setting('isite::appVersion')}}" defer="true"></script>
+@else
+  
+  {!! Theme::style('css/secondary.css?v='.setting('isite::appVersion'),["rel" => "preload", "as" => "style", "onload" => "this.onload=null;this.rel='stylesheet'"]) !!}
+  {!! Theme::script('js/secondary.js?v='.setting('isite::appVersion'),["defer" => true]) !!}
+@endif
 
 @livewireScripts
 <x-livewire-alert::scripts />

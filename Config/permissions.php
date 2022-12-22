@@ -76,6 +76,14 @@ return [
         'destroy' => 'isite::typeables.destroy resource',
         'restore' => 'isite::typeables.restore resource',
     ],
+    'isite.modules' => [
+        'manage' => 'isite::modules.manage resource',
+        'index' => 'isite::modules.list resource',
+        'create' => 'isite::modules.create resource',
+        'edit' => 'isite::modules.edit resource',
+        'destroy' => 'isite::modules.destroy resource',
+        'restore' => 'isite::modules.restore resource',
+    ],
 // append
 
 

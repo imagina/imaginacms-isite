@@ -28,9 +28,6 @@ class Select extends Component
   public $params;
   public $withTitle;
   public $withSubtitle;
-  public $getDataAfterSelected;
-  public $entityTitle;
-  public $showFirstOptionSelect;
   
   /*
   * Attributes
@@ -43,7 +40,7 @@ class Select extends Component
     */
   public function mount($title, $name, $status = true, $isExpanded = true, $type, $repository, $emitTo, $repoAction,
                         $repoAttribute, $listener, $repoMethod = 'getItemsBy', $layout = 'select-layout-1',
-                        $classes = 'col-12', $params = [], $isCollapsable = true, $withTitle = true, $withSubtitle = true, $getDataAfterSelected = false,$defaultSelectedSetting=null,$entityTitle=null, $showFirstOptionSelect=true)
+                        $classes = 'col-12', $params = [], $isCollapsable = true, $withTitle = true, $withSubtitle = true)
   {
     
     $this->title = trans($title);
@@ -61,13 +58,10 @@ class Select extends Component
     $this->classes = $classes;
     $this->isCollapsable = $isCollapsable;
     $this->params = $params;
-    $this->selected = $this->getDefaultSelected($defaultSelectedSetting) ?? null;
+    $this->selected = null;
     $this->withTitle = $withTitle;
     $this->withSubtitle = $withSubtitle;
-    $this->getDataAfterSelected = $getDataAfterSelected;
-    $this->entityTitle = $entityTitle;
-    $this->showFirstOptionSelect = $showFirstOptionSelect;
-
+    
     $this->getData();
   }
   
@@ -109,10 +103,6 @@ class Select extends Component
     //\Log::info("NAME: ".$this->name."- PARAMS:".json_encode($params));
   
     $this->options = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params)));
-
-    //Show the select only if there is more than 1 option
-    if(count($this->options)<2)
-      $this->status = false;
   
   }
   
@@ -123,26 +113,14 @@ class Select extends Component
   public function updatedSelected()
   {
 
-    //Cuando se utiliza el getItemsBy para los valores funcionaba bien
-    //Cuando se creo otro metodo borraba los valores del select aunq si los traia xD .... Solo el Dios Livewire lo sabe
-    //Por eso se agrego esta validacion
-    if($this->getDataAfterSelected)
-      $this->getData();
-
-    //Emit
-    if($this->selected!="NULL"){
-
-      $this->emit($this->emitTo, [
-        'name' => $this->name,
-        $this->repoAction => [
-          $this->repoAttribute => $this->selected == "NULL" ? null : $this->selected
-        ]
-      ]);
-
-    }
+    $this->emit($this->emitTo, [
+      'name' => $this->name,
+      $this->repoAction => [
+        $this->repoAttribute => $this->selected == "NULL" ? null : $this->selected
+      ]
+    ]);
     
     $this->isExpanded = true;
-
   }
 
   /*
@@ -152,20 +130,6 @@ class Select extends Component
   public function clearValues()
   {
     $this->selected = null;
-  }
-
-  /*
-  * Get default selected from Setting
-  */
-  public function getDefaultSelected($setting){
-
-    $setting = !is_null($setting) ? setting($setting) : null;
-    if(!is_null($setting)){
-      $options = json_decode($setting);
-      return $options[0];
-    }
-
-    return null;
   }
   
   /*

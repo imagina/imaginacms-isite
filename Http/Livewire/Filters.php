@@ -55,14 +55,12 @@ class Filters extends Component
 
 
   /*
-  * LISTENER - filtersGetData
-  * Filters are grouped to then emit them with their data
+  * LISTENER
   */
   public function getDataFromFilters($params)
   {
 
-    //\Log::info("getDataFromFilters|params: ".json_encode($params));
-
+    //\Log::info("FILTERS - GETDATA - PARAMS: ".json_encode($params));
     if (isset($params["goToUrl"])) {
       $this->goToUrl = $params["goToUrl"];
     }
@@ -81,11 +79,11 @@ class Filters extends Component
 
     }
     //\Log::info("getDataFromFilters|filtersValues: ".json_encode($this->filtersValues));
-   
+
     
     /*
       Esto se comento xq en tu san agustin, cuando se agrego
-      el buscador superior en el index (Theme), agrupaba el 
+      el buscador superior en el index (Theme), agrupaba el
       search en un array cuando debia ser la variable basica de livewire
     */
     /*
