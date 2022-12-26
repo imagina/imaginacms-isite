@@ -22,7 +22,6 @@ return [
           ],
           "container" => [
             "name" => "container",
-            "value" => "",
             "type" => "select",
             "props" => [
               "label" => "Tipo de contenedor",
@@ -2778,6 +2777,14 @@ return [
                 "label" => "Productos",
                 "value" => "Modules\Icommerce\Repositories\ProductRepository"
             ],
+            [
+                "label" => "Slider::Slider",
+                "value" => "Modules\Slider\Repositories\SlideRepository"
+            ],
+            [
+                "label" => "Paginas",
+                "value" => "Modules\Page\Repositories\PageRepository"
+            ],
         ],
         "childBlocks" => [
             "itemComponentAttributes" => "isite::item-list",
@@ -3008,5 +3015,5 @@ return [
                 ]
             ]
         ]
-    ],
+  ],
 ];
