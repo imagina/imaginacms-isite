@@ -1064,6 +1064,17 @@ return [
       'falseValue' => "0",
     ]
   ],
+  'enableDynamicFieldsCache' => [
+    'value' => "0",
+    'name' => 'isite::enableDynamicFieldsCache',
+    "onlySuperAdmin" => true,
+    'type' => 'checkbox',
+    'props' => [
+      'label' => 'isite::common.settings.enableDynamicFieldsCache',
+      'trueValue' => "1",
+      'falseValue' => "0",
+    ]
+  ],
   'defaultLayout' => [
     'value' => null,
     'name' => 'isite::defaultLayout',

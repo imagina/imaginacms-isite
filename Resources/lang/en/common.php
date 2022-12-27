@@ -46,6 +46,7 @@ return [
     'customJs' => 'Custom Body JS',
     'headerCustomJs' => 'Custom Head JS',
     'tenantRouteAlias' => 'Route Alias to the tenant lading page',
+    'enableDynamicFieldsCache' => 'Allow dynamic fields cache in frontend',
     "whatsapp" => [
       "callingCode" => "CountryCode",
       "number" => "Whatsapp number",
