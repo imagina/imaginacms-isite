@@ -202,8 +202,7 @@
           createOWL{{$id}}();
       
           let sizeButton = document.querySelector('[id="{{$id}}"] .prevBtn');
-          let width = sizeButton.offsetWidth;
-      
+          let width = (sizeButton.offsetWidth) + 2;
           let wrapper = document.querySelector('[id="{{$id}}"] .wrapper');
           let w = (width)*2 + 9;
           if(wrapper != null) {
