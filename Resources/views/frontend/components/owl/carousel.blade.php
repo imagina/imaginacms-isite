@@ -205,7 +205,7 @@
           let width = sizeButton.offsetWidth;
       
           let wrapper = document.querySelector('[id="{{$id}}"] .wrapper');
-          let w = (width)*2 +20;
+          let w = (width)*2 + 9;
           if(wrapper != null) {
             wrapper.style.cssText = 'grid-template-columns: '+width+'px calc(100% - '+w+'px) '+width+'px';
           }
@@ -230,7 +230,7 @@
       display: grid;
       align-items: center;
       grid-gap: 5px;
-      margin-right: -25px;
+      margin-right: -15px;
       margin-left: -15px;
     }
     @media (max-width: 768px) {
