@@ -19,14 +19,27 @@ class EditLink extends Component
   public $classes;
   public $idButton;
   public $item;
+  public $icon;
+  public $bgColor;
 
   /**
    * Create a new component instance.
    *
    * @return void
    */
-  public function __construct($link, $tooltip = null, $classes = null, $top = null,
-                              $bottom = null, $right = null, $left = null, $idButton = null, $item = null)
+  public function __construct(
+    $link,
+    $tooltip = null,
+    $classes = null,
+    $top = null,
+    $bottom = null,
+    $right = null,
+    $left = null,
+    $idButton = null,
+    $item = null,
+    $icon = null,
+    $bgColor = null
+  )
   {
     $this->top = $top ?? '15%';
     $this->bottom = $bottom ?? 'unset';
@@ -37,6 +50,8 @@ class EditLink extends Component
     $this->tooltip = $tooltip ?? trans("isite::common.editLink.tooltip");
     $user = \Auth::user();
     $this->item = $item;
+    $this->icon = $icon ?? 'fa fa-pencil';
+    $this->bgColor = $bgColor ?? 'dodgerblue';
 
     if (isset($user->id)) {
       $permissionController = app("Modules\Ihelpers\Http\Controllers\Api\PermissionsApiController");
