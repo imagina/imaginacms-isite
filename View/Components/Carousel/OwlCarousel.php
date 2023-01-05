@@ -160,7 +160,6 @@ class OwlCarousel extends Component
         $this->itemComponent = $itemComponent ?? "isite::item-list";
         $this->view = $view ?? "isite::frontend.components.owl.carousel";
         $this->itemComponentNamespace =  $itemComponentNamespace ?? "Modules\Isite\View\Components\ItemList";
-        $this->getItems();
 
         $this->navIcon = $navIcon;
         $this->navSizeLabel = $navSizeLabel;
@@ -194,7 +193,7 @@ class OwlCarousel extends Component
         $this->mouseDrag = $mouseDrag;
         $this->touchDrag = $touchDrag;
         $this->itemComponentAttributes = $itemComponentAttributes;
-
+        $this->getItems();
         list($this->editLink, $this->tooltipEditLink) = getEditLink($this->repository);
     }
 
@@ -216,7 +215,6 @@ class OwlCarousel extends Component
     {
 
         $this->items = app($this->repository)->getItemsBy(json_decode(json_encode($this->makeParamsFunction())));
-
         switch ($this->repository) {
             case 'Modules\Icommerce\Repositories\ProductRepository':
                 !$this->itemLayout ? $this->itemLayout = setting('icommerce::productListItemLayout') : false;
@@ -227,6 +225,13 @@ class OwlCarousel extends Component
 
                 }
                 break;
+        }
+
+        if(count($this->items)==1) {
+            $this->mouseDrag = false;
+            $this->touchDrag = false;
+            $this->dots = false;
+            $this->nav = false;
         }
 
         if ($this->items->isEmpty()) {
