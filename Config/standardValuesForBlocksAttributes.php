@@ -147,7 +147,10 @@ return [
         ["label" => "4/3", "value" => "4/3"],
         ["label" => "4/5", "value" => "4/5"],
         ["label" => "16/9", "value" => "16/9"],
-        ["label" => "21/9", "value" => "21/9"]
+        ["label" => "21/9", "value" => "21/9"],
+        ["label" => "21/5", "value" => "21/5"],
+        ["label" => "5/4", "value" => "5/4"],
+        ["label" => "3/1", "value" => "3/1"],
     ],
     "imageObject" => [
         ["label" => "Contain", "value" => "contain"],

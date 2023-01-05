@@ -60,6 +60,7 @@ return [
     'facebookAppId' => 'App Id Facebook',
     'microsoftClientId' => 'Cliente Microsoft',
     'labelTimeExpiredToken' => 'Tiempo caducidad Tokens Descarga (Dias)',
+    'enableDynamicFieldsCache' => 'Activar caché de dynamic fields en frontend',
     'tenant' => [
       'group' => 'Inquilinos',
       'tenantWithCentralData' => 'Entidades con data central',
