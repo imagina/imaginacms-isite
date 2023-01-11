@@ -127,4 +127,10 @@ class Organization extends BaseTenant implements TenantWithDatabase
       ->withPivot('id', 'permissions', 'role_id')
       ->withTimestamps();
   }
+
+  public function layout()
+  {
+    return $this->belongsTo(Layout::class);
+  }
+
 }

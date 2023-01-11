@@ -54,6 +54,8 @@ return [
   "perzonalizationTitle" => "Bienvenid@ al editor de tu sitio web",
   "perzonalizationDescription" => "De manera fácil, cambia el logo, colores y la información principal de tu página web",
   "label" => [
+    "advanceOptions" => "Opciones Avanzadas",
+    "discardChanges" => "Descartar Cambios",
     "refreshAtOnce" => "Refrescar de una vez",
     "refreshEveryMinutes" => "Refrescar cada {min} minutos",
     "apply" => "Aplicar",
@@ -382,6 +384,8 @@ return [
     "format" => "Formato | Formatos"
   ],
   "message" => [
+    "editFormProduct" => "En este formulario podrás editar tu producto de manera sencilla, si quieres editar tu producto con opciones más avanzadas, da click en el siguiente botón para ir a el formulario avanzado.",
+    "createFormProduct" => "En este formulario podrás crear un nuevo producto de manera sencilla, si quieres crear tu producto con opciones más avanzadas, da click en el siguiente botón para ir a el formulario avanzado.",
     "notFound" => "Lo sentimos, no hay nada aquí",
     "goToHome" => "Volver al inicio",
     "deleteRecord" => "¿Estás seguro que quieres eliminar este registro?",
