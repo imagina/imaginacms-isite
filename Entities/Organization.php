@@ -18,7 +18,7 @@ use Modules\Setting\Entities\Setting;
 class Organization extends BaseTenant implements TenantWithDatabase
 {
   use AuditTrait, Translatable, HasDatabase, HasDomains, MediaRelation, Schedulable, hasEventsWithBindings, isFillable;
-
+  
   public $transformer = 'Modules\Isite\Transformers\OrganizationTransformer';
   public $requestValidation = [
     'create' => 'Modules\Isite\Http\Requests\CreateOrganizationRequest',
@@ -29,7 +29,7 @@ class Organization extends BaseTenant implements TenantWithDatabase
       [
         'path' => 'Modules\Isite\Events\OrganizationWasUpdated'
       ]
-    ]  
+    ]
   ];
   protected $table = 'isite__organizations';
   public $translatedAttributes = [
@@ -54,7 +54,7 @@ class Organization extends BaseTenant implements TenantWithDatabase
   protected $casts = [
     'options' => 'array',
   ];
-
+  
   public static function getCustomColumns(): array
   {
     return [
@@ -72,17 +72,17 @@ class Organization extends BaseTenant implements TenantWithDatabase
       'deleted_by',
     ];
   }
-
+  
   public function getIncrementing()
   {
     return true;
   }
-
+  
   public function category()
   {
     return $this->belongsTo(Category::class);
   }
-
+  
   public function domains()
   {
     return $this->hasMany(Domain::class);
@@ -93,38 +93,51 @@ class Organization extends BaseTenant implements TenantWithDatabase
   {
     return $this->hasMany(Setting::class);
   }
-
+  
   public function getUrlAttribute()
   {
     $currentLocale = locale();
     
     $domains = $this->domains;
-    $tenantRouteAlias = setting("isite::tenantRouteAlias",null,"homepage",true);
     
-      $customDomain = $domains->where("type","custom")->first()->domain ?? null;
-      $defaultDomain = $domains->where("type","default")->first()->domain ?? $this->slug ?? null;
+    //in some cases, when the tenant is initialized, the table settings hasn't been created, in that case this line break the code with 500
+    try {
+      $tenantRouteAlias = setting("isite::tenantRouteAlias", null, "homepage", true);
+    } catch (\Exception $e) {
+      $tenantRouteAlias = "homepage";
+    }
+    
+    $customDomain = $domains->where("type", "custom")->first()->domain ?? null;
+    $defaultDomain = $domains->where("type", "default")->first()->domain ?? $this->slug ?? null;
+    
+    if (!empty($customDomain)) {
+      return $customDomain;
+    } elseif (!empty($defaultDomain)) {
       
-      if(!empty($customDomain)){
-        return $customDomain;
-      }elseif(!empty($defaultDomain)){
-        
-        return tenant_route($defaultDomain.".".Str::remove('https://', config('app.centralUrl', 'localhost')), $currentLocale . ".$tenantRouteAlias");
-      }else{
-        return "";
-      }
-
+      return tenant_route($defaultDomain . "." . Str::remove('https://', config('app.centralUrl', config("app.url", "localhost"))), $currentLocale . ".$tenantRouteAlias");
+    } else {
+      return "";
+    }
+    
   }
   
-  public function getDomainAttribute(){
+  public function getDomainAttribute()
+  {
     return parse_url($this->url, PHP_URL_HOST);
   }
-
+  
   public function users()
   {
-
+    
     $driver = config('asgard.user.config.driver');
     return $this->belongsToMany("Modules\\User\\Entities\\{$driver}\\User", 'isite__user_organization')
       ->withPivot('id', 'permissions', 'role_id')
       ->withTimestamps();
   }
+  
+  public function layout()
+  {
+    return $this->belongsTo(Layout::class);
+  }
+  
 }

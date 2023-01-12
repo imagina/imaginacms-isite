@@ -54,6 +54,7 @@ return [
   "perzonalizationTitle" => "Welcome to the editor of your website",
   "perzonalizationDescription" => "Easily change the logo, colors and the main information of your website",
   "label" => [
+    "advanceOptions" => "Advance Options",
     "refreshAtOnce" => "Refresh",
     "refreshEveryMinutes" => "Refresh every {min} minutes",
     "apply" => "Apply",
@@ -442,6 +443,8 @@ return [
     "invalidFormat" => "Invalid format"
   ],
   "form" => [
+    "editFormProduct" => "In this form you can edit your product in a simple way, if you want to edit your product with more advanced options, click on the following button to go to the advanced form.",
+    "createFormProduct" => "In this form you can create a new product in a simple way, if you want to create your product with more advanced options, click on the following button to go to the advanced form.",
     "id" => "ID",
     "title" => "Title | Title",
     "h1" => "Título H1",
