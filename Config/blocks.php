@@ -636,7 +636,6 @@ return [
             "type" => "select",
             "props" => [
               "label" => "Formato",
-              "type" => "number",
               "options" => [
                 ["label" => "25 de Feb", "value" => "d\\d\\e M"],
                 ["label" => "01/01/2022", "value" => "d/m/Y"],
