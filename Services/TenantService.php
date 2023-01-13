@@ -508,7 +508,8 @@ class TenantService
 
   }
 
-  public function checkTablesAndCopy(array $tables,object $organization){
+  public function checkTablesAndCopy(array $tables,object $organization)
+  {
 
     // Desactive validation to insert data from organization layout
     \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
@@ -526,7 +527,8 @@ class TenantService
           \Log::info("Copying data from Table: ".$table);
   
           //Data to copy in each row
-          foreach ($dataToCopy as $data) {
+          foreach ($dataToCopy as $data) 
+          {
 
             $data = (array)$data;
 
@@ -534,21 +536,35 @@ class TenantService
             if(isset($data['organization_id']) && !is_null($data['organization_id']))
                 $data['organization_id'] = $organization->id;
 
-            //search if exist id
-            $existId = \DB::table($table)->select("id")->where("id","=",$data["id"])->get();
-            
-            //Not exist , so insert data
-            if(count($existId)==0){
-              \DB::table($table)->insert($data);
+            // Process to Iforms
+            $moduleName = explode("__",$table);
+            if($moduleName[0]=="iforms"){
 
-              $this->validationOrganization($table,$data,$organization);
+              app("Modules\Isite\Services\IformTenantService")->copyFormsProcess($table,$data);
 
             }else{
-              //Extra validations
-              $this->validationPages($table,$data);
-            }
+              // Process General
+              //search if exist register
+              $existRegister = \DB::table($table)->select("id")->where("id","=",$data["id"])->get();
             
+              //Not exist , so insert data
+              if(count($existRegister)==0){
+                //Only Insert
+                \DB::table($table)->insert($data);
+                //Extra validations
+                $this->validationOrganization($table,$data,$organization);
+
+              }else{
+
+                //Extra validations - Only Update
+                $this->validationPages($table,$data);
+                $this->validationSettings($table,$data);
+
+              }
+            }
+
           }
+
         }
       }
 
@@ -573,6 +589,20 @@ class TenantService
         ]);
       }
 
+    }
+
+  }
+
+  public function validationSettings(string $table, array $data)
+  {
+
+    if($table=="setting__settings"){
+  
+        //Update
+        \DB::table($table)->where("id","=",$data['id'])->update([
+          "plainValue"=> $data["plainValue"],
+        ]);
+      
     }
 
   }
