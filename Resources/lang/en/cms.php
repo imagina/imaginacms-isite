@@ -54,6 +54,8 @@ return [
   "perzonalizationTitle" => "Welcome to the editor of your website",
   "perzonalizationDescription" => "Easily change the logo, colors and the main information of your website",
   "label" => [
+    "faq" => "Frequent Questions",
+    "helpCenter" => "Help Center",
     "advanceOptions" => "Advance Options",
     "refreshAtOnce" => "Refresh",
     "refreshEveryMinutes" => "Refresh every {min} minutes",
@@ -378,6 +380,7 @@ return [
     "format" => "Format | Formats"
   ],
   "message" => [
+    "descriptionHelpCenter" => "Choose the option you want to solve your doubts",
     "notFound" => "Sorry, nothing here",
     "goToHome" => "Go to home",
     "deleteRecord" => "Are you sure, you want to delete this record?",
