@@ -1138,4 +1138,37 @@ return [
       'label' => 'N8N Url'
     ]
   ],
+  //Help Center
+  'hcStatus' => [
+    "onlySuperAdmin" => true,
+    'name' => 'isite::hcStatus',
+    'value' => "1",
+    'type' => 'select',
+    'groupName' => 'helpCenter',
+    'groupTitle' => 'isite::common.settingGroups.helpCenter',
+    'columns' => 'col-12 col-md-6',
+    'props' => [
+      'label' => 'isite::common.settings.helpCenter.status',
+      'options' => [
+        ['label' => 'isite::common.yes', 'value' => '1'],
+        ['label' => 'isite::common.no', 'value' => '0'],
+      ]
+    ],
+  ],
+  'hcFaqUrl' => [
+    "onlySuperAdmin" => true,
+    'name' => 'isite::hcFaqUrl',
+    'value' => "https://www.imaginacolombia.com/guia-de-usuario-iadmin",
+    'type' => 'input',
+    'groupName' => 'helpCenter',
+    'groupTitle' => 'isite::common.settingGroups.helpCenter',
+    'columns' => 'col-12 col-md-6',
+    'required' => true,
+    'help' => [
+      "description" => "Put here the page URL for the FAQ section"
+    ],
+    'props' => [
+      'label' => 'isite::common.settings.helpCenter.FaqUrl',
+    ]
+  ],
 ];

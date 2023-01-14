@@ -82,7 +82,11 @@ return [
       ],
       'showGoToSiteButton' => 'Mostrar boton "Ver Sitio"'
     ],
-    'defaultLayout' => 'Layout Default',
+    'defaultLayout' => 'Plantilla por defecto',
+    'helpCenter' => [
+      'status' => "Habilitar el Centro de Ayuda",
+      'FaqUrl' => "URL para la pagina de FAQ"
+    ]
   ],
   'settingHints' => [
     'phones' => "Ingresa un número telefónico y presiona enter",
@@ -156,6 +160,10 @@ return [
       'title' => 'CMS',
       'description' => 'Configuraciones de CMS'
     ],
+    'helpCenter' => [
+      'title' => 'Centro de Ayuda',
+      'description' => 'Administra el centro de ayuda que se carga en el CMS (Iadmin)'
+    ]
   ],
   'messages' => [
     'no items' => 'No existe información disponible',
