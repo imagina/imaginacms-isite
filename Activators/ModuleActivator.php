@@ -7,6 +7,7 @@ use Illuminate\Config\Repository as Config;
 use Illuminate\Container\Container;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Cache;
 use Nwidart\Modules\Contracts\ActivatorInterface;
 use Nwidart\Modules\Module;
 use Modules\Isite\Entities\Module as IModule;
@@ -50,7 +51,7 @@ class ModuleActivator implements ActivatorInterface
    *
    * @var array
    */
-  private $modulesStatuses;
+  public $modulesStatuses;
   
   /**
    * File used to store activation statuses
@@ -110,9 +111,14 @@ class ModuleActivator implements ActivatorInterface
   }
   
   public function findModuleByName($name){
-  
-    $module = IModule::where("alias",Str::lower($name))->first();
-
+   
+    //cached module entity for 30 days
+    
+    $module = Cache::store(config("cache.default"))->remember('isite_module_'. Str::lower($name).(tenant()->id ?? ""), 60*60*24*30, function () use ($name) {
+      \Log::info('isite_module_'. Str::lower($name));
+      return IModule::where("alias", Str::lower($name))->first() ?? "";
+    });
+    
     if(!isset($module->id)){
       $lowerName = Str::lower($name);
    
@@ -215,11 +221,16 @@ class ModuleActivator implements ActivatorInterface
   private function readJson(): array
   {
     $statuses = [];
-    foreach (IModule::all() as $module){
+
+    $allModules = Cache::store(config("cache.default"))->remember('isite_module_all_modules'.(tenant()->id ?? ""), 60*60*24*30, function () {
+      return IModule::all() ?? "";
+    });
+
+    foreach ($allModules as $module){
       $statuses[Str::ucfirst($module->alias)] = $module->enabled ? true : false;
     }
     $statuses["Core"] = true;
-
+ 
     return ($statuses);
     
   }
