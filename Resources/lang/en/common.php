@@ -80,11 +80,7 @@ return [
       ]
     ],
     'showGoToSiteButton' => 'Show button "Go To site',
-    'defaultLayout' => 'Layout Default',
-    'helpCenter' => [
-      'status' => "Help Center Enabled",
-      'FaqUrl' => "URL for the FAQ page"
-    ]
+    'defaultLayout' => 'Layout Default'
   ],
   'settingHints' => [
     'phones' => "Type a phone number and press enter key",
@@ -140,10 +136,6 @@ return [
     'cms' => [
       'title' => 'CMS',
       'description' => 'CMS Settings'
-    ],
-    'helpCenter' => [
-      'title' => 'Help center',
-      'description' => 'Manage the help center loaded in the iadmin CMS'
     ]
   ],
   'messages' => [
