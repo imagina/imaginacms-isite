@@ -68,15 +68,15 @@
 		      	step: step,
 		      	values: [selNewPriceMin, selNewPriceMax],
 		      	slide: function( event, ui ) {
-		        	$( "#amount-{{$name}}" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+		        	$( "#amount-{{$name}}" ).val( "$" + ui.values[ 0 ].toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&.").toString().slice(0,-3) + " - $" + ui.values[ 1 ].toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&.").toString().slice(0,-3) );
 
 		        	$( "#selValueMin-{{$name}}" ).val(ui.values[ 0 ]);
 		        	$( "#selValueMax-{{$name}}" ).val(ui.values[ 1 ]);
 		      	}
 		    });
 
-		    $( "#amount-{{$name}}" ).val( "$" + $( "#slider-range-{{$name}}" ).slider( "values", 0 ) +
-	      " - $" + $( "#slider-range-{{$name}}" ).slider( "values", 1 ) );
+		    $( "#amount-{{$name}}" ).val( "$" + $( "#slider-range-{{$name}}" ).slider( "values", 0 ).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&.").toString().slice(0,-3) +
+	      " - $" + $( "#slider-range-{{$name}}" ).slider( "values", 1 ).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&.").toString().slice(0,-3) );
 			
 		}
 

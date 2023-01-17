@@ -56,7 +56,9 @@
     </div>
   </div>
 </div>
+@if(!empty($results))
 </div>
+@endif
 
 @section('scripts')
   @parent

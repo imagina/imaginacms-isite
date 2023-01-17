@@ -4,7 +4,8 @@ return [
   'yes' => "Yes",
   'no' => "No",
   'menu' => [
-    'home' => 'Home'
+    'home' => 'Home',
+    'viewMore' => "View more"
   ],
   'settings' => [
     'logo1' => 'Logo N°1',
@@ -62,11 +63,14 @@ return [
         'page' => 'Pages',
         'slider' => 'Sliders',
         'slide' => 'Slides',
+        'menu' => 'Menus',
+        'menuitem' => 'Menus Items',
       ],
     ],
     'googleClient' => 'Google Client',
     'facebookClient' => 'Facebook Client',
     'facebookAppId' => 'Facebook App Id',
+    'microsoftClientId' => 'Microsoft Client Id',
     'cms' => [
       'legacyStructureCMS' => 'Use Legacy Structure CMS',
       'iadminTheme' => [
@@ -75,6 +79,7 @@ return [
         "theme2" => "Theme 2"
       ]
     ],
+    'showGoToSiteButton' => 'Show button "Go To site',
     'defaultLayout' => 'Layout Default',
     'helpCenter' => [
       'status' => "Help Center Enabled",
@@ -87,6 +92,7 @@ return [
     'emails' => "Type an email and press enter key",
   ],
   'settingGroups' => [
+    'sitemap' => 'Sitemap',
     'media' => [
       'title' => 'Media',
       'description' => 'Media'
@@ -182,5 +188,9 @@ return [
     'labelWhatsappLayout5' => 'Talk later?',
     'titleWhatsappLayout5' => 'WhatsApp',
     'descriptionWhatsappLayout5' => 'Hi, how can we help you?',
+  ],
+  'sitemap' => [
+    'labelSitemapDepth' => 'Sitemap Depth',
+    'labelActiveGenerateRobotsFile' => 'Sitemap With Robots.txt File',
   ],
 ];

@@ -55,12 +55,14 @@ class Filters extends Component
 
 
   /*
-  * LISTENER
+  * LISTENER - filtersGetData
+  * Filters are grouped to then emit them with their data
   */
   public function getDataFromFilters($params)
   {
 
-    //\Log::info("FILTERS - GETDATA - PARAMS: ".json_encode($params));
+    //\Log::info("getDataFromFilters|params: ".json_encode($params));
+
     if (isset($params["goToUrl"])) {
       $this->goToUrl = $params["goToUrl"];
     }

@@ -7,6 +7,7 @@ use Illuminate\View\Component;
 class Button extends Component
 {
 
+  public $idButton;
   public $style;
   public $buttonClasses;
   public $onclick;
@@ -27,10 +28,11 @@ class Button extends Component
    *
    * @return void
    */
-  public function __construct($style = "", $buttonClasses = "", $onclick="", $withIcon = false, $iconClass = "",
+  public function __construct($idButton = "", $style = "", $buttonClasses = "", $onclick="", $withIcon = false, $iconClass = "",
                               $withLabel = false, $label = "", $href = "",  $color="primary",
                               $target="", $iconPosition="left", $iconColor='currentcolor', $sizeLabel="16", $dataItemId="" )
   {
+    $this->idButton = $idButton;
     $this->style = $style;
     $this->buttonClasses = $buttonClasses;
     $this->onclick = $onclick;
