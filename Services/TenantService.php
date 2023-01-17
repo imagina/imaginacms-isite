@@ -24,7 +24,7 @@ class TenantService
   
   public function createTenant($data)
   {
-    
+
     \Log::info("----------------------------------------------------------");
     \Log::info("Creating Organization...");
     \Log::info("----------------------------------------------------------");
@@ -33,7 +33,7 @@ class TenantService
       if (isset($data["organization_id"])) {
         tenancy()->initialize($data["organization_id"]);
       }
-    
+
     $organization = Organization::create(array_merge([
       'user_id' => $data["user"]->id,
       'title' => $data["title"] ?? $data["user"]->present()->fullname,
@@ -130,6 +130,10 @@ class TenantService
     //Create organization
     $organization = $this->createTenant(array_merge($data, ["user" => $userCentralData["user"]]));
     $domain = $organization->domain;
+
+    //Checking if is a new Layout
+    if(!isset($data['layout']))
+      app("Modules\Isite\Services\LayoutService")->create($data,$organization);
     
     
     //Initializing Tenant
