@@ -12,7 +12,7 @@ class IformTenantService
         if($table=="iforms__forms"){
 
         $formIdLayoutBase = $data['id'];
-        \Log::info("Checking to copy Form ID: ".$formIdLayoutBase);
+        //\Log::info("Checking to copy Form ID: ".$formIdLayoutBase);
 
         //Se busca por system name
         $existRegister = \DB::table($table)->select("id")->where("system_name","=",$data['system_name'])->get();
@@ -21,7 +21,8 @@ class IformTenantService
         if(count($existRegister)==0){
             
             //Process to Form
-            \Log::info("Copying data from: Form");
+            //\Log::info("Copying data from: Form");
+
             // El registro no existe, pero el ID de ese form ya sta ocupado en el new tenant    
             unset($data['id']);
             //Insert and get Id
@@ -46,7 +47,7 @@ class IformTenantService
     public function copyFormTranslations($formIdLayoutBase,$newFormId)
     {
 
-        \Log::info("Copying data from: Translations");
+        //\Log::info("Copying data from: Translations");
 
         $table = "iforms__form_translations";
         $dataToCopy = \DB::connection("newConnectionTenant")->select("SELECT * FROM ".$table." WHERE form_id =".$formIdLayoutBase);
@@ -64,7 +65,7 @@ class IformTenantService
     public function copyFormBlocks($formIdLayoutBase,$newFormId)
     {
         
-        \Log::info("Copying data from: Blocks");
+        //\Log::info("Copying data from: Blocks");
 
         $table = "iforms__blocks";
         $dataToCopy = \DB::connection("newConnectionTenant")->select("SELECT * FROM ".$table." WHERE form_id =".$formIdLayoutBase);
@@ -84,7 +85,7 @@ class IformTenantService
     public function copyFormFields($formIdLayoutBase,$newFormId,$newBlockId)
     {
         
-        \Log::info("Copying data from: Fields");
+        //\Log::info("Copying data from: Fields");
 
         $table = "iforms__fields";
         $dataToCopy = \DB::connection("newConnectionTenant")->select("SELECT * FROM ".$table." WHERE form_id =".$formIdLayoutBase);
@@ -109,7 +110,7 @@ class IformTenantService
     public function copyFormFieldsTranslations($oldFieldId,$newFieldId)
     {
         
-        \Log::info("Copying data from: Fields Translation");
+        //\Log::info("Copying data from: Fields Translation");
 
         $table = "iforms__field_translations";
         $dataToCopy = \DB::connection("newConnectionTenant")->select("SELECT * FROM ".$table." WHERE field_id =".$oldFieldId);

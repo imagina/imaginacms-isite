@@ -497,11 +497,27 @@ class TenantService
     
     // Get tables to new connection
     $tables = \DB::connection("newConnectionTenant")->select("SHOW TABLES");
+    
+    /*
+    $tables = \DB::connection("newConnectionTenant")
+    ->select("SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_schema='sample' ORDER BY table_name DESC;");
+    */
+    
+    //$tables = \DB::select("SELECT table_name FROM information_schema.tables WHERE table_schema = '{$database_name}'");
+    
+    /*
+    $tables = \DB::connection("newConnectionTenant")
+    ->select("SELECT table_name FROM information_schema.tables WHERE table_schema='weygo_db' ORDER BY table_name DESC");
+    */
+
     \Log::info("Tables Total: ".count($tables));
     \Log::info("Preparing to copy in OrganizationId: ".$organization->id);
 
     //Only name tables
     $tables = array_map('current',$tables);
+
+    //$sorted = \Arr::sort($tables);
+    //dd($tables,$sorted);
 
     $this->checkTablesAndCopy($tables,$organization);
     
@@ -519,6 +535,10 @@ class TenantService
     \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
     $notIncludeTables = config("tenancy.notIncludeTablesToCopy");
+
+    //Reorder
+    //Esto hay que revisarlo
+    $tables = $this->checkOrderTables($tables);
 
     // Check tables
     foreach($tables as $table)
@@ -540,31 +560,23 @@ class TenantService
             if(isset($data['organization_id']) && !is_null($data['organization_id']))
                 $data['organization_id'] = $organization->id;
 
-            // Process to Iforms
+            //Get Module Name to determiner type of proccess
             $moduleName = explode("__",$table);
+            $generalProcess = 0;
+
+            //Custom Process
             if($moduleName[0]=="iforms"){
-
+              $generalProcess = 1;
               app("Modules\Isite\Services\IformTenantService")->copyFormsProcess($table,$data);
-
-            }else{
-              // Process General
-              //search if exist register
-              $existRegister = \DB::table($table)->select("id")->where("id","=",$data["id"])->get();
-            
-              //Not exist , so insert data
-              if(count($existRegister)==0){
-                //Only Insert
-                \DB::table($table)->insert($data);
-                //Extra validations
-                $this->validationOrganization($table,$data,$organization);
-
-              }else{
-
-                //Extra validations - Only Update
-                $this->validationPages($table,$data);
-                $this->validationSettings($table,$data);
-
-              }
+            }
+            //Custom Process
+            if($moduleName[0]=="page"){
+              $generalProcess = 1;
+              app("Modules\Isite\Services\PagesTenantService")->copyPagesProcess($table,$data);
+            }
+            //General Process search with ids
+            if($generalProcess==0){
+              $this->processGeneralToCopyTables($table,$data,$organization);
             }
 
           }
@@ -579,21 +591,51 @@ class TenantService
 
   }
 
-
-  public function validationPages(string $table, array $data)
+  public function checkOrderTables(array $tables)
   {
-
-    if($table=="page__pages"){
-      //Not include all pages
-      if($data['type']!="cms"){
-        //Update
-        \DB::table($table)->where("id","=",$data['id'])->update([
-          "system_name"=> $data["system_name"],
-          "organization_id"=> $data["organization_id"]
-        ]);
+    
+    //Obtener solamente las tablas de page
+    $filteredPages = \Arr::where($tables, function ($value, $key) {
+      $moduleName = explode("__",$value);
+      //\Log::info("Module Name: ".$moduleName[0]);
+      if($moduleName[0]=="page"){
+        return $value;
       }
 
-    }
+    });
+
+    //Obtener los indices
+    $key1 = array_search('page__pages', $filteredPages);
+    $key2 = array_search('page__page_translations', $filteredPages);
+
+    //Cambiar el orden
+    $old = $tables[$key1];
+    $tables[$key1] = $tables[$key2];
+    $tables[$key2] = $old; 
+   
+    return $tables;
+
+  }
+
+  public function processGeneralToCopyTables(string $table,array $data, object $organization)
+  {
+
+     //search if exist register
+     $existRegister = \DB::table($table)->select("id")->where("id","=",$data["id"])->get();
+            
+     //Not exist , so insert data
+     if(count($existRegister)==0){
+       //Only Insert
+       \DB::table($table)->insert($data);
+       //Extra validations
+       $this->validationOrganization($table,$data,$organization);
+
+     }else{
+
+       //Extra validations - Only Update
+       $this->validationSettings($table,$data);
+
+     }
 
   }
 
