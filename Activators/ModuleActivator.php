@@ -114,7 +114,7 @@ class ModuleActivator implements ActivatorInterface
    
     //cached module entity for 30 days
     
-    $module = Cache::store(config("cache.default"))->remember('isite_module_'. Str::lower($name).(tenant()->id ?? ""), 60*60*24*30, function () use ($name) {
+    $module = Cache::store(config("cache.default"))->remember((isset(tenant()->id) ? "organization".tenant()->id."_" : "").'isite_module_'. Str::lower($name).(tenant()->id ?? ""), 60*60*24*30, function () use ($name) {
 
       return IModule::where("alias", Str::lower($name))->first() ?? "";
     });
@@ -222,7 +222,7 @@ class ModuleActivator implements ActivatorInterface
   {
     $statuses = [];
 
-    $allModules = Cache::store(config("cache.default"))->remember('isite_module_all_modules'.(tenant()->id ?? ""), 60*60*24*30, function () {
+    $allModules = Cache::store(config("cache.default"))->remember((isset(tenant()->id) ? "organization".tenant()->id."_" : "").'isite_module_all_modules'.(tenant()->id ?? ""), 60*60*24*30, function () {
       return IModule::all() ?? "";
     });
 
