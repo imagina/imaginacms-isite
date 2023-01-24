@@ -386,6 +386,7 @@ return [
     "format" => "Formato | Formatos"
   ],
   "message" => [
+    "advanceEdit" => "Edición Avanzada",
     "descriptionHelpCenter" => "Elige la opción que deseas para resolver tus dudas",
     "editFormProduct" => "En este formulario podrás editar tu producto de manera sencilla, si quieres editar tu producto con opciones más avanzadas, da click en el siguiente botón para ir a el formulario avanzado.",
     "createFormProduct" => "En este formulario podrás crear un nuevo producto de manera sencilla, si quieres crear tu producto con opciones más avanzadas, da click en el siguiente botón para ir a el formulario avanzado.",

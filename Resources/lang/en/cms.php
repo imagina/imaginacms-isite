@@ -380,6 +380,7 @@ return [
     "format" => "Format | Formats"
   ],
   "message" => [
+    "advanceEdit" => "Advanced Edit",
     "descriptionHelpCenter" => "Choose the option you want to solve your doubts",
     "notFound" => "Sorry, nothing here",
     "goToHome" => "Go to home",
