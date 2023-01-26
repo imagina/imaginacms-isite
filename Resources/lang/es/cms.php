@@ -13,7 +13,8 @@ return [
     "adminIcruds" => "Icruds",
     "adminOrganizationForm" => "Formulario",
     "adminBlocks" => "Bloques",
-    "adminLayouts" => "Layouts"
+    "adminLayouts" => "Layouts",
+    "oagStations" => "OAG staciones",
   ],
   "crud" => [
     "message" => [

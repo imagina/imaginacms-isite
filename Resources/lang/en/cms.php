@@ -13,7 +13,8 @@ return [
     "adminIcruds" => "Icruds",
     "adminOrganizationForm" => "Form",
     "adminBlocks" => "Blocks",
-    "adminLayouts" => "Layouts"
+    "adminLayouts" => "Layouts",
+    "oagStations" => "OAG Stations"
   ],
   "crud" => [
     "message" => [
@@ -421,7 +422,7 @@ return [
     "preview" => "Preview",
     "showMore" => "Show more",
     "showLess" => "Show less",
-    "request" => "Request | Request",
+    "request" => "Request | Requests",
     "accept" => "Accept",
     "reject" => "Reject",
     "rejected" => "Rejected",
