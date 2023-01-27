@@ -55,6 +55,7 @@ return [
   "perzonalizationTitle" => "Welcome to the editor of your website",
   "perzonalizationDescription" => "Easily change the logo, colors and the main information of your website",
   "label" => [
+    "copyEmbedHtml" => "Copy HTML",
     "faq" => "Frequent Questions",
     "helpCenter" => "Help Center",
     "advanceOptions" => "Advance Options",
