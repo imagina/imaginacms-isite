@@ -303,6 +303,7 @@ class TenantService
     $module = $data["module"];
       !is_array($module) ? $module = [$module] : false;
   
+    \Illuminate\Support\Facades\Cache::flush("*isite_module_all_modules".(tenant()->id ?? "")."*");
       foreach ($module as $moduleName) {
         $moduleName = ucfirst($moduleName);
         \Log::info("Activating Module: $moduleName");
