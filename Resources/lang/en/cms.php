@@ -446,7 +446,9 @@ return [
     "ready" => "Ready",
     "noRegistered" => "You are not registered yet",
     "hintFilterByQuery" => "Type 3 or more characters to search for options",
-    "invalidFormat" => "Invalid format"
+    "invalidFormat" => "Invalid format",
+    "specialCharactersAreNotAllowed" => "Special characters are not allowed",
+    "configureThisSection" => "configure This section"
   ],
   "form" => [
     "editFormProduct" => "In this form you can edit your product in a simple way, if you want to edit your product with more advanced options, click on the following button to go to the advanced form.",
