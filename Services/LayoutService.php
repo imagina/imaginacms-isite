@@ -152,21 +152,6 @@ class LayoutService
                 //Process to Copy Translations
                 $this->copyTranslations($rowIdBase, $newId);
 
-                
-
-                 //Update organization with new layout
-                 /*\DB::table('isite__organizations')->where('id',$data['organization_id'])
-                 ->update(['layout_id' => $newId]);
-                 */
-
-                 //Update organization with new layout
-                //$organization->layout_id = $newId;
-                //$organization->save();
-                /*
-                \DB::table('isite__organizations')->where('id',$data['organization_id'])
-                ->update(['layout_id' => $newId]);
-                */
-
             }
 
         }
