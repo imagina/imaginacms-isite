@@ -575,6 +575,14 @@ class TenantService
               $generalProcess = 1;
               app("Modules\Isite\Services\PagesTenantService")->copyPagesProcess($table,$data);
             }
+            //Custom Process
+            if($moduleName[0]=="menu"){
+              if($moduleName[1]=="menuitems" || $moduleName[1]=="menuitem_translations"){
+                $generalProcess = 1;
+                app("Modules\Isite\Services\MenuTenantService")->copyProcess($table,$data);
+              }
+            }
+
             //General Process search with ids
             if($generalProcess==0){
               $this->processGeneralToCopyTables($table,$data,$organization);
