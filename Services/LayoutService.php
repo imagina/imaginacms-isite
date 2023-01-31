@@ -123,4 +123,113 @@ class LayoutService
 
     }
 
+    /*
+    * copy db
+    */
+    public function copyProcess(string $table, array $data, object $organization)
+    {
+        
+        //Dentro ya se tomaran en cuenta las otras tablas
+        if($table=="isite__layouts"){
+
+            //row from database
+            $rowIdBase = $data['id'];
+           
+            //Se busca por system name
+            $existRegister = \DB::table($table)->select("id")
+            ->where("system_name","=",$data['system_name'])
+            ->get();
+            
+            //Not exist , so insert data
+            if(count($existRegister)==0){
+                
+                // El registro no existe, pero el ID de esa Pagina ya sta ocupado en el new tenant    
+                unset($data['id']);
+
+                //Insert and get Id
+                $newId = \DB::table($table)->insertGetId($data);
+
+                //Process to Copy Translations
+                $this->copyTranslations($rowIdBase, $newId);
+
+                
+
+                 //Update organization with new layout
+                 /*\DB::table('isite__organizations')->where('id',$data['organization_id'])
+                 ->update(['layout_id' => $newId]);
+                 */
+
+                 //Update organization with new layout
+                //$organization->layout_id = $newId;
+                //$organization->save();
+                /*
+                \DB::table('isite__organizations')->where('id',$data['organization_id'])
+                ->update(['layout_id' => $newId]);
+                */
+
+            }
+
+        }
+
+    }
+
+    /*
+    * Part of copy proccess
+    */
+    public function copyTranslations($rowIdBase,$newId)
+    {
+
+        $table = "isite__layout_translations";
+        $attName = "layout_id";
+
+        //Search infor in Database Layout
+        $dataToCopy = \DB::connection("newConnectionTenant")
+        ->select("SELECT * FROM ".$table." WHERE ".$attName." =".$rowIdBase);
+
+        foreach ($dataToCopy as $data) {
+            $data = (array)$data;
+            // El registro no existe, pero el ID ya sta ocupado en el new tenant
+            unset($data['id']);
+            $data[$attName] = $newId;
+            //Insert
+            \DB::table($table)->insert($data);
+        }
+
+    }
+
+    /*
+    * Updates layouts ids in Central and tenant DB
+    */
+    public function updateLayoutId(array $data,object $organization)
+    {   
+        //Si existe el layout, es xq es una copia de otro layout
+        if(isset($data["layout"])){
+
+            \Log::info("========== Update Layout Ids ==========");
+
+            //Update in Central Database
+            $layoutInCentral = \DB::connection("mysql")->table("isite__layouts")
+            ->where("system_name",$data["layout"])
+            ->first();
+
+            //Update organization with new layout
+            if(!is_null($layoutInCentral)){
+                $organization->layout_id = $layoutInCentral->id;
+                $organization->save();
+            }
+
+            //Update in Tenant Database
+            $newLayout= \DB::table("isite__layouts")->select("id")
+            ->where("system_name","=",$data['layout'])
+            ->first();
+
+            //Update organization with new layout
+            if(!is_null($newLayout)){
+                \DB::table('isite__organizations')->where('id',$organization->id)
+                ->update(['layout_id' => $newLayout->id]);
+            }
+
+        }
+    }
+
 }
