@@ -16,12 +16,22 @@ use Illuminate\Support\Facades\Storage;
 use Cartalyst\Sentinel\Roles\EloquentRole;
 use Modules\Iprofile\Entities\Setting;
 
+//Services
+use Modules\Isite\Services\LayoutService;
+
 class TenantService
 {
   public $sentinelInstaller;
   private $application;
   
+  private $layoutService;
   
+  public function __construct(
+    LayoutService $layoutService
+  ){
+    $this->layoutService = $layoutService;
+  }
+
   public function createTenant($data)
   {
 
@@ -133,7 +143,7 @@ class TenantService
 
     //Checking if is a new Layout
     if(!isset($data['layout']))
-      app("Modules\Isite\Services\LayoutService")->create($data,$organization);
+      $this->layoutService->create($data,$organization);
     
     
     //Initializing Tenant
@@ -469,6 +479,9 @@ class TenantService
 
     // Process Media
     $this->cloneTenancyMedia($orgId,$organization);
+
+    //Update layouts ids
+    $this->layoutService->updateLayoutId($data,$organization);
     
   }
 
@@ -575,6 +588,21 @@ class TenantService
               $generalProcess = 1;
               app("Modules\Isite\Services\PagesTenantService")->copyPagesProcess($table,$data);
             }
+            //Custom Process
+            if($moduleName[0]=="menu"){
+              if($moduleName[1]=="menuitems" || $moduleName[1]=="menuitem_translations"){
+                $generalProcess = 1;
+                app("Modules\Isite\Services\MenuTenantService")->copyProcess($table,$data);
+              }
+            }
+            //Custom Process
+            if($moduleName[0]=="isite"){
+              if($moduleName[1]=="layouts" || $moduleName[1]=="layout_translations"){
+                $generalProcess = 1;
+                $this->layoutService->copyProcess($table,$data,$organization);
+              }
+            }
+
             //General Process search with ids
             if($generalProcess==0){
               $this->processGeneralToCopyTables($table,$data,$organization);

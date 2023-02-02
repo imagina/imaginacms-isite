@@ -449,7 +449,9 @@ return [
     "ready" => "Todo está listo",
     "noRegistered" => "Aún no estás registrado",
     "hintFilterByQuery" => "Escribe 3 o más caracteres para buscar opciones",
-    "invalidFormat" => "Formato invalido"
+    "invalidFormat" => "Formato invalido",
+    "specialCharactersAreNotAllowed" => "No se permiten caracteres especiales",
+    "configureThisSection" => "Configura esta sección"
   ],
   "form" => [
     "id" => "ID",
