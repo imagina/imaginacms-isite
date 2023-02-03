@@ -55,6 +55,7 @@ return [
   "perzonalizationTitle" => "Bienvenid@ al editor de tu sitio web",
   "perzonalizationDescription" => "De manera fácil, cambia el logo, colores y la información principal de tu página web",
   "label" => [
+    "backgroundImage" => "Imagen de fondo",
     "copyEmbedHtml" => "Copiar HTML",
     "faq" => "Preguntas Frecuentes",
     "helpCenter" => "Centro de Ayuda",
