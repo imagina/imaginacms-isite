@@ -104,7 +104,7 @@ class PublicController extends BaseApiController
   public function uri($slug,Request $request)
   {
     try {
- 
+    
       //revoke api routes
       if(Str::contains($slug,"api"))  return response("",404);
 
@@ -115,7 +115,7 @@ class PublicController extends BaseApiController
     //el post debe tener un campo falso urlCoder con valor onlyPost que habilite al posts para accederse unicamente con su slug como url
     if (isset($post->id) && isset($post->options->urlCoder) && $post->options->urlCoder == "onlyPost") {
       $controller = app("Modules\Iblog\Http\Controllers\PublicController");
-      return $controller->show($post);
+      return $controller->show($post,$request);
     }
 
     //Segundo, busamos el path completo en el slug de la categoria
@@ -124,7 +124,7 @@ class PublicController extends BaseApiController
 
     if (isset($category->id)) {
       $controller = app("Modules\Iblog\Http\Controllers\PublicController");
-      return $controller->index($category);
+      return $controller->index($category,$request);
     }
 
     //Tercero, buscamos el path menos el ultimo en una categoria, si existe, buscamos el ultimo path en un post con la categoria, redirigimos
@@ -136,7 +136,7 @@ class PublicController extends BaseApiController
 
       if (isset($post->id)) {
         $controller = app("Modules\Iblog\Http\Controllers\PublicController");
-        return $controller->show($post);
+        return $controller->show($post,$request);
       }
     }
     }catch(\Exception $e){
@@ -151,7 +151,7 @@ class PublicController extends BaseApiController
 
     if(isset($page->id)){
       $controller = app("Modules\Page\Http\Controllers\PublicController");
-      return $controller->uri($page,$slug);
+      return $controller->uri($page,$slug,$request);
     }
 
     return response()->view('errors.404', [], 404);
