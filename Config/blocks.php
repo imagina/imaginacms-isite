@@ -1003,6 +1003,26 @@ return [
       "itemComponentAttributes" => "isite::item-list",
       "productItemComponentAttributes" => "icommerce::components.product-list-item"
     ],
+    "contentFields" => [
+        "title" => [
+            "name" => "title",
+            "type" => "input",
+            "columns" => "col-12",
+            "isTranslatable" => true,
+            "props" => [
+                "label" => "Titulo",
+            ]
+        ],
+        "subTitle" => [
+            "name" => "subTitle",
+            "type" => "input",
+            "columns" => "col-12",
+            "isTranslatable" => true,
+            "props" => [
+                "label" => "Subtitulo",
+            ]
+        ],
+    ],
     "attributes" => [
       "general" => [
         "title" => "General",
@@ -1213,20 +1233,6 @@ return [
       "texto" => [
         "title" => "Texto (Titulo y Subtitulo)",
         "fields" => [
-          "title" => [
-            "name" => "title",
-            "type" => "input",
-            "props" => [
-              "label" => "Titulo",
-            ]
-          ],
-          "subTitle" => [
-            "name" => "subTitle",
-            "type" => "input",
-            "props" => [
-              "label" => "Subtitulo",
-            ]
-          ],
           "owlTextAlign" => [
             "name" => "owlTextAlign",
             "value" => "text-left",
@@ -1415,22 +1421,34 @@ return [
         "value" => "Modules\Iblog\Entities\Category"
       ]
     ],
+    "contentFields" => [
+        "title" => [
+            "name" => "title",
+            "type" => "input",
+            "columns" => "col-12",
+            "isTranslatable" => true,
+            "props" => [
+                "label" => "titulo"
+            ]
+        ],
+    ],
     "attributes" => [
       "general" => [
         "title" => "General",
         "fields" => [
-          "title" => [
-            "name" => "title",
-            "type" => "input",
-            "props" => [
-              "label" => "titulo"
-            ]
-          ],
           "itemListLayout" => [
             "name" => "itemListLayout",
             "type" => "input",
             "props" => [
               "label" => "layout del item list"
+            ]
+          ],
+          "viewMoreButtonLabel" => [
+            "name" => "viewMoreButtonLabel",
+            "value" => "isite::common.menu.viewMore",
+            "type" => "input",
+            "props" => [
+                "label" => "ver boton del label"
             ]
           ],
           "params" => [
@@ -1439,14 +1457,6 @@ return [
             "type" => "json",
             "props" => [
               "label" => "parametros del itemsList"
-            ]
-          ],
-          "viewMoreButtonLabel" => [
-            "name" => "viewMoreButtonLabel",
-            "value" => "isite::common.menu.viewMore",
-            "type" => "input",
-            "props" => [
-              "label" => "ver boton del label"
             ]
           ],
           "responsiveTopContent" => [
@@ -1468,19 +1478,11 @@ return [
           ],
           "showTitle" => [
             "name" => "showTitle",
-            "value" => true,
+            "value" => "1",
             "type" => "select",
             "props" => [
               "label" => "mostrar titulo",
-              "options" => $vAttributes["booleanValidation"]
-            ]
-          ],
-          "pagination" => [
-            "name" => "pagination",
-            "value" => ["show" => true, "type" => "normal"],
-            "type" => "json",
-            "props" => [
-              "label" => "paginación"
+                "options" => $vAttributes["validation"]
             ]
           ],
           "configOrderBy" => [
@@ -1495,6 +1497,14 @@ return [
             "type" => "input",
             "props" => [
               "label" => "configuración del layout"
+            ]
+          ],
+          "pagination" => [
+            "name" => "pagination",
+            "value" => ["show" => true, "type" => "normal"],
+            "type" => "json",
+            "props" => [
+                "label" => "paginación"
             ]
           ],
           "itemModal" => [
@@ -2304,6 +2314,26 @@ return [
       "itemComponentAttributes" => "isite::item-list",
       "productItemComponentAttributes" => "icommerce::components.product-list-item"
     ],
+    "contentFields" => [
+        "title" => [
+            "name" => "title",
+            "type" => "input",
+            "columns" => "col-12",
+            "isTranslatable" => true,
+            "props" => [
+                "label" => "Titulo",
+            ]
+        ],
+        "subtitle" => [
+            "name" => "subtitle",
+            "type" => "input",
+            "columns" => "col-12",
+            "isTranslatable" => true,
+            "props" => [
+                "label" => "Subtitulo",
+            ]
+        ],
+    ],
     "attributes" => [
       "general" => [
         "title" => "General",
@@ -2378,14 +2408,6 @@ return [
             "type" => "input",
             "props" => [
               "label" => "Linea debajo del texto",
-            ]
-          ],
-          "title" => [
-            "name" => "title",
-            "type" => "input",
-            "columns" => "col-12",
-            "props" => [
-              "label" => "Titulo",
             ]
           ],
           "titleClasses" => [
@@ -2467,14 +2489,6 @@ return [
             "props" => [
               "label" => "Color icon (Titulo)",
               "options" => $vAttributes["textColors"]
-            ]
-          ],
-          "subtitle" => [
-            "name" => "subtitle",
-            "type" => "input",
-            "columns" => "col-12",
-            "props" => [
-              "label" => "Subtitulo",
             ]
           ],
           "subtitleClasses" => [
