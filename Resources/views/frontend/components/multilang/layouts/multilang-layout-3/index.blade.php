@@ -86,7 +86,9 @@
             }
             $component = $__env->getContainer()->make($butonComponentNamespace, array_merge([
               'label' => $longTextDrop ? config('available-locales')[$locale]['native'] : $locale,
-              'href' => url($locale),
+              //'href' => url($locale),
+              //'href' => LaravelLocalization::getLocalizedURL($locale),
+              'href' => setLocaleInUrl($locale),
               'withLabel' => true,
               'buttonClasses' => 'text-white text-left btn-lg border-0 text-capitalize text-bold',
               'style' => 'outline'
