@@ -113,8 +113,8 @@ class Organization extends BaseTenant implements TenantWithDatabase
     if (!empty($customDomain)) {
       return $customDomain;
     } elseif (!empty($defaultDomain)) {
-      
-      return tenant_route($defaultDomain . "." . Str::remove('https://', config('app.centralUrl', config("app.url", "localhost"))), $currentLocale . ".$tenantRouteAlias");
+
+      return tenant_route($defaultDomain, $currentLocale . ".$tenantRouteAlias");
     } else {
       return "";
     }

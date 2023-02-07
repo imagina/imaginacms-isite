@@ -20,8 +20,7 @@ $middlewares = [];
   ) ?
     $middlewares = [
       'universal',
-      \Stancl\Tenancy\Middleware\InitializeTenancyByDomain::class,
-      \Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain::class
+      \Stancl\Tenancy\Middleware\InitializeTenancyByDomain::class
     ] :
     $middlewares = [];
   

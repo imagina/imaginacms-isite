@@ -111,12 +111,23 @@ class ModuleActivator implements ActivatorInterface
   }
   
   public function findModuleByName($name){
-   
-    //cached module entity for 30 days
-    $module = Cache::store(config("cache.default"))->remember('isite_module_'. Str::lower($name).(tenant()->id ?? ""), 60*60*24*30, function () use ($name) {
+    $allModules = $this->tenantModules();
 
-      return IModule::where("alias", Str::lower($name))->first() ?? "";
+    //cached module entity for 30 days
+    $module = Cache::store(config("cache.default"))->remember('isite_module_'. Str::lower($name).( isset(tenant()->domain) ? tenant()->domain : request()->getHost() ?? ""), 60*60*24*30, function () use ($name,$allModules) {
+  
+      if(!\Schema::hasTable('isite__modules')) return false;
+  
+      if(!empty($allModules)){
+        $module= $allModules->where("alias", Str::lower($name))->first() ?? "";
+      }else{
+    
+        $module =  IModule::where("alias", Str::lower($name))->first() ?? "";
+      }
+      return $module;
     });
+    
+
     
     if(!isset($module->id)){
       $lowerName = Str::lower($name);
@@ -220,17 +231,57 @@ class ModuleActivator implements ActivatorInterface
   private function readJson(): array
   {
     $statuses = [];
+  
+    $allModules = $this->tenantModules();
 
-    $allModules = Cache::store(config("cache.default"))->remember('isite_module_all_modules'.(tenant()->id ?? ""), 60*60*24*30, function () {
-      return IModule::all() ?? "";
-    });
-
+    if(empty($allModules)){
+      $allModules = IModule::all() ?? "";
+    }
+   
+    //});
+    //dd($allModules, app());
     foreach ($allModules as $module){
       $statuses[Str::ucfirst($module->alias)] = $module->enabled ? true : false;
     }
     $statuses["Core"] = true;
  
     return ($statuses);
+    
+  }
+  
+  private function tenantModules(){
+   
+    return Cache::store(config("cache.default"))->remember('isite_module_all_modules'. ( isset(tenant()->domain) ? tenant()->domain : request()->getHost() ?? ""), 60*60*24*30, function () {
+      
+      if(!\Schema::hasTable('isite__organizations')) return "";
+      
+      $tenant = \DB::table("isite__organizations as org")->leftJoin("isite__domains as dom","org.id","dom.organization_id")->where("dom.domain",request()->getHost())
+        ->first();
+  
+      if(empty($tenant)) return "";
+  
+      $dataToConnect = json_decode($tenant->data);
+  
+      $dataMySql = config('database.connections.mysql');
+      $dataMySqlTenant = [
+        "database" => $dataToConnect->tenancy_db_name,
+        "username" => $dataToConnect->tenancy_db_username,
+        "password" => $dataToConnect->tenancy_db_password
+      ];
+  
+      // Add new data
+      $newDataConnection = array_merge($dataMySql, $dataMySqlTenant);
+  
+      // Set new connection
+      config(['database.connections.newConnectionTenant' => $newDataConnection]);
+      \DB::purge('newConnectionTenant');
+      \DB::reconnect('newConnectionTenant');
+  
+      // Get tables to new connection
+      $allModules = \DB::connection("newConnectionTenant")->table("isite__modules")->get();
+  
+      return $allModules ?? "";
+    });
     
   }
   

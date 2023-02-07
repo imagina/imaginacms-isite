@@ -336,22 +336,28 @@ class TenantService
   
   public function migrateCoreModules($data)
   {
-  
+ 
   
     \Log::info("----------------------------------------------------------");
     \Log::info("Migrating Core Modules");
     \Log::info("----------------------------------------------------------");
-    
+  
     if (!isset(tenant()->id))
       tenancy()->initialize($data["organization_id"]);
-    
+  
+    //dd(tenant()->id);
+  
     $coreModules = config("asgard.core.config.CoreModules");
-    
+  
     foreach ($coreModules as $module) {
+    
+      \Log::info("Migrating: " . $module);
       \Artisan::call('module:migrate', ['module' => $module]);
+      \Log::info("Migrated: " . $module);
+    
       \Log::info(\Artisan::output());
     }
-    
+ 
     
   }
   
