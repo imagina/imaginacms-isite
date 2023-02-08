@@ -60,7 +60,7 @@ class TenantService
       $organization->users()->sync([$data["user"]->id => ['role_id' => $data["role"]->id ?? $data["role_id"]]]);
     
     $organization->domains()->create([
-      'domain' => $data["organization"]["domain"] ?? $data["domain"] ?? $organization->slug,
+      'domain' => $data["organization"]["domain"] ?? $data["domain"] ?? $organization->slug.'.'.parse_url(config('app.url'),PHP_URL_HOST),
       'type' => 'default'
     ]);
   
