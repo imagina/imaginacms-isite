@@ -35,7 +35,7 @@
         @endif
 
           @if($withTitle)
-                  <div class=" {{$orderClasses["title"] ?? 'order-1'}} item-title {{$titleClasses}}">
+                  <div class=" {{$orderClasses["title"] ?? 'order-1'}} item-title">
               @if(isset($item->url) && !empty($item->url))
                           <a href="{{$item->url}}" target="{{$target}}" class="{{$titleColor}}">
                   @endif
