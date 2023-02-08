@@ -280,7 +280,7 @@ class ItemList extends Component
                               $contentMarginInsideX = "mx-0",
                               $contentBorderShadows = "none",
                               $contentBorderShadowsHover = false,
-                              $titleColor = "text-danger",
+                              $titleColor = "text-primary",
                               $summaryColor = "text-dark",
                               $categoryColor = "text-primary",
                               $createdDateColor = "text-primary",
