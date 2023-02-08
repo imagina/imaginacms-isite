@@ -716,14 +716,19 @@ class TenantService
     \Log::info("========== Clone Tenancy MEDIA FINISHED ==========");
   }
 
-  public function updateTenant($data){
+  public function updateTenant($data)
+  {
 
     \Log::info("----------------------------------------------------------");
-    \Log::info("Update Organization...");
+    \Log::info("Update Organizations...");
     \Log::info("----------------------------------------------------------");
 
-    if(isset($data['tenantId'])){
-      $this->proccessUpdateTenant($data['tenantId']);
+    if(isset($data['tenantsId']) && is_array($data['tenantsId'])){
+      
+      foreach ($data['tenantsId'] as $key => $id){
+       $this->proccessUpdateTenant($id);
+      }
+      
     }else{
       //TODO
       //buscar todos los tenants activos 
@@ -732,10 +737,13 @@ class TenantService
 
   }
 
-  public function proccessUpdateTenant($organizationId){
+  public function proccessUpdateTenant($organizationId)
+  {
 
+    \Log::info("----------------------------------------------------------");
     \Log::info("Proccess Update - OrganizationId: ".$organizationId);
-    
+    \Log::info("----------------------------------------------------------");
+   
     tenancy()->initialize($organizationId);
 
     //All migrations
