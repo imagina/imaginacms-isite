@@ -71,7 +71,7 @@ class OwlCarousel extends Component
     public $owlTitleTarget;
     public $mouseDrag;
     public $touchDrag;
-
+    public $navOld;
 
     /**
      * Create a new component instance.
@@ -131,7 +131,8 @@ class OwlCarousel extends Component
                                 $owlTitleTarget = "_self",
                                 $autoplayTimeout = 5000,
                                 $mouseDrag = true,
-                                $touchDrag = true
+                                $touchDrag = true,
+                                $navOld = false
     )
     {
 
@@ -193,8 +194,13 @@ class OwlCarousel extends Component
         $this->mouseDrag = $mouseDrag;
         $this->touchDrag = $touchDrag;
         $this->itemComponentAttributes = $itemComponentAttributes;
+        $this->navOld = $navOld;
         $this->getItems();
         list($this->editLink, $this->tooltipEditLink) = getEditLink($this->repository);
+        if($nav && $navText!="") {
+            $this->navOld = true;
+            $this->nav = false;
+        }
     }
 
     private
