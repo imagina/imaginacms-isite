@@ -34,7 +34,7 @@
       }
       $component = $__env->getContainer()->make($butonComponentNamespace, array_merge([
         'label' => $locale,
-        'href' => url($locale),
+        'href' => setLocaleInUrl($locale),
         'withLabel' => true,
         'buttonClasses' => 'btn px-2 border-0 text-capitalize',
       ], $buttonComponentAtributtes ?? []));
