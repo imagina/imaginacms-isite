@@ -581,69 +581,8 @@ class TenantService
 
   }
 
-  public function checkOrderTables(array $tables)
+  public function validationOrganization(string $table, array $data,object $organization)
   {
-    
-    //Obtener solamente las tablas de page
-    $filteredPages = \Arr::where($tables, function ($value, $key) {
-      $moduleName = explode("__",$value);
-      //\Log::info("Module Name: ".$moduleName[0]);
-      if($moduleName[0]=="page"){
-        return $value;
-      }
-
-    });
-
-    //Obtener los indices
-    $key1 = array_search('page__pages', $filteredPages);
-    $key2 = array_search('page__page_translations', $filteredPages);
-
-    //Cambiar el orden
-    $old = $tables[$key1];
-    $tables[$key1] = $tables[$key2];
-    $tables[$key2] = $old; 
-   
-    return $tables;
-
-  }
-
-  public function processGeneralToCopyTables(string $table,array $data, object $organization)
-  {
-
-     //search if exist register
-     $existRegister = \DB::table($table)->select("id")->where("id","=",$data["id"])->get();
-            
-     //Not exist , so insert data
-     if(count($existRegister)==0){
-       //Only Insert
-       \DB::table($table)->insert($data);
-       //Extra validations
-       $this->validationOrganization($table,$data,$organization);
-
-     }else{
-
-       //Extra validations - Only Update
-       $this->validationSettings($table,$data);
-
-     }
-
-  }
-
-  public function validationSettings(string $table, array $data)
-  {
-
-    if($table=="setting__settings"){
-  
-        //Update
-        \DB::table($table)->where("id","=",$data['id'])->update([
-          "plainValue"=> $data["plainValue"],
-        ]);
-      
-    }
-
-  }
-
-  public function validationOrganization(string $table, array $data,object $organization){
 
     if($table=="isite__organizations"){
      
