@@ -518,26 +518,11 @@ class TenantService
     // Get tables to new connection
     $tables = \DB::connection("newConnectionTenant")->select("SHOW TABLES");
     
-    /*
-    $tables = \DB::connection("newConnectionTenant")
-    ->select("SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_schema='sample' ORDER BY table_name DESC;");
-    */
-    
-    //$tables = \DB::select("SELECT table_name FROM information_schema.tables WHERE table_schema = '{$database_name}'");
-    
-    /*
-    $tables = \DB::connection("newConnectionTenant")
-    ->select("SELECT table_name FROM information_schema.tables WHERE table_schema='weygo_db' ORDER BY table_name DESC");
-    */
-
     \Log::info("Tables Total: ".count($tables));
     \Log::info("Preparing to copy in OrganizationId: ".$organization->id);
 
     //Only name tables
     $tables = array_map('current',$tables);
-
-    //$sorted = \Arr::sort($tables);
-    //dd($tables,$sorted);
 
     $this->checkTablesAndCopy($tables,$organization);
     
