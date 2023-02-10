@@ -1,4 +1,4 @@
-<div id="{{$id}}" class="item-layout item-list-layout-6 position-relative {{$itemMarginB}}">
+<div id="{{$id}}" class="item-layout item-list-layout-6 position-relative {{$itemMarginB}} {{$itemClasses}}">
   <x-isite::edit-link link="{{$editLink}}{{$item->id}}" :item="$item" tooltip="{{$tooltipEditLink}}"/>
   <div class="card-item @if($imageOpacityHover) opacity-with-hover @else opacity-without-hover @endif">
     <div class="row align-items-center">
@@ -29,12 +29,12 @@
 
       @endif
       @if($withTitle)
-      <div class="col-12 {{$orderClasses["title"] ?? 'order-1'}} item-title ">
+      <div class="col-12 {{$orderClasses["title"] ?? 'order-1'}} item-title">
           @if(isset($item->url) && !empty($item->url))
           <a href="{{$item->url}}" target="{{$target}}" class="{{$titleColor}}">
               @endif
 
-            <h3 class="title d-flex {{empty($item->url) ? $titleColor : '' }} {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}}  {{$titleMarginT}} {{$titleMarginB}} {{$contentMarginInsideX}}" style="height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;">
+            <h3 class="title d-flex {{$titleClasses}} {{empty($item->url) ? $titleColor : '' }} {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}}  {{$titleMarginT}} {{$titleMarginB}} {{$contentMarginInsideX}}" style="height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;">
                 @if($titleVineta) <i class="{{$titleVineta}} {{$titleVinetaColor}} mr-2"></i>  @endif
                 <span> {!! Str::limit( $item->title ?? $item->name ?? '', $numberCharactersTitle) !!}  </span>
               </h3>
@@ -50,7 +50,7 @@
             <a href="{{$item->url}}" target="{{$target}}">
               @endif
               <div
-                class="created-date {{$createdDateTextWeight}} {{$createdDateColor}} {{$createdDateMarginT}} {{$createdDateMarginB}} {{$contentMarginInsideX}}">
+                class="created-date {{$createdDateClasses}} {{$createdDateTextWeight}} {{$createdDateColor}} {{$createdDateMarginT}} {{$createdDateMarginB}} {{$contentMarginInsideX}}">
                 {{ $date }}
               </div>
               @if(isset($item->url) && !empty($item->url))
@@ -78,7 +78,7 @@
             <a href="{{$item->category->url}}" target="{{$target}}">
               @endif
               <h5
-                class="category {{$categoryTextWeight}} {{$categoryColor}} {{$categoryMarginT}} {{$categoryMarginB}} {{$contentMarginInsideX}}">
+                class="category {{$categoryClasses}} {{$categoryTextWeight}} {{$categoryColor}} {{$categoryMarginT}} {{$categoryMarginB}} {{$contentMarginInsideX}}">
                 {{$item->category->title ?? $item->category->name}}
               </h5>
               @if(isset($item->category->url) && !empty($item->category->url))
@@ -92,7 +92,7 @@
             <a href="{{$item->url}}" target="{{$target}}">
               @endif
               <div
-                class="summary {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}} {{$contentMarginInsideX}}" style="height: @if($summaryHeight) {{$summaryHeight}}px @else auto @endif;">
+                class="summary {{$summaryClasses}} {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}} {{$contentMarginInsideX}}" style="height: @if($summaryHeight) {{$summaryHeight}}px @else auto @endif;">
                 {!! $summary !!}
               </div>
               @if(isset($item->url) && !empty($item->url))
@@ -110,7 +110,7 @@
                     @php $labelExist= true; @endphp
                 @endif
             <x-isite::button :style="$buttonLayout"
-                             :buttonClasses="$buttonSize.' view-more-button '.$buttonLayout.' '.$buttonMarginT.' '.$buttonMarginB.' '.$contentMarginInsideX"
+                             :buttonClasses="$buttonSize.' view-more-button '.$buttonLayout.' '.$buttonMarginT.' '.$buttonMarginB.' '.$contentMarginInsideX.' '.$buttonItemClasses"
                              :href="$item->url"
                              :withIcon="$buttonIconLR"
                              :iconPosition="$buttonIconLR"
@@ -235,7 +235,19 @@
      }
     #{{$id}} .item-created-date a:hover {
          text-decoration: {{$createdDateTextDecoration}};
-     }
+    }
+    @media (max-width: 991.98px) {
+        #{{$id}} .item-title .title {
+            font-size: {{$titleTextSizeMobile}}px;
+        }
+    }
+    @if(!is_null($imageAspectMobile))
+        @media (max-width: 767.98px) {
+        #{{$id}} .img-style {
+            aspect-ratio: {{$imageAspectMobile}};
+        }
+    }
+    @endif
 </style>
 </div>
 
