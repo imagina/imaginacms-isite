@@ -556,10 +556,6 @@ class TenantService
 
     $notIncludeTables = config("tenancy.notIncludeTablesToCopy");
 
-    //Reorder
-    //Esto hay que revisarlo
-    $tables = $this->checkOrderTables($tables);
-
     // Check tables
     foreach($tables as $table)
     {
@@ -569,7 +565,10 @@ class TenantService
         $dataToCopy = \DB::connection("newConnectionTenant")->select("SELECT * FROM ".$table);
         if(!is_null($dataToCopy) && count($dataToCopy)>0){
           \Log::info("Copying data from Table: ".$table);
-  
+          
+          // Clean the DATA
+          \DB::table($table)->truncate();
+
           //Data to copy in each row
           foreach ($dataToCopy as $data) 
           {
@@ -580,40 +579,11 @@ class TenantService
             if(isset($data['organization_id']) && !is_null($data['organization_id']))
                 $data['organization_id'] = $organization->id;
 
-            //Get Module Name to determiner type of proccess
-            $moduleName = explode("__",$table);
-            $generalProcess = 0;
+            \DB::table($table)->insert($data);
 
-            //Custom Process
-            if($moduleName[0]=="iforms"){
-              $generalProcess = 1;
-              app("Modules\Isite\Services\IformTenantService")->copyFormsProcess($table,$data);
-            }
-            //Custom Process
-            if($moduleName[0]=="page"){
-              $generalProcess = 1;
-              app("Modules\Isite\Services\PagesTenantService")->copyPagesProcess($table,$data);
-            }
-            //Custom Process
-            if($moduleName[0]=="menu"){
-              if($moduleName[1]=="menuitems" || $moduleName[1]=="menuitem_translations"){
-                $generalProcess = 1;
-                app("Modules\Isite\Services\MenuTenantService")->copyProcess($table,$data);
-              }
-            }
-            //Custom Process
-            if($moduleName[0]=="isite"){
-              if($moduleName[1]=="layouts" || $moduleName[1]=="layout_translations"){
-                $generalProcess = 1;
-                $this->layoutService->copyProcess($table,$data,$organization);
-              }
-            }
-
-            //General Process search with ids
-            if($generalProcess==0){
-              $this->processGeneralToCopyTables($table,$data,$organization);
-            }
-
+            //Extra validations
+            $this->validationOrganization($table,$data,$organization);
+            
           }
 
         }
