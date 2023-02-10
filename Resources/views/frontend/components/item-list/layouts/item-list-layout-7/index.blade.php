@@ -11,7 +11,7 @@
   @break
 @endswitch
 
-<div id="{{$id}}" class="item-layout item-list-layout-7 position-relative overflow-hidden {{$itemMarginB}}">
+<div id="{{$id}}" class="item-layout item-list-layout-7 position-relative overflow-hidden {{$itemMarginB}} {{$itemClasses}}">
 
   <x-isite::edit-link link="{{$editLink}}{{$item->id}}" :item="$item" tooltip="{{$tooltipEditLink}}"/>
   <div class="card-item {{$row}} @if($imageOpacityHover) opacity-with-hover @else opacity-without-hover @endif">
@@ -35,11 +35,11 @@
         @endif
 
           @if($withTitle)
-                  <div class=" {{$orderClasses["title"] ?? 'order-1'}} item-title  ">
+                  <div class=" {{$orderClasses["title"] ?? 'order-1'}} item-title">
               @if(isset($item->url) && !empty($item->url))
                           <a href="{{$item->url}}" target="{{$target}}" class="{{$titleColor}}">
                   @endif
-                              <h3 class="title d-flex {{empty($item->url) ? $titleColor : '' }} {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}} {{$titleMarginT}} {{$titleMarginB}}"  style="height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;">
+                              <h3 class="title d-flex {{$titleClasses}} {{empty($item->url) ? $titleColor : '' }} {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}} {{$titleMarginT}} {{$titleMarginB}}"  style="height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;">
                                   @if($titleVineta) <i class="{{$titleVineta}} {{$titleVinetaColor}} mr-2"></i>  @endif
                                   <span>{!! Str::limit( $item->title ?? $item->name ?? '', $numberCharactersTitle) !!}</span>
                   </h3>
@@ -54,7 +54,7 @@
                 <a href="{{$item->url}}" target="{{$target}}">
                   @endif
                   <div
-                    class="created-date {{$createdDateTextWeight}} {{$createdDateColor}} {{$createdDateMarginT}} {{$createdDateMarginB}}">
+                    class="created-date {{$createdDateClasses}} {{$createdDateTextWeight}} {{$createdDateColor}} {{$createdDateMarginT}} {{$createdDateMarginB}}">
                     {{ $item->created_at->format($formatCreatedDate) }}
                   </div>
                   @if(isset($item->url) && !empty($item->url))
@@ -68,7 +68,7 @@
                 <a href="{{$item->url}}" target="{{$target}}">
                   @endif
                   <div
-                    class="created-date {{$userTextWeight}} {{$userColor}} {{$userMarginT}} {{$userMarginB}}">
+                    class="user {{$userTextWeight}} {{$userColor}} {{$userMarginT}} {{$userMarginB}}">
                     Por: {{$item->user->present()->fullname()}}
                   </div>
                   @if(isset($item->url) && !empty($item->url))
@@ -81,7 +81,7 @@
               @if(isset($item->category->url) && !empty($item->category->url))
                 <a href="{{$item->category->url}}" target="{{$target}}">
                   @endif
-                  <h5 class="category {{$categoryTextWeight}} {{$categoryColor}} {{$categoryMarginT}} {{$categoryMarginB}}">
+                  <h5 class="category {{$categoryClasses}} {{$categoryTextWeight}} {{$categoryColor}} {{$categoryMarginT}} {{$categoryMarginB}}">
                     {{$item->category->title ?? $item->category->name}}
                   </h5>
                   @if(isset($item->category->url) && !empty($item->category->url))
@@ -95,7 +95,7 @@
                 <a href="{{$item->url}}" target="{{$target}}">
                   @endif
 
-                    <div class="summary {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}} {{$contentMarginInsideX}}" style="height: @if($summaryHeight) {{$summaryHeight}}px @else auto @endif;">
+                    <div class="summary {{$summaryClasses}} {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}} {{$contentMarginInsideX}}" style="height: @if($summaryHeight) {{$summaryHeight}}px @else auto @endif;">
                         {!! $summary !!}
                     </div>
                   @if(isset($item->url) && !empty($item->url))
@@ -112,7 +112,7 @@
                               @php $labelExist= true; @endphp
                           @endif
                           <x-isite::button :style="$buttonLayout"
-                                           :buttonClasses="$buttonSize.' view-more-button '.$buttonLayout.' '.$buttonMarginT.' '.$buttonMarginB.' '.$contentMarginInsideX"
+                                           :buttonClasses="$buttonSize.' view-more-button '.$buttonLayout.' '.$buttonMarginT.' '.$buttonMarginB.' '.$contentMarginInsideX.' '.$buttonItemClasses"
                                            :href="$item->url"
                                            :withIcon="$buttonIconLR"
                                            :iconPosition="$buttonIconLR"
@@ -154,7 +154,14 @@
         overflow: hidden;
     }
     @endif
-
+    @if($withImageOpacity)
+    #{{$id}} .image-link {
+        z-index: 1; position: relative;
+    }
+    #{{$id}} .item-content > div {
+         z-index: 1;
+    }
+    @endif
     @if($imageOpacityHover && $withImageOpacity)
     @if($imagePosition=="1")
     #{{$id}} .card-item .item-content {
@@ -202,16 +209,15 @@
         text-align: {{$imageAlign}};
     }
     #{{$id}} .img-style {
-         border-radius: {{$imageRadio}};
-         border-style: {{$imageBorderStyle}};
-         border-width: {{$imageBorderWidth}}px;
-         border-color: {{$imageBorderColor}};
-         aspect-ratio: {{$imageAspect}};
-         object-fit: {{$imageObject}};
-       padding: {{$imagePadding}}px;
-       display: inline-flex;
-     }
-
+        border-radius: {{$imageRadio}};
+        border-style: {{$imageBorderStyle}};
+        border-width: {{$imageBorderWidth}}px;
+        border-color: {{$imageBorderColor}};
+        aspect-ratio: {{$imageAspect}};
+        object-fit: {{$imageObject}};
+        padding: {{$imagePadding}}px;
+        display: inline-flex;
+    }
     @if($contentBorderShadows=='none')
         #{{$id}} .item-border {
             padding-left: {{$contentPaddingL + $imagePadding}}px;
@@ -272,16 +278,16 @@
      }
     #{{$id}} .item-category a:hover {
          text-decoration: {{$categoryTextDecoration}};
-     }
+    }
     #{{$id}} .item-created-date a:hover {
          text-decoration: {{$createdDateTextDecoration}};
-     }
+    }
+    @if($imagePosition!=='1')
     #{{$id}} .item-content {
-        @if($imagePosition!=='1')
         padding-left: {{$contentPaddingLeft}}px;
         padding-right: {{$contentPaddingRight}}px;
-        @endif
     }
+    @endif
     #{{$id}} .style-content {
          background: {{$contentBackground}};
          padding-left: {{$contentPaddingL}}px;
@@ -289,6 +295,18 @@
          padding-top: {{$contentPaddingT}}px;
          padding-bottom: {{$contentPaddingB}}px;
     }
+    @media (max-width: 991.98px) {
+        #{{$id}} .item-title .title {
+        font-size: {{$titleTextSizeMobile}}px;
+        }
+    }
+    @if(!is_null($imageAspectMobile))
+    @media (max-width: 767.98px) {
+        #{{$id}} .img-style {
+            aspect-ratio: {{$imageAspectMobile}};
+        }
+    }
+    @endif
 </style>
 </div>
 

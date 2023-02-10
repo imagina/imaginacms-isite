@@ -33,6 +33,15 @@ return [
               ]
             ]
           ],
+          "itemClasses" => [
+            "name" => "itemClasses",
+            "type" => "input",
+            "value" => "",
+            "columns" => "col-12",
+            "props" => [
+                "label" => "Clases item",
+            ]
+          ],
           "contentPaddingL" => [
             "name" => "contentPaddingL",
             "type" => "input",
@@ -387,6 +396,15 @@ return [
               "options" => $vAttributes["textColors"]
             ]
           ],
+          "titleClasses" => [
+            "name" => "titleClasses",
+            "type" => "input",
+            "value" => "",
+            "columns" => "col-12",
+            "props" => [
+                "label" => "Clases generales",
+            ]
+          ],
         ],
       ],
       "summary" => [
@@ -496,6 +514,15 @@ return [
               "type" => "number"
             ]
           ],
+          "summaryClasses" => [
+            "name" => "summaryClasses",
+            "type" => "input",
+            "value" => "",
+            "columns" => "col-12",
+            "props" => [
+                "label" => "Clases generales",
+            ]
+          ],
         ],
       ],
       "category" => [
@@ -574,6 +601,15 @@ return [
             "props" => [
               "label" => "Negrita",
               "options" => $vAttributes["textWeight"]
+            ]
+          ],
+          "categoryClasses" => [
+            "name" => "categoryClasses",
+            "type" => "input",
+            "value" => "",
+            "columns" => "col-12",
+            "props" => [
+                "label" => "Clases generales",
             ]
           ],
         ],
@@ -667,6 +703,15 @@ return [
             "props" => [
               "label" => "Decoración",
               "options" => $vAttributes["textDecoration"]
+            ]
+          ],
+          "createdDateClasses" => [
+            "name" => "createdDateClasses",
+            "type" => "input",
+            "value" => "",
+            "columns" => "col-12",
+            "props" => [
+                "label" => "Clases generales",
             ]
           ],
         ],
@@ -770,7 +815,16 @@ return [
             "props" => [
               "label" => "Texto del botón",
             ]
-          ]
+          ],
+          "buttonItemClasses" => [
+            "name" => "buttonItemClasses",
+            "type" => "input",
+            "value" => "",
+            "columns" => "col-12",
+            "props" => [
+                "label" => "Clases generales",
+            ]
+          ],
         ]
       ],
       "imagen" => [

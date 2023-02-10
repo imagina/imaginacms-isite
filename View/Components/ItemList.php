@@ -160,6 +160,14 @@ class ItemList extends Component
   public $contentBackground;
   public $imageOpacityCustom;
   public $imageOpacityHover;
+  public $titleTextSizeMobile;
+  public $imageAspectMobile;
+  public $titleClasses;
+  public $summaryClasses;
+  public $categoryClasses;
+  public $createdDateClasses;
+  public $buttonItemClasses;
+  public $itemClasses;
 
   /**
    * Create a new component instance.
@@ -240,7 +248,7 @@ class ItemList extends Component
                               $withTitle = true,
                               $titleAlign = "",
                               $titleTextSize = "20",
-                              $titleTextSizeMobile = null,
+                              $titleTextSizeMobile = "20",
                               $titleTextWeight = "font-weight-bold",
                               $titleTextTransform = "",
                               $summaryAlign = "text-left",
@@ -329,9 +337,16 @@ class ItemList extends Component
                               $contentPaddingB = 0,
                               $contentBackground = "",
                               $imageOpacityCustom = "",
-                              $imageOpacityHover = false
+                              $imageOpacityHover = false,
+                              $titleClasses = "",
+                              $summaryClasses = "",
+                              $categoryClasses = "",
+                              $createdDateClasses = "",
+                              $buttonItemClasses = "",
+                              $itemClasses = ""
   )
   {
+    /*
     $this->isMobile = isMobileDevice();
     if ($this->isMobile && !is_null($imageAspectMobile)) {
       $this->imageAspect = $imageAspectMobile;
@@ -343,6 +358,11 @@ class ItemList extends Component
     } else {
       $this->titleTextSize = $titleTextSize;
     }
+    */
+    $this->imageAspectMobile = $imageAspectMobile;
+    $this->imageAspect = $imageAspect;
+    $this->titleTextSizeMobile = $titleTextSizeMobile;
+    $this->titleTextSize = $titleTextSize;
     $this->item = $item;
     $this->mediaImage = $mediaImage;
     $this->positionNumber = $positionNumber;
@@ -484,6 +504,12 @@ class ItemList extends Component
     $this->contentBackground = $contentBackground;
     $this->imageOpacityCustom = $imageOpacityCustom;
     $this->imageOpacityHover = $imageOpacityHover;
+    $this->titleClasses = $titleClasses;
+    $this->summaryClasses = $summaryClasses;
+    $this->categoryClasses = $categoryClasses;
+    $this->createdDateClasses = $createdDateClasses;
+    $this->buttonItemClasses = $buttonItemClasses;
+    $this->itemClasses = $itemClasses;
 
     if($contentPadding>0) {
         $this->contentPaddingL = $contentPadding;
