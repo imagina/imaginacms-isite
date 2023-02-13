@@ -60,7 +60,7 @@ class TenantService
       $organization->users()->sync([$data["user"]->id => ['role_id' => $data["role"]->id ?? $data["role_id"]]]);
     
     $organization->domains()->create([
-      'domain' => $data["organization"]["domain"] ?? $data["domain"] ?? $organization->slug,
+      'domain' => $data["organization"]["domain"] ?? $data["domain"] ?? $organization->slug.'.'.parse_url(config('app.url'),PHP_URL_HOST),
       'type' => 'default'
     ]);
   
@@ -518,26 +518,11 @@ class TenantService
     // Get tables to new connection
     $tables = \DB::connection("newConnectionTenant")->select("SHOW TABLES");
     
-    /*
-    $tables = \DB::connection("newConnectionTenant")
-    ->select("SELECT table_name FROM information_schema.tables WHERE table_type = 'BASE TABLE' AND table_schema='sample' ORDER BY table_name DESC;");
-    */
-    
-    //$tables = \DB::select("SELECT table_name FROM information_schema.tables WHERE table_schema = '{$database_name}'");
-    
-    /*
-    $tables = \DB::connection("newConnectionTenant")
-    ->select("SELECT table_name FROM information_schema.tables WHERE table_schema='weygo_db' ORDER BY table_name DESC");
-    */
-
     \Log::info("Tables Total: ".count($tables));
     \Log::info("Preparing to copy in OrganizationId: ".$organization->id);
 
     //Only name tables
     $tables = array_map('current',$tables);
-
-    //$sorted = \Arr::sort($tables);
-    //dd($tables,$sorted);
 
     $this->checkTablesAndCopy($tables,$organization);
     
@@ -556,10 +541,6 @@ class TenantService
 
     $notIncludeTables = config("tenancy.notIncludeTablesToCopy");
 
-    //Reorder
-    //Esto hay que revisarlo
-    $tables = $this->checkOrderTables($tables);
-
     // Check tables
     foreach($tables as $table)
     {
@@ -569,7 +550,10 @@ class TenantService
         $dataToCopy = \DB::connection("newConnectionTenant")->select("SELECT * FROM ".$table);
         if(!is_null($dataToCopy) && count($dataToCopy)>0){
           \Log::info("Copying data from Table: ".$table);
-  
+          
+          // Clean the DATA
+          \DB::table($table)->truncate();
+
           //Data to copy in each row
           foreach ($dataToCopy as $data) 
           {
@@ -580,40 +564,11 @@ class TenantService
             if(isset($data['organization_id']) && !is_null($data['organization_id']))
                 $data['organization_id'] = $organization->id;
 
-            //Get Module Name to determiner type of proccess
-            $moduleName = explode("__",$table);
-            $generalProcess = 0;
+            \DB::table($table)->insert($data);
 
-            //Custom Process
-            if($moduleName[0]=="iforms"){
-              $generalProcess = 1;
-              app("Modules\Isite\Services\IformTenantService")->copyFormsProcess($table,$data);
-            }
-            //Custom Process
-            if($moduleName[0]=="page"){
-              $generalProcess = 1;
-              app("Modules\Isite\Services\PagesTenantService")->copyPagesProcess($table,$data);
-            }
-            //Custom Process
-            if($moduleName[0]=="menu"){
-              if($moduleName[1]=="menuitems" || $moduleName[1]=="menuitem_translations"){
-                $generalProcess = 1;
-                app("Modules\Isite\Services\MenuTenantService")->copyProcess($table,$data);
-              }
-            }
-            //Custom Process
-            if($moduleName[0]=="isite"){
-              if($moduleName[1]=="layouts" || $moduleName[1]=="layout_translations"){
-                $generalProcess = 1;
-                $this->layoutService->copyProcess($table,$data,$organization);
-              }
-            }
-
-            //General Process search with ids
-            if($generalProcess==0){
-              $this->processGeneralToCopyTables($table,$data,$organization);
-            }
-
+            //Extra validations
+            $this->validationOrganization($table,$data,$organization);
+            
           }
 
         }
@@ -626,69 +581,8 @@ class TenantService
 
   }
 
-  public function checkOrderTables(array $tables)
+  public function validationOrganization(string $table, array $data,object $organization)
   {
-    
-    //Obtener solamente las tablas de page
-    $filteredPages = \Arr::where($tables, function ($value, $key) {
-      $moduleName = explode("__",$value);
-      //\Log::info("Module Name: ".$moduleName[0]);
-      if($moduleName[0]=="page"){
-        return $value;
-      }
-
-    });
-
-    //Obtener los indices
-    $key1 = array_search('page__pages', $filteredPages);
-    $key2 = array_search('page__page_translations', $filteredPages);
-
-    //Cambiar el orden
-    $old = $tables[$key1];
-    $tables[$key1] = $tables[$key2];
-    $tables[$key2] = $old; 
-   
-    return $tables;
-
-  }
-
-  public function processGeneralToCopyTables(string $table,array $data, object $organization)
-  {
-
-     //search if exist register
-     $existRegister = \DB::table($table)->select("id")->where("id","=",$data["id"])->get();
-            
-     //Not exist , so insert data
-     if(count($existRegister)==0){
-       //Only Insert
-       \DB::table($table)->insert($data);
-       //Extra validations
-       $this->validationOrganization($table,$data,$organization);
-
-     }else{
-
-       //Extra validations - Only Update
-       $this->validationSettings($table,$data);
-
-     }
-
-  }
-
-  public function validationSettings(string $table, array $data)
-  {
-
-    if($table=="setting__settings"){
-  
-        //Update
-        \DB::table($table)->where("id","=",$data['id'])->update([
-          "plainValue"=> $data["plainValue"],
-        ]);
-      
-    }
-
-  }
-
-  public function validationOrganization(string $table, array $data,object $organization){
 
     if($table=="isite__organizations"){
      
@@ -716,14 +610,19 @@ class TenantService
     \Log::info("========== Clone Tenancy MEDIA FINISHED ==========");
   }
 
-  public function updateTenant($data){
+  public function updateTenant($data)
+  {
 
     \Log::info("----------------------------------------------------------");
-    \Log::info("Update Organization...");
+    \Log::info("Update Organizations...");
     \Log::info("----------------------------------------------------------");
 
-    if(isset($data['tenantId'])){
-      $this->proccessUpdateTenant($data['tenantId']);
+    if(isset($data['tenantsId']) && is_array($data['tenantsId'])){
+      
+      foreach ($data['tenantsId'] as $key => $id){
+       $this->proccessUpdateTenant($id);
+      }
+      
     }else{
       //TODO
       //buscar todos los tenants activos 
@@ -732,10 +631,13 @@ class TenantService
 
   }
 
-  public function proccessUpdateTenant($organizationId){
+  public function proccessUpdateTenant($organizationId)
+  {
 
+    \Log::info("----------------------------------------------------------");
     \Log::info("Proccess Update - OrganizationId: ".$organizationId);
-    
+    \Log::info("----------------------------------------------------------");
+   
     tenancy()->initialize($organizationId);
 
     //All migrations

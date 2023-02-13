@@ -175,7 +175,7 @@
         dots: {!! $dots ? 'true' : 'false' !!},
         responsiveClass: {!! $responsiveClass ? 'true' : 'false' !!},
         autoplay: {!! $autoplay ? 'true' : 'false' !!},
-        nav: {!! $nav ? 'true' : 'false' !!},
+        nav: {!! $navOld ? 'true' : 'false' !!},
         autoplayHoverPause: {!! $autoplayHoverPause ? 'true' : 'false' !!},
         center: {!! $center ? 'true' : 'false' !!},
         responsive: {!! $responsive !!},
@@ -260,9 +260,12 @@
        outline: 0 !important;
      }
     @endif
-
+    @if($navOld)
+    #{{$id}} .owl-nav [class*=owl-]:hover,
+    #{{$id}} .owl-nav [class*=owl-]:focus {
+        background: transparent;
+        outline: 0;
+    }
+    @endif
   </style>
-
-
-
 @endif

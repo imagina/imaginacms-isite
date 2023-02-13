@@ -155,3 +155,59 @@ if (!function_exists('isMobileDevice')) {
       , $_SERVER["HTTP_USER_AGENT"]);
   }
 }
+
+/*
+* Locale in url - SET
+*/
+if (!function_exists('setLocaleInUrl')) {
+
+  function setLocaleInUrl($locale){
+    //return LaravelLocalization::getLocalizedURL($locale);
+    return url()->current().'?'.http_build_query(['lang' => $locale]);
+  }
+
+}
+
+/*
+* Locale in url - GET
+*/
+if (!function_exists('validateLocaleFromUrl')) {
+
+  function validateLocaleFromUrl($request,$params=null){
+    
+    $locale = locale();
+
+    if($request->has('lang') && $request->lang!=$locale){
+
+        $locale = $request->lang;
+
+        //Casos: Home
+        if(!isset($params))
+          $newUrl = url($locale);
+
+        //Casos: Index Icommerce (Store es traduccion)
+        if(isset($params['fixedTrans']))
+          $newUrl = url($locale).'/'.trans($params['fixedTrans'],[],$locale);
+
+        //Casos: Pages,Iblog (Index Categoria), Icommerce(Index Categoria)
+        if(isset($params['entity'])){
+          $newUrl = $params['entity']->getUrlAttribute($locale);
+        }
+
+        // vars to reedirect
+        $result["reedirect"] = true;
+        $result["url"] = $newUrl;
+
+        // Sto no funco para las paginas
+        /*
+        if(isset($newUrl))
+          header("Location: ".$newUrl);
+        */
+    }
+    
+    $result["locale"] = $locale;
+    return $result;
+    
+  }
+
+}
