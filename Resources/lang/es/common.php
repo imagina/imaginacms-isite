@@ -75,6 +75,7 @@ return [
     ],
     'cms' => [
       'legacyStructureCMS' => 'Usar Estructura heredada CMS',
+      'offline' => 'Offline Activado',
       'iadminTheme' => [
         "title" => "Tema Iadmin",
         "theme1" => "Tema 1",

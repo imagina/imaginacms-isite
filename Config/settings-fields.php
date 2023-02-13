@@ -1137,5 +1137,19 @@ return [
     'props' => [
       'label' => 'N8N Url'
     ]
-  ]
+  ],
+  'offline' => [
+    'name' => 'isite::offline',
+    'value' => '0',
+    'type' => 'select',
+    'groupName' => 'cms',
+    'groupTitle' => 'isite::common.settingGroups.cms',
+    'props' => [
+      'label' => 'isite::common.settings.cms.offline',
+      'options' => [
+        ['label' => 'isite::common.yes', 'value' => '1'],
+        ['label' => 'isite::common.no', 'value' => '0'],
+      ]
+    ],
+  ],
 ];
