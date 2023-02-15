@@ -18,6 +18,7 @@ use Modules\Iprofile\Entities\Setting;
 
 //Services
 use Modules\Isite\Services\LayoutService;
+use Modules\Isite\Services\SettingService;
 
 class TenantService
 {
@@ -25,11 +26,14 @@ class TenantService
   private $application;
   
   private $layoutService;
+  private $settingService;
   
   public function __construct(
-    LayoutService $layoutService
+    LayoutService $layoutService,
+    SettingService $settingService
   ){
     $this->layoutService = $layoutService;
+    $this->settingService = $settingService;
   }
 
   public function createTenant($data)
@@ -488,6 +492,9 @@ class TenantService
 
     //Update layouts ids
     $this->layoutService->updateLayoutId($data,$organization);
+
+    //Update some settings
+    $this->settingService->updateSettings($data,$organization);
     
   }
 
