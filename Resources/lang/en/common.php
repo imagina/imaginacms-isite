@@ -73,6 +73,7 @@ return [
     'microsoftClientId' => 'Microsoft Client Id',
     'cms' => [
       'legacyStructureCMS' => 'Use Legacy Structure CMS',
+      'offline' => 'Offline Activated',
       'iadminTheme' => [
         "title" => "Iadmin Theme",
         "theme1" => "Theme 1",
