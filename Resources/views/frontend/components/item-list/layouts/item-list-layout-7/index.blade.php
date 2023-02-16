@@ -143,6 +143,7 @@
 <style>
     #{{$id}} .card-item {
         background-color: {{$itemBackgroundColor}};
+        border-radius: {{$contentRadio}};
     }
     #{{$id}} .card-item:hover {
         background-color: {{$itemBackgroundColorHover}};
