@@ -27,6 +27,7 @@ class TenantService
   
   private $layoutService;
   private $settingService;
+  private $isCreatingLayout;
   
   public function __construct(
     LayoutService $layoutService,
@@ -34,6 +35,7 @@ class TenantService
   ){
     $this->layoutService = $layoutService;
     $this->settingService = $settingService;
+    $this->isCreatingLayout = false;
   }
 
   public function createTenant($data)
@@ -146,8 +148,10 @@ class TenantService
     $domain = $organization->domain;
 
     //Checking if is a new Layout
-    if(!isset($data['layout']))
+    if(!isset($data['layout'])){
       $this->layoutService->create($data,$organization);
+      $this->isCreatingLayout = true;
+    }
     
     
     //Initializing Tenant
@@ -400,6 +404,9 @@ class TenantService
         }
       }
     }
+
+    if($this->isCreatingLayout==false)
+      $allPermissions = $this->checkPermissions($allPermissions);
     
     $role->permissions = array_merge($allPermissions,$role->permissions ?? []);
   
@@ -468,6 +475,18 @@ class TenantService
     \Log::info(\Artisan::output());
     \Artisan::call('module:seed', ['module' => 'Menu']);
       \Log::info(\Artisan::output());
+  }
+
+  public function checkPermissions($permissions)
+  {
+
+    $notIncludePermissions = config("tenancy.notIncludePermissions");
+    foreach ($notIncludePermissions as $key => $value) {
+      if(isset($permissions[$value]))
+        $permissions[$value] = false;
+    }
+
+    return $permissions;
   }
 
   public function cloneTenancyLayout(array $data,array $layoutConfig,object $organization)
