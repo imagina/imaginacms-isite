@@ -6,7 +6,7 @@
   />
   @foreach($items as $name=>$value)
     @if(!empty($value))
-      <a href="{{ $value }}" target="_blank">
+      <a href="{{ $value }}" target="_blank" aria-label="social {{ $type }} {{$name}}">
         @if($type)
           <span class="fa-stack fa-{{ $size }}">
           <i class="fa fa-{{ $type }} fa-stack-2x"></i>

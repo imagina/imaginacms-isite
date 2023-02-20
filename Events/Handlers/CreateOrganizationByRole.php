@@ -19,6 +19,7 @@ class CreateOrganizationByRole
   {
     try {
       $user = $event->user;
+      
       $data = $event->bindings;
       
       $roles = $user->roles;
@@ -34,13 +35,14 @@ class CreateOrganizationByRole
             'user_id' => $user->id,
             'title' => $user->present()->fullname,
             'status' => json_decode(setting("isite::defaultTenantStatus",null, "true")),
-            'layout_id' => json_decode(setting("isite::defaultLayout",null, null))
+            'layout_id' => json_decode(setting("isite::defaultLayout",null, null)),
+            'category_id' => $data["organization"]["category_id"] ?? null
           ],$data["organization"] ?? []));
           
           $organization->users()->sync([$user->id => ['role_id' => $userRole->id]]);
           
           $organization->domains()->create([
-            'domain' => $data["organization"]["domain"] ?? $organization->slug,
+            'domain' => $data["organization"]["domain"] ?? $data["domain"] ?? $organization->slug.'.'.parse_url(config('app.url'),PHP_URL_HOST),
             'type' => 'default'
           ]);
 

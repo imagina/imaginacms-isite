@@ -50,8 +50,15 @@ class EloquentOrganizationRepository extends EloquentCrudRepository implements O
       //Filter Category Id
       if (isset($filter->category) && !empty($filter->category))
         $query->where('category_id', $filter->category);
-        
+  
+    if (isset($filter->params->setting) && isset($filter->params->setting->fromAdmin) && $filter->params->setting->fromAdmin) {
     
+    } else {
+    
+      //Pre filters by default
+      $query->where('status', 1);
+    }
+  
     //Response
     return $query;
   }

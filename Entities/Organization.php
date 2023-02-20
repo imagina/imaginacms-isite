@@ -99,7 +99,7 @@ class Organization extends BaseTenant implements TenantWithDatabase
     $currentLocale = locale();
     
     $domains = $this->domains;
-    
+
     //in some cases, when the tenant is initialized, the table settings hasn't been created, in that case this line break the code with 500
     try {
       $tenantRouteAlias = setting("isite::tenantRouteAlias", null, "homepage", true);

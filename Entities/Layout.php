@@ -26,5 +26,6 @@ class Layout extends CrudModel
     'path',
     'status',
     'record_type',
+    'is_internal',
   ];
 }
