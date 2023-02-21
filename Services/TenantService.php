@@ -54,7 +54,8 @@ class TenantService
       'user_id' => $data["user"]->id,
       'title' => $data["title"] ?? $data["user"]->present()->fullname,
       'status' => $data["status"] ?? json_decode(setting("isite::defaultTenantStatus", null, "true")),
-      'layout_id' => $data["layout_id"] ?? json_decode(setting("isite::defaultLayout", null, null))
+      'layout_id' => $data["layout_id"] ?? json_decode(setting("isite::defaultLayout", null, null)),
+      'enable' => $data["enable"] ?? json_decode(setting("isite::defaultTenantStatus", null, "true"))
     ], $data["organization"] ?? $data["extraData"] ?? []));
     
     Storage::disk("privatemedia")->makeDirectory("organization" . $organization->id);
