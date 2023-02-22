@@ -14,10 +14,11 @@ use Modules\Ischedulable\Support\Traits\Schedulable;
 use Modules\Core\Icrud\Traits\hasEventsWithBindings;
 use Modules\Ifillable\Traits\isFillable;
 use Modules\Setting\Entities\Setting;
+use Stancl\Tenancy\Database\Concerns\MaintenanceMode;
 
 class Organization extends BaseTenant implements TenantWithDatabase
 {
-  use AuditTrait, Translatable, HasDatabase, HasDomains, MediaRelation, Schedulable, hasEventsWithBindings, isFillable;
+  use AuditTrait, Translatable, HasDatabase, HasDomains, MediaRelation, Schedulable, hasEventsWithBindings, isFillable, MaintenanceMode;
   
   public $transformer = 'Modules\Isite\Transformers\OrganizationTransformer';
   public $requestValidation = [
@@ -49,10 +50,12 @@ class Organization extends BaseTenant implements TenantWithDatabase
     'status',
     'enable',
     'sort_order',
-    'layout_id'
+    'layout_id',
+    'maintenance_mode'
   ];
   protected $casts = [
     'options' => 'array',
+    'maintenance_mode' => 'array'
   ];
   
   public static function getCustomColumns(): array
@@ -74,6 +77,7 @@ class Organization extends BaseTenant implements TenantWithDatabase
       'created_by',
       'updated_by',
       'deleted_by',
+      'maintenance_mode'
     ];
   }
   
