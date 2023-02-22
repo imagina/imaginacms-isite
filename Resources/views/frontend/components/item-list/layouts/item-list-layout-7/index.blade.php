@@ -141,12 +141,22 @@
   </div>
 
 <style>
-    #{{$id}} .card-item {
-        background-color: {{$itemBackgroundColor}};
+    #{{$id}}.item-layout {
         border-radius: {{$contentRadio}};
+        @if(!$contentBorderShadowsHover && ($imagePosition==="1"))
+        box-shadow: {{$contentBorderShadows}};
+        @endif
+    }
+    @if($contentBorderShadowsHover && ($imagePosition==="1"))
+    #{{$id}}.item-layout:hover {
+        box-shadow: {{$contentBorderShadows}};
+    }
+    @endif
+    #{{$id}} .card-item {
+         background-color: {{$itemBackgroundColor}};
     }
     #{{$id}} .card-item:hover {
-        background-color: {{$itemBackgroundColorHover}};
+         background-color: {{$itemBackgroundColorHover}};
     }
     @if((!$imageOpacityHover) && $withImageOpacity && ($imageOpacityColor=='opacity-custom'))
     #{{$id}} .item-image picture {
@@ -240,17 +250,18 @@
             border-style: solid;
             border-color: {{$contentBorderColor}};
             border-radius: {{$contentRadio}};
-            @if(!$contentBorderShadowsHover)
-            box-shadow: {{$contentBorderShadows}};
+            @if(!$contentBorderShadowsHover && ($imagePosition!=="1"))
+                box-shadow: {{$contentBorderShadows}};
             @endif
-            margin: 5px;
+            @if(($contentBorderShadows!=='none' || $contentBorderShadows!=='') && ($imagePosition!=="1"))
+                margin: 5px;
+            @endif
         }
-        @if($contentBorderShadowsHover)
+        @if($contentBorderShadowsHover && ($imagePosition!=="1"))
         #{{$id}} .item-border:hover {
             box-shadow: {{$contentBorderShadows}};
         }
         @endif
-
     @endif
 
     #{{$id}} .item-title .title {
@@ -308,6 +319,7 @@
         }
     }
     @endif
+    #{{$id}} .image-overlay { z-index: 1;}
 </style>
 </div>
 
