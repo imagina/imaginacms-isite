@@ -13,11 +13,9 @@ class CheckTenancyForMaintenance extends CheckForMaintenanceMode
     public function handle($request, Closure $next)
     {
 
-        if (! tenant()) {
-            throw new TenancyNotInitializedException;
-        }
+       
+        if (!is_null(tenant()) && tenant('maintenance_mode')) {
 
-        if (tenant('maintenance_mode')) {
             $data = tenant('maintenance_mode');
 
             $tpl = 'isite::frontend.errors.maintenance';
