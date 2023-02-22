@@ -63,6 +63,7 @@ return [
     'isite.layouts' => [
         'manage' => 'isite::layouts.manage resource',
         'index' => 'isite::layouts.list resource',
+        'index-all' => 'isite::layouts.list all resource',
         'create' => 'isite::layouts.create resource',
         'edit' => 'isite::layouts.edit resource',
         'destroy' => 'isite::layouts.destroy resource',
