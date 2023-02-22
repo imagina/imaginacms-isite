@@ -16,13 +16,27 @@ return [
         "refresh" => true
       ]
     ],
-    "organizations" => [
-      "permission" => "isite.organizations.manage",
+    "organizationsAll" => [
+      "permission" => "isite.organizations.index-all",
       "activated" => true,
-      "path" => "/site/organizations",
-      "name" => "qsite.admin.organizations.index",
+      "path" => "/site/all-organizations",
+      "name" => "qsite.admin.organizations.index-all",
       "crud" => "qsite/_crud/organizations",
       "page" => "qcrud/_pages/admin/crudPage",
+      "layout" => "qsite/_layouts/master.vue",
+      "title" => "isite.cms.sidebar.adminOrganizationAll",
+      "icon" => "fas fa-crown",
+      "authenticated" => true,
+      "subHeader" => [
+        "refresh" => true
+      ]
+    ],
+    "organizations" => [
+      "permission" => "isite.organizations.index",
+      "activated" => true,
+      "path" => "/site/my-organizations",
+      "name" => "qsite.admin.organizations.index",
+      "page" => "qsite/_pages/admin/organizations/index",
       "layout" => "qsite/_layouts/master.vue",
       "title" => "isite.cms.sidebar.adminOrganization",
       "icon" => "fas fa-crown",
