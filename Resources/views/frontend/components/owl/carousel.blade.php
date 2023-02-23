@@ -19,9 +19,9 @@
               @endif
             @endif
             @if($subTitle!=="" && $owlTextPosition!=1)
-              <h6 class="subtitle {{$owlSubtitleColor}} {{$owlSubtitleWeight}} {{$owlSubtitleTransform}} {{$owlSubtitleMarginT}} {{$owlSubtitleMarginB}}" style="font-size: {{$owlSubtitleSize}}px;">
+              <h3 class="subtitle {{$owlSubtitleColor}} {{$owlSubtitleWeight}} {{$owlSubtitleTransform}} {{$owlSubtitleMarginT}} {{$owlSubtitleMarginB}}" style="font-size: {{$owlSubtitleSize}}px;">
                 {!! $subTitle !!}
-              </h6>
+              </h3>
             @endif
           </div>
         </div>

@@ -16,9 +16,9 @@
                         @endif
                     @endif
                     @if($subtitle!=="" && $textPosition!=1)
-                        <h6 class="subtitle {{$subtitleClasses}} {{$subtitleColor}} {{$subtitleWeight}} {{$subtitleTransform}}" style="font-size: {{$subtitleSize}}px; letter-spacing: {{$subtitleLetterSpacing}};">
+                        <h3 class="subtitle {{$subtitleClasses}} {{$subtitleColor}} {{$subtitleWeight}} {{$subtitleTransform}}" style="font-size: {{$subtitleSize}}px; letter-spacing: {{$subtitleLetterSpacing}};">
                             {!! $subtitle !!}
-                        </h6>
+                        </h3>
                     @endif
                 </div>
                 <hr class="{{$titleLineMarginY}}">
