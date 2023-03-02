@@ -20,6 +20,7 @@ $router->group(['prefix' => '/isite/v1'], function (Router $router) {
     'module' => 'isite',
     'prefix' => 'organizations',
     'controller' => 'OrganizationApiController',
+    'middleware' =>['update' => ['checkIp']]
   ]);
 
   $router->apiCrud([
