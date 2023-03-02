@@ -9,6 +9,7 @@ return [
     "adminIndex" => "Settings",
     "adminDynamicForm" => "Dynamic Form",
     "adminOrganizationAll" => "Sites List",
+    "adminOrganizationWizard" => "New Organization",
     "adminOrganization" => "Mi Site",
     "adminCategories" => "Categories",
     "adminIcruds" => "Icruds",
