@@ -1152,4 +1152,39 @@ return [
       ]
     ],
   ],
+  'usersToNotifyApi' => [
+    'name' => 'isite::usersToNotifyApi',
+    'value' => [],
+    'type' => 'select',
+    "onlySuperAdmin" => true,
+    'columns' => 'col-12 col-md-6',
+    'groupName' => 'notificationsChanges',
+    'groupTitle' => 'isite::common.settings.groupNameNotifyChanges',
+    'loadOptions' => [
+      'apiRoute' => 'apiRoutes.quser.users',
+      'select' => ['label' => 'email', 'id' => 'id'],
+    ],
+    'props' => [
+      'label' => 'isite::common.settings.usersToNotifyApi',
+      'multiple' => true,
+      'clearable' => true,
+    ],
+  ],
+  'emailsToNotifyApi' => [
+    'name' => 'isite::emailsToNotifyApi',
+    'value' => [],
+    'type' => 'select',
+    "onlySuperAdmin" => true,
+    'groupName' => 'notificationsChanges',
+    'groupTitle' => 'isite::common.settings.groupNameNotifyChanges',
+    'props' => [
+      'useInput' => true,
+      'useChips' => true,
+      'multiple' => true,
+      'hint' => 'iforms::common.settingHints.emails',
+      'hideDropdownIcon' => true,
+      'newValueMode' => 'add-unique',
+      'label' => 'isite::common.settings.emailsToNotifyApi'
+    ],
+  ],
 ];

@@ -61,6 +61,9 @@ return [
     'microsoftClientId' => 'Cliente Microsoft',
     'labelTimeExpiredToken' => 'Tiempo caducidad Tokens Descarga (Dias)',
     'enableDynamicFieldsCache' => 'Activar caché de dynamic fields en frontend',
+    'usersToNotifyApi' => 'Usuarios Para Notificar Cambios En La Aplicación',
+    'emailsToNotifyApi' => 'Correos Electrónicos Para Notificar Cambios En La Aplicación',
+    'groupNameNotifyChanges' => 'Notificar Cambios En La Aplicación',
     'tenant' => [
       'group' => 'Inquilinos',
       'tenantWithCentralData' => 'Entidades con data central',
