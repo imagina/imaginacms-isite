@@ -10,14 +10,13 @@ class CheckIp
     public function handle($request, Closure $next)
     {
 
-        $ipsAllowed = config('asgard.icustom.config.ipsAllowed');
+        $ipsAllowed = config('asgard.isite.config.ipsAllowed');
 
-        //Only pass with this
-        if (!is_null($ipsAllowed) && IpUtils::checkIp($request->ip(),$ipsAllowed)) 
-            return $next($request);
-       
-
-        throw new \Exception("IP not allowed");
-
+        //Only error if is wrong ip
+        if (!empty($ipsAllowed) && !IpUtils::checkIp($request->ip(),$ipsAllowed))
+             throw new \Exception("IP not allowed");
+           
+        return $next($request);
+    
     }
 }
