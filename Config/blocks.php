@@ -849,6 +849,7 @@ return [
           ],
           "imagePosition" => [
             "name" => "imagePosition",
+            "value" => "1",  
             "type" => "select",
             "props" => [
               "label" => "Posición",
