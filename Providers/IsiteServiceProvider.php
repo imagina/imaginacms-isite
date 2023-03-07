@@ -273,7 +273,7 @@ class IsiteServiceProvider extends ServiceProvider
     $this->commands([
       GenerateSitemapCommand::class,
       TenantModuleMigrateCommand::class,
-      //TenantsScheduleCommand::class,
+      TenantsScheduleCommand::class,
     ]);
   }
 
