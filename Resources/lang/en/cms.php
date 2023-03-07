@@ -57,6 +57,10 @@ return [
   "perzonalizationTitle" => "Welcome to the editor of your website",
   "perzonalizationDescription" => "Easily change the logo, colors and the main information of your website",
   "label" => [
+    "top" => "Top",
+    "bottom" => "Bottom",
+    "left" => "Left",
+    "right" => "Right",
     "backgroundImage" => "Background Image",
     "copyEmbedHtml" => "Copy HTML",
     "faq" => "Frequent Questions",
