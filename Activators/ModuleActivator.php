@@ -264,11 +264,16 @@ class ModuleActivator implements ActivatorInterface
       }
       
       if(isset($organizationId)){
-        $result = \DB::table("isite__domains")->select("domain")->where("organization_id",$organizationId)->first();
-        if(!empty($result))
-          $domain = $result->domain;
+        $result = \DB::table("isite__domains")->select("domain")->where("organization_id",$organizationId)->get();
+        if(!empty($result)){
+          $custom = $result->where("type","custom")->first();
+          if(isset($custom->domain)) $domain = $custom->domain;
+          else{
+            $default = $result->where("type","default")->first();
+            if(isset($default->domain)) $domain = $default->domain;
+          }
+        }
       }
-      
     }
 
    
