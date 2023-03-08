@@ -10,6 +10,7 @@ use Modules\Core\Events\BuildingSidebar;
 use Modules\Core\Events\LoadingBackendTranslations;
 use Modules\Isite\Console\GenerateSitemapCommand;
 use Modules\Isite\Console\TenantModuleMigrateCommand;
+use Modules\Isite\Console\TenantsScheduleCommand;
 use Modules\Isite\Events\Handlers\RegisterIsiteSidebar;
 use Modules\Isite\Http\Middleware\CaptchaMiddleware;
 use Illuminate\Support\Facades\Blade;
@@ -19,7 +20,7 @@ use Stancl\Tenancy\Database\Concerns\BelongsToTenant;
 use Modules\Isite\View\Components\Multilang;
 use Modules\Isite\View\Components\Categorylist;
 
-
+use Modules\Isite\Http\Middleware\CheckIp;
 
 class IsiteServiceProvider extends ServiceProvider
 {
@@ -32,7 +33,8 @@ class IsiteServiceProvider extends ServiceProvider
   protected $defer = false;
 
   protected $middleware = [
-    'captcha' => CaptchaMiddleware::class
+    'captcha' => CaptchaMiddleware::class,
+    'checkIp' => CheckIp::class,
   ];
 
   /**
@@ -270,7 +272,8 @@ class IsiteServiceProvider extends ServiceProvider
   {
     $this->commands([
       GenerateSitemapCommand::class,
-      TenantModuleMigrateCommand::class
+      TenantModuleMigrateCommand::class,
+      TenantsScheduleCommand::class,
     ]);
   }
 

@@ -9,6 +9,7 @@ return [
     "adminIndex" => "Ajustes",
     "adminDynamicForm" => "Formulario Dinámico",
     "adminOrganizationAll" => "Lista de Sitios",
+    "adminOrganizationWizard" => "Nueva Organización",
     "adminOrganization" => "Mi Sitio",
     "adminCategories" => "Categorias",
     "adminIcruds" => "Icruds",
@@ -56,6 +57,10 @@ return [
   "perzonalizationTitle" => "Bienvenid@ al editor de tu sitio web",
   "perzonalizationDescription" => "De manera fácil, cambia el logo, colores y la información principal de tu página web",
   "label" => [
+    "top" => "Arriba",
+    "bottom" => "Abajo",
+    "left" => "Izquierda",
+    "right" => "Derecha",
     "backgroundImage" => "Imagen de fondo",
     "copyEmbedHtml" => "Copiar HTML",
     "faq" => "Preguntas Frecuentes",

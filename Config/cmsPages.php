@@ -16,6 +16,17 @@ return [
         "refresh" => true
       ]
     ],
+    "organizationsWizard" => [
+      "permission" => null,
+      "authenticated" => false,
+      "activated" => true,
+      "path" => "/site/organizations-wizard",
+      "name" => "qsite.admin.organizations.wizard",
+      "page" => "qsite/_pages/admin/organizations/wizard",
+      "layout" => "qsite/_layouts/blank.vue",
+      "title" => "isite.cms.sidebar.adminOrganizationWizard",
+      "icon" => "fas fa-crown"
+    ],
     "organizationsAll" => [
       "permission" => "isite.organizations.index-all",
       "activated" => true,

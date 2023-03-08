@@ -19,9 +19,9 @@
               @endif
             @endif
             @if($subTitle!=="" && $owlTextPosition!=1)
-              <h6 class="subtitle {{$owlSubtitleColor}} {{$owlSubtitleWeight}} {{$owlSubtitleTransform}} {{$owlSubtitleMarginT}} {{$owlSubtitleMarginB}}" style="font-size: {{$owlSubtitleSize}}px;">
+              <h3 class="subtitle {{$owlSubtitleColor}} {{$owlSubtitleWeight}} {{$owlSubtitleTransform}} {{$owlSubtitleMarginT}} {{$owlSubtitleMarginB}}" style="font-size: {{$owlSubtitleSize}}px;">
                 {!! $subTitle !!}
-              </h6>
+              </h3>
             @endif
           </div>
         </div>
@@ -36,6 +36,7 @@
                              :withLabel="false"
                              :color="$navColor"
                              :sizeLabel="$navSizeLabel"
+                             :label="trans('slider::frontend.previous')"
             />
 
             <x-isite::button :style="$navStyleButton"
@@ -45,6 +46,7 @@
                              :withLabel="false"
                              :color="$navColor"
                              :sizeLabel="$navSizeLabel"
+                             :label="trans('slider::frontend.next')"
             />
           </div>
         @endif
@@ -61,6 +63,7 @@
                            :withLabel="false"
                            :color="$navColor"
                            :sizeLabel="$navSizeLabel"
+                           :label="trans('slider::frontend.previous')"
           />
 
           <x-isite::button :style="$navStyleButton"
@@ -70,6 +73,7 @@
                            :withLabel="false"
                            :color="$navColor"
                            :sizeLabel="$navSizeLabel"
+                           :label="trans('slider::frontend.next')"
           />
 
 
@@ -89,6 +93,7 @@
                              :withLabel="false"
                              :color="$navColor"
                              :sizeLabel="$navSizeLabel"
+                             :label="trans('slider::frontend.previous')"
             />
           </div>
 
@@ -128,6 +133,7 @@
                                :withLabel="false"
                                :color="$navColor"
                                :sizeLabel="$navSizeLabel"
+                               :label="trans('slider::frontend.next')"
               />
 
             </div>
@@ -145,6 +151,7 @@
                            :withLabel="false"
                            :color="$navColor"
                            :sizeLabel="$navSizeLabel"
+                           :label="trans('slider::frontend.previous')"
           />
 
           <x-isite::button :style="$navStyleButton"
@@ -154,6 +161,7 @@
                            :withLabel="false"
                            :color="$navColor"
                            :sizeLabel="$navSizeLabel"
+                           :label="trans('slider::frontend.next')"
           />
 
 
@@ -193,6 +201,10 @@
         owl.trigger('prev.owl.carousel', [300]);
       });
       owl.trigger('refresh.owl.carousel');
+
+      owl.find('.owl-dot').each(function(index) {
+        $(this).attr('aria-label', index + 1);
+      });
     }
 
     document.addEventListener('DOMContentLoaded', function () {
