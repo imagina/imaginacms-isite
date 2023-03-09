@@ -254,17 +254,17 @@ class ModuleActivator implements ActivatorInterface
     $domain = request()->getHost() ?? null;
     
     if(app()->runningInConsole()){
-
       $command = request()->server('argv');
+    
       if (is_array($command)) {
         if($command[1]=="tenant:run" && $command[2]=="schedule:run"){
           $param = explode('=', $command[3]);
           $organizationId =  $param[1];
         }
       }
-      
+  
       if(isset($organizationId)){
-        $result = \DB::table("isite__domains")->select("domain")->where("organization_id",$organizationId)->get();
+        $result = \DB::table("isite__domains")->where("organization_id",$organizationId)->get();
         if(!empty($result)){
           $custom = $result->where("type","custom")->first();
           if(isset($custom->domain)) $domain = $custom->domain;
