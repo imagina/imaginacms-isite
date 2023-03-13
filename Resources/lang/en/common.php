@@ -55,6 +55,9 @@ return [
       "label" => "Label",
       "icon-label" => "Icon",
     ],
+    'usersToNotify' => 'Users To Notify Changes In The Application',
+    'emailsToNotify' => 'Emails to Notify Changes in the Application',
+    'groupNameNotifyChanges' => 'Notify App Changes',
     'tenant' => [
       'group' => 'Tenants',
       'tenantWithCentralData' => 'Entities with central data',
@@ -81,7 +84,9 @@ return [
       ]
     ],
     'showGoToSiteButton' => 'Show button "Go To site',
-    'defaultLayout' => 'Layout Default'
+    'defaultLayout' => 'Layout Default',
+    'labelTimeExpiredToken' => 'Download Tokens Expiration Time (Days)',
+    'itemsTabs' => 'Enter Titles for the tabs',
   ],
   'settingHints' => [
     'phones' => "Type a phone number and press enter key",
@@ -106,6 +111,8 @@ return [
       'title' => 'Social Networks',
       'description' => 'Social Networks'
     ],
+    'components' => 'Components',
+    'groupNameTimeToken' => 'Tokens',
     'apiKeys' => [
       'title' => 'API Keys',
       'description' => 'API Keys'
@@ -184,6 +191,7 @@ return [
   ],
   'sitemap' => [
     'labelSitemapDepth' => 'Sitemap Depth',
+    'labelUserAgentRobots' => 'Search Agents For The Robots.txt File',
     'labelActiveGenerateRobotsFile' => 'Sitemap With Robots.txt File',
   ],
 ];

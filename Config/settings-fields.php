@@ -1152,8 +1152,8 @@ return [
       ]
     ],
   ],
-  'usersToNotifyApi' => [
-    'name' => 'isite::usersToNotifyApi',
+  'usersToNotify' => [
+    'name' => 'isite::usersToNotify',
     'value' => [],
     'type' => 'select',
     "onlySuperAdmin" => true,
@@ -1165,13 +1165,13 @@ return [
       'select' => ['label' => 'email', 'id' => 'id'],
     ],
     'props' => [
-      'label' => 'isite::common.settings.usersToNotifyApi',
+      'label' => 'isite::common.settings.usersToNotify',
       'multiple' => true,
       'clearable' => true,
     ],
   ],
-  'emailsToNotifyApi' => [
-    'name' => 'isite::emailsToNotifyApi',
+  'emailsToNotify' => [
+    'name' => 'isite::emailsToNotify',
     'value' => [],
     'type' => 'select',
     "onlySuperAdmin" => true,
@@ -1184,7 +1184,7 @@ return [
       'hint' => 'iforms::common.settingHints.emails',
       'hideDropdownIcon' => true,
       'newValueMode' => 'add-unique',
-      'label' => 'isite::common.settings.emailsToNotifyApi'
+      'label' => 'isite::common.settings.emailsToNotify'
     ],
   ],
 ];
