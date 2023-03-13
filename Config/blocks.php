@@ -2420,9 +2420,9 @@ return [
               "label" => "Clases General",
             ]
           ],
-          "columnLeft" => [
-            "name" => "columnLeft",
-            "value" => "col-6 col-md-4 col-lg-3",
+          "columns" => [
+            "name" => "columns",
+            "value" => "",
             "type" => "input",
             "columns" => "col-12",
             "props" => [

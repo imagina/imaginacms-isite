@@ -53,7 +53,8 @@ class Lists extends Component
     public $subtitleClasses;
     public $textPosition;
     public $textAlign;
-
+    public $columnLayout;
+    public $columns;
 
 
     /**
@@ -102,7 +103,8 @@ class Lists extends Component
                                 $textAlign = "",
                                 $subtitleColor = null,
                                 $titleClasses = "",
-                                $subtitleClasses = ""
+                                $subtitleClasses = "",
+                                $columns = ""
     )
     {
 
@@ -150,8 +152,11 @@ class Lists extends Component
         $this->subtitleColor = $subtitleColor;
         $this->titleClasses = $titleClasses;
         $this->subtitleClasses = $subtitleClasses;
+        $this->columnLayout = explode(",",$columns);
+        if($layout=="lists-layout-5" && empty($columns)) {
+            $this->columnLayout = [$columnLeft];
+        }
         $this->getItems();
-
     }
 
     private
