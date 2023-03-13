@@ -236,7 +236,7 @@ class TenantService
         $this->activatePlan(array_merge($data, ["organization_id" => $organization->id, "role" => $role]));
       
         //Proccess to clone DB and Media
-        $this->cloneTenancyLayout($data,$layoutConfig,$organization);
+        $this->cloneTenancyLayout($data,$layoutConfig,$organization,$tenantUser['user']);
 
       }else{
         \Log::info("Layout configuration is NULL");
@@ -509,7 +509,7 @@ class TenantService
     return $permissions;
   }
 
-  public function cloneTenancyLayout(array $data,array $layoutConfig,object $organization)
+  public function cloneTenancyLayout(array $data,array $layoutConfig,object $organization,object $tenantUser)
   {
     \Log::info("----------------------------------------------------------");
     \Log::info("Clone Tenancy Layout Proccess");
@@ -533,7 +533,7 @@ class TenantService
     $this->layoutService->updateLayoutId($data,$organization);
 
     //Update some settings
-    $this->settingService->updateSettings($data,$organization);
+    $this->settingService->updateSettings($data,$organization,$tenantUser);
     
   }
 
