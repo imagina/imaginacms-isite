@@ -150,7 +150,7 @@ class TenantService
 
     //Checking if is a new Layout
     if(!isset($data['layout'])){
-      $this->layoutService->create($data,$organization);
+      $layoutCreated = $this->layoutService->create($data,$organization);
       $this->isCreatingLayout = true;
     }
     
@@ -243,6 +243,12 @@ class TenantService
 
     }
     
+    //Create Layout from Main DB
+    if($this->isCreatingLayout){
+      \Log::info("Creating layout in DB");
+      $cloneLayout = $layoutCreated->replicate();
+      $cloneLayout->save();
+    }
     
     
     //Authenticating user in the Tenant DB
