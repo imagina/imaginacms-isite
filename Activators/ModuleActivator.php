@@ -256,7 +256,7 @@ class ModuleActivator implements ActivatorInterface
     if(app()->runningInConsole()){
       $command = request()->server('argv');
     
-      if (is_array($command)) {
+      if (is_array($command) && isset($command[1]) && isset($command[2])) {
         if($command[1]=="tenant:run" && $command[2]=="schedule:run"){
           $param = explode('=', $command[3]);
           $organizationId =  $param[1];

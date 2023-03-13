@@ -15,6 +15,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Cartalyst\Sentinel\Roles\EloquentRole;
 use Modules\Iprofile\Entities\Setting;
+//use Modules\Isite\Repositories\OrganizationRepository;
 
 //Services
 use Modules\Isite\Services\LayoutService;
@@ -150,7 +151,7 @@ class TenantService
 
     //Checking if is a new Layout
     if(!isset($data['layout'])){
-      $this->layoutService->create($data,$organization);
+      $layoutCreated = $this->layoutService->create($data,$organization);
       $this->isCreatingLayout = true;
     }
     
@@ -235,7 +236,7 @@ class TenantService
         $this->activatePlan(array_merge($data, ["organization_id" => $organization->id, "role" => $role]));
       
         //Proccess to clone DB and Media
-        $this->cloneTenancyLayout($data,$layoutConfig,$organization);
+        $this->cloneTenancyLayout($data,$layoutConfig,$organization,$tenantUser['user']);
 
       }else{
         \Log::info("Layout configuration is NULL");
@@ -243,8 +244,26 @@ class TenantService
 
     }
     
-    
-    
+    //Only when create a layout
+    if($this->isCreatingLayout){
+
+      \Log::info("----------------------------------------------------------");
+      \Log::info("Creating layout and organization in Tenant DB");
+      \Log::info("----------------------------------------------------------");
+
+      $cloneLayout = $layoutCreated->replicate();
+      $cloneLayout->save();
+
+      \DB::table("isite__organizations")->insert([
+        'id' => $organization->id,
+        'user_id' => 1,
+        'status' => $organization->status,
+        'layout_id' =>$cloneLayout->id,
+        'enable' => $organization->enable
+      ]);
+
+    }
+
     //Authenticating user in the Tenant DB
     $authData = $this->authenticateUser(array_merge($userCentralData, ["organization_id" => $organization->id]));
 
@@ -490,7 +509,7 @@ class TenantService
     return $permissions;
   }
 
-  public function cloneTenancyLayout(array $data,array $layoutConfig,object $organization)
+  public function cloneTenancyLayout(array $data,array $layoutConfig,object $organization,object $tenantUser)
   {
     \Log::info("----------------------------------------------------------");
     \Log::info("Clone Tenancy Layout Proccess");
@@ -514,7 +533,7 @@ class TenantService
     $this->layoutService->updateLayoutId($data,$organization);
 
     //Update some settings
-    $this->settingService->updateSettings($data,$organization);
+    $this->settingService->updateSettings($data,$organization,$tenantUser);
     
   }
 

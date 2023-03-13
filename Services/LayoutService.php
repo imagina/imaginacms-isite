@@ -39,6 +39,8 @@ class LayoutService
         $organization->layout_id = $layoutCreated->id;
         $organization->save();
 
+        return $layoutCreated;
+
     }
 
     public function createLayoutInCentralDB(array $data, string $systemName)
