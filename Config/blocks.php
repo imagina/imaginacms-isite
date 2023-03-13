@@ -103,7 +103,7 @@ return [
           ],
           "contentBorder" => [
             "name" => "contentBorder",
-            "value" => "1",
+            "value" => "0",
             "type" => "select",
             "props" => [
               "label" => "Grosor del Borde",
