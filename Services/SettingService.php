@@ -28,6 +28,9 @@ class SettingService
         $ids = [$tenantUser->id];
         $this->updateSetting("iforms::usersToNotify",$ids);
 
+        //Isite - usersToNotify
+        $this->updateSetting("isite::usersToNotify",$ids);
+
     }
 
 
