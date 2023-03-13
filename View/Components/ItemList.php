@@ -612,7 +612,10 @@ class ItemList extends Component
       $this->view = "isite::frontend.components.item-list.layouts." . ($this->layout ?? 'item-list-layout-1') . ".index";
 
     if (isset($item->date_available) && !empty($item->date_available)) {
-      $this->date = $item->date_available->format($formatCreatedDate);
+     
+      $dateFix = new \DateTime($item->date_available);
+      $this->date = $dateFix->format($formatCreatedDate);
+      
     } elseif (isset($item->created_at) && !empty($item->created_at)) {
       $this->date = $item->created_at->format($formatCreatedDate);
     } else {

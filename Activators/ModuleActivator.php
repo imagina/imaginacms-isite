@@ -250,12 +250,38 @@ class ModuleActivator implements ActivatorInterface
   }
   
   private function tenantModules(){
+    
+    $domain = request()->getHost() ?? null;
+    
+    if(app()->runningInConsole()){
+      $command = request()->server('argv');
+    
+      if (is_array($command)) {
+        if($command[1]=="tenant:run" && $command[2]=="schedule:run"){
+          $param = explode('=', $command[3]);
+          $organizationId =  $param[1];
+        }
+      }
+  
+      if(isset($organizationId)){
+        $result = \DB::table("isite__domains")->where("organization_id",$organizationId)->get();
+        if(!empty($result)){
+          $custom = $result->where("type","custom")->first();
+          if(isset($custom->domain)) $domain = $custom->domain;
+          else{
+            $default = $result->where("type","default")->first();
+            if(isset($default->domain)) $domain = $default->domain;
+          }
+        }
+      }
+    }
+
    
-    return Cache::store(config("cache.default"))->remember('isite_module_all_modules'. ( isset(tenant()->domain) ? tenant()->domain : request()->getHost() ?? ""), 60*60*24*30, function () {
+    return Cache::store(config("cache.default"))->remember('isite_module_all_modules'. ( isset(tenant()->domain) ? tenant()->domain : $domain ?? ""), 60*60*24*30, function () use($domain) {
       
       if(!\Schema::hasTable('isite__organizations')) return "";
       
-      $tenant = \DB::table("isite__organizations as org")->leftJoin("isite__domains as dom","org.id","dom.organization_id")->where("dom.domain",request()->getHost())
+      $tenant = \DB::table("isite__organizations as org")->leftJoin("isite__domains as dom","org.id","dom.organization_id")->where("dom.domain",$domain)
         ->first();
   
       if(empty($tenant)) return "";

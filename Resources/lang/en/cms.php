@@ -57,6 +57,11 @@ return [
   "perzonalizationTitle" => "Welcome to the editor of your website",
   "perzonalizationDescription" => "Easily change the logo, colors and the main information of your website",
   "label" => [
+    "activity" => "Activity | Activities",
+    "top" => "Top",
+    "bottom" => "Bottom",
+    "left" => "Left",
+    "right" => "Right",
     "backgroundImage" => "Background Image",
     "copyEmbedHtml" => "Copy HTML",
     "faq" => "Frequent Questions",
@@ -385,6 +390,8 @@ return [
     "format" => "Format | Formats"
   ],
   "message" => [
+    "editFormProduct" => "In this form you can edit your product in a simple way, if you want to edit your product with more advanced options, click on the following button to go to the advanced form.",
+    "createFormProduct" => "In this form you can create a new product in a simple way, if you want to create your product with more advanced options, click on the following button to go to the advanced form.",
     "advanceEdit" => "Advanced Edit",
     "descriptionHelpCenter" => "Choose the option you want to solve your doubts",
     "notFound" => "Sorry, nothing here",
@@ -454,8 +461,6 @@ return [
     "configureThisSection" => "configure This section"
   ],
   "form" => [
-    "editFormProduct" => "In this form you can edit your product in a simple way, if you want to edit your product with more advanced options, click on the following button to go to the advanced form.",
-    "createFormProduct" => "In this form you can create a new product in a simple way, if you want to create your product with more advanced options, click on the following button to go to the advanced form.",
     "id" => "ID",
     "title" => "Title | Title",
     "h1" => "Título H1",
