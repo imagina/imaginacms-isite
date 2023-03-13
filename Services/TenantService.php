@@ -15,6 +15,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Cartalyst\Sentinel\Roles\EloquentRole;
 use Modules\Iprofile\Entities\Setting;
+//use Modules\Isite\Repositories\OrganizationRepository;
 
 //Services
 use Modules\Isite\Services\LayoutService;
@@ -243,14 +244,26 @@ class TenantService
 
     }
     
-    //Create Layout from Main DB
+    //Only when create a layout
     if($this->isCreatingLayout){
-      \Log::info("Creating layout in DB");
+
+      \Log::info("----------------------------------------------------------");
+      \Log::info("Creating layout and organization in Tenant DB");
+      \Log::info("----------------------------------------------------------");
+
       $cloneLayout = $layoutCreated->replicate();
       $cloneLayout->save();
+
+      \DB::table("isite__organizations")->insert([
+        'id' => $organization->id,
+        'user_id' => 1,
+        'status' => $organization->status,
+        'layout_id' =>$cloneLayout->id,
+        'enable' => $organization->enable
+      ]);
+
     }
-    
-    
+
     //Authenticating user in the Tenant DB
     $authData = $this->authenticateUser(array_merge($userCentralData, ["organization_id" => $organization->id]));
 
