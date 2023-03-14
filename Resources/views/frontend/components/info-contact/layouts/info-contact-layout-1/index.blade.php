@@ -17,7 +17,7 @@
         {{$contentPaddingX}} {{$contentMarginY}} {{$contentMarginX}}">
         <div class="row">
           @if($withIconPhone)
-            <div class="col-12 col-md-1 col-lg-2 {{$alignIcons}} {{$iconsPaddingY}}
+            <div class="d-inline {{$alignIcons}} {{$iconsPaddingY}}
             {{$iconsPaddingX}} {{$iconsMarginY}} {{$iconsMarginX}}">
               <i class="{{$iconPhone}}"></i>
             </div>
@@ -39,7 +39,7 @@
         {{$contentPaddingX}} {{$contentMarginY}} {{$contentMarginX}}">
         <div class="row">
           @if($withIconAddress)
-            <div class="col-12 col-md-1 col-lg-2 {{$alignIcons}} {{$iconsPaddingY}}
+            <div class="d-inline {{$alignIcons}} {{$iconsPaddingY}}
             {{$iconsPaddingX}} {{$iconsMarginY}} {{$iconsMarginX}}">
               <i class="{{$iconAddress}}"></i>
             </div>
@@ -60,7 +60,7 @@
       {{$contentPaddingX}} {{$contentMarginY}} {{$contentMarginX}}">
         <div class="row">
           @if($withIconEmail)
-            <div class="col-12 col-md-1 col-lg-2 {{$alignIcons}} {{$iconsPaddingY}}
+            <div class="d-inline {{$alignIcons}} {{$iconsPaddingY}}
             {{$iconsPaddingX}} {{$iconsMarginY}} {{$iconsMarginX}}">
               <i class="{{$iconEmail}}"></i>
             </div>
