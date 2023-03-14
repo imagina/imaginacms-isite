@@ -194,4 +194,10 @@ return [
     'labelUserAgentRobots' => 'Search Agents For The Robots.txt File',
     'labelActiveGenerateRobotsFile' => 'Sitemap With Robots.txt File',
   ],
+  'infoContact' => [
+    'title' => 'Contact information',
+    'titlePhone' => 'Phone',
+    'titleAddress' => 'Address',
+    'titleEmail' => 'E-mail',
+  ]
 ];

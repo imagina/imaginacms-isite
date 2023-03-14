@@ -13,7 +13,7 @@
     @endif
     @if($withPhone)
       <div
-        class="info component-phone {{$orderInfo['phone']}} {{$contentPaddingY}}
+        class="info component-phone order-0 {{$orderInfo['phone']}} {{$contentPaddingY}}
         {{$contentPaddingX}} {{$contentMarginY}} {{$contentMarginX}}">
         <div class="row">
           @if($withIconPhone)
@@ -22,9 +22,9 @@
               <i class="{{$iconPhone}}"></i>
             </div>
           @endif
-          <div class="col-10">
+          <div class="col-10 {{$displayFlex}}">
             @if($withTitlePhone)
-              <div class="title-contact {{$alignTitleInfoContact}} {{$titleContactColorByClass}}">
+              <div class="title-contact px-2 {{$alignTitleInfoContact}} {{$titleContactColorByClass}}">
                 {{$titlePhone}}
               </div>
             @endif
@@ -44,9 +44,9 @@
               <i class="{{$iconAddress}}"></i>
             </div>
           @endif
-          <div class="col-10 order-2">
+          <div class="col-10 {{$displayFlex}}">
             @if($withTitleAddress)
-              <div class="title-contact {{$alignTitleInfoContact}} {{$titleContactColorByClass}}">
+              <div class="title-contact px-2 {{$alignTitleInfoContact}} {{$titleContactColorByClass}}">
                 {{$titleAddress}}
               </div>
             @endif
@@ -65,9 +65,9 @@
               <i class="{{$iconEmail}}"></i>
             </div>
           @endif
-          <div class="col-10 order-1">
+          <div class="col-10 {{$displayFlex}}">
             @if($withTitleEmail)
-              <div class="title-contact {{$alignTitleInfoContact}} {{$titleContactColorByClass}}">
+              <div class="title-contact px-2 {{$alignTitleInfoContact}} {{$titleContactColorByClass}}">
                 {{$titleEmail}}
               </div>
             @endif

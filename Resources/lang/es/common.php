@@ -217,4 +217,10 @@ return [
     'labelUserAgentRobots' => 'Agentes De Busqueda Para El Archivo Robots.txt',
     'labelActiveGenerateRobotsFile' => 'Sitemap Con Archivo Robots.txt',
   ],
+  'infoContact' => [
+    'title' => 'Datos de contacto',
+    'titlePhone' => 'Teléfono',
+    'titleAddress' => 'Dirección',
+    'titleEmail' => 'Correo Electrónico',
+  ]
 ];

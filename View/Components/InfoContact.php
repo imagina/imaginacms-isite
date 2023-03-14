@@ -66,6 +66,10 @@ class InfoContact extends Component
   public $titleSectionColorByClass;
   public $subtitleSectionColorByClass;
   public $titleContactColorByClass;
+  public $contentInline;
+  public $displayFlex;
+  public $withIconsComponents;
+  public $withIcons;
 
   /**
    * Create a new component instance.
@@ -73,10 +77,10 @@ class InfoContact extends Component
    * @return void
    */
   public function __construct($withPhone = true, $withAddress = true, $withEmail = true, $withSocialNetworks = true,
-                              $title = 'Datos de contacto', $titlePhone = 'Télefono', $titleAddress = 'Dirección',
-                              $titleEmail = 'Email', $subtitle = null, $withTitle = true, $withSubtitle = false,
-                              $withTitlePhone = true, $withTitleAddress = true, $withTitleEmail = true,
-                              $iconAddress = 'fa fa-map-marker', $iconPhone = 'fa fa-phone', $iconEmail = 'fa fa-envelope',
+                              $title = null, $titlePhone = null, $titleAddress = null, $titleEmail = null,
+                              $subtitle = null, $withTitle = true, $withSubtitle = false, $withTitlePhone = true,
+                              $withTitleAddress = true, $withTitleEmail = true, $iconAddress = 'fa fa-map-marker',
+                              $iconPhone = 'fa fa-phone', $iconEmail = 'fa fa-envelope',
                               $withIconComponentAddress = true, $withIconComponentPhone = true,
                               $withIconComponentEmail = true, $alignTitle = 'text-left', $alignSubtitle = 'text-left',
                               $alignIcons = 'justify-content-left', $alignInfoContact = 'justify-content-left',
@@ -92,17 +96,18 @@ class InfoContact extends Component
                               $titlePaddingX = '', $subtitlePaddingY = '', $subtitlePaddingX = '', $iconsPaddingY = '',
                               $iconsPaddingX = '', $iconsMarginY = '', $iconsMarginX = '',
                               $titleSectionColorByClass = 'text-primary', $subtitleSectionColorByClass = 'text-dark',
-                              $titleContactColorByClass = 'text-primary'
+                              $titleContactColorByClass = 'text-primary', $contentInline = false,
+                              $withIconsComponents = true, $withIcons = true
   )
   {
     $this->withPhone = $withPhone;
     $this->withAddress = $withAddress;
     $this->withEmail = $withEmail;
     $this->withSocialNetworks = $withSocialNetworks;
-    $this->title = $title;
-    $this->titlePhone = $titlePhone;
-    $this->titleAddress = $titleAddress;
-    $this->titleEmail = $titleEmail;
+    $this->title = $title ?? trans('isite::common.infoContact.title');
+    $this->titlePhone = $titlePhone ?? trans('isite::common.infoContact.titlePhone');
+    $this->titleAddress = $titleAddress ?? trans('isite::common.infoContact.titleAddress');
+    $this->titleEmail = $titleEmail ?? trans('isite::common.infoContact.titleEmail');
     $this->subtitle = $subtitle;
     $this->withTitle = $withTitle;
     $this->withSubtitle = $withSubtitle;
@@ -155,6 +160,21 @@ class InfoContact extends Component
     $this->titleSectionColorByClass = $titleSectionColorByClass;
     $this->subtitleSectionColorByClass = $subtitleSectionColorByClass;
     $this->titleContactColorByClass = $titleContactColorByClass;
+    if (!$withIconsComponents){
+      $this->withIconComponentAddress = false;
+      $this->withIconComponentPhone = false;
+      $this->withIconComponentEmail = false;
+    }
+    if (!$withIcons) {
+      $this->withIconPhone = false;
+      $this->withIconAddress = false;
+      $this->withIconEmail = false;
+    }
+    if ($contentInline) {
+      $this->displayFlex = 'd-flex';
+    } else {
+      $this->displayFlex = '';
+    }
   }
 
   /**
