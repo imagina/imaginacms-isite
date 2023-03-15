@@ -27,7 +27,7 @@
     @endif
     <div class="row">
     @foreach ($items as $key => $item)
-        <div class="{{$columnLeft}}">
+        <div class="{{$columnLayout[$key%count($columnLayout)]}}">
             @include("isite::frontend.partials.item",["itemLayout" => $itemComponentAttributes['layout'],"itemComponentAttributes" => $itemComponentAttributes])
         </div>
     @endforeach
