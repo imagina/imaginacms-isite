@@ -21,7 +21,7 @@
           <div class="item-image {{$col1}} {{$imagePositionVertical}} @if($withImageOpacity) {{$imageOpacityColor}} {{$imageOpacityDirection}} @endif">
             <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
                                    :url="$item->url ?? null" :isMedia="true"  :target="$target"
-                                   imgClasses="img-style" imgStyles="width: {{$imageWidth}}%;"
+                                   imgClasses="img-style" imgStyles="width:{{$imageWidth}}%; height:{{$imageHeight}};"
                                    :mediaFiles="$item->mediaFiles()" :zone="$mediaImage ?? 'mainimage'"/>
           </div>
         @endif
@@ -320,6 +320,23 @@
     }
     @endif
     #{{$id}} .image-overlay { z-index: 1;}
+
+    @if($buttonLayout=="button-custom")
+    #{{$id}} .button-custom {
+        color: {{$buttonConfig["color"]}};
+        border-color: {{$buttonConfig["background"]}};
+        background: {{$buttonConfig["background"]}};
+        border-radius: {{$buttonConfig["borderRadius"]}};
+        box-shadow: {{$buttonConfig["boxShadow"]}};
+        transition: {{$buttonConfig["transition"]}};
+    }
+    #{{$id}} .button-custom:hover {
+        color: {{$buttonConfig["colorHover"]}};
+        border-color: {{$buttonConfig["backgroundHover"]}};
+        background: {{$buttonConfig["backgroundHover"]}};
+        box-shadow: {{$buttonConfig["boxShadowHover"]}};
+    }
+    @endif
 </style>
 </div>
 

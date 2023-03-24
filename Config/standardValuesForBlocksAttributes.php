@@ -117,7 +117,8 @@ return [
         ["label" => "Botones Cuadrados", "value" => "rounded-0"],
         ["label" => "Botones Outline Semi Cuadrados", "value" => "outline rounded"],
         ["label" => "Botones Outline Redondos", "value" => "outline rounded-pill"],
-        ["label" => "Botones Outline Cuadrados", "value" => "outline rounded-0"]
+        ["label" => "Botones Outline Cuadrados", "value" => "outline rounded-0"],
+        ["label" => "Boton Configurable", "value" => "button-custom"]
     ],
     "buttonType" => [
         ["label" => "Normal", "value" => "button-normal"],

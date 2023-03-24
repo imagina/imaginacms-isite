@@ -55,6 +55,8 @@ class Lists extends Component
     public $textAlign;
     public $columnLayout;
     public $columns;
+    public $withLineTitle;
+    public $lineTitleConfig;
 
 
     /**
@@ -104,7 +106,9 @@ class Lists extends Component
                                 $subtitleColor = null,
                                 $titleClasses = "",
                                 $subtitleClasses = "",
-                                $columns = ""
+                                $columns = "",
+                                $withLineTitle = 0,
+                                $lineTitleConfig = []
     )
     {
 
@@ -156,6 +160,12 @@ class Lists extends Component
         if($layout=="lists-layout-5" && empty($columns)) {
             $this->columnLayout = [$columnLeft];
         }
+        $this->withLineTitle = $withLineTitle;
+        $this->lineTitleConfig = !empty($lineTitleConfig) ? $lineTitleConfig : [
+            "color" => "var(--primary)",
+            "height" => "2px",
+            "width" => "10%",
+            "margin" => "0 auto"];
         $this->getItems();
     }
 
