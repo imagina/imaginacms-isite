@@ -151,6 +151,7 @@ return [
         ["label" => "21/5", "value" => "21/5"],
         ["label" => "5/4", "value" => "5/4"],
         ["label" => "3/1", "value" => "3/1"],
+        ["label" => "19/8", "value" => "19/8"]
     ],
     "imageObject" => [
         ["label" => "Contain", "value" => "contain"],
@@ -301,4 +302,9 @@ return [
         ["label" => "Aspect 4:3", "value" => "embed-responsive-4by3"],
         ["label" => "Aspect 1:1", "value" => "embed-responsive-1by1"]
     ],
+    "titleLine" => [
+        ["label" => "Sin linea", "value" => "0"],
+        ["label" => "Con linea debajo del titulo", "value" => "1"],
+        ["label" => "Con linea debajo del subtilulo", "value" => "2"]
+    ]
 ];
