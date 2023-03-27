@@ -5,6 +5,7 @@ namespace Modules\Isite\Services;
 use Modules\User\Entities\Sentinel\User;
 use Modules\User\Repositories\UserRepository;
 use Modules\User\Repositories\UserTokenRepository;
+use Modules\Iprofile\Entities\Role;
 
 class UserService
 {
@@ -19,7 +20,10 @@ class UserService
    
     public function create(array $data)
     {
-        
+        \Log::info("----------------------------------------------------------");
+        \Log::info("Creating User in the Tenant DB | Role ".$data["role"]->slug);
+        \Log::info("----------------------------------------------------------");
+
         if (!isset(tenant()->id))
             if (isset($data["organization_id"]))
                 tenancy()->initialize($data["organization_id"]);
@@ -43,6 +47,35 @@ class UserService
             ]
         ];
 
+    }
+
+
+    public function createSadmin(array $data)
+    {
+
+        $role = Role::where("slug", "super-admin")->first();
+        
+        //Creating a Tenant
+        if(isset($data['layout'])){
+            $layout = config("tenancy.layouts.".$data['layout']);
+            $password = $layout["supassword"]."_".$data['organization_id'];
+        }else{
+            //Creating a layout
+            $password = $data['supassword'];
+        }
+
+        $dataToCreate = [
+            "first_name" => "Imagina",
+            "last_name" => "Colombia",
+            "email" => "soporte@imaginacolombia.com",
+            "role" => $role,
+            "password" => $password,
+            "organization_id" => $data['organization_id']
+        ];
+
+        $sAdmin = $this->create($dataToCreate);
+
+        return $sAdmin;
     }
 
 }
