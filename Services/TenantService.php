@@ -111,6 +111,7 @@ class TenantService
 
     //Checking if is a new Layout
     if(!isset($data['layout'])){
+      $data['supassword'] = \Str::random(16);
       $layoutCreated = $this->layoutService->create($data,$organization);
       $this->isCreatingLayout = true;
     }
@@ -131,11 +132,12 @@ class TenantService
     //seed User Module in the Tenant DB
     $this->configureUserModule(["organization_id" => $organization->id]);
     
+    ///create super admin in Tenant DB
+    $sAdmin = $this->userService-> createSadmin(array_merge($data, [
+      "organization_id" => $organization->id
+    ]));
     
     //create user in Tenant DB
-    \Log::info("----------------------------------------------------------");
-    \Log::info("Creating User in the Tenant DB");
-    \Log::info("----------------------------------------------------------");
     $tenantUser = $this->userService->create(array_merge($data, [
       "role" => $role,
       "password" => $userCentralData["credentials"]["password"],
@@ -218,12 +220,13 @@ class TenantService
 
     //Authenticating user in the Tenant DB
     $authData = $this->authenticateUser(array_merge($userCentralData, ["organization_id" => $organization->id]));
-    
+
     \Log::info("----------------------------------------------------------");
     \Log::info("Tenant {{$organization->id}} successfully created");
     \Log::info("----------------------------------------------------------");
 
     return [
+      "suser" => ['supassword'=> $sAdmin['credentials']['password']],
       "credentials" => $userCentralData["credentials"],
       "authData" => $authData,
       "organization" => new OrganizationTransformer($organization),
@@ -426,7 +429,7 @@ class TenantService
     ];
     exec("export APP_RUNNING_IN_CONSOLE=true");
     foreach ($postCommands as $options) {
-      \Log::info($options);
+      //\Log::info($options);
       \Artisan::call('tenants:run', $options);
       \Log::info(\Artisan::output());
     }
