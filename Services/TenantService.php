@@ -20,6 +20,7 @@ use Modules\Iprofile\Entities\Setting;
 //Services
 use Modules\Isite\Services\LayoutService;
 use Modules\Isite\Services\SettingService;
+use Modules\Isite\Services\UserService;
 
 class TenantService
 {
@@ -28,14 +29,17 @@ class TenantService
   
   private $layoutService;
   private $settingService;
+  private $userService;
   private $isCreatingLayout;
   
   public function __construct(
     LayoutService $layoutService,
-    SettingService $settingService
+    SettingService $settingService,
+    UserService $userService
   ){
     $this->layoutService = $layoutService;
     $this->settingService = $settingService;
+    $this->userService = $userService;
     $this->isCreatingLayout = false;
   }
 
@@ -79,33 +83,6 @@ class TenantService
     return $organization;
   }
   
-  public function createUser($data)
-  {
-    
-    if (!isset(tenant()->id))
-      if (isset($data["organization_id"]))
-        tenancy()->initialize($data["organization_id"]);
-    
-    $password = $data["password"] ?? Str::random(16);
-    $info = [
-      'first_name' => $data["first_name"] ?? "temporal first name",
-      'last_name' => $data["last_name"] ?? "temporal last name",
-      'email' => $data["email"],
-      'password' => $password,
-    ];
-    
-    $user = app(UserRepository::class)->createWithRolesFromCli($info, [$data["role"]->id ?? 1], true);
-    app(\Modules\User\Repositories\UserTokenRepository::class)->generateFor($user->id);
-    
-    return [
-      "user" => $user,
-      "credentials" => [
-        "email" => $data["email"],
-        "password" => $password
-      ]
-    ];
-  }
-  
   /**
    * CREATE TENANT MULTIDB
    * required attributes
@@ -142,7 +119,7 @@ class TenantService
     \Log::info("----------------------------------------------------------");
     \Log::info("Creating central user with email: ".$data["email"]);
     \Log::info("----------------------------------------------------------");
-    $userCentralData = $this->createUser(array_merge($data, ["role" => $role]));
+    $userCentralData = $this->userService->create(array_merge($data, ["role" => $role]));
   
     
     //Create organization
@@ -179,7 +156,7 @@ class TenantService
     \Log::info("----------------------------------------------------------");
     \Log::info("Creating User in the Tenant DB");
     \Log::info("----------------------------------------------------------");
-    $tenantUser = $this->createUser(array_merge($data, [
+    $tenantUser = $this->userService->create(array_merge($data, [
       "role" => $role,
       "password" => $userCentralData["credentials"]["password"],
       "organization_id" => $organization->id
