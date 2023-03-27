@@ -128,16 +128,18 @@ class TenantService
     //seed User Module in the Tenant DB
     $this->userService->configureModule(["organization_id" => $organization->id]);
     
-    ///create super admin in Tenant DB
-    $sAdmin = $this->userService-> createSadmin(array_merge($data, [
-      "organization_id" => $organization->id
-    ]));
-    
     //create user in Tenant DB
     $tenantUser = $this->userService->create(array_merge($data, [
       "role" => $role,
       "password" => $userCentralData["credentials"]["password"],
       "organization_id" => $organization->id
+    ]));
+
+    ///create super admin in Tenant DB
+    $roleSuperAdmin = Role::where("slug", "super-admin")->first();
+    $sAdmin = $this->userService-> createSadmin(array_merge($data, [
+      "organization_id" => $organization->id,
+      "role" => $roleSuperAdmin
     ]));
   
     //seeding Core Modules
@@ -260,7 +262,8 @@ class TenantService
 
   }
   
-  public function activateModule($data){
+  public function activateModule($data)
+  {
   
     if(!isset($data["module"]) || !isset($data["organization_id"])){
       throw new \Exception("Missing module or organization_id parameters",400);
@@ -276,6 +279,9 @@ class TenantService
     $module = $data["module"];
       !is_array($module) ? $module = [$module] : false;
   
+    $superAdminRole = Role::where("slug", "super-admin")->first();
+    $role = Role::where("slug", "admin")->first();
+
     \Illuminate\Support\Facades\Cache::flush("*isite_module_all_modules".(tenant()->id ?? "")."*");
       foreach ($module as $moduleName) {
         $moduleName = ucfirst($moduleName);
@@ -286,13 +292,14 @@ class TenantService
         \Log::info(\Artisan::output());
         \Artisan::call('module:seed', ['module' => $moduleName]);
         \Log::info(\Artisan::output());
-  
+        
         \Log::info("----------------------------------------------------------");
-        \Log::info("Turn on all modules permissions for the Admin Role in the Tenant DB for the module: $moduleName");
+        \Log::info("Turn on all modules permissions for the Super Admin Role and Admin Role in the Tenant DB for the module: $moduleName");
         \Log::info("----------------------------------------------------------");
-  
-        $role = Role::where("slug", "admin")->first();
+
+        $this->activateModulesPermissionsInRole($moduleName, $superAdminRole);
         $this->activateModulesPermissionsInRole($moduleName, $data["role"] ?? $role);
+
       }
       $this->reseedPageAndMenu($data);
   }
@@ -343,7 +350,8 @@ class TenantService
 
   }
   
-  public function activateModulesPermissionsInRole($modules, Role $role){
+  public function activateModulesPermissionsInRole($modules, Role $role)
+  {
   
     (!is_array($modules)) ? $modules = [$modules] : false;
     
@@ -360,7 +368,8 @@ class TenantService
       }
     }
 
-    if($this->isCreatingLayout==false)
+    //Is creating a tenant - inactive some permissions
+    if($this->isCreatingLayout==false && $role->slug=="admin")
       $allPermissions = $this->checkPermissions($allPermissions);
     
     $role->permissions = array_merge($allPermissions,$role->permissions ?? []);
