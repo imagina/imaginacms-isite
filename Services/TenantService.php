@@ -85,20 +85,8 @@ class TenantService
   
   /**
    * CREATE TENANT MULTIDB
-   * required attributes
-   *[
-   *  email,
-   *  name,
-   *  plan(blog | icommerce) array or string,
-   *  layout_id
-   *
-   * ]
-   *
-   * optional Attributes
-   * [
-   * password,
-   * role, string slug
-   * ]
+   * Required [email, name, plan(blog | icommerce) array or string, layout_id]
+   * Optional [password, role, string slug]
    * @param Request $request
    * @return mixed
    */

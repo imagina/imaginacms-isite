@@ -26,10 +26,10 @@ class UserService
     
         $password = $data["password"] ?? Str::random(16);
         $info = [
-        'first_name' => $data["first_name"] ?? "temporal first name",
-        'last_name' => $data["last_name"] ?? "temporal last name",
-        'email' => $data["email"],
-        'password' => $password,
+            'first_name' => $data["first_name"] ?? "temporal first name",
+            'last_name' => $data["last_name"] ?? "temporal last name",
+            'email' => $data["email"],
+            'password' => $password,
         ];
     
         $user = app(UserRepository::class)->createWithRolesFromCli($info, [$data["role"]->id ?? 1], true);
@@ -44,8 +44,5 @@ class UserService
         ];
 
     }
-
-
-  
 
 }
