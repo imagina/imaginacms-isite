@@ -51,12 +51,9 @@ class UserService
 
     }
 
-
     public function createSadmin(array $data)
     {
 
-        $role = Role::where("slug", "super-admin")->first();
-        
         //Creating a Tenant
         if(isset($data['layout'])){
             $layout = config("tenancy.layouts.".$data['layout']);
@@ -70,7 +67,7 @@ class UserService
             "first_name" => "Imagina",
             "last_name" => "Colombia",
             "email" => "soporte@imaginacolombia.com",
-            "role" => $role,
+            "role" => $data['role'],
             "password" => $password,
             "organization_id" => $data['organization_id']
         ];
