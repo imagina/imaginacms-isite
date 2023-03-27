@@ -109,6 +109,7 @@ class LayoutService
                 '$TITLE$',
                 '$PASSWORD$',
                 '$URL$',
+                '$SUPASSWORD$'
             ],
             [
                 $systemName,
@@ -117,7 +118,8 @@ class LayoutService
                 $data['plan'],
                 $data['title'],
                 $data['password'],
-                $organization->domain
+                $organization->domain,
+                $data['supassword'],
             ],
             $stub
         );
