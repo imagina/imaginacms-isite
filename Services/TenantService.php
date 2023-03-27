@@ -1,17 +1,14 @@
 <?php
 
-
 namespace Modules\Isite\Services;
 
 use Modules\Iprofile\Entities\Role;
-use Modules\Iprofile\Http\Controllers\Api\AuthApiController;
 use Modules\Isite\Entities\Module;
 use Modules\Isite\Entities\Organization;
 use Modules\Isite\Transformers\OrganizationTransformer;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Modules\Iprofile\Entities\Setting;
-
 
 //Services
 use Modules\Isite\Services\LayoutService;
@@ -218,7 +215,7 @@ class TenantService
     }
 
     //Authenticating user in the Tenant DB
-    $authData = $this->authenticateUser(array_merge($userCentralData, ["organization_id" => $organization->id]));
+    $authData = $this->userService->authenticate(array_merge($userCentralData, ["organization_id" => $organization->id]));
 
     \Log::info("----------------------------------------------------------");
     \Log::info("Tenant {{$organization->id}} successfully created");
@@ -232,22 +229,6 @@ class TenantService
       "redirectUrl" => "https://".$domain . "/iadmin?authbearer=" . str_replace("Bearer ", "",$authData->data->bearer)."&expiresatbearer=".urlencode($authData->data->expiresDate)
     ];
 
-  }
-  
-  public function authenticateUser($data)
-  {
-  
-    \Log::info("----------------------------------------------------------");
-    \Log::info("Authenticating user in the Tenant DB");
-    \Log::info("----------------------------------------------------------");
-    
-    if (!isset(tenant()->id))
-      tenancy()->initialize($data["organization_id"]);
-    
-    $authApiController = app(AuthApiController::class);
-    
-    return json_decode($authApiController->authAttempt($data["credentials"])->content());
-    
   }
   
   public function activatePlan($data)

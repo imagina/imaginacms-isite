@@ -7,6 +7,7 @@ use Modules\User\Repositories\UserRepository;
 use Modules\User\Repositories\UserTokenRepository;
 use Modules\Iprofile\Entities\Role;
 use Modules\Core\Console\Installers\Scripts\UserProviders\SentinelInstaller;
+use Modules\Iprofile\Http\Controllers\Api\AuthApiController;
 
 class UserService
 {
@@ -100,6 +101,21 @@ class UserService
         \Artisan::call('db:seed', ['--class' => 'Modules\Iprofile\Database\Seeders\RolePermissionsSeeder']);
         \Log::info(\Artisan::output());
     
+    }
+
+    public function authenticate($data)
+    {
+  
+        \Log::info("----------------------------------------------------------");
+        \Log::info("Authenticating user in the Tenant DB");
+        \Log::info("----------------------------------------------------------");
+    
+        if (!isset(tenant()->id))
+        tenancy()->initialize($data["organization_id"]);
+        
+        $authApiController = app(AuthApiController::class);
+        
+        return json_decode($authApiController->authAttempt($data["credentials"])->content());
     }
 
 }
