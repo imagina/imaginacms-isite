@@ -6,6 +6,7 @@ use Modules\User\Entities\Sentinel\User;
 use Modules\User\Repositories\UserRepository;
 use Modules\User\Repositories\UserTokenRepository;
 use Modules\Iprofile\Entities\Role;
+use Modules\Core\Console\Installers\Scripts\UserProviders\SentinelInstaller;
 
 class UserService
 {
@@ -76,6 +77,29 @@ class UserService
         $sAdmin = $this->create($dataToCreate);
 
         return $sAdmin;
+    }
+
+    public function configureModule($data)
+    {
+    
+        \Log::info("----------------------------------------------------------");
+        \Log::info("Configuring User Module");
+        \Log::info("----------------------------------------------------------");
+        
+        if (!isset(tenant()->id))
+        tenancy()->initialize($data["organization_id"]);
+        
+        $userProvider = app(SentinelInstaller::class);
+        
+        $userProvider->configure();
+        
+        \Artisan::call('module:migrate', ['module' => 'User']);
+        \Log::info(\Artisan::output());
+        \Artisan::call('module:seed', ['module' => 'User']);
+        \Log::info(\Artisan::output());
+        \Artisan::call('db:seed', ['--class' => 'Modules\Iprofile\Database\Seeders\RolePermissionsSeeder']);
+        \Log::info(\Artisan::output());
+    
     }
 
 }

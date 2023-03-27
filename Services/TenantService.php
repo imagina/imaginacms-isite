@@ -7,12 +7,11 @@ use Modules\Iprofile\Entities\Role;
 use Modules\Iprofile\Http\Controllers\Api\AuthApiController;
 use Modules\Isite\Entities\Module;
 use Modules\Isite\Entities\Organization;
-use Modules\Core\Console\Installers\Scripts\UserProviders\SentinelInstaller;
 use Modules\Isite\Transformers\OrganizationTransformer;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Modules\Iprofile\Entities\Setting;
-//use Modules\Isite\Repositories\OrganizationRepository;
+
 
 //Services
 use Modules\Isite\Services\LayoutService;
@@ -21,7 +20,7 @@ use Modules\Isite\Services\UserService;
 
 class TenantService
 {
-  public $sentinelInstaller;
+
   private $application;
   
   private $layoutService;
@@ -130,7 +129,7 @@ class TenantService
     $this->migrateCoreModules(["organization_id" => $organization->id]);
   
     //seed User Module in the Tenant DB
-    $this->configureUserModule(["organization_id" => $organization->id]);
+    $this->userService->configureModule(["organization_id" => $organization->id]);
     
     ///create super admin in Tenant DB
     $sAdmin = $this->userService-> createSadmin(array_merge($data, [
@@ -386,29 +385,6 @@ class TenantService
     $role->permissions = array_merge($allPermissions,$role->permissions ?? []);
   
     $role->save();
-    
-  }
-  
-  public function configureUserModule($data)
-  {
-    
-    \Log::info("----------------------------------------------------------");
-    \Log::info("Configuring User Module");
-    \Log::info("----------------------------------------------------------");
-    
-    if (!isset(tenant()->id))
-      tenancy()->initialize($data["organization_id"]);
-    
-    $userProvider = app(SentinelInstaller::class);
-    
-    $userProvider->configure();
-    
-    \Artisan::call('module:migrate', ['module' => 'User']);
-    \Log::info(\Artisan::output());
-    \Artisan::call('module:seed', ['module' => 'User']);
-    \Log::info(\Artisan::output());
-    \Artisan::call('db:seed', ['--class' => 'Modules\Iprofile\Database\Seeders\RolePermissionsSeeder']);
-    \Log::info(\Artisan::output());
     
   }
   
