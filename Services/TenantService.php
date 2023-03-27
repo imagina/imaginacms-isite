@@ -9,11 +9,8 @@ use Modules\Isite\Entities\Module;
 use Modules\Isite\Entities\Organization;
 use Modules\Core\Console\Installers\Scripts\UserProviders\SentinelInstaller;
 use Modules\Isite\Transformers\OrganizationTransformer;
-use Modules\User\Entities\Sentinel\User;
-use Modules\User\Repositories\UserRepository;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-use Cartalyst\Sentinel\Roles\EloquentRole;
 use Modules\Iprofile\Entities\Setting;
 //use Modules\Isite\Repositories\OrganizationRepository;
 
@@ -102,14 +99,12 @@ class TenantService
       $role = Role::where("slug", config("tenancy.defaultCentralRole"))->first();
     }
     
-    
     //Create the user in current DB
     \Log::info("----------------------------------------------------------");
     \Log::info("Creating central user with email: ".$data["email"]);
     \Log::info("----------------------------------------------------------");
     $userCentralData = $this->userService->create(array_merge($data, ["role" => $role]));
   
-    
     //Create organization
     $organization = $this->createTenant(array_merge($data, ["user" => $userCentralData["user"]]));
     $domain = $organization->domain;
@@ -119,7 +114,6 @@ class TenantService
       $layoutCreated = $this->layoutService->create($data,$organization);
       $this->isCreatingLayout = true;
     }
-    
     
     //Initializing Tenant
     \Log::info("----------------------------------------------------------");
@@ -131,10 +125,8 @@ class TenantService
     //Post install commands
     $this->postInstallCommands(["organization_id" => $organization->id]);
   
-  
     //Migrate Core modules
     $this->migrateCoreModules(["organization_id" => $organization->id]);
-  
   
     //seed User Module in the Tenant DB
     $this->configureUserModule(["organization_id" => $organization->id]);
@@ -150,10 +142,8 @@ class TenantService
       "organization_id" => $organization->id
     ]));
   
-    
     //seeding Core Modules
     $this->seedCoreModules(["organization_id" => $organization->id, "user" => $tenantUser["user"]]);
-    
     
     //finding admin Role seeded in the previous sentence
     \Log::info("----------------------------------------------------------");
@@ -162,13 +152,10 @@ class TenantService
     $role = Role::where("slug", "admin")->first();
     $tenantUser["user"]->roles()->sync([$role->id]);
   
-  
-  
     \Log::info("----------------------------------------------------------");
     \Log::info("Turn on all core module permissions for the Admin Role in the Tenant DB ");
     \Log::info("----------------------------------------------------------");
     $this->activateModulesPermissionsInRole(config("asgard.core.config.CoreModules"), $role);
-    
     
     //Setting the work Space to the admin role seeded in the Tenant DB
     \Log::info("----------------------------------------------------------");
@@ -231,7 +218,6 @@ class TenantService
 
     //Authenticating user in the Tenant DB
     $authData = $this->authenticateUser(array_merge($userCentralData, ["organization_id" => $organization->id]));
-
     
     \Log::info("----------------------------------------------------------");
     \Log::info("Tenant {{$organization->id}} successfully created");
@@ -243,6 +229,7 @@ class TenantService
       "organization" => new OrganizationTransformer($organization),
       "redirectUrl" => "https://".$domain . "/iadmin?authbearer=" . str_replace("Bearer ", "",$authData->data->bearer)."&expiresatbearer=".urlencode($authData->data->expiresDate)
     ];
+
   }
   
   public function authenticateUser($data)
