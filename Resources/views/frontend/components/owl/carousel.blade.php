@@ -4,13 +4,13 @@
 
       <div class="row align-items-center @if($navPosition=='top-right') justify-content-end @endif @if(($navPosition=="top-right" || $navPosition=="top-left") && $owlTextAlign=="text-center") my-3 @endif">
 
-        <div class="col px-0 {{ $navPosition=="top-left" ? 'order-1':'' }}"  @if(($navPosition=="top-right" || $navPosition=="top-left") && $owlTextAlign=="text-center") style="position: absolute; left: 0;" @endif>
-          <div class="title-section {{$owlTextAlign}}" @if($owlTextPosition==3) style="display: flex; flex-direction: column;" @endif>
+        <div class="col px-0 {{ $navPosition=="top-left" ? 'order-1':'' }} @if(($navPosition=="top-right" || $navPosition=="top-left") && $owlTextAlign=="text-center") position-absolute-left @endif">
+          <div class="title-section {{$owlTextAlign}} @if($owlTextPosition==3) d-flex flex-column @endif ">
             @if($title!=="")
               @if($owlTitleUrl)
-              <a href="{{$owlTitleUrl}}" target="{{$owlTitleTarget}}" style="text-decoration: none;">
+              <a href="{{$owlTitleUrl}}" target="{{$owlTitleTarget}}" class="text-decoration-none">
               @endif
-              <h2 class="title {{ $owlTextPosition==3 ? 'order-1':'' }} {{$owlTitleColor}} {{$owlTitleWeight}} {{$owlTitleTransform}} {{$owlTitleMarginT}} {{$owlTitleMarginB}}" style="font-size: {{$owlTitleSize}}px;">
+              <h2 class="title {{$owlTitleClasses}} {{ $owlTextPosition==3 ? 'order-1':'' }} {{$owlTitleColor}} {{$owlTitleWeight}} {{$owlTitleTransform}} {{$owlTitleMarginT}} {{$owlTitleMarginB}}">
                 @if($owlTitleVineta) <i class="{{$owlTitleVineta}} {{$owlTitleVinetaColor}} mr-1"></i>  @endif
                 <span> {!! $title !!}</span>
               </h2>
@@ -19,7 +19,7 @@
               @endif
             @endif
             @if($subTitle!=="" && $owlTextPosition!=1)
-              <h3 class="subtitle {{$owlSubtitleColor}} {{$owlSubtitleWeight}} {{$owlSubtitleTransform}} {{$owlSubtitleMarginT}} {{$owlSubtitleMarginB}}" style="font-size: {{$owlSubtitleSize}}px;">
+              <h3 class="subtitle {{$owlSubtitleClasses}} {{$owlSubtitleColor}} {{$owlSubtitleWeight}} {{$owlSubtitleTransform}} {{$owlSubtitleMarginT}} {{$owlSubtitleMarginB}}">
                 {!! $subTitle !!}
               </h3>
             @endif
@@ -279,5 +279,38 @@
         outline: 0;
     }
     @endif
+
+    #{{$id}} .title-section .title {
+       font-size: {{$owlTitleSize}}px;
+    }
+    #{{$id}} .title-section .subtitle {
+      font-size: {{$owlSubtitleSize}}px;
+    }
+
+    @if($owlWithLineTitle==1)
+    #{{$id}} .title-section .title:after {
+        content: '';
+        display: block;
+        width: {{$owlLineTitleConfig["width"]}};
+        height: {{$owlLineTitleConfig["height"]}};
+        background: {{$owlLineTitleConfig["color"]}};
+        margin: {{$owlLineTitleConfig["margin"]}};
+    }
+    @endif
+    @if($owlWithLineTitle==2)
+    #{{$id}} .title-section .subtitle:after {
+         content: '';
+         display: block;
+         width: {{$owlLineTitleConfig["width"]}};
+         height: {{$owlLineTitleConfig["height"]}};
+         background: {{$owlLineTitleConfig["color"]}};
+         margin: {{$owlLineTitleConfig["margin"]}};
+    }
+    @endif
+
+    #{{$id}} .position-absolute-left {
+        position: absolute; left: 0;
+    }
+
   </style>
 @endif
