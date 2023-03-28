@@ -34,7 +34,6 @@ class OwlCarousel extends Component
     public $editLink;
     public $tooltipEditLink;
     public $autoplayTimeout;
-
     public $navIcon;
     public $navSizeLabel;
     public $dotsStyle;
@@ -43,7 +42,6 @@ class OwlCarousel extends Component
     public $navSizeButton;
     public $navStyleButton;
     public $navColor;
-
     public $owlTextPosition; // 1 -> solo titulo 2 -> titulo con subtitulo debajo 3 -> titulo con subtitilo arria
     public $owlTitleMarginT;
     public $owlTitleMarginB;
@@ -54,7 +52,6 @@ class OwlCarousel extends Component
     public $owlTitleWeight;
     public $owlTitleTransform;
     public $owlTitleLetterSpacing;
-
     public $owlSubtitleMarginT;
     public $owlSubtitleMarginB;
     public $owlSubtitleColor;
@@ -62,16 +59,18 @@ class OwlCarousel extends Component
     public $owlSubtitleWeight;
     public $owlSubtitleTransform;
     public $owlSubtitleLetterSpacing;
-
     public $itemComponentAttributes;
     public $itemComponentNamespace;
     public $stagePadding;
-
     public $owlTitleUrl;
     public $owlTitleTarget;
     public $mouseDrag;
     public $touchDrag;
     public $navOld;
+    public $owlWithLineTitle;
+    public $owlLineTitleConfig;
+    public $owlTitleClasses;
+    public $owlSubtitleClasses;
 
     /**
      * Create a new component instance.
@@ -132,7 +131,11 @@ class OwlCarousel extends Component
                                 $autoplayTimeout = 5000,
                                 $mouseDrag = true,
                                 $touchDrag = true,
-                                $navOld = false
+                                $navOld = false,
+                                $owlWithLineTitle = 0,
+                                $owlLineTitleConfig = [],
+                                $owlTitleClasses = "",
+                                $owlSubtitleClasses = ""
     )
     {
 
@@ -195,6 +198,14 @@ class OwlCarousel extends Component
         $this->touchDrag = $touchDrag;
         $this->itemComponentAttributes = $itemComponentAttributes;
         $this->navOld = $navOld;
+        $this->owlTitleClasses = $owlTitleClasses;
+        $this->owlSubtitleClasses = $owlSubtitleClasses;
+        $this->owlWithLineTitle = $owlWithLineTitle;
+        $this->owlLineTitleConfig = !empty($owlLineTitleConfig) ? $owlLineTitleConfig : [
+            "color" => "var(--primary)",
+            "height" => "2px",
+            "width" => "10%",
+            "margin" => "0 auto"];
         $this->getItems();
         list($this->editLink, $this->tooltipEditLink) = getEditLink($this->repository);
         if($nav && $navText!="") {

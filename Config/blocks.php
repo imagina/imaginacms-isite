@@ -825,6 +825,22 @@ return [
                 "label" => "Clases generales",
             ]
           ],
+          "buttonConfig" => [
+            "name" => "buttonConfig",
+            "value" => ['color' => 'var(--primary)',
+                'background' => 'var(--white)',
+                'boxShadow' => 'none',
+                'transition' => '.4s',
+                'borderRadius' => '10px',
+                'colorHover' => 'var(--dark)',
+                'backgroundHover' => 'var(--secondary)',
+                'boxShadowHover' => 'none'],
+            "type" => "json",
+            "columns" => "col-12",
+            "props" => [
+                "label" => "Configuración de Botón Custom",
+            ]
+          ],
         ]
       ],
       "imagen" => [
@@ -887,6 +903,14 @@ return [
               "type" => "number",
               "min" => "0",
               "max" => "100",
+            ]
+          ],
+          "imageHeight" => [
+            "name" => "imageHeight",
+            "value" => "auto",
+            "type" => "input",
+            "props" => [
+                "label" => "Alto imagen (Formato Libre)",
             ]
           ],
           "imageAlign" => [
@@ -1288,19 +1312,11 @@ return [
       "texto" => [
         "title" => "Texto (Titulo y Subtitulo)",
         "fields" => [
-          "owlTextAlign" => [
-            "name" => "owlTextAlign",
-            "value" => "text-left",
-            "type" => "select",
-            "props" => [
-              "label" => "Alineación",
-              "options" => $vAttributes["align"]
-            ]
-          ],
           "owlTextPosition" => [
             "name" => "owlTextPosition",
             "value" => "2",
             "type" => "select",
+            "columns" => "col-12",
             "props" => [
               "label" => "Posición",
               "options" => [
@@ -1308,6 +1324,15 @@ return [
                 ["label" => "Título con descripción abajo", "value" => "2"],
                 ["label" => "Título abajo con descripción arriba", "value" => "3"]
               ]
+            ]
+          ],
+          "owlTextAlign" => [
+            "name" => "owlTextAlign",
+            "value" => "text-left",
+            "type" => "select",
+            "props" => [
+                "label" => "Alineación",
+                "options" => $vAttributes["align"]
             ]
           ],
           "owlTitleSize" => [
@@ -1400,6 +1425,15 @@ return [
               "options" => $vAttributes["textColors"]
             ]
           ],
+          "owlTitleClasses" => [
+            "name" => "owlTitleClasses",
+            "value" => "",
+            "type" => "input",
+            "columns" => "col-12",
+            "props" => [
+                "label" => "Clases (Subtitulo)",
+            ]
+          ],
           "owlSubtitleSize" => [
             "name" => "owlSubtitleSize",
             "type" => "input",
@@ -1456,6 +1490,34 @@ return [
             "props" => [
               "label" => "Espacio entre letras (Subtitulo)",
               "type" => "number"
+            ]
+          ],
+          "owlSubtitleClasses" => [
+            "name" => "owlSubtitleClasses",
+            "value" => "",
+            "type" => "input",
+            "columns" => "col-12",
+            "props" => [
+                "label" => "Clases (Subtitulo)",
+            ]
+          ],
+          "owlWithLineTitle" => [
+            "name" => "owlWithLineTitle",
+            "value" => "0",
+            "type" => "select",
+            "columns" => "col-12",
+            "props" => [
+                "label" => "Linea",
+                "options" => $vAttributes["titleLine"]
+            ]
+          ],
+          "owlLineTitleConfig" => [
+            "name" => "owlLineTitleConfig",
+            "value" => ['color' => 'var(--primary)','height' => '2px','width' => '10%','margin' => '0 auto'],
+            "type" => "json",
+            "columns" => "col-12",
+            "props" => [
+                "label" => "Configuración de Línea",
             ]
           ],
         ]
@@ -2593,6 +2655,25 @@ return [
             "props" => [
               "label" => "Espacio entre letras (Subtitulo)",
               "type" => "number"
+            ]
+          ],
+          "withLineTitle" => [
+            "name" => "withLineTitle",
+            "value" => "0",
+            "type" => "select",
+            "columns" => "col-12",
+            "props" => [
+                "label" => "Linea",
+                "options" => $vAttributes["titleLine"]
+            ]
+          ],
+          "lineTitleConfig" => [
+            "name" => "lineTitleConfig",
+            "value" => ['color' => 'var(--primary)','height' => '2px','width' => '10%','margin' => '0 auto'],
+            "type" => "json",
+            "columns" => "col-12",
+            "props" => [
+                "label" => "Configuración de Línea",
             ]
           ],
         ]
