@@ -162,7 +162,7 @@ class Lists extends Component
         }
         $this->withLineTitle = $withLineTitle;
         $this->lineTitleConfig = !empty($lineTitleConfig) ? $lineTitleConfig : [
-            "color" => "var(--primary)",
+            "background" => "var(--primary)",
             "height" => "2px",
             "width" => "10%",
             "margin" => "0 auto"];

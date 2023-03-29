@@ -291,20 +291,18 @@
     #{{$id}} .title-section .title:after {
         content: '';
         display: block;
-        width: {{$owlLineTitleConfig["width"]}};
-        height: {{$owlLineTitleConfig["height"]}};
-        background: {{$owlLineTitleConfig["color"]}};
-        margin: {{$owlLineTitleConfig["margin"]}};
+        @foreach($owlLineTitleConfig as $key => $line)
+        {{$key}}: {{$line}};
+        @endforeach
     }
     @endif
     @if($owlWithLineTitle==2)
     #{{$id}} .title-section .subtitle:after {
          content: '';
          display: block;
-         width: {{$owlLineTitleConfig["width"]}};
-         height: {{$owlLineTitleConfig["height"]}};
-         background: {{$owlLineTitleConfig["color"]}};
-         margin: {{$owlLineTitleConfig["margin"]}};
+         @foreach($owlLineTitleConfig as $key => $line)
+        {{$key}}: {{$line}};
+         @endforeach
     }
     @endif
 
