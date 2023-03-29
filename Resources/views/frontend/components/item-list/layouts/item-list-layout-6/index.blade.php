@@ -1,4 +1,4 @@
-<div id="{{$id}}" class="item-layout item-list-layout-6 position-relative {{$itemMarginB}} {{$itemClasses}}">
+<div id="{{$id}}" class="item-layout item-list-layout-6 position-relative {{$itemClasses}} {{$itemMarginB}}">
   <x-isite::edit-link link="{{$editLink}}{{$item->id}}" :item="$item" tooltip="{{$tooltipEditLink}}"/>
   <div class="card-item @if($imageOpacityHover) opacity-with-hover @else opacity-without-hover @endif">
     <div class="row align-items-center">
@@ -21,7 +21,7 @@
             class="col-12 {{$orderClasses["photo"] ?? 'order-0'}} item-image @if($withImageOpacity) {{$imageOpacityColor}} {{$imageOpacityDirection}} @endif">
             <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
                                    :url="$item->url ?? null" :isMedia="true"  imgClasses="img-style"
-                                   :target="$target" :mediaFiles="$item->mediaFiles()" imgStyles="width: {{$imageWidth}}%;"
+                                   :target="$target" :mediaFiles="$item->mediaFiles()" imgStyles="width:{{$imageWidth}}%; height:{{$imageHeight}};"
                                    :zone="$mediaImage ?? 'mainimage'"/>
 
           </div>
@@ -246,6 +246,23 @@
         #{{$id}} .img-style {
             aspect-ratio: {{$imageAspectMobile}};
         }
+    }
+    @endif
+
+    @if($buttonLayout=="button-custom")
+    #{{$id}} .button-custom {
+     color: {{$buttonConfig["color"]}};
+     border-color: {{$buttonConfig["background"]}};
+     background: {{$buttonConfig["background"]}};
+     border-radius: {{$buttonConfig["borderRadius"]}};
+     box-shadow: {{$buttonConfig["boxShadow"]}};
+     transition: {{$buttonConfig["transition"]}};
+    }
+    #{{$id}} .button-custom:hover {
+     color: {{$buttonConfig["colorHover"]}};
+     border-color: {{$buttonConfig["backgroundHover"]}};
+     background: {{$buttonConfig["backgroundHover"]}};
+     box-shadow: {{$buttonConfig["boxShadowHover"]}};
     }
     @endif
 </style>

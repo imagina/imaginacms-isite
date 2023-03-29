@@ -117,7 +117,8 @@ return [
         ["label" => "Botones Cuadrados", "value" => "rounded-0"],
         ["label" => "Botones Outline Semi Cuadrados", "value" => "outline rounded"],
         ["label" => "Botones Outline Redondos", "value" => "outline rounded-pill"],
-        ["label" => "Botones Outline Cuadrados", "value" => "outline rounded-0"]
+        ["label" => "Botones Outline Cuadrados", "value" => "outline rounded-0"],
+        ["label" => "Boton Configurable", "value" => "button-custom"]
     ],
     "buttonType" => [
         ["label" => "Normal", "value" => "button-normal"],
@@ -151,6 +152,7 @@ return [
         ["label" => "21/5", "value" => "21/5"],
         ["label" => "5/4", "value" => "5/4"],
         ["label" => "3/1", "value" => "3/1"],
+        ["label" => "19/8", "value" => "19/8"]
     ],
     "imageObject" => [
         ["label" => "Contain", "value" => "contain"],
@@ -301,4 +303,9 @@ return [
         ["label" => "Aspect 4:3", "value" => "embed-responsive-4by3"],
         ["label" => "Aspect 1:1", "value" => "embed-responsive-1by1"]
     ],
+    "titleLine" => [
+        ["label" => "Sin linea", "value" => "0"],
+        ["label" => "Con linea debajo del titulo", "value" => "1"],
+        ["label" => "Con linea debajo del subtilulo", "value" => "2"]
+    ]
 ];

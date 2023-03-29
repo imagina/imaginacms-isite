@@ -39,6 +39,8 @@ class LayoutService
         $organization->layout_id = $layoutCreated->id;
         $organization->save();
 
+        return $layoutCreated;
+
     }
 
     public function createLayoutInCentralDB(array $data, string $systemName)
@@ -107,6 +109,7 @@ class LayoutService
                 '$TITLE$',
                 '$PASSWORD$',
                 '$URL$',
+                '$SUPASSWORD$'
             ],
             [
                 $systemName,
@@ -115,7 +118,8 @@ class LayoutService
                 $data['plan'],
                 $data['title'],
                 $data['password'],
-                $organization->domain
+                $organization->domain,
+                $data['supassword'],
             ],
             $stub
         );

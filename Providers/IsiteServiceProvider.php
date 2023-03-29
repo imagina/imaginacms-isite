@@ -65,6 +65,19 @@ class IsiteServiceProvider extends ServiceProvider
     });
 
     BelongsToTenant::$tenantIdColumn = 'organization_id';
+
+    /*
+    * JOB EVENTS
+    */
+    $this->app['events']->listen(\Illuminate\Queue\Events\JobProcessed ::class, function ($event) {
+      //Only with tenant
+      if( !is_null($event->job->payload()) && isset($event->job->payload()['tenant_id'])) {
+        \Config::set('database.default', 'mysql');
+        \DB::disconnect('newConnectionTenant');
+      }
+    });
+
+   
   }
 
   public function boot()

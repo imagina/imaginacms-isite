@@ -141,6 +141,7 @@ class ItemList extends Component
 
   public $withImage;
   public $imageWidth;
+  public $imageHeight;
   public $imageAlign;
 
   public $date;
@@ -168,6 +169,11 @@ class ItemList extends Component
   public $createdDateClasses;
   public $buttonItemClasses;
   public $itemClasses;
+  public $buttonConfig;
+  public $titleShadow;
+  public $summaryShadow;
+  public $categoryShadow;
+  public $createdDateShadow;
 
   /**
    * Create a new component instance.
@@ -324,6 +330,7 @@ class ItemList extends Component
                               $withImage = true,
                               $imageWidth = 100,
                               $imageAlign = 'left',
+                              $imageHeight = '',
                               $summaryField = null,
                               $summaryWithLimit = true,
                               $containerActive = false,
@@ -343,22 +350,14 @@ class ItemList extends Component
                               $categoryClasses = "",
                               $createdDateClasses = "",
                               $buttonItemClasses = "",
-                              $itemClasses = ""
+                              $itemClasses = "",
+                              $buttonConfig = [],
+                              $titleShadow = "",
+                              $summaryShadow = "",
+                              $categoryShadow = "",
+                              $createdDateShadow = ""
   )
   {
-    /*
-    $this->isMobile = isMobileDevice();
-    if ($this->isMobile && !is_null($imageAspectMobile)) {
-      $this->imageAspect = $imageAspectMobile;
-    } else {
-      $this->imageAspect = $imageAspect;
-    }
-    if ($this->isMobile && !is_null($titleTextSizeMobile)) {
-      $this->titleTextSize = $titleTextSizeMobile;
-    } else {
-      $this->titleTextSize = $titleTextSize;
-    }
-    */
     $this->imageAspectMobile = $imageAspectMobile;
     $this->imageAspect = $imageAspect;
     $this->titleTextSizeMobile = $titleTextSizeMobile;
@@ -490,6 +489,7 @@ class ItemList extends Component
     $this->withImage = $withImage;
     $this->imageWidth = $imageWidth;
     $this->imageAlign = $imageAlign;
+    $this->imageHeight = $imageHeight;
 
     $this->containerActive = $containerActive;
     $this->containerType = $containerType;
@@ -510,12 +510,30 @@ class ItemList extends Component
     $this->createdDateClasses = $createdDateClasses;
     $this->buttonItemClasses = $buttonItemClasses;
     $this->itemClasses = $itemClasses;
+    $this->buttonConfig = !empty($buttonConfig) ? $buttonConfig : [
+      'color' => 'var(--primary)',
+      'background' => 'var(--white)',
+      'boxShadow' => 'none',
+      'transition' => '.2s',
+      'borderRadius' => '10px',
+      'colorHover' => 'var(--dark)',
+      'backgroundHover' => 'var(--secondary)',
+      'boxShadowHover' => 'none'
+    ];
+    $this->titleShadow = $titleShadow;
+    $this->summaryShadow = $summaryShadow;
+    $this->categoryShadow = $categoryShadow;
+    $this->createdDateShadow = $createdDateShadow;
 
     if($contentPadding>0) {
         $this->contentPaddingL = $contentPadding;
         $this->contentPaddingR = $contentPadding;
         $this->contentPaddingT = $contentPadding;
         $this->contentPaddingB = $contentPadding;
+    }
+
+    if($this->buttonLayout=="button-custom") {
+        $this->buttonColor = "";
     }
 
     if(!empty($summaryField)){

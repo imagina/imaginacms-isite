@@ -1,40 +1,38 @@
 <?php
 
-
 namespace Modules\Isite\Services;
 
 use Modules\Iprofile\Entities\Role;
-use Modules\Iprofile\Http\Controllers\Api\AuthApiController;
 use Modules\Isite\Entities\Module;
 use Modules\Isite\Entities\Organization;
-use Modules\Core\Console\Installers\Scripts\UserProviders\SentinelInstaller;
 use Modules\Isite\Transformers\OrganizationTransformer;
-use Modules\User\Entities\Sentinel\User;
-use Modules\User\Repositories\UserRepository;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-use Cartalyst\Sentinel\Roles\EloquentRole;
 use Modules\Iprofile\Entities\Setting;
 
 //Services
 use Modules\Isite\Services\LayoutService;
 use Modules\Isite\Services\SettingService;
+use Modules\Isite\Services\UserService;
 
 class TenantService
 {
-  public $sentinelInstaller;
+
   private $application;
   
   private $layoutService;
   private $settingService;
+  private $userService;
   private $isCreatingLayout;
   
   public function __construct(
     LayoutService $layoutService,
-    SettingService $settingService
+    SettingService $settingService,
+    UserService $userService
   ){
     $this->layoutService = $layoutService;
     $this->settingService = $settingService;
+    $this->userService = $userService;
     $this->isCreatingLayout = false;
   }
 
@@ -78,49 +76,10 @@ class TenantService
     return $organization;
   }
   
-  public function createUser($data)
-  {
-    
-    if (!isset(tenant()->id))
-      if (isset($data["organization_id"]))
-        tenancy()->initialize($data["organization_id"]);
-    
-    $password = $data["password"] ?? Str::random(16);
-    $info = [
-      'first_name' => $data["first_name"] ?? "temporal first name",
-      'last_name' => $data["last_name"] ?? "temporal last name",
-      'email' => $data["email"],
-      'password' => $password,
-    ];
-    
-    $user = app(UserRepository::class)->createWithRolesFromCli($info, [$data["role"]->id ?? 1], true);
-    app(\Modules\User\Repositories\UserTokenRepository::class)->generateFor($user->id);
-    
-    return [
-      "user" => $user,
-      "credentials" => [
-        "email" => $data["email"],
-        "password" => $password
-      ]
-    ];
-  }
-  
   /**
    * CREATE TENANT MULTIDB
-   * required attributes
-   *[
-   *  email,
-   *  name,
-   *  plan(blog | icommerce) array or string,
-   *  layout_id
-   *
-   * ]
-   *
-   * optional Attributes
-   * [
-   * password,
-   * role, string slug
-   * ]
+   * Required [email, name, plan(blog | icommerce) array or string, layout_id]
+   * Optional [password, role, string slug]
    * @param Request $request
    * @return mixed
    */
@@ -136,24 +95,22 @@ class TenantService
       $role = Role::where("slug", config("tenancy.defaultCentralRole"))->first();
     }
     
-    
     //Create the user in current DB
     \Log::info("----------------------------------------------------------");
     \Log::info("Creating central user with email: ".$data["email"]);
     \Log::info("----------------------------------------------------------");
-    $userCentralData = $this->createUser(array_merge($data, ["role" => $role]));
+    $userCentralData = $this->userService->create(array_merge($data, ["role" => $role]));
   
-    
     //Create organization
     $organization = $this->createTenant(array_merge($data, ["user" => $userCentralData["user"]]));
     $domain = $organization->domain;
 
     //Checking if is a new Layout
     if(!isset($data['layout'])){
-      $this->layoutService->create($data,$organization);
+      $data['supassword'] = \Str::random(16);
+      $layoutCreated = $this->layoutService->create($data,$organization);
       $this->isCreatingLayout = true;
     }
-    
     
     //Initializing Tenant
     \Log::info("----------------------------------------------------------");
@@ -165,29 +122,28 @@ class TenantService
     //Post install commands
     $this->postInstallCommands(["organization_id" => $organization->id]);
   
-  
     //Migrate Core modules
     $this->migrateCoreModules(["organization_id" => $organization->id]);
   
-  
     //seed User Module in the Tenant DB
-    $this->configureUserModule(["organization_id" => $organization->id]);
-    
+    $this->userService->configureModule(["organization_id" => $organization->id]);
     
     //create user in Tenant DB
-    \Log::info("----------------------------------------------------------");
-    \Log::info("Creating User in the Tenant DB");
-    \Log::info("----------------------------------------------------------");
-    $tenantUser = $this->createUser(array_merge($data, [
+    $tenantUser = $this->userService->create(array_merge($data, [
       "role" => $role,
       "password" => $userCentralData["credentials"]["password"],
       "organization_id" => $organization->id
     ]));
+
+    ///create super admin in Tenant DB
+    $roleSuperAdmin = Role::where("slug", "super-admin")->first();
+    $sAdmin = $this->userService-> createSadmin(array_merge($data, [
+      "organization_id" => $organization->id,
+      "role" => $roleSuperAdmin
+    ]));
   
-    
     //seeding Core Modules
     $this->seedCoreModules(["organization_id" => $organization->id, "user" => $tenantUser["user"]]);
-    
     
     //finding admin Role seeded in the previous sentence
     \Log::info("----------------------------------------------------------");
@@ -196,13 +152,10 @@ class TenantService
     $role = Role::where("slug", "admin")->first();
     $tenantUser["user"]->roles()->sync([$role->id]);
   
-  
-  
     \Log::info("----------------------------------------------------------");
     \Log::info("Turn on all core module permissions for the Admin Role in the Tenant DB ");
     \Log::info("----------------------------------------------------------");
     $this->activateModulesPermissionsInRole(config("asgard.core.config.CoreModules"), $role);
-    
     
     //Setting the work Space to the admin role seeded in the Tenant DB
     \Log::info("----------------------------------------------------------");
@@ -235,7 +188,7 @@ class TenantService
         $this->activatePlan(array_merge($data, ["organization_id" => $organization->id, "role" => $role]));
       
         //Proccess to clone DB and Media
-        $this->cloneTenancyLayout($data,$layoutConfig,$organization);
+        $this->cloneTenancyLayout($data,$layoutConfig,$organization,$tenantUser['user']);
 
       }else{
         \Log::info("Layout configuration is NULL");
@@ -243,38 +196,41 @@ class TenantService
 
     }
     
-    
-    
-    //Authenticating user in the Tenant DB
-    $authData = $this->authenticateUser(array_merge($userCentralData, ["organization_id" => $organization->id]));
+    //Only when create a layout
+    if($this->isCreatingLayout){
 
-    
+      \Log::info("----------------------------------------------------------");
+      \Log::info("Creating layout and organization in Tenant DB");
+      \Log::info("----------------------------------------------------------");
+
+      $cloneLayout = $layoutCreated->replicate();
+      $cloneLayout->save();
+
+      \DB::table("isite__organizations")->insert([
+        'id' => $organization->id,
+        'user_id' => 1,
+        'status' => $organization->status,
+        'layout_id' =>$cloneLayout->id,
+        'enable' => $organization->enable
+      ]);
+
+    }
+
+    //Authenticating user in the Tenant DB
+    $authData = $this->userService->authenticate(array_merge($userCentralData, ["organization_id" => $organization->id]));
+
     \Log::info("----------------------------------------------------------");
     \Log::info("Tenant {{$organization->id}} successfully created");
     \Log::info("----------------------------------------------------------");
 
     return [
+      "suser" => ['supassword'=> $sAdmin['credentials']['password']],
       "credentials" => $userCentralData["credentials"],
       "authData" => $authData,
       "organization" => new OrganizationTransformer($organization),
       "redirectUrl" => "https://".$domain . "/iadmin?authbearer=" . str_replace("Bearer ", "",$authData->data->bearer)."&expiresatbearer=".urlencode($authData->data->expiresDate)
     ];
-  }
-  
-  public function authenticateUser($data)
-  {
-  
-    \Log::info("----------------------------------------------------------");
-    \Log::info("Authenticating user in the Tenant DB");
-    \Log::info("----------------------------------------------------------");
-    
-    if (!isset(tenant()->id))
-      tenancy()->initialize($data["organization_id"]);
-    
-    $authApiController = app(AuthApiController::class);
-    
-    return json_decode($authApiController->authAttempt($data["credentials"])->content());
-    
+
   }
   
   public function activatePlan($data)
@@ -306,7 +262,8 @@ class TenantService
 
   }
   
-  public function activateModule($data){
+  public function activateModule($data)
+  {
   
     if(!isset($data["module"]) || !isset($data["organization_id"])){
       throw new \Exception("Missing module or organization_id parameters",400);
@@ -322,6 +279,9 @@ class TenantService
     $module = $data["module"];
       !is_array($module) ? $module = [$module] : false;
   
+    $superAdminRole = Role::where("slug", "super-admin")->first();
+    $role = Role::where("slug", "admin")->first();
+
     \Illuminate\Support\Facades\Cache::flush("*isite_module_all_modules".(tenant()->id ?? "")."*");
       foreach ($module as $moduleName) {
         $moduleName = ucfirst($moduleName);
@@ -332,13 +292,14 @@ class TenantService
         \Log::info(\Artisan::output());
         \Artisan::call('module:seed', ['module' => $moduleName]);
         \Log::info(\Artisan::output());
-  
+        
         \Log::info("----------------------------------------------------------");
-        \Log::info("Turn on all modules permissions for the Admin Role in the Tenant DB for the module: $moduleName");
+        \Log::info("Turn on all modules permissions for the Super Admin Role and Admin Role in the Tenant DB for the module: $moduleName");
         \Log::info("----------------------------------------------------------");
-  
-        $role = Role::where("slug", "admin")->first();
+
+        $this->activateModulesPermissionsInRole($moduleName, $superAdminRole);
         $this->activateModulesPermissionsInRole($moduleName, $data["role"] ?? $role);
+
       }
       $this->reseedPageAndMenu($data);
   }
@@ -389,7 +350,8 @@ class TenantService
 
   }
   
-  public function activateModulesPermissionsInRole($modules, Role $role){
+  public function activateModulesPermissionsInRole($modules, Role $role)
+  {
   
     (!is_array($modules)) ? $modules = [$modules] : false;
     
@@ -406,35 +368,13 @@ class TenantService
       }
     }
 
-    if($this->isCreatingLayout==false)
+    //Is creating a tenant - inactive some permissions
+    if($this->isCreatingLayout==false && $role->slug=="admin")
       $allPermissions = $this->checkPermissions($allPermissions);
     
     $role->permissions = array_merge($allPermissions,$role->permissions ?? []);
   
     $role->save();
-    
-  }
-  
-  public function configureUserModule($data)
-  {
-    
-    \Log::info("----------------------------------------------------------");
-    \Log::info("Configuring User Module");
-    \Log::info("----------------------------------------------------------");
-    
-    if (!isset(tenant()->id))
-      tenancy()->initialize($data["organization_id"]);
-    
-    $userProvider = app(SentinelInstaller::class);
-    
-    $userProvider->configure();
-    
-    \Artisan::call('module:migrate', ['module' => 'User']);
-    \Log::info(\Artisan::output());
-    \Artisan::call('module:seed', ['module' => 'User']);
-    \Log::info(\Artisan::output());
-    \Artisan::call('db:seed', ['--class' => 'Modules\Iprofile\Database\Seeders\RolePermissionsSeeder']);
-    \Log::info(\Artisan::output());
     
   }
   
@@ -455,7 +395,7 @@ class TenantService
     ];
     exec("export APP_RUNNING_IN_CONSOLE=true");
     foreach ($postCommands as $options) {
-      \Log::info($options);
+      //\Log::info($options);
       \Artisan::call('tenants:run', $options);
       \Log::info(\Artisan::output());
     }
@@ -490,7 +430,7 @@ class TenantService
     return $permissions;
   }
 
-  public function cloneTenancyLayout(array $data,array $layoutConfig,object $organization)
+  public function cloneTenancyLayout(array $data,array $layoutConfig,object $organization,object $tenantUser)
   {
     \Log::info("----------------------------------------------------------");
     \Log::info("Clone Tenancy Layout Proccess");
@@ -514,7 +454,7 @@ class TenantService
     $this->layoutService->updateLayoutId($data,$organization);
 
     //Update some settings
-    $this->settingService->updateSettings($data,$organization);
+    $this->settingService->updateSettings($data,$organization,$tenantUser);
     
   }
 

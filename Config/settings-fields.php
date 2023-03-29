@@ -1186,5 +1186,14 @@ return [
       'newValueMode' => 'add-unique',
       'label' => 'isite::common.settings.emailsToNotify'
     ],
+  //Centralize brand
+  'centralizedBrand' => [
+    'value' => null,
+    'name' => 'isite::centralizedBrand',
+    'type' => 'input',
+    "onlySuperAdmin" => true,
+    'props' => [
+      'label' => 'isite::isite.centralizedBrand'
+    ]
   ],
 ];

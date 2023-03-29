@@ -2,12 +2,12 @@
     @if($title!=="")
     <div class="row">
             <div class="col-12">
-                <div class="title-section {{$textAlign}}" @if($textPosition==3) style="display: flex; flex-direction: column;" @endif>
+                <div class="title-section {{$textAlign}} @if($textPosition==3) d-flex flex-column @endif ">
                     @if($title!=="")
                         @if($titleUrl)
-                            <a href="{{$titleUrl}}" target="{{$titleTarget}}" style="text-decoration: none;">
+                            <a href="{{$titleUrl}}" target="{{$titleTarget}}" class="text-decoration-none">
                                 @endif
-                                <h2 class="title {{$titleClasses}} {{ $textPosition==3 ? 'order-1':'' }} {{$titleColor}} {{$titleWeight}} {{$titleTransform}}" style="font-size: {{$titleSize}}px; letter-spacing: {{$titleLetterSpacing}};">
+                                <h2 class="title {{$titleClasses}} {{ $textPosition==3 ? 'order-1':'' }} {{$titleColor}} {{$titleWeight}} {{$titleTransform}}">
                                     @if($titleVineta) <i class="{{$titleVineta}} {{$titleVinetaColor}} mr-1"></i>  @endif
                                     <span> {!! $title !!}</span>
                                 </h2>
@@ -16,7 +16,7 @@
                         @endif
                     @endif
                     @if($subtitle!=="" && $textPosition!=1)
-                        <h3 class="subtitle {{$subtitleClasses}} {{$subtitleColor}} {{$subtitleWeight}} {{$subtitleTransform}}" style="font-size: {{$subtitleSize}}px; letter-spacing: {{$subtitleLetterSpacing}};">
+                        <h3 class="subtitle {{$subtitleClasses}} {{$subtitleColor}} {{$subtitleWeight}} {{$subtitleTransform}}">
                             {!! $subtitle !!}
                         </h3>
                     @endif
@@ -27,9 +27,39 @@
     @endif
     <div class="row">
     @foreach ($items as $key => $item)
-        <div class="{{$columnLeft}}">
+        <div class="{{$columnLayout[$key%count($columnLayout)]}}">
             @include("isite::frontend.partials.item",["itemLayout" => $itemComponentAttributes['layout'],"itemComponentAttributes" => $itemComponentAttributes])
         </div>
     @endforeach
     </div>
 </div>
+<style>
+    #{{$id}} .title-section .title {
+        font-size: {{$titleSize}}px;
+        letter-spacing: {{$titleLetterSpacing}};
+    }
+    #{{$id}} .title-section .subtitle {
+         font-size: {{$subtitleSize}}px;
+         letter-spacing: {{$subtitleLetterSpacing}};
+     }
+    @if($withLineTitle==1)
+    #{{$id}} .title-section .title:after {
+        content: '';
+        display: block;
+        width: {{$lineTitleConfig["width"]}};
+        height: {{$lineTitleConfig["height"]}};
+        background: {{$lineTitleConfig["color"]}};
+        margin: {{$lineTitleConfig["margin"]}};
+    }
+    @endif
+    @if($withLineTitle==2)
+    #{{$id}} .title-section .subtitle:after {
+         content: '';
+         display: block;
+         width: {{$lineTitleConfig["width"]}};
+         height: {{$lineTitleConfig["height"]}};
+         background: {{$lineTitleConfig["color"]}};
+         margin: {{$lineTitleConfig["margin"]}};
+    }
+    @endif
+</style>
