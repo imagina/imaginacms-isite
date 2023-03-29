@@ -1152,6 +1152,41 @@ return [
       ]
     ],
   ],
+  'usersToNotify' => [
+    'name' => 'isite::usersToNotify',
+    'value' => [],
+    'type' => 'select',
+    "onlySuperAdmin" => true,
+    'columns' => 'col-12 col-md-6',
+    'groupName' => 'notificationsChanges',
+    'groupTitle' => 'isite::common.settings.groupNameNotifyChanges',
+    'loadOptions' => [
+      'apiRoute' => 'apiRoutes.quser.users',
+      'select' => ['label' => 'email', 'id' => 'id'],
+    ],
+    'props' => [
+      'label' => 'isite::common.settings.usersToNotify',
+      'multiple' => true,
+      'clearable' => true,
+    ],
+  ],
+  'emailsToNotify' => [
+    'name' => 'isite::emailsToNotify',
+    'value' => [],
+    'type' => 'select',
+    "onlySuperAdmin" => true,
+    'groupName' => 'notificationsChanges',
+    'groupTitle' => 'isite::common.settings.groupNameNotifyChanges',
+    'props' => [
+      'useInput' => true,
+      'useChips' => true,
+      'multiple' => true,
+      'hint' => 'iforms::common.settingHints.emails',
+      'hideDropdownIcon' => true,
+      'newValueMode' => 'add-unique',
+      'label' => 'isite::common.settings.emailsToNotify'
+    ],
+  ],
   //Centralize brand
   'centralizedBrand' => [
     'value' => null,

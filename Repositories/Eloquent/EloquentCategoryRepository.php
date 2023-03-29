@@ -38,6 +38,14 @@ class EloquentCategoryRepository extends EloquentCrudRepository implements Categ
      *
      */
 
+    if (isset($filter->search)) { //si hay que filtrar por rango de precio
+      $query->where(function ($query) use ($filter) {
+        $query->whereHas('translations', function (Builder $q) use ($filter) {
+          $q->where('title', 'like', "%{$filter->search}%");
+        });
+      })->orWhere('id', 'like', '%' . $filter->search . '%');
+    }
+
     //Response
     return $query;
   }
@@ -76,12 +84,12 @@ class EloquentCategoryRepository extends EloquentCrudRepository implements Categ
   public function findBySlug($slug)
   {
     if (method_exists($this->model, 'translations')) {
-      
-      
+
+
       $query = $this->model->whereHas('translations', function (Builder $q) use ($slug) {
         $q->where('slug', $slug);
       })->with('translations', 'parent', 'children');
-      
+
     } else
       $query = $this->model->where('slug', $slug)->with('translations', 'parent', 'children');
 
@@ -97,7 +105,7 @@ class EloquentCategoryRepository extends EloquentCrudRepository implements Categ
           ->orWhereNull($model->qualifyColumn(BelongsToTenant::$tenantIdColumn));
       });
     }
-    
+
     return $query->first();
   }
 
