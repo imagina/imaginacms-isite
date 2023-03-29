@@ -231,10 +231,17 @@
     }
     @if($contentBorderShadows=='none')
         #{{$id}} .item-border {
+            @if($imagePosition==2 || $imagePosition==3)
+            padding-left: {{$contentPaddingL}}px;
+            padding-right: {{$contentPaddingR}}px;
+            padding-top: {{$contentPaddingT}}px;
+            padding-bottom: {{$contentPaddingB}}px;
+            @else
             padding-left: {{$contentPaddingL + $imagePadding}}px;
             padding-right: {{$contentPaddingR + $imagePadding}}px;
             padding-top: {{$contentPaddingT + $imagePadding}}px;
             padding-bottom: {{$contentPaddingB + $imagePadding}}px;
+            @endif
             border-width: {{$contentBorder}}px;
             border-style: solid;
             border-color: {{$contentBorderColor}};
@@ -242,10 +249,17 @@
         }
     @else
         #{{$id}} .item-border {
+            @if($imagePosition==2 || $imagePosition==3)
+            padding-left: {{$contentPaddingL}}px;
+            padding-right: {{$contentPaddingR}}px;
+            padding-top: {{$contentPaddingT}}px;
+            padding-bottom: {{$contentPaddingB}}px;
+            @else
             padding-left: {{$contentPaddingL + $imagePadding}}px;
             padding-right: {{$contentPaddingR + $imagePadding}}px;
             padding-top: {{$contentPaddingT + $imagePadding}}px;
             padding-bottom: {{$contentPaddingB + $imagePadding}}px;
+            @endif
             border-width: {{$contentBorder}}px;
             border-style: solid;
             border-color: {{$contentBorderColor}};

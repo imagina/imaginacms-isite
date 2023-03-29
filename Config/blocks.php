@@ -1513,7 +1513,7 @@ return [
           ],
           "owlLineTitleConfig" => [
             "name" => "owlLineTitleConfig",
-            "value" => ['color' => 'var(--primary)','height' => '2px','width' => '10%','margin' => '0 auto'],
+            "value" => ['background' => 'var(--primary)','height' => '2px','width' => '10%','margin' => '0 auto'],
             "type" => "json",
             "columns" => "col-12",
             "props" => [
@@ -2669,7 +2669,7 @@ return [
           ],
           "lineTitleConfig" => [
             "name" => "lineTitleConfig",
-            "value" => ['color' => 'var(--primary)','height' => '2px','width' => '10%','margin' => '0 auto'],
+            "value" => ['background' => 'var(--primary)','height' => '2px','width' => '10%','margin' => '0 auto'],
             "type" => "json",
             "columns" => "col-12",
             "props" => [
