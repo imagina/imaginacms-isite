@@ -61,6 +61,9 @@ return [
     'microsoftClientId' => 'Cliente Microsoft',
     'labelTimeExpiredToken' => 'Tiempo caducidad Tokens Descarga (Dias)',
     'enableDynamicFieldsCache' => 'Activar caché de dynamic fields en frontend',
+    'usersToNotify' => 'Usuarios Para Notificar Cambios En La Aplicación',
+    'emailsToNotify' => 'Correos Electrónicos Para Notificar Cambios En La Aplicación',
+    'groupNameNotifyChanges' => 'Notificar Cambios En La Aplicación',
     'tenant' => [
       'group' => 'Inquilinos',
       'tenantWithCentralData' => 'Entidades con data central',
@@ -214,4 +217,10 @@ return [
     'labelUserAgentRobots' => 'Agentes De Busqueda Para El Archivo Robots.txt',
     'labelActiveGenerateRobotsFile' => 'Sitemap Con Archivo Robots.txt',
   ],
+  'infoContact' => [
+    'title' => 'Datos de contacto',
+    'titlePhone' => 'Teléfono',
+    'titleAddress' => 'Dirección',
+    'titleEmail' => 'Correo Electrónico',
+  ]
 ];
