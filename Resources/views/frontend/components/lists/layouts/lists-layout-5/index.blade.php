@@ -46,20 +46,18 @@
     #{{$id}} .title-section .title:after {
         content: '';
         display: block;
-        width: {{$lineTitleConfig["width"]}};
-        height: {{$lineTitleConfig["height"]}};
-        background: {{$lineTitleConfig["color"]}};
-        margin: {{$lineTitleConfig["margin"]}};
+        @foreach($lineTitleConfig as $key => $line)
+        {{$key}}: {{$line}};
+        @endforeach
     }
     @endif
     @if($withLineTitle==2)
     #{{$id}} .title-section .subtitle:after {
          content: '';
          display: block;
-         width: {{$lineTitleConfig["width"]}};
-         height: {{$lineTitleConfig["height"]}};
-         background: {{$lineTitleConfig["color"]}};
-         margin: {{$lineTitleConfig["margin"]}};
+         @foreach($lineTitleConfig as $key => $line)
+        {{$key}}: {{$line}};
+         @endforeach
     }
     @endif
 </style>

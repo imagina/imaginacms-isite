@@ -202,7 +202,7 @@ class OwlCarousel extends Component
         $this->owlSubtitleClasses = $owlSubtitleClasses;
         $this->owlWithLineTitle = $owlWithLineTitle;
         $this->owlLineTitleConfig = !empty($owlLineTitleConfig) ? $owlLineTitleConfig : [
-            "color" => "var(--primary)",
+            "background" => "var(--primary)",
             "height" => "2px",
             "width" => "10%",
             "margin" => "0 auto"];

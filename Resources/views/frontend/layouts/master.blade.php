@@ -33,6 +33,7 @@
 
 <div id="page-wrapper">
   @include('partials.variables')
+  @include('isite::frontend.partials.colors')
   @include('partials.header')
   @yield('content')
   @include('partials.footer')
