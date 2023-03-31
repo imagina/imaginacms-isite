@@ -27,7 +27,7 @@
         @endif
 
         @if($containerActive)
-            <div class="{{$containerType}} image-overlay">
+            <div class="{{$containerType}} image-overlay overlay-container">
                 <div class="row h-100 {{$containerJustify}} {{$containerAlign}}">
                     <div class="{{$containerColumn}} style-content">
         @else
@@ -333,7 +333,7 @@
         }
     }
     @endif
-    #{{$id}} .image-overlay { z-index: 1;}
+    #{{$id}} .overlay-container { z-index: 1;}
 
     @if($buttonLayout=="button-custom")
     #{{$id}} .button-custom {
