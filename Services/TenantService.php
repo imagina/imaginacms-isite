@@ -607,6 +607,10 @@ class TenantService
    
     tenancy()->initialize($organizationId);
 
+    //Core Modules Process
+    $this->migrateCoreModules(null);
+    $this->seedCoreModules(null);
+
     //All migrations
     \Artisan::call('module:migrate');
     \Log::info(\Artisan::output());

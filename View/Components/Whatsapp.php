@@ -84,7 +84,7 @@ class Whatsapp extends Component
     {
         $items = [];
         $countryParams = [
-          'include' => ['*'],
+          'include' => [],
           'filter' => [
               'field' => 'calling_code'
           ]
