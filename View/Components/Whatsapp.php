@@ -99,7 +99,7 @@ class Whatsapp extends Component
             $item = (object)($this->numbers[$i] ?? []);
           
             if(!empty($item->callingCode) && !empty($item->number)){
-                if(!empty($this->country) && $this->country->iso_2 == $item->callingCode) $item->country = $this->country;
+                if(!empty($this->country) && $this->country->calling_code == $item->callingCode) $item->country = $this->country;
                 else{
                   $item->country = $this->country = app('Modules\\Ilocations\\Repositories\\CountryRepository')
                     ->getItem($item->callingCode,json_decode(json_encode($countryParams)));
