@@ -32,6 +32,7 @@ class Whatsapp extends Component
   public $editButton;
   public $notNumber;
   public $central;
+  private $country;
   /**
    * Create a new component instance.
    *
@@ -98,10 +99,15 @@ class Whatsapp extends Component
             $item = (object)($this->numbers[$i] ?? []);
           
             if(!empty($item->callingCode) && !empty($item->number)){
-                $item->country = app('Modules\\Ilocations\\Repositories\\CountryRepository')
+                if(!empty($this->country) && $this->country->iso_2 == $item->callingCode) $item->country = $this->country;
+                else{
+                  $item->country = $this->country = app('Modules\\Ilocations\\Repositories\\CountryRepository')
                     ->getItem($item->callingCode,json_decode(json_encode($countryParams)));
+                }
+                
                 $item->formattedNumber =  "({$item->country->iso_2}) ".$this->formatNumber($item->number, $this->mask);
                 $items[] = $item;
+                
             }
         }
 

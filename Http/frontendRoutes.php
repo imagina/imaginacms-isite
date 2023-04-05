@@ -3,7 +3,7 @@
 use Illuminate\Routing\Router;
 use Illuminate\Support\Str;
 
-$locale = LaravelLocalization::setLocale() ?: App::getLocale();
+$locale = locale();
 //
 //$router->get('/', [
 //    'uses' => 'PublicController@homepage',
