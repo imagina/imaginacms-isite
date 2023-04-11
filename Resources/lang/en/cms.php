@@ -591,6 +591,10 @@ return [
   "bottomLeft" => "Bottom-Left",
   "bottom" => "Bottom",
   "bottomRight" => "Bottom-Right",
-  "selectedRows" => "{num} selected rows"
+  "selectedRows" => "{num} selected rows",
+  'documentation' => [
+    'settings' => "Some modules of your application have some extra global settings. These
+     settings allow you to edit some features like color, name, logos, etc...",
+  ]
 ];
 

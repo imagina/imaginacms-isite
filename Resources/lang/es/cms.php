@@ -379,7 +379,7 @@ return [
     "winner" => "Ganador | Ganadores",
     "creator" => "Creador | Creadores",
     "inverse" => "Inversa | Inversas",
-    "provider" => "Proveedor | Preveedores",
+    "provider" => "Proveedor | Proveedores",
     "chart" => "Grafica | Graficas",
     "subtitle" => "Subtitulo | Subtitulos",
     "currentPlan" => "Plan actual",
@@ -592,6 +592,10 @@ return [
   "bottomLeft" => "Abajo-Izquierda",
   "bottom" => "Abajo",
   "bottomRight" => "Abajo-Derecha",
-  "selectedRows" => "{num} Filas seleccionadas"
+  "selectedRows" => "{num} Filas seleccionadas",
+  'documentation' => [
+    'settings' => "Algunos módulos de tu aplicación cuentan con configuraciones globales extra. Estas 
+    configuraciones te permiten editar algunas características como el color, nombre, logos, etc...",
+  ]
 ];
 
