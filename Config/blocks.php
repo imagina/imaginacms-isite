@@ -1431,7 +1431,7 @@ return [
             "type" => "input",
             "columns" => "col-12",
             "props" => [
-                "label" => "Clases (Subtitulo)",
+                "label" => "Clases (Titulo)",
             ]
           ],
           "owlSubtitleSize" => [
@@ -2680,4 +2680,153 @@ return [
       ]
     ]
   ],
+  "whatsapp" => [
+        "title" => "Whatsapp",
+        "systemName" => "isite::whatsapp",
+        "nameSpace" => "Modules\Isite\View\Components\Whatsapp",
+        "contentFields" => [
+            "title" => [
+                "name" => "title",
+                "type" => "input",
+                "columns" => "col-12",
+                "isTranslatable" => true,
+                "props" => [
+                    "label" => "Titulo",
+                ]
+            ],
+            "titleInternal" => [
+                "name" => "titleInternal",
+                "type" => "input",
+                "columns" => "col-12",
+                "isTranslatable" => true,
+                "props" => [
+                    "label" => "Titulo Interno",
+                ]
+            ],
+            "summayInternal" => [
+                "name" => "summayInternal",
+                "type" => "input",
+                "columns" => "col-12",
+                "isTranslatable" => true,
+                "props" => [
+                    "label" => "SubTitulo Interno",
+                ]
+            ],
+        ],
+        "attributes" => [
+            "general" => [
+                "title" => "General",
+                "fields" => [
+                    "layout" => [
+                        "name" => "layout",
+                        "value" => "whatsapp-layout-5",
+                        "type" => "select",
+                        "columns" => "col-12",
+                        "props" => [
+                            "label" => "Layout",
+                            "options" => [
+                                ["label" => "Layout 1", "value" => "whatsapp-layout-1"],
+                                ["label" => "Layout 3", "value" => "whatsapp-layout-3"],
+                                ["label" => "Layout 4", "value" => "whatsapp-layout-4"],
+                                ["label" => "Layout 5", "value" => "whatsapp-layout-5"]
+                            ]
+                        ]
+                    ],
+                    "top" => [
+                        "name" => "top",
+                        "type" => "input",
+                        "props" => [
+                            "label" => "Top",
+                        ]
+                    ],
+                    "bottom" => [
+                        "name" => "bottom",
+                        "type" => "input",
+                        "props" => [
+                            "label" => "Bottom",
+                        ]
+                    ],
+                    "right" => [
+                        "name" => "right",
+                        "type" => "input",
+                        "props" => [
+                            "label" => "Right",
+                        ]
+                    ],
+                    "left" => [
+                        "name" => "left",
+                        "type" => "input",
+                        "props" => [
+                            "label" => "Left",
+                        ]
+                    ],
+                ]
+            ],
+            "dropdown" => [
+                "title" => "Desplegable",
+                "fields" => [
+                    "alignment" => [
+                        "name" => "alignment",
+                        "value" => "dropleft",
+                        "type" => "select",
+                        "props" => [
+                            "label" => "Alineación del dropdown",
+                            "options" => [
+                                ["label" => "Izquierda", "value" => "dropleft"],
+                                ["label" => "Derecha", "value" => "dropright"],
+                            ]
+                        ]
+                    ],
+                    "dropdownTextAlign" => [
+                        "name" => "dropdownTextAlign",
+                        "value" => "text-center",
+                        "type" => "select",
+                        "props" => [
+                            "label" => "Alineación del Texto dentro del dropdown",
+                            "options" => $vAttributes["textAlign"]
+                        ]
+                    ],
+                    "infoTitleColor" => [
+                        "name" => "infoTitleColor",
+                        "type" => "input",
+                        "props" => [
+                            "label" => "Color de la etiqueta",
+                        ]
+                    ],
+                    "infoSubtitleColor" => [
+                        "name" => "infoSubtitleColor",
+                        "type" => "input",
+                        "props" => [
+                            "label" => "Color del numero",
+                        ]
+                    ],
+                    "alignmentMsn" => [
+                        "name" => "alignmentMsn",
+                        "value" => "",
+                        "type" => "select",
+                        "props" => [
+                            "label" => "(layout 5) Alineación del Mensaje",
+                            "options" => [
+                                ["label" => "Izquierda", "value" => ""],
+                                ["label" => "Derecha", "value" => "right"],
+                                ["label" => "Ocultar", "value" => "no-text"],
+                            ]
+                        ]
+                    ],
+                    "alignmentWin" => [
+                        "name" => "alignmentWin",
+                        "value" => "",
+                        "type" => "select",
+                        "props" => [
+                            "label" => "(layout 5) Alineación de la ventana",
+                            "options" => [
+                                ["label" => "Izquierda", "value" => ""],
+                                ["label" => "Derecha", "value" => "right"],
+                            ]
+                        ]
+                    ],
+                ]
+            ],
+        ]
+    ],
 ];
