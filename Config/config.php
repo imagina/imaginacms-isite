@@ -80,7 +80,7 @@ return [
       ],
     ]
   ],
-  
+
   /*Layout Posts itemTabs - Index */
   'layoutIndexItemTabs' => [
     'default' => 'three',
@@ -192,30 +192,30 @@ return [
   | Define config to list layout 4
   |--------------------------------------------------------------------------
   */
-    "indexItemListAttributesMain" => [
-        'withCreatedDate' => true,
-        'withSummary'=> false,
-        'layout' => 'item-list-layout-6',
-        'imageAspect' => '4/3',
-        'titleColor'=>'text-dark',
-        'createdDateColor'=>'text-light',
-        'formatCreatedDate'=>'d \d\e M, Y',
-        'titleHeight' => 'auto',
-    ],
-    "indexItemListAttributesList" => [
-        'withCreatedDate' => true,
-        'withSummary'=> false,
-        'layout' => 'item-list-layout-7',
-        'imageAspect' => '16/9',
-        'imagePosition' => '3',
-        'summaryTextSize' => '14',
-        'titleHeight' => 'auto',
-        'titleColor'=>'text-dark',
-        'createdDateColor'=>'text-light',
-        'formatCreatedDate'=>'d \d\e M, Y',
-        'titleTextSize'=>18,
-        'contentPositionVertical' => 'align-self-start'
-    ],
+  "indexItemListAttributesMain" => [
+    'withCreatedDate' => true,
+    'withSummary' => false,
+    'layout' => 'item-list-layout-6',
+    'imageAspect' => '4/3',
+    'titleColor' => 'text-dark',
+    'createdDateColor' => 'text-light',
+    'formatCreatedDate' => 'd \d\e M, Y',
+    'titleHeight' => 'auto',
+  ],
+  "indexItemListAttributesList" => [
+    'withCreatedDate' => true,
+    'withSummary' => false,
+    'layout' => 'item-list-layout-7',
+    'imageAspect' => '16/9',
+    'imagePosition' => '3',
+    'summaryTextSize' => '14',
+    'titleHeight' => 'auto',
+    'titleColor' => 'text-dark',
+    'createdDateColor' => 'text-light',
+    'formatCreatedDate' => 'd \d\e M, Y',
+    'titleTextSize' => 18,
+    'contentPositionVertical' => 'align-self-start'
+  ],
 
   /*
   |--------------------------------------------------------------------------
@@ -250,16 +250,15 @@ return [
     ],
 
     "indexItemListAttributes" => [
-      'withViewMoreButton'=>false,
-      'withCategory'=>false,
-      'withSummary'=>false,
-      'withCreatedDate'=>false,
-      'layout'=>'item-list-layout-6'   
+      'withViewMoreButton' => false,
+      'withCategory' => false,
+      'withSummary' => false,
+      'withCreatedDate' => false,
+      'layout' => 'item-list-layout-6'
     ]
 
   ],
 
-  
 
   /*
    |--------------------------------------------------------------------------
@@ -272,13 +271,15 @@ return [
     'housands_sep' => '.'
   ],
 
-   /*
-   |--------------------------------------------------------------------------
-   | Define ips allowed to middleware CheckIp
-   |--------------------------------------------------------------------------
-   */
+  /*
+  |--------------------------------------------------------------------------
+  | Define ips allowed to middleware CheckIp
+  |--------------------------------------------------------------------------
+  */
   'ipsAllowed' => [
     //'xxx.xx.xx.xx'
+  ],
+  'documentation' => [
+    'settings' => "isite::cms.documentation.settings",
   ]
-
 ];
