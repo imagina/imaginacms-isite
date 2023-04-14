@@ -1094,7 +1094,7 @@ return [
         ],
         "subTitle" => [
             "name" => "subTitle",
-            "type" => "input",
+            "type" => "html",
             "columns" => "col-12",
             "isTranslatable" => true,
             "props" => [
@@ -2443,7 +2443,7 @@ return [
         ],
         "subtitle" => [
             "name" => "subtitle",
-            "type" => "input",
+            "type" => "html",
             "columns" => "col-12",
             "isTranslatable" => true,
             "props" => [

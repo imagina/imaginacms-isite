@@ -1,5 +1,5 @@
 <div id="{{ $id }}" class="{{ $class }} lists-layout-5">
-    @if($title!=="")
+    @if($title!=="" || $subtitle!=="")
     <div class="row">
             <div class="col-12">
                 <div class="title-section {{$textAlign}} @if($textPosition==3) d-flex flex-column @endif ">
