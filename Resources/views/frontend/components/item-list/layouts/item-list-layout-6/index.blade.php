@@ -34,7 +34,7 @@
           <a href="{{$item->url}}" target="{{$target}}" class="{{$titleColor}}">
               @endif
 
-            <h3 class="title d-flex {{$titleClasses}} {{empty($item->url) ? $titleColor : '' }} {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}}  {{$titleMarginT}} {{$titleMarginB}} {{$contentMarginInsideX}}" style="height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;">
+            <h3 class="title d-flex {{$titleClasses}} {{empty($item->url) ? $titleColor : '' }} {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}}  {{$titleMarginT}} {{$titleMarginB}} {{$contentMarginInsideX}}">
                 @if($titleVineta) <i class="{{$titleVineta}} {{$titleVinetaColor}} mr-2"></i>  @endif
                 <span> {!! Str::limit( $item->title ?? $item->name ?? '', $numberCharactersTitle) !!}  </span>
               </h3>
@@ -92,7 +92,7 @@
             <a href="{{$item->url}}" target="{{$target}}">
               @endif
               <div
-                class="summary {{$summaryClasses}} {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}} {{$contentMarginInsideX}}" style="height: @if($summaryHeight) {{$summaryHeight}}px @else auto @endif;">
+                class="summary {{$summaryClasses}} {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}} {{$contentMarginInsideX}}">
                 {!! $summary !!}
               </div>
               @if(isset($item->url) && !empty($item->url))
@@ -209,12 +209,14 @@
         font-size: {{$titleTextSize}}px;
         letter-spacing: {{$titleLetterSpacing}}px;
          overflow: hidden;
+         height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;
     }
     #{{$id}} .item-summary .summary {
         font-size: {{$summaryTextSize}}px;
         letter-spacing: {{$summaryLetterSpacing}}px;
         line-height: {{$summaryLineHeight}}px;
         overflow: hidden;
+        height: @if($summaryHeight) {{$summaryHeight}}px @else auto @endif;
     }
     #{{$id}} .item-category .category {
         font-size: {{$categoryTextSize}}px;

@@ -33,6 +33,13 @@ class Whatsapp extends Component
   public $notNumber;
   public $central;
   private $country;
+  public $titleInternal;
+  public $summaryInternal;
+  public $infoTitleColor;
+  public $infoSubtitleColor;
+  public $dropdownTextAlign;
+  public $alignmentMsn;
+  public $alignmentWin;
   /**
    * Create a new component instance.
    *
@@ -41,8 +48,10 @@ class Whatsapp extends Component
   public function __construct(
     $layout = 'whatsapp-layout-1', $title = '', $id = 'whatsappComponent', $mask = 1,
     $icon = 'fa fa-whatsapp', $alignment = 'dropleft', $parentAttributes = [],
-    $top = '50%', $bottom = null, $right = null, $left= null, $type = '', $size = 'lg', $iconLabel = '',
-    $notNumber = true, $numbers = [], $editButton = true, $central = false
+    $top = null, $bottom = null, $right = null, $left= null, $type = '', $size = 'lg', $iconLabel = '',
+    $notNumber = true, $numbers = [], $editButton = true, $central = false, $titleInternal = '',
+    $summaryInternal = '', $infoTitleColor = null, $infoSubtitleColor = null,
+    $dropdownTextAlign = 'text-center', $alignmentMsn = '', $alignmentWin = ''
   )
   {
     $this->layout = $layout ?? 'whatsapp-layout-1';
@@ -54,17 +63,23 @@ class Whatsapp extends Component
     $this->size = $size ?? 'lg';
     $this->type = $type ?? '';
     $this->view = "isite::frontend.components.whatsapp.layouts.{$this->layout}.index";
-    $this->top = $top ?? '50%';
-    $this->bottom = $bottom ?? 'unset';
-    $this->right = $right ?? ($layout == 'whatsapp-layout-4' ? '10px' : 'unset');
-    $this->left = $left ?? ($layout == 'whatsapp-layout-3' ? '0px' : 'unset');
+    $this->top = $top;
+    $this->bottom = $bottom;
+    $this->right = $right;
+    $this->left = $left;
     $this->setParentAttributes($parentAttributes);
     $this->iconLabel = $iconLabel ?? '';
     $this->notNumber = $notNumber ?? true;
     $this->numbers = $numbers ?? null;
     $this->editButton = $editButton ?? true;
-    
     $this->central = $central;
+    $this->titleInternal = $titleInternal;
+    $this->summaryInternal = $summaryInternal;
+    $this->infoTitleColor = $infoTitleColor ?? ($layout == 'whatsapp-layout-5' ? 'var(--primary)' : 'var(--dark)');
+    $this->infoSubtitleColor = $infoSubtitleColor ?? 'var(--dark)';
+    $this->dropdownTextAlign = $dropdownTextAlign;
+    $this->alignmentMsn = $alignmentMsn;
+    $this->alignmentWin = $alignmentWin;
 
     //dd($this->central,$central);
   }

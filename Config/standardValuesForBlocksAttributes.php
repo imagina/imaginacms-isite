@@ -201,8 +201,8 @@ return [
     ],
     "imagePosition" => [
         ["label" => "Overlay", "value" => "1"],
-        ["label" => "Derecha", "value" => "2"],
-        ["label" => "Izquierda", "value" => "3"]
+        ["label" => "Izquierda", "value" => "2"],
+        ["label" => "Derecha", "value" => "3"]
     ],
     "positionVertical" => [
         ["label" => "Arriba", "value" => "align-self-start"],
