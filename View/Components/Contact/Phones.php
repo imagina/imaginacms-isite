@@ -10,15 +10,17 @@ class Phones extends Component
   public $phonesReplaced;
   public $icon;
   public $showIcon;
+  public $classes;
 
   /**
    * Create a new component instance.
    *
    * @return void
    */
-  public function __construct($icon = "fa fa-phone", $showIcon = true, $phones = null)
+  public function __construct($icon = "fa fa-phone", $showIcon = true, $phones = null, $classes = null)
   {
     $this->icon = $icon;
+    $this->classes = $classes ?? "";
     if(!empty($phones)){
       $this->phones = !is_array($phones) ? [$phones] : $phones;
     }else
