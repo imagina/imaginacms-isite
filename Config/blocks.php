@@ -2829,4 +2829,133 @@ return [
             ],
         ]
     ],
+  "social" => [
+    "title" => "Social",
+    "systemName" => "isite::social",
+    "nameSpace" => "Modules\Isite\View\Components\Social",
+    "attributes" => [
+        "general" => [
+            "title" => "General",
+            "fields" => [
+                "idSocial" => [
+                    "name" => "idSocial",
+                    "value" => "socialComponent",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Identificador",
+                    ]
+                ],
+                "iconDisplay" => [
+                    "name" => "iconDisplay",
+                    "value" => "flex",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Display",
+                        "options" => $vAttributes["display"]
+                    ]
+                ],
+                "iconMargin" => [
+                    "name" => "iconMargin",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Margin",
+                    ]
+                ],
+                "iconStyle" => [
+                    "name" => "iconStyle",
+                    "value" => "1",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Estilo Base",
+                        "options" => [
+                            ["label" => "Estilo 1", "value" => "1"],
+                            ["label" => "Estilo 2", "value" => "2"],
+                            ["label" => "Estilo 3", "value" => "3"],
+                            ["label" => "Estilo 4", "value" => "4"],
+                        ]
+                    ]
+                ],
+                "iconSize" => [
+                    "name" => "iconSize",
+                    "value" => "16px",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Tamaño de icono",
+                    ]
+                ],
+                "iconBackgroundSize" => [
+                    "name" => "iconBackgroundSize",
+                    "value" => "40px",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Tamaño del fondo",
+                    ]
+                ],
+                "iconColor1" => [
+                    "name" => "iconColor1",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Color 1",
+                    ]
+                ],
+                "iconColor2" => [
+                    "name" => "iconColor2",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Color 2",
+                    ]
+                ],
+                "iconBorderWidth" => [
+                    "name" => "iconBorderWidth",
+                    "value" => "0",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Tamaño del borde",
+                        "type" => "number",
+                    ]
+                ],
+                "iconBorderRadius" => [
+                    "name" => "iconBorderRadius",
+                    "value" => "0",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Radio de borde",
+                    ]
+                ],
+                "iconBorderRadiusType" => [
+                    "name" => "iconBorderRadiusType",
+                    "value" => "1",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Tipo del borde",
+                        "options" => $vAttributes["contentBorderRoundedType"]
+                    ]
+                ],
+                "iconAnimate" => [
+                    "name" => "iconAnimate",
+                    "value" => "",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Animacion",
+                        "options" => $vAttributes["animateSocial"]
+                    ]
+                ],
+                "iconBoxShadow" => [
+                    "name" => "iconBoxShadow",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Sombra del Fondo",
+                    ]
+                ],
+                "iconTextShadow" => [
+                    "name" => "iconTextShadow",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Sombra del Texto",
+                    ]
+                ],
+            ]
+        ],
+    ]
+  ]
 ];

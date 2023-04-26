@@ -307,5 +307,16 @@ return [
         ["label" => "Sin linea", "value" => "0"],
         ["label" => "Con linea debajo del titulo", "value" => "1"],
         ["label" => "Con linea debajo del subtilulo", "value" => "2"]
+    ],
+    "animateSocial" => [
+        ["label" => "None", "value" => ""],
+        ["label" => "Scale all", "value" => "scale-all"],
+        ["label" => "Translate top", "value" => "translate-top"],
+        ["label" => "Translate bottom", "value" => "translate-bottom"],
+        ["label" => "Translate left", "value" => "translate-left"],
+        ["label" => "Translate right", "value" => "translate-right"],
+        ["label" => "Fondo top (Estilo 4)", "value" => "background-top"],
+        ["label" => "Fondo left (Estilo 4)", "value" => "background-left"],
+        ["label" => "Fondo square (Estilo 4)", "value" => "background-square"],
     ]
 ];
