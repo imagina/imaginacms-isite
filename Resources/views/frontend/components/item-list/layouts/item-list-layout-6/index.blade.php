@@ -168,6 +168,8 @@
         padding: {{$imagePicturePadding}}px;
         text-align: {{$imageAlign}};
         position: relative;
+        box-shadow:  {{$imageShadow}};
+        border-radius: {{$imageRadio}};
     }
     
     #{{$id}} .img-style {
@@ -208,8 +210,9 @@
     #{{$id}} .item-title .title {
         font-size: {{$titleTextSize}}px;
         letter-spacing: {{$titleLetterSpacing}}px;
-         overflow: hidden;
-         height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;
+        overflow: hidden;
+        height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;
+        text-shadow:  {{$titleShadow}};
     }
     #{{$id}} .item-summary .summary {
         font-size: {{$summaryTextSize}}px;
@@ -217,14 +220,20 @@
         line-height: {{$summaryLineHeight}}px;
         overflow: hidden;
         height: @if($summaryHeight) {{$summaryHeight}}px @else auto @endif;
+        text-shadow:  {{$summaryShadow}};
     }
     #{{$id}} .item-category .category {
         font-size: {{$categoryTextSize}}px;
         letter-spacing: {{$categoryLetterSpacing}}px;
+        text-shadow:  {{$categoryShadow}};
     }
     #{{$id}} .item-created-date .created-date {
         font-size: {{$createdDateTextSize}}px;
         letter-spacing: {{$createdDateLetterSpacing}}px;
+        text-shadow:  {{$createdDateShadow}};
+    }
+    #{{$id}} .item-view-more-button .view-more-button {
+         text-shadow:  {{$buttonShadow}};
     }
     #{{$id}} .item-title a:hover {
          text-decoration: {{$titleTextDecoration}};

@@ -339,20 +339,21 @@ return [
               "options" => $vAttributes["marginB"]
             ]
           ],
-          "titleTextWeight" => [
-            "name" => "titleTextWeight",
-            "type" => "select",
-            "props" => [
-              "label" => "Negrita",
-              "options" => $vAttributes["textWeight"]
-            ]
-          ],
           "titleLetterSpacing" => [
             "name" => "titleLetterSpacing",
             "type" => "input",
             "props" => [
-              "label" => "Espacio entre letras",
-              "type" => "number"
+                "label" => "Espacio entre letras",
+                "type" => "number"
+            ]
+          ],
+          "titleTextWeight" => [
+            "name" => "titleTextWeight",
+            "columns" => "col-12",
+            "type" => "select",
+            "props" => [
+              "label" => "Negrita",
+              "options" => $vAttributes["textWeight"]
             ]
           ],
           "titleHeight" => [
@@ -394,6 +395,14 @@ return [
             "props" => [
               "label" => "Color Icon",
               "options" => $vAttributes["textColors"]
+            ]
+          ],
+          "titleShadow" => [
+            "name" => "titleShadow",
+            "type" => "input",
+            "value" => "",
+            "props" => [
+                "label" => "Sombra de texto",
             ]
           ],
           "titleClasses" => [
@@ -482,6 +491,7 @@ return [
           ],
           "summaryTextWeight" => [
             "name" => "summaryTextWeight",
+            "columns" => "col-12",
             "type" => "select",
             "props" => [
               "label" => "Negrita",
@@ -512,6 +522,14 @@ return [
             "props" => [
               "label" => "Alto de la línea",
               "type" => "number"
+            ]
+          ],
+          "summaryShadow" => [
+            "name" => "summaryShadow",
+            "type" => "input",
+            "value" => "",
+            "props" => [
+                "label" => "Sombra de texto",
             ]
           ],
           "summaryClasses" => [
@@ -603,6 +621,14 @@ return [
               "options" => $vAttributes["textWeight"]
             ]
           ],
+          "categoryShadow" => [
+            "name" => "categoryShadow",
+            "type" => "input",
+            "value" => "",
+            "props" => [
+                "label" => "Sombra de texto",
+            ]
+          ],
           "categoryClasses" => [
             "name" => "categoryClasses",
             "type" => "input",
@@ -691,6 +717,7 @@ return [
           "createdDateTextWeight" => [
             "name" => "createdDateTextWeight",
             "type" => "select",
+            "columns" => "col-12",
             "props" => [
               "label" => "Negrita",
               "options" => $vAttributes["textWeight"]
@@ -703,6 +730,14 @@ return [
             "props" => [
               "label" => "Decoración",
               "options" => $vAttributes["textDecoration"]
+            ]
+          ],
+          "createdDateShadow" => [
+            "name" => "createdDateShadow",
+            "type" => "input",
+            "value" => "",
+            "props" => [
+                "label" => "Sombra de texto",
             ]
           ],
           "createdDateClasses" => [
@@ -814,6 +849,14 @@ return [
             "type" => "input",
             "props" => [
               "label" => "Texto del botón",
+            ]
+          ],
+          "buttonShadow" => [
+            "name" => "buttonShadow",
+            "type" => "input",
+            "value" => "",
+            "props" => [
+                "label" => "Sombra de texto",
             ]
           ],
           "buttonItemClasses" => [
@@ -1046,6 +1089,14 @@ return [
             "props" => [
               "label" => "Opacidad en Hover",
               "options" => $vAttributes["validation"]
+            ]
+          ],
+          "imageShadow" => [
+            "name" => "imageShadow",
+            "type" => "input",
+            "value" => "",
+            "props" => [
+                "label" => "Sombra",
             ]
           ],
         ]

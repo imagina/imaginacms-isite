@@ -228,6 +228,8 @@
         object-fit: {{$imageObject}};
         padding: {{$imagePadding}}px;
         display: inline-flex;
+        box-shadow:  {{$imageShadow}};
+        transition: all 0.25s ease-out;
     }
     @if($contentBorderShadows=='none')
         #{{$id}} .item-border {
@@ -283,21 +285,28 @@
         letter-spacing: {{$titleLetterSpacing}}px;
         overflow: hidden;
         height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;
+        text-shadow:  {{$titleShadow}};
     }
     #{{$id}} .item-summary .summary {
         font-size: {{$summaryTextSize}}px;
         letter-spacing: {{$summaryLetterSpacing}}px;
         line-height: {{$summaryLineHeight}}px;
         overflow: hidden;
-         height: @if($summaryHeight) {{$summaryHeight}}px @else auto @endif;
+        height: @if($summaryHeight) {{$summaryHeight}}px @else auto @endif;
+        text-shadow:  {{$summaryShadow}};
     }
     #{{$id}} .item-category .category {
         font-size: {{$categoryTextSize}}px;
         letter-spacing: {{$categoryLetterSpacing}}px;
+        text-shadow:  {{$categoryShadow}};
     }
     #{{$id}} .item-created-date .created-date {
         font-size: {{$createdDateTextSize}}px;
         letter-spacing: {{$createdDateLetterSpacing}}px;
+        text-shadow:  {{$createdDateShadow}};
+    }
+    #{{$id}} .item-view-more-button .view-more-button {
+         text-shadow:  {{$buttonShadow}};
     }
     #{{$id}} .item-title a:hover {
          text-decoration: {{$titleTextDecoration}};
