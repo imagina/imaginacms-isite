@@ -1,6 +1,6 @@
 @if(!empty($emails))
   <!--emails content-->
-  <div id="componentContactEmails" class="position-relative">
+  <div id="componentContactEmails" class="position-relative {{$classes}}">
     <x-isite::edit-link
       link="/iadmin/#/site/settings?module=isite&settings=emails"
       :tooltip="trans('isite::common.editLink.tooltipEmail')"/>

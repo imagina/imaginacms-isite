@@ -12,16 +12,19 @@ class Emails extends Component
   public $icon;
   public $showIcon;
   public $central;
+  public $classes;
 
   /**
    * Create a new component instance.
    *
    * @return void
    */
-  public function __construct($icon = "fa fa-envelope", $showIcon = true, $emails = null, $central = false)
+  public function __construct($icon = "fa fa-envelope", $showIcon = true, $emails = null,
+                              $central = false, $classes = null)
   {
     $this->icon = $icon;
     $this->showIcon = $showIcon;
+    $this->classes = $classes ?? "";
     if(!empty($emails)){
       $this->emails = !is_array($emails) ? [$emails] : $emails;
     }else{
