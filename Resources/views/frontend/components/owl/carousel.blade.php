@@ -282,9 +282,11 @@
 
     #{{$id}} .title-section .title {
        font-size: {{$owlTitleSize}}px;
+       letter-spacing: {{$owlTitleLetterSpacing}}px;
     }
     #{{$id}} .title-section .subtitle {
       font-size: {{$owlSubtitleSize}}px;
+      letter-spacing: {{$owlSubtitleLetterSpacing}}px;
     }
 
     @if($owlWithLineTitle==1)
