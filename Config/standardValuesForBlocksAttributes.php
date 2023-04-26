@@ -136,10 +136,10 @@ return [
         ["label" => "No", "value" => false]
     ],
     "formatCreatedDate" => [
-        ["label" => "25 de Feb", "value" => "d\\d\\e M"],
+        ["label" => "25 de Feb", "value" => "d \\d\\e M"],
         ["label" => "01/01/2022", "value" => "d/m/Y"],
         ["label" => "01-01-2022", "value" => "d-m-Y"],
-        ["label" => "06 de Mar, 2021", "value" => "d \d\e M, Y"]
+        ["label" => "06 de Mar, 2021", "value" => "d \\d\\e M, Y"]
     ],
     "imageAspect" => [
         ["label" => "auto", "value" => "auto"],
