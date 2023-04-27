@@ -20,7 +20,9 @@
 
           <div class="item-image {{$col1}} {{$imagePositionVertical}} @if($withImageOpacity) {{$imageOpacityColor}} {{$imageOpacityDirection}} @endif">
             <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
-                                   :url="$item->url ?? null" :isMedia="true"  :target="$target"
+                                   :url="$item->url ?? null" :isMedia="true" :target="$target"
+                                   :withVideoControls="$videoControls" :loopVideo="$videoLoop"
+                                   :autoplayVideo="$videoAutoplay" :mutedVideo="$videoMuted"
                                    imgClasses="img-style" imgStyles="width:{{$imageWidth}}%; height:{{$imageHeight}};"
                                    :mediaFiles="$item->mediaFiles()" :zone="$mediaImage ?? 'mainimage'"/>
           </div>
@@ -165,7 +167,7 @@
         overflow: hidden;
     }
     @endif
-    @if($withImageOpacity)
+    @if($withImageOpacity )
     #{{$id}} .image-link {
         z-index: 1; position: relative;
     }
@@ -219,7 +221,7 @@
         padding: {{$imagePicturePadding}}px;
         text-align: {{$imageAlign}};
     }
-    #{{$id}} .img-style {
+    #{{$id}} .img-style  {
         border-radius: {{$imageRadio}};
         border-style: {{$imageBorderStyle}};
         border-width: {{$imageBorderWidth}}px;
@@ -230,6 +232,18 @@
         display: inline-flex;
         box-shadow:  {{$imageShadow}};
         transition: all 0.25s ease-out;
+    }
+    #{{$id}} .cover-img {
+      border-radius: {{$imageRadio}};
+      border-style: {{$imageBorderStyle}};
+      border-width: {{$imageBorderWidth}}px;
+      border-color: {{$imageBorderColor}};
+      aspect-ratio: {{$imageAspect}};
+      padding: {{$imagePadding}}px;
+      box-shadow:  {{$imageShadow}};
+      height: {{$imageHeight}} !important;
+      z-index: 1;
+      position: relative;
     }
     @if($contentBorderShadows=='none')
         #{{$id}} .item-border {
@@ -340,7 +354,7 @@
     }
     @if(!is_null($imageAspectMobile))
     @media (max-width: 767.98px) {
-        #{{$id}} .img-style {
+        #{{$id}} .img-style, #{{$id}} .cover-img{
             aspect-ratio: {{$imageAspectMobile}};
         }
     }
@@ -361,6 +375,12 @@
         border-color: {{$buttonConfig["backgroundHover"]}};
         background: {{$buttonConfig["backgroundHover"]}};
         box-shadow: {{$buttonConfig["boxShadowHover"]}};
+    }
+    @endif
+
+    @if($item->mediaFiles()->slideimage->isVideo)
+    #{{$id}} .item-content > div {
+         z-index: 1;
     }
     @endif
 </style>

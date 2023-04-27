@@ -179,9 +179,14 @@ class ItemList extends Component
   public $imageAnimate;
   public $imageAnimateOpacityHover;
   public $contentAnimateOpacityHover;
+  public $videoLoop;
+  public $videoAutoplay;
+  public $videoMuted;
+  public $videoControls;
 
 
-  /**
+
+    /**
    * Create a new component instance.
    *
    * @param $item
@@ -366,7 +371,11 @@ class ItemList extends Component
                               $buttonShadow = "",
                               $imageAnimate = "",
                               $imageAnimateOpacityHover = "",
-                              $contentAnimateOpacityHover = ""
+                              $contentAnimateOpacityHover = "",
+                              $videoLoop = false,
+                              $videoAutoplay = false,
+                              $videoMuted = false,
+                              $videoControls = false
   )
   {
     $this->imageAspectMobile = $imageAspectMobile;
@@ -540,6 +549,10 @@ class ItemList extends Component
     $this->imageAnimate = $imageAnimate;
     $this->imageAnimateOpacityHover = $imageAnimateOpacityHover;
     $this->contentAnimateOpacityHover = $contentAnimateOpacityHover;
+    $this->videoLoop = $videoLoop;
+    $this->videoAutoplay = $videoAutoplay;
+    $this->videoMuted = $videoMuted;
+    $this->videoControls = $videoControls;
 
     if($contentPadding>0) {
         $this->contentPaddingL = $contentPadding;
