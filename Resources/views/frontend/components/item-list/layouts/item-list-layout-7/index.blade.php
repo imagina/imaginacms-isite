@@ -378,9 +378,9 @@
     }
     @endif
 
-    @if($item->mediaFiles()->slideimage->isVideo)
+    @if( $item->mediaFiles()->{$mediaImage}->isVideo)
     #{{$id}} .item-content > div {
-         z-index: 1;
+        z-index: 1;
     }
     @endif
 </style>
