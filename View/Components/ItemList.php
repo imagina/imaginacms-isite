@@ -174,8 +174,19 @@ class ItemList extends Component
   public $summaryShadow;
   public $categoryShadow;
   public $createdDateShadow;
+  public $buttonShadow;
+  public $imageShadow;
+  public $imageAnimate;
+  public $imageAnimateOpacityHover;
+  public $contentAnimateOpacityHover;
+  public $videoLoop;
+  public $videoAutoplay;
+  public $videoMuted;
+  public $videoControls;
 
-  /**
+
+
+    /**
    * Create a new component instance.
    *
    * @param $item
@@ -355,7 +366,16 @@ class ItemList extends Component
                               $titleShadow = "",
                               $summaryShadow = "",
                               $categoryShadow = "",
-                              $createdDateShadow = ""
+                              $createdDateShadow = "",
+                              $imageShadow = "",
+                              $buttonShadow = "",
+                              $imageAnimate = "",
+                              $imageAnimateOpacityHover = "",
+                              $contentAnimateOpacityHover = "",
+                              $videoLoop = false,
+                              $videoAutoplay = false,
+                              $videoMuted = false,
+                              $videoControls = false
   )
   {
     $this->imageAspectMobile = $imageAspectMobile;
@@ -524,6 +544,15 @@ class ItemList extends Component
     $this->summaryShadow = $summaryShadow;
     $this->categoryShadow = $categoryShadow;
     $this->createdDateShadow = $createdDateShadow;
+    $this->imageShadow = $imageShadow;
+    $this->buttonShadow = $buttonShadow;
+    $this->imageAnimate = $imageAnimate;
+    $this->imageAnimateOpacityHover = $imageAnimateOpacityHover;
+    $this->contentAnimateOpacityHover = $contentAnimateOpacityHover;
+    $this->videoLoop = $videoLoop;
+    $this->videoAutoplay = $videoAutoplay;
+    $this->videoMuted = $videoMuted;
+    $this->videoControls = $videoControls;
 
     if($contentPadding>0) {
         $this->contentPaddingL = $contentPadding;
@@ -560,71 +589,8 @@ class ItemList extends Component
 
     $this->id = "item" . preg_replace('/[^a-z0-9]/i', '', $item->slug ?? $item->title ?? $item->name ?? "") . $item->id . uniqid();
 
-
-    //{{-- 1 all, 2 top, 3 right, 4 left, 5 bottom, 6 top right, 7 top left, 8 bottom right, 9 top left --}}
-    switch ($this->imageBorderRadioType) {
-      case '2':
-        $this->imageRadio = $this->imageBorderRadio . "px " . $this->imageBorderRadio . "px 0 0";
-        break;
-      case '3':
-        $this->imageRadio = "0 " . $this->imageBorderRadio . "px " . $this->imageBorderRadio . "px 0";
-        break;
-      case '4':
-        $this->imageRadio = $this->imageBorderRadio . "px 0 0 " . $this->imageBorderRadio . "px";
-        break;
-      case '5':
-        $this->imageRadio = "0 0 " . $this->imageBorderRadio . "px " . $this->imageBorderRadio . "px";
-        break;
-      case '6':
-        $this->imageRadio = $this->imageBorderRadio . "px 0 " . $this->imageBorderRadio . "px " . $this->imageBorderRadio . "px";
-        break;
-      case '7':
-        $this->imageRadio = "0 " . $this->imageBorderRadio . "px " . $this->imageBorderRadio . "px " . $this->imageBorderRadio . "px";
-        break;
-      case '8':
-        $this->imageRadio = $this->imageBorderRadio . "px " . $this->imageBorderRadio . "px 0 " . $this->imageBorderRadio . "px";
-        break;
-      case '9':
-        $this->imageRadio = $this->imageBorderRadio . "px " . $this->imageBorderRadio . "px " . $this->imageBorderRadio . "px 0";
-        break;
-      default:
-        $this->imageRadio = $this->imageBorderRadio . "px";
-        break;
-
-    }
-
-
-    //{{-- 1 all, 2 top, 3 right, 4 left, 5 bottom, 6 top right, 7 top left, 8 bottom right, 9 top left --}}
-    switch ($this->contentBorderRoundedType) {
-      case '2':
-        $this->contentRadio = $this->contentBorderRounded . "px " . $this->contentBorderRounded . "px 0 0";
-        break;
-      case '3':
-        $this->contentRadio = "0 " . $this->contentBorderRounded . "px " . $this->contentBorderRounded . "px 0";
-        break;
-      case '4':
-        $this->contentRadio = $this->contentBorderRounded . "px 0 0 " . $this->contentBorderRounded . "px";
-        break;
-      case '5':
-        $this->contentRadio = "0 0 " . $this->contentBorderRounded . "px " . $this->contentBorderRounded . "px";
-        break;
-      case '6':
-        $this->contentRadio = $this->contentBorderRounded . "px 0 " . $this->contentBorderRounded . "px " . $this->contentBorderRounded . "px";
-        break;
-      case '7':
-        $this->contentRadio = "0 " . $this->contentBorderRounded . "px " . $this->contentBorderRounded . "px " . $this->contentBorderRounded . "px";
-        break;
-      case '8':
-        $this->contentRadio = $this->contentBorderRounded . "px " . $this->contentBorderRounded . "px 0 " . $this->contentBorderRounded . "px";
-        break;
-      case '9':
-        $this->contentRadio = $this->contentBorderRounded . "px " . $this->contentBorderRounded . "px " . $this->contentBorderRounded . "px 0";
-        break;
-      default:
-        $this->contentRadio = $this->contentBorderRounded . "px";
-        break;
-
-    }
+    $this->imageRadio = $this->radiusType($this->imageBorderRadio,$this->imageBorderRadioType);
+    $this->contentRadio = $this->radiusType($this->contentBorderRounded,$this->contentBorderRoundedType);
 
     if (!isset($parentAttributes["itemComponentView"]))
       $this->view = "isite::frontend.components.item-list.layouts." . ($this->layout ?? 'item-list-layout-1') . ".index";
@@ -639,6 +605,40 @@ class ItemList extends Component
     } else {
       $this->withCreatedDate = false;
     }
+  }
+
+  public function radiusType($radius, $type){
+    //{{-- 1 all, 2 top, 3 right, 4 left, 5 bottom, 6 top right, 7 top left, 8 bottom right, 9 top left --}}
+    switch ($type) {
+        case '2':
+            $radiusAll = $radius . "px " . $radius . "px 0 0";
+            break;
+        case '3':
+            $radiusAll = "0 " . $radius . "px " . $radius . "px 0";
+            break;
+        case '4':
+            $radiusAll = $radius . "px 0 0 " . $radius . "px";
+            break;
+        case '5':
+            $radiusAll = "0 0 " . $radius . "px " . $radius . "px";
+            break;
+        case '6':
+            $radiusAll = $radius . "px 0 " . $radius . "px " . $radius . "px";
+            break;
+        case '7':
+            $radiusAll = "0 " . $radius . "px " . $radius . "px " . $radius . "px";
+            break;
+        case '8':
+            $radiusAll = $radius . "px " . $radius . "px 0 " . $radius . "px";
+            break;
+        case '9':
+            $radiusAll = $radius . "px " . $radius . "px " . $radius . "px 0";
+            break;
+        default:
+            $radiusAll = $radius . "px";
+            break;
+    }
+    return $radiusAll;
   }
 
   private function getParentAttributes($parentAttributes)

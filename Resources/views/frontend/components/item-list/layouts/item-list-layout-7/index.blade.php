@@ -20,7 +20,9 @@
 
           <div class="item-image {{$col1}} {{$imagePositionVertical}} @if($withImageOpacity) {{$imageOpacityColor}} {{$imageOpacityDirection}} @endif">
             <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
-                                   :url="$item->url ?? null" :isMedia="true"  :target="$target"
+                                   :url="$item->url ?? null" :isMedia="true" :target="$target"
+                                   :withVideoControls="$videoControls" :loopVideo="$videoLoop"
+                                   :autoplayVideo="$videoAutoplay" :mutedVideo="$videoMuted"
                                    imgClasses="img-style" imgStyles="width:{{$imageWidth}}%; height:{{$imageHeight}};"
                                    :mediaFiles="$item->mediaFiles()" :zone="$mediaImage ?? 'mainimage'"/>
           </div>
@@ -165,7 +167,7 @@
         overflow: hidden;
     }
     @endif
-    @if($withImageOpacity)
+    @if($withImageOpacity )
     #{{$id}} .image-link {
         z-index: 1; position: relative;
     }
@@ -219,7 +221,7 @@
         padding: {{$imagePicturePadding}}px;
         text-align: {{$imageAlign}};
     }
-    #{{$id}} .img-style {
+    #{{$id}} .img-style  {
         border-radius: {{$imageRadio}};
         border-style: {{$imageBorderStyle}};
         border-width: {{$imageBorderWidth}}px;
@@ -228,6 +230,20 @@
         object-fit: {{$imageObject}};
         padding: {{$imagePadding}}px;
         display: inline-flex;
+        box-shadow:  {{$imageShadow}};
+        transition: all 0.25s ease-out;
+    }
+    #{{$id}} .cover-img {
+      border-radius: {{$imageRadio}};
+      border-style: {{$imageBorderStyle}};
+      border-width: {{$imageBorderWidth}}px;
+      border-color: {{$imageBorderColor}};
+      aspect-ratio: {{$imageAspect}};
+      padding: {{$imagePadding}}px;
+      box-shadow:  {{$imageShadow}};
+      height: {{$imageHeight}} !important;
+      z-index: 1;
+      position: relative;
     }
     @if($contentBorderShadows=='none')
         #{{$id}} .item-border {
@@ -283,21 +299,28 @@
         letter-spacing: {{$titleLetterSpacing}}px;
         overflow: hidden;
         height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;
+        text-shadow:  {{$titleShadow}};
     }
     #{{$id}} .item-summary .summary {
         font-size: {{$summaryTextSize}}px;
         letter-spacing: {{$summaryLetterSpacing}}px;
         line-height: {{$summaryLineHeight}}px;
         overflow: hidden;
-         height: @if($summaryHeight) {{$summaryHeight}}px @else auto @endif;
+        height: @if($summaryHeight) {{$summaryHeight}}px @else auto @endif;
+        text-shadow:  {{$summaryShadow}};
     }
     #{{$id}} .item-category .category {
         font-size: {{$categoryTextSize}}px;
         letter-spacing: {{$categoryLetterSpacing}}px;
+        text-shadow:  {{$categoryShadow}};
     }
     #{{$id}} .item-created-date .created-date {
         font-size: {{$createdDateTextSize}}px;
         letter-spacing: {{$createdDateLetterSpacing}}px;
+        text-shadow:  {{$createdDateShadow}};
+    }
+    #{{$id}} .item-view-more-button .view-more-button {
+         text-shadow:  {{$buttonShadow}};
     }
     #{{$id}} .item-title a:hover {
          text-decoration: {{$titleTextDecoration}};
@@ -331,7 +354,7 @@
     }
     @if(!is_null($imageAspectMobile))
     @media (max-width: 767.98px) {
-        #{{$id}} .img-style {
+        #{{$id}} .img-style, #{{$id}} .cover-img{
             aspect-ratio: {{$imageAspectMobile}};
         }
     }
@@ -352,6 +375,12 @@
         border-color: {{$buttonConfig["backgroundHover"]}};
         background: {{$buttonConfig["backgroundHover"]}};
         box-shadow: {{$buttonConfig["boxShadowHover"]}};
+    }
+    @endif
+
+    @if( $item->mediaFiles()->{$mediaImage}->isVideo)
+    #{{$id}} .item-content > div {
+        z-index: 1;
     }
     @endif
 </style>

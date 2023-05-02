@@ -36,11 +36,11 @@
 <style>
     #{{$id}} .title-section .title {
         font-size: {{$titleSize}}px;
-        letter-spacing: {{$titleLetterSpacing}};
+        letter-spacing: {{$titleLetterSpacing}}px;
     }
     #{{$id}} .title-section .subtitle {
          font-size: {{$subtitleSize}}px;
-         letter-spacing: {{$subtitleLetterSpacing}};
+         letter-spacing: {{$subtitleLetterSpacing}}px;
      }
     @if($withLineTitle==1)
     #{{$id}} .title-section .title:after {

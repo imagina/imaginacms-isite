@@ -339,20 +339,21 @@ return [
               "options" => $vAttributes["marginB"]
             ]
           ],
-          "titleTextWeight" => [
-            "name" => "titleTextWeight",
-            "type" => "select",
-            "props" => [
-              "label" => "Negrita",
-              "options" => $vAttributes["textWeight"]
-            ]
-          ],
           "titleLetterSpacing" => [
             "name" => "titleLetterSpacing",
             "type" => "input",
             "props" => [
-              "label" => "Espacio entre letras",
-              "type" => "number"
+                "label" => "Espacio entre letras",
+                "type" => "number"
+            ]
+          ],
+          "titleTextWeight" => [
+            "name" => "titleTextWeight",
+            "columns" => "col-12",
+            "type" => "select",
+            "props" => [
+              "label" => "Negrita",
+              "options" => $vAttributes["textWeight"]
             ]
           ],
           "titleHeight" => [
@@ -394,6 +395,14 @@ return [
             "props" => [
               "label" => "Color Icon",
               "options" => $vAttributes["textColors"]
+            ]
+          ],
+          "titleShadow" => [
+            "name" => "titleShadow",
+            "type" => "input",
+            "value" => "",
+            "props" => [
+                "label" => "Sombra de texto",
             ]
           ],
           "titleClasses" => [
@@ -482,6 +491,7 @@ return [
           ],
           "summaryTextWeight" => [
             "name" => "summaryTextWeight",
+            "columns" => "col-12",
             "type" => "select",
             "props" => [
               "label" => "Negrita",
@@ -512,6 +522,14 @@ return [
             "props" => [
               "label" => "Alto de la línea",
               "type" => "number"
+            ]
+          ],
+          "summaryShadow" => [
+            "name" => "summaryShadow",
+            "type" => "input",
+            "value" => "",
+            "props" => [
+                "label" => "Sombra de texto",
             ]
           ],
           "summaryClasses" => [
@@ -603,6 +621,14 @@ return [
               "options" => $vAttributes["textWeight"]
             ]
           ],
+          "categoryShadow" => [
+            "name" => "categoryShadow",
+            "type" => "input",
+            "value" => "",
+            "props" => [
+                "label" => "Sombra de texto",
+            ]
+          ],
           "categoryClasses" => [
             "name" => "categoryClasses",
             "type" => "input",
@@ -680,17 +706,13 @@ return [
             "type" => "select",
             "props" => [
               "label" => "Formato",
-              "options" => [
-                ["label" => "25 de Feb", "value" => "d\\d\\e M"],
-                ["label" => "01/01/2022", "value" => "d/m/Y"],
-                ["label" => "01-01-2022", "value" => "d-m-Y"],
-                ["label" => "06 de Mar, 2021", "value" => "d \d\e M, Y"],
-              ]
+              "options" => $vAttributes["formatCreatedDate"]
             ]
           ],
           "createdDateTextWeight" => [
             "name" => "createdDateTextWeight",
             "type" => "select",
+            "columns" => "col-12",
             "props" => [
               "label" => "Negrita",
               "options" => $vAttributes["textWeight"]
@@ -703,6 +725,14 @@ return [
             "props" => [
               "label" => "Decoración",
               "options" => $vAttributes["textDecoration"]
+            ]
+          ],
+          "createdDateShadow" => [
+            "name" => "createdDateShadow",
+            "type" => "input",
+            "value" => "",
+            "props" => [
+                "label" => "Sombra de texto",
             ]
           ],
           "createdDateClasses" => [
@@ -814,6 +844,14 @@ return [
             "type" => "input",
             "props" => [
               "label" => "Texto del botón",
+            ]
+          ],
+          "buttonShadow" => [
+            "name" => "buttonShadow",
+            "type" => "input",
+            "value" => "",
+            "props" => [
+                "label" => "Sombra de texto",
             ]
           ],
           "buttonItemClasses" => [
@@ -1048,8 +1086,57 @@ return [
               "options" => $vAttributes["validation"]
             ]
           ],
+          "imageShadow" => [
+            "name" => "imageShadow",
+            "type" => "input",
+            "value" => "",
+            "props" => [
+                "label" => "Sombra",
+            ]
+          ],
         ]
-      ]
+      ],
+      "video" => [
+        "title" => "Video",
+        "fields" => [
+            "videoLoop" => [
+                "name" => "videoLoop",
+                "value" => "0",
+                "type" => "select",
+                "props" => [
+                    "label" => "Loop",
+                    "options" => $vAttributes["validation"]
+                ]
+            ],
+            "videoAutoplay" => [
+                "name" => "videoAutoplay",
+                "value" => "0",
+                "type" => "select",
+                "props" => [
+                    "label" => "Autoplay",
+                    "options" => $vAttributes["validation"]
+                ]
+            ],
+            "videoMuted" => [
+                "name" => "videoMuted",
+                "value" => "0",
+                "type" => "select",
+                "props" => [
+                    "label" => "Muted",
+                    "options" => $vAttributes["validation"]
+                ]
+            ],
+            "videoControls" => [
+                "name" => "videoControls",
+                "value" => "0",
+                "type" => "select",
+                "props" => [
+                    "label" => "Controls",
+                    "options" => $vAttributes["validation"]
+                ]
+            ],
+        ]
+      ],
     ]
   ],
   "carousel" => [
@@ -2829,4 +2916,133 @@ return [
             ],
         ]
     ],
+  "social" => [
+    "title" => "Social",
+    "systemName" => "isite::social",
+    "nameSpace" => "Modules\Isite\View\Components\Social",
+    "attributes" => [
+        "general" => [
+            "title" => "General",
+            "fields" => [
+                "idSocial" => [
+                    "name" => "idSocial",
+                    "value" => "socialComponent",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Identificador",
+                    ]
+                ],
+                "iconDisplay" => [
+                    "name" => "iconDisplay",
+                    "value" => "flex",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Display",
+                        "options" => $vAttributes["display"]
+                    ]
+                ],
+                "iconMargin" => [
+                    "name" => "iconMargin",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Margin",
+                    ]
+                ],
+                "iconStyle" => [
+                    "name" => "iconStyle",
+                    "value" => "1",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Estilo Base",
+                        "options" => [
+                            ["label" => "Estilo 1", "value" => "1"],
+                            ["label" => "Estilo 2", "value" => "2"],
+                            ["label" => "Estilo 3", "value" => "3"],
+                            ["label" => "Estilo 4", "value" => "4"],
+                        ]
+                    ]
+                ],
+                "iconSize" => [
+                    "name" => "iconSize",
+                    "value" => "16px",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Tamaño de icono",
+                    ]
+                ],
+                "iconBackgroundSize" => [
+                    "name" => "iconBackgroundSize",
+                    "value" => "40px",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Tamaño del fondo",
+                    ]
+                ],
+                "iconColor1" => [
+                    "name" => "iconColor1",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Color 1",
+                    ]
+                ],
+                "iconColor2" => [
+                    "name" => "iconColor2",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Color 2",
+                    ]
+                ],
+                "iconBorderWidth" => [
+                    "name" => "iconBorderWidth",
+                    "value" => "0",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Tamaño del borde",
+                        "type" => "number",
+                    ]
+                ],
+                "iconBorderRadius" => [
+                    "name" => "iconBorderRadius",
+                    "value" => "0",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Radio de borde",
+                    ]
+                ],
+                "iconBorderRadiusType" => [
+                    "name" => "iconBorderRadiusType",
+                    "value" => "1",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Tipo del borde",
+                        "options" => $vAttributes["contentBorderRoundedType"]
+                    ]
+                ],
+                "iconAnimate" => [
+                    "name" => "iconAnimate",
+                    "value" => "",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Animacion",
+                        "options" => $vAttributes["animateSocial"]
+                    ]
+                ],
+                "iconBoxShadow" => [
+                    "name" => "iconBoxShadow",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Sombra del Fondo",
+                    ]
+                ],
+                "iconTextShadow" => [
+                    "name" => "iconTextShadow",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Sombra del Texto",
+                    ]
+                ],
+            ]
+        ],
+    ]
+  ]
 ];
