@@ -379,10 +379,46 @@
     @endif
 
     @if( $item->mediaFiles()->{$mediaImage}->isVideo)
-    #{{$id}} .item-content > div {
-        z-index: 1;
-    }
+        #{{$id}} .item-content > div {
+            z-index: 2;
+        }
+        @if($withImageOpacity && ($imageOpacityColor=='opacity-custom'))
+            @if(!$imageOpacityHover)
+            #{{$id}}  .item-image {
+                position:relative;
+            }
+            #{{$id}}  .item-image:before {
+                border-radius: {{$imageRadio}};
+                top: {{$imagePadding}}px;
+                left: {{$imagePadding}}px;
+                bottom: {{$imagePadding}}px;
+                right: {{$imagePadding}}px;
+                position: absolute;
+                background: {{$imageOpacityCustom}};
+                content: '';
+                 z-index: 2;
+            }
+            @else
+                #{{$id}} .card-item:hover .item-image {
+                    position:relative
+                }
+                #{{$id}} .card-item:hover .item-image:before {
+                     border-radius: {{$imageRadio}};
+                     top: {{$imagePadding}}px;
+                     left: {{$imagePadding}}px;
+                     bottom: {{$imagePadding}}px;
+                     right: {{$imagePadding}}px;
+                     position: absolute;
+                     background: {{$imageOpacityCustom}};
+                     content: '';
+                     z-index: 2;
+                }
+            @endif
+        @endif
+
     @endif
+
+
 </style>
 </div>
 
