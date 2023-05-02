@@ -8,6 +8,7 @@ return [
     'viewMore' => "Ver más"
   ],
   'settings' => [
+    'wizardTenantType' => "Tipo de Wizard",
     'logo1' => 'Logo N°1',
     'logo2' => 'Logo N°2',
     'logo3' => 'Logo N°3',

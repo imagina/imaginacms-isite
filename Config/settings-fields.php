@@ -821,6 +821,21 @@ return [
       'label' => 'isite::common.settings.tenantRouteAlias'
     ]
   ],
+  'wizardTenantType' => [
+    "onlySuperAdmin" => true,
+    'name' => 'isite::wizardTenantType',
+    'value' => "local",
+    'type' => 'select',
+    'groupName' => 'tenants',
+    'groupTitle' => 'isite::common.settingGroups.tenants',
+    'props' => [
+      'label' => 'isite::common.settings.wizardTenantType',
+      'options' => [
+        ["label" => "Weygo", "value" => "weygo"],
+        ["label" => "Local", "value" => "local"],
+      ]
+    ],
+  ],
 
   'mapInShow' => [
     "onlySuperAdmin" => true,
