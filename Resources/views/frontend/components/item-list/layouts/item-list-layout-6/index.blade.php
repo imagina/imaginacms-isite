@@ -19,14 +19,12 @@
       <div class="col-12 {{$orderClasses["title"] ?? 'order-1'}} item-title">
           @if(isset($item->url) && !empty($item->url))
           <a href="{{$item->url}}" target="{{$target}}" class="{{$titleColor}}">
-              @endif
-
-            <h3 class="title d-flex {{$titleClasses}} {{empty($item->url) ? $titleColor : '' }} {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}}  {{$titleMarginT}} {{$titleMarginB}} {{$contentMarginInsideX}}">
+          @endif
+            <{{$titleHead}} class="title d-flex {{$titleClasses}} {{empty($item->url) ? $titleColor : '' }} {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}}  {{$titleMarginT}} {{$titleMarginB}} {{$contentMarginInsideX}}">
                 @if($titleVineta) <i class="{{$titleVineta}} {{$titleVinetaColor}} mr-2"></i>  @endif
                 <span> {!! Str::limit( $item->title ?? $item->name ?? '', $numberCharactersTitle) !!}  </span>
-              </h3>
-
-              @if(isset($item->url) && !empty($item->url))
+            </{{$titleHead}}>
+          @if(isset($item->url) && !empty($item->url))
             </a>
           @endif
         </div>
