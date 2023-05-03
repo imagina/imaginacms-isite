@@ -13,6 +13,7 @@ class Emails extends Component
   public $showIcon;
   public $central;
   public $classes;
+  public $withHyphen;
 
   /**
    * Create a new component instance.
@@ -20,11 +21,12 @@ class Emails extends Component
    * @return void
    */
   public function __construct($icon = "fa fa-envelope", $showIcon = true, $emails = null,
-                              $central = false, $classes = null)
+                              $central = false, $classes = null, $withHyphen = true)
   {
     $this->icon = $icon;
     $this->showIcon = $showIcon;
     $this->classes = $classes ?? "";
+    $this->withHyphen = $withHyphen;
     if(!empty($emails)){
       $this->emails = !is_array($emails) ? [$emails] : $emails;
     }else{

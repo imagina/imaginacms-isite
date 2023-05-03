@@ -10,7 +10,7 @@
       <div class="content-address">
         @foreach($addresses as $key => $addresses)
           <a href="https://google.com.co/maps/search/{{$addresses}}" target="_blank">
-            @if($key > 0)&nbsp;-&nbsp;@endif
+            @if($withHyphen) @if($key > 0)&nbsp;-&nbsp;@endif @endif
             <div class="d-inline-block">{{$addresses}}</div>
           </a>
         @endforeach

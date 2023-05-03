@@ -11,7 +11,7 @@
       @endif
       <div class="content-email">
         @foreach($emails as $key => $email)
-          @if($key > 0) - @endif
+          @if($withHyphen) @if($key > 0) - @endif @endif
         <!--email-->
           <a class="d-inline-block" href="mailto:{{$email}}">{{$email}}</a>
         @endforeach
