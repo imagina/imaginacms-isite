@@ -5,8 +5,8 @@
 
        @if(method_exists ( $item, "mediaFiles" ) && $withImage )
           <div
-            class="col-12 {{$mediaImage}} {{$orderClasses["photo"] ?? 'order-0'}} item-image @if($withImageOpacity) {{$imageOpacityColor}} {{$imageOpacityDirection}} @endif">
-            <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
+            class="col-12 {{$orderClasses["photo"] ?? 'order-0'}} item-image @if($withImageOpacity) {{$imageOpacityColor}} {{$imageOpacityDirection}} @endif">
+            <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name"
                                    :url="$item->url ?? null" :isMedia="true"  imgClasses="img-style"
                                    :withVideoControls="$videoControls" :loopVideo="$videoLoop"
                                    :autoplayVideo="$videoAutoplay" :mutedVideo="$videoMuted"
@@ -273,6 +273,42 @@
      background: {{$buttonConfig["backgroundHover"]}};
      box-shadow: {{$buttonConfig["boxShadowHover"]}};
     }
+    @endif
+
+    @if( $item->mediaFiles()->{$mediaImage}->isVideo)
+        @if($withImageOpacity && ($imageOpacityColor=='opacity-custom'))
+        @if(!$imageOpacityHover)
+            #{{$id}}  .item-image  {
+                position:relative;
+            }
+            #{{$id}}  .item-image:before {
+                border-radius: {{$imageRadio}};
+                top: {{$imagePadding}}px;
+                left: {{$imagePadding + 15}}px;
+                bottom: {{$imagePadding}}px;
+                right: {{$imagePadding + 15}}px;
+                position: absolute;
+                background: {{$imageOpacityCustom}};
+                content: '';
+                z-index: 2;
+            }
+        @else
+            #{{$id}} .card-item:hover .item-image  {
+                position:relative
+            }
+            #{{$id}} .card-item:hover .item-image:before {
+                border-radius: {{$imageRadio}};
+                top: {{$imagePadding}}px;
+                left: {{$imagePadding + 15}}px;
+                bottom: {{$imagePadding + 15}}px;
+                right: {{$imagePadding}}px;
+                position: absolute;
+                background: {{$imageOpacityCustom}};
+                content: '';
+                z-index: 2;
+            }
+        @endif
+        @endif
     @endif
 </style>
 </div>
