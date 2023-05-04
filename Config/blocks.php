@@ -405,6 +405,15 @@ return [
                 "label" => "Sombra de texto",
             ]
           ],
+          "titleHead" => [
+            "name" => "titleHead",
+            "value" => "h3",
+            "type" => "select",
+            "props" => [
+              "label" => "Tipo de Cabecera",
+              "options" => $vAttributes["headHtml"]
+            ]
+          ],
           "titleClasses" => [
             "name" => "titleClasses",
             "type" => "input",

@@ -318,5 +318,12 @@ return [
         ["label" => "Fondo top (Estilo 4)", "value" => "background-top"],
         ["label" => "Fondo left (Estilo 4)", "value" => "background-left"],
         ["label" => "Fondo square (Estilo 4)", "value" => "background-square"],
+    ],
+    "headHtml" => [
+        ["label" => "H2", "value" => "h2"],
+        ["label" => "H3", "value" => "h3"],
+        ["label" => "H4", "value" => "h4"],
+        ["label" => "H5", "value" => "h5"],
+        ["label" => "H6", "value" => "h6"],
     ]
 ];

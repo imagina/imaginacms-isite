@@ -183,6 +183,7 @@ class ItemList extends Component
   public $videoAutoplay;
   public $videoMuted;
   public $videoControls;
+  public $titleHead;
 
 
 
@@ -375,7 +376,8 @@ class ItemList extends Component
                               $videoLoop = false,
                               $videoAutoplay = false,
                               $videoMuted = false,
-                              $videoControls = false
+                              $videoControls = false,
+                              $titleHead = 'h3'
   )
   {
     $this->imageAspectMobile = $imageAspectMobile;
@@ -553,6 +555,7 @@ class ItemList extends Component
     $this->videoAutoplay = $videoAutoplay;
     $this->videoMuted = $videoMuted;
     $this->videoControls = $videoControls;
+    $this->titleHead = $titleHead;
 
     if($contentPadding>0) {
         $this->contentPaddingL = $contentPadding;

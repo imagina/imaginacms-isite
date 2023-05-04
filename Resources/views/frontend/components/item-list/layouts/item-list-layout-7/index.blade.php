@@ -37,21 +37,21 @@
         @endif
 
           @if($withTitle)
-                  <div class=" {{$orderClasses["title"] ?? 'order-1'}} item-title">
+            <div class="{{$orderClasses["title"] ?? 'order-1'}} item-title">
               @if(isset($item->url) && !empty($item->url))
-                          <a href="{{$item->url}}" target="{{$target}}" class="{{$titleColor}}">
-                  @endif
-                  <h3 class="title d-flex {{$titleClasses}} {{empty($item->url) ? $titleColor : '' }} {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}} {{$titleMarginT}} {{$titleMarginB}}">
+                <a href="{{$item->url}}" target="{{$target}}" class="{{$titleColor}}">
+              @endif
+                    <{{$titleHead}} class="title d-flex {{$titleClasses}} {{empty($item->url) ? $titleColor : '' }} {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}} {{$titleMarginT}} {{$titleMarginB}}">
                                   @if($titleVineta) <i class="{{$titleVineta}} {{$titleVinetaColor}} mr-2"></i>  @endif
                                   <span>{!! Str::limit( $item->title ?? $item->name ?? '', $numberCharactersTitle) !!}</span>
-                  </h3>
-                  @if(isset($item->url) && !empty($item->url))
+                    </{{$titleHead}}>
+              @if(isset($item->url) && !empty($item->url))
                 </a>
               @endif
             </div>
           @endif
           @if($withCreatedDate && isset($item->created_at))
-            <div class=" {{$orderClasses["date"] ?? 'order-2'}} item-created-date {{$createdDateAlign}}">
+            <div class="{{$orderClasses["date"] ?? 'order-2'}} item-created-date {{$createdDateAlign}}">
               @if(isset($item->url)&& !empty($item->url))
                 <a href="{{$item->url}}" target="{{$target}}">
                   @endif
@@ -65,7 +65,7 @@
             </div>
           @endif
           @if($withUser && ( isset($item->user)))
-            <div class=" {{$orderClasses["user"] ?? 'order-3'}} item-user {{$userAlign}}">
+            <div class="{{$orderClasses["user"] ?? 'order-3'}} item-user {{$userAlign}}">
               @if(isset($item->url)&& !empty($item->url))
                 <a href="{{$item->url}}" target="{{$target}}">
                   @endif
