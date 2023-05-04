@@ -37,12 +37,9 @@ class IsiteDatabaseSeeder extends Seeder
       }
     }
 
-    //Seed colors
-    $this->call(IsiteColorsSeeder::class);
-    //Seed Custom css
-    $this->call(IsiteCustomSourcesSeeder::class);
-
-    //Seed Organization default register form
-    $this->call(IformOrganizationDefaultRegisterTableSeeder::class);
+    ProcessSeeds::dispatch([
+      "baseClass" => "\Modules\Isite\Database\Seeders",
+      "seeds" => ["IsiteColorsSeeder", "IsiteCustomSourcesSeeder", "IformOrganizationDefaultRegisterTableSeeder"]
+    ]);
   }
 }
