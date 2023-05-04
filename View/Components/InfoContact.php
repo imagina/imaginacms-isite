@@ -70,6 +70,7 @@ class InfoContact extends Component
   public $displayFlex;
   public $withIconsComponents;
   public $withIcons;
+  public $withHyphen;
 
   /**
    * Create a new component instance.
@@ -97,7 +98,7 @@ class InfoContact extends Component
                               $iconsPaddingX = '', $iconsMarginY = '', $iconsMarginX = '',
                               $titleSectionColorByClass = 'text-primary', $subtitleSectionColorByClass = 'text-dark',
                               $titleContactColorByClass = 'text-primary', $contentInline = false,
-                              $withIconsComponents = true, $withIcons = true
+                              $withIconsComponents = true, $withIcons = true, $withHyphen = true
   )
   {
     $this->withPhone = $withPhone;
@@ -160,6 +161,7 @@ class InfoContact extends Component
     $this->titleSectionColorByClass = $titleSectionColorByClass;
     $this->subtitleSectionColorByClass = $subtitleSectionColorByClass;
     $this->titleContactColorByClass = $titleContactColorByClass;
+    $this->withHyphen = $withHyphen;
     if (!$withIconsComponents){
       $this->withIconComponentAddress = false;
       $this->withIconComponentPhone = false;

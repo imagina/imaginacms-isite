@@ -11,7 +11,7 @@
       @endif
       <div class="content-phone px-0">
         @foreach($phones as $key => $phone)
-          @if($key > 0) - @endif
+          @if($withHyphen) @if($key > 0)<span> - </span>@endif @endif
         <!--phone-->
           <a class="d-inline-block" href="tel:{{$phonesReplaced[$key]}}">{{$phone}}</a>
         @endforeach

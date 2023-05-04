@@ -13,6 +13,7 @@ class Addresses extends Component
   public $showIcon;
   public $central;
   public $classes;
+  public $withHyphen;
 
   /**
    * Create a new component instance.
@@ -20,11 +21,12 @@ class Addresses extends Component
    * @return void
    */
   public function __construct($icon = "fa fa-map-marker", $showIcon = true, $addresses = null,
-                              $central = false, $classes = null)
+                              $central = false, $classes = null, $withHyphen = true)
   {
     $this->icon = $icon;
     $this->showIcon = $showIcon;
     $this->classes = $classes ?? "";
+    $this->withHyphen = $withHyphen;
     if (!empty($addresses)) {
       $this->addresses = !is_array($addresses) ? [$addresses] : $addresses;
     } else {

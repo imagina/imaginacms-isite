@@ -28,7 +28,7 @@
                 {{$titlePhone}}
               </div>
             @endif
-            <x-isite::contact.phones :showIcon="$withIconComponentPhone"/>
+            <x-isite::contact.phones :showIcon="$withIconComponentPhone" :withHyphen="$withHyphen"/>
           </div>
         </div>
       </div>
@@ -50,7 +50,7 @@
                 {{$titleAddress}}
               </div>
             @endif
-            <x-isite::contact.addresses :showIcon="$withIconComponentAddress"/>
+            <x-isite::contact.addresses :showIcon="$withIconComponentAddress" :withHyphen="$withHyphen"/>
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@
                 {{$titleEmail}}
               </div>
             @endif
-            <x-isite::contact.emails :showIcon="$withIconComponentEmail"/>
+            <x-isite::contact.emails :showIcon="$withIconComponentEmail" :withHyphen="$withHyphen"/>
           </div>
         </div>
       </div>
