@@ -1,8 +1,8 @@
 #!/bin/bash
 RED='\033[0;31m' #Red Color
 NC='\033[0m' # No Color
-GREEN='\033[0;32m'        # Green
-YELLOW='\033[0;33m'       # Yellow
+GREEN='\033[0;32m' # Green
+YELLOW='\033[0;33m'  # Yellow
 
 icmsSize=$(du -s ./ | cut -f1)
 
