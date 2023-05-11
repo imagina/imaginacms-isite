@@ -175,8 +175,7 @@ trait RevisionableTrait
         $changes_to_record = $this->changedRevisionableFields();
 
         $revisions = array();
-        $repository = app($this->repository);
-        $oldObject = $repository->getItemsBy(json_decode(json_encode(['filter' => ['id' => $this->id]])))->first();
+        $oldObject = $this->find($this->id);
 
         $original = array(
           'revisionable_type' => $this->getMorphClass(),
