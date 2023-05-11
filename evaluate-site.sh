@@ -6,7 +6,7 @@ YELLOW='\033[0;33m'  # Yellow
 
 icmsSize=$(du -s ./ | cut -f1)
 
-if [ $icmsSize -gt 300000 ]; then
+if [ $icmsSize -gt 389120 ]; then
 	printf "${RED}---The App is consuming a high disk space: $(du -sh)${NC}\n"
 else
 	printf "${GREEN}The App has a good space consumption!${NC}\n"
@@ -17,9 +17,9 @@ while read size name
 do
 case $name in
 	storage)
-    if [ $size -gt 5120 ]; then #greater than 5Mb
+    if [ $size -gt 25600 ]; then #greater than 25Mb
 			set -- `du -sh $name`
-      printf "${RED}---The storage folder is greater than expected (5Mb), found $1${NC} (ignore this if the App is using the Idocs Module)\n"
+      printf "${RED}---The storage folder is greater than expected (25Mb), found $1${NC} (ignore this if the App is using the Idocs Module)\n"
       printf "${YELLOW}Optimizing storage folder...${NC}\n"
       printf "${YELLOW}Deleting laravel logs...${NC}\n"
       rm storage/logs/* 2>/dev/null
@@ -27,11 +27,11 @@ case $name in
       rm storage/debugbar/* 2>/dev/null
       printf "${YELLOW}Reevaluating storage folder...${NC}\n"
       set -- `du -s $name`
-      if [ $size -gt 5120 ]; then #greater than 5Mb
+      if [ $size -gt 25600 ]; then #greater than 5Mb
 	      set -- `du -sh $name`
-        printf "${RED}---The storage folder still getting bigger than expected (5Mb), found $1${NC} (ignore this if the App is using the Idocs Module)\n"
+        printf "${RED}---The storage folder still getting bigger than expected (25Mb), found $1${NC} (ignore this if the App is using the Idocs Module)\n"
       else
-        printf "${GREEN}The storage folder is now lower than expected (5Mb), found $1${NC}\n"
+        printf "${GREEN}The storage folder is now lower than expected (25Mb), found $1${NC}\n"
       fi
     else
       set -- `du -s $name`
