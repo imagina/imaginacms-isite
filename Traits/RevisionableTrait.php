@@ -1,4 +1,5 @@
 <?php
+
 namespace Modules\Isite\Traits;
 
 use Illuminate\Support\Arr;
@@ -74,15 +75,20 @@ trait RevisionableTrait
    */
   public static function bootRevisionableTrait()
   {
+
+    static::created(function ($model) {
+      $model->postCreate();
+    });
+
     static::saving(function ($model) {
       $model->preSave();
     });
 
-    static::deleted(function ($model) {
-      $model->preSave();
-      $model->postDelete();
-      $model->postForceDelete();
-    });
+//    static::deleted(function ($model) {
+//      $model->preSave();
+//      $model->postDelete();
+//      $model->postForceDelete();
+//    });
   }
 
   /**
@@ -176,7 +182,7 @@ trait RevisionableTrait
 
         $revisions = array();
         $repository = app($this->repository);
-        $oldObject = $repository->getItemsBy(json_decode(json_encode(['filter' => ['id' => $this->id]])))->first();
+        $oldObject = $repository->getItem($this->id);
 
         $original = array(
           'revisionable_type' => $this->getMorphClass(),
@@ -197,7 +203,7 @@ trait RevisionableTrait
               $delete->delete();
             }
           }
-          foreach ($revisions as $rv){
+          foreach ($revisions as $rv) {
             Revisionable::create($rv);
           }
           \Event::dispatch('revisionable.saved', array('model' => $this, 'revisions' => $revisions));
@@ -220,23 +226,18 @@ trait RevisionableTrait
     }
 
     if ((!isset($this->revisionEnabled) || $this->revisionEnabled)) {
-      $revisions[] = array(
+      $revisions = array(
         'revisionable_type' => $this->getMorphClass(),
         'revisionable_id' => $this->getKey(),
         'key' => self::CREATED_AT,
         'old_value' => null,
-        'new_value' => $this->{self::CREATED_AT},
+        'new_value' => $this,
         'created_at' => new \DateTime(),
         'updated_at' => new \DateTime(),
       );
 
-      //Determine if there are any additional fields we'd like to add to our model contained in the config file, and
-      //get them into an array.
-      $revisions = array_merge($revisions[0], $this->getAdditionalFields());
+      Revisionable::create($revisions);
 
-      foreach ($revisions as $rv){
-        Revisionable::create($rv);
-      }
       \Event::dispatch('revisionable.created', array('model' => $this, 'revisions' => $revisions));
     }
 
@@ -264,7 +265,7 @@ trait RevisionableTrait
       //Since there is only one revision because it's deleted, let's just merge into revision[0]
       $revisions = array_merge($revisions[0], $this->getAdditionalFields());
 
-      foreach ($revisions as $rv){
+      foreach ($revisions as $rv) {
         Revisionable::create($rv);
       }
       \Event::dispatch('revisionable.deleted', array('model' => $this, 'revisions' => $revisions));
@@ -295,7 +296,7 @@ trait RevisionableTrait
         'updated_at' => new \DateTime(),
       );
 
-      foreach ($revisions as $rv){
+      foreach ($revisions as $rv) {
         Revisionable::create($rv);
       }
       \Event::dispatch('revisionable.deleted', array('model' => $this, 'revisions' => $revisions));
