@@ -88,8 +88,10 @@ class Maps extends Component
     $this->colorTitle = $colorTitle;
     $this->colorTitleByClass = $colorTitleByClass;
     $locationsMap = [];
-    array_push($locationsMap, ['lat' => $this->lat, 'lng' => $this->lng, 'title' => $this->locationName,
-      'id' => $id]);
+    if ($this->lat != (string)4.6469204494764 || $this->lng != (string)-74.078579772573) {
+      array_push($locationsMap, ['lat' => $this->lat, 'lng' => $this->lng, 'title' => $this->locationName,
+        'id' => $id]);
+    }
     foreach ($locations as $key => $location) {
       array_push($locationsMap, [
         'lat' => $location["lat"],
