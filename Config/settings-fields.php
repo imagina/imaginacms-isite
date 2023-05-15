@@ -796,7 +796,7 @@ return [
     'groupTitle' => 'isite::common.settingGroups.tenants',
     'colClass' => 'col-6',
     'props' => [
-      'label' => 'isite::pdf.settings.defaultTenantStatus',
+      'label' => 'isite::common.settings.tenant.defaultTenantStatus',
       'useInput' => false,
       'useChips' => false,
       'multiple' => false,

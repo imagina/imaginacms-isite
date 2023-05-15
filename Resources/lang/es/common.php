@@ -76,6 +76,7 @@ return [
         'menu' => 'Menus',
         'menuitem' => 'Menus Items',
       ],
+      'defaultTenantStatus' => 'Default Tenant Status'
     ],
     'cms' => [
       'legacyStructureCMS' => 'Usar Estructura heredada CMS',
