@@ -212,3 +212,22 @@ if (!function_exists('validateLocaleFromUrl')) {
   }
 
 }
+
+if (!function_exists('iSiteFormatMoney')) {
+
+  function iSiteFormatMoney($value)
+  {
+    $currency = Config::get('asgard.isite.config.iSiteFormatMoney');
+
+    $value = $value * $currency->value;
+    $numberFormatted = number_format($value, intval($currency->decimals) ?? 0,$currency->decimal_separator, $currency->thousands_separator);
+
+    if($showCurrencyCode){
+      $numberFormatted = $currency->symbol_left.$numberFormatted.$currency->symbol_right;
+    }
+
+    return $numberFormatted;
+
+  }
+
+}
