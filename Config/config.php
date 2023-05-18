@@ -288,7 +288,7 @@ return [
    | Define format money to the money in sites without icommerce
    |--------------------------------------------------------------------------
    */
-  'iSiteFormatMoney' => [
+  'isiteFormatMoney' => [
     'symbol_left' => '$',
     'symbol_right' => '',
     'decimals' => 0,
