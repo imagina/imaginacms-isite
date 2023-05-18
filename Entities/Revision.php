@@ -9,6 +9,7 @@ class Revision extends CrudModel
 
   protected $table = 'isite__revisions';
   public $transformer = 'Modules\Isite\Transformers\RevisionTransformer';
+  public $repository = 'Modules\Isite\Repositories\RevisionRepository';
   public $requestValidation = [
       'create' => 'Modules\Isite\Http\Requests\CreateRevisionRequest',
       'update' => 'Modules\Isite\Http\Requests\UpdateRevisionRequest',
