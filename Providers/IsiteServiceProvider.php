@@ -77,7 +77,7 @@ class IsiteServiceProvider extends ServiceProvider
       }
     });
 
-   
+
   }
 
   public function boot()
@@ -93,7 +93,8 @@ class IsiteServiceProvider extends ServiceProvider
     //$this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'standardValuesForBlocksAttributes'), "asgard.isite.standardValuesForBlocksAttributes");
     $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'blocks'), "asgard.isite.blocks");
-  
+    $this->mergeConfigFrom($this->getModuleConfigFilePath('isite', 'gamification'), "asgard.isite.gamification");
+
     $app = $this->app;
 
     $this->app['validator']->extend('icaptcha', function ($attribute, $value) use ($app) {

@@ -70,6 +70,7 @@ return [
         'menu' => 'Menus',
         'menuitem' => 'Menus Items',
       ],
+      'defaultTenantStatus' => 'Default Tenant Status'
     ],
     'googleClient' => 'Google Client',
     'facebookClient' => 'Facebook Client',

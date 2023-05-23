@@ -11,25 +11,30 @@
             value="{{$inputSearchLocation}}"
             wire:ignore>
 
-	    <div id="locate" class="locate" title="{{trans('isite::frontend.filter-location.title-nearme')}}">
-	        <div class="locate-icon-wrapper d-flex justify-content-center align-items-center">
+        <!--
+        Important: For the search with "radio" it is necessary to save the map data (lng,lat) in each ad (entity)
+        -->
+        @if($findByLngLat)  
+    	    <div id="locate" class="locate" title="{{trans('isite::frontend.filter-location.title-nearme')}}">
+    	        <div class="locate-icon-wrapper d-flex justify-content-center align-items-center">
 
-                <i id="locate-near-icon" class="fa fa-dot-circle-o text-primary cursor-pointer" aria-hidden="true"></i>
+                    <i id="locate-near-icon" class="fa fa-dot-circle-o text-primary cursor-pointer" aria-hidden="true"></i>
 
-	        </div>
-	    </div>
+    	        </div>
+    	    </div>
 
-        @if($findByLngLat)
-	  	@if(!empty($radio))
-		    <div class="search-location-radius">
-		        <select id="select-radius" wire:model="selectedRadio">
-                    <option value="all">Todo</option>
-		        	@foreach($radio['values'] as $key => $value)
-			            <option value="{{$value}}">{{$value}} {{$radio['measure']}}</option>
-			        @endforeach
-		        </select>
-		    </div>
-		@endif
+        
+    	  	@if(!empty($radio))
+    		    <div class="search-location-radius">
+    		        <select id="select-radius" wire:model="selectedRadio">
+                        <option value="all">Todo</option>
+    		        	@foreach($radio['values'] as $key => $value)
+    			            <option value="{{$value}}">{{$value}} {{$radio['measure']}}</option>
+    			        @endforeach
+    		        </select>
+    		    </div>
+    		@endif
+
         @endif
 
 
@@ -165,10 +170,12 @@
 
             /**
             * Event Click Locate Near Icon
+            * 
             */
-            const el = document.getElementById("locate-near-icon");
-            el.addEventListener("click", initGeolocation, false);
-
+            @if($findByLngLat)
+                const el = document.getElementById("locate-near-icon");
+                el.addEventListener("click", initGeolocation, false);
+            @endif
 
             // Google Maps Places INIT
             var searchInputLocation = 'input-search-location';

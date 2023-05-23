@@ -116,7 +116,7 @@
      background-clip: text;
      color: transparent;
      -webkit-text-fill-color: transparent;
- }
+}
 #{{$id}} > a i:after,
 #{{$id}} > .whatsapp-layout-2 > a i:after {
      content: '';
@@ -191,7 +191,6 @@
     display: {{$iconDisplay}};
     width: {{$iconBackgroundSize[0]}};
     height: {{$iconBackgroundSize[0]}};
-    margin-bottom: 5px;
     background: #ffffff;
     @if($iconBoxShadow[0]!='') box-shadow: {{$iconBoxShadow[0]}}; @endif
     @if($iconTextShadow[0]!='') text-shadow: {{$iconTextShadow[0]}}; @endif
@@ -202,6 +201,8 @@
     color: #6C6659;
     margin: {{$iconMargin}};
     transition: all ease 0.5s;
+    position: relative;
+    z-index: initial;
 }
 #{{$id}} > a  i.fa-facebook {
     color: #3B5998;
@@ -246,6 +247,16 @@
     background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
+}
+#{{$id}} > a i:after,
+#{{$id}} > .whatsapp-layout-2 > a i:after {
+     content: '';
+     background: #ffffff;
+     position: absolute;
+     width: 100%;
+     height: 100%;
+     z-index: -1;
+     border-radius: {{$iconRadius}};
 }
 #{{$id}} a:hover i {
     background: {{$iconColor2}};
