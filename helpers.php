@@ -94,13 +94,13 @@ if (!function_exists('isiteFormatMoney')) {
 
   function isiteFormatMoney($value, $showCurrencyCode = false)
   {
-    $format = (object)(Config::get('asgard.icommerce.config.formatmoney') ?? [
+    $format = (object)(Config::get('asgard.isite.config.isiteFormatMoney') ?? [
         'decimals' => 0,
-        'dec_point' => '',
-        'housands_sep' => '.'
+        'decimal_separator' => '',
+        'thousands_separator' => '.'
       ]);
 
-    $numberFormat = number_format($value, $format->decimals, $format->dec_point, $format->housands_sep);
+    $numberFormat = number_format($value, $format->decimals, $format->decimal_separator, $format->thousands_separator);
 
     if ($showCurrencyCode) {
       $currency = Currency::whereStatus(Status::ENABLED)->where('default_currency', '=', 1)->first();

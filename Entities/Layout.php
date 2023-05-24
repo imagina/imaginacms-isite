@@ -11,6 +11,7 @@ class Layout extends CrudModel
   
   protected $table = 'isite__layouts';
   public $transformer = 'Modules\Isite\Transformers\LayoutTransformer';
+  public $repository = 'Modules\Isite\Repositories\LayoutRepository';
   public $requestValidation = [
     'create' => 'Modules\Isite\Http\Requests\CreateLayoutRequest',
     'update' => 'Modules\Isite\Http\Requests\UpdateLayoutRequest',

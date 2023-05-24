@@ -281,5 +281,20 @@ return [
   ],
   'documentation' => [
     'settings' => "isite::cms.documentation.settings",
-  ]
+  ],
+
+  /*
+   |--------------------------------------------------------------------------
+   | Define format money to the money in sites without icommerce
+   |--------------------------------------------------------------------------
+   */
+  'isiteFormatMoney' => [
+    'symbol_left' => '$',
+    'symbol_right' => '',
+    'decimals' => 0,
+    'decimal_separator' => '.',
+    'thousands_separator' => ',',
+    'code' => 'USD',
+    'value' => 1
+  ],
 ];
