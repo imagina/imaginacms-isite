@@ -227,6 +227,18 @@ class IsiteServiceProvider extends ServiceProvider
                 return new \Modules\Isite\Repositories\Cache\CacheModuleDecorator($repository);
             }
         );
+        $this->app->bind(
+            'Modules\Isite\Repositories\RevisionRepository',
+            function () {
+                $repository = new \Modules\Isite\Repositories\Eloquent\EloquentRevisionRepository(new \Modules\Isite\Entities\Revision());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Isite\Repositories\Cache\CacheRevisionDecorator($repository);
+            }
+        );
 // add bindings
 
 
