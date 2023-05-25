@@ -536,11 +536,13 @@ class ItemList extends Component
     $this->buttonConfig = !empty($buttonConfig) ? $buttonConfig : [
       'color' => 'var(--primary)',
       'background' => 'var(--white)',
+      'border' => '0',
       'boxShadow' => 'none',
       'transition' => '.2s',
       'borderRadius' => '10px',
       'colorHover' => 'var(--dark)',
       'backgroundHover' => 'var(--secondary)',
+      'borderHover' => '0',
       'boxShadowHover' => 'none'
     ];
     $this->titleShadow = $titleShadow;
