@@ -550,6 +550,17 @@ return [
                 "label" => "Clases generales",
             ]
           ],
+          "summaryField" => [
+            "name" => "summaryField",
+            "columns" => "col-12",
+            "type" => "input",
+            "props" => [
+                "label" => "Campo Falso Extra",
+            ],
+            "help" => [
+                "description" => "Ejemplo de opciones de campo falso 'options.secondaryDescription'",
+            ],
+          ],
         ],
       ],
       "category" => [

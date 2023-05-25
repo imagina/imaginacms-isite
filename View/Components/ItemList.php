@@ -185,7 +185,7 @@ class ItemList extends Component
   public $videoMuted;
   public $videoControls;
   public $titleHead;
-
+  public $summaryField;
 
 
     /**
