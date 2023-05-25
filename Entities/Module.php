@@ -11,6 +11,7 @@ class Module extends CrudModel
   use Translatable;
   protected $table = 'isite__modules';
   public $transformer = 'Modules\Isite\Transformers\ModuleTransformer';
+  public $repository = 'Modules\Isite\Repositories\ModuleRepository';
   public $requestValidation = [
       'create' => 'Modules\Isite\Http\Requests\CreateModuleRequest',
       'update' => 'Modules\Isite\Http\Requests\UpdateModuleRequest',

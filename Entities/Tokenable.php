@@ -9,6 +9,7 @@ class Tokenable extends CrudModel
 
   protected $table = 'isite__tokenables';
   public $transformer = 'Modules\Isite\Transformers\TokenableTransformer';
+  public $repository = 'Modules\Isite\Repositories\TokenableRepository';
   public $requestValidation = [
     'create' => 'Modules\Isite\Http\Requests\CreateTokenableRequest',
     'update' => 'Modules\Isite\Http\Requests\UpdateTokenableRequest',

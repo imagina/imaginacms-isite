@@ -59,7 +59,7 @@ if (!function_exists('getEditLink')) {
         $tooltipEditLink = trans("isite::common.editLink.tooltipCategory");
         break;
       case 'Modules\Slider\Repositories\SlideRepository':
-        case 'Modules\Slider\Repositories\SlideApiRepository':
+      case 'Modules\Slider\Repositories\SlideApiRepository':
         $editLink = "/iadmin/#/slider/show/";
         $tooltipEditLink = trans("isite::common.editLink.tooltipSlide");
         break;
@@ -94,17 +94,19 @@ if (!function_exists('isiteFormatMoney')) {
 
   function isiteFormatMoney($value, $showCurrencyCode = false)
   {
-    $format = (object)(Config::get('asgard.icommerce.config.formatmoney') ?? [
+    $format = (object)(Config::get('asgard.isite.config.isiteFormatMoney') ?? [
         'decimals' => 0,
-        'dec_point' => '',
-        'housands_sep' => '.'
+        'decimal_separator' => '',
+        'thousands_separator' => '.'
       ]);
 
-    $numberFormat = number_format($value, $format->decimals, $format->dec_point, $format->housands_sep);
+    $numberFormat = number_format($value, $format->decimals, $format->decimal_separator, $format->thousands_separator);
 
-    if ($showCurrencyCode) {
-      $currency = Currency::whereStatus(Status::ENABLED)->where('default_currency', '=', 1)->first();
-      $numberFormat = $numberFormat . " " . $currency->code;
+    if (is_module_enabled('Icommerce')) {
+      if ($showCurrencyCode) {
+        $currency = currentCurrency();
+        $numberFormat = $numberFormat . " " . $currency->code;
+      }
     }
 
     return $numberFormat;
@@ -162,9 +164,10 @@ if (!function_exists('isMobileDevice')) {
 */
 if (!function_exists('setLocaleInUrl')) {
 
-  function setLocaleInUrl($locale){
+  function setLocaleInUrl($locale)
+  {
     //return LaravelLocalization::getLocalizedURL($locale);
-    return url()->current().'?'.http_build_query(['lang' => $locale]);
+    return url()->current() . '?' . http_build_query(['lang' => $locale]);
   }
 
 }
@@ -174,41 +177,42 @@ if (!function_exists('setLocaleInUrl')) {
 */
 if (!function_exists('validateLocaleFromUrl')) {
 
-  function validateLocaleFromUrl($request,$params=null){
-    
+  function validateLocaleFromUrl($request, $params = null)
+  {
+
     $locale = locale();
 
-    if($request->has('lang') && $request->lang!=$locale){
+    if ($request->has('lang') && $request->lang != $locale) {
 
-        $locale = $request->lang;
+      $locale = $request->lang;
 
-        //Casos: Home
-        if(!isset($params))
-          $newUrl = url($locale);
+      //Casos: Home
+      if (!isset($params))
+        $newUrl = url($locale);
 
-        //Casos: Index Icommerce (Store es traduccion)
-        if(isset($params['fixedTrans']))
-          $newUrl = url($locale).'/'.trans($params['fixedTrans'],[],$locale);
+      //Casos: Index Icommerce (Store es traduccion)
+      if (isset($params['fixedTrans']))
+        $newUrl = url($locale) . '/' . trans($params['fixedTrans'], [], $locale);
 
-        //Casos: Pages,Iblog (Index Categoria), Icommerce(Index Categoria)
-        if(isset($params['entity'])){
-          $newUrl = $params['entity']->getUrlAttribute($locale);
-        }
+      //Casos: Pages,Iblog (Index Categoria), Icommerce(Index Categoria)
+      if (isset($params['entity'])) {
+        $newUrl = $params['entity']->getUrlAttribute($locale);
+      }
 
-        // vars to reedirect
-        $result["reedirect"] = true;
-        $result["url"] = $newUrl;
+      // vars to reedirect
+      $result["reedirect"] = true;
+      $result["url"] = $newUrl;
 
-        // Sto no funco para las paginas
-        /*
-        if(isset($newUrl))
-          header("Location: ".$newUrl);
-        */
+      // Sto no funco para las paginas
+      /*
+      if(isset($newUrl))
+        header("Location: ".$newUrl);
+      */
     }
-    
+
     $result["locale"] = $locale;
     return $result;
-    
+
   }
 
 }

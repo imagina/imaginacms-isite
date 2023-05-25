@@ -59,6 +59,12 @@ $router->group(['prefix' => '/isite/v1'], function (Router $router) {
       'controller' => 'ModuleApiController',
       //'middleware' => ['create' => [], 'index' => [], 'show' => [], 'update' => [], 'delete' => [], 'restore' => []]
     ]);
+    $router->apiCrud([
+      'module' => 'isite',
+      'prefix' => 'revisions',
+      'controller' => 'RevisionApiController',
+      //'middleware' => ['create' => [], 'index' => [], 'show' => [], 'update' => [], 'delete' => [], 'restore' => []]
+    ]);
 // append
 
 
