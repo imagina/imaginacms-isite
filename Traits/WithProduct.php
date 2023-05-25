@@ -44,9 +44,9 @@ trait WithProduct
             'entity_id' => $this->id
         ],[
             'name' => $this->title ?? $this->name,
-            'slug' => $this->slug,
-            'description' => $this->description,
-            'summary' => $this->summary ?? substr($this->description, 0, 150),
+            'slug' => $this->slug ?? istr_slug($this->title ?? $this->name),
+            'description' => $this->description ?? "",
+            'summary' => $this->summary ?? substr($this->description, 0, 150) ?? "",
             'price' => $this->price ?? 0,
             'status' => $this->status ?? 1, //ENABLED
             'stock_status' => $this->stock_status ?? 1, //INSTOCK
