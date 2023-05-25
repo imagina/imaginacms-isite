@@ -20,6 +20,7 @@ class ItemList extends Component
   public $withSummary;
   public $formatCreatedDate;
   public $orderClasses;
+  public $extraOrderClassesFields;
   public $numberCharactersSummary;
   public $editLink;
   public $tooltipEditLink;
@@ -568,6 +569,7 @@ class ItemList extends Component
         $this->buttonColor = "";
     }
 
+    //Define the summary field value
     if(!empty($summaryField)){
       //In case to show a fake field options example "options.secondaryDescription"
       if(Str::contains($summaryField,'options')){
@@ -584,8 +586,12 @@ class ItemList extends Component
     }else{
       $this->summary = $item->summary ?? $item->description ?? $item->custom_html ?? "";
     }
-
+  
+    //Define the summary characters limit
     if($summaryWithLimit) $this->summary = Str::limit($this->summary,$this->numberCharactersSummary);
+  
+    //Getting Extra fields in the order classes param
+    $this->extraOrderClassesFields = array_values(array_diff(array_keys($this->orderClasses),[  "photo", "title", "date", "categoryTitle", "summary", "viewMoreButton"]));
 
     if (!empty($parentAttributes))
       $this->getParentAttributes($parentAttributes);

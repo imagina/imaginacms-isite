@@ -110,6 +110,20 @@
           @endif
         </div>
       @endif
+         @foreach($extraOrderClassesFields as $key => $extraOrderClassesField )
+           
+           @if(isset($item->{$extraOrderClassesField}) || isset($item->options->{$extraOrderClassesField}))
+             <div class="col-12 {{$orderClasses[$extraOrderClassesField] ?? 'order-6'}} item-{{$extraOrderClassesField}}">
+               
+               @if(isset($item->{$extraOrderClassesField}))
+                 {{ $item->{$extraOrderClassesField} }}
+               @elseif(isset($item->options->{$extraOrderClassesField}))
+                 {{ $item->options->{$extraOrderClassesField} }}
+               @endif
+              
+             </div>
+           @endif
+         @endforeach
     </div>
 
   </div>
