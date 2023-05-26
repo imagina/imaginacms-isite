@@ -69,6 +69,9 @@ class IsiteServiceProvider extends ServiceProvider
     /*
     * JOB EVENTS
     */
+
+    //Not include all cases when create a tenant
+    /*
     $this->app['events']->listen(\Illuminate\Queue\Events\JobProcessed ::class, function ($event) {
       //Only with tenant
       if( !is_null($event->job->payload()) && isset($event->job->payload()['tenant_id'])) {
@@ -76,6 +79,7 @@ class IsiteServiceProvider extends ServiceProvider
         \DB::disconnect('newConnectionTenant');
       }
     });
+    */
 
 
   }
