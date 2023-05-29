@@ -34,8 +34,8 @@ class RevisionApiController extends BaseCrudController
       if (!$model) throw new Exception('Item not found', 204);
 
       //Using the show endpoint to get the "revisioned" entity model instead of the Revision Entity
-      if (isset($params->filter->filterEntity)) {
-        switch ($params->filter->filterEntity) {
+      if (isset($params->filter->entity)) {
+        switch ($params->filter->entity) {
           case "newValue":
           default:
             $entity = new $model->revisionable_type(json_decode($model->new_value, true));
