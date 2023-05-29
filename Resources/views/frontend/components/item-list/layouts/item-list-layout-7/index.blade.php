@@ -378,7 +378,7 @@
     @if($buttonLayout=="button-custom")
     #{{$id}} .button-custom {
         color: {{$buttonConfig["color"]}};
-        border-color: {{$buttonConfig["background"]}};
+        border: {{$buttonConfig["border"]}};
         background: {{$buttonConfig["background"]}};
         border-radius: {{$buttonConfig["borderRadius"]}};
         box-shadow: {{$buttonConfig["boxShadow"]}};
@@ -386,7 +386,7 @@
     }
     #{{$id}} .button-custom:hover {
         color: {{$buttonConfig["colorHover"]}};
-        border-color: {{$buttonConfig["backgroundHover"]}};
+        border: {{$buttonConfig["borderHover"]}};
         background: {{$buttonConfig["backgroundHover"]}};
         box-shadow: {{$buttonConfig["boxShadowHover"]}};
     }
