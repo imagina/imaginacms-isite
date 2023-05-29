@@ -550,6 +550,17 @@ return [
                 "label" => "Clases generales",
             ]
           ],
+          "summaryField" => [
+            "name" => "summaryField",
+            "columns" => "col-12",
+            "type" => "input",
+            "props" => [
+                "label" => "Campo Falso Extra",
+            ],
+            "help" => [
+                "description" => "Ejemplo de opciones de campo falso 'options.secondaryDescription'",
+            ],
+          ],
         ],
       ],
       "category" => [
@@ -876,11 +887,13 @@ return [
             "name" => "buttonConfig",
             "value" => ['color' => 'var(--primary)',
                 'background' => 'var(--white)',
+                'border' => '0',
                 'boxShadow' => 'none',
                 'transition' => '.4s',
                 'borderRadius' => '10px',
                 'colorHover' => 'var(--dark)',
                 'backgroundHover' => 'var(--secondary)',
+                'borderHover' => '0',
                 'boxShadowHover' => 'none'],
             "type" => "json",
             "columns" => "col-12",

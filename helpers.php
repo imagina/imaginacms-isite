@@ -216,3 +216,17 @@ if (!function_exists('validateLocaleFromUrl')) {
   }
 
 }
+
+/**
+ * Helper to show infor connection in Log or others
+ */
+if (!function_exists('showDataConnection')) {
+  
+  function showDataConnection($inLog = true){
+
+    $dbname = \DB::connection()->getDatabaseName();
+    if($inLog)
+      \Log::info("Isite: Helper|ShowDataConnection|DB: ".$dbname);
+  }
+
+}

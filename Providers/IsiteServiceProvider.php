@@ -69,6 +69,24 @@ class IsiteServiceProvider extends ServiceProvider
     /*
     * JOB EVENTS
     */
+    $this->app['events']->listen(\Illuminate\Queue\Events\JobProcessing ::class, function ($event) {
+    
+      //Checking jobs without tenant_id
+      if(!is_null($event->job->payload()) && !isset($event->job->payload()['tenant_id'])) {
+        
+        $dbName = \DB::connection()->getDatabaseName();
+        //\Log::info("ENV DATABASE: ".env("DB_DATABASE")." | Connection: ".$dbName);
+        
+        //Only if is not the same current connection
+        if($dbName!=env("DB_DATABASE"))
+          \Config::set('database.default', 'mysql');
+        
+      }
+
+    });
+
+    //Not include all cases when create a tenant
+    /*
     $this->app['events']->listen(\Illuminate\Queue\Events\JobProcessed ::class, function ($event) {
       //Only with tenant
       if( !is_null($event->job->payload()) && isset($event->job->payload()['tenant_id'])) {
@@ -76,6 +94,7 @@ class IsiteServiceProvider extends ServiceProvider
         \DB::disconnect('newConnectionTenant');
       }
     });
+    */
 
 
   }

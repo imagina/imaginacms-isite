@@ -229,7 +229,7 @@ trait RevisionableTrait
       $revisions = array(
         'revisionable_type' => $this->getMorphClass(),
         'revisionable_id' => $this->getKey(),
-        'key' => self::CREATED_AT,
+        'key' => 'Create Data',
         'old_value' => null,
         'new_value' => $this,
         'created_at' => new \DateTime(),
