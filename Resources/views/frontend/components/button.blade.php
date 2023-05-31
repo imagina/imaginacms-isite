@@ -6,7 +6,7 @@
         $var= "button".$var1.$color;
     @endphp
 @endif
-<a id="{{$idButton}}" aria-label="{{ !empty($label) ? $label : "icon" }}" class="button-base {{$var}} {{$buttonClasses}} @if(!$withLabel && $withIcon) button-icon @endif"
+<a id="{{$idButton}}" role="button" aria-label="{{ !empty($label) ? $label : "icon" }}" class="button-base {{$var}} {{$buttonClasses}} @if(!$withLabel && $withIcon) button-icon @endif"
    {{ !empty($onclick) ? "onclick=".$onclick : "" }} {{ !empty($href) ? "href=".$href : "" }}
         {{ !empty($target) ? "target=".$target : "" }} {{ !empty($dataItemId) ? "data-item-id=".$dataItemId : "" }}>
   @if($withIcon && $iconPosition=="left")
