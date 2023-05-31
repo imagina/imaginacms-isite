@@ -10,7 +10,7 @@
       </div>
     @endif
     <a href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}"
-       class="whatsapp-layout-2 position-relative" target="_blank">
+       class="whatsapp-layout-2 position-relative" target="_blank" aria-label="whatsapp {{ $icon }}">
       @if($type)
         <span class="fa-stack fa-{{ $size }}">
           <i class="fa fa-{{ $type }} fa-stack-2x"></i>
@@ -30,9 +30,9 @@
         :tooltip="trans('isite::common.editLink.tooltipWhatsapp')"
         top="3px" left="37px"/>
     @endif
-    <a id="dropdownMenuWhatsapp" type="button"
+    <a id="dropdownMenuWhatsapp" role="button" type="button"
        class="btn dropdown-toggle{{ count($parentAttributes) > 0 ? ' p-0' : '' }}" data-toggle="dropdown"
-       aria-haspopup="true" aria-expanded="false">
+       aria-haspopup="true" aria-expanded="false" aria-label="whatsapp">
       @if($type)
         <span class="fa-stack fa-{{ $size }}">
           <i class="fa fa-{{ $type }} fa-stack-2x"></i>
@@ -49,7 +49,7 @@
         @if(!empty($item->callingCode) && !empty($item->number))
           <div class="number-whatsapp {{$dropdownTextAlign}}">
             <a class="text-decoration-none" href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}"
-               target="_blank">
+               target="_blank" aria-label="whatsapp">
               <p class="mb-0">
                 @if(isset($item->iconLabel) && !empty($item->iconLabel))
                   <i class="{{ $item->iconLabel}} "></i>

@@ -5,12 +5,12 @@
       :tooltip="trans('isite::common.editLink.tooltipWhatsapp')"/>
   @endif
   @if(count($items) >= 1)
-    <div class="pre-window {{$alignmentMsn}}">
+    <div class="pre-window {{$alignmentMsn ?? ''}}">
       <div class="icon"><i class="fa fa-whatsapp"></i></div>
       <div class="text">{{$title=="" ? trans('isite::common.whatsapp.labelWhatsappLayout5') : $title}}</div>
     </div>
 
-    <div class="window animate__animated animate__bounceOutDown {{$alignmentWin}}">
+    <div class="window animate__animated animate__bounceOutDown {{$alignmentWin ?? ''}}">
       <div class="window-header">
 
         <div class="header-close"><i class="fa fa-close"></i></div>
@@ -22,9 +22,9 @@
           @foreach($items as $key => $item)
             <a class="content-list text-decoration-none"
                href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}"
-               target="_blank">
+               target="_blank" aria-label="whatsapp">
               <div class="list-image">
-                <div class="icon"><i class="{{ $item->iconLabel??$icon}}"></i></div>
+                <div class="icon"><i class="{{$item->iconLabel=="" ? $icon : $item->iconLabel}}"></i></div>
               </div>
               <div class="list-info">
                 <div class="title">{{ $item->label }}</div>
@@ -39,8 +39,6 @@
 </div>
 <style>
 #whatsappIconChatFixed {
-
-
     visibility: hidden;
 }
 #whatsappIconChatFixed .pre-window {
@@ -224,7 +222,8 @@
 @media screen and (max-width: 576px) {
     #whatsappIconChatFixed .window {
         top: 0;
-        left: 0;
+        left: 0 !important;
+        right: 0 !important;
         bottom: 0;
         width: 100%;
         max-width: 100%;
@@ -234,6 +233,7 @@
         max-height: 90%;
         height: calc(100vh - 100px) !important;
     }
+
 }
 #whatsappIconChatFixed .scroll {
     overflow:auto;
