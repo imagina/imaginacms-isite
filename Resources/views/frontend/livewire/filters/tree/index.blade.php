@@ -31,9 +31,9 @@ $isSelected = !empty($itemSelected) ? $itemSelected->id == $item->id ? true : fa
   if($children->isNotEmpty()){
   ?>
   <div class="link-desktop d-none d-md-block <?=$isSelected && $children ? 'font-weight-bold' : ''?>">
-    <a href="<?=$item->url?>" style="cursor: pointer"
+    <a href="<?=$item->url?>"
        onclick="event.preventDefault(); emit_<?=$name?>(<?=$item->id?>,'<?=$item->url?>')"
-       class="<?=$name?>-link text-href ">
+       class="<?=$name?>-link text-href cursor-pointer" aria-label="<?=$item->title?>">
       <?php
       if($withIcon){
       ?>
@@ -47,14 +47,14 @@ $isSelected = !empty($itemSelected) ? $itemSelected->id == $item->id ? true : fa
     </a>
     <a class="icon-collapsable" data-toggle="collapse" role="button"
        href="#multiCollapse-<?=$item->id?>" aria-expanded="<?=$expanded ? 'true' : 'false'?>"
-       aria-controls="multiCollapse-<?=$item->id?>">
+       aria-controls="multiCollapse-<?=$item->id?>" aria-label="collapse" >
       <i class="fa angle"></i>
     </a>
   </div>
   <div class="link-movil d-block d-md-none <?=$isSelected && $children ? 'font-weight-bold' : ''?>">
     <a class="text-collapsable" data-toggle="collapse" role="button"
        href="#multiCollapse-<?=$item->id?>" aria-expanded="<?=$isSelected && $children ? 'true' : 'false'?>"
-       aria-controls="multiCollapse-<?=$item->id?>">
+       aria-controls="multiCollapse-<?=$item->id?>" aria-label="<?=$item->title?>">
       
       <?php
       if($withIcon){
@@ -66,9 +66,9 @@ $isSelected = !empty($itemSelected) ? $itemSelected->id == $item->id ? true : fa
       <span class="<?=$withIcon ? 'span-with-icon' : 'span-without-icon'?>"
             title="<?=$item->title?>"><?=$item->title?></span>
     </a>
-    <a href="<?=$item->url?>" style="cursor: pointer"
+    <a href="<?=$item->url?>" aria-label="external-link"
        onclick="event.preventDefault(); emit_<?=$name?>(<?=$item->id?>,'<?=$item->url?>')"
-       class="<?=$name?>-link icon-href float-right">
+       class="<?=$name?>-link icon-href float-right cursor-pointer">
       <i class="fa fa-external-link"></i>
     </a>
   </div>
@@ -84,9 +84,9 @@ $isSelected = !empty($itemSelected) ? $itemSelected->id == $item->id ? true : fa
   <?php
   }else{
   ?>
-  <a href="<?=$item->url?>" style="cursor: pointer"
+  <a href="<?=$item->url?>" aria-label="<?=$item->title?>"
      onclick="event.preventDefault(); emit_<?=$name?>(<?=$item->id?>,'<?=$item->url?>')"
-     class="<?=$name?>-link link-childless d-block <?=$isSelected && $children->isEmpty() ? 'font-weight-bold' : ''?>">
+     class="<?=$name?>-link link-childless cursor-pointer d-block <?=$isSelected && $children->isEmpty() ? 'font-weight-bold' : ''?>">
     
     <?php
     if(isset($mediaFiles->iconimage->path) && !strpos($mediaFiles->iconimage->path, "default.jpg")){
@@ -119,9 +119,9 @@ print $output;
   @if($this->items && count($this->items)>0)
     
     <div class="title">
-      <a class="item" data-toggle="collapse" href="#collapseCategories" role="button"
+      <a class="item <?=$isExpanded ? '' : 'collapsed'?>" data-toggle="collapse" href="#collapseCategories" role="button"
          aria-expanded="<?=$isExpanded ? 'true' : 'false'?>" aria-controls="collapseCategories"
-         class="<?=$isExpanded ? '' : 'collapsed'?>">
+         aria-label="<?= trans($title) ?>">
         
         <h5 class="p-3 border-top border-bottom">
           <?= trans($title) ?>
