@@ -17,7 +17,7 @@
 
 		<div class="collapse multi-collapse {{$isExpanded ? 'show' : ''}} mb-2" id="collapse-{{$name}}">
 			
-			<input type="text" id="amount-{{$name}}" class="amount border-0 text-primary font-weight-bold mb-2" readonly>
+			<input type="text" id="amount-{{$name}}" aria-label="amount-{{$name}}" class="amount border-0 text-primary font-weight-bold mb-2" readonly>
 
 			<input type="hidden" id="valueMin" name="valueMin" wire:model="valueMin">
 			<input type="hidden" id="valueMax" name="valueMax" wire:model="valueMax">

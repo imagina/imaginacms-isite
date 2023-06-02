@@ -7,8 +7,8 @@
           :tooltip="trans('isite::common.editLink.tooltipWhatsapp')"/>
       @endif
       <a @if(count($items)>1)
-         id="dropdownMenuWhatsapp" class="{{ count($parentAttributes) > 0 ? ' p-0' : '' }}" data-toggle="dropdown"
-         aria-haspopup="true" aria-expanded="false"
+         id="dropdownImgWhatsapp" role="button" class="{{ count($parentAttributes) > 0 ? ' p-0' : '' }}" data-toggle="dropdown"
+         aria-haspopup="true" aria-expanded="false" aria-label="dropdown img whatsapp"
          @else @php($item = $items[0]) href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}"
          class="whatsapp-link-layout-2" target="_blank"
         @endif>
@@ -60,6 +60,8 @@
     transform: rotate(-90deg);
     margin-top: 43px;
     margin-left: -18px;
+    width: 78px;
+    height: 15px;
 }
 #whatsappImageFixed  a.whatsapp-layout-2 .icon-whatsapp{
     position: relative;
