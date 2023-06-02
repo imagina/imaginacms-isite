@@ -57,6 +57,7 @@ return [
   "perzonalizationTitle" => "Bienvenid@ al editor de tu sitio web",
   "perzonalizationDescription" => "De manera fácil, cambia el logo, colores y la información principal de tu página web",
   "label" => [
+    "trial" => "Versión de prueba",
     "activity" => "Actividad | Actividades",
     "top" => "Arriba",
     "bottom" => "Abajo",
