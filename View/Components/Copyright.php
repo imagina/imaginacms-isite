@@ -10,17 +10,18 @@ class Copyright extends Component
 {
   public $year;
   public $name;
+  public $layout;
 
   /**
    * Create a new component instance.
    *
    * @return void
    */
-  public function __construct($classes = null)
+  public function __construct($classes = null, $layout = 'copyright-layout-1')
   {
     $this->name = @setting('core::site-name');
     $this->year = date('Y');
-//    dd($this->name,$this->year);
+    $this->layout = $layout;
   }
   /**
    * Get the view / contents that represent the component.
@@ -30,7 +31,7 @@ class Copyright extends Component
   public
   function render()
   {
-    return view("isite::frontend.components.copyright");
+    return view("isite::frontend.components.copyright.layouts.".$this->layout.".index");
   }
 }
 
