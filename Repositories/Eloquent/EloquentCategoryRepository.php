@@ -26,9 +26,10 @@ class EloquentCategoryRepository extends EloquentCrudRepository implements Categ
    *
    * @param $query
    * @param $filter
+   * @param $params
    * @return mixed
    */
-  public function filterQuery($query, $filter)
+  public function filterQuery($query, $filter, $params)
   {
     /**
      * Note: Add filter name to replaceFilters attribute before replace it

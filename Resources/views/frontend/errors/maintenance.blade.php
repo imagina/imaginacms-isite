@@ -11,7 +11,7 @@
                     <i class="fa fa-exclamation-triangle" style="font-size:48px;color:#df1f26"></i>
                 </div>
                 <div class="col-xs-12 col-sm-5 col-md-5 column2">
-                    <div class="" id="error"><h2>Error</h2>&nbsp;&nbsp;&nbsp; <span>5</span>&nbsp; <span>0</span>&nbsp; <span>0</span></div>
+                    <div class="" id="error"><h2>Error</h2>&nbsp;&nbsp;&nbsp; <span>4</span>&nbsp; <span>0</span>&nbsp; <span>4</span></div>
                     <div class="" id="message">Lo sentimos, esta página no esta disponible.</div>
                 </div>
             </div>

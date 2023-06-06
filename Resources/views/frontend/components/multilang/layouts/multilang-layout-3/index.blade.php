@@ -107,7 +107,35 @@
     </div>
   </div>
 </div>
-<script type="text/javascript">
+<style>
+    #multiLangLayout3 .dropdown {
+        display: flex;
+    }
+    #multiLangLayout3 .dropdown-menu {
+        box-shadow: rgba(0, 0, 0, 0.09) 0px 24px 46px, rgba(0, 0, 0, 0.28) 0px 3px 10px;
+        border: 0;
+        top: 26px !important;
+        border-radius: 7px;
+    }
+    #multiLangLayout3 .dropdown-menu:before {
+        content: " ";
+        position: absolute;
+        background: white;
+        clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+        height: 12px;
+        width: 22px;
+        right: 12px;
+        top: -11px;
+    }
+    #multiLangLayout3 .dropdown-menu .item-dropdown {
+        border-bottom: 0.1px solid #0000004d;
+    }
+    #multiLangLayout3 .dropdown-menu .item-dropdown:last-child {
+        border-bottom: 0;
+    }
+
+</style>
+<script defer type="text/javascript">
   $(document).ready(function () {
     $("#{{$component->idButton}}").attr('data-toggle', 'dropdown');
   })

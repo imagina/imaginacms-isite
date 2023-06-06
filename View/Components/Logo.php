@@ -29,25 +29,20 @@ class Logo extends Component
     $this->zone = "isite::$name";
     $this->imgClasses = $imgClasses;
     $this->linkClasses = $linkClasses;
-    $setting = Setting::where("name", $this->zone);
     $this->settingName = $name;
     $this->moduleName = "isite";
-
     
-    if($central)
-      $setting->withoutTenancy()
-        ->whereNull("organization_id");
+    $setting = $this->getSettingRepository()->findByName($this->zone,$central);
     
-    
-    $setting= $setting->with('files')->first();
-    
-
-     if(isset($setting->id)){
+  
+    if(isset($setting->id)){
       $this->logo = $setting;
      }
   }
 
-
+private function getSettingRepository(){
+    return app("Modules\Setting\Repositories\SettingRepository");
+}
   /**
    * Get the view / contents that represent the component.
    *
