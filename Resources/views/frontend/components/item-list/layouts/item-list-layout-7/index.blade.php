@@ -11,7 +11,7 @@
   @break
 @endswitch
 
-<div id="{{$id}}" class="item-layout item-list-layout-7 position-relative overflow-hidden {{$itemMarginB}} {{$itemClasses}}">
+<div id="{{$id}}" class="item-layout item-list-layout-7 position-relative overflow-hidden {{$itemClasses}}">
 
   <x-isite::edit-link link="{{$editLink}}{{$item->id}}" :item="$item" tooltip="{{$tooltipEditLink}}"/>
   <div class="card-item {{$row}} @if($imageOpacityHover) opacity-with-hover @else opacity-without-hover @endif">
@@ -83,9 +83,9 @@
               @if(isset($item->category->url) && !empty($item->category->url))
                 <a href="{{$item->category->url}}" target="{{$target}}">
                   @endif
-                  <h5 class="category {{$categoryClasses}} {{$categoryTextWeight}} {{$categoryColor}} {{$categoryMarginT}} {{$categoryMarginB}}">
+                  <div class="category {{$categoryClasses}} {{$categoryTextWeight}} {{$categoryColor}} {{$categoryMarginT}} {{$categoryMarginB}}">
                     {{$item->category->title ?? $item->category->name}}
-                  </h5>
+                  </div>
                   @if(isset($item->category->url) && !empty($item->category->url))
                 </a>
               @endif
@@ -234,6 +234,7 @@
         display: block !important;
         padding: {{$imagePicturePadding}}px;
         text-align: {{$imageAlign}};
+        aspect-ratio: {{$imageAspect}};
     }
     #{{$id}} .img-style  {
         border-radius: {{$imageRadio}};
@@ -369,6 +370,9 @@
     @if(!is_null($imageAspectMobile))
     @media (max-width: 767.98px) {
         #{{$id}} .img-style, #{{$id}} .cover-img{
+            aspect-ratio: {{$imageAspectMobile}};
+        }
+        #{{$id}} .item-image picture {
             aspect-ratio: {{$imageAspectMobile}};
         }
     }
