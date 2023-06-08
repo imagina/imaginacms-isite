@@ -325,5 +325,24 @@ return [
         ["label" => "H4", "value" => "h4"],
         ["label" => "H5", "value" => "h5"],
         ["label" => "H6", "value" => "h6"],
+    ],
+    "animationAOS" => [
+        ["label" => "Sin animacion", "value" => ""],
+        ["label" => "fade", "value" => "fade"],
+        ["label" => "fade-up", "value" => "fade-up"],
+        ["label" => "fade-down", "value" => "fade-down"],
+        ["label" => "flip-up", "value" => "flip-up"],
+        ["label" => "flip-down", "value" => "flip-down"],
+        ["label" => "slide-up", "value" => "slide-up"],
+        ["label" => "slide-down", "value" => "slide-down"],
+        ["label" => "zoom-in", "value" => "zoom-in"],
+        ["label" => "zoom-in-up", "value" => "zoom-in-up"],
+        ["label" => "zoom-in-down", "value" => "zoom-in-down"],
+    ],
+    "easingAOS" => [
+        ["label" => "Sin easing", "value" => ""],
+        ["label" => "ease", "value" => "ease"],
+        ["label" => "ease-in", "value" => "ease-in"],
+        ["label" => "ease-out", "value" => "ease-out"]
     ]
 ];

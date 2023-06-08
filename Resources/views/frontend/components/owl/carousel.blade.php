@@ -98,7 +98,10 @@
           </div>
 
           @endif
-
+          @if(!empty($itemComponentAttributes["itemDelay"]))
+            @php($delay = $itemComponentAttributes['itemDelay'])
+            @php($cont=0)
+          @endif
           <div class="@if($navPosition!="center" || ($nav==false && $navPosition=="center")) row py-3 @endif">
             <div id="{{$id}}Carousel" class="owl-carousel owl-theme {{$dotsStyle}}">
               @php($x = 0) {{-- iterador de items --}}
@@ -111,7 +114,13 @@
                     @endif
 
                     @while(isset($items[$x + $j]) && $j<$itemsBySlide)
-    
+
+                      @if(!empty($itemComponentAttributes["itemDelay"]))
+                          @php($itemComponentAttributes["itemDelay"]=$delay+$cont)
+                          @if(!empty($itemComponentAttributes["itemDelayIn"]))
+                              @php($cont=$cont+intval($itemComponentAttributes['itemDelayIn']))
+                          @endif
+                      @endif
                       @include("isite::frontend.partials.item",["item" => $items[$x + $j], "position" => $x + $j])
 
                       @php($j++)

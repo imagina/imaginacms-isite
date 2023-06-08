@@ -11,8 +11,14 @@
   @break
 @endswitch
 
-<div id="{{$id}}" class="item-layout item-list-layout-7 position-relative overflow-hidden {{$itemClasses}}">
-
+<div id="{{$id}}" class="item-layout item-list-layout-7 position-relative overflow-hidden {{$itemClasses}}"
+    {{ $itemAnimate ? 'data-aos='.$itemAnimate : '' }}
+    {{ $itemDelay ? 'data-aos-delay='.$itemDelay : '' }}
+    {{ $itemDuration ? 'data-aos-duration='.$itemDuration : '' }}
+    {{ $itemOffset ? 'data-aos-offset='.$itemOffset : '' }}
+    {{ $itemEasing ? 'data-aos-easing='.$itemEasing  : '' }}
+    {{ $itemOne ? 'data-aos-once='.$itemOne  : '' }}
+    {{ $itemMirror ? 'data-aos-mirror='.$itemMirror  : '' }}>
   <x-isite::edit-link link="{{$editLink}}{{$item->id}}" :item="$item" tooltip="{{$tooltipEditLink}}"/>
   <div class="card-item {{$row}} @if($imageOpacityHover) opacity-with-hover @else opacity-without-hover @endif">
     <div class="{{$imagePosition!='1' ? 'row no-gutters' : ''}}">

@@ -1159,6 +1159,77 @@ return [
             ],
         ]
       ],
+      "animation" => [
+        "title" => "Animaciones de Entrada",
+        "fields" => [
+            "itemAnimate" => [
+                "name" => "itemAnimate",
+                "value" => "",
+                "type" => "select",
+                "props" => [
+                    "label" => "Animacion",
+                    "options" => $vAttributes["animationAOS"]
+                ]
+            ],
+            "itemDuration" => [
+                "name" => "itemDuration",
+                "type" => "input",
+                "props" => [
+                    "label" => "Duration"
+                ]
+            ],
+            "itemOffset" => [
+                "name" => "itemOffset",
+                "type" => "input",
+                "props" => [
+                    "label" => "Offset",
+                ]
+            ],
+            "itemDelay" => [
+                "name" => "itemDelay",
+                "type" => "input",
+                "props" => [
+                    "label" => "Delay",
+                ]
+            ],
+            "itemDelayIn" => [
+                "name" => "itemDelayIn",
+                "value" => "0",
+                "type" => "input",
+                "props" => [
+                    "label" => "Incremento en Delay",
+                    "input" => "number",
+                ]
+            ],
+            "itemEasinge" => [
+                "name" => "itemEasinge",
+                "value" => "",
+                "type" => "select",
+                "props" => [
+                    "label" => "Easing",
+                    "options" => $vAttributes["easingAOS"]
+                ]
+            ],
+            "itemOne" => [
+                "name" => "itemOne",
+                "value" => "0",
+                "type" => "select",
+                "props" => [
+                    "label" => "One",
+                    "options" => $vAttributes["validation"]
+                ]
+            ],
+            "itemMirror" => [
+                "name" => "itemMirror",
+                "value" => "0",
+                "type" => "select",
+                "props" => [
+                    "label" => "Mirror",
+                    "options" => $vAttributes["validation"]
+                ]
+            ],
+        ]
+      ],
     ]
   ],
   "carousel" => [
