@@ -1116,6 +1116,33 @@ return [
                 "label" => "Sombra",
             ]
           ],
+          "imageAnimate" => [
+            "name" => "imageAnimate",
+            "type" => "select",
+            "value" => "",
+            "props" => [
+                "label" => "Efecto en Imagen",
+                "options" => $vAttributes["imageAnimate"]
+            ]
+          ],
+          "imageAnimateOpacityHover" => [
+            "name" => "imageAnimateOpacityHover",
+            "type" => "select",
+            "value" => "",
+            "props" => [
+                "label" => "Efecto en Opacity Imagen Hover",
+                "options" => $vAttributes["imageAnimateOpacity"]
+            ]
+          ],
+          "contentAnimateOpacityHover" => [
+            "name" => "contentAnimateOpacityHover",
+            "type" => "select",
+            "value" => "",
+            "props" => [
+                "label" => "Efecto en Opacity Content Hover",
+                "options" => $vAttributes["contentAnimateOpacity"]
+            ]
+          ],
         ]
       ],
       "video" => [

@@ -325,5 +325,28 @@ return [
         ["label" => "H4", "value" => "h4"],
         ["label" => "H5", "value" => "h5"],
         ["label" => "H6", "value" => "h6"],
-    ]
+    ],
+    "imageAnimate" => [
+        ["label" => "Sin animacion", "value" => ""],
+        ["label" => "Scale All", "value" => "image-animate-scale-all"],
+        ["label" => "Rotate", "value" => "image-animate-rotate-1"],
+        ["label" => "Up", "value" => "image-animate-up"],
+    ],
+    "imageAnimateOpacity" => [
+        ["label" => "Sin animacion", "value" => ""],
+        ["label" => "Opacity Imagen 1", "value" => "opacity-animate-1"],
+        ["label" => "Opacity Imagen 2", "value" => "opacity-animate-2"],
+        ["label" => "Opacity Imagen 3", "value" => "opacity-animate-3"],
+        ["label" => "Opacity Imagen 4", "value" => "opacity-animate-4"],
+        ["label" => "Opacity Imagen 5", "value" => "opacity-animate-5"],
+    ],
+    "contentAnimateOpacity" => [
+        ["label" => "Sin animacion", "value" => ""],
+        ["label" => "Opacity Content 1", "value" => "content-animate-1"],
+        ["label" => "Opacity Content 2", "value" => "content-animate-2"],
+        ["label" => "Opacity Content 3", "value" => "content-animate-3"],
+        ["label" => "Opacity Content 4", "value" => "content-animate-4"],
+        ["label" => "Opacity Content 5", "value" => "content-animate-5"],
+        ["label" => "Opacity Content 6", "value" => "content-animate-6"],
+    ],
 ];
