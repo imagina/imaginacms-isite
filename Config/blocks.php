@@ -1176,6 +1176,9 @@ return [
                 "type" => "input",
                 "props" => [
                     "label" => "Duration"
+                ],
+                "help" => [
+                    "description" => "Valores de 0 a 3000, con paso de 50ms"
                 ]
             ],
             "itemOffset" => [
@@ -1183,6 +1186,9 @@ return [
                 "type" => "input",
                 "props" => [
                     "label" => "Offset",
+                ],
+                "help" => [
+                    "description" => "Desplazamiento (en px) desde el punto de activación original"
                 ]
             ],
             "itemDelay" => [
@@ -1190,6 +1196,9 @@ return [
                 "type" => "input",
                 "props" => [
                     "label" => "Delay",
+                ],
+                "help" => [
+                    "description" => "Valores de 0 a 3000, con paso de 50ms"
                 ]
             ],
             "itemDelayIn" => [
@@ -1199,10 +1208,13 @@ return [
                 "props" => [
                     "label" => "Incremento en Delay",
                     "input" => "number",
+                ],
+                "help" => [
+                    "description" => "Valor que incrementa el delay de cada elemento, si es 0 quedan todos con el mismo delay"
                 ]
             ],
-            "itemEasinge" => [
-                "name" => "itemEasinge",
+            "itemEasing" => [
+                "name" => "itemEasing",
                 "value" => "",
                 "type" => "select",
                 "props" => [
@@ -1217,6 +1229,9 @@ return [
                 "props" => [
                     "label" => "One",
                     "options" => $vAttributes["validation"]
+                ],
+                "help" => [
+                    "description" => "Si la animación debe ocurrir solo una vez, mientras se desplaza hacia abajo"
                 ]
             ],
             "itemMirror" => [
@@ -1226,6 +1241,9 @@ return [
                 "props" => [
                     "label" => "Mirror",
                     "options" => $vAttributes["validation"]
+                ],
+                "help" => [
+                    "description" => "Si los elementos deben animarse mientras se desplazan más allá de ellos"
                 ]
             ],
         ]
