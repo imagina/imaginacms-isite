@@ -1067,97 +1067,138 @@ return [
               "label" => "Color del Borde"
             ]
           ],
-          "withImageOpacity" => [
-            "name" => "withImageOpacity",
-            "value" => "0",
-            "type" => "select",
-            "props" => [
-              "label" => "Mostrar Opacidad",
-              "options" => $vAttributes["validation"]
-            ]
-          ],
-          "imageOpacityColor" => [
-            "name" => "imageOpacityColor",
-            "type" => "select",
-            "props" => [
-              "label" => "Color de Opacidad",
-              "options" => $vAttributes["opacityColor"]
-            ]
-          ],
-          "imageOpacityDirection" => [
-            "name" => "imageOpacityDirection",
-            "type" => "select",
-            "props" => [
-              "label" => "Dirección de Opacidad",
-              "options" => $vAttributes["opacityDirection"]
-            ]
-          ],
-          "imageOpacityCustom" => [
-            "name" => "imageOpacityCustom",
-            "type" => "input",
-            "props" => [
-              "label" => "Opacidad Custom"
-            ]
-          ],
-          "imageOpacityHover" => [
-            "name" => "imageOpacityHover",
-            "value" => "0",
-            "type" => "select",
-            "props" => [
-              "label" => "Opacidad en Hover",
-              "options" => $vAttributes["validation"]
-            ]
-          ],
-          "imageShadow" => [
-            "name" => "imageShadow",
-            "type" => "input",
-            "value" => "",
-            "props" => [
-                "label" => "Sombra",
-            ]
-          ],
         ]
       ],
       "video" => [
-        "title" => "Video",
+            "title" => "Video",
+            "fields" => [
+                "videoLoop" => [
+                    "name" => "videoLoop",
+                    "value" => "0",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Loop",
+                        "options" => $vAttributes["validation"]
+                    ]
+                ],
+                "videoAutoplay" => [
+                    "name" => "videoAutoplay",
+                    "value" => "0",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Autoplay",
+                        "options" => $vAttributes["validation"]
+                    ]
+                ],
+                "videoMuted" => [
+                    "name" => "videoMuted",
+                    "value" => "0",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Muted",
+                        "options" => $vAttributes["validation"]
+                    ]
+                ],
+                "videoControls" => [
+                    "name" => "videoControls",
+                    "value" => "0",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Controls",
+                        "options" => $vAttributes["validation"]
+                    ]
+                ],
+            ]
+        ],
+      "opacity" => [
+        "title" => "Opacidad y Animaciones",
         "fields" => [
-            "videoLoop" => [
-                "name" => "videoLoop",
+            "withImageOpacity" => [
+                "name" => "withImageOpacity",
                 "value" => "0",
                 "type" => "select",
                 "props" => [
-                    "label" => "Loop",
+                    "label" => "Mostrar Opacidad",
                     "options" => $vAttributes["validation"]
                 ]
             ],
-            "videoAutoplay" => [
-                "name" => "videoAutoplay",
+            "imageOpacityColor" => [
+                "name" => "imageOpacityColor",
+                "type" => "select",
+                "props" => [
+                    "label" => "Color de Opacidad",
+                    "options" => $vAttributes["opacityColor"]
+                ]
+            ],
+            "imageOpacityDirection" => [
+                "name" => "imageOpacityDirection",
+                "type" => "select",
+                "props" => [
+                    "label" => "Dirección de Opacidad",
+                    "options" => $vAttributes["opacityDirection"]
+                ]
+            ],
+            "imageOpacityCustom" => [
+                "name" => "imageOpacityCustom",
+                "type" => "input",
+                "props" => [
+                    "label" => "Opacidad Custom"
+                ]
+            ],
+            "imageOpacityHover" => [
+                "name" => "imageOpacityHover",
                 "value" => "0",
                 "type" => "select",
                 "props" => [
-                    "label" => "Autoplay",
+                    "label" => "Opacidad en Hover",
                     "options" => $vAttributes["validation"]
                 ]
             ],
-            "videoMuted" => [
-                "name" => "videoMuted",
-                "value" => "0",
-                "type" => "select",
+            "imageShadow" => [
+                "name" => "imageShadow",
+                "type" => "input",
+                "value" => "",
                 "props" => [
-                    "label" => "Muted",
-                    "options" => $vAttributes["validation"]
+                    "label" => "Sombra",
                 ]
             ],
-            "videoControls" => [
-                "name" => "videoControls",
-                "value" => "0",
+            "imageAnimate" => [
+                "name" => "imageAnimate",
                 "type" => "select",
+                "value" => "",
                 "props" => [
-                    "label" => "Controls",
-                    "options" => $vAttributes["validation"]
+                    "label" => "Efecto en Imagen",
+                    "options" => $vAttributes["imageAnimate"]
+                ],
+                "help" => [
+                    "description" => "Modifica la forma como se muestra la imagen al hacer hover sobre el item",
                 ]
             ],
-        ]
+            "imageAnimateOpacityHover" => [
+                "name" => "imageAnimateOpacityHover",
+                "type" => "select",
+                "value" => "",
+                "props" => [
+                    "label" => "Efecto en Opacity Imagen",
+                    "options" => $vAttributes["imageAnimateOpacity"]
+                ],
+                "help" => [
+                    "description" => "Modifica la forma como se muestra la opacidad, cuando se activa el hover",
+                ]
+            ],
+            "contentAnimateOpacityHover" => [
+                "name" => "contentAnimateOpacityHover",
+                "type" => "select",
+                "value" => "",
+                "props" => [
+                    "label" => "Efecto en Opacity Content",
+                    "options" => $vAttributes["contentAnimateOpacity"]
+                ],
+                "help" => [
+                    "description" => "Modifica la forma como aparece el contenido cuando la opacidad se activa en hover. Valido solo para el layout 7, cuando el contenido se muestra sobre la imagen",
+                ]
+            ],
+        ],
       ],
       "animation" => [
         "title" => "Animaciones de Entrada",
@@ -1215,7 +1256,7 @@ return [
             ],
             "itemEasing" => [
                 "name" => "itemEasing",
-                "value" => "",
+                "value" => "ease",
                 "type" => "select",
                 "props" => [
                     "label" => "Easing",
@@ -1224,7 +1265,7 @@ return [
             ],
             "itemOne" => [
                 "name" => "itemOne",
-                "value" => "0",
+                "value" => "1",
                 "type" => "select",
                 "props" => [
                     "label" => "One",
@@ -1236,7 +1277,7 @@ return [
             ],
             "itemMirror" => [
                 "name" => "itemMirror",
-                "value" => "0",
+                "value" => "1",
                 "type" => "select",
                 "props" => [
                     "label" => "Mirror",
