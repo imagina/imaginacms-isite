@@ -532,7 +532,6 @@ class ItemList extends Component
     $this->categoryClasses = $categoryClasses;
     $this->createdDateClasses = $createdDateClasses;
     $this->buttonItemClasses = $buttonItemClasses;
-    $this->itemClasses = $itemClasses;
     $this->buttonConfig = !empty($buttonConfig) ? $buttonConfig : [
       'color' => 'var(--primary)',
       'background' => 'var(--white)',
@@ -559,6 +558,7 @@ class ItemList extends Component
     $this->videoMuted = $videoMuted;
     $this->videoControls = $videoControls;
     $this->titleHead = $titleHead;
+    $this->itemClasses = $this->itemMarginB." ".$itemClasses;
 
     if($contentPadding>0) {
         $this->contentPaddingL = $contentPadding;
