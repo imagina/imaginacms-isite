@@ -186,51 +186,15 @@ class ItemList extends Component
   public $videoControls;
   public $titleHead;
   public $summaryField;
+  public $itemDuration;
+  public $itemDelay;
+  public $itemDelayIn;
+  public $itemOffset;
+  public $itemEasing;
+  public $itemOne;
+  public $itemMirror;
+  public $itemAnimate;
 
-
-    /**
-   * Create a new component instance.
-   *
-   * @param $item
-   * @param string $mediaImage
-   * @param string $layout
-   * @param null $parentAttributes
-   * @param bool $withViewMoreButton
-   * @param string $viewMoreButtonLabel
-   * @param bool $withCreatedDate
-   * @param string $formatCreatedDate
-   * @param array $orderClasses
-   * @param bool $withCategory
-   * @param bool $withSummary
-   * @param int $numberCharactersSummary
-   * @param null $editLink
-   * @param null $tooltipEditLink
-   * @param null $itemComponentView
-   * @param string $itemComponentTarget
-   * @param null $itemListLayout
-   * @param null $positionNumber
-   * @param string $imageAspect
-   * @param string $imageObject
-   * @param int $imageBorderRadio
-   * @param string $imageBorderStyle
-   * @param int $imageBorderWidth
-   * @param string $imageBorderColor
-   * @param string $imageBorderRadioUnit
-   * @param int $imagePadding
-   * @param string $imageOpcityColor
-   * @param string $itemStyle
-   * @param bool $withTitle
-   * @param string $titleAlign
-   * @param string $titleTextSize
-   * @param string $titleTextWeight
-   * @param string $titleTextTransform
-   * @param string $summaryAlign
-   * @param string $summaryTextSize
-   * @param string $summaryTextWeight
-   * @param string $categoryAlign
-   * @param string $categoryTextSize
-   * @param string $categoryTextWeight
-   */
   public function __construct($item,
                               $mediaImage = "mainimage",
                               $layout = 'item-list-layout-1',
@@ -378,7 +342,15 @@ class ItemList extends Component
                               $videoAutoplay = false,
                               $videoMuted = false,
                               $videoControls = false,
-                              $titleHead = 'h3'
+                              $titleHead = 'h3',
+                              $itemDuration = null,
+                              $itemDelay = null,
+                              $itemDelayIn = 0,
+                              $itemOffset = null,
+                              $itemEasing = null,
+                              $itemOne = false,
+                              $itemMirror = false,
+                              $itemAnimate = ""
   )
   {
     $this->imageAspectMobile = $imageAspectMobile;
@@ -532,7 +504,6 @@ class ItemList extends Component
     $this->categoryClasses = $categoryClasses;
     $this->createdDateClasses = $createdDateClasses;
     $this->buttonItemClasses = $buttonItemClasses;
-    $this->itemClasses = $itemClasses;
     $this->buttonConfig = !empty($buttonConfig) ? $buttonConfig : [
       'color' => 'var(--primary)',
       'background' => 'var(--white)',
@@ -559,6 +530,15 @@ class ItemList extends Component
     $this->videoMuted = $videoMuted;
     $this->videoControls = $videoControls;
     $this->titleHead = $titleHead;
+    $this->itemDuration = $itemDuration;
+    $this->itemDelay = $itemDelay;
+    $this->itemDelayIn = $itemDelayIn;
+    $this->itemOffset = $itemOffset;
+    $this->itemEasing = $itemEasing;
+    $this->itemOne = $itemOne;
+    $this->itemMirror = $itemMirror;
+    $this->itemAnimate = $itemAnimate;
+    $this->itemClasses = $this->itemMarginB." ".$itemClasses;
 
     if($contentPadding>0) {
         $this->contentPaddingL = $contentPadding;
