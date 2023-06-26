@@ -597,6 +597,37 @@ return [
   'documentation' => [
     'settings' => "Algunos módulos de tu aplicación cuentan con configuraciones globales extra. Estas 
     configuraciones te permiten editar algunas características como el color, nombre, logos, etc...",
+  ],
+  'crudMySite' => [
+    "information" => [
+      "description" => "In this section, you have the ability to customize the details of your website. Here you can update essential elements such as the name of your site, select the category that best represents it, and write an attractive and precise description. This information is fundamental as it helps visitors understand what your page is about and what they can expect from it.",
+      "title" => "Site Information"
+    ],
+    "socialNetworks" => [
+      "description" => "Link your Facebook and Instagram profiles, and provide a WhatsApp number. These connections make it easier for your visitors to interact with you on the platforms they already use, allowing you to build a stronger community around your website.",
+      "title" => "Social Networks"
+    ],
+    "media" => [
+      "description" => "Here you can add a logo for your website, and help your customers easily identify your brand.",
+      "title" => "Media Files"
+    ],
+    "colors" => [
+      "description" => "The color section allows you to personalize the appearance of your website to match your brand. Here you can select two colors that will be used as the main theme of your page. These colors will help establish the visual identity of your site, giving it a unique and consistent look.",
+      "title" => "Colors"
+    ],
+    "schedule" => [
+      "description" => "Here you can set the hours during which your business is operational. This information is essential for your customers, as it lets them know when they can expect services or responses to their inquiries.",
+      "title" => "Business Hours"
+    ],
+    "location" => [
+      "description" => "Here you have the ability to share your exact location with the visitors of your website. You can enter details such as the province and city, as well as the exact address of your office.",
+      "title" => "Location"
+    ],
+    "layouts" => [
+      "description" => "In the 'Templates' section, you can choose the design that best suits your website's needs. We have a variety of predefined templates that have been carefully designed to offer you a wide range of styles and functionalities. By selecting a template, you will be defining the structure and overall appearance of your page, so we suggest you choose the one that best reflects the identity of your brand.",
+      "title" => "Templates"
+
+    ]
   ]
 ];
 

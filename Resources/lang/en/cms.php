@@ -596,6 +596,36 @@ return [
   'documentation' => [
     'settings' => "Some modules of your application have some extra global settings. These
      settings allow you to edit some features like color, name, logos, etc...",
+  ],
+  "crudMySite" => [
+    "information" => [
+      "description" => "En esta sección, tienes la posibilidad de personalizar los detalles de tu sitio web. Aquí puedes actualizar elementos esenciales como el nombre de tu sitio, seleccionar la categoría que mejor lo representa, y redactar una descripción atractiva y precisa. Esta información es fundamental ya que ayuda a los visitantes a entender de qué trata tu página y qué pueden esperar de ella.",
+      "title" => "Informacion del Sitio"
+    ],
+    "socialNetworks" => [
+      "description" => "Vincula tus perfiles de Facebook e Instagram, y proporcionar un número de WhatsApp. Estas conexiones facilitan que tus visitantes interactúen contigo en las plataformas que ya utilizan, permitiéndote construir una comunidad más fuerte alrededor de tu sitio web.",
+      "title" => "Redes Sociales"
+    ],
+    "media" => [
+      "description" => "Aquí podrás añadir un logo para tu sitio web, y ayudar a tus clientes a identificar tu marca con facilidad.",
+      "title" => "Archivos Multimedia"
+    ],
+    "colors" => [
+      "description" => "La sección colores te permite personalizar la apariencia de tu sitio web para que coincida con tu marca. Aquí puedes seleccionar dos colores que se usarán como tema principal de tu página. Estos colores ayudarán a establecer la identidad visual de tu sitio, proporcionándole un aspecto único y consistente.",
+      "title" => "Colores"
+    ],
+    "schedule" => [
+      "description" => "Aquí puedes establecer las horas durante las cuales tu negocio está operativo. Esta información es esencial para tus clientes, ya que les permite saber cuándo pueden esperar servicios o respuestas a sus consultas.",
+      "title" => "Horarios de atención"
+    ],
+    "location" => [
+      "description" => "Aquí tienes la posibilidad de compartir tu ubicación exacta con los visitantes de tu sitio web. Aquí puedes ingresar detalles como la provincia y la ciudad, así como la dirección exacta de tu oficina.",
+      "title" => "Localización"
+    ],
+    "layouts" => [
+      "description" => "En la sección 'plantillas, puedes elegir el diseño que mejor se adapte a las necesidades de tu sitio web. Contamos con una variedad de plantillas predefinidas que han sido cuidadosamente diseñadas para ofrecerte una amplia gama de estilos y funcionalidades. Al seleccionar una plantilla, estarás definiendo la estructura y el aspecto general de tu página, por lo que te sugerimos escoger la que mejor refleje la identidad de tu marca.",
+      "title" => "Plantillas"
+    ]
   ]
 ];
 
