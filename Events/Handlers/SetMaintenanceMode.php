@@ -5,7 +5,7 @@ namespace Modules\Isite\Events\Handlers;
 use Modules\Isite\Entities\Organization;
 
 use Modules\Isite\Repositories\OrganizationRepository;
-use Modules\Isite\Events\OrganizationWasCreated;
+//use Modules\Isite\Events\OrganizationWasCreated;
 
 class SetMaintenanceMode
 {
@@ -15,13 +15,17 @@ class SetMaintenanceMode
   {
     try {
       
-      // All params Event
-      $params = $event->params;
-      // Extra data custom event entity
-      //$extraData = $params['extraData'];
+      //When create
+      if(isset($event->organization)){
+        $model = $event->organization;
+      }else{
+        //when update
+        $params = $event->params;
+        //$extraData = $params['extraData'];
 
-      $model = $params['model'];
-
+        $model = $params['model'];
+      }
+       
       \Log::info('Isite: Events|Handlers|SetMaintenanceMode|Organization:'.$model->id);
 
       if($model->enable==0){
