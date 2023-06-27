@@ -1138,10 +1138,10 @@ return [
     ]
   ],
   //N8N
-  'n8nUrl' => [
+  'n8nBaseUrl' => [
     "onlySuperAdmin" => true,
-    'name' => 'isite::n8nUrl',
-    'value' => "https://nflow.imaginacolombia.com",
+    'name' => 'isite::n8nBaseUrl',
+    'value' => "https://nflow.imaginacolombia.com/webhook",
     'type' => 'input',
     'groupName' => 'N8N',
     'groupTitle' => 'N8N',
