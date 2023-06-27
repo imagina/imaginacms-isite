@@ -597,34 +597,35 @@ return [
     'settings' => "Some modules of your application have some extra global settings. These
      settings allow you to edit some features like color, name, logos, etc...",
   ],
-  "crudMySite" => [
+  'crudMySite' => [
     "information" => [
-      "description" => "En esta sección, tienes la posibilidad de personalizar los detalles de tu sitio web. Aquí puedes actualizar elementos esenciales como el nombre de tu sitio, seleccionar la categoría que mejor lo representa, y redactar una descripción atractiva y precisa. Esta información es fundamental ya que ayuda a los visitantes a entender de qué trata tu página y qué pueden esperar de ella.",
-      "title" => "Informacion del Sitio"
+      "description" => "In this section, you have the ability to customize the details of your website. Here you can update essential elements such as the name of your site, select the category that best represents it, and write an attractive and precise description. This information is fundamental as it helps visitors understand what your page is about and what they can expect from it.",
+      "title" => "Site Information"
     ],
     "socialNetworks" => [
-      "description" => "Vincula tus perfiles de Facebook e Instagram, y proporcionar un número de WhatsApp. Estas conexiones facilitan que tus visitantes interactúen contigo en las plataformas que ya utilizan, permitiéndote construir una comunidad más fuerte alrededor de tu sitio web.",
-      "title" => "Redes Sociales"
+      "description" => "Link your Facebook and Instagram profiles, and provide a WhatsApp number. These connections make it easier for your visitors to interact with you on the platforms they already use, allowing you to build a stronger community around your website.",
+      "title" => "Social Networks"
     ],
     "media" => [
-      "description" => "Aquí podrás añadir un logo para tu sitio web, y ayudar a tus clientes a identificar tu marca con facilidad.",
-      "title" => "Archivos Multimedia"
+      "description" => "Here you can add a logo for your website, and help your customers easily identify your brand.",
+      "title" => "Media Files"
     ],
     "colors" => [
-      "description" => "La sección colores te permite personalizar la apariencia de tu sitio web para que coincida con tu marca. Aquí puedes seleccionar dos colores que se usarán como tema principal de tu página. Estos colores ayudarán a establecer la identidad visual de tu sitio, proporcionándole un aspecto único y consistente.",
-      "title" => "Colores"
+      "description" => "The color section allows you to personalize the appearance of your website to match your brand. Here you can select two colors that will be used as the main theme of your page. These colors will help establish the visual identity of your site, giving it a unique and consistent look.",
+      "title" => "Colors"
     ],
     "schedule" => [
-      "description" => "Aquí puedes establecer las horas durante las cuales tu negocio está operativo. Esta información es esencial para tus clientes, ya que les permite saber cuándo pueden esperar servicios o respuestas a sus consultas.",
-      "title" => "Horarios de atención"
+      "description" => "Here you can set the hours during which your business is operational. This information is essential for your customers, as it lets them know when they can expect services or responses to their inquiries.",
+      "title" => "Business Hours"
     ],
     "location" => [
-      "description" => "Aquí tienes la posibilidad de compartir tu ubicación exacta con los visitantes de tu sitio web. Aquí puedes ingresar detalles como la provincia y la ciudad, así como la dirección exacta de tu oficina.",
-      "title" => "Localización"
+      "description" => "Here you have the ability to share your exact location with the visitors of your website. You can enter details such as the province and city, as well as the exact address of your office.",
+      "title" => "Location"
     ],
     "layouts" => [
-      "description" => "En la sección 'plantillas, puedes elegir el diseño que mejor se adapte a las necesidades de tu sitio web. Contamos con una variedad de plantillas predefinidas que han sido cuidadosamente diseñadas para ofrecerte una amplia gama de estilos y funcionalidades. Al seleccionar una plantilla, estarás definiendo la estructura y el aspecto general de tu página, por lo que te sugerimos escoger la que mejor refleje la identidad de tu marca.",
-      "title" => "Plantillas"
+      "description" => "In the 'Templates' section, you can choose the design that best suits your website's needs. We have a variety of predefined templates that have been carefully designed to offer you a wide range of styles and functionalities. By selecting a template, you will be defining the structure and overall appearance of your page, so we suggest you choose the one that best reflects the identity of your brand.",
+      "title" => "Templates"
+
     ]
   ]
 ];
