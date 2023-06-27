@@ -147,5 +147,15 @@ class Organization extends BaseTenant implements TenantWithDatabase
   {
     return $this->belongsTo(Layout::class);
   }
+
+  public function setStatusAttribute($value)
+  {
+
+    $this->attributes['status'] = $value;
+
+    //Set enable value too | example: when update organization via iadmin
+    $this->attributes['enable'] = $value;
+   
+  }
   
 }
