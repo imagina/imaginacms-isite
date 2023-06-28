@@ -20,6 +20,7 @@ return [
     'form' => [
     ],
     'messages' => [
+        'not available' => 'Store not available'
     ],
     'validation' => [
     ],
