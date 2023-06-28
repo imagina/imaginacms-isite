@@ -11,6 +11,7 @@ return [
         'organizations' => 'Organization',
         'create organization' => 'Create a organization',
         'edit organization' => 'Edit a organization',
+        'organization created' => 'Tu tienda ha sido creada',
     ],
     'button' => [
         'create organization' => 'Create a organization',
@@ -24,4 +25,9 @@ return [
     ],
     'validation' => [
     ],
+    'status' => [
+        'inactive' => 'Inactiva',
+        'active' => 'Activa'
+    ],
+    
 ];
