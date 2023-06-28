@@ -19,9 +19,11 @@ class EventServiceProvider extends ServiceProvider
             CreateOrganizationByRole::class
         ],
         */
+        /*
         OrganizationWasUpdated::class => [
             SetMaintenanceMode::class
         ],
+        */
         
     ];
 
@@ -33,5 +35,10 @@ class EventServiceProvider extends ServiceProvider
               [CreateOrganizationBySuscription::class, 'handle']
             );
         }
+
+        Event::listen(
+            "Modules\\Isite\\Events\\OrganizationWasUpdated",
+            [SetMaintenanceMode::class, 'handle']
+        );
     }
 }
