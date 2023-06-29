@@ -55,27 +55,31 @@ class SetMaintenanceMode
   public function sendEmail($model)
   {
 
-    $user = $model->users->first();
+    if($model->wasChanged("status")){
 
-    $emailsTo[] = $user->email;
-    $title = trans("isite::organizations.title.organization updated");
-    $message = trans("isite::organizations.messages.organization updated",[
-      'status' => $model->statusName,
-      'url' => $model->url,
-      'admin' => url('/iadmin')
-    ]);
+      $user = $model->users->first();
+
+      $emailsTo[] = $user->email;
+      $title = trans("isite::organizations.title.organization updated");
+      $message = trans("isite::organizations.messages.organization updated",[
+        'status' => $model->statusName,
+        'url' => $model->url,
+        'admin' => url('/iadmin')
+      ]);
+      
+      $this->notificationService->to([
+          "email" => $emailsTo
+        ])->push([
+            "title" => $title,
+            "message" => $message,
+            "fromAddress" => env('MAIL_FROM_ADDRESS'),
+            "fromName" => "",
+            "setting" => [  
+                "saveInDatabase" => 0
+            ]
+      ]);
     
-    $this->notificationService->to([
-        "email" => $emailsTo
-       ])->push([
-          "title" => $title,
-          "message" => $message,
-          "fromAddress" => env('MAIL_FROM_ADDRESS'),
-          "fromName" => "",
-          "setting" => [  
-              "saveInDatabase" => 0
-          ]
-    ]);
+    }
 
   }
   
