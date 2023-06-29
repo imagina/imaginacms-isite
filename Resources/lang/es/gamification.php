@@ -23,6 +23,10 @@ return [
     "adminOrganizationWizardCategory" => "¿Cuál es la categoría de tu página web?",
     "adminOrganizationWizardCategoryDescription" => "Con la selección de la categoría conoceremos la temática de tu sitio web, y podremos proporcionarte las plantillas con la estructura que más se adapten a tu negocio.",
     "adminOrganizationWizardTheme" => "Elige la plantilla ideal para satisfacer tus necesidades",
-    "adminOrganizationWizardThemeDescription" => "Después de elegir tu plantilla, podrás cambiar el color y el contenido de tu sitio siempre que lo desees"
+    "adminOrganizationWizardThemeDescription" => "Después de elegir tu plantilla, podrás cambiar el color y el contenido de tu sitio siempre que lo desees",
+    "settings" => "Ajustes",
+    "settingsDescription" => "Administra las configuraciones de tu sitio",
+    "settingsOrganization" => "Mi Sitio",
+    "settingsOrganizationDescription" => "Administra las configuraciones de tu sitio",
   ],
 ];
