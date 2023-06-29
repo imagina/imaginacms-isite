@@ -11,7 +11,8 @@ return [
         'organizations' => 'Organization',
         'create organization' => 'Create a organization',
         'edit organization' => 'Edit a organization',
-        'organization created' => 'Tu tienda ha sido creada',
+        'organization created' => 'Tu sitio ha sido creado',
+        'organization updated' => 'El estado de tu sitio ha sido actualizado'
     ],
     'button' => [
         'create organization' => 'Create a organization',
@@ -21,13 +22,16 @@ return [
     'form' => [
     ],
     'messages' => [
-        'not available' => 'Tienda no disponible'
+        'not available' => 'Sitio no disponible',
+        'organization created' => 'Te notificaremos en un proximo correo el estado de tu sitio y enviaremos los enlaces para que puedas
+        acceder y gestionarlo',
+        'organization updated' => '<p>Estado del sitio: <strong>:status</strong> </p><p>URL: <a href=":url">:url</a> </p> <p>Administración: <a href=":admin">:admin</a></p>'
     ],
     'validation' => [
     ],
     'status' => [
-        'inactive' => 'Inactiva',
-        'active' => 'Activa'
+        'inactive' => 'Inactivo',
+        'active' => 'Activo'
     ],
     
 ];
