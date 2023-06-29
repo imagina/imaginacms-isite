@@ -11,6 +11,8 @@ use Modules\Isite\Events\Handlers\SetMaintenanceMode;
 use Illuminate\Support\Facades\Event;
 use Modules\Isite\Events\Handlers\CreateOrganizationBySuscription;
 
+use Modules\Isite\Events\Handlers\SendEmailOrganization;
+
 class EventServiceProvider extends ServiceProvider
 {
     protected $listen = [
@@ -35,6 +37,13 @@ class EventServiceProvider extends ServiceProvider
               [CreateOrganizationBySuscription::class, 'handle']
             );
         }
+
+      
+        Event::listen(
+            "Modules\\Isite\\Events\\OrganizationWasCreated",
+            [SendEmailOrganization::class, 'handle']
+        );
+        
 
         Event::listen(
             "Modules\\Isite\\Events\\OrganizationWasUpdated",
