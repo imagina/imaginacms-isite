@@ -10,7 +10,7 @@ use Modules\Isite\Repositories\OrganizationRepository;
 class SetMaintenanceMode
 {
   
-  private $log = "Isite: Handler|SendMaintenanceMode|";
+  private $log = "Isite: Events|Handler|SendMaintenanceMode|";
   public $notificationService;
 
   public function __construct()
@@ -21,10 +21,13 @@ class SetMaintenanceMode
   public function handle($event)
   {
     try {
-      
+
+      $isCreated = false;
+
       //When create
       if(isset($event->organization)){
         $model = $event->organization;
+        $isCreated = true;
       }else{
         //when update
         $params = $event->params;
@@ -32,6 +35,7 @@ class SetMaintenanceMode
 
         $model = $params['model'];
       }
+
        
       \Log::info('Isite: Events|Handlers|SetMaintenanceMode|Organization:'.$model->id);
 
@@ -43,7 +47,7 @@ class SetMaintenanceMode
         \Log::info('Isite: Events|Handlers|SetMaintenanceMode| SET MAINTENANCE: OFF');
       }
 
-      $this->sendEmail($model);
+      $this->sendEmail($model,$isCreated);
       
       
     } catch (\Exception $e) {
@@ -52,10 +56,12 @@ class SetMaintenanceMode
     
   }
 
-  public function sendEmail($model)
+  public function sendEmail($model, $isCreated)
   {
 
-    if($model->wasChanged("status")){
+    \Log::info($this->log."sendEmail");
+
+    if($model->wasChanged("status") || $isCreated){
 
       $user = $model->users->first();
 
@@ -80,7 +86,6 @@ class SetMaintenanceMode
       ]);
     
     }
-
   }
   
   
