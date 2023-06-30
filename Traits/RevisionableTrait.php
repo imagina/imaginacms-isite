@@ -120,7 +120,8 @@ trait RevisionableTrait
    */
   public function preSave()
   {
-    if (!isset($this->revisionEnabled) || $this->revisionEnabled) {
+    $revisionDisable = $this->revisionDisable ?? false;
+    if (!$revisionDisable) {
       // if there's no revisionEnabled. Or if there is, if it's true
 
       $this->originalData = $this->original;
@@ -225,7 +226,8 @@ trait RevisionableTrait
       return false;
     }
 
-    if ((!isset($this->revisionEnabled) || $this->revisionEnabled)) {
+    $revisionDisable = $this->revisionDisable ?? false;
+    if (!$revisionDisable) {
       $revisions = array(
         'revisionable_type' => $this->getMorphClass(),
         'revisionable_id' => $this->getKey(),
