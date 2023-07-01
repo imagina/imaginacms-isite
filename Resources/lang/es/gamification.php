@@ -6,7 +6,7 @@ return [
     "adminOrganizationWizardDescription" => "Wizard de Organizaciones",
   ],
   "activities" => [
-    "adminOrganizationWizardRegister" => "Crea tu cuenta de",
+    "adminOrganizationWizardRegister" => "Crea tu cuenta",
     "adminOrganizationWizardRegisterDescription" => "<p>Registra tu cuenta gratis hoy mismo y podr&aacute;s disfrutar de:</p>
       <ul>
         <li>Tu p&aacute;gina web, tu tienda online</li>
