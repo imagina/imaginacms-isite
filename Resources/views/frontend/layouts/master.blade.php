@@ -30,7 +30,8 @@
   
   @stack('css-stack')
   @livewireStyles
-  
+  {{-- Aos --}}
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
   {{-- Custom Head JS --}}
   @if(Setting::has('isite::headerCustomJs'))
     {!! Setting::get('isite::headerCustomJs') !!}
@@ -91,7 +92,11 @@
 @yield('scripts-owl')
 @yield('scripts-header')
 @yield('scripts')
-
+{{-- Aos --}}
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
 
 {{-- Custom CSS --}}
 @if(!is_null(Setting::get('isite::customCss',null,null,true)))
