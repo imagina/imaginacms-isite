@@ -57,6 +57,10 @@ return [
   "perzonalizationTitle" => "Bienvenid@ al editor de tu sitio web",
   "perzonalizationDescription" => "De manera fácil, cambia el logo, colores y la información principal de tu página web",
   "label" => [
+    "whatsappNumber" => "Numero de Whatsapp",
+    "codeCountry" => "Código de Pais",
+    "defaultMessage" => "Mensaje por defecto",
+    "informationTitle" => "Información del sitio",
     "trial" => "Versión de prueba",
     "activity" => "Actividad | Actividades",
     "top" => "Arriba",
@@ -89,6 +93,8 @@ return [
     "continueWith" => "Continuar con",
     "facebook" => "Facebook",
     "google" => "Google",
+    "instagram" => "Instagram",
+    "youtube" => "Youtube",
     "microsoft" => "Microsoft",
     "copyDisclosureLink" => "Copiar enlace",
     "delete" => "Eliminar",
@@ -397,6 +403,8 @@ return [
     "format" => "Formato | Formatos"
   ],
   "message" => [
+    "organizationNoCreated" => "¡Estamos emocionados de contarte que estamos en el proceso de crear tu sitio! Agradecemos tu paciencia mientras te brindamos una experiencia en línea mejorada. tan pronto todo este listo, recibirás una notificación por correo electrónico",
+    "organizationCreated" => "¡Nos complace informarte que tu sitio está listo! Estamos emocionados de brindarte una experiencia en línea mejorada. Puedes acceder a tu nuevo sitio haciendo clic en el siguiente boton. Si tienes alguna pregunta o necesitas ayuda, no dudes en contactarnos. ¡Esperamos que disfrutes explorando tu nuevo sitio!",
     "advanceEdit" => "Edición Avanzada",
     "descriptionHelpCenter" => "Elige la opción que deseas para resolver tus dudas",
     "editFormProduct" => "En este formulario podrás editar tu producto de manera sencilla, si quieres editar tu producto con opciones más avanzadas, da click en el siguiente botón para ir a el formulario avanzado.",
@@ -597,6 +605,36 @@ return [
   'documentation' => [
     'settings' => "Algunos módulos de tu aplicación cuentan con configuraciones globales extra. Estas 
     configuraciones te permiten editar algunas características como el color, nombre, logos, etc...",
+  ],
+  "crudMySite" => [
+    "information" => [
+      "description" => "En esta sección, tienes la posibilidad de personalizar los detalles de tu sitio web. Aquí puedes actualizar elementos esenciales como el nombre de tu sitio, seleccionar la categoría que mejor lo representa, y redactar una descripción atractiva y precisa. Esta información es fundamental ya que ayuda a los visitantes a entender de qué trata tu página y qué pueden esperar de ella.",
+      "title" => "Informacion del Sitio"
+    ],
+    "socialNetworks" => [
+      "description" => "Vincula tus perfiles de Facebook e Instagram, y proporcionar un número de WhatsApp. Estas conexiones facilitan que tus visitantes interactúen contigo en las plataformas que ya utilizan, permitiéndote construir una comunidad más fuerte alrededor de tu sitio web.",
+      "title" => "Redes Sociales"
+    ],
+    "media" => [
+      "description" => "Aquí podrás añadir un logo para tu sitio web, y ayudar a tus clientes a identificar tu marca con facilidad.",
+      "title" => "Archivos Multimedia"
+    ],
+    "colors" => [
+      "description" => "La sección colores te permite personalizar la apariencia de tu sitio web para que coincida con tu marca. Aquí puedes seleccionar dos colores que se usarán como tema principal de tu página. Estos colores ayudarán a establecer la identidad visual de tu sitio, proporcionándole un aspecto único y consistente.",
+      "title" => "Colores"
+    ],
+    "schedule" => [
+      "description" => "Aquí puedes establecer las horas durante las cuales tu negocio está operativo. Esta información es esencial para tus clientes, ya que les permite saber cuándo pueden esperar servicios o respuestas a sus consultas.",
+      "title" => "Horarios de atención"
+    ],
+    "location" => [
+      "description" => "Aquí tienes la posibilidad de compartir tu ubicación exacta con los visitantes de tu sitio web. Aquí puedes ingresar detalles como la provincia y la ciudad, así como la dirección exacta de tu oficina.",
+      "title" => "Localización"
+    ],
+    "layouts" => [
+      "description" => "En la sección 'plantillas, puedes elegir el diseño que mejor se adapte a las necesidades de tu sitio web. Contamos con una variedad de plantillas predefinidas que han sido cuidadosamente diseñadas para ofrecerte una amplia gama de estilos y funcionalidades. Al seleccionar una plantilla, estarás definiendo la estructura y el aspecto general de tu página, por lo que te sugerimos escoger la que mejor refleje la identidad de tu marca.",
+      "title" => "Plantillas"
+    ]
   ]
 ];
 

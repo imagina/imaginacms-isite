@@ -15,6 +15,7 @@ use Modules\Core\Icrud\Traits\hasEventsWithBindings;
 use Modules\Ifillable\Traits\isFillable;
 use Modules\Setting\Entities\Setting;
 use Stancl\Tenancy\Database\Concerns\MaintenanceMode;
+use Modules\Isite\Entities\Status;
 
 class Organization extends BaseTenant implements TenantWithDatabase
 {
@@ -146,6 +147,22 @@ class Organization extends BaseTenant implements TenantWithDatabase
   public function layout()
   {
     return $this->belongsTo(Layout::class);
+  }
+
+  public function setStatusAttribute($value)
+  {
+
+    $this->attributes['status'] = $value;
+
+    //Set enable value too | example: when update organization via iadmin
+    $this->attributes['enable'] = $value;
+   
+  }
+
+  public function getStatusNameAttribute()
+  {
+    $status = new Status();
+    return $status->get($this->status);
   }
   
 }
