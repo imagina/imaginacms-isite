@@ -8,7 +8,7 @@
         "composer/installers": "~1.0",
         "imagina/core-module": "4.0.x-dev",
         "imagina/ihelpers-module": "4.0.x-dev",
-        "aos": "^3.0.0-beta.6",
+        "aos": "^3.0.0-beta.6"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.0",
