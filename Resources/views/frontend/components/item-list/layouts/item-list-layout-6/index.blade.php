@@ -169,7 +169,6 @@
         position: relative;
         box-shadow:  {{$imageShadow}};
         border-radius: {{$imageRadio}};
-        aspect-ratio: {{$imageAspect}};
     }
     
     #{{$id}} .img-style {
@@ -266,9 +265,6 @@
     @if(!is_null($imageAspectMobile))
         @media (max-width: 767.98px) {
         #{{$id}} .img-style, #{{$id}} .cover-img {
-            aspect-ratio: {{$imageAspectMobile}};
-        }
-        #{{$id}} .item-image picture {
             aspect-ratio: {{$imageAspectMobile}};
         }
     }
