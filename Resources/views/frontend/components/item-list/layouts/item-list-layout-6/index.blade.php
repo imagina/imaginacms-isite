@@ -1,4 +1,11 @@
-<div id="{{$id}}" class="item-layout item-list-layout-6 position-relative {{$itemClasses}}">
+<div id="{{$id}}" class="item-layout item-list-layout-6 position-relative {{$itemClasses}}"
+    {{ $itemAnimate ? 'data-aos='.$itemAnimate : '' }}
+    {{ $itemDelay ? 'data-aos-delay='.$itemDelay : '' }}
+    {{ $itemDuration ? 'data-aos-duration='.$itemDuration : '' }}
+    {{ $itemOffset ? 'data-aos-offset='.$itemOffset : '' }}
+    {{ $itemEasing ? 'data-aos-easing='.$itemEasing  : '' }}
+    {{ $itemOne ? 'data-aos-once='.$itemOne  : '' }}
+    {{ $itemMirror ? 'data-aos-mirror='.$itemMirror  : '' }}>
   <x-isite::edit-link link="{{$editLink}}{{$item->id}}" :item="$item" tooltip="{{$tooltipEditLink}}"/>
   <div class="card-item @if($imageOpacityHover) opacity-with-hover @else opacity-without-hover @endif">
     <div class="row align-items-center">
@@ -135,6 +142,7 @@
         left: {{$imagePadding}}px;
         bottom: {{$imagePadding}}px;
         right: {{$imagePadding}}px;
+        z-index: 1;
         @if((!$imageOpacityHover) && $withImageOpacity && ($imageOpacityColor=='opacity-custom'))
             content: "";
             position: absolute;
@@ -147,7 +155,72 @@
          display: block !important;
          overflow: hidden;
          transition: background 0.5s ease-out;
-     }
+    }
+    @if($imageAnimateOpacityHover!=="")
+    #{{$id}} .card-item .item-image picture:before {
+        content: "";
+        z-index: 2;
+        transition: all .5s ease 0s;
+        border-bottom-left-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+
+        @if($imageAnimateOpacityHover=="opacity-animate-2")
+        height: calc( 50% - {{$imagePadding}}px);
+        transform-origin: 100% 0;
+        transform: rotateZ(90deg);
+        @endif
+
+        @if($imageAnimateOpacityHover=="opacity-animate-3")
+        transition: all .8s linear 0s;
+        width: 0;
+        left: -100%;
+        @endif
+
+        @if($imageAnimateOpacityHover=="opacity-animate-4")
+        transition: all .5s linear 0s;
+        top: 100%;
+        @endif
+
+        @if($imageAnimateOpacityHover=="opacity-animate-5")
+        transform: perspective(200px) rotateX(-90deg);
+        transform-origin: center top 0;
+        opacity: 0;
+        @endif
+
+        @if($imageAnimateOpacityHover=="opacity-animate-6")
+        opacity: 0;
+        transform: rotate3d(-1,1,0,100deg);
+        transition: all .6s ease-in-out 0s;
+       @endif
+    }
+    @endif
+
+    @if($imageAnimateOpacityHover=="opacity-animate-2")
+    #{{$id}} .card-item .item-image picture:after {
+         content: "";
+         z-index: 2;
+         position:absolute;
+         height: calc( 50% - {{$imagePadding}}px);
+         transition: all .5s ease 0s;
+         transform-origin: 0 100%;
+         transform: rotateZ(90deg);
+         top: auto !important;
+         bottom: {{$imagePadding}}px !important;
+    }
+    #{{$id}} .card-item:hover .item-image picture:after {
+         border-radius: {{$imageRadio}};
+         top: {{$imagePadding}}px;
+         left: {{$imagePadding}}px;
+         bottom: {{$imagePadding}}px;
+         right: {{$imagePadding}}px;
+         @if($imageOpacityColor=='opacity-custom')
+         content: "";
+         position: absolute;
+         background: {{$imageOpacityCustom}};
+         @endif
+         transform: rotateZ(0);
+    }
+    @endif
     #{{$id}} .card-item:hover .item-image picture:before {
          border-radius: {{$imageRadio}};
          top: {{$imagePadding}}px;
@@ -159,6 +232,24 @@
          position: absolute;
          background: {{$imageOpacityCustom}};
          @endif
+
+         @if($imageAnimateOpacityHover=="opacity-animate-2")
+         transform: rotateZ(0);
+         @endif
+
+         @if($imageAnimateOpacityHover=="opacity-animate-3")
+         width: calc( 100% - {{$imagePadding + $imagePadding}}px);
+         @endif
+
+         @if($imageAnimateOpacityHover=="opacity-animate-5")
+         opacity: 1;
+         transform: perspective(200px) rotateX(0);
+         @endif
+
+         @if($imageAnimateOpacityHover=="opacity-animate-6")
+         opacity: .9;
+         transform: rotate3d(0,0,0,0deg);
+         @endif
     }
     @endif
    
@@ -169,6 +260,7 @@
         position: relative;
         box-shadow:  {{$imageShadow}};
         border-radius: {{$imageRadio}};
+        aspect-ratio: {{$imageAspect}};
     }
     
     #{{$id}} .img-style {
@@ -267,6 +359,9 @@
         #{{$id}} .img-style, #{{$id}} .cover-img {
             aspect-ratio: {{$imageAspectMobile}};
         }
+        #{{$id}} .item-image picture {
+            aspect-ratio: {{$imageAspectMobile}};
+        }
     }
     @endif
 
@@ -321,6 +416,37 @@
             }
         @endif
         @endif
+    @endif
+
+    @if($imageAnimate=="image-animate-scale-all")
+    #{{$id}} .card-item picture  {
+         overflow: hidden;
+    }
+    #{{$id}} .card-item .img-style {
+         transition: all .3s ease-in;
+    }
+    #{{$id}} .card-item:hover .img-style {
+         transform: scale(1.1);
+    }
+    @endif
+    @if($imageAnimate=="image-animate-rotate-1")
+    #{{$id}} .card-item picture  {
+        overflow: hidden;
+    }
+    #{{$id}} .card-item .img-style {
+         transition: all .3s ease-in;
+    }
+    #{{$id}} .card-item:hover .img-style {
+         transform: rotate(4deg) scale(1.2);
+     }
+    @endif
+    @if($imageAnimate=="image-animate-up")
+    #{{$id}} .card-item   {
+         transition: all .3s ease-in;
+     }
+    #{{$id}} .card-item:hover  {
+         transform: translateY(-10px);
+    }
     @endif
 </style>
 </div>

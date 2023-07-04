@@ -11,8 +11,14 @@
   @break
 @endswitch
 
-<div id="{{$id}}" class="item-layout item-list-layout-7 position-relative overflow-hidden {{$itemClasses}}">
-
+<div id="{{$id}}" class="item-layout item-list-layout-7 position-relative overflow-hidden {{$itemClasses}}"
+    {{ $itemAnimate ? 'data-aos='.$itemAnimate : '' }}
+    {{ $itemDelay ? 'data-aos-delay='.$itemDelay : '' }}
+    {{ $itemDuration ? 'data-aos-duration='.$itemDuration : '' }}
+    {{ $itemOffset ? 'data-aos-offset='.$itemOffset : '' }}
+    {{ $itemEasing ? 'data-aos-easing='.$itemEasing  : '' }}
+    {{ $itemOne ? 'data-aos-once='.$itemOne  : '' }}
+    {{ $itemMirror ? 'data-aos-mirror='.$itemMirror  : '' }}>
   <x-isite::edit-link link="{{$editLink}}{{$item->id}}" :item="$item" tooltip="{{$tooltipEditLink}}"/>
   <div class="card-item {{$row}} @if($imageOpacityHover) opacity-with-hover @else opacity-without-hover @endif">
     <div class="{{$imagePosition!='1' ? 'row no-gutters' : ''}}">
@@ -204,6 +210,70 @@
         overflow: hidden;
         transition: background 0.5s ease-out;
     }
+    @if($imageAnimateOpacityHover!=="")
+    #{{$id}} .card-item .item-image picture:before {
+         content: "";
+         z-index: 2;
+         transition: all .5s ease 0s;
+         border-bottom-left-radius: 0 !important;
+         border-bottom-right-radius: 0 !important;
+
+        @if($imageAnimateOpacityHover=="opacity-animate-2")
+        height: calc( 50% - {{$imagePadding}}px);
+        transform-origin: 100% 0;
+        transform: rotateZ(90deg);
+        @endif
+
+        @if($imageAnimateOpacityHover=="opacity-animate-3")
+        transition: all .6s linear 0s;
+        width: 0;
+        left: -100%;
+        @endif
+
+        @if($imageAnimateOpacityHover=="opacity-animate-4")
+        transition: all .5s linear 0s;
+        top: 100%;
+        @endif
+
+        @if($imageAnimateOpacityHover=="opacity-animate-5")
+        transform: perspective(200px) rotateX(-90deg);
+        transform-origin: center top 0;
+        opacity: 0;
+        @endif
+
+        @if($imageAnimateOpacityHover=="opacity-animate-6")
+        opacity: 0;
+        transform: rotate3d(-1,1,0,100deg);
+        transition: all .6s ease-in-out 0s;
+        @endif
+    }
+    @endif
+    @if($imageAnimateOpacityHover=="opacity-animate-2")
+    #{{$id}} .card-item .item-image picture:after {
+         content: "";
+         z-index: 2;
+         position:absolute;
+         height: calc( 50% - {{$imagePadding}}px);
+         transition: all .5s ease 0s;
+         transform-origin: 0 100%;
+         transform: rotateZ(90deg);
+         top: auto !important;
+         bottom: {{$imagePadding}}px !important;
+     }
+    #{{$id}} .card-item:hover .item-image picture:after {
+         border-radius: {{$imageRadio}};
+         top: {{$imagePadding}}px;
+         left: {{$imagePadding}}px;
+         bottom: {{$imagePadding}}px;
+         right: {{$imagePadding}}px;
+         @if($imageOpacityColor=='opacity-custom')
+          content: "";
+         position: absolute;
+         background: {{$imageOpacityCustom}};
+         @endif
+         transform: rotateZ(0);
+     }
+    @endif
     #{{$id}} .card-item:hover .item-image picture:before {
          border-radius: {{$imageRadio}};
          top: {{$imagePadding}}px;
@@ -215,6 +285,23 @@
          position: absolute;
          background: {{$imageOpacityCustom}};
          @endif
+         @if($imageAnimateOpacityHover=="opacity-animate-2")
+         transform: rotateZ(0);
+         @endif
+
+        @if($imageAnimateOpacityHover=="opacity-animate-3")
+        width: calc( 100% - {{$imagePadding + $imagePadding}}px);
+        @endif
+
+        @if($imageAnimateOpacityHover=="opacity-animate-5")
+        opacity: 1;
+        transform: perspective(200px) rotateX(0);
+        @endif
+
+        @if($imageAnimateOpacityHover=="opacity-animate-6")
+        opacity: .9;
+        transform: rotate3d(0,0,0,0deg);
+        @endif
     }
     @endif
     #{{$id}} .item-image picture:before {
@@ -228,12 +315,15 @@
             position: absolute;
             background: {{$imageOpacityCustom}};
         @endif
+        @if($imageAnimate!='')
+            z-index: 1;
+        @endif
     }
-
     #{{$id}} .item-image picture {
         display: block !important;
         padding: {{$imagePicturePadding}}px;
         text-align: {{$imageAlign}};
+        aspect-ratio: {{$imageAspect}};
     }
     #{{$id}} .img-style  {
         border-radius: {{$imageRadio}};
@@ -371,6 +461,9 @@
         #{{$id}} .img-style, #{{$id}} .cover-img{
             aspect-ratio: {{$imageAspectMobile}};
         }
+        #{{$id}} .item-image picture {
+            aspect-ratio: {{$imageAspectMobile}};
+        }
     }
     @endif
     #{{$id}} .overlay-container { z-index: 1;}
@@ -432,6 +525,210 @@
 
     @endif
 
+    @if($imageAnimate=="image-animate-scale-all")
+    #{{$id}} .card-item picture  {
+         overflow: hidden;
+         transition: all .3s ease-in;
+     }
+    #{{$id}} .card-item:hover .img-style {
+         transform: scale(1.1);
+     }
+    @endif
+    @if($imageAnimate=="image-animate-rotate-1")
+    #{{$id}} .card-item:hover .img-style {
+         transform: rotate(1deg);
+     }
+    @endif
+    @if($imageAnimate=="image-animate-up")
+    #{{$id}} .card-item   {
+         margin-top: 15px;
+         transition: all .3s ease-in;
+     }
+    #{{$id}} .card-item:hover  {
+         margin-top: 5px;
+     }
+    @endif
+
+    @if($contentAnimateOpacityHover!=="" && $imageOpacityHover && $withImageOpacity)
+
+    #{{$id}} .card-item .item-content {
+         z-index: 2;
+         margin: {{$imagePadding}}px;
+         @if($contentAnimateOpacityHover=="content-animate-1")
+         opacity: 0;
+         transform: translate(-50%,-50%) scale(.5);
+         transition: all .35s ease;
+         top: 50%;
+         left: 50%;
+         @endif
+
+        @if($contentAnimateOpacityHover=="content-animate-2")
+        transition: all .3s ease 0s;
+        bottom: -100%;
+        left: 0;
+        @endif
+
+        @if($contentAnimateOpacityHover=="content-animate-3")
+        top: 45%;
+        opacity: 0;
+        transform: translate(10%,-30%);
+        transition: all .2s ease-out 0s;
+        @endif
+
+        @if($contentAnimateOpacityHover=="content-animate-4")
+        opacity: 0;
+        transform: translate3d(0,-50px,0);
+        transition: transform .5s ease 0s;
+        @endif
+
+        @if($contentAnimateOpacityHover=="content-animate-5")
+        transform: scale(0);
+        transition: all .3s ease 0s;
+        @endif
+    }
+
+    #{{$id}} .card-item:hover .item-content {
+        @if($contentAnimateOpacityHover=="content-animate-1")
+        transform: translate(-50%,-50%) scale(1);
+        opacity: 1;
+        @endif
+
+        @if($contentAnimateOpacityHover=="content-animate-2")
+        bottom: 0;
+        @endif
+
+        @if($contentAnimateOpacityHover=="content-animate-3")
+        opacity: 1;
+        transform: translate(0,-50%);
+        transition-delay: .2s;
+        @endif
+
+        @if($contentAnimateOpacityHover=="content-animate-4")
+        opacity: 1;
+        transform: translate3d(0,0,0);
+        @endif
+
+        @if($contentAnimateOpacityHover=="content-animate-5")
+        transform: scale(1);
+         @endif
+    }
+
+    @if($contentAnimateOpacityHover=="content-animate-5")
+    #{{$id}} .card-item .item-content:before {
+         border-bottom: 1px solid rgba(255,255,255,.5);
+         border-top: 1px solid rgba(255,255,255,.5);
+         transform: scale(0,1);
+         transform-origin: 0 0 0;
+     }
+    #{{$id}} .card-item .item-content:after {
+         border-left: 1px solid rgba(255,255,255,.5);
+         border-right: 1px solid rgba(255,255,255,.5);
+         transform: scale(1,0);
+         transform-origin: 100% 0 0;
+     }
+    #{{$id}} .card-item .item-content:after,
+    #{{$id}} .card-item .item-content:before {
+         content: "";
+         position: absolute;
+         top: 4%;
+         left: 4%;
+         bottom: 4%;
+         right: 4%;
+         opacity: 0;
+         transition: all .7s ease 0s;
+         z-index: 3;
+    }
+
+    #{{$id}} .card-item:hover .item-content:after,
+    #{{$id}} .card-item:hover .item-content:before {
+         opacity: 1;
+         transform: scale(1);
+         transition-delay: .15s;
+    }
+    @endif
+    @if($contentAnimateOpacityHover=="content-animate-6")
+    #{{$id}} .card-item .item-content:before {
+         border-left: 2px solid rgba(255,255,255,.5);
+         border-top: 2px solid rgba(255,255,255,.5);
+         top: 4%;
+         left: 4%;
+         transform: scale(0,1);
+         transform-origin: 0 0 0;
+     }
+    #{{$id}} .card-item .item-content:after {
+         border-bottom: 2px solid rgba(255,255,255,.5);
+         border-right: 2px solid rgba(255,255,255,.5);
+         bottom: 4%;
+         right: 4%;
+         transform: scale(1,0);
+         transform-origin: 100% 0 0;
+     }
+    #{{$id}} .card-item .item-content:after,
+    #{{$id}} .card-item .item-content:before {
+         content: "";
+         position: absolute;
+         z-index: 3;
+         width: 50px;
+         height: 50px;
+         opacity: 0;
+         transition: all .7s ease 0s;
+     }
+    #{{$id}} .card-item:hover .item-content:after,
+    #{{$id}} .card-item:hover .item-content:before {
+         opacity: 1;
+         transform: scale(1);
+         transition-delay: .15s;
+     }
+    @endif
+    @endif
+
+    @if($contentAnimateOpacityHover!=="" && !$imageOpacityHover && $withImageOpacity)
+    @if($contentAnimateOpacityHover=="content-animate-5")
+    #{{$id}} .card-item .item-content:before {
+         border-bottom: 1px solid rgba(255,255,255,.5);
+         border-top: 1px solid rgba(255,255,255,.5);
+         transform-origin: 0 0 0;
+     }
+    #{{$id}} .card-item .item-content:after {
+         border-left: 1px solid rgba(255,255,255,.5);
+         border-right: 1px solid rgba(255,255,255,.5);
+         transform-origin: 100% 0 0;
+     }
+    #{{$id}} .card-item .item-content:after,
+    #{{$id}} .card-item .item-content:before {
+         content: "";
+         position: absolute;
+         top: 4%;
+         left: 4%;
+         bottom: 4%;
+         right: 4%;
+         z-index: 3;
+     }
+    @endif
+
+    @if($contentAnimateOpacityHover=="content-animate-6")
+     #{{$id}} .card-item .item-content:before {
+         border-left: 1px solid rgba(255,255,255,.5);
+         border-top: 1px solid rgba(255,255,255,.5);
+         top: 4%;
+         left: 4%;
+     }
+    #{{$id}} .card-item .item-content:after {
+         border-bottom: 1px solid rgba(255,255,255,.5);
+         border-right: 1px solid rgba(255,255,255,.5);
+         bottom: 4%;
+         right: 4%;
+     }
+    #{{$id}} .card-item .item-content:after,
+    #{{$id}} .card-item .item-content:before {
+         content: "";
+         position: absolute;
+         z-index: 3;
+         width: 50px;
+         height: 50px;
+     }
+    @endif
+    @endif
 
 </style>
 </div>
