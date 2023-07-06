@@ -67,12 +67,12 @@ class Whatsapp extends Component
     $this->bottom = $bottom;
     $this->right = $right;
     $this->left = $left;
-    $this->setParentAttributes($parentAttributes);
     $this->iconLabel = $iconLabel ?? '';
     $this->notNumber = $notNumber ?? true;
     $this->numbers = $numbers ?? null;
     $this->editButton = $editButton ?? true;
     $this->central = $central;
+    $this->setParentAttributes($parentAttributes);
     $this->titleInternal = $titleInternal;
     $this->summaryInternal = $summaryInternal;
     $this->infoTitleColor = $infoTitleColor ?? ($layout == 'whatsapp-layout-5' ? 'var(--primary)' : 'var(--dark)');

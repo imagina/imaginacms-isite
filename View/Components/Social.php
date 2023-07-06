@@ -100,7 +100,7 @@ class Social extends Component
     }
 
     //validate whatsapp attributes
-    $this->whatsappAttributes = is_array($whatsappAttributes) && count($whatsappAttributes) > 0 ? $whatsappAttributes : ['size' => $this->size, 'type' => $this->type];
+    $this->whatsappAttributes = is_array($whatsappAttributes) && count($whatsappAttributes) > 0 ? $whatsappAttributes : ['size' => $this->size, 'type' => $this->type , 'central' => $this->central];
 
   }
   

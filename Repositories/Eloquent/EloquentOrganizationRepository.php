@@ -49,8 +49,25 @@ class EloquentOrganizationRepository extends EloquentCrudRepository implements O
      */
 
       //Filter Category Id
-      if (isset($filter->category) && !empty($filter->category))
-        $query->where('category_id', $filter->category);
+    if (isset($filter->category) && !empty($filter->category))
+      $query->where('category_id', $filter->category);
+
+
+      // add filter by search
+    if (isset($filter->search) && !empty($filter->search)) {
+
+        //get language translation
+        $lang = \App::getLocale();
+
+        $query->where(function ($query) use ($filter, $lang) {
+          $query->whereHas('translations', function ($query) use ($filter, $lang) {
+            $query->where('locale', $lang)
+              ->where('title', 'like', '%' . $filter->search . '%')
+              ->orWhere('description', 'like', '%' . $filter->search . '%');
+          })->orWhere('id', 'like', '%' . $filter->search . '%');
+        });
+      
+    }
   
     if (isset($params->setting) && isset($params->setting->fromAdmin) && $params->setting->fromAdmin) {
     

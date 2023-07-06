@@ -15,6 +15,29 @@ return [
   ],
   //Activities
   'activities' => [
+    //Admin Home
+    [
+      'systemName' => 'admin_home_actions_settings',
+      'title' => "$transPrefix.activities.settings",
+      'description' => "$transPrefix.activities.settingsDescription",
+      'type' => 1,
+      'url' => "iadmin/#/site/settings",
+      'permission' => 'isite.settings.manage',
+      'categoryId' => 'admin_home_actions',
+      'icon' => 'fal fa-cog',
+      'roles' => []
+    ],
+    [
+      'systemName' => 'admin_home_actions_settingsOrganization',
+      'title' => "$transPrefix.activities.settingsOrganization",
+      'description' => "$transPrefix.activities.settingsOrganizationDescription",
+      'type' => 1,
+      'url' => "iadmin/#/site/my-organizations",
+      'permission' => 'isite.organizations.index',
+      'categoryId' => 'admin_home_actions',
+      'icon' => 'fal fa-crown',
+      'roles' => []
+    ],
     //Organization wizard
     [
       'systemName' => 'admin_organization_wizard_register',

@@ -43,8 +43,8 @@ class CreateOrganizationBySuscription
       }
       
     } catch (\Exception $e) {
-      dd($e);
-      \Log::info($e->getMessage().' '.$e->getFile().' '.$e->getLine());
+        \Log::info($e->getMessage().' '.$e->getFile().' '.$e->getLine());
+        dd($e);
     }
     
   }
@@ -68,7 +68,6 @@ class CreateOrganizationBySuscription
     $data = [
       'user' => $user,
       'title' => $suscription->options->organization_name,
-      'status' => 1,
       'layout_id' => (int)$suscription->options->layout_id,
       'category_id' => (int)$suscription->options->category_id,
       'role_id' => (int)$this->rolesToTenant[0] //To sync in table user_organization to after get example: $organization->users->first()->email
