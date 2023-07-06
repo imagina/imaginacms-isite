@@ -93,7 +93,7 @@
     </div>
   </div>
 </div>
-
+@include('isite::frontend.components.category-menu.partials.style')
 @section('scripts-owl')
   @parent
   <script>

@@ -6,6 +6,10 @@ YELLOW='\033[0;33m'  # Yellow
 
 icmsSize=$(du -s ./ | cut -f1)
 
+	        printf "-----------------------------------------------------------------\n"
+	printf "${GREEN}-----------------CMS SUPERVISOR ---------------------------------${NC}\n"
+	        printf "-----------------------------------------------------------------\n"
+
 if [ $icmsSize -gt 389120 ]; then
 	printf "${RED}---The App is consuming a high disk space: $(du -sh)${NC}\n"
 else

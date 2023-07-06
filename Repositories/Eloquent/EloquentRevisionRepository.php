@@ -26,7 +26,7 @@ class EloquentRevisionRepository extends EloquentCrudRepository implements Revis
    * @param $filter
    * @return mixed
    */
-  public function filterQuery($query, $filter)
+  public function filterQuery($query, $filter, $params)
   {
 
     /**

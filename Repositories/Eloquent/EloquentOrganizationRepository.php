@@ -25,13 +25,14 @@ class EloquentOrganizationRepository extends EloquentCrudRepository implements O
    *
    * @param $query
    * @param $filter
+   * @param $params
    * @return mixed
    */
-  public function filterQuery($query, $filter)
+  public function filterQuery($query, $filter, $params)
   {
     //
-    if (\Auth::id() && isset($filter->params->setting->fromAdmin) && $filter->params->setting->fromAdmin) {
-      if (!isset($filter->params->permissions["isite.organizations.index-all"]) || !$filter->params->permissions["isite.organizations.index-all"]) {
+    if (\Auth::id() && isset($params->setting->fromAdmin) && $params->setting->fromAdmin) {
+      if (!isset($params->permissions["isite.organizations.index-all"]) || !$params->permissions["isite.organizations.index-all"]) {
         $query->whereHas("users", function ($query) {
           $query->where("users.id", \Auth::id());
         });
@@ -48,10 +49,27 @@ class EloquentOrganizationRepository extends EloquentCrudRepository implements O
      */
 
       //Filter Category Id
-      if (isset($filter->category) && !empty($filter->category))
-        $query->where('category_id', $filter->category);
+    if (isset($filter->category) && !empty($filter->category))
+      $query->where('category_id', $filter->category);
+
+
+      // add filter by search
+    if (isset($filter->search) && !empty($filter->search)) {
+
+        //get language translation
+        $lang = \App::getLocale();
+
+        $query->where(function ($query) use ($filter, $lang) {
+          $query->whereHas('translations', function ($query) use ($filter, $lang) {
+            $query->where('locale', $lang)
+              ->where('title', 'like', '%' . $filter->search . '%')
+              ->orWhere('description', 'like', '%' . $filter->search . '%');
+          })->orWhere('id', 'like', '%' . $filter->search . '%');
+        });
+      
+    }
   
-    if (isset($filter->params->setting) && isset($filter->params->setting->fromAdmin) && $filter->params->setting->fromAdmin) {
+    if (isset($params->setting) && isset($params->setting->fromAdmin) && $params->setting->fromAdmin) {
     
     } else {
     
