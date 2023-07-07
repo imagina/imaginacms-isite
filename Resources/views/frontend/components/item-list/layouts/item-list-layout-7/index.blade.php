@@ -29,7 +29,7 @@
                                    :url="$item->url ?? null" :isMedia="true" :target="$target"
                                    :withVideoControls="$videoControls" :loopVideo="$videoLoop"
                                    :autoplayVideo="$videoAutoplay" :mutedVideo="$videoMuted"
-                                   imgClasses="img-style" imgStyles="width:{{$imageWidth}}%; height:{{$imageHeight}};"
+                                   imgClasses="img-style" imgStyles="width:{{$imageWidth}}% !important; height:{{$imageHeight}};"
                                    :mediaFiles="$item->mediaFiles()" :zone="$mediaImage ?? 'mainimage'"/>
           </div>
         @endif
@@ -323,7 +323,6 @@
         display: block !important;
         padding: {{$imagePicturePadding}}px;
         text-align: {{$imageAlign}};
-        aspect-ratio: {{$imageAspect}};
     }
     #{{$id}} .img-style  {
         border-radius: {{$imageRadio}};
@@ -459,9 +458,6 @@
     @if(!is_null($imageAspectMobile))
     @media (max-width: 767.98px) {
         #{{$id}} .img-style, #{{$id}} .cover-img{
-            aspect-ratio: {{$imageAspectMobile}};
-        }
-        #{{$id}} .item-image picture {
             aspect-ratio: {{$imageAspectMobile}};
         }
     }
