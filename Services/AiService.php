@@ -2,7 +2,7 @@
 
 namespace Modules\Isite\Services;
 
-class IAService
+class AiService
 {
   public $logTitle;
   public $n8nBaseUrl;
