@@ -73,7 +73,7 @@ class AiService
       'description' => "description: Que contenga entre 1200 y 1600 palabras con contenio que genere al menos 7 minutos " .
         "de lectura. El texto sea en formato HTML puede usar listas, títulos llamativos, $this->translatablePrompt",
       'body' => "body: Que contenga entre 2000 y 2500 palabras con contenido que genere al menos 7 minutos " .
-        "de lectura. El texto sea en formato HTML puede usar listas, títulos llamativos, $this->translatablePrompt",
+        "de lectura. El texto sea en formato HTML puede usar listas, títulos llamativos y los titulos deben estar en la etiqueta html h2, $this->translatablePrompt",
       'summary' => "summary: Que contenga entre 50 y 80 palabras, que pueda atrapar e impulse a leer el post completo, $this->translatablePrompt",
       'slug' => "slug: Debe de estar apegado al titulo, solo mantener caracteres alfanuméricos y las palabras " .
         " separadas por guiones, $this->translatablePrompt",
