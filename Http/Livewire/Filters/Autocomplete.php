@@ -48,6 +48,8 @@ class Autocomplete extends Component
   public $featuredOptions;
   public $searchOptions;
   public $collapsable;
+  public $labelButton;
+  public $withLabelButton;
 
   protected $listeners = ["autocompleteChangeCollapsable"];
   protected $queryString = [
@@ -56,7 +58,8 @@ class Autocomplete extends Component
 
   public function mount($name = null, $layout = 'autocomplete-layout-1', $showModal = false, $icon = 'fa fa-search',
                         $placeholder = null, $title = '', $params = [], $buttonSearch = false, $emitTo = null,
-                        $repoAction = null, $repoAttribute = null, $repoMethod = null, $minSearchChars = null, $goToRouteAlias = null)
+                        $repoAction = null, $repoAttribute = null, $repoMethod = null, $minSearchChars = null,
+                        $goToRouteAlias = null, $labelButton = null, $withLabelButton = false)
   {
 
     $this->defaultView = 'isite::frontend.livewire.filters.autocomplete.layouts.autocomplete-layout-1.index';
@@ -81,6 +84,8 @@ class Autocomplete extends Component
     $this->collapsable = "";
     $this->searchOptions = json_decode(setting('isearch::listOptionsSearch',null, "[]"));
     $this->featuredOptions = json_decode(setting('isearch::listFeaturedOptionsSearch',null, "[]"));
+    $this->labelButton = $labelButton ?? trans('isite::common.filters.autocomplete.labelButtonSearch');
+    $this->withLabelButton = $withLabelButton;
   }
 
   public function hydrate()
