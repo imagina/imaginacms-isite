@@ -2,7 +2,7 @@
 
 namespace Modules\Isite\Services;
 
-class IAService
+class AiService
 {
   public $logTitle;
   public $n8nBaseUrl;
@@ -30,6 +30,8 @@ class IAService
         "$quantity elementos diferentes siguiendo estás instrucciones $prompt ";
       //Validate site description to do it
       $siteDescription = setting("core::site-description");
+      \Log::info($this->logTitle."|getContent|Setting CoreSiteDescription: ".$siteDescription);
+
       if ($siteDescription) $prompt .= "el contenido debe de estar basado en esta descripción: $siteDescription";
       //Request
       $client = new \GuzzleHttp\Client();
@@ -67,13 +69,16 @@ class IAService
     //Instance default prompt fields
     $fieldsData = [
       'title' => "title: Que sea descriptivo, llamativo de entre 8 a 12 palabras, menos de 60 caracteres, $this->translatablePrompt",
+      'shortTitle' => "shortTitle: Que sea descriptivo, llamativo de entre 1 a 2 palabras, $this->translatablePrompt",
       'name' => "name: Que sea descriptivo, llamativo de entre 8 a 12 palabras, menos de 60 caracteres, $this->translatablePrompt",
       'description' => "description: Que contenga entre 1200 y 1600 palabras con contenio que genere al menos 7 minutos " .
         "de lectura. El texto sea en formato HTML puede usar listas, títulos llamativos, $this->translatablePrompt",
       'body' => "body: Que contenga entre 2000 y 2500 palabras con contenido que genere al menos 7 minutos " .
-        "de lectura. El texto sea en formato HTML puede usar listas, títulos llamativos, $this->translatablePrompt",
+        "de lectura. El texto sea en formato HTML puede usar listas, títulos llamativos y los titulos deben estar en la etiqueta html h2, $this->translatablePrompt",
       'summary' => "summary: Que contenga entre 50 y 80 palabras, que pueda atrapar e impulse a leer el post completo, $this->translatablePrompt",
       'slug' => "slug: Debe de estar apegado al titulo, solo mantener caracteres alfanuméricos y las palabras " .
+        " separadas por guiones, $this->translatablePrompt",
+      'shortSlug' => "shortSlug: Debe de estar apegado al shortTitle, solo mantener caracteres alfanuméricos y las palabras " .
         " separadas por guiones, $this->translatablePrompt",
       'category_id' => "category_id: Categoriza el elemento según su contenido en una de las siguientes categorías " .
         "seleccionando solo el ID: ",

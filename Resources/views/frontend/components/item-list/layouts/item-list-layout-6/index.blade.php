@@ -17,7 +17,7 @@
                                    :url="$item->url ?? null" :isMedia="true"  imgClasses="img-style"
                                    :withVideoControls="$videoControls" :loopVideo="$videoLoop"
                                    :autoplayVideo="$videoAutoplay" :mutedVideo="$videoMuted"
-                                   :target="$target" :mediaFiles="$item->mediaFiles()" imgStyles="width:{{$imageWidth}}%; height:{{$imageHeight}};"
+                                   :target="$target" :mediaFiles="$item->mediaFiles()" imgStyles="width:{{$imageWidth}}% !important; height:{{$imageHeight}};"
                                    :zone="$mediaImage ?? 'mainimage'"/>
 
           </div>
@@ -260,7 +260,6 @@
         position: relative;
         box-shadow:  {{$imageShadow}};
         border-radius: {{$imageRadio}};
-        aspect-ratio: {{$imageAspect}};
     }
     
     #{{$id}} .img-style {
@@ -357,9 +356,6 @@
     @if(!is_null($imageAspectMobile))
         @media (max-width: 767.98px) {
         #{{$id}} .img-style, #{{$id}} .cover-img {
-            aspect-ratio: {{$imageAspectMobile}};
-        }
-        #{{$id}} .item-image picture {
             aspect-ratio: {{$imageAspectMobile}};
         }
     }

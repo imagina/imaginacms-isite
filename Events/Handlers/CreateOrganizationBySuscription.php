@@ -13,6 +13,7 @@ class CreateOrganizationBySuscription
 
   private $tenantService;
   private $rolesToTenant;
+  private $log = "Isite:: Events|CreateOrganizationBySuscription|";
 
   public function __construct(
   ){
@@ -23,7 +24,7 @@ class CreateOrganizationBySuscription
   public function handle($event)
   {
     
-    \Log::info('Isite:: Events|CreateOrganizationBySuscription');
+    \Log::info($this->log);
 
     try {
 
@@ -33,12 +34,22 @@ class CreateOrganizationBySuscription
 
         $user = User::find($suscription->entity_id);
         
-        $user = $this->updateRoleUser($user);
-        $organization = $this->createTenant($user,$suscription);
+        if(count($user->organizations)>0){
 
-        tenancy()->initialize($organization->id);
+          //$organization = $user->organizations->first();
+          \Log::info($this->log."User already has an organization");
 
-        event(new OrganizationWasCreated($organization));
+        }else{
+
+          $user = $this->updateRoleUser($user);
+
+          $organization = $this->createTenant($user,$suscription);
+
+          tenancy()->initialize($organization->id);
+
+          event(new OrganizationWasCreated($organization));
+
+        }
         
       }
       
@@ -52,7 +63,7 @@ class CreateOrganizationBySuscription
   public function updateRoleUser(object $user)
   {
 
-    \Log::info('Isite:: Events|CreateOrganizationBySuscription|UpdateRoleUser');
+    \Log::info($this->log.'UpdateRoleUser');
 
     $user->roles()->sync($this->rolesToTenant);
 
@@ -63,7 +74,7 @@ class CreateOrganizationBySuscription
   public function createTenant(object $user,object $suscription)
   {
 
-    \Log::info('Isite:: Events|CreateOrganizationBySuscription|CreateTenant');
+    \Log::info($this->log.'CreateTenant');
 
     $data = [
       'user' => $user,

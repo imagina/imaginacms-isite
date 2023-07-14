@@ -583,7 +583,7 @@ class ItemList extends Component
     $this->imageRadio = $this->radiusType($this->imageBorderRadio,$this->imageBorderRadioType);
     $this->contentRadio = $this->radiusType($this->contentBorderRounded,$this->contentBorderRoundedType);
 
-    if (!isset($parentAttributes["itemComponentView"]))
+    if (!isset($parentAttributes["itemComponentView"]) && is_null($itemComponentView))
       $this->view = "isite::frontend.components.item-list.layouts." . ($this->layout ?? 'item-list-layout-1') . ".index";
 
     if (isset($item->date_available) && !empty($item->date_available)) {
