@@ -40,7 +40,7 @@ class TenantAiService
     //$resultPages = $this->pageService->startProcesses();
     //$resultPosts = $this->blogService->startProcesses();
     //$resultIcommerce = $this->icommerceService->startProcesses();
-    $resultSlides = $this->sliderService->startProcesses();
+    //$resultSlides = $this->sliderService->startProcesses();
     
     \Log::info($this->log."processAi|END");
 
