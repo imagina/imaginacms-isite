@@ -224,5 +224,10 @@ return [
     'titlePhone' => 'Teléfono',
     'titleAddress' => 'Dirección',
     'titleEmail' => 'Correo Electrónico',
-  ]
+  ],
+  'filters' => [
+    'autocomplete' => [
+      'labelButtonSearch' => 'Buscar',
+    ],
+  ],
 ];
