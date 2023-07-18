@@ -95,10 +95,10 @@ if (!function_exists('isiteFormatMoney')) {
   function isiteFormatMoney($value, $showCurrencyCode = false)
   {
     $format = (object)(Config::get('asgard.isite.config.isiteFormatMoney') ?? [
-        'decimals' => 0,
-        'decimal_separator' => '',
-        'thousands_separator' => '.'
-      ]);
+      'decimals' => 0,
+      'decimal_separator' => '',
+      'thousands_separator' => '.'
+    ]);
 
     $numberFormat = number_format($value, $format->decimals, $format->decimal_separator, $format->thousands_separator);
 
@@ -221,12 +221,52 @@ if (!function_exists('validateLocaleFromUrl')) {
  * Helper to show infor connection in Log or others
  */
 if (!function_exists('showDataConnection')) {
-  
-  function showDataConnection($inLog = true){
+
+  function showDataConnection($inLog = true)
+  {
 
     $dbname = \DB::connection()->getDatabaseName();
-    if($inLog)
-      \Log::info("Isite: Helper|ShowDataConnection|DB: ".$dbname);
+    if ($inLog)
+      \Log::info("Isite: Helper|ShowDataConnection|DB: " . $dbname);
   }
 
+}
+
+if (!function_exists('addQueryParamToUrl')) {
+  function addQueryParamToUrl($url, $paramName, $paramValue)
+  {
+    // Parse the URL
+    $parsedUrl = parse_url($url);
+
+    if (isset($parsedUrl['query'])) {
+      // URL already has query parameters
+      $queryParams = array();
+      parse_str($parsedUrl['query'], $queryParams);
+
+      // Add or update the query parameter
+      $queryParams[$paramName] = $paramValue;
+
+      // Build the updated query string
+      $updatedQuery = http_build_query($queryParams);
+
+      // Reconstruct the URL with the updated query string
+      $parsedUrl['query'] = $updatedQuery;
+      $scheme = isset($parsedUrl['scheme']) ? $parsedUrl['scheme'] . '://' : '';
+      $host = isset($parsedUrl['host']) ? $parsedUrl['host'] : '';
+      $port = isset($parsedUrl['port']) ? ':' . $parsedUrl['port'] : '';
+      $user = isset($parsedUrl['user']) ? $parsedUrl['user'] : '';
+      $pass = isset($parsedUrl['pass']) ? ':' . $parsedUrl['pass'] : '';
+      $pass = ($user || $pass) ? "$pass@" : '';
+      $path = isset($parsedUrl['path']) ? $parsedUrl['path'] : '';
+      $query = isset($parsedUrl['query']) ? '?' . $parsedUrl['query'] : '';
+      $fragment = isset($parsedUrl['fragment']) ? '#' . $parsedUrl['fragment'] : '';
+      //Set URL
+      $url = "$scheme$user$pass$host$port$path$query$fragment";
+    } else {
+      // URL doesn't have query parameters, simply append the new query parameter
+      $url .= '?' . urlencode($paramName) . '=' . urlencode($paramValue);
+    }
+
+    return $url;
+  }
 }
