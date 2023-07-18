@@ -13,6 +13,7 @@ class UserService
 {
 
     private $userTokenRepository;
+    private $log = "Isite:: UserService|";
 
     public function __construct(
         UserTokenRepository $userTokenRepository
@@ -113,6 +114,19 @@ class UserService
         $authApiController = app(AuthApiController::class);
         
         return json_decode($authApiController->authAttempt($data["credentials"])->content());
+    }
+
+    public function updatePasswordInTenant($centralUser,$tenantUser)
+    {
+
+        \Log::info($this->log.'updatePasswordInTenant');
+
+        $password = $centralUser->password;
+
+        \DB::table("users")->where("id","=",$tenantUser->id)->update([
+            "password"=> $password
+        ]);
+        
     }
 
 }
