@@ -4,6 +4,9 @@ namespace Modules\Isite\Events\Handlers;
 
 use Modules\User\Entities\Sentinel\User;
 use Modules\Isite\Entities\Organization;
+use Modules\Iprofile\Entities\Role;
+
+use Illuminate\Http\Request;
 
 // Events
 use Modules\Isite\Events\OrganizationWasCreated;
@@ -14,11 +17,13 @@ class CreateOrganizationBySuscription
   private $tenantService;
   private $rolesToTenant;
   private $log = "Isite:: Events|CreateOrganizationBySuscription|";
+  private $authApi;
 
   public function __construct(
   ){
     $this->tenantService = app("Modules\Isite\Services\TenantService");
     $this->rolesToTenant = json_decode(setting("isite::rolesToTenant",null,"[]"));
+    $this->authApi = app("Modules\Iprofile\Http\Controllers\Api\AuthApiController");
   }
   
   public function handle($event)
@@ -41,14 +46,34 @@ class CreateOrganizationBySuscription
 
         }else{
 
-          $user = $this->updateRoleUser($user);
+          $typeDB = config("tenancy.mode");
 
-          $organization = $this->createTenant($user,$suscription);
+          //Like Weigo
+          if($typeDB=="multiDatabase"){
 
-          tenancy()->initialize($organization->id);
+            //Logout from Wizard (Central DB)
+            if(\Auth::check())
+              $this->authApi->logout(app('request'));
+            
+            //Rol in Central
+            $user = $this->updateRoleUser($user,true);
 
-          event(new OrganizationWasCreated($organization));
+            //Set Core
+            config(['asgard.core.config.userstamping' => false]);
 
+            $result = $this->createMultiTenant($user,$suscription);
+
+            //Set Core
+            config(['asgard.core.config.userstamping' => true]);
+
+          }else{
+            //LIKE DEEV
+            $user = $this->updateRoleUser($user);
+            $organization = $this->createTenant($user,$suscription);
+            tenancy()->initialize($organization->id);
+            event(new OrganizationWasCreated($organization));
+          }
+      
         }
         
       }
@@ -60,12 +85,20 @@ class CreateOrganizationBySuscription
     
   }
 
-  public function updateRoleUser(object $user)
+  public function updateRoleUser(object $user,$central = false)
   {
 
     \Log::info($this->log.'UpdateRoleUser');
 
-    $user->roles()->sync($this->rolesToTenant);
+    if($central){
+      //Set Rol in Central Database when is used Wizard Frontend
+      $role = Role::where("slug", config("tenancy.defaultCentralRole"))->first();
+      $roles[] = $role->id;
+    }else{
+      $roles = $this->rolesToTenant;
+    }
+
+    $user->roles()->sync($roles);
 
     return $user;
 
@@ -89,7 +122,46 @@ class CreateOrganizationBySuscription
     return $organization;
    
   }
-  
-  
+
+  public function createMultiTenant(object $user,object $suscription)
+  {
+
+    \Log::info($this->log.'CreateMultiTenant');
+
+    //Layout
+    $layoutId = (int)$suscription->options->layout_id;
+    //$params = ["filter" => ["field" => "system_name"]];
+    $layout = app("Modules\Isite\Repositories\LayoutRepository")->getItem($layoutId);
+
+    $fakePassword = \Str::random(16);//This will be updated later 
+
+    //Data User
+    $userData = [
+      "user" => $user,
+      "credentials" => [
+          "email" => $suscription->options->email,
+          "password" => $fakePassword 
+      ]
+    ];
+
+    //Data To Service (Params like endpoint)
+    $data = [
+      'email' => $suscription->options->email,
+      'first_name' => $user->first_name,
+      'last_name' => $user->last_name,
+      'title' => $suscription->options->organization_name,
+      "password" => $fakePassword,
+      'layout' => $layout->system_name,
+      'userData' => $userData
+    ];
+
+    //authenticateUser FALSE
+    $response = $this->tenantService->createTenantInMultiDatabase($data,false);
+
+    //\Log::info($this->log.'CreateMultiTenant|Response: '.json_encode($response));
+   
+    return $response;
+   
+  }
   
 }
