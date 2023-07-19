@@ -84,7 +84,7 @@ class TenantService
    * @param Request $request
    * @return mixed
    */
-  public function createTenantInMultiDatabase($data)
+  public function createTenantInMultiDatabase($data,$authenticateUser = true)
   {
     
     //central role
@@ -94,14 +94,27 @@ class TenantService
     
     if (!isset($role->id)) {
       $role = Role::where("slug", config("tenancy.defaultCentralRole"))->first();
-    }
+    } 
+
+    $updatePassword = false;
+    if(!isset($data['userData'])){
+
+      //Create the user in current DB
+      \Log::info("----------------------------------------------------------");
+      \Log::info("Creating central user with email: ".$data["email"]);
+      \Log::info("----------------------------------------------------------");
+      $userCentralData = $this->userService->create(array_merge($data, ["role" => $role]));
     
-    //Create the user in current DB
-    \Log::info("----------------------------------------------------------");
-    \Log::info("Creating central user with email: ".$data["email"]);
-    \Log::info("----------------------------------------------------------");
-    $userCentralData = $this->userService->create(array_merge($data, ["role" => $role]));
+    }else{
+      
+      $userCentralData = $data['userData'];
+      $updatePassword = true;
+      \Log::info("----------------------------------------------------------");
+      \Log::info("User with email: ".$userCentralData["user"]->email);
+      \Log::info("----------------------------------------------------------");
   
+    }
+
     //Create organization
     $organization = $this->createTenant(array_merge($data, ["user" => $userCentralData["user"]]));
     $domain = $organization->domain;
@@ -135,6 +148,10 @@ class TenantService
       "password" => $userCentralData["credentials"]["password"],
       "organization_id" => $organization->id
     ]));
+
+    if($updatePassword){
+      $this->userService->updatePasswordInTenant($userCentralData['user'],$tenantUser['user']);
+    }
 
     ///create super admin in Tenant DB
     $roleSuperAdmin = Role::where("slug", "super-admin")->first();
@@ -218,7 +235,15 @@ class TenantService
     }
 
     //Authenticating user in the Tenant DB
-    $authData = $this->userService->authenticate(array_merge($userCentralData, ["organization_id" => $organization->id]));
+    $authData = null;
+    $redirectUrl = null;
+    if($authenticateUser){
+      //Para el caso del Wizard
+      //Aqui el password cambió, aparecería error en la autenticacion
+      $authData = $this->userService->authenticate(array_merge($userCentralData, ["organization_id" => $organization->id]));
+      $redirectUrl = "https://".$domain . "/iadmin?authbearer=" . str_replace("Bearer ", "",$authData->data->bearer)."&expiresatbearer=".urlencode($authData->data->expiresDate);
+    }
+      
 
     \Log::info("----------------------------------------------------------");
     \Log::info("Tenant {{$organization->id}} successfully created");
@@ -229,7 +254,7 @@ class TenantService
       "credentials" => $userCentralData["credentials"],
       "authData" => $authData,
       "organization" => new OrganizationTransformer($organization),
-      "redirectUrl" => "https://".$domain . "/iadmin?authbearer=" . str_replace("Bearer ", "",$authData->data->bearer)."&expiresatbearer=".urlencode($authData->data->expiresDate)
+      "redirectUrl" => $redirectUrl
     ];
 
   }
