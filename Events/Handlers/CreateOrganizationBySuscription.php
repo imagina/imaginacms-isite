@@ -152,6 +152,7 @@ class CreateOrganizationBySuscription
       'title' => $suscription->options->organization_name,
       "password" => $fakePassword,
       'layout' => $layout->system_name,
+      'category_id' => $suscription->options->category_id,
       'userData' => $userData
     ];
 
