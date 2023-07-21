@@ -441,11 +441,12 @@
      }
     @endif
     @if($imageAnimate=="image-animate-up")
-    #{{$id}} .card-item   {
-         transition: all .3s ease-in;
-     }
-    #{{$id}} .card-item:hover  {
-         transform: translateY(-10px);
+    #{{$id}}.item-layout {
+       margin-top: 15px;
+       transition: all .3s ease-in;
+    }
+    #{{$id}}.item-layout:hover  {
+        margin-top: 5px;
     }
     @endif
 </style>
