@@ -271,6 +271,8 @@
        object-fit: {{$imageObject}};
        padding: {{$imagePadding}}px;
        display: inline-flex;
+       max-height: {{$imageMaxHeight}};
+       min-height: {{$imageMinHeight}};
     }
     #{{$id}} .cover-img {
          border-radius: {{$imageRadio}};
@@ -283,6 +285,8 @@
          height: {{$imageHeight}};
          z-index: 1;
          position: relative;
+         max-height: {{$imageMaxHeight}};
+         min-height: {{$imageMinHeight}};
      }
 
     #{{$id}} .card-item {
