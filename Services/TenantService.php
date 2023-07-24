@@ -15,6 +15,9 @@ use Modules\Isite\Services\LayoutService;
 use Modules\Isite\Services\SettingService;
 use Modules\Isite\Services\UserService;
 
+// Events
+use Modules\Isite\Events\OrganizationWasCreated;
+
 class TenantService
 {
 
@@ -244,10 +247,13 @@ class TenantService
       $redirectUrl = "https://".$domain . "/iadmin?authbearer=" . str_replace("Bearer ", "",$authData->data->bearer)."&expiresatbearer=".urlencode($authData->data->expiresDate);
     }
       
-
+    
     \Log::info("----------------------------------------------------------");
     \Log::info("Tenant {{$organization->id}} successfully created");
     \Log::info("----------------------------------------------------------");
+
+    //Send User because this is the Central Organization with other User Id
+    event(new OrganizationWasCreated($organization,$tenantUser['user']));
 
     return [
       "suser" => ['supassword'=> $sAdmin['credentials']['password']],
