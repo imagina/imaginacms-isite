@@ -143,6 +143,8 @@ class ItemList extends Component
   public $withImage;
   public $imageWidth;
   public $imageHeight;
+  public $imageMaxHeight;
+  public $imageMinHeight;
   public $imageAlign;
 
   public $date;
@@ -308,6 +310,8 @@ class ItemList extends Component
                               $imageWidth = 100,
                               $imageAlign = 'left',
                               $imageHeight = '',
+                              $imageMaxHeight = '',
+                              $imageMinHeight = '',
                               $summaryField = null,
                               $summaryWithLimit = true,
                               $containerActive = false,
@@ -485,6 +489,8 @@ class ItemList extends Component
     $this->imageWidth = $imageWidth;
     $this->imageAlign = $imageAlign;
     $this->imageHeight = $imageHeight;
+    $this->imageMaxHeight = $imageMaxHeight;
+    $this->imageMinHeight = $imageMinHeight;
 
     $this->containerActive = $containerActive;
     $this->containerType = $containerType;
