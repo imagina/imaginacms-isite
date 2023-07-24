@@ -21,9 +21,14 @@ class SendEmailOrganization
     try {
 
       $model = $event->organization;
-      $user = $model->users->first();
+      if(isset($event->user) && !is_null($event->user)){
+        $userEmail = $event->user->email;
+      }else{
+        $user = $model->users->first();
+        $userEmail = $user->email;
+      }
 
-      $emailsTo[] = $user->email;
+      $emailsTo[] = $userEmail;
       
       $title = trans("isite::organizations.title.organization created");
       $message = trans("isite::organizations.messages.organization created");
