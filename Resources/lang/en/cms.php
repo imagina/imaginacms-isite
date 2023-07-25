@@ -398,6 +398,7 @@ return [
   ],
   "message" => [
     "organizationNoCreated" => "We are excited to let you know that we are in the process of creating your site! We appreciate your patience while we provide you with an improved online experience. As soon as everything is ready, you will receive an email notification",
+    "creatingTenant" => "We are excited to let you know that we are in the process of creating your site! We appreciate your patience while we provide you with an improved online experience. as soon as everything is ready, we will take you to your site!",
     "organizationCreated" => "We are pleased to inform you that your site is ready! We are excited to provide you with an improved online experience. You can access your new site by clicking the button below. If you have any questions or need help, please do not hesitate to contact us. We hope you enjoy exploring your new site!",
     "editFormProduct" => "In this form you can edit your product in a simple way, if you want to edit your product with more advanced options, click on the following button to go to the advanced form.",
     "createFormProduct" => "In this form you can create a new product in a simple way, if you want to create your product with more advanced options, click on the following button to go to the advanced form.",
