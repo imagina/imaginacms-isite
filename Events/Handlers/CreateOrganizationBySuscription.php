@@ -66,12 +66,16 @@ class CreateOrganizationBySuscription
             //Set Core
             config(['asgard.core.config.userstamping' => true]);
 
+            return $result;
+
           }else{
             //LIKE DEEV
             $user = $this->updateRoleUser($user);
             $organization = $this->createTenant($user,$suscription);
             tenancy()->initialize($organization->id);
             event(new OrganizationWasCreated($organization));
+
+            return true;
           }
       
         }
@@ -156,11 +160,13 @@ class CreateOrganizationBySuscription
       'userData' => $userData
     ];
 
-    //authenticateUser FALSE
-    $response = $this->tenantService->createTenantInMultiDatabase($data,false);
+    /**
+     * @param $data
+     * @param $autenticationType (credentials (default))
+     */
+    $response = $this->tenantService->createTenantInMultiDatabase($data);
 
-    //\Log::info($this->log.'CreateMultiTenant|Response: '.json_encode($response));
-   
+    
     return $response;
    
   }
