@@ -75,7 +75,7 @@ class CreateOrganizationBySuscription
             tenancy()->initialize($organization->id);
             event(new OrganizationWasCreated($organization));
 
-            return true;
+            return ['data' => true];
           }
       
         }
