@@ -23,12 +23,17 @@ class SendEmailOrganization
       $model = $event->organization;
 
       //Get User Email
+      /*
       if(isset($event->user) && !is_null($event->user)){
         $userEmail = $event->user->email;
       }else{
         $user = $model->users->first();
         $userEmail = $user->email;
       }
+      */
+
+      $user = $model->users->first();
+      $userEmail = $user->email;
 
       $emailsTo[] = $userEmail;
       
