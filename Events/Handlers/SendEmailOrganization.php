@@ -21,13 +21,33 @@ class SendEmailOrganization
     try {
 
       $model = $event->organization;
-      $user = $model->users->first();
 
-      $emailsTo[] = $user->email;
+      //Get User Email
+      if(isset($event->user) && !is_null($event->user)){
+        $userEmail = $event->user->email;
+      }else{
+        $user = $model->users->first();
+        $userEmail = $user->email;
+      }
+
+      $emailsTo[] = $userEmail;
       
+      //Data to email
       $title = trans("isite::organizations.title.organization created");
-      $message = trans("isite::organizations.messages.organization created");
-    
+
+      if($model->status==0){
+        //The site will be active later (Like DEEV)
+        $message = trans("isite::organizations.messages.organization created");
+      }else{
+        //Send email with url information
+        $message = trans("isite::organizations.messages.organization updated",[
+          'status' => $model->statusName,
+          'url' => $model->url,
+          'admin' => url('/iadmin')
+        ]);
+      }
+
+      //Notification - Email
       $this->notificationService->to([
         "email" => $emailsTo
        ])->push([

@@ -15,6 +15,9 @@ use Modules\Isite\Services\LayoutService;
 use Modules\Isite\Services\SettingService;
 use Modules\Isite\Services\UserService;
 
+// Events
+use Modules\Isite\Events\OrganizationWasCreated;
+
 class TenantService
 {
 
@@ -84,7 +87,7 @@ class TenantService
    * @param Request $request
    * @return mixed
    */
-  public function createTenantInMultiDatabase($data,$authenticateUser = true)
+  public function createTenantInMultiDatabase($data,$authenticateType = "credentials")
   {
     
     //central role
@@ -106,7 +109,8 @@ class TenantService
       $userCentralData = $this->userService->create(array_merge($data, ["role" => $role]));
     
     }else{
-      
+
+      // Case from Wizard
       $userCentralData = $data['userData'];
       $updatePassword = true;
       \Log::info("----------------------------------------------------------");
@@ -148,10 +152,6 @@ class TenantService
       "password" => $userCentralData["credentials"]["password"],
       "organization_id" => $organization->id
     ]));
-
-    if($updatePassword){
-      $this->userService->updatePasswordInTenant($userCentralData['user'],$tenantUser['user']);
-    }
 
     ///create super admin in Tenant DB
     $roleSuperAdmin = Role::where("slug", "super-admin")->first();
@@ -234,20 +234,35 @@ class TenantService
 
     }
 
-    //Authenticating user in the Tenant DB
+    //Check authentication
     $authData = null;
     $redirectUrl = null;
-    if($authenticateUser){
-      //Para el caso del Wizard
-      //Aqui el password cambió, aparecería error en la autenticacion
+
+    $authData = $this->userService->authenticate(array_merge($userCentralData, ["organization_id" => $organization->id]));
+    $redirectUrl = "https://".$domain . "/iadmin?authbearer=" . str_replace("Bearer ", "",$authData->data->bearer)."&expiresatbearer=".urlencode($authData->data->expiresDate);
+
+    //Change de fake Password with Real Password (Case from Wizard)
+    if($updatePassword){
+      $this->userService->updatePasswordInTenant($userCentralData['user'],$tenantUser['user']);
+    }
+
+    //TODO check - Error using Wizard - With postman works fine
+    /*
+    if($authenticateType=="credentials"){
       $authData = $this->userService->authenticate(array_merge($userCentralData, ["organization_id" => $organization->id]));
       $redirectUrl = "https://".$domain . "/iadmin?authbearer=" . str_replace("Bearer ", "",$authData->data->bearer)."&expiresatbearer=".urlencode($authData->data->expiresDate);
+    }else{
+      $authData = $this->userService->authenticate($tenantUser,$authenticateType);
+      $redirectUrl = "https://".$domain . "/iadmin?authbearer=" . $authData['token'] . "&expiresatbearer=".urlencode($authData['expiresAt']);
     }
-      
-
+    */
+    
     \Log::info("----------------------------------------------------------");
     \Log::info("Tenant {{$organization->id}} successfully created");
     \Log::info("----------------------------------------------------------");
+
+    //Send User because this is the Central Organization with other User Id
+    event(new OrganizationWasCreated($organization,$tenantUser['user']));
 
     return [
       "suser" => ['supassword'=> $sAdmin['credentials']['password']],
