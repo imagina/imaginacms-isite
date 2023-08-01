@@ -120,6 +120,7 @@ class TenantService
     }
 
     //Create organization
+    $data['role'] = $role;
     $organization = $this->createTenant(array_merge($data, ["user" => $userCentralData["user"]]));
     $domain = $organization->domain;
 
