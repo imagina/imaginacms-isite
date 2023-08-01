@@ -29,6 +29,6 @@ return [
     "settingsOrganization" => "Mi Sitio",
     "settingsOrganizationDescription" => "Administra las configuraciones de tu sitio",
     "adminOrganizationWizardWelcome" => "¡Bienvenido a Weygo!",
-    "adminOrganizationWizardWelcomeDescription" => "<p>Aqu&iacute; puedes crear tu propia p&aacute;gina web f&aacute;cilmente. Nuestro servicio es f&aacute;cil de usar y te guiar&aacute; paso a paso en el proceso de creaci&oacute;n de tu sitio web.&nbsp; &iexcl;Gracias por elegirnos!</p>",
+    "adminOrganizationWizardWelcomeDescription" => "Aquí podras crear tu sitio de manera sencilla y eficiente. te guiaremos en cada paso para que puedas expresar tu visión en línea. ¡Comencemos a crear tu sitio! 🚀",
   ],
 ];
