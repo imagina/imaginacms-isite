@@ -23,12 +23,17 @@ class SendEmailOrganization
       $model = $event->organization;
 
       //Get User Email
+      /*
       if(isset($event->user) && !is_null($event->user)){
         $userEmail = $event->user->email;
       }else{
         $user = $model->users->first();
         $userEmail = $user->email;
       }
+      */
+
+      $user = $model->users->first();
+      $userEmail = $user->email;
 
       $emailsTo[] = $userEmail;
       
@@ -47,18 +52,22 @@ class SendEmailOrganization
         ]);
       }
 
-      //Notification - Email
-      $this->notificationService->to([
-        "email" => $emailsTo
-       ])->push([
-          "title" => $title,
-          "message" => $message,
-          "fromAddress" => env('MAIL_FROM_ADDRESS'),
-          "fromName" => "",
-          "setting" => [  
-              "saveInDatabase" => 0
-          ]
-      ]);
+      tenancy()->central(function() use ($emailsTo,$title,$message){
+
+        //Notification - Email
+        $this->notificationService->to([
+          "email" => $emailsTo
+        ])->push([
+            "title" => $title,
+            "message" => $message,
+            "fromAddress" => env('MAIL_FROM_ADDRESS'),
+            "fromName" => "",
+            "setting" => [  
+                "saveInDatabase" => 0
+            ]
+        ]);
+
+      });
       
     } catch (\Exception $e) {
       \Log::info($this->log."ERROR");

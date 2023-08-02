@@ -46,36 +46,40 @@ class CreateOrganizationBySuscription
 
         }else{
 
-          $typeDB = config("tenancy.mode");
+          if(!is_null(config("tenancy.mode"))){
 
-          //Like Weigo
-          if($typeDB=="multiDatabase"){
+            $typeDB = config("tenancy.mode");
 
-            //Logout from Wizard (Central DB)
-            if(\Auth::check())
-              $this->authApi->logout(app('request'));
-            
-            //Rol in Central
-            $user = $this->updateRoleUser($user,true);
+            //Like Weigo
+            if($typeDB=="multiDatabase"){
 
-            //Set Core
-            config(['asgard.core.config.userstamping' => false]);
+              //Logout from Wizard (Central DB)
+              if(\Auth::check())
+                $this->authApi->logout(app('request'));
+              
+              //Rol in Central
+              $user = $this->updateRoleUser($user,true);
 
-            $result = $this->createMultiTenant($user,$suscription);
+              //Set Core
+              config(['asgard.core.config.userstamping' => false]);
 
-            //Set Core
-            config(['asgard.core.config.userstamping' => true]);
+              $result = $this->createMultiTenant($user,$suscription);
 
-            return $result;
+              //Set Core
+              config(['asgard.core.config.userstamping' => true]);
 
-          }else{
-            //LIKE DEEV
-            $user = $this->updateRoleUser($user);
-            $organization = $this->createTenant($user,$suscription);
-            tenancy()->initialize($organization->id);
-            event(new OrganizationWasCreated($organization));
+              return $result;
 
-            return ['data' => true];
+            }else{
+              //LIKE DEEV
+              $user = $this->updateRoleUser($user);
+              $organization = $this->createTenant($user,$suscription);
+              tenancy()->initialize($organization->id);
+              event(new OrganizationWasCreated($organization));
+
+              return ['data' => true];
+            }
+
           }
       
         }
