@@ -411,10 +411,33 @@ class TenantService
     }
 
     //Is creating a tenant - inactive some permissions
-    if($this->isCreatingLayout==false && $role->slug=="admin")
+    if($this->isCreatingLayout==false && $role->slug=="admin"){
+      /*
+      \Log::info("----------------------------------------------------------");
+      \Log::info("ALL PERMISSIONS OLD");
+      \Log::info("".json_encode($allPermissions));
+      \Log::info("----------------------------------------------------------");
+      */
+
       $allPermissions = $this->checkPermissions($allPermissions);
+      /*
+      \Log::info("----------------------------------------------------------");
+      \Log::info("ALL PERMISSIONS NEW");
+      \Log::info("".json_encode($allPermissions));
+      \Log::info("----------------------------------------------------------");
+      */
+    }
     
     $role->permissions = array_merge($allPermissions,$role->permissions ?? []);
+
+    /*
+    if($role->slug=="admin"){
+      \Log::info("----------------------------------------------------------");
+      \Log::info("MERGE ROLE");
+      \Log::info("".json_encode($role->permissions));
+      \Log::info("----------------------------------------------------------");
+    }
+    */
   
     $role->save();
     
