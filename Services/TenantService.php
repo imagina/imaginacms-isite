@@ -15,6 +15,9 @@ use Modules\Isite\Services\LayoutService;
 use Modules\Isite\Services\SettingService;
 use Modules\Isite\Services\UserService;
 
+// Events
+use Modules\Isite\Events\OrganizationWasCreated;
+
 class TenantService
 {
 
@@ -84,7 +87,7 @@ class TenantService
    * @param Request $request
    * @return mixed
    */
-  public function createTenantInMultiDatabase($data)
+  public function createTenantInMultiDatabase($data,$authenticateType = "credentials")
   {
     
     //central role
@@ -94,15 +97,30 @@ class TenantService
     
     if (!isset($role->id)) {
       $role = Role::where("slug", config("tenancy.defaultCentralRole"))->first();
-    }
+    } 
+
+    $updatePassword = false;
+    if(!isset($data['userData'])){
+
+      //Create the user in current DB
+      \Log::info("----------------------------------------------------------");
+      \Log::info("Creating central user with email: ".$data["email"]);
+      \Log::info("----------------------------------------------------------");
+      $userCentralData = $this->userService->create(array_merge($data, ["role" => $role]));
     
-    //Create the user in current DB
-    \Log::info("----------------------------------------------------------");
-    \Log::info("Creating central user with email: ".$data["email"]);
-    \Log::info("----------------------------------------------------------");
-    $userCentralData = $this->userService->create(array_merge($data, ["role" => $role]));
+    }else{
+
+      // Case from Wizard
+      $userCentralData = $data['userData'];
+      $updatePassword = true;
+      \Log::info("----------------------------------------------------------");
+      \Log::info("User with email: ".$userCentralData["user"]->email);
+      \Log::info("----------------------------------------------------------");
   
+    }
+
     //Create organization
+    $data['role'] = $role;
     $organization = $this->createTenant(array_merge($data, ["user" => $userCentralData["user"]]));
     $domain = $organization->domain;
 
@@ -217,19 +235,42 @@ class TenantService
 
     }
 
-    //Authenticating user in the Tenant DB
-    $authData = $this->userService->authenticate(array_merge($userCentralData, ["organization_id" => $organization->id]));
+    //Check authentication
+    $authData = null;
+    $redirectUrl = null;
 
+    $authData = $this->userService->authenticate(array_merge($userCentralData, ["organization_id" => $organization->id]));
+    $redirectUrl = "https://".$domain . "/iadmin?authbearer=" . str_replace("Bearer ", "",$authData->data->bearer)."&expiresatbearer=".urlencode($authData->data->expiresDate);
+
+    //Change de fake Password with Real Password (Case from Wizard)
+    if($updatePassword){
+      $this->userService->updatePasswordInTenant($userCentralData['user'],$tenantUser['user']);
+    }
+
+    //TODO check - Error using Wizard - With postman works fine
+    /*
+    if($authenticateType=="credentials"){
+      $authData = $this->userService->authenticate(array_merge($userCentralData, ["organization_id" => $organization->id]));
+      $redirectUrl = "https://".$domain . "/iadmin?authbearer=" . str_replace("Bearer ", "",$authData->data->bearer)."&expiresatbearer=".urlencode($authData->data->expiresDate);
+    }else{
+      $authData = $this->userService->authenticate($tenantUser,$authenticateType);
+      $redirectUrl = "https://".$domain . "/iadmin?authbearer=" . $authData['token'] . "&expiresatbearer=".urlencode($authData['expiresAt']);
+    }
+    */
+    
     \Log::info("----------------------------------------------------------");
     \Log::info("Tenant {{$organization->id}} successfully created");
     \Log::info("----------------------------------------------------------");
+
+    //Send User because this is the Central Organization with other User Id
+    event(new OrganizationWasCreated($organization,$tenantUser['user']));
 
     return [
       "suser" => ['supassword'=> $sAdmin['credentials']['password']],
       "credentials" => $userCentralData["credentials"],
       "authData" => $authData,
       "organization" => new OrganizationTransformer($organization),
-      "redirectUrl" => "https://".$domain . "/iadmin?authbearer=" . str_replace("Bearer ", "",$authData->data->bearer)."&expiresatbearer=".urlencode($authData->data->expiresDate)
+      "redirectUrl" => $redirectUrl
     ];
 
   }
@@ -370,10 +411,33 @@ class TenantService
     }
 
     //Is creating a tenant - inactive some permissions
-    if($this->isCreatingLayout==false && $role->slug=="admin")
+    if($this->isCreatingLayout==false && $role->slug=="admin"){
+      /*
+      \Log::info("----------------------------------------------------------");
+      \Log::info("ALL PERMISSIONS OLD");
+      \Log::info("".json_encode($allPermissions));
+      \Log::info("----------------------------------------------------------");
+      */
+
       $allPermissions = $this->checkPermissions($allPermissions);
+      /*
+      \Log::info("----------------------------------------------------------");
+      \Log::info("ALL PERMISSIONS NEW");
+      \Log::info("".json_encode($allPermissions));
+      \Log::info("----------------------------------------------------------");
+      */
+    }
     
     $role->permissions = array_merge($allPermissions,$role->permissions ?? []);
+
+    /*
+    if($role->slug=="admin"){
+      \Log::info("----------------------------------------------------------");
+      \Log::info("MERGE ROLE");
+      \Log::info("".json_encode($role->permissions));
+      \Log::info("----------------------------------------------------------");
+    }
+    */
   
     $role->save();
     

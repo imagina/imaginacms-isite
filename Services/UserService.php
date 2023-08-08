@@ -8,11 +8,13 @@ use Modules\User\Repositories\UserTokenRepository;
 use Modules\Iprofile\Entities\Role;
 use Modules\Core\Console\Installers\Scripts\UserProviders\SentinelInstaller;
 use Modules\Iprofile\Http\Controllers\Api\AuthApiController;
+use Illuminate\Support\Facades\Auth;
 
 class UserService
 {
 
     private $userTokenRepository;
+    private $log = "Isite:: UserService|";
 
     public function __construct(
         UserTokenRepository $userTokenRepository
@@ -100,7 +102,7 @@ class UserService
     
     }
 
-    public function authenticate($data)
+    public function authenticate($data,$type="credentials")
     {
   
         \Log::info("----------------------------------------------------------");
@@ -110,9 +112,38 @@ class UserService
         if (!isset(tenant()->id))
         tenancy()->initialize($data["organization_id"]);
         
-        $authApiController = app(AuthApiController::class);
+        if($type=="credentials"){
         
-        return json_decode($authApiController->authAttempt($data["credentials"])->content());
+            $authApiController = app(AuthApiController::class);
+            return json_decode($authApiController->authAttempt($data["credentials"])->content());
+        
+        }else{
+        
+            //TODO check - Error using Wizard - With postman works fine
+            $user = Auth::loginUsingId($data['user']->id);
+            $token = $user->createToken('Laravel Password Grant Client');
+
+            $response = [
+                "token" => $token->accessToken,
+                'expiresAt' => $token->token->expires_at
+            ];
+            
+            return $response;
+        }
+        
+    }
+
+    public function updatePasswordInTenant($centralUser,$tenantUser)
+    {
+
+        \Log::info($this->log.'updatePasswordInTenant');
+
+        $password = $centralUser->password;
+
+        \DB::table("users")->where("id","=",$tenantUser->id)->update([
+            "password"=> $password
+        ]);
+        
     }
 
 }

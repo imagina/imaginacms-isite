@@ -973,6 +973,22 @@ return [
                 "label" => "Alto imagen (Formato Libre)",
             ]
           ],
+          "imageMaxHeight" => [
+            "name" => "imageMaxHeight",
+            "value" => "none",
+            "type" => "input",
+            "props" => [
+                "label" => "Alto maximo (Formato Libre)",
+            ]
+          ],
+          "imageMinHeight" => [
+            "name" => "imageMinHeight",
+            "value" => "none",
+            "type" => "input",
+            "props" => [
+                "label" => "Alto minimo (Formato Libre)",
+            ]
+          ],
           "imageAlign" => [
             "name" => "imageAlign",
             "type" => "select",

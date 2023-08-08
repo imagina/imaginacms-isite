@@ -271,6 +271,8 @@
        object-fit: {{$imageObject}};
        padding: {{$imagePadding}}px;
        display: inline-flex;
+       max-height: {{$imageMaxHeight}};
+       min-height: {{$imageMinHeight}};
     }
     #{{$id}} .cover-img {
          border-radius: {{$imageRadio}};
@@ -283,6 +285,8 @@
          height: {{$imageHeight}};
          z-index: 1;
          position: relative;
+         max-height: {{$imageMaxHeight}};
+         min-height: {{$imageMinHeight}};
      }
 
     #{{$id}} .card-item {
@@ -437,11 +441,12 @@
      }
     @endif
     @if($imageAnimate=="image-animate-up")
-    #{{$id}} .card-item   {
-         transition: all .3s ease-in;
-     }
-    #{{$id}} .card-item:hover  {
-         transform: translateY(-10px);
+    #{{$id}}.item-layout {
+       margin-top: 15px;
+       transition: all .3s ease-in;
+    }
+    #{{$id}}.item-layout:hover  {
+        margin-top: 5px;
     }
     @endif
 </style>

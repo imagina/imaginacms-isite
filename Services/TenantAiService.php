@@ -35,12 +35,13 @@ class TenantAiService
     $category = tenant()->category->title ?? null;
     \Log::info($this->log."processAi|Tenant|Id: ".tenant()->id."|Category: ".$category);
 
+    
     //Ai Service in Modules
-    //$dataPages = $this->pageService->getPages();
-    //$dataPosts = $this->blogService->getPosts();
-    //$dataSlides = $this->sliderService->getSlides();
-    //$dataProducts = $this->icommerceService->getProducts();
-   
+    //$resultPages = $this->pageService->startProcesses();
+    //$resultPosts = $this->blogService->startProcesses();
+    //$resultIcommerce = $this->icommerceService->startProcesses();
+    //$resultSlides = $this->sliderService->startProcesses();
+    
     \Log::info($this->log."processAi|END");
 
   }

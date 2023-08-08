@@ -41,9 +41,9 @@ class EloquentLayoutRepository extends EloquentCrudRepository implements LayoutR
         * Se aplica para que el layout se pueda encontrar a pesar
         de ser "internal"
         */
-   
-   
+    if(!isset($filter->isInternal)){
       $query->where("is_internal", 0);
+    }
    
     //Response
     return $query;

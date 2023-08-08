@@ -335,6 +335,8 @@
         display: inline-flex;
         box-shadow:  {{$imageShadow}};
         transition: all 0.25s ease-out;
+        max-height: {{$imageMaxHeight}};
+        min-height: {{$imageMinHeight}};
     }
     #{{$id}} .cover-img {
       border-radius: {{$imageRadio}};
@@ -347,6 +349,8 @@
       height: {{$imageHeight}} !important;
       z-index: 1;
       position: relative;
+      max-height: {{$imageMaxHeight}};
+      min-height: {{$imageMinHeight}};
     }
     @if($contentBorderShadows=='none')
         #{{$id}} .item-border {
