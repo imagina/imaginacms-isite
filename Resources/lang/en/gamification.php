@@ -28,7 +28,9 @@ return [
     "settingsDescription" => "Manage your site settings",
     "settingsOrganization" => "My Site",
     "settingsOrganizationDescription" => "Manage your site settings",
-    "adminOrganizationWizardWelcome" => "Welcome to Weygo!",
+    "adminOrganizationWizardWelcome" => "Welcome!",
     "adminOrganizationWizardWelcomeDescription" => "Here you can create your site in a simple and efficient way. We will guide you through each step so you can express your vision online. Let's start creating your site! 🚀",
+    "adminOrganizationWizardSummary" => "Summary",
+    "adminOrganizationWizardSummaryDescription" => "Congratulations! You have reached the last step of the process of creating your website. Now you just need to review the selected data and make sure everything is in order. Thank you for choosing us!",
   ],
 ];

@@ -100,6 +100,14 @@ return [
       'categoryId' => 'admin_organization_wizard',
       'roles' => [],
       "mainImage" => "modules/isite/img/gamification/theme.png"
+    ],
+    [
+      'systemName' => 'admin_organization_wizard_summary',
+      'title' => "$transPrefix.activities.adminOrganizationWizardSummary",
+      'description' => "$transPrefix.activities.adminOrganizationWizardSummaryDescription",
+      'type' => 1,
+      'categoryId' => 'admin_organization_wizard',
+      'roles' => []
     ]
   ]
 ];
