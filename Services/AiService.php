@@ -48,9 +48,17 @@ class AiService
           if (isset($value->es)) $tmpItem["es"][$key] = $value->es;
           if (isset($value->es) || isset($value->en)) continue;//Break
           $tmpItem[$key] = $value;
+          
+          if($key==="tags"){
+            $itemImage = $this->getImage($value);
+            $tmpItem['image'] = $itemImage;
+          }
+
         }
         $response[] = $tmpItem;
       }
+
+
       //Get response
       return $response;
     } catch (\Exception $e) {
@@ -83,6 +91,7 @@ class AiService
       'category_id' => "category_id: Categoriza el elemento según su contenido en una de las siguientes categorías " .
         "seleccionando solo el ID: ",
       'price' => "price: Un valor Integer referente a valor de moneda colombiana",
+      'tags' => "tags: crear tags separadados por coma"
     ];
     //Include the required fields
     foreach ($fields as $fieldName) {
@@ -98,4 +107,29 @@ class AiService
     //Response
     return $response;
   }
+
+  public function getImage($tags)
+  {
+    
+    \Log::info($this->logTitle."-> getImage |");
+
+    if(is_array($tags))
+      $tags = implode(",",$tags);
+    
+
+    $params = [
+      'query' => [
+         'prompt' => '"'.$tags.'"',
+         'take' => 1
+      ]
+   ];
+
+    $client = new \GuzzleHttp\Client();
+    $request = $client->request('GET',"{$this->n8nBaseUrl}/ia/image",$params);
+    $requestResponse = json_decode($request->getBody()->getContents());
+
+    return $requestResponse;
+
+  }
+
 }
