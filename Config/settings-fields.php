@@ -1153,6 +1153,21 @@ return [
       'label' => 'N8N Url'
     ]
   ],
+  'n8nMaxAttempts' => [
+    "onlySuperAdmin" => true,
+    'name' => 'isite::n8nMaxAttempts',
+    'value' => 3,
+    'type' => 'input',
+    'groupName' => 'N8N',
+    'groupTitle' => 'N8N',
+    'columns' => 'col-12 col-md-6',
+    'help' => [
+      "description" => "Attempts that each service will make if the response fails"
+    ],
+    'props' => [
+      'label' => 'Max Attemps'
+    ]
+  ],
   'offline' => [
     'name' => 'isite::offline',
     'value' => '0',
