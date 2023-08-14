@@ -22,7 +22,7 @@ class TenantAiService
   }
 
 
-  public function processAi($tenantId = null)
+  public function processAi($tenantId = null,$extraData = null)
   {
 
     \Log::info($this->log."processAi|START");
@@ -37,13 +37,15 @@ class TenantAiService
 
     
     //Ai Service in Modules
-    $resultPages = $this->pageService->startProcesses();
-    $resultPosts = $this->blogService->startProcesses();
-    $resultSlides = $this->sliderService->startProcesses();
+    if($extraData==NULL || in_array("page",$extraData)) $resultPages = $this->pageService->startProcesses();
+    if($extraData==NULL || in_array("blog",$extraData)) $resultPosts = $this->blogService->startProcesses();
+    if($extraData==NULL || in_array("slider",$extraData)) $resultSlides = $this->sliderService->startProcesses();
     
-    if(\Schema::hasTable('icommerce__products'))
-      $resultIcommerce = $this->icommerceService->startProcesses();
-    
+    if(\Schema::hasTable('icommerce__products')){
+      if($extraData==NULL || in_array("icommerce",$extraData)) 
+        $resultIcommerce = $this->icommerceService->startProcesses();
+    }
+     
     \Log::info($this->log."processAi|END");
 
   }
