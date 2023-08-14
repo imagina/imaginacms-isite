@@ -37,10 +37,12 @@ class TenantAiService
 
     
     //Ai Service in Modules
-    //$resultPages = $this->pageService->startProcesses();
-    //$resultPosts = $this->blogService->startProcesses();
-    //$resultIcommerce = $this->icommerceService->startProcesses();
-    //$resultSlides = $this->sliderService->startProcesses();
+    $resultPages = $this->pageService->startProcesses();
+    $resultPosts = $this->blogService->startProcesses();
+    $resultSlides = $this->sliderService->startProcesses();
+    
+    if(\Schema::hasTable('icommerce__products'))
+      $resultIcommerce = $this->icommerceService->startProcesses();
     
     \Log::info($this->log."processAi|END");
 
