@@ -9,33 +9,32 @@ use Modules\Isite\Entities\ReportQueue;
 
 trait ReportQueueTrait
 {
+  public $userId;
   public $internalTraitLog = "ReportQueueTrait::";
 
   public function lockReport($reportName)
   {
     //Validate user session
-    $user = \Auth::user();
-    if (!$user) return \Log::info("{$this->internalTraitLog} NO lockReport, missing session");
+    if (!$this->userId) return \Log::info("{$this->internalTraitLog} NO lockReport, missing userId");
     //Handle the report queue
     ReportQueue::updateOrCreate(
-      ['report' => $reportName, 'user_id' => $user->id],
+      ['report' => $reportName, 'user_id' => $this->userId],
       ['start_date' => now()]
     );
     //Log
-    \Log::info("{$this->internalTraitLog}lockReport|Report:{$reportName}|User:{$user->id}");
+    \Log::info("{$this->internalTraitLog}lockReport|Report:{$reportName}|User:{$this->userId}");
   }
 
   public function unlockReport($reportName)
   {
     //Validate user session
-    $user = \Auth::user();
-    if (!$user) return \Log::info("{$this->internalTraitLog} NO unlockReport, missing session");
+    if (!$this->userId) return \Log::info("{$this->internalTraitLog} NO unlockReport, missing userId");
     //Handle the report queue
     ReportQueue::updateOrCreate(
-      ['report' => $reportName, 'user_id' => $user->id],
+      ['report' => $reportName, 'user_id' => $this->userId],
       ['start_date' => null]
     );
     //Log
-    \Log::info("{$this->internalTraitLog}unlockReport|Report:{$reportName}|User:{$user->id}");
+    \Log::info("{$this->internalTraitLog}unlockReport|Report:{$reportName}|User:{$this->userId}");
   }
 }
