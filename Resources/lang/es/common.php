@@ -230,4 +230,7 @@ return [
       'labelButtonSearch' => 'Buscar',
     ],
   ],
+  'button' => [
+    'update' => 'Actualizar'
+  ],
 ];
