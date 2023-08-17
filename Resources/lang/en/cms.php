@@ -394,7 +394,14 @@ return [
     "axis" => "Axis | Axes",
     "audio" => "Audio | Audios",
     "ratio" => "Ratio | Ratios",
-    "format" => "Format | Formats"
+    "format" => "Format | Formats",
+    "endPoint" => "End Point",
+    "token" => "Token",
+    "start" => "Start",
+    "continueUser" => "Continue with this User",
+    "createNewAccount" => "Create new account",
+    "continue" => "Continue",
+    "plan" => "Plan"
   ],
   "message" => [
     "organizationNoCreated" => "We are excited to let you know that we are in the process of creating your site! We appreciate your patience while we provide you with an improved online experience. As soon as everything is ready, you will receive an email notification",
@@ -468,7 +475,11 @@ return [
     "hintFilterByQuery" => "Type 3 or more characters to search for options",
     "invalidFormat" => "Invalid format",
     "specialCharactersAreNotAllowed" => "Special characters are not allowed",
-    "configureThisSection" => "configure This section"
+    "configureThisSection" => "configure This section",
+    "selectedCategory" => "Selected category",
+    "noCategories" => "There are no categories",
+    "selectedTemplate" => "Selected template",
+    "noTemplates" => "No templates"
   ],
   "form" => [
     "id" => "ID",
