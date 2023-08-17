@@ -201,5 +201,8 @@ return [
     'titlePhone' => 'Phone',
     'titleAddress' => 'Address',
     'titleEmail' => 'E-mail',
-  ]
+  ],
+  'button' => [
+    'update' => 'Update'
+  ],
 ];

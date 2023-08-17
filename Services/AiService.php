@@ -8,11 +8,15 @@ class AiService
   public $n8nBaseUrl;
   public $translatablePrompt;
 
+  private $fileService;
+
   public function __construct()
   {
     $this->logTitle = "[IA]::Service";
     $this->n8nBaseUrl = setting("isite::n8nBaseUrl");
     $this->translatablePrompt = "Generar para español e ingles poniendo los valores así {en, es}";
+
+    $this->fileService = app("Modules\Media\Services\FileService");
   }
 
   /**
@@ -108,6 +112,9 @@ class AiService
     return $response;
   }
 
+  /**
+   * Save image from AI
+   */
   public function getImage($tags)
   {
     
@@ -129,6 +136,23 @@ class AiService
     $requestResponse = json_decode($request->getBody()->getContents());
 
     return $requestResponse;
+
+  }
+
+  /**
+   * Save image in entity from AI
+   */
+  public function saveImage($image)
+  {
+
+    \Log::info($this->logTitle."|saveImage|entity");
+   
+    $path = $image->url;
+    $provider = $image->provider;
+
+    $fileCreated = $this->fileService->storeHotLinked($path,$provider);
+
+    return $fileCreated;
 
   }
 

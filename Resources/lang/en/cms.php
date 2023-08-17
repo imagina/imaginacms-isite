@@ -636,6 +636,7 @@ return [
       "title" => "Templates"
 
     ]
-  ]
+  ],
+  "reportQueue" => "You already have a report in progress, you requested it on <b>{date}</b>. As soon as it is finished we will enable the 'create' function for you... We do this to make the app work much better!"
 ];
 

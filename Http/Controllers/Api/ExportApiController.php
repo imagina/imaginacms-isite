@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use Modules\Isite\Exports\RepositoryExport;
 use Modules\Isite\Jobs\PDFExport;
+use Modules\Isite\Repositories\ReportQueueRepository;
 
 class ExportApiController extends BaseApiController
 {
@@ -38,7 +39,7 @@ class ExportApiController extends BaseApiController
       //Get Parameters from URL.
       $params = $this->getParamsRequest($request);
       $exportParams = (object)(is_string($request->exportParams) ? json_decode($request->exportParams) : $request->exportParams);
-      $fileName = $exportParams->fileName . "-" . $params->user->id . ".".($this->fileTypes[$exportParams->fileType ?? "excel"]);
+      $fileName = $exportParams->fileName . "-" . $params->user->id . "." . ($this->fileTypes[$exportParams->fileType ?? "excel"]);
 
       //Check if file exist
       $existFile = Storage::disk($this->disk)->exists($fileName);
@@ -49,6 +50,18 @@ class ExportApiController extends BaseApiController
         'size' => Storage::disk($this->disk)->size($fileName),
         'lastModified' => date('Y-m-d H:i:s', Storage::disk($this->disk)->lastModified($fileName))
       ];
+
+      //Check reportQueue
+      $userId = $params->user->id ?? null;
+      $reportQueueDate = null;
+      if ($userId) {
+        $reportQueueRepository = app("Modules\Isite\Repositories\ReportQueueRepository");
+        $reportQueueParams = ["filter" => ["user_id" => $userId, "field" => "report"]];
+        $reportQueue = $reportQueueRepository->getItem($exportParams->exportName, json_decode(json_encode($reportQueueParams)));
+        $reportQueueDate = $reportQueue->start_date ?? null;
+      }
+      //Include to response
+      $response["reportQueue"] = $reportQueueDate;
     } catch (\Exception $e) {
       $status = $this->getStatusError($e->getCode());
       $response = ["errors" => $e->getMessage()];
@@ -77,12 +90,12 @@ class ExportApiController extends BaseApiController
       $params = $this->getParamsRequest($request);
       $exportParams = (is_string($request->exportParams) ? json_decode($request->exportParams) : (object)$request->exportParams);
 
-      switch($exportParams->fileType ?? "excel"){
+      switch ($exportParams->fileType ?? "excel") {
         case "pdf":
           PDFExport::dispatch($params, $exportParams, $this->disk);
           break;
         case "excel":
-  
+
           if (isset($exportParams->repositoryName)) {//Generate File report by repository
             Excel::store(
               new RepositoryExport($params, $exportParams),

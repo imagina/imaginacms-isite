@@ -85,7 +85,16 @@ return [
         'destroy' => 'isite::modules.destroy resource',
         'restore' => 'isite::modules.restore resource',
     ],
+    'isite.reportqueues' => [
+        'manage' => 'isite::reportqueues.manage resource',
+        'index' => 'isite::reportqueues.list resource',
+        'create' => 'isite::reportqueues.create resource',
+        'edit' => 'isite::reportqueues.edit resource',
+        'destroy' => 'isite::reportqueues.destroy resource',
+        'restore' => 'isite::reportqueues.restore resource',
+    ],
 // append
+
 
 
 
