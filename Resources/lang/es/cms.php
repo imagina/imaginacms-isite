@@ -648,6 +648,7 @@ return [
       "title" => "Plantillas"
     ]
   ],
-  "reportQueue" => "Ya tienes un reporte en progreso, lo solicitaste en <b>{date}</b>. Tan pronto este termine habilitaremos la función de 'crear' para ti... Esto lo hacemos para que la aplicación funcione mucho mejor!"
+  "reportQueue" => "Ya tienes un reporte en progreso, lo solicitaste en <b>{date}</b>. Tan pronto este termine habilitaremos la función de 'crear' para ti... Esto lo hacemos para que la aplicación funcione mucho mejor!",
+  "sessionFound" => "Hay una sesión activa"
 ];
 
