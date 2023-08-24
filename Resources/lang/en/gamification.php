@@ -32,5 +32,7 @@ return [
     "adminOrganizationWizardWelcomeDescription" => "Here you can create your site in a simple and efficient way. We will guide you through each step so you can express your vision online. Let's start creating your site! 🚀",
     "adminOrganizationWizardSummary" => "Summary",
     "adminOrganizationWizardSummaryDescription" => "Congratulations! You have reached the last step of the process of creating your website. Now you just need to review the selected data and make sure everything is in order. Thank you for choosing us!",
+      "adminOrganizationWizardAI" => "Power your Website with Artificial Intelligence",
+      "adminOrganizationWizardAIDescription" => "By sharing some details with us, we will be able to use Artificial Intelligence to generate your optimized and tailored content especially for your site. Give your visitors a unique and personalized experience!",
   ],
 ];
