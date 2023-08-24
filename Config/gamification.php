@@ -108,6 +108,15 @@ return [
       'type' => 1,
       'categoryId' => 'admin_organization_wizard',
       'roles' => []
-    ]
+    ],
+    [
+      'systemName' => 'admin_organization_wizard_ai',
+      'title' => "$transPrefix.activities.adminOrganizationWizardAI",
+      'description' => "$transPrefix.activities.adminOrganizationWizardAIDescription",
+      'type' => 1,
+      'categoryId' => 'admin_organization_wizard',
+      'roles' => [],
+      "mainImage" => "modules/isite/img/gamification/ai.png"
+    ],
   ]
 ];
