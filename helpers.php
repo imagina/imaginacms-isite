@@ -227,7 +227,7 @@ if (!function_exists('showDataConnection')) {
 
     $dbname = \DB::connection()->getDatabaseName();
     if ($inLog)
-      \Log::info("Isite: Helper|ShowDataConnection|DB: " . $dbname);
+      \Log::info("********||||******** Isite: Helper|ShowDataConnection|DB: " . $dbname);
   }
 
 }
@@ -269,4 +269,82 @@ if (!function_exists('addQueryParamToUrl')) {
 
     return $url;
   }
+}
+
+/**
+ * 
+ */
+if (!function_exists('forceInitializeTenant')) {
+  
+  function forceInitializeTenant($tenantId)
+  {
+
+    \Log::info("Isite: Helper|forceInitializeTenant|tenantId: ".$tenantId);
+
+    if (tenancy()->initialized) {
+        tenancy()->end();
+    }
+
+    tenancy()->initialize(tenancy()->find($tenantId));
+
+  }
+
+}
+
+/**
+* @param $centralOrg (Central Organization has data to connect DB)
+*/
+if (!function_exists('switchDataConnection')) {
+
+  function switchDataConnection($centralOrg = null)
+  {
+
+    if (isset(tenant()->id)){
+      $tenantId = tenant()->id;
+      \Log::info("Isite: Helper|switchDataConnection|tenantId: " . $tenantId);
+
+      
+      if(!is_null($centralOrg)){
+        \Log::info("Isite: Helper|switchDataConnection|TenancyDb: ".$centralOrg->tenancy_db_name);
+
+        $currentDb = \DB::connection()->getDatabaseName();
+        \Log::info("Isite: Helper|switchDataConnection|CurrentDb: ".$currentDb);
+
+
+        if($currentDb!=$centralOrg->tenancy_db_name){
+
+          \Log::info("Isite: Helper|switchDataConnection|Switching....");
+
+          // Get mysql data to connection
+          $dataMySql = config('database.connections.mysql');
+          $dataMySqlTenant = [
+            "database" => $centralOrg->tenancy_db_name,
+            "username" => $centralOrg->tenancy_db_username,
+            "password" => $centralOrg->tenancy_db_password,
+            'table' => 'cache'
+          ];
+
+          // Add new data
+          $newDataConnection = array_merge($dataMySql,$dataMySqlTenant);
+
+          //\Log::info("Isite: Helper|switchDataConnection|NewData: ".json_encode($newDataConnection));
+
+          //Si cambia pero da un error al guardar datos luego
+          /*
+          Call to a member function beginTransaction() on null {"exception":"[object] (Error(code: 0): Call to a member function beginTransaction() on null 
+            at /home/wygo/webapps/dev-weygo/icms/vendor/laravel/framework/src/Illuminate/Database/Concerns/ManagesTransactions.php:175
+          */
+          \DB::purge('mysql');
+          \Config::set('database.connections.mysql',$newDataConnection);
+
+          showDataConnection();
+
+        }
+
+      }
+
+    }
+
+  }
+
 }
