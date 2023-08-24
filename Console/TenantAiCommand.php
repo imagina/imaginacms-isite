@@ -24,7 +24,7 @@ class TenantAiCommand extends Command
     $modules = count($this->argument('modules'))>0 ? $this->argument('modules') : null;
 
     $this->info("Ai Service| START");
-    app("Modules\Isite\Services\TenantAiService")->processAi($tenantId,$modules);
+    app("Modules\Isite\Services\TenantAiService")->processAi($tenantId,$modules,0,true);
     $this->info("Ai Service| COMPLETED");
 
   }
