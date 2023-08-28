@@ -2,53 +2,74 @@
 
 namespace Modules\Isite\Services;
 
+use Modules\Isite\Jobs\ProcessAi;
+
 class TenantAiService
 {
 
   private $log = "Isite: TenantAiService|";
 
-  private $pageService;
-  private $blogService;
-  private $sliderService;
-  private $icommerceService;
- 
-  
-  public function __construct()
-  {
-      $this->pageService = app("Modules\Page\Services\PageContentAi");
-      $this->blogService = app("Modules\Iblog\Services\BlogContentAi");
-      $this->sliderService = app("Modules\Slider\Services\SliderContentAi");
-      $this->icommerceService = app("Modules\Icommerce\Services\IcommerceContentAi");
-  }
-
-
-  public function processAi($tenantId = null,$extraData = null)
+  /**
+   * @param $tenantId [Case from command]
+   * @param $extraData [Case from command] (names: page blog slider icommerce)
+   * @param $typeOfExecution (0 = all in one process | 1 = executte in jobs )
+   * @param $initTenant [case from command]
+   */
+  public function processAi($tenantId = null,$extraData = null,$typeOfExecution=0,$initTenant=false)
   {
 
     \Log::info($this->log."processAi|START");
 
-    //Priority from command (Example)
-    if(!is_null($tenantId)){
+    //Case command
+    if(!is_null($tenantId) && $initTenant){
+      \Log::info($this->log."processAi|Command|Initialize Tenant");
       tenancy()->initialize($tenantId);
     }
 
     $category = tenant()->category->title ?? null;
     \Log::info($this->log."processAi|Tenant|Id: ".tenant()->id."|Category: ".$category);
 
-    
-    //Ai Service in Modules
-    if($extraData==NULL || in_array("page",$extraData)) $resultPages = $this->pageService->startProcesses();
-    if($extraData==NULL || in_array("blog",$extraData)) $resultPosts = $this->blogService->startProcesses();
-    if($extraData==NULL || in_array("slider",$extraData)) $resultSlides = $this->sliderService->startProcesses();
-    
+
+    //Check execution to services
+    if($extraData==NULL || in_array("page",$extraData))
+      $this->validateExecution($typeOfExecution,"Modules\Page\Services\PageContentAi",$tenantId);
+
+    if($extraData==NULL || in_array("blog",$extraData)) 
+      $this->validateExecution($typeOfExecution,"Modules\Iblog\Services\BlogContentAi",$tenantId);
+
+    if($extraData==NULL || in_array("slider",$extraData))
+      $this->validateExecution($typeOfExecution,"Modules\Slider\Services\SliderContentAi",$tenantId);
+   
+    //Icommerce
     if(\Schema::hasTable('icommerce__products')){
       if($extraData==NULL || in_array("icommerce",$extraData)) 
-        $resultIcommerce = $this->icommerceService->startProcesses();
+        $this->validateExecution($typeOfExecution,"Modules\Icommerce\Services\IcommerceContentAi",$tenantId);
     }
-     
+
     \Log::info($this->log."processAi|END");
 
   }
+
+ 
+  public function validateExecution($typeOfExecution,$service,$tenantId)
+  {
+
+    if($typeOfExecution==0){
+       
+        //Like a command
+        $results = app($service)->startProcesses();
+    }else{
+        //Like a job
+        \Log::info($this->log."processAi|DispatchJob: ".$service);
+        ProcessAi::dispatch([
+          "baseClass" =>$service,
+          "tenantId" => $tenantId,
+          "multiple" => true
+        ]);
+    }
+    
+  }
+  
   
 
 }

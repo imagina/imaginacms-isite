@@ -204,6 +204,7 @@ return [
     'mapsLabel' => 'Mapas en el sitio',
     'labelLocationSite' => 'Ubicación Sede Principal',
     'labelLocationName' => 'Nombre Sede Principal',
+    'labelIframeMap' => 'Iframe Mapa Ubicación Sede Principal',
   ],
   'feeds' => [
     'titlePosts' => 'Todas las nuevas publicaciones en ',
