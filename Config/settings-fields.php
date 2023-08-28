@@ -977,6 +977,19 @@ return [
       'label' => 'isite::common.maps.labelLocationSite'
     ]
   ],
+  'iframeMap' => [
+    'name' => 'isite::iframeMap',
+    'value' => null,
+    'type' => 'input',
+    'groupName' => 'maps',
+    'groupTitle' => 'isite::common.maps.groupMaps',
+    'columns' => 'col-12',
+    'props' => [
+      'label' => 'isite::common.maps.labelIframeMap',
+      'type' => 'textarea',
+      'rows' => 12,
+    ],
+  ],
   'tenantWithCentralData' => [
     'value' => [],
     'name' => 'isite::tenantWithCentralData',

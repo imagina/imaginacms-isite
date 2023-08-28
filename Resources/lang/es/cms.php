@@ -400,7 +400,14 @@ return [
     "axis" => "Eje | Ejes",
     "audio" => "Audio | Audios",
     "ratio" => "Proporción | Proporciones",
-    "format" => "Formato | Formatos"
+    "format" => "Formato | Formatos",
+    "endPoint" => "Punto Final",
+    "token" => "Token",
+    "start" => "Empezar",
+    "continueUser" => "Continuar con este Usuario",
+    "createNewAccount" => "Crear Nueva Cuenta",
+    "continue" => "Continuar",
+    "plan" => "Plan"
   ],
   "message" => [
     "organizationNoCreated" => "¡Estamos emocionados de contarte que estamos en el proceso de crear tu sitio! Agradecemos tu paciencia mientras te brindamos una experiencia en línea mejorada. tan pronto todo este listo, recibirás una notificación por correo electrónico",
@@ -469,7 +476,11 @@ return [
     "hintFilterByQuery" => "Escribe 3 o más caracteres para buscar opciones",
     "invalidFormat" => "Formato invalido",
     "specialCharactersAreNotAllowed" => "No se permiten caracteres especiales",
-    "configureThisSection" => "Configura esta sección"
+    "configureThisSection" => "Configura esta sección",
+    "selectedCategory" => "Categoría seleccionada",
+    "noCategories" => "No existen categorías",
+    "selectedTemplate" => "Plantilla seleccionada",
+    "noTemplates" => "No existen plantillas"
   ],
   "form" => [
     "id" => "ID",
@@ -637,6 +648,7 @@ return [
       "title" => "Plantillas"
     ]
   ],
-  "reportQueue" => "Ya tienes un reporte en progreso, lo solicitaste en <b>{date}</b>. Tan pronto este termine habilitaremos la función de 'crear' para ti... Esto lo hacemos para que la aplicación funcione mucho mejor!"
+  "reportQueue" => "Ya tienes un reporte en progreso, lo solicitaste en <b>{date}</b>. Tan pronto este termine habilitaremos la función de 'crear' para ti... Esto lo hacemos para que la aplicación funcione mucho mejor!",
+  "sessionFound" => "Hay una sesión activa"
 ];
 
