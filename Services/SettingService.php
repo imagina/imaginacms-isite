@@ -25,6 +25,9 @@ class SettingService
         $siteName = $data["title"] ?? "My Site";
         $this->updateSetting("core::site-name",$siteName,true);
 
+        $siteDescription = $data["description"] ?? "My Site Description";
+        $this->updateSetting("core::site-description",$siteDescription,true);
+
         //Iforms - usersToNotify
         $ids = [$tenantUser->id];
         $this->updateSetting("iforms::usersToNotify",$ids);
