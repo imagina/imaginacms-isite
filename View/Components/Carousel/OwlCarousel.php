@@ -71,6 +71,8 @@ class OwlCarousel extends Component
     public $owlLineTitleConfig;
     public $owlTitleClasses;
     public $owlSubtitleClasses;
+    public $dotsStyleColor;
+    public $dotsSize;
 
     /**
      * Create a new component instance.
@@ -135,7 +137,9 @@ class OwlCarousel extends Component
                                 $owlWithLineTitle = 0,
                                 $owlLineTitleConfig = [],
                                 $owlTitleClasses = "",
-                                $owlSubtitleClasses = ""
+                                $owlSubtitleClasses = "",
+                                $dotsStyleColor = "",
+                                $dotsSize = ""
     )
     {
 
@@ -206,6 +210,8 @@ class OwlCarousel extends Component
             "height" => "2px",
             "width" => "10%",
             "margin" => "0 auto"];
+        $this->dotsStyleColor = $dotsStyleColor;
+        $this->dotsSize = $dotsSize;
         $this->getItems();
         list($this->editLink, $this->tooltipEditLink) = getEditLink($this->repository);
         if($nav && $navText!="") {
