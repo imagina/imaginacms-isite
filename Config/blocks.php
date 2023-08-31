@@ -299,8 +299,18 @@ return [
             "name" => "titleColor",
             "type" => "select",
             "props" => [
-              "label" => "Color",
+              "label" => "Color Class",
               "options" => $vAttributes["textColors"]
+            ]
+          ],
+          "titleColorCustom" => [
+            "name" => "titleColorCustom",
+            "type" => "inputColor",
+            "props" => [
+                "label" => "Color Custom",
+            ],
+            "help" => [
+                "description" => "Selecciona el color Custom en Color Class para activarlo",
             ]
           ],
           "titleAlign" => [
@@ -455,12 +465,30 @@ return [
               "options" => $vAttributes["textAlign"]
             ]
           ],
+          "summaryLetterSpacing" => [
+            "name" => "summaryLetterSpacing",
+            "type" => "input",
+            "props" => [
+                "label" => "Espacio entre letras",
+                "type" => "number"
+            ]
+          ],
           "summaryColor" => [
             "name" => "summaryColor",
             "type" => "select",
             "props" => [
-              "label" => "Color",
+              "label" => "Color Class",
               "options" => $vAttributes["textColors"]
+            ]
+          ],
+          "summaryColorCustom" => [
+            "name" => "summaryColorCustom",
+            "type" => "inputColor",
+            "props" => [
+                "label" => "Color Custom",
+            ],
+            "help" => [
+                "description" => "Selecciona el color Custom en Color Class para activarlo",
             ]
           ],
           "summaryMarginT" => [
@@ -479,14 +507,6 @@ return [
             "props" => [
               "label" => "Margen inferior",
               "options" => $vAttributes["marginB"]
-            ]
-          ],
-          "summaryLetterSpacing" => [
-            "name" => "summaryLetterSpacing",
-            "type" => "input",
-            "props" => [
-              "label" => "Espacio entre letras",
-              "type" => "number"
             ]
           ],
           "summaryTextDecoration" => [
@@ -592,12 +612,30 @@ return [
               "options" => $vAttributes["align"]
             ]
           ],
+          "categoryLetterSpacing" => [
+            "name" => "categoryLetterSpacing",
+            "type" => "input",
+            "props" => [
+                "label" => "Espacio entre letras",
+                "type" => "number"
+            ]
+          ],
           "categoryColor" => [
             "name" => "categoryColor",
             "type" => "select",
             "props" => [
-              "label" => "Color",
+              "label" => "Color Class",
               "options" => $vAttributes["textColors"]
+            ]
+          ],
+          "categoryColorCustom" => [
+            "name" => "categoryColorCustom",
+            "type" => "inputColor",
+            "props" => [
+                "label" => "Color Custom",
+            ],
+            "help" => [
+                "description" => "Selecciona el color Custom en Color Class para activarlo",
             ]
           ],
           "categoryMarginT" => [
@@ -614,14 +652,6 @@ return [
             "props" => [
               "label" => "Margen inferior",
               "options" => $vAttributes["marginB"]
-            ]
-          ],
-          "categoryLetterSpacing" => [
-            "name" => "categoryLetterSpacing",
-            "type" => "input",
-            "props" => [
-              "label" => "Espacio entre letras",
-              "type" => "number"
             ]
           ],
           "categoryTextDecoration" => [
@@ -689,12 +719,30 @@ return [
               "options" => $vAttributes["align"]
             ]
           ],
+          "createdDateLetterSpacing" => [
+            "name" => "createdDateLetterSpacing",
+            "type" => "input",
+            "props" => [
+                "label" => "Espacio entre letras",
+                "type" => "number"
+            ]
+          ],
           "createdDateColor" => [
             "name" => "createdDateColor",
             "type" => "select",
             "props" => [
-              "label" => "Color",
+              "label" => "Color Class",
               "options" => $vAttributes["textColors"]
+            ]
+          ],
+          "createdDateColorCustom" => [
+            "name" => "createdDateColorCustom",
+            "type" => "inputColor",
+            "props" => [
+                "label" => "Color Custom",
+            ],
+            "help" => [
+                "description" => "Selecciona el color Custom en Color Class para activarlo",
             ]
           ],
           "createdDateMarginT" => [
@@ -711,14 +759,6 @@ return [
             "props" => [
               "label" => "Margen inferior",
               "options" => $vAttributes["marginB"]
-            ]
-          ],
-          "createdDateLetterSpacing" => [
-            "name" => "createdDateLetterSpacing",
-            "type" => "input",
-            "props" => [
-              "label" => "Espacio entre letras",
-              "type" => "number"
             ]
           ],
           "formatCreatedDate" => [

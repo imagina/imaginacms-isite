@@ -4,7 +4,7 @@ return [
     "bgColor" => [
         ["label" => "Primary", "value" => "primary"],
         ["label" => "Secondary", "value" => "secondary"],
-        ["label" => "success", "value" => "success"],
+        ["label" => "Success", "value" => "success"],
         ["label" => "Danger", "value" => "danger"],
         ["label" => "Warning", "value" => "warning"],
         ["label" => "Info", "value" => "info"],
@@ -27,7 +27,9 @@ return [
         ["label" => "Danger", "value" => "text-danger"],
         ["label" => "Dark", "value" => "text-dark"],
         ["label" => "Light", "value" => "text-light"],
-        ["label" => "White", "value" => "text-white"]
+        ["label" => "White", "value" => "text-white"],
+        ["label" => "Success", "value" => "text-success"],
+        ["label" => "Custom", "value" => "text-custom"]
     ],
     "marginB" => [
         ["label" => "0", "value" => "mb-0"],
