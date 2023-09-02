@@ -303,5 +303,6 @@ return [
 | Microsoft Clarity Global Script
 |--------------------------------------------------------------------------
 */
-  'msClarityScript' => ''
+  'msClarityScript' => '',
+
 ];
