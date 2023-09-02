@@ -407,6 +407,7 @@
         overflow: hidden;
         height: @if($titleHeight) {{$titleHeight}}px @else auto @endif;
         text-shadow:  {{$titleShadow}};
+        @if($titleColor=="text-custom") color: {{$titleColorCustom}}; @endif
     }
     #{{$id}} .item-summary .summary {
         font-size: {{$summaryTextSize}}px;
@@ -415,16 +416,19 @@
         overflow: hidden;
         height: @if($summaryHeight) {{$summaryHeight}}px @else auto @endif;
         text-shadow:  {{$summaryShadow}};
+        @if($summaryColor=="text-custom") color: {{$summaryColorCustom}}; @endif
     }
     #{{$id}} .item-category .category {
         font-size: {{$categoryTextSize}}px;
         letter-spacing: {{$categoryLetterSpacing}}px;
         text-shadow:  {{$categoryShadow}};
+        @if($categoryColor=="text-custom") color: {{$categoryColorCustom}}; @endif
     }
     #{{$id}} .item-created-date .created-date {
         font-size: {{$createdDateTextSize}}px;
         letter-spacing: {{$createdDateLetterSpacing}}px;
         text-shadow:  {{$createdDateShadow}};
+        @if($createdDateColor=="text-custom") color: {{$createDateColorCustom}}; @endif
     }
     #{{$id}} .item-view-more-button .view-more-button {
          text-shadow:  {{$buttonShadow}};

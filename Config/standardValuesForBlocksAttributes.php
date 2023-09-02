@@ -4,7 +4,7 @@ return [
     "bgColor" => [
         ["label" => "Primary", "value" => "primary"],
         ["label" => "Secondary", "value" => "secondary"],
-        ["label" => "success", "value" => "success"],
+        ["label" => "Success", "value" => "success"],
         ["label" => "Danger", "value" => "danger"],
         ["label" => "Warning", "value" => "warning"],
         ["label" => "Info", "value" => "info"],
@@ -27,7 +27,9 @@ return [
         ["label" => "Danger", "value" => "text-danger"],
         ["label" => "Dark", "value" => "text-dark"],
         ["label" => "Light", "value" => "text-light"],
-        ["label" => "White", "value" => "text-white"]
+        ["label" => "White", "value" => "text-white"],
+        ["label" => "Success", "value" => "text-success"],
+        ["label" => "Custom", "value" => "text-custom"]
     ],
     "marginB" => [
         ["label" => "0", "value" => "mb-0"],
@@ -276,7 +278,11 @@ return [
     ],
     "dotStyle" => [
         ["label" => "Barras", "value" => "dots-linear"],
-        ["label" => "Circulos", "value" => "dots-circular"]
+        ["label" => "Ovalado", "value" => "dots-oval"],
+        ["label" => "Circulos", "value" => "dots-circular"],
+        ["label" => "Cuadrado", "value" => "dots-square"],
+        ["label" => "Circulo Doble", "value" => "dots-circular-double"],
+        ["label" => "Cuadrado Doble", "value" => "dots-square-double"]
     ],
     "target" => [
         ["label" => "_blank", "value" => "_blank"],
@@ -295,7 +301,8 @@ return [
     ],
     "imageAspectProduct" => [
         ["label" => "Aspect 1:1", "value" => "1-1"],
-        ["label" => "Aspect 4:3", "value" => "4-3"]
+        ["label" => "Aspect 4:3", "value" => "4-3"],
+        ["label" => "Aspect 3:4", "value" => "3-4"]
     ],
     "embedResponsive" => [
         ["label" => "Aspect 21:9", "value" => "embed-responsive-21by9"],

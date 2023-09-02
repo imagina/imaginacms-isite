@@ -299,8 +299,18 @@ return [
             "name" => "titleColor",
             "type" => "select",
             "props" => [
-              "label" => "Color",
+              "label" => "Color Class",
               "options" => $vAttributes["textColors"]
+            ]
+          ],
+          "titleColorCustom" => [
+            "name" => "titleColorCustom",
+            "type" => "inputColor",
+            "props" => [
+                "label" => "Color Custom",
+            ],
+            "help" => [
+                "description" => "Selecciona el color Custom en Color Class para activarlo",
             ]
           ],
           "titleAlign" => [
@@ -455,12 +465,30 @@ return [
               "options" => $vAttributes["textAlign"]
             ]
           ],
+          "summaryLetterSpacing" => [
+            "name" => "summaryLetterSpacing",
+            "type" => "input",
+            "props" => [
+                "label" => "Espacio entre letras",
+                "type" => "number"
+            ]
+          ],
           "summaryColor" => [
             "name" => "summaryColor",
             "type" => "select",
             "props" => [
-              "label" => "Color",
+              "label" => "Color Class",
               "options" => $vAttributes["textColors"]
+            ]
+          ],
+          "summaryColorCustom" => [
+            "name" => "summaryColorCustom",
+            "type" => "inputColor",
+            "props" => [
+                "label" => "Color Custom",
+            ],
+            "help" => [
+                "description" => "Selecciona el color Custom en Color Class para activarlo",
             ]
           ],
           "summaryMarginT" => [
@@ -479,14 +507,6 @@ return [
             "props" => [
               "label" => "Margen inferior",
               "options" => $vAttributes["marginB"]
-            ]
-          ],
-          "summaryLetterSpacing" => [
-            "name" => "summaryLetterSpacing",
-            "type" => "input",
-            "props" => [
-              "label" => "Espacio entre letras",
-              "type" => "number"
             ]
           ],
           "summaryTextDecoration" => [
@@ -592,12 +612,30 @@ return [
               "options" => $vAttributes["align"]
             ]
           ],
+          "categoryLetterSpacing" => [
+            "name" => "categoryLetterSpacing",
+            "type" => "input",
+            "props" => [
+                "label" => "Espacio entre letras",
+                "type" => "number"
+            ]
+          ],
           "categoryColor" => [
             "name" => "categoryColor",
             "type" => "select",
             "props" => [
-              "label" => "Color",
+              "label" => "Color Class",
               "options" => $vAttributes["textColors"]
+            ]
+          ],
+          "categoryColorCustom" => [
+            "name" => "categoryColorCustom",
+            "type" => "inputColor",
+            "props" => [
+                "label" => "Color Custom",
+            ],
+            "help" => [
+                "description" => "Selecciona el color Custom en Color Class para activarlo",
             ]
           ],
           "categoryMarginT" => [
@@ -614,14 +652,6 @@ return [
             "props" => [
               "label" => "Margen inferior",
               "options" => $vAttributes["marginB"]
-            ]
-          ],
-          "categoryLetterSpacing" => [
-            "name" => "categoryLetterSpacing",
-            "type" => "input",
-            "props" => [
-              "label" => "Espacio entre letras",
-              "type" => "number"
             ]
           ],
           "categoryTextDecoration" => [
@@ -689,12 +719,30 @@ return [
               "options" => $vAttributes["align"]
             ]
           ],
+          "createdDateLetterSpacing" => [
+            "name" => "createdDateLetterSpacing",
+            "type" => "input",
+            "props" => [
+                "label" => "Espacio entre letras",
+                "type" => "number"
+            ]
+          ],
           "createdDateColor" => [
             "name" => "createdDateColor",
             "type" => "select",
             "props" => [
-              "label" => "Color",
+              "label" => "Color Class",
               "options" => $vAttributes["textColors"]
+            ]
+          ],
+          "createdDateColorCustom" => [
+            "name" => "createdDateColorCustom",
+            "type" => "inputColor",
+            "props" => [
+                "label" => "Color Custom",
+            ],
+            "help" => [
+                "description" => "Selecciona el color Custom en Color Class para activarlo",
             ]
           ],
           "createdDateMarginT" => [
@@ -711,14 +759,6 @@ return [
             "props" => [
               "label" => "Margen inferior",
               "options" => $vAttributes["marginB"]
-            ]
-          ],
-          "createdDateLetterSpacing" => [
-            "name" => "createdDateLetterSpacing",
-            "type" => "input",
-            "props" => [
-              "label" => "Espacio entre letras",
-              "type" => "number"
             ]
           ],
           "formatCreatedDate" => [
@@ -1480,88 +1520,109 @@ return [
           ],
         ]
       ],
-      "navydots" => [
-        "title" => "Navegación (nav y dots)",
+      "nav" => [
+        "title" => "Navegación (Nav)",
         "fields" => [
-          "nav" => [
-            "name" => "nav",
-            "value" => "1",
-            "type" => "select",
-            "props" => [
-              "label" => "Mostrar (nav)",
-              "options" => $vAttributes["validation"]
+            "nav" => [
+                "name" => "nav",
+                "value" => "1",
+                "type" => "select",
+                "props" => [
+                    "label" => "Mostrar (nav)",
+                    "options" => $vAttributes["validation"]
+                ]
+            ],
+            "navPosition" => [
+                "name" => "navPosition",
+                "value" => "bottom",
+                "type" => "select",
+                "props" => [
+                    "label" => "Posición (nav)",
+                    "options" => $vAttributes["navPositionCarousel"]
+                ]
+            ],
+            "navStyleButton" => [
+                "name" => "navStyleButton",
+                "type" => "select",
+                "props" => [
+                    "label" => "Estilo de Borde (nav)",
+                    "options" => $vAttributes["buttonStyle"]
+                ]
+            ],
+            "navSizeButton" => [
+                "name" => "navSizeButton",
+                "type" => "select",
+                "props" => [
+                    "label" => "Espaciado (nav)",
+                    "options" => $vAttributes["buttonType"]
+                ]
+            ],
+            "navColor" => [
+                "name" => "navColor",
+                "value" => "primary",
+                "type" => "select",
+                "props" => [
+                    "label" => "Color (nav)",
+                    "options" => $vAttributes["bgColor"]
+                ]
+            ],
+            "navIcon" => [
+                "name" => "navIcon",
+                "value" => "arrow",
+                "type" => "select",
+                "props" => [
+                    "label" => "Icono de Flecha (nav)",
+                    "options" => $vAttributes["iconArrow"]
+                ]
+            ],
+            "navSizeLabel" => [
+                "name" => "navSizeLabel",
+                "value" => "20",
+                "type" => "input",
+                "props" => [
+                    "label" => "Tamaño del texto (nav)",
+                    "type" => "number"
+                ]
             ]
-          ],
-          "navPosition" => [
-            "name" => "navPosition",
-            "value" => "bottom",
-            "type" => "select",
-            "props" => [
-              "label" => "Posición (nav)",
-              "options" => $vAttributes["navPositionCarousel"]
+        ]
+      ],
+      "dots" => [
+        "title" => "Navegación (Dots)",
+        "fields" => [
+            "dots" => [
+                "name" => "dots",
+                "value" => "1",
+                "type" => "select",
+                "props" => [
+                    "label" => "Mostrar (dots)",
+                    "options" => $vAttributes["validation"]
+                ]
+            ],
+            "dotsStyle" => [
+                "name" => "dotsStyle",
+                "value" => "dots-linear",
+                "type" => "select",
+                "props" => [
+                    "label" => "Estilos (dots)",
+                    "options" => $vAttributes["dotStyle"]
+                ]
+            ],
+            "dotsStyleColor" => [
+                "name" => "dotsStyleColor",
+                "type" => "select",
+                "props" => [
+                    "label" => "Color (dots)",
+                    "options" => $vAttributes["bgColor"]
+                ]
+            ],
+            "dotsSize" => [
+                "name" => "dotsSize",
+                "type" => "input",
+                "props" => [
+                    "label" => "Tamaño (dots)",
+                    "input" => "number"
+                ]
             ]
-          ],
-          "navStyleButton" => [
-            "name" => "navStyleButton",
-            "type" => "select",
-            "props" => [
-              "label" => "Estilo de Borde (nav)",
-              "options" => $vAttributes["buttonStyle"]
-            ]
-          ],
-          "navSizeButton" => [
-            "name" => "navSizeButton",
-            "type" => "select",
-            "props" => [
-              "label" => "Espaciado (nav)",
-              "options" => $vAttributes["buttonType"]
-            ]
-          ],
-          "navColor" => [
-            "name" => "navColor",
-            "value" => "primary",
-            "type" => "select",
-            "props" => [
-              "label" => "Color (nav)",
-              "options" => $vAttributes["bgColor"]
-            ]
-          ],
-          "navIcon" => [
-            "name" => "navIcon",
-            "value" => "arrow",
-            "type" => "select",
-            "props" => [
-              "label" => "Icono de Flecha (nav)",
-              "options" => $vAttributes["iconArrow"]
-            ]
-          ],
-          "navSizeLabel" => [
-            "name" => "navSizeLabel",
-            "value" => "20",
-            "type" => "input",
-            "props" => [
-              "label" => "Tamaño del texto (nav)",
-              "type" => "number"
-            ]
-          ],
-          "dots" => [
-            "name" => "dots",
-            "value" => "1",
-            "type" => "select",
-            "props" => [
-              "label" => "Mostrar (dots)",
-              "options" => $vAttributes["validation"]
-            ]
-          ],
-          "dotsStyle" => [
-            "name" => "dotsStyle",
-            "value" => "dots-linear",
-            "type" => "select",
-            "props" => [
-              "label" => "Estilos (dots)",
-              "options" => $vAttributes["dotStyle"]
-            ]
-          ]
         ]
       ],
       "texto" => [
