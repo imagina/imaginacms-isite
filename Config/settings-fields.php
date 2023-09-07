@@ -1248,6 +1248,7 @@ return [
     'type' => 'json',
     'groupName' => 'tenants',
     'groupTitle' => 'isite::common.settingGroups.tenants',
+    'colClass' => 'col-12',
     'props' => ['label' => "isite::sites.settings.tenantDataIa"]
   ],
 ];
