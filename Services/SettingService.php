@@ -15,18 +15,18 @@ class SettingService
     ){
       $this->settingRepository = $settingRepository;
     }
-   
+
     public function updateSettings(array $data,object $organization, object $tenantUser)
     {
-        
+
         \Log::info("========== Update Settings ==========");
 
         //Site Name - Translatable
         $siteName = $data["title"] ?? "My Site";
         $this->updateSetting("core::site-name",$siteName,true);
 
-        $siteDescription = $data["description"] ?? "My Site Description";
-        $this->updateSetting("core::site-description",$siteDescription,true);
+        $tenantDataIa = $data["dataIa"] ?? "";
+        $this->updateSetting("isite::tenant-data-ia",$tenantDataIa);
 
         //Iforms - usersToNotify
         $ids = [$tenantUser->id];
@@ -53,13 +53,13 @@ class SettingService
 
                 if(!is_null($setting->translate('en')))
                     $setting->translate('en')->value = $value;
-                
+
                 if(!is_null($setting->translate('es')))
                     $setting->translate('es')->value = $value;
 
                 $setting->save();
             }
-           
+
         }else{
             //Create
             //\Log::info($this->log.'updateSetting|Create');

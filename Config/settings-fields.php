@@ -1240,4 +1240,14 @@ return [
       'label' => 'isite::isite.centralizedBrand'
     ]
   ],
+
+  'tenantDataIa' => [
+    "onlySuperAdmin" => true,
+    'value' => null,
+    'name' => 'isite::tenant-data-ia',
+    'type' => 'json',
+    'groupName' => 'tenants',
+    'groupTitle' => 'isite::common.settingGroups.tenants',
+    'props' => ['label' => "isite::sites.settings.tenantDataIa"]
+  ],
 ];
