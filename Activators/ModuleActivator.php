@@ -278,8 +278,14 @@ class ModuleActivator implements ActivatorInterface
 
    
     return Cache::store(config("cache.default"))->remember('isite_module_all_modules'. ( isset(tenant()->domain) ? tenant()->domain : $domain ?? ""), 60*60*24*30, function () use($domain) {
-      
-      if(!\Schema::hasTable('isite__organizations')) return "";
+  
+      try {
+        if (! \Schema::hasTable('isite__organizations')) {
+          return '';
+        }
+      }catch(\Exception $e){
+        return '';
+      }
       
       $tenant = \DB::table("isite__organizations as org")->leftJoin("isite__domains as dom","org.id","dom.organization_id")->where("dom.domain",$domain)
         ->first();
