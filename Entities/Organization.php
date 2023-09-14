@@ -118,9 +118,9 @@ class Organization extends BaseTenant implements TenantWithDatabase
     
     $customDomain = $domains->where("type", "custom")->first()->domain ?? null;
     $defaultDomain = $domains->where("type", "default")->first()->domain ?? $this->slug ?? null;
-    
+
     if (!empty($customDomain)) {
-      return $customDomain;
+      return "https://".$customDomain;
     } elseif (!empty($defaultDomain)) {
 
       return tenant_route($defaultDomain, $currentLocale . ".$tenantRouteAlias");
@@ -132,6 +132,7 @@ class Organization extends BaseTenant implements TenantWithDatabase
   
   public function getDomainAttribute()
   {
+
     return parse_url($this->url, PHP_URL_HOST);
   }
   

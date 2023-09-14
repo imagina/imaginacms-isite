@@ -67,11 +67,17 @@ class TenantService
     
     if (isset($data["role"]->id) || isset($data["role_id"]))
       $organization->users()->sync([$data["user"]->id => ['role_id' => $data["role"]->id ?? $data["role_id"]]]);
+
+    //Base Url Domain
+    $configUrl = config('app.url');
+    if(config("asgard.isite.config.tenant.appUrl")){
+      $configUrl =  config("asgard.isite.config.tenant.appUrl");
+    }
     
     $organization->domains()->create([
-      'domain' => $data["organization"]["domain"] ?? $data["domain"] ?? $organization->slug.'.'.parse_url(config('app.url'),PHP_URL_HOST),
+      'domain' => $data["organization"]["domain"] ?? $data["domain"] ?? $organization->slug.'.'.parse_url($configUrl,PHP_URL_HOST),
       'type' => 'default'
-    ]);
+    ]);    
   
     \Log::info("----------------------------------------------------------");
     \Log::info("Created Organization: ".$organization->title. " | Domain: ".$organization->domain);

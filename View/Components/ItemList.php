@@ -196,6 +196,12 @@ class ItemList extends Component
   public $itemOne;
   public $itemMirror;
   public $itemAnimate;
+  public $titleColorCustom;
+  public $summaryColorCustom;
+  public $categoryColorCustom;
+  public $createdDateColorCustom;
+  public $userColorCustom;
+
 
   public function __construct($item,
                               $mediaImage = "mainimage",
@@ -354,7 +360,12 @@ class ItemList extends Component
                               $itemEasing = null,
                               $itemOne = false,
                               $itemMirror = false,
-                              $itemAnimate = ""
+                              $itemAnimate = "",
+                              $titleColorCustom = "",
+                              $summaryColorCustom = "",
+                              $categoryColorCustom = "",
+                              $createdDateColorCustom = "",
+                              $userColorCustom = ""
   )
   {
     $this->imageAspectMobile = $imageAspectMobile;
@@ -556,6 +567,12 @@ class ItemList extends Component
     if($this->buttonLayout=="button-custom") {
         $this->buttonColor = "";
     }
+
+    $this->titleColorCustom = $titleColorCustom;
+    $this->summaryColorCustom = $summaryColorCustom;
+    $this->categoryColorCustom = $categoryColorCustom;
+    $this->createdDateColorCustom = $createdDateColorCustom;
+    $this->userColorCustom = $userColorCustom;
 
     //Define the summary field value
     if(!empty($summaryField)){

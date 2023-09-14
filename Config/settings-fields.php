@@ -144,6 +144,54 @@ return [
       'label' => 'isite::common.settings.secondaryContrast'
     ]
   ],
+  'brandTertiary' => [
+    'value' => null,
+    'name' => 'isite::brandTertiary',
+    'type' => 'inputColor',
+    'groupName' => 'colors',
+    'groupTitle' => 'isite::common.settingGroups.colors',
+    'colClass' => 'col-12 col-md-6',
+    'quickSetting' => true,
+    'props' => [
+        'label' => 'isite::common.settings.brandTertiary'
+    ]
+  ],
+  'tertiaryContrast' => [
+    'value' => null,
+    'name' => 'isite::tertiaryContrast',
+    'type' => 'inputColor',
+    'groupName' => 'colors',
+    'groupTitle' => 'isite::common.settingGroups.colors',
+    'colClass' => 'col-12 col-md-6',
+    'quickSetting' => true,
+    'props' => [
+        'label' => 'isite::common.settings.tertiaryContrast'
+    ]
+  ],
+  'brandQuaternary' => [
+    'value' => null,
+    'name' => 'isite::brandQuaternary',
+    'type' => 'inputColor',
+    'groupName' => 'colors',
+    'groupTitle' => 'isite::common.settingGroups.colors',
+    'colClass' => 'col-12 col-md-6',
+    'quickSetting' => true,
+    'props' => [
+        'label' => 'isite::common.settings.brandQuaternary'
+    ]
+  ],
+  'quaternaryContrast' => [
+    'value' => null,
+    'name' => 'isite::quaternaryContrast',
+    'type' => 'inputColor',
+    'groupName' => 'colors',
+    'groupTitle' => 'isite::common.settingGroups.colors',
+    'colClass' => 'col-12 col-md-6',
+    'quickSetting' => true,
+    'props' => [
+        'label' => 'isite::common.settings.quaternaryContrast'
+    ]
+  ],
   'brandAddressBar' => [
     'value' => null,
     'name' => 'isite::brandAddressBar',
