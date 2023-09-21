@@ -407,7 +407,9 @@ return [
     "continueUser" => "Continuar con este Usuario",
     "createNewAccount" => "Crear Nueva Cuenta",
     "continue" => "Continuar",
-    "plan" => "Plan"
+    "plan" => "Plan",
+    "analytics" => "Analítica",
+    "automationRules" => "Reglas De Automatización",
   ],
   "message" => [
     "organizationNoCreated" => "¡Estamos emocionados de contarte que estamos en el proceso de crear tu sitio! Agradecemos tu paciencia mientras te brindamos una experiencia en línea mejorada. tan pronto todo este listo, recibirás una notificación por correo electrónico",
