@@ -449,6 +449,8 @@
     #{{$id}} .item-content {
         padding-left: {{$contentPaddingLeft}}px;
         padding-right: {{$contentPaddingRight}}px;
+        display: flex;
+        flex-direction: column;
     }
     @endif
     #{{$id}} .style-content {
