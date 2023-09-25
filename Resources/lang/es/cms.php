@@ -17,14 +17,14 @@ return [
     "adminBlocks" => "Bloques",
     "adminLayouts" => "Layouts",
     "oagStations" => "OAG staciones",
-  ],
+    ],
   "crud" => [
     "message" => [
       "denyPermissions" => "Permisos insuficientes",
       "showAsList" => "Ver como lista",
       "showAsCard" => "Ver como tarjetas"
     ]
-  ],
+        ],
   "newBlock" => "Nuevo Bloque",
   "updateBlock" => "Actualizar Bloque",
   "newLayout" => "Nuevo Layout",
@@ -48,7 +48,7 @@ return [
     "newExportItemHelpText" => 'Exportar <b class="text-blue-grey">Registro ID: {id}</b>',
     "exportReady" => "Tu report <b>{fileName}</b> está listo!",
     "noOrganization" => "Todavía no perteneces a una organización"
-  ],
+    ],
   "startTime" => "Hora de inicio",
   "endTime" => "Hora de finalización",
   "shiftTime" => "Duración por turno",
@@ -407,10 +407,8 @@ return [
     "continueUser" => "Continuar con este Usuario",
     "createNewAccount" => "Crear Nueva Cuenta",
     "continue" => "Continuar",
-    "plan" => "Plan",
-    "analytics" => "Analítica",
-    "automationRules" => "Reglas De Automatización",
-  ],
+    "plan" => "Plan"
+    ],
   "message" => [
     "organizationNoCreated" => "¡Estamos emocionados de contarte que estamos en el proceso de crear tu sitio! Agradecemos tu paciencia mientras te brindamos una experiencia en línea mejorada. tan pronto todo este listo, recibirás una notificación por correo electrónico",
     "creatingTenant" => "¡Estamos emocionados de contarte que estamos en el proceso de crear tu sitio! Agradecemos tu paciencia mientras te brindamos una experiencia en línea mejorada. tan pronto todo este listo, te llevaremos a tu sitio!",
@@ -483,7 +481,7 @@ return [
     "noCategories" => "No existen categorías",
     "selectedTemplate" => "Plantilla seleccionada",
     "noTemplates" => "No existen plantillas"
-  ],
+    ],
   "form" => [
     "id" => "ID",
     "title" => "Título | Titulos",
@@ -597,7 +595,7 @@ return [
     "availableDate" => "Disponible desde",
     "createdFromIp" => "Creado desde la IP",
     "requestedBy" => "Solicitado Por"
-  ],
+    ],
   "configList" => [
     "loggedAs" => "Registrado como",
     "fullScreen" => "Pantalla completa",
@@ -605,7 +603,7 @@ return [
     "leaveImpersonating" => "Dejar de suplantar",
     "clearCache" => "Limpiar cache",
     "goToSite" => "Ver el sitio"
-  ],
+    ],
   "topLeft" => "Arriba-Izquierda",
   "top" => "Arriba",
   "topRight" => "Arriba-Derecha",
@@ -616,8 +614,8 @@ return [
   "bottom" => "Abajo",
   "bottomRight" => "Abajo-Derecha",
   "selectedRows" => "{num} Filas seleccionadas",
-  'documentation' => [
-    'settings' => "Algunos módulos de tu aplicación cuentan con configuraciones globales extra. Estas 
+    'documentation' => [
+    'settings' => "Algunos módulos de tu aplicación cuentan con configuraciones globales extra. Estas
     configuraciones te permiten editar algunas características como el color, nombre, logos, etc...",
   ],
   "crudMySite" => [
@@ -653,4 +651,3 @@ return [
   "reportQueue" => "Ya tienes un reporte en progreso, lo solicitaste en <b>{date}</b>. Tan pronto este termine habilitaremos la función de 'crear' para ti... Esto lo hacemos para que la aplicación funcione mucho mejor!",
   "sessionFound" => "Hay una sesión activa"
 ];
-

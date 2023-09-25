@@ -8,7 +8,7 @@ return [
     'type' => 'input',
     'props' => ['label' => "isite::sites.settings.appVersion"]
   ],
-
+  
   //Media
   'logo1' => [
     'value' => (object)['isite::logo1' => null],
@@ -153,7 +153,7 @@ return [
     'colClass' => 'col-12 col-md-6',
     'quickSetting' => true,
     'props' => [
-        'label' => 'isite::common.settings.brandTertiary'
+      'label' => 'isite::common.settings.brandTertiary'
     ]
   ],
   'tertiaryContrast' => [
@@ -165,7 +165,7 @@ return [
     'colClass' => 'col-12 col-md-6',
     'quickSetting' => true,
     'props' => [
-        'label' => 'isite::common.settings.tertiaryContrast'
+      'label' => 'isite::common.settings.tertiaryContrast'
     ]
   ],
   'brandQuaternary' => [
@@ -177,7 +177,7 @@ return [
     'colClass' => 'col-12 col-md-6',
     'quickSetting' => true,
     'props' => [
-        'label' => 'isite::common.settings.brandQuaternary'
+      'label' => 'isite::common.settings.brandQuaternary'
     ]
   ],
   'quaternaryContrast' => [
@@ -189,7 +189,7 @@ return [
     'colClass' => 'col-12 col-md-6',
     'quickSetting' => true,
     'props' => [
-        'label' => 'isite::common.settings.quaternaryContrast'
+      'label' => 'isite::common.settings.quaternaryContrast'
     ]
   ],
   'brandAddressBar' => [
@@ -726,7 +726,7 @@ return [
       'rows' => 12,
     ],
   ],
-
+  
   //Client Google
   'api-client-google' => [
     'value' => "",
@@ -815,7 +815,7 @@ return [
       'label' => 'isite::pdf.settings.pdf.text.Information_content',
     ]
   ],
-
+  
   //Roles to register
   'rolesToTenant' => [
     "onlySuperAdmin" => true,
@@ -834,7 +834,7 @@ return [
       'select' => ['label' => 'name', 'id' => 'id']
     ]
   ],
-
+  
   //Default Tenant Status
   'defaultTenantStatus' => [
     'value' => true,
@@ -856,7 +856,7 @@ return [
       ]
     ]
   ],
-
+  
   //Tenant route alias
   'tenantRouteAlias' => [
     'value' => "homepage",
@@ -884,7 +884,7 @@ return [
       ]
     ],
   ],
-
+  
   'mapInShow' => [
     "onlySuperAdmin" => true,
     'value' => 'openStreet',
@@ -900,7 +900,7 @@ return [
       ]
     ]
   ],
-
+  
   'statusModalVerifier' => [
     'value' => '0',
     'name' => 'isite::statusModalVerifier',

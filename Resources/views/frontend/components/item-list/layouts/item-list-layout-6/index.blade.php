@@ -155,7 +155,7 @@
          display: block !important;
          overflow: hidden;
          transition: background 0.5s ease-out;
-    }
+     }
     @if($imageAnimateOpacityHover!=="")
     #{{$id}} .card-item .item-image picture:before {
         content: "";

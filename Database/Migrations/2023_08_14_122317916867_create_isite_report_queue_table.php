@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIsiteReportQueueTable extends Migration
+return new class extends Migration
 {
   /**
    * Run the migrations.
@@ -35,4 +35,4 @@ class CreateIsiteReportQueueTable extends Migration
   {
     Schema::dropIfExists('isite__report_queue');
   }
-}
+};
