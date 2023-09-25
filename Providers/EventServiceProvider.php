@@ -3,15 +3,12 @@
 namespace Modules\Isite\Providers;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Modules\Isite\Events\Handlers\CreateOrganizationByRole;
-use Modules\Iprofile\Events\UserCreatedEvent;
-use Modules\Isite\Events\OrganizationWasUpdated;
-use Modules\Isite\Events\Handlers\SetMaintenanceMode;
-
 use Illuminate\Support\Facades\Event;
+use Modules\Iprofile\Events\UserCreatedEvent;
+use Modules\Isite\Events\Handlers\CreateOrganizationByRole;
 use Modules\Isite\Events\Handlers\CreateOrganizationBySuscription;
-
-use Modules\Isite\Events\Handlers\SendEmailOrganization;
+use Modules\Isite\Events\Handlers\SetMaintenanceMode;
+use Modules\Isite\Events\OrganizationWasUpdated;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -21,20 +18,18 @@ class EventServiceProvider extends ServiceProvider
             CreateOrganizationByRole::class
         ],
         */
-        /*
         OrganizationWasUpdated::class => [
-            SetMaintenanceMode::class
+            SetMaintenanceMode::class,
         ],
-        */
-        
+
     ];
 
-    public function register()
+    public function register(): void
     {
         if (is_module_enabled('Iplan')) {
             Event::listen(
-              "Modules\\Iplan\\Events\\SubscriptionHasStarted",
-              [CreateOrganizationBySuscription::class, 'handle']
+                'Modules\\Iplan\\Events\\SubscriptionHasStarted',
+                [CreateOrganizationBySuscription::class, 'handle']
             );
         }
 

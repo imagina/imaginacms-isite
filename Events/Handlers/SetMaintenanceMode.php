@@ -18,9 +18,9 @@ class SetMaintenanceMode
     $this->notificationService = app("Modules\Notification\Services\Inotification");
   }
 
-  public function handle($event)
-  {
-    try {
+    public function handle($event)
+    {
+        try {
 
       $isCreated = false;
 
@@ -30,29 +30,30 @@ class SetMaintenanceMode
         $isCreated = true;
       }else{
         //when update
-        $params = $event->params;
-        //$extraData = $params['extraData'];
+            $params = $event->params;
+            // Extra data custom event entity
+            //$extraData = $params['extraData'];
 
-        $model = $params['model'];
+            $model = $params['model'];
       }
 
-       
-      \Log::info('Isite: Events|Handlers|SetMaintenanceMode|Organization:'.$model->id);
 
-      if($model->enable==0){
-        $model->putDownForMaintenance();
-        \Log::info('Isite: Events|Handlers|SetMaintenanceMode| SET MAINTENANCE: ON');
-      }else{
-        $model->update(['maintenance_mode' => null]);
-        \Log::info('Isite: Events|Handlers|SetMaintenanceMode| SET MAINTENANCE: OFF');
-      }
+            \Log::info('Isite: Events|Handlers|SetMaintenanceMode|Organization:'.$model->id);
+
+            if ($model->enable == 0) {
+                $model->putDownForMaintenance();
+                \Log::info('Isite: Events|Handlers|SetMaintenanceMode| SET MAINTENANCE: ON');
+            } else {
+                $model->update(['maintenance_mode' => null]);
+                \Log::info('Isite: Events|Handlers|SetMaintenanceMode| SET MAINTENANCE: OFF');
+            }
 
       $this->sendEmail($model,$isCreated);
       
       
-    } catch (\Exception $e) {
-      \Log::info($e->getMessage().' '.$e->getFile().' '.$e->getLine());
-    }
+        } catch (\Exception $e) {
+            \Log::info($e->getMessage().' '.$e->getFile().' '.$e->getLine());
+        }
     
   }
 
@@ -80,13 +81,13 @@ class SetMaintenanceMode
             "message" => $message,
             "fromAddress" => env('MAIL_FROM_ADDRESS'),
             "fromName" => "",
-            "setting" => [  
+            "setting" => [
                 "saveInDatabase" => 0
             ]
       ]);
     
     }
-  }
-  
-  
+}
+
+
 }

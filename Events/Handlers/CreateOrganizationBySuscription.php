@@ -13,32 +13,30 @@ use Modules\Isite\Events\OrganizationWasCreated;
 
 class CreateOrganizationBySuscription
 {
+    private $tenantService;
 
-  private $tenantService;
-  private $rolesToTenant;
+    private $rolesToTenant;
   private $log = "Isite:: Events|CreateOrganizationBySuscription|";
   private $authApi;
 
-  public function __construct(
-  ){
-    $this->tenantService = app("Modules\Isite\Services\TenantService");
+    public function __construct(
+  ) {
+        $this->tenantService = app("Modules\Isite\Services\TenantService");
     $this->rolesToTenant = json_decode(setting("isite::rolesToTenant",null,"[]"));
     $this->authApi = app("Modules\Iprofile\Http\Controllers\Api\AuthApiController");
-  }
-  
-  public function handle($event)
-  {
+    }
+
+    public function handle($event)
+    {
     
     \Log::info($this->log);
 
-    try {
+        try {
+            $suscription = $event->model;
 
-      $suscription = $event->model;
+            if ($suscription->entity == "Modules\User\Entities\Sentinel\User") {
+                $user = User::find($suscription->entity_id);
 
-      if($suscription->entity=="Modules\User\Entities\Sentinel\User"){
-
-        $user = User::find($suscription->entity_id);
-        
         if(count($user->organizations)>0){
 
           //$organization = $user->organizations->first();
@@ -72,29 +70,31 @@ class CreateOrganizationBySuscription
 
             }else{
               //LIKE DEEV
-              $user = $this->updateRoleUser($user);
-              $organization = $this->createTenant($user,$suscription);
-              tenancy()->initialize($organization->id);
-              event(new OrganizationWasCreated($organization));
+                $user = $this->updateRoleUser($user);
+                $organization = $this->createTenant($user, $suscription);
+
+                tenancy()->initialize($organization->id);
+
+                event(new OrganizationWasCreated($organization));
 
               return ['data' => true];
             }
 
-          }
+            }
       
         }
         
       }
       
-    } catch (\Exception $e) {
+        } catch (\Exception $e) {
         \Log::info($e->getMessage().' '.$e->getFile().' '.$e->getLine());
-        dd($e);
+            dd($e);
+            \Log::info($e->getMessage().' '.$e->getFile().' '.$e->getLine());
+        }
     }
-    
-  }
 
   public function updateRoleUser(object $user,$central = false)
-  {
+    {
 
     \Log::info($this->log.'UpdateRoleUser');
 
@@ -108,28 +108,26 @@ class CreateOrganizationBySuscription
 
     $user->roles()->sync($roles);
 
-    return $user;
+        return $user;
+    }
 
-  }
-
-  public function createTenant(object $user,object $suscription)
-  {
+    public function createTenant(object $user, object $suscription)
+    {
 
     \Log::info($this->log.'CreateTenant');
 
-    $data = [
-      'user' => $user,
-      'title' => $suscription->options->organization_name,
-      'layout_id' => (int)$suscription->options->layout_id,
-      'category_id' => (int)$suscription->options->category_id,
-      'role_id' => (int)$this->rolesToTenant[0] //To sync in table user_organization to after get example: $organization->users->first()->email
-    ];
+        $data = [
+            'user' => $user,
+            'title' => $suscription->options->organization_name,
+            'layout_id' => (int) $suscription->options->layout_id,
+            'category_id' => (int) $suscription->options->category_id,
+            'role_id' => (int) $this->rolesToTenant[0], //To sync in table user_organization to after get example: $organization->users->first()->email
+        ];
 
-    $organization = $this->tenantService->createTenant($data);
+        $organization = $this->tenantService->createTenant($data);
 
-    return $organization;
-   
-  }
+        return $organization;
+    }
 
   public function createMultiTenant(object $user,object $suscription)
   {
@@ -141,14 +139,14 @@ class CreateOrganizationBySuscription
     //$params = ["filter" => ["field" => "system_name"]];
     $layout = app("Modules\Isite\Repositories\LayoutRepository")->getItem($layoutId);
 
-    $fakePassword = \Str::random(16);//This will be updated later 
+    $fakePassword = \Str::random(16);//This will be updated later
 
     //Data User
     $userData = [
       "user" => $user,
       "credentials" => [
           "email" => $suscription->options->email,
-          "password" => $fakePassword 
+          "password" => $fakePassword
       ]
     ];
 

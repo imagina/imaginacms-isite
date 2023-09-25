@@ -33,5 +33,5 @@ return [
         'inactive' => 'Inactivo',
         'active' => 'Activo'
     ],
-    
+
 ];

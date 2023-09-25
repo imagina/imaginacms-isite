@@ -114,7 +114,7 @@
                     @endif
 
                     @while(isset($items[$x + $j]) && $j<$itemsBySlide)
-
+    
                       @if(!empty($itemComponentAttributes["itemDelay"]))
                           @php($itemComponentAttributes["itemDelay"]=$delay+$cont)
                           @if(!empty($itemComponentAttributes["itemDelayIn"]))
@@ -273,14 +273,14 @@
     @if($dotsStyle=="dots-linear")
         @if(empty($dotsStyleColor)) @php($dotsStyleColor='primary') @endif
         @if(empty($dotsSize)) @php($dotsSize='25') @endif
-        #{{$id}} .dots-linear .owl-dots .owl-dot span {
+    #{{$id}} .dots-linear .owl-dots .owl-dot span {
                  width: {{$dotsSize}}px;
                  height: 5px;
                  margin: 0 5px;
-                 border-radius: 0;
-        }
-        #{{$id}} .dots-linear .owl-dots .owl-dot.active span,
-        #{{$id}} .dots-linear .owl-dots .owl-dot:hover span {
+           border-radius: 0;
+         }
+    #{{$id}} .dots-linear .owl-dots .owl-dot.active span,
+    #{{$id}} .dots-linear .owl-dots .owl-dot:hover span {
          background: var(--{{$dotsStyleColor}});
         }
     @endif
@@ -333,11 +333,11 @@
              opacity: 1;
              flex: 0 1 auto;
              @if($dotsStyle=="dots-square-double") border-radius: 0; @endif
-        }
+     }
         #{{$id}} .{{$dotsStyle}} .owl-dots .owl-dot.active span {
             border: 2px solid var(--{{$dotsStyleColor}});
             background-color: transparent;
-        }
+     }
         #{{$id}} .{{$dotsStyle}} .owl-dots .owl-dot.active span:after{
              width: {{$dotsSize - 8 }}px;
              height: {{$dotsSize - 8 }}px;
@@ -350,7 +350,6 @@
         }
     @endif
     @endif
-
     @if($navOld)
     #{{$id}} .owl-nav [class*=owl-]:hover,
     #{{$id}} .owl-nav [class*=owl-]:focus {

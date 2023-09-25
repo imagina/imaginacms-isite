@@ -319,6 +319,7 @@
             z-index: 1;
         @endif
     }
+
     #{{$id}} .item-image picture {
         display: block !important;
         padding: {{$imagePicturePadding}}px;
@@ -449,8 +450,6 @@
     #{{$id}} .item-content {
         padding-left: {{$contentPaddingLeft}}px;
         padding-right: {{$contentPaddingRight}}px;
-        display: flex;
-        flex-direction: column;
     }
     @endif
     #{{$id}} .style-content {

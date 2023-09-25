@@ -9,16 +9,16 @@
       @if(isset($iframeMap) && !empty($iframeMap))
         {!! $iframeMap !!}
       @else
-        @if($settingMap == 'googleMaps')
-          <div class="content">
-            <div id="{{$mapId}}" class="{{$classes}} maps-component"
-                 style="width:{{$mapWidth}}; height:{{$mapHeight}}"></div>
-          </div>
-        @elseif($settingMap == 'openStreet')
-          <div class="content">
-            <div id="{{$mapId}}" class="map map-home" style="width:{{$mapWidth}}; height:{{$mapHeight}}"></div>
-          </div>
-        @endif
+      @if($settingMap == 'googleMaps')
+        <div class="content">
+          <div id="{{$mapId}}" class="{{$classes}} maps-component"
+               style="width:{{$mapWidth}}; height:{{$mapHeight}}"></div>
+        </div>
+      @elseif($settingMap == 'openStreet')
+        <div class="content">
+          <div id="{{$mapId}}" class="map map-home" style="width:{{$mapWidth}}; height:{{$mapHeight}}"></div>
+        </div>
+      @endif
       @endif
     </div>
   </div>

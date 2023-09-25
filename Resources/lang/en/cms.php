@@ -17,14 +17,14 @@ return [
     "adminBlocks" => "Blocks",
     "adminLayouts" => "Layouts",
     "oagStations" => "OAG Stations"
-  ],
+    ],
   "crud" => [
     "message" => [
       "denyPermissions" => "Insufficient permissions",
       "showAsList" => "Show as list",
       "showAsCard" => "Show as card"
     ]
-  ],
+        ],
   "newBlock" => "New Block",
   "updateBlock" => "Update Block",
   "newLayout" => "New Layout",
@@ -48,7 +48,7 @@ return [
     "newExportItemHelpText" => 'Export <b class="text-blue-grey">Record ID: {id}</b>',
     "exportReady" => "Your <b>{fileName}</b> report is Ready!",
     "noOrganization" => "You do not belong to an organization"
-  ],
+    ],
   "startTime" => "Start time",
   "endTime" => "End time",
   "shiftTime" => "Shift time",
@@ -401,10 +401,8 @@ return [
     "continueUser" => "Continue with this User",
     "createNewAccount" => "Create new account",
     "continue" => "Continue",
-    "plan" => "Plan",
-    "analytics" => "Analytics",
-    "automationRules" => "Automation Rules",
-  ],
+    "plan" => "Plan"
+    ],
   "message" => [
     "organizationNoCreated" => "We are excited to let you know that we are in the process of creating your site! We appreciate your patience while we provide you with an improved online experience. As soon as everything is ready, you will receive an email notification",
     "creatingTenant" => "We are excited to let you know that we are in the process of creating your site! We appreciate your patience while we provide you with an improved online experience. as soon as everything is ready, we will take you to your site!",
@@ -482,7 +480,7 @@ return [
     "noCategories" => "There are no categories",
     "selectedTemplate" => "Selected template",
     "noTemplates" => "No templates"
-  ],
+    ],
   "form" => [
     "id" => "ID",
     "title" => "Title | Title",
@@ -596,7 +594,7 @@ return [
     "availableDate" => "Available Date",
     "createdFromIp" => "Created from IP",
     "requestedBy" => "Requested By"
-  ],
+    ],
   "configList" => [
     "loggedAs" => "logged as",
     "fullScreen" => "show in full screen",
@@ -604,7 +602,7 @@ return [
     "leaveImpersonating" => "Leave impersonating",
     "clearCache" => "Clear cache",
     "goToSite" => "Go to site"
-  ],
+    ],
   "topLeft" => "Top-Left",
   "top" => "Top",
   "topRight" => "Top-Right",
@@ -615,7 +613,7 @@ return [
   "bottom" => "Bottom",
   "bottomRight" => "Bottom-Right",
   "selectedRows" => "{num} selected rows",
-  'documentation' => [
+    'documentation' => [
     'settings' => "Some modules of your application have some extra global settings. These
      settings allow you to edit some features like color, name, logos, etc...",
   ],
@@ -653,4 +651,3 @@ return [
   "reportQueue" => "You already have a report in progress, you requested it on <b>{date}</b>. As soon as it is finished we will enable the 'create' function for you... We do this to make the app work much better!",
   "sessionFound" => "There is an active session"
 ];
-

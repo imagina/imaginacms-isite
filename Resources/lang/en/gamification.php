@@ -1,13 +1,13 @@
 <?php
 
 return [
-  "categories" => [
-    "adminOrganizationWizard" => "Wizard de Organizaciones",
-    "adminOrganizationWizardDescription" => "Wizard de Organizaciones",
-  ],
-  "activities" => [
-    "adminOrganizationWizardRegister" => "Crea tu cuenta",
-    "adminOrganizationWizardRegisterDescription" => "<p>Registra tu cuenta gratis hoy mismo y podr&aacute;s disfrutar de:</p>
+    'categories' => [
+        'adminOrganizationWizard' => 'Wizard de Organizaciones',
+        'adminOrganizationWizardDescription' => 'Wizard de Organizaciones',
+    ],
+    'activities' => [
+        'adminOrganizationWizardRegister' => 'Crea tu cuenta de WYGO',
+        'adminOrganizationWizardRegisterDescription' => "<p>Registra tu cuenta gratis hoy mismo y podr&aacute;s disfrutar de:</p>
       <ul>
         <li>Tu p&aacute;gina web, tu tienda online</li>
         <li>Una galer&iacute;a repleta de im&aacute;genes libres de derechos</li>
@@ -34,5 +34,5 @@ return [
     "adminOrganizationWizardSummaryDescription" => "Congratulations! You have reached the last step of the process of creating your website. Now you just need to review the selected data and make sure everything is in order. Thank you for choosing us!",
       "adminOrganizationWizardAI" => "Power your Website with Artificial Intelligence",
       "adminOrganizationWizardAIDescription" => "By sharing some details with us, we will be able to use Artificial Intelligence to generate your optimized and tailored content especially for your site. Give your visitors a unique and personalized experience!",
-  ],
+    ],
 ];
