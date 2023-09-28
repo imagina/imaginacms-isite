@@ -94,6 +94,7 @@ class SynchronizableService
       "domain_url" => $domain,
       "sheet_id" => $currentModel->sheet_id,
       "access_token" => $token,
+      "requestParams" => $params["requestParams"]
     ];
 
     // Send a POST request to N8N to export data to the spreadsheet
@@ -139,6 +140,7 @@ class SynchronizableService
       "domain_url" => $domain,
       "name" => $params["name"],
       "access_token" => $token,
+      "requestParams" => $params["requestParams"]
     ];
 
     // Send a POST request to N8N to export data to the spreadsheet
