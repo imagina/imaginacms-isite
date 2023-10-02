@@ -273,7 +273,20 @@ class IsiteServiceProvider extends ServiceProvider
                 return new \Modules\Isite\Repositories\Cache\CacheReportQueueDecorator($repository);
             }
         );
+        $this->app->bind(
+            'Modules\Isite\Repositories\SynchronizableRepository',
+            function () {
+                $repository = new \Modules\Isite\Repositories\Eloquent\EloquentSynchronizableRepository(new \Modules\Isite\Entities\Synchronizable());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Isite\Repositories\Cache\CacheSynchronizableDecorator($repository);
+            }
+        );
 // add bindings
+
 
 
 
