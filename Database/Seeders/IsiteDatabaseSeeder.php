@@ -39,7 +39,7 @@ class IsiteDatabaseSeeder extends Seeder
 
     ProcessSeeds::dispatch([
       "baseClass" => "\Modules\Isite\Database\Seeders",
-      "seeds" => ["IsiteColorsSeeder", "IsiteCustomSourcesSeeder", "IformOrganizationDefaultRegisterTableSeeder"]
+      "seeds" => ["IsiteColorsSeeder", "IsiteCustomSourcesSeeder", "IformOrganizationDefaultRegisterTableSeeder", "SynchronizableTableSeeder"]
     ]);
   }
 }
