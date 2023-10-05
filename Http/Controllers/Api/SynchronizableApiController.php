@@ -61,8 +61,11 @@ class SynchronizableApiController extends BaseCrudController
       } else throw new Exception("Incorrect type", 400);
 
     } catch (\Exception $e) {
-      $status = $this->getStatusError($e->getCode());
-      $response = ["errors" => $e->getMessage()];
+      $status = $e->getCode() === 0 ? $this->getStatusError($e->getCode()) : $e->getCode();
+      $response = [
+        "errors" => $e->getMessage(),
+        "messages" => [['type' => 'error', 'message' => trans('isite::cms.modal.failedSync')]]
+      ];
     }
 
     return response()->json($response ?? ["data" => "Request successful"], $status ?? 200);
