@@ -93,7 +93,16 @@ return [
         'destroy' => 'isite::reportqueues.destroy resource',
         'restore' => 'isite::reportqueues.restore resource',
     ],
+    'isite.synchronizables' => [
+        'manage' => 'isite::synchronizables.manage resource',
+        'index' => 'isite::synchronizables.list resource',
+        'create' => 'isite::synchronizables.create resource',
+        'edit' => 'isite::synchronizables.edit resource',
+        'destroy' => 'isite::synchronizables.destroy resource',
+        'restore' => 'isite::synchronizables.restore resource',
+    ],
 // append
+
 
 
 
