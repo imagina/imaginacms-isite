@@ -639,7 +639,8 @@ return [
     "generateFile" => "Generando Archivo, espere un momento...",
     "inProgress" => "En progreso...",
     "failedSync" => "La sincronización fallo",
-    "syncFinished" => "¡La sincronización se ha completado con éxito!"
+    "syncFinished" => "¡La sincronización se ha completado con éxito!",
+    "syncCompleted" => "Sincronización completada"
   ],
   "topLeft" => "Arriba-Izquierda",
   "top" => "Arriba",

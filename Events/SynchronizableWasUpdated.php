@@ -2,7 +2,7 @@
 
 namespace Modules\Isite\Events;
 
-class SyncrhonizableWasUpdated
+class SynchronizableWasUpdated
 {
   public $model;
 

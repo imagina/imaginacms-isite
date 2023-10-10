@@ -638,7 +638,8 @@ return [
     "generateFile" => "Generating File, please wait a moment...",
     "inProgress" => "In Progress...",
     "failedSync" => "Synchronization failed",
-    "syncFinished" => "Synchronization has successfully completed!"
+    "syncFinished" => "Synchronization has successfully completed!",
+    "syncCompleted" => "Sync completed"
   ],
   "topLeft" => "Top-Left",
   "top" => "Top",

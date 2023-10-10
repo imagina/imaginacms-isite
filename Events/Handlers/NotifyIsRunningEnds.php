@@ -2,7 +2,7 @@
 
 namespace Modules\Isite\Events\Handlers;
 
-class SendNotificationToFront
+class NotifyIsRunningEnds
 {
   
   private $log = "Isite: Handler|SendNotificationToFront|";
@@ -30,7 +30,7 @@ class SendNotificationToFront
 
         //Send notification
         $this->notificationService->to(['broadcast' => $userId])->push([
-          "title" => "Synchronization has completed",
+          "title" => trans("isite::cms.modal.syncCompleted"),
           "message" => trans("isite::cms.modal.syncFinished"),
           "link" => url('/iadmin/#/ecommerce/products/'),
           "isAction" => false,
