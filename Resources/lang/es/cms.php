@@ -597,7 +597,7 @@ return [
     "availableDate" => "Disponible desde",
     "createdFromIp" => "Creado desde la IP",
     "requestedBy" => "Solicitado Por",
-    "slider" => "Deslizador",
+    "slider" => "Slider",
     "banner" => "Banner"
   ],
   "configList" => [
