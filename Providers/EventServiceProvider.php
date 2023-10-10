@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Event;
 use Modules\Isite\Events\Handlers\CreateOrganizationBySuscription;
 
 use Modules\Isite\Events\Handlers\SendEmailOrganization;
+use Modules\Isite\Events\Handlers\SendNotificationToFront;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -48,6 +49,11 @@ class EventServiceProvider extends ServiceProvider
         Event::listen(
             "Modules\\Isite\\Events\\OrganizationWasUpdated",
             [SetMaintenanceMode::class, 'handle']
+        );
+
+        Event::listen(
+            "Modules\\Isite\\Events\\SyncrhonizableWasUpdated",
+            [SendNotificationToFront::class, 'handle']
         );
     }
 }
