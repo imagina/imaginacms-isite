@@ -595,7 +595,9 @@ return [
     "sortOrder" => "Sort Order",
     "availableDate" => "Available Date",
     "createdFromIp" => "Created from IP",
-    "requestedBy" => "Requested By"
+    "requestedBy" => "Requested By",
+    "slider" => "Slider",
+    "banner" => "Banner"
   ],
   "configList" => [
     "loggedAs" => "logged as",
