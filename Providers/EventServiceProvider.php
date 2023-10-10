@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Event;
 use Modules\Isite\Events\Handlers\CreateOrganizationBySuscription;
 
 use Modules\Isite\Events\Handlers\SendEmailOrganization;
-use Modules\Isite\Events\Handlers\SendNotificationToFront;
+use Modules\Isite\Events\Handlers\NotifyIsRunningEnds;
 
 class EventServiceProvider extends ServiceProvider
 {
