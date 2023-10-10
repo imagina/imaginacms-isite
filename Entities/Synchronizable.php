@@ -23,7 +23,7 @@ class Synchronizable extends CrudModel
     'creating' => [],
     'updated' => [
       [
-        'path' => 'Modules\Isite\Events\SyncrhonizableWasUpdated'
+        'path' => 'Modules\Isite\Events\SynchronizableWasUpdated'
       ]
     ],
     'updating' => [],

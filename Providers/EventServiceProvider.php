@@ -52,8 +52,8 @@ class EventServiceProvider extends ServiceProvider
         );
 
         Event::listen(
-            "Modules\\Isite\\Events\\SyncrhonizableWasUpdated",
-            [SendNotificationToFront::class, 'handle']
+            "Modules\\Isite\\Events\\SynchronizableWasUpdated",
+            [NotifyIsRunningEnds::class, 'handle']
         );
     }
 }
