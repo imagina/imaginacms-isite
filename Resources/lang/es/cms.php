@@ -596,7 +596,9 @@ return [
     "sortOrder" => "Orden de prioridad",
     "availableDate" => "Disponible desde",
     "createdFromIp" => "Creado desde la IP",
-    "requestedBy" => "Solicitado Por"
+    "requestedBy" => "Solicitado Por",
+    "slider" => "Deslizador",
+    "banner" => "Banner"
   ],
   "configList" => [
     "loggedAs" => "Registrado como",
