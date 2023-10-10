@@ -638,7 +638,8 @@ return [
     "categories" => "Categorias",
     "generateFile" => "Generando Archivo, espere un momento...",
     "inProgress" => "En progreso...",
-    "failedSync" => "La sincronización fallo"
+    "failedSync" => "La sincronización fallo",
+    "syncFinished" => "¡La sincronización se ha completado con éxito!"
   ],
   "topLeft" => "Arriba-Izquierda",
   "top" => "Arriba",
