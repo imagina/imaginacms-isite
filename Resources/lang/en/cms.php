@@ -57,6 +57,8 @@ return [
   "perzonalizationTitle" => "Welcome to the editor of your website",
   "perzonalizationDescription" => "Easily change the logo, colors and the main information of your website",
   "label" => [
+    "massiveSynchronization" => "Massive Synchronization",
+    "migration" => "Migration",
     "whatsappNumber" => "Whatsapp Number",
     "codeCountry" => "Code country",
     "defaultMessage" => "Default message",
@@ -401,7 +403,6 @@ return [
     "continueUser" => "Continue with this User",
     "createNewAccount" => "Create new account",
     "continue" => "Continue",
-    "plan" => "Plan"
   ],
   "message" => [
     "organizationNoCreated" => "We are excited to let you know that we are in the process of creating your site! We appreciate your patience while we provide you with an improved online experience. As soon as everything is ready, you will receive an email notification",
@@ -593,7 +594,9 @@ return [
     "sortOrder" => "Sort Order",
     "availableDate" => "Available Date",
     "createdFromIp" => "Created from IP",
-    "requestedBy" => "Requested By"
+    "requestedBy" => "Requested By",
+    "slider" => "Slider",
+    "banner" => "Banner"
   ],
   "configList" => [
     "loggedAs" => "logged as",
@@ -602,6 +605,38 @@ return [
     "leaveImpersonating" => "Leave impersonating",
     "clearCache" => "Clear cache",
     "goToSite" => "Go to site"
+  ],
+  "modal" => [
+    "welcomeMassiveSync" => "Welcome to the Functionality of massive import and export!",
+    "integrateCloudFramework" => "We have integrated a powerful cloud-based tool. This functionality allows you to carry out these tasks easily, without complications, and in a centralized way. Optimize your processes and save time!",
+    "generateStepOne" => "Step 1: Specify emails address",
+    "generateBodyStepOne" => "You will be asked to enter at least one valid email address. This is crucial to ensure the security of your data and restrict access only to authorized individuals.",
+    "generateStepTwo" => "Step 2: Automatic Spreadsheet generation",
+    "generateBodyStepTwo" => "After you enter the emails addresses and clicking the “Activate” button, the system will automatically generate a spreadsheet in our cloud service. This spreadsheet will be ready and available for you to import and export your products in efficiently and conveniently.",
+    "generateStepThree" => "Step 3: Accessing the Spreadsheet and Import/Export Functions",
+    "generateBodyStepThree" => "You will be provided with a link that will take you directly to the spreadsheet generated in the cloud service. Here, you can use the Import and Export functions to effectively manage.",
+    "importantNote" => "Important Note",
+    "importantNoteBody" => "Remember, to maintain the security of your data, only those individuals with access to the spreadsheet will able to make changes to the products. Be sure to share the emails with precaution and only with the people that you need.",
+    "activate" => "Activate",
+    "syncNow" => "Sync Now!",
+    "syncStepOne" => "Step 1: Access Your Document",
+    "syncBodyStepOne" => "To access your document, simply click on the link below:",
+    "syncBodyLinkStepOne" => "Access Here",
+    "syncStepTwo" => "Step 2: Export Categories",
+    "syncBodyStepTwo" => "Before effectively importing products, make sure to first perform an export of categories. This step is essential for a successful product import.",
+    "syncImportantNoteBody" => "If the buttons are not enabled, it means that a bulk synchronization process is running for this module. You won't have access to actions until this process is completed.",
+    "import" => "Import",
+    "exportDataTitle" => "Export your Data",
+    "exportDataBody" => "When you are ready to export the information, simply press the “Export” button. Please note that it may take some time to process the information before you can take another actions.",
+    "importDataTitle" => "Import your data",
+    "importDataBody" => "You can process with the importation of your data pressing the “Import” button. Please note that it may take some time to process the information before you take another action.",
+    "registerEmails" => "Valid email addresses must be entered",
+    "generateSuccess" => "The file has been successfully generated",
+    "syncSuccess" => "The Synchronization has been initiated successfully",
+    "categories" => "Categories",
+    "generateFile" => "Generating File, please wait a moment...",
+    "inProgress" => "In Progress...",
+    "failedSync" => "Synchronization failed"
   ],
   "topLeft" => "Top-Left",
   "top" => "Top",

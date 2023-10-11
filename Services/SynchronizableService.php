@@ -80,9 +80,9 @@ class SynchronizableService
       'filter' => ["field" => 'name']
     ])));
 
-    if (!isset($currentModel)) throw new Exception("Name '{$params["name"]}' not found", 404);
+    if (!isset($currentModel)) throw new Exception("Name {$params["name"]} not found", 404);
 
-    if($currentModel->is_running === 1) throw new Exception("'{$params["name"]}' is runing", 400);
+    if($currentModel->is_running) throw new Exception("process is runing", 405);
 
     // Retrieve the user ID who initiated the action
     $id = Auth::id();
@@ -108,7 +108,7 @@ class SynchronizableService
       ]
     );
 
-    $updateModel = $currentModel->update(['is_running' => 1, 'last_sync' => now(), 'exported_by_id' => $id]);
+    $updateModel = $currentModel->update(['is_running' => 'export', 'last_sync' => now(), 'exported_by_id' => $id]);
 
     return ['data' => json_decode($response->getBody()->getContents())->message];
   }
@@ -126,7 +126,7 @@ class SynchronizableService
 
     if (!isset($currentModel)) throw new Exception("Name '{$params["name"]}' not found", 404);
 
-    if ($currentModel->is_running === 1) throw new Exception("'{$params["name"]}' is runing", 400);
+    if ($currentModel->is_running) throw new Exception("'{$params["name"]}' is runing", 400);
 
     //Get url of app
     $domain = env("APP_URL");
@@ -154,7 +154,7 @@ class SynchronizableService
       ]
     );
 
-    $updateModel = $currentModel->update(['is_running' => 1, 'last_sync' => now(), 'exported_by_id' => $id]);
+    $updateModel = $currentModel->update(['is_running' => 'import', 'last_sync' => now(), 'exported_by_id' => $id]);
 
     return ['data' => json_decode($response->getBody()->getContents())->message];
   }
