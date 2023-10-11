@@ -636,10 +636,11 @@ return [
     "generateSuccess" => "Se ha generado exitosamente el archivo",
     "syncSuccess" => "Se inicio correctamente la sincronización",
     "categories" => "Categorias",
+    "products" => "Productos",
     "generateFile" => "Generando Archivo, espere un momento...",
     "inProgress" => "En progreso...",
     "failedSync" => "La sincronización fallo",
-    "syncFinished" => "¡La sincronización se ha completado con éxito!",
+    "syncFinished" => "¡La sincronización de :entity se ha completado con éxito!",
     "syncCompleted" => "Sincronización de datos completada"
   ],
   "topLeft" => "Arriba-Izquierda",
