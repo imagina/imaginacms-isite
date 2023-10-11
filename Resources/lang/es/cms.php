@@ -640,7 +640,7 @@ return [
     "inProgress" => "En progreso...",
     "failedSync" => "La sincronización fallo",
     "syncFinished" => "¡La sincronización se ha completado con éxito!",
-    "syncCompleted" => "Sincronización completada"
+    "syncCompleted" => "Sincronización de datos completada"
   ],
   "topLeft" => "Arriba-Izquierda",
   "top" => "Arriba",

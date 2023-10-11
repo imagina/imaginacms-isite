@@ -639,7 +639,7 @@ return [
     "inProgress" => "In Progress...",
     "failedSync" => "Synchronization failed",
     "syncFinished" => "Synchronization has successfully completed!",
-    "syncCompleted" => "Sync completed"
+    "syncCompleted" => "Sync Data completed"
   ],
   "topLeft" => "Top-Left",
   "top" => "Top",
