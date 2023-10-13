@@ -403,6 +403,7 @@ return [
     "continueUser" => "Continue with this User",
     "createNewAccount" => "Create new account",
     "continue" => "Continue",
+    "print" => "Print"
   ],
   "message" => [
     "organizationNoCreated" => "We are excited to let you know that we are in the process of creating your site! We appreciate your patience while we provide you with an improved online experience. As soon as everything is ready, you will receive an email notification",
