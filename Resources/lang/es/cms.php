@@ -409,6 +409,7 @@ return [
     "continueUser" => "Continuar con este Usuario",
     "createNewAccount" => "Crear Nueva Cuenta",
     "continue" => "Continuar",
+    "print" => "Imprimir"
   ],
   "message" => [
     "organizationNoCreated" => "¡Estamos emocionados de contarte que estamos en el proceso de crear tu sitio! Agradecemos tu paciencia mientras te brindamos una experiencia en línea mejorada. tan pronto todo este listo, recibirás una notificación por correo electrónico",
@@ -596,7 +597,7 @@ return [
     "availableDate" => "Disponible desde",
     "createdFromIp" => "Creado desde la IP",
     "requestedBy" => "Solicitado Por",
-    "slider" => "Deslizador",
+    "slider" => "Slider",
     "banner" => "Banner"
   ],
   "configList" => [
@@ -635,9 +636,12 @@ return [
     "generateSuccess" => "Se ha generado exitosamente el archivo",
     "syncSuccess" => "Se inicio correctamente la sincronización",
     "categories" => "Categorias",
+    "products" => "Productos",
     "generateFile" => "Generando Archivo, espere un momento...",
     "inProgress" => "En progreso...",
-    "failedSync" => "La sincronización fallo"
+    "failedSync" => "La sincronización fallo",
+    "syncFinished" => "¡La sincronización de :entity se ha completado con éxito!",
+    "syncCompleted" => "Sincronización de datos completada"
   ],
   "topLeft" => "Arriba-Izquierda",
   "top" => "Arriba",
