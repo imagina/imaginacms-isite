@@ -688,6 +688,8 @@ return [
     ]
   ],
   "reportQueue" => "You already have a report in progress, you requested it on <b>{date}</b>. As soon as it is finished we will enable the 'create' function for you... We do this to make the app work much better!",
-  "sessionFound" => "There is an active session"
+  "sessionFound" => "There is an active session",
+  "recordModalTitle" => "Congratulations on completing your account registration!",
+  "recordModalMessage" => "<p>You've taken the first important step by signing up, and now we're ready to take you through our simple process to customize and create the perfect website that reflects your vision and goals.</p><p>Welcome and go ahead! 👋</p>"
 ];
 
