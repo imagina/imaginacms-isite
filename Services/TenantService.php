@@ -648,6 +648,9 @@ class TenantService
     \Log::info("========== Clone Tenancy MEDIA FINISHED ==========");
   }
 
+  /**
+   * @param $data (array) 
+   */
   public function updateTenant($data)
   {
 
@@ -662,9 +665,22 @@ class TenantService
       }
       
     }else{
-      //TODO
-      //buscar todos los tenants activos 
-      //Actualizalos (foreach) llamando al mismo metodo proccessUpdateTenant($organizationId)
+      
+      \Log::info("Multiple Organizations");
+
+      $params = ['filter' => ['status' => 1,'enable' => 1]];
+
+      if(!is_null($data)) $params = array_merge($params,$data);
+
+      $organizations = app("Modules\Isite\Repositories\OrganizationRepository")->getItemsBy(json_decode(json_encode($params)));
+
+      \Log::info("Total Organizations to Update: ".$organizations->count());
+
+      foreach ($organizations as $key => $org) {
+        //\Log::info("Organization Id: ".$org->id);
+        $this->proccessUpdateTenant($org->id);
+      }
+
     }
 
   }
