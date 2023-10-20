@@ -392,7 +392,17 @@ class TenantService
     $coreModules = config("asgard.core.config.CoreModules");
     
     foreach ($coreModules as $module) {
+      
+      //Ejecutar solo esta semilla de inmediato 
+      $moduleName = ucfirst($module);
+      $seederName = $moduleName."ModuleTableSeeder";
+
+      $seederClass = "\Modules\\".$moduleName."\Database\Seeders\\".$seederName;
+      $seeder = app($seederClass);
+      $seeder->run();
+
       \Artisan::call('module:seed', ['module' => $module]);
+
       \Log::info(\Artisan::output());
     }
 
@@ -400,7 +410,7 @@ class TenantService
   
   public function activateModulesPermissionsInRole($modules, Role $role)
   {
-  
+    
     (!is_array($modules)) ? $modules = [$modules] : false;
     
     $modules = Module::whereIn("alias",$modules)->get();
