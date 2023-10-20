@@ -3270,6 +3270,15 @@ return [
                         "label" => "Sombra del Texto",
                     ]
                 ],
+                "withWhatsapp" => [
+                    "name" => "withWhatsapp",
+                    "value" => "1",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Con Whatsapp",
+                        "options" => $vAttributes["validation"]
+                    ]
+                ],
             ]
         ],
     ]
