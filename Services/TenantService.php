@@ -280,7 +280,7 @@ class TenantService
     //ProcessAi::dispatch(["tenantId" => $organization->id]);
   
     //Implementacion 2 - Jobs separados para cada servicio
-    app("Modules\Isite\Services\TenantAiService")->processAi($organization->id,null,1);
+    //app("Modules\Isite\Services\TenantAiService")->processAi($organization->id,null,1);
 
     return [
       "suser" => ['supassword'=> $sAdmin['credentials']['password']],
