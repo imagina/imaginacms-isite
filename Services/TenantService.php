@@ -18,6 +18,8 @@ use Modules\Isite\Services\UserService;
 // Events
 use Modules\Isite\Events\OrganizationWasCreated;
 
+use Modules\Isite\Jobs\ProcessAi;
+
 class TenantService
 {
 
@@ -270,6 +272,15 @@ class TenantService
 
     //Send User because this is the Central Organization with other User Id
     event(new OrganizationWasCreated($organization,$tenantUser['user']));
+
+    //Process AI Services
+    //showDataConnection();
+    
+    //Implementacion 1 - Todo en un solo job
+    //ProcessAi::dispatch(["tenantId" => $organization->id]);
+  
+    //Implementacion 2 - Jobs separados para cada servicio
+    app("Modules\Isite\Services\TenantAiService")->processAi($organization->id,null,1);
 
     return [
       "suser" => ['supassword'=> $sAdmin['credentials']['password']],

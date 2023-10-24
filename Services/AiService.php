@@ -33,7 +33,7 @@ class AiService
       $prompt = "Crea un JSON array de objects valido. con " .
         "$quantity elementos diferentes siguiendo estás instrucciones $prompt ";
       //Validate site description to do it
-      $siteDescription = setting("core::site-description");
+      $siteDescription = setting("isite::tenant-data-ia");
       \Log::info($this->logTitle."|getContent|Setting CoreSiteDescription: ".$siteDescription);
 
       if ($siteDescription) $prompt .= "el contenido debe de estar basado en esta descripción: $siteDescription";
@@ -52,7 +52,7 @@ class AiService
           if (isset($value->es)) $tmpItem["es"][$key] = $value->es;
           if (isset($value->es) || isset($value->en)) continue;//Break
           $tmpItem[$key] = $value;
-          
+
           if($key==="tags"){
             $itemImage = $this->getImage($value);
             $tmpItem['image'] = $itemImage;
@@ -117,12 +117,12 @@ class AiService
    */
   public function getImage($tags)
   {
-    
+
     \Log::info($this->logTitle."-> getImage |");
 
     if(is_array($tags))
       $tags = implode(",",$tags);
-    
+
 
     $params = [
       'query' => [
@@ -146,7 +146,7 @@ class AiService
   {
 
     \Log::info($this->logTitle."|saveImage|entity");
-   
+
     $path = $image->url;
     $provider = $image->provider;
 
