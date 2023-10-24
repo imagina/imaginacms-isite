@@ -34,7 +34,7 @@ class AiService
         "$quantity elementos diferentes siguiendo estás instrucciones $prompt ";
       //Validate site description to do it
       $siteDescription = setting("isite::tenant-data-ia");
-      \Log::info($this->logTitle."|getContent|Setting CoreSiteDescription: ".$siteDescription);
+      \Log::info($this->logTitle."|getContent|Setting tenant-data-ai: ".$siteDescription);
 
       if ($siteDescription) $prompt .= "el contenido debe de estar basado en esta descripción: $siteDescription";
       //Request
