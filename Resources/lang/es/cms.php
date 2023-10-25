@@ -60,6 +60,8 @@ return [
     "clickToAction" => "Click para Acción",
     "massiveSynchronization" => "Sincronización Masiva",
     "migration" => "Migración",
+    "createChildForm" => " Crear formulario hijo",
+    "wantToCreateAChildForm" => "¿Quieres crear un formulario hijo de {title}?",
     "whatsappNumber" => "Numero de Whatsapp",
     "codeCountry" => "Código de Pais",
     "defaultMessage" => "Mensaje por defecto",

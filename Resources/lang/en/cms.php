@@ -60,6 +60,8 @@ return [
     "clickToAction" => "Click to Action",
     "massiveSynchronization" => "Massive Synchronization",
     "migration" => "Migration",
+    "createChildForm" => "Create child form",
+    "wantToCreateAChildForm" => "Do you want to create a child form of {title}?",
     "whatsappNumber" => "Whatsapp Number",
     "codeCountry" => "Code country",
     "defaultMessage" => "Default message",
