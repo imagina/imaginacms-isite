@@ -729,6 +729,11 @@ class TenantService
   
     $this->reseedPageAndMenu();
 
+    //Restablecer los permisos para el role admin.
+    //Ya que cuando se actualizaba un tenant, sustituia los permisos que ya estaban para ese rol (como los de la creacion q hay varios q no se incluyen)
+    $role = Role::where("slug", "admin")->first();
+    $this->activateModulesPermissionsInRole(config("asgard.core.config.CoreModules"), $role);
+
     \Log::info("Proccess Update - FINISHED - OrganizationId:".$organizationId);
 
   }
