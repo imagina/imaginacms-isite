@@ -25,7 +25,7 @@ return [
         'not available' => 'Sitio no disponible',
         'organization created' => 'Te notificaremos en un proximo correo el estado de tu sitio y enviaremos los enlaces para que puedas
         acceder y gestionarlo',
-        'organization updated' => '<p>Estado del sitio: <strong>:status</strong> </p><p>URL: <a href=":url">:url</a> </p> <p>Administración: <a href=":admin">:admin</a></p> <p>Recuerda que los datos de acceso son con los que creaste el registro</p>'
+        'organization updated' => '<p>Tu sitio web se encuentra: <strong>:status</strong> </p><p>URL: <a href=":url">:url</a> </p> <p>Edita tu sitio web aqui: <a href=":admin">:admin</a></p> <p>Recuerda que los datos de acceso son con los que creaste el registro</p>'
     ],
     'validation' => [
     ],
