@@ -419,7 +419,7 @@ class TenantService
 
   }
   
-  public function activateModulesPermissionsInRole($modules, Role $role)
+  public function activateModulesPermissionsInRole($modules, Role $role, $isUpdating = false)
   {
     
     (!is_array($modules)) ? $modules = [$modules] : false;
@@ -455,7 +455,13 @@ class TenantService
       */
     }
     
-    $role->permissions = array_merge($allPermissions,$role->permissions ?? []);
+    
+    // Por si acaso no afecte cuando se realiza la creacion
+    if($isUpdating){
+      $role->permissions = array_merge($role->permissions ?? [],$allPermissions);
+    }else{
+      $role->permissions = array_merge($allPermissions,$role->permissions ?? []);
+    }
 
     /*
     if($role->slug=="admin"){
@@ -682,7 +688,7 @@ class TenantService
     if(isset($data['tenantsId']) && is_array($data['tenantsId'])){
       
       foreach ($data['tenantsId'] as $key => $id){
-       $this->proccessUpdateTenant($id);
+       $this->proccessUpdateTenant($id,$data);
       }
       
     }else{
@@ -699,40 +705,63 @@ class TenantService
 
       foreach ($organizations as $key => $org) {
         //\Log::info("Organization Id: ".$org->id);
-        $this->proccessUpdateTenant($org->id);
+        $this->proccessUpdateTenant($org->id,$data);
       }
 
     }
 
   }
 
-  public function proccessUpdateTenant($organizationId)
+  /**
+   * @param $data (frontend attributes)
+   */
+  public function proccessUpdateTenant($organizationId,$data)
   {
 
     \Log::info("----------------------------------------------------------");
     \Log::info("Proccess Update - OrganizationId: ".$organizationId);
     \Log::info("----------------------------------------------------------");
-   
+
     tenancy()->initialize($organizationId);
 
-    //Core Modules Process
-    $this->migrateCoreModules(null);
-    $this->seedCoreModules(null);
-
-    //All migrations
-    \Artisan::call('module:migrate');
-    \Log::info(\Artisan::output());
     
-    //All seeder
-    \Artisan::call('module:seed');
-    \Log::info(\Artisan::output());
-  
-    $this->reseedPageAndMenu();
+    if(isset($data['filter'])){
+      $filter = json_decode($data['filter']);
 
-    //Restablecer los permisos para el role admin.
-    //Ya que cuando se actualizaba un tenant, sustituia los permisos que ya estaban para ese rol (como los de la creacion q hay varios q no se incluyen)
-    $role = Role::where("slug", "admin")->first();
-    $this->activateModulesPermissionsInRole(config("asgard.core.config.CoreModules"), $role);
+      //Filter Only Permissions
+      if(isset($filter->onlyAdminPermissions)){
+
+        \Log::info("Update Only Admin Permissions");
+
+        $role = Role::where("slug", "admin")->first();
+        $this->activateModulesPermissionsInRole(config("asgard.core.config.CoreModules"), $role, true);
+
+      }
+
+    }else{
+
+      \Log::info("Update ALL");
+
+      //Core Modules Process
+      $this->migrateCoreModules(null);
+      $this->seedCoreModules(null);
+
+      //All migrations
+      \Artisan::call('module:migrate');
+      \Log::info(\Artisan::output());
+      
+      //All seeder
+      \Artisan::call('module:seed');
+      \Log::info(\Artisan::output());
+    
+      $this->reseedPageAndMenu();
+
+      //Restablecer los permisos para el role admin.
+      //Ya que cuando se actualizaba un tenant, sustituia los permisos que ya estaban para ese rol (como los de la creacion q hay varios q no se incluyen)
+      $role = Role::where("slug", "admin")->first();
+      $this->activateModulesPermissionsInRole(config("asgard.core.config.CoreModules"), $role, true);
+
+    }
 
     \Log::info("Proccess Update - FINISHED - OrganizationId:".$organizationId);
 
