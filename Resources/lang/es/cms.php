@@ -488,7 +488,8 @@ return [
     "selectedCategory" => "Categoría seleccionada",
     "noCategories" => "No existen categorías",
     "selectedTemplate" => "Plantilla seleccionada",
-    "noTemplates" => "No existen plantillas"
+    "noTemplates" => "No existen plantillas",
+    "noResultsFoundTryAnotherSearchValue" => "No se han encontrado resultados, intenta con otro valor de busqueda..."
   ],
   "form" => [
     "id" => "ID",
