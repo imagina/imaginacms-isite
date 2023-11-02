@@ -415,6 +415,7 @@ return [
     "print" => "Imprimir"
   ],
   "message" => [
+    "showDemo" => "Ver Demo",
     "recordModalTitle" => "¡Felicidades por completar el registro de tu cuenta!",
     "recordModalMessage" => "<p>Has dado el primer paso importante al registrarte, y ahora estamos listos para llevarte a  través de nuestro sencillo proceso para personalizar y crear el sitio web perfecto que refleje tu visión y objetivos.</p><p> ¡Bienvenid@ y adelante! 👋</p>",
     "organizationNoCreated" => "¡Estamos emocionados de contarte que estamos en el proceso de crear tu sitio! Agradecemos tu paciencia mientras te brindamos una experiencia en línea mejorada. tan pronto todo este listo, recibirás una notificación por correo electrónico",
