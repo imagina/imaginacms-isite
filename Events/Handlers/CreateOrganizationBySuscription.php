@@ -162,7 +162,7 @@ class CreateOrganizationBySuscription
       'layout' => $layout->system_name,
       'category_id' => $suscription->options->category_id,
       'userData' => $userData,
-      'dataIa' => json_encode($suscription->options->form_i_a ?? $suscription->options->form_ia ?? "")
+      'dataIa' => $suscription->options->form_i_a ? json_encode($suscription->options->form_i_a) : null
     ];
 
     /**
