@@ -274,7 +274,7 @@ class TenantService
     event(new OrganizationWasCreated($organization,$tenantUser['user']));
 
     //Execute AI Process
-    $this->runAI($data);
+    $this->runAI($data,$organization);
 
     return [
       "suser" => ['supassword'=> $sAdmin['credentials']['password']],
@@ -765,7 +765,7 @@ class TenantService
    * Execute AI Process
    * @param $data (Information Request)
    */
-  private function runAI($data)
+  private function runAI($data,$organization)
   {
 
     //Process AI Services
@@ -780,7 +780,7 @@ class TenantService
       //ProcessAi::dispatch(["tenantId" => $organization->id]);
     
       //Implementacion 2 - Jobs separados para cada servicio (Hasta ahora mejor que la Implentacion 1)
-      //app("Modules\Isite\Services\TenantAiService")->processAi($organization->id,null,1);
+      //app("Modules\Isite\Services\TenantAiService")->processAi($organization->id,null,1); //$typeOfExecution=1 (executte in jobs)
 
     }
     
