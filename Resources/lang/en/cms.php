@@ -487,7 +487,8 @@ return [
     "selectedCategory" => "Selected category",
     "noCategories" => "There are no categories",
     "selectedTemplate" => "Selected template",
-    "noTemplates" => "No templates"
+    "noTemplates" => "No templates",
+    "noResultsFoundTryAnotherSearchValue" => "No results found, try another search value..."
   ],
   "form" => [
     "id" => "ID",

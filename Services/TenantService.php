@@ -273,14 +273,8 @@ class TenantService
     //Send User because this is the Central Organization with other User Id
     event(new OrganizationWasCreated($organization,$tenantUser['user']));
 
-    //Process AI Services
-    //showDataConnection();
-    
-    //Implementacion 1 - Todo en un solo job
-    //ProcessAi::dispatch(["tenantId" => $organization->id]);
-  
-    //Implementacion 2 - Jobs separados para cada servicio
-    //app("Modules\Isite\Services\TenantAiService")->processAi($organization->id,null,1);
+    //Execute AI Process
+    $this->runAI($data,$organization);
 
     return [
       "suser" => ['supassword'=> $sAdmin['credentials']['password']],
@@ -765,6 +759,31 @@ class TenantService
 
     \Log::info("Proccess Update - FINISHED - OrganizationId:".$organizationId);
 
+  }
+
+  /**
+   * Execute AI Process
+   * @param $data (Information Request)
+   */
+  private function runAI($data,$organization)
+  {
+
+    //Process AI Services
+    //showDataConnection();
+
+    $setDataAi = $data["dataIa"] ?? null;
+    //\Log::info("Isite: TenantService|runAi: ".$setDataAi);
+
+    if(!is_null($setDataAi)){
+
+      //Implementacion 1 - Todo en un solo job (Suele fallar mas la respuesta del Chatgpt)
+      //ProcessAi::dispatch(["tenantId" => $organization->id]);
+    
+      //Implementacion 2 - Jobs separados para cada servicio (Hasta ahora mejor que la Implentacion 1)
+      //app("Modules\Isite\Services\TenantAiService")->processAi($organization->id,null,1); //$typeOfExecution=1 (executte in jobs)
+
+    }
+    
   }
 
 }
