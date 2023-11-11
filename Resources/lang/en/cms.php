@@ -630,8 +630,8 @@ return [
     "syncStepOne" => "Step 1: Access Your Document",
     "syncBodyStepOne" => "To access your document, simply click on the link below:",
     "syncBodyLinkStepOne" => "Access Here",
-    "syncStepTwo" => "Step 2: Export Categories",
-    "syncBodyStepTwo" => "Before effectively importing products, make sure to first perform an export of categories. This step is essential for a successful product import.",
+    "syncStepTwo" => "Step 2: Export Dependencies",
+    "syncBodyStepTwo" => "Before effectively importing products, make sure to first perform an export of categories and manufacturers. This step is essential for a successful product import.",
     "syncImportantNoteBody" => "If the buttons are not enabled, it means that a bulk synchronization process is running for this module. You won't have access to actions until this process is completed.",
     "import" => "Import",
     "exportDataTitle" => "Export your Data",
@@ -647,7 +647,9 @@ return [
     "inProgress" => "In Progress...",
     "failedSync" => "Synchronization failed",
     "syncFinished" => "Synchronization of :entity has successfully completed!",
-    "syncCompleted" => "Sync Data completed"
+    "syncCompleted" => "Sync Data completed",
+    "dependencies" => "Dependencies",
+    "updateNewVersion" => "<b>We have new improvements for you!</b><br/>It's necessary to update one of your files. It's important for you to know that when performing this update, the information contained in the current file will be erased. We recommend backing up any relevant information you want to keep before proceeding with the update."
   ],
   "topLeft" => "Top-Left",
   "top" => "Top",
