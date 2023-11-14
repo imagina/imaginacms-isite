@@ -20,14 +20,15 @@ return [
   'form' => [
   ],
   'messages' => [
-  
+
     'invalidCaptcha' => 'Invalid Captcha'
-    
+
   ],
   'validation' => [
   ],
   'settings' => [
     'apimaps' => 'Api Code Maps',
     'appVersion' => 'App version',
+    'tenantData'=> 'Tenant Data IA'
   ]
 ];

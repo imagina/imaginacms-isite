@@ -44,9 +44,9 @@
 #whatsappIconFixed .icon-whatsapp {
     color: #ffffff;
     font-size: 40px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 #whatsappIconFixed #dropdownMenuWhatsapp .icon-whatsapp {
-    margin-top: 15px;
+    margin-top: 5px;
 }
 </style>

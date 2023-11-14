@@ -25,10 +25,10 @@ class CreateOrganizationBySuscription
     $this->rolesToTenant = json_decode(setting("isite::rolesToTenant",null,"[]"));
     $this->authApi = app("Modules\Iprofile\Http\Controllers\Api\AuthApiController");
   }
-  
+
   public function handle($event)
   {
-    
+
     \Log::info($this->log);
 
     try {
@@ -38,7 +38,7 @@ class CreateOrganizationBySuscription
       if($suscription->entity=="Modules\User\Entities\Sentinel\User"){
 
         $user = User::find($suscription->entity_id);
-        
+
         if(count($user->organizations)>0){
 
           //$organization = $user->organizations->first();
@@ -56,7 +56,7 @@ class CreateOrganizationBySuscription
               //Logout from Wizard (Central DB)
               if(\Auth::check())
                 $this->authApi->logout(app('request'));
-              
+
               //Rol in Central
               $user = $this->updateRoleUser($user,true);
 
@@ -81,16 +81,16 @@ class CreateOrganizationBySuscription
             }
 
           }
-      
+
         }
-        
+
       }
-      
+
     } catch (\Exception $e) {
         \Log::info($e->getMessage().' '.$e->getFile().' '.$e->getLine());
         dd($e);
     }
-    
+
   }
 
   public function updateRoleUser(object $user,$central = false)
@@ -128,7 +128,7 @@ class CreateOrganizationBySuscription
     $organization = $this->tenantService->createTenant($data);
 
     return $organization;
-   
+
   }
 
   public function createMultiTenant(object $user,object $suscription)
@@ -141,14 +141,14 @@ class CreateOrganizationBySuscription
     //$params = ["filter" => ["field" => "system_name"]];
     $layout = app("Modules\Isite\Repositories\LayoutRepository")->getItem($layoutId);
 
-    $fakePassword = \Str::random(16);//This will be updated later 
+    $fakePassword = \Str::random(16);//This will be updated later
 
     //Data User
     $userData = [
       "user" => $user,
       "credentials" => [
           "email" => $suscription->options->email,
-          "password" => $fakePassword 
+          "password" => $fakePassword
       ]
     ];
 
@@ -161,7 +161,8 @@ class CreateOrganizationBySuscription
       "password" => $fakePassword,
       'layout' => $layout->system_name,
       'category_id' => $suscription->options->category_id,
-      'userData' => $userData
+      'userData' => $userData,
+      'dataIa' => $suscription->options->form_i_a ? json_encode($suscription->options->form_i_a) : null
     ];
 
     /**
@@ -170,9 +171,9 @@ class CreateOrganizationBySuscription
      */
     $response = $this->tenantService->createTenantInMultiDatabase($data);
 
-    
+
     return $response;
-   
+
   }
-  
+
 }

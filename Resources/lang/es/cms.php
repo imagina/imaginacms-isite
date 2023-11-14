@@ -57,8 +57,11 @@ return [
   "perzonalizationTitle" => "Bienvenid@ al editor de tu sitio web",
   "perzonalizationDescription" => "De manera fácil, cambia el logo, colores y la información principal de tu página web",
   "label" => [
+    "clickToAction" => "Click para Acción",
     "massiveSynchronization" => "Sincronización Masiva",
     "migration" => "Migración",
+    "createChildForm" => " Crear formulario hijo",
+    "wantToCreateAChildForm" => "¿Quieres crear un formulario hijo de {title}?",
     "whatsappNumber" => "Numero de Whatsapp",
     "codeCountry" => "Código de Pais",
     "defaultMessage" => "Mensaje por defecto",
@@ -409,8 +412,12 @@ return [
     "continueUser" => "Continuar con este Usuario",
     "createNewAccount" => "Crear Nueva Cuenta",
     "continue" => "Continuar",
+    "print" => "Imprimir"
   ],
   "message" => [
+    "showDemo" => "Ver Demo",
+    "recordModalTitle" => "¡Felicidades por completar el registro de tu cuenta!",
+    "recordModalMessage" => "<p>Has dado el primer paso importante al registrarte, y ahora estamos listos para llevarte a  través de nuestro sencillo proceso para personalizar y crear el sitio web perfecto que refleje tu visión y objetivos.</p><p> ¡Bienvenid@ y adelante! 👋</p>",
     "organizationNoCreated" => "¡Estamos emocionados de contarte que estamos en el proceso de crear tu sitio! Agradecemos tu paciencia mientras te brindamos una experiencia en línea mejorada. tan pronto todo este listo, recibirás una notificación por correo electrónico",
     "creatingTenant" => "¡Estamos emocionados de contarte que estamos en el proceso de crear tu sitio! Agradecemos tu paciencia mientras te brindamos una experiencia en línea mejorada. tan pronto todo este listo, te llevaremos a tu sitio!",
     "organizationCreated" => "¡Nos complace informarte que tu sitio está listo! Estamos emocionados de brindarte una experiencia en línea mejorada. Puedes acceder a tu nuevo sitio haciendo clic en el siguiente boton. Si tienes alguna pregunta o necesitas ayuda, no dudes en contactarnos. ¡Esperamos que disfrutes explorando tu nuevo sitio!",
@@ -481,7 +488,8 @@ return [
     "selectedCategory" => "Categoría seleccionada",
     "noCategories" => "No existen categorías",
     "selectedTemplate" => "Plantilla seleccionada",
-    "noTemplates" => "No existen plantillas"
+    "noTemplates" => "No existen plantillas",
+    "noResultsFoundTryAnotherSearchValue" => "No se han encontrado resultados, intenta con otro valor de busqueda..."
   ],
   "form" => [
     "id" => "ID",
@@ -595,7 +603,9 @@ return [
     "sortOrder" => "Orden de prioridad",
     "availableDate" => "Disponible desde",
     "createdFromIp" => "Creado desde la IP",
-    "requestedBy" => "Solicitado Por"
+    "requestedBy" => "Solicitado Por",
+    "slider" => "Slider",
+    "banner" => "Banner"
   ],
   "configList" => [
     "loggedAs" => "Registrado como",
@@ -633,9 +643,12 @@ return [
     "generateSuccess" => "Se ha generado exitosamente el archivo",
     "syncSuccess" => "Se inicio correctamente la sincronización",
     "categories" => "Categorias",
+    "products" => "Productos",
     "generateFile" => "Generando Archivo, espere un momento...",
     "inProgress" => "En progreso...",
-    "failedSync" => "La sincronización fallo"
+    "failedSync" => "La sincronización fallo",
+    "syncFinished" => "¡La sincronización de :entity se ha completado con éxito!",
+    "syncCompleted" => "Sincronización de datos completada"
   ],
   "topLeft" => "Arriba-Izquierda",
   "top" => "Arriba",
