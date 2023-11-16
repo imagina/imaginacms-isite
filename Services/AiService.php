@@ -34,11 +34,11 @@ class AiService
 
       //Validate site description to do it
       $settingDataAi = $this->improveDescription(setting("isite::tenant-data-ia"));
-      \Log::info($this->logTitle."|getContent|Description Improved: ". $settingDataAi);
+      //\Log::info($this->logTitle."|getContent|Description Improved: ". $settingDataAi);
 
       //Instance the full prompt
-      $prompt = "Basado en está información recolectada a traves de preguntas y respuestas ".$settingDataAi .
-      ". Crea un JSON array de objects valido. con $quantity elementos diferentes siguiendo estás instrucciones $prompt";
+      $prompt = "Basado en está información recolectada a traves de preguntas y respuestas: ".$settingDataAi .
+      ". Crea un JSON array de objects valido, con $quantity elementos diferentes siguiendo estás instrucciones: $prompt";
       //\Log::info($this->logTitle."|getContent|Promp: ". $prompt);
 
       //Request
@@ -87,7 +87,7 @@ class AiService
       'title' => "title: Que sea descriptivo, llamativo de entre 8 a 12 palabras, menos de 60 caracteres, $this->translatablePrompt",
       'shortTitle' => "shortTitle: Que sea descriptivo, llamativo de entre 1 a 2 palabras, $this->translatablePrompt",
       'name' => "name: Que sea descriptivo, llamativo de entre 8 a 12 palabras, menos de 60 caracteres, $this->translatablePrompt",
-      'description' => "description: Que contenga entre 1200 y 1600 palabras con contenio que genere al menos 7 minutos " .
+      'description' => "description: Que contenga entre 1200 y 1600 palabras con contenido que genere al menos 7 minutos " .
         "de lectura. El texto sea en formato HTML puede usar listas, títulos llamativos, $this->translatablePrompt",
       'body' => "body: Que contenga entre 2000 y 2500 palabras con contenido que genere al menos 7 minutos " .
         "de lectura. El texto sea en formato HTML puede usar listas, títulos llamativos y los titulos deben estar en la etiqueta html h2, $this->translatablePrompt",
