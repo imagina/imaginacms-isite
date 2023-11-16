@@ -34,12 +34,11 @@ class AiService
 
       //Validate site description to do it
       $settingDataAi = $this->improveDescription(setting("isite::tenant-data-ia"));
-      \Log::info($this->logTitle."|getContent|Description Improved: ". $settingDataAi);
+      //\Log::info($this->logTitle."|getContent|Description Improved: ". $settingDataAi);
 
       //Instance the full prompt
       $prompt = "Basado en está información recolectada a traves de preguntas y respuestas: ".$settingDataAi .
-      ". Crea un JSON array de objects valido con $quantity elementos diferentes siguiendo estás instrucciones: $prompt";
-      
+      ". Crea un JSON array de objects valido, con $quantity elementos diferentes siguiendo estás instrucciones: $prompt";
       //\Log::info($this->logTitle."|getContent|Promp: ". $prompt);
 
       //Request
