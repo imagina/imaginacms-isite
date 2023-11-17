@@ -57,6 +57,7 @@ class AiService
           if (isset($value->es) || isset($value->en)) continue;//Break
           $tmpItem[$key] = $value;
 
+          //Tags is used to get image from provider
           if($key==="tags"){
             $itemImage = $this->getImage($value);
             $tmpItem['image'] = $itemImage;
