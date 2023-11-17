@@ -237,4 +237,8 @@ return [
   'button' => [
     'update' => 'Actualizar'
   ],
+  'viewErrors' => [
+    'message' => 'Lo sentimos, esta página no esta disponible.',
+    'globe' => 'Intenta más adelante',
+  ],
 ];
