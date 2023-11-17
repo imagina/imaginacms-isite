@@ -406,7 +406,9 @@ return [
     "continueUser" => "Continue with this User",
     "createNewAccount" => "Create new account",
     "continue" => "Continue",
-    "print" => "Print"
+    "print" => "Print",
+    "copy" => "Copy",
+    "insert" => "Insert",
   ],
   "message" => [
     "showDemo" => "Demo",
