@@ -412,7 +412,9 @@ return [
     "continueUser" => "Continuar con este Usuario",
     "createNewAccount" => "Crear Nueva Cuenta",
     "continue" => "Continuar",
-    "print" => "Imprimir"
+    "print" => "Imprimir",
+    "copy" => "Copiar",
+    "insert" => "Insertar",
   ],
   "message" => [
     "showDemo" => "Ver Demo",
