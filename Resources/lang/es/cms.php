@@ -60,6 +60,8 @@ return [
     "clickToAction" => "Click para Acción",
     "massiveSynchronization" => "Sincronización Masiva",
     "migration" => "Migración",
+    "createChildForm" => " Crear formulario hijo",
+    "wantToCreateAChildForm" => "¿Quieres crear un formulario hijo de {title}?",
     "whatsappNumber" => "Numero de Whatsapp",
     "codeCountry" => "Código de Pais",
     "defaultMessage" => "Mensaje por defecto",
@@ -410,9 +412,12 @@ return [
     "continueUser" => "Continuar con este Usuario",
     "createNewAccount" => "Crear Nueva Cuenta",
     "continue" => "Continuar",
-    "print" => "Imprimir"
+    "print" => "Imprimir",
+    "copy" => "Copiar",
+    "insert" => "Insertar",
   ],
   "message" => [
+    "showDemo" => "Ver Demo",
     "recordModalTitle" => "¡Felicidades por completar el registro de tu cuenta!",
     "recordModalMessage" => "<p>Has dado el primer paso importante al registrarte, y ahora estamos listos para llevarte a  través de nuestro sencillo proceso para personalizar y crear el sitio web perfecto que refleje tu visión y objetivos.</p><p> ¡Bienvenid@ y adelante! 👋</p>",
     "organizationNoCreated" => "¡Estamos emocionados de contarte que estamos en el proceso de crear tu sitio! Agradecemos tu paciencia mientras te brindamos una experiencia en línea mejorada. tan pronto todo este listo, recibirás una notificación por correo electrónico",
@@ -485,7 +490,8 @@ return [
     "selectedCategory" => "Categoría seleccionada",
     "noCategories" => "No existen categorías",
     "selectedTemplate" => "Plantilla seleccionada",
-    "noTemplates" => "No existen plantillas"
+    "noTemplates" => "No existen plantillas",
+    "noResultsFoundTryAnotherSearchValue" => "No se han encontrado resultados, intenta con otro valor de busqueda..."
   ],
   "form" => [
     "id" => "ID",

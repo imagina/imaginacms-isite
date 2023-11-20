@@ -60,6 +60,8 @@ return [
     "clickToAction" => "Click to Action",
     "massiveSynchronization" => "Massive Synchronization",
     "migration" => "Migration",
+    "createChildForm" => "Create child form",
+    "wantToCreateAChildForm" => "Do you want to create a child form of {title}?",
     "whatsappNumber" => "Whatsapp Number",
     "codeCountry" => "Code country",
     "defaultMessage" => "Default message",
@@ -404,9 +406,12 @@ return [
     "continueUser" => "Continue with this User",
     "createNewAccount" => "Create new account",
     "continue" => "Continue",
-    "print" => "Print"
+    "print" => "Print",
+    "copy" => "Copy",
+    "insert" => "Insert",
   ],
   "message" => [
+    "showDemo" => "Demo",
     "recordModalTitle" => "Congratulations on completing your account registration!",
     "recordModalMessage" => "<p>You've taken the first important step by signing up, and now we're ready to take you through our simple process to customize and create the perfect website that reflects your vision and goals.</p><p>Welcome and go ahead! 👋</p>",
     "organizationNoCreated" => "We are excited to let you know that we are in the process of creating your site! We appreciate your patience while we provide you with an improved online experience. As soon as everything is ready, you will receive an email notification",
@@ -484,7 +489,8 @@ return [
     "selectedCategory" => "Selected category",
     "noCategories" => "There are no categories",
     "selectedTemplate" => "Selected template",
-    "noTemplates" => "No templates"
+    "noTemplates" => "No templates",
+    "noResultsFoundTryAnotherSearchValue" => "No results found, try another search value..."
   ],
   "form" => [
     "id" => "ID",

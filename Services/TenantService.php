@@ -18,6 +18,8 @@ use Modules\Isite\Services\UserService;
 // Events
 use Modules\Isite\Events\OrganizationWasCreated;
 
+use Modules\Isite\Jobs\ProcessAi;
+
 class TenantService
 {
 
@@ -271,6 +273,9 @@ class TenantService
     //Send User because this is the Central Organization with other User Id
     event(new OrganizationWasCreated($organization,$tenantUser['user']));
 
+    //Execute AI Process
+    $this->runAI($data,$organization);
+
     return [
       "suser" => ['supassword'=> $sAdmin['credentials']['password']],
       "credentials" => $userCentralData["credentials"],
@@ -392,15 +397,25 @@ class TenantService
     $coreModules = config("asgard.core.config.CoreModules");
     
     foreach ($coreModules as $module) {
+      
+      //Ejecutar solo esta semilla de inmediato 
+      $moduleName = ucfirst($module);
+      $seederName = $moduleName."ModuleTableSeeder";
+
+      $seederClass = "\Modules\\".$moduleName."\Database\Seeders\\".$seederName;
+      $seeder = app($seederClass);
+      $seeder->run();
+
       \Artisan::call('module:seed', ['module' => $module]);
+
       \Log::info(\Artisan::output());
     }
 
   }
   
-  public function activateModulesPermissionsInRole($modules, Role $role)
+  public function activateModulesPermissionsInRole($modules, Role $role, $isUpdating = false)
   {
-  
+    
     (!is_array($modules)) ? $modules = [$modules] : false;
     
     $modules = Module::whereIn("alias",$modules)->get();
@@ -434,7 +449,13 @@ class TenantService
       */
     }
     
-    $role->permissions = array_merge($allPermissions,$role->permissions ?? []);
+    
+    // Por si acaso no afecte cuando se realiza la creacion
+    if($isUpdating){
+      $role->permissions = array_merge($role->permissions ?? [],$allPermissions);
+    }else{
+      $role->permissions = array_merge($allPermissions,$role->permissions ?? []);
+    }
 
     /*
     if($role->slug=="admin"){
@@ -648,6 +669,9 @@ class TenantService
     \Log::info("========== Clone Tenancy MEDIA FINISHED ==========");
   }
 
+  /**
+   * @param $data (array) 
+   */
   public function updateTenant($data)
   {
 
@@ -658,42 +682,108 @@ class TenantService
     if(isset($data['tenantsId']) && is_array($data['tenantsId'])){
       
       foreach ($data['tenantsId'] as $key => $id){
-       $this->proccessUpdateTenant($id);
+       $this->proccessUpdateTenant($id,$data);
       }
       
     }else{
-      //TODO
-      //buscar todos los tenants activos 
-      //Actualizalos (foreach) llamando al mismo metodo proccessUpdateTenant($organizationId)
+      
+      \Log::info("Multiple Organizations");
+
+      $params = ['filter' => ['status' => 1,'enable' => 1]];
+
+      if(!is_null($data)) $params = array_merge($params,$data);
+
+      $organizations = app("Modules\Isite\Repositories\OrganizationRepository")->getItemsBy(json_decode(json_encode($params)));
+
+      \Log::info("Total Organizations to Update: ".$organizations->count());
+
+      foreach ($organizations as $key => $org) {
+        //\Log::info("Organization Id: ".$org->id);
+        $this->proccessUpdateTenant($org->id,$data);
+      }
+
     }
 
   }
 
-  public function proccessUpdateTenant($organizationId)
+  /**
+   * @param $data (frontend attributes)
+   */
+  public function proccessUpdateTenant($organizationId,$data)
   {
 
     \Log::info("----------------------------------------------------------");
     \Log::info("Proccess Update - OrganizationId: ".$organizationId);
     \Log::info("----------------------------------------------------------");
-   
+
     tenancy()->initialize($organizationId);
 
-    //Core Modules Process
-    $this->migrateCoreModules(null);
-    $this->seedCoreModules(null);
-
-    //All migrations
-    \Artisan::call('module:migrate');
-    \Log::info(\Artisan::output());
     
-    //All seeder
-    \Artisan::call('module:seed');
-    \Log::info(\Artisan::output());
-  
-    $this->reseedPageAndMenu();
+    if(isset($data['filter'])){
+      $filter = json_decode($data['filter']);
+
+      //Filter Only Permissions
+      if(isset($filter->onlyAdminPermissions)){
+
+        \Log::info("Update Only Admin Permissions");
+
+        $role = Role::where("slug", "admin")->first();
+        $this->activateModulesPermissionsInRole(config("asgard.core.config.CoreModules"), $role, true);
+
+      }
+
+    }else{
+
+      \Log::info("Update ALL");
+
+      //Core Modules Process
+      $this->migrateCoreModules(null);
+      $this->seedCoreModules(null);
+
+      //All migrations
+      \Artisan::call('module:migrate');
+      \Log::info(\Artisan::output());
+      
+      //All seeder
+      \Artisan::call('module:seed');
+      \Log::info(\Artisan::output());
+    
+      $this->reseedPageAndMenu();
+
+      //Restablecer los permisos para el role admin.
+      //Ya que cuando se actualizaba un tenant, sustituia los permisos que ya estaban para ese rol (como los de la creacion q hay varios q no se incluyen)
+      $role = Role::where("slug", "admin")->first();
+      $this->activateModulesPermissionsInRole(config("asgard.core.config.CoreModules"), $role, true);
+
+    }
 
     \Log::info("Proccess Update - FINISHED - OrganizationId:".$organizationId);
 
+  }
+
+  /**
+   * Execute AI Process
+   * @param $data (Information Request)
+   */
+  private function runAI($data,$organization)
+  {
+
+    //Process AI Services
+    //showDataConnection();
+
+    $setDataAi = $data["dataIa"] ?? null;
+    //\Log::info("Isite: TenantService|runAi: ".$setDataAi);
+
+    if(!is_null($setDataAi)){
+
+      //Implementacion 1 - Todo en un solo job (Suele fallar mas la respuesta del Chatgpt)
+      //ProcessAi::dispatch(["tenantId" => $organization->id]);
+    
+      //Implementacion 2 - Jobs separados para cada servicio (Hasta ahora mejor que la Implentacion 1)
+      //app("Modules\Isite\Services\TenantAiService")->processAi($organization->id,null,1); //$typeOfExecution=1 (executte in jobs)
+
+    }
+    
   }
 
 }
