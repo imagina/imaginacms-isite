@@ -189,4 +189,38 @@ class AiService
    
   }
 
+  /**
+   * Save in organization options to know if it was completed AI task
+   */
+  public function saveAiCompleted($name)
+  {
+
+    \Log::info($this->logTitle."|saveAiCompleted");
+
+    $organization = tenant();
+    $options = tenant()->options;
+
+    //Check Options
+    if(isset($options->aiModulesGenerator)){
+
+      $allModules = (array)json_decode($options->aiModulesGenerator);
+
+      // Check if not exist in options aiModulesGenerator
+      if(!in_array($name,$allModules)){
+       array_push($allModules,$name);
+        $options->aiModulesGenerator = json_encode($allModules);
+      }
+
+    }else{
+      //No exist the key - First Case
+      $options['aiModulesGenerator'] = json_encode($name);
+    }
+   
+    $organization->options = $options;
+
+    //Organization Saved in Central DB
+    $organization->save();
+
+  }
+
 }
