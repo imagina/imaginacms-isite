@@ -191,6 +191,7 @@ class AiService
 
   /**
    * Save in organization options to know if it was completed AI task
+   * @param $name (Module Name - page|iblog|slider|iblog)
    */
   public function saveAiCompleted($name)
   {
