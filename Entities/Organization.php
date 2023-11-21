@@ -165,5 +165,15 @@ class Organization extends BaseTenant implements TenantWithDatabase
     $status = new Status();
     return $status->get($this->status);
   }
+
+  public function setOptionsAttribute($value)
+  {
+    $this->attributes['options'] = json_encode($value);
+  }
+
+  public function getOptionsAttribute($value)
+  {
+    return json_decode($value);
+  }
   
 }

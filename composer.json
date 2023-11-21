@@ -20,7 +20,8 @@
         "imagina/ischedulable-module": "^v8.x-dev",
         "imagina/ifillable-module": "^v8.x-dev",
         "spatie/laravel-sitemap": "^5.8",
-        "spatie/robots-txt": "^1.0"
+        "spatie/robots-txt": "^1.0",
+        "imagina/iqreable": "v8.x-dev"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.0",
