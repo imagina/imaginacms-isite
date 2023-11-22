@@ -100,6 +100,23 @@
 			*/
 			window.addEventListener('filters-after-get-data', event => {
 				$("#contenttomove").removeClass("d-none");
+				
+				//Case for mobile - Ejem: Dev Alfaro
+				var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+				if(width <= 992) {
+					//Cuando tiene esta opcion, y se le daba click a un checkbox, livewire reenderiza de nuevo y no hace las validaciones JS
+					//$extraModalId (Fue el caso de Latinas - Agregado para evitar algun bug en un update)
+					@if($showBtnFilter && !isset($extraModalId))
+						if (typeof event.detail.closeBaseModal!== 'undefined') {
+							$('#modalFilter').removeClass('d-block'); //Modal Principal del Sidebar 
+							$('#modalFilter').modal('hide');
+						}else{
+							$('#modal-body').append($("#contenttomove"));
+							$('#modalFilter').addClass('show d-block');
+						}
+					@endif
+				}
+
 			})
 			
 		});

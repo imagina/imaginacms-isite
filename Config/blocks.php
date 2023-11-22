@@ -914,6 +914,15 @@ return [
                 "label" => "Sombra de texto",
             ]
           ],
+          "target" => [
+            "name" => "target",
+            "value" => "_self",
+            "type" => "select",
+            "props" => [
+                "label" => "Target",
+                "options" => $vAttributes["target"]
+            ]
+          ],
           "buttonItemClasses" => [
             "name" => "buttonItemClasses",
             "type" => "input",
