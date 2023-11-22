@@ -175,5 +175,28 @@ class Organization extends BaseTenant implements TenantWithDatabase
   {
     return json_decode($value);
   }
+
+  /**
+   * Check if AI process is completed to the organization
+   */
+  public function getIsAiCompletedAttribute()
+  {
+
+    $completed = false;
+
+    $aiModulesConfig = config("asgard.isite.config.aiModulesGenerator");
+    $options = $this->options;
+
+    if(isset($options->aiModulesGenerator)){
+      $allModules = (array)json_decode($options->aiModulesGenerator);
+
+      //it has already been guaranteed and that they are not repeated in the insertion of the options previously
+      if(count($aiModulesConfig)==count($allModules))
+        $completed = true;
+    }
+
+    return $completed;
+
+  }
   
 }
