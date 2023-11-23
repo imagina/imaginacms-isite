@@ -48,14 +48,14 @@ return [
       'roles' => [],
       "mainImage" => "modules/isite/img/gamification/welcome.png"
     ],
-    [
+    /*[
       'systemName' => 'admin_organization_wizard_register',
       'title' => "$transPrefix.activities.adminOrganizationWizardRegister",
       'description' => "$transPrefix.activities.adminOrganizationWizardRegisterDescription",
       'type' => 1,
       'categoryId' => 'admin_organization_wizard',
       'roles' => []
-    ],
+    ],*/
     [
       'systemName' => 'admin_organization_wizard_terms',
       'title' => "$transPrefix.activities.adminOrganizationWizardTerms",
