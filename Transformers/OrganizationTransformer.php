@@ -18,7 +18,7 @@ class OrganizationTransformer extends CrudResource
       "url" => $this->url,
       'status' => $this->status ? '1' : '0',
       'featured' => $this->featured ? '1' : '0',
-      'isAiCompleted' => $this->isAiCompleted ? '1' : '0',
+      'aiStatus' => $this->aiStatus,
     ];
   }
 }

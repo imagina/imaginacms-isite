@@ -176,26 +176,25 @@ class Organization extends BaseTenant implements TenantWithDatabase
     return json_decode($value);
   }
 
-  /**
-   * Check if AI process is completed to the organization
-   */
-  public function getIsAiCompletedAttribute()
+  public function getAiStatusAttribute()
   {
 
-    $completed = false;
+    $status = 2; //No exists the option (For the site no process was executed for ai)
 
     $aiModulesConfig = config("asgard.isite.config.aiModulesGenerator");
     $options = $this->options;
 
     if(isset($options->aiModulesGenerator)){
+      $status = 0; // Process running
+
       $allModules = (array)json_decode($options->aiModulesGenerator);
 
       //it has already been guaranteed and that they are not repeated in the insertion of the options previously
       if(count($aiModulesConfig)==count($allModules))
-        $completed = true;
+        $status = 1;// Process Completed
     }
 
-    return $completed;
+    return $status;
 
   }
   
