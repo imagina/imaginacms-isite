@@ -415,6 +415,7 @@ return [
     "print" => "Imprimir",
     "copy" => "Copiar",
     "insert" => "Insertar",
+    "phoneNumber" => "Número de teléfono",
   ],
   "message" => [
     "showDemo" => "Ver Demo",
@@ -491,7 +492,9 @@ return [
     "noCategories" => "No existen categorías",
     "selectedTemplate" => "Plantilla seleccionada",
     "noTemplates" => "No existen plantillas",
-    "noResultsFoundTryAnotherSearchValue" => "No se han encontrado resultados, intenta con otro valor de busqueda..."
+    "noResultsFoundTryAnotherSearchValue" => "No se han encontrado resultados, intenta con otro valor de busqueda...",
+    "accept" => "Aceptar",
+    "emailInvalid" => "Correo invalido",
   ],
   "form" => [
     "id" => "ID",
