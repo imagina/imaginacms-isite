@@ -409,6 +409,8 @@ return [
     "print" => "Print",
     "copy" => "Copy",
     "insert" => "Insert",
+    "accept" => "Accept",
+    "phoneNumber" => "Phone number",
   ],
   "message" => [
     "showDemo" => "Demo",
@@ -490,7 +492,8 @@ return [
     "noCategories" => "There are no categories",
     "selectedTemplate" => "Selected template",
     "noTemplates" => "No templates",
-    "noResultsFoundTryAnotherSearchValue" => "No results found, try another search value..."
+    "noResultsFoundTryAnotherSearchValue" => "No results found, try another search value...",
+    "emailInvalid" => "Email invalid",
   ],
   "form" => [
     "id" => "ID",
