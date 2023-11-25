@@ -411,6 +411,7 @@ return [
     "insert" => "Insert",
     "accept" => "Accept",
     "phoneNumber" => "Phone number",
+    "quickLook" => "Quick look",
   ],
   "message" => [
     "showDemo" => "Demo",

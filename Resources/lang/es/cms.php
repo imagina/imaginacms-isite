@@ -416,6 +416,7 @@ return [
     "copy" => "Copiar",
     "insert" => "Insertar",
     "phoneNumber" => "Número de teléfono",
+    "quickLook" => "Vistazo rápido",
   ],
   "message" => [
     "showDemo" => "Ver Demo",
