@@ -25,26 +25,28 @@ class CaptchaMiddleware extends BaseApiController
       $activateCaptcha = $this->setting->get('isite::activateCaptcha');
       if($activateCaptcha) {
         //Get data
-        $data = (object)$request->input('attributes');
-        if (isset($data->captcha)) {
-          $dataCaptcha = (object)$data->captcha;
-          if (isset($dataCaptcha->version) && isset($dataCaptcha->token)) {
-            $version = $dataCaptcha->version;//Get version of catpcha
-            $token = $dataCaptcha->token;//Get token f captcha
+        $data = $request->all();
 
+        //Verify if exist attributes and set $data
+        if(isset($data['attributes'])) {
+          $data = $data['attributes'];
+        }
+
+        //Verify if exist captcha or g-recaptcha-response
+        if (isset($data["captcha"]) || isset($data["g-recaptcha-response"])) {
+          //Take tokens
+          $token = $data["captcha"]["token"] ?? $data["g-recaptcha-response"];
+
+          //Verify if exist token
+          if($token) {
             //Define keys according to version of captcha
-            $secret = ($version) == 3 ?
-              $this->setting->get('isite::reCaptchaV3Secret') :
-              $this->setting->get('isite::reCaptchaV2Secret');
-            $sitekey = ($version) == 3 ?
-              $this->setting->get('isite::reCaptchaV3Site') :
-              $this->setting->get('isite::reCaptchaV2Site');
+            $secret = setting('isite::reCaptchaV2Secret') ?? setting('isite::reCaptchaV3Secret');
+            $sitekey = setting('isite::reCaptchaV2Site') ?? setting('isite::reCaptchaV3Site');
 
-            //Define class captcha
             $captcha = new \Anhskohbo\NoCaptcha\NoCaptcha($secret, $sitekey);
             $isValid = $captcha->verifyResponse($token);//Validate token captcha
             if (!$isValid) throw new Exception();
-          } else throw new Exception();
+          }
         } else throw new Exception();
       }
     } catch (\Exception $error) {

@@ -79,18 +79,20 @@
         </div>
       @endif
       @if($withSummary && ( isset($item->summary) || isset($item->description) || isset($item->custom_html)) )
-        <div class="col-12 {{$orderClasses["summary"] ?? 'order-5'}} item-summary {{$summaryAlign}}">
-          @if(isset($item->url) && !empty($item->url))
-            <a href="{{$item->url}}" target="{{$target}}">
-              @endif
-              <div
-                class="summary {{$summaryClasses}} {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}} {{$contentMarginInsideX}}">
-                {!! $summary !!}
-              </div>
-              @if(isset($item->url) && !empty($item->url))
-            </a>
-          @endif
-        </div>
+        @if(trim($item->summary) || trim($item->description) || trim($item->custom_html) )
+          <div class="col-12 {{$orderClasses["summary"] ?? 'order-5'}} item-summary {{$summaryAlign}}">
+            @if(isset($item->url) && !empty($item->url))
+              <a href="{{$item->url}}" target="{{$target}}">
+                @endif
+                <div
+                  class="summary {{$summaryClasses}} {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}} {{$contentMarginInsideX}}">
+                  {!! $summary !!}
+                </div>
+                @if(isset($item->url) && !empty($item->url))
+              </a>
+            @endif
+          </div>
+        @endif
       @endif
       @if($withViewMoreButton)
         <div class="col-12 {{$orderClasses["viewMoreButton"] ?? 'order-6'}} item-view-more-button {{$buttonAlign}}">
@@ -118,16 +120,16 @@
         </div>
       @endif
          @foreach($extraOrderClassesFields as $key => $extraOrderClassesField )
-           
+
            @if(isset($item->{$extraOrderClassesField}) || isset($item->options->{$extraOrderClassesField}))
              <div class="col-12 {{$orderClasses[$extraOrderClassesField] ?? 'order-6'}} item-{{$extraOrderClassesField}}">
-               
+
                @if(isset($item->{$extraOrderClassesField}))
                  {{ $item->{$extraOrderClassesField} }}
                @elseif(isset($item->options->{$extraOrderClassesField}))
                  {{ $item->options->{$extraOrderClassesField} }}
                @endif
-              
+
              </div>
            @endif
          @endforeach
@@ -252,7 +254,7 @@
          @endif
     }
     @endif
-   
+
     #{{$id}} .item-image picture {
         display: block !important;
         padding: {{$imagePicturePadding}}px;
@@ -261,7 +263,7 @@
         box-shadow:  {{$imageShadow}};
         border-radius: {{$imageRadio}};
     }
-    
+
     #{{$id}} .img-style {
        border-radius: {{$imageRadio}};
        border-style: {{$imageBorderStyle}};

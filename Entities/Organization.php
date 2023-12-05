@@ -165,5 +165,37 @@ class Organization extends BaseTenant implements TenantWithDatabase
     $status = new Status();
     return $status->get($this->status);
   }
+
+  public function setOptionsAttribute($value)
+  {
+    $this->attributes['options'] = json_encode($value);
+  }
+
+  public function getOptionsAttribute($value)
+  {
+    return json_decode($value);
+  }
+
+  public function getAiStatusAttribute()
+  {
+
+    $status = 2; //No exists the option (For the site no process was executed for ai)
+
+    $aiModulesConfig = config("asgard.isite.config.aiModulesGenerator");
+    $options = $this->options;
+
+    if(isset($options->aiModulesGenerator)){
+      $status = 0; // Process running
+
+      $allModules = (array)json_decode($options->aiModulesGenerator);
+
+      //it has already been guaranteed and that they are not repeated in the insertion of the options previously
+      if(count($aiModulesConfig)==count($allModules))
+        $status = 1;// Process Completed
+    }
+
+    return $status;
+
+  }
   
 }
