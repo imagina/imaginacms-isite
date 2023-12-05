@@ -57,6 +57,7 @@ class AiService
           if (isset($value->es) || isset($value->en)) continue;//Break
           $tmpItem[$key] = $value;
 
+          //Tags is used to get image from provider
           if($key==="tags"){
             $itemImage = $this->getImage($value);
             $tmpItem['image'] = $itemImage;
@@ -186,6 +187,41 @@ class AiService
 
     return $newDescription;
    
+  }
+
+  /**
+   * Save in organization options to know if it was completed AI task
+   * @param $name (Module Name - page|iblog|slider|iblog)
+   */
+  public function saveAiCompleted($name)
+  {
+
+    \Log::info($this->logTitle."|saveAiCompleted");
+
+    $organization = tenant();
+    $options = tenant()->options;
+
+    //Check Options
+    if(isset($options->aiModulesGenerator)){
+
+      $allModules = (array)json_decode($options->aiModulesGenerator);
+
+      // Check if not exist in options aiModulesGenerator
+      if(!in_array($name,$allModules)){
+       array_push($allModules,$name);
+        $options->aiModulesGenerator = json_encode($allModules);
+      }
+
+    }else{
+      //No exist the key - First Case
+      $options['aiModulesGenerator'] = json_encode($name);
+    }
+   
+    $organization->options = $options;
+
+    //Organization Saved in Central DB
+    $organization->save();
+
   }
 
 }

@@ -219,7 +219,7 @@ class ItemList extends Component
                               $editLink = null,
                               $tooltipEditLink = null,
                               $itemComponentView = null,
-                              $itemComponentTarget = "_self",
+                              $itemComponentTarget = null,
                               $target = "_self",
                               $itemListLayout = null,
                               $positionNumber = null,

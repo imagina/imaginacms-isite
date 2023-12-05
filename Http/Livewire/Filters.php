@@ -162,8 +162,8 @@ class Filters extends Component
       }
     }
 
-    // remove d-none frontend
-    $this->dispatchBrowserEvent('filters-after-get-data');
+    // remove d-none frontend - Case for mobile - Ejem: Dev Alfaro (Added param closeBaseModal)
+    $this->dispatchBrowserEvent('filters-after-get-data',['closeBaseModal' => true]);
 
   }
 

@@ -208,4 +208,8 @@ return [
   'button' => [
     'update' => 'Update'
   ],
+  'viewErrors' => [
+    'message' => 'Sorry, this page is not available.',
+    'globe' => 'Try later',
+  ],
 ];

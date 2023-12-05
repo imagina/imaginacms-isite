@@ -406,7 +406,12 @@ return [
     "continueUser" => "Continue with this User",
     "createNewAccount" => "Create new account",
     "continue" => "Continue",
-    "print" => "Print"
+    "print" => "Print",
+    "copy" => "Copy",
+    "insert" => "Insert",
+    "accept" => "Accept",
+    "phoneNumber" => "Phone number",
+    "quickLook" => "Quick look",
   ],
   "message" => [
     "showDemo" => "Demo",
@@ -416,7 +421,7 @@ return [
     "creatingTenant" => "We are excited to let you know that we are in the process of creating your site! We appreciate your patience while we provide you with an improved online experience. as soon as everything is ready, we will take you to your site!",
     "organizationCreated" => "We are pleased to inform you that your site is ready! We are excited to provide you with an improved online experience. You can access your new site by clicking the button below. If you have any questions or need help, please do not hesitate to contact us. We hope you enjoy exploring your new site!",
     "editFormProduct" => "In this form you can edit your product in a simple way, if you want to edit your product with more advanced options, click on the following button to go to the advanced form.",
-    "createFormProduct" => "In this form you can create a new product in a simple way, if you want to create your product with more advanced options, click on the following button to go to the advanced form.",
+    "createFormProduct" => "Want to see the advanced options?",
     "advanceEdit" => "Advanced Edit",
     "descriptionHelpCenter" => "Choose the option you want to solve your doubts",
     "notFound" => "Sorry, nothing here",
@@ -488,7 +493,8 @@ return [
     "noCategories" => "There are no categories",
     "selectedTemplate" => "Selected template",
     "noTemplates" => "No templates",
-    "noResultsFoundTryAnotherSearchValue" => "No results found, try another search value..."
+    "noResultsFoundTryAnotherSearchValue" => "No results found, try another search value...",
+    "emailInvalid" => "Email invalid",
   ],
   "form" => [
     "id" => "ID",
@@ -695,6 +701,7 @@ return [
     ]
   ],
   "reportQueue" => "You already have a report in progress, you requested it on <b>{date}</b>. As soon as it is finished we will enable the 'create' function for you... We do this to make the app work much better!",
-  "sessionFound" => "There is an active session"
+  "sessionFound" => "There is an active session",
+  "alreadyInUse" => "Oops! It looks like the name you've chosen is already in use. Could you please try selecting a different name? We want to make sure your unique identity shines bright!"
 ];
 
