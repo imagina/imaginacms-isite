@@ -19,6 +19,7 @@ class ItemsList extends Component
   public $description;
   public $moduleName;
   public $repository;
+  public $entityNamespace;
   public $itemComponentName;
   public $entityName;
   public $responsiveTopContent;
@@ -47,12 +48,15 @@ class ItemsList extends Component
   public $uniqueItemListRendered;
   public $emitItemListRenderedName;
   public $disableFilters;
+  public $eventToDelete;
 
   //Item List Unique Class
   public $itemListUniqueClass;
 
   protected $paginationTheme = 'bootstrap';
   protected $emitItemListRendered;
+
+  private $log = "Isite: Livewire|ItemList|";
 
   /**
    * Listeners
@@ -80,7 +84,7 @@ class ItemsList extends Component
     $entityName = "item", $itemComponentName = "isite::item-list", $params = [], $responsiveTopContent = null,
     $showTitle = true, $pagination = null, $configOrderBy = null, $configLayoutIndex = null, $itemComponentAttributes = [],
     $itemModal = null, $carouselAttributes = null, $uniqueItemListRendered = false, $title = null, $description = null,
-    $disableFilters = false
+    $disableFilters = false, $eventToDelete = null
   )
   {
     $this->moduleName = strtolower($moduleName);
@@ -94,6 +98,7 @@ class ItemsList extends Component
     $this->itemComponentNamespace = $itemComponentNamespace;
     $this->itemMainClass = $this->entityName == "ad" ? "pin" : $this->entityName;
     $this->repository = "Modules\\" . ucfirst($this->moduleName) . "\Repositories\\" . ucfirst($entityName) . 'Repository';
+    $this->entityNamespace = "Modules\\" . ucfirst($this->moduleName) . "\Entities\\" . ucfirst($entityName);
     $this->moduleParams = $params;
     $this->page = $this->moduleParams['page'] ?? 1;
     $this->take = $this->moduleParams['take'] ?? 12;
@@ -112,7 +117,8 @@ class ItemsList extends Component
 
     $this->itemListUniqueClass = "unique-class-".$this->id;
     $this->disableFilters = $disableFilters;
-    
+    $this->eventToDelete = $eventToDelete;
+
   }
 
   /*
@@ -167,6 +173,11 @@ class ItemsList extends Component
     if (isset($params["order"])) {
       $this->emitItemListRendered = false;
       $this->orderBy = $params['order'];
+      $this->resetPage();
+    }
+
+    //Case: Update ItemList after delete an element from other component (Example: Wishlist)
+    if (isset($params["onlyResetList"])) {
       $this->resetPage();
     }
     
@@ -263,6 +274,35 @@ class ItemsList extends Component
     $this->emitItemListRenderedName = "itemListRendered";
     if ($this->uniqueItemListRendered)
       $this->emitItemListRenderedName = "itemListRendered_" . $this->id;
+  }
+
+  /**
+   *  Delete Item From Item List
+   */
+  public function deleteFromItemList($id)
+  {
+    
+    //\Log::info($this->log."deleteFromWishlist");
+
+    //Delete in other process
+    if(!is_null($this->eventToDelete)){
+
+      //The other component will be in charge of delete the item
+      //The other component will emit the event to reload the ItemList
+      $this->emit($this->eventToDelete['eventName'],$id,$this->entityNamespace,$this->eventToDelete['params']);
+      
+    }else{
+      //Delete in the same repository from this item list
+
+      $item = $this->getItemRepository()->getItem($id); //Search item
+
+      if(isset($item->id)){
+        $item->delete();
+        $this->resetPage(); //Reset item list
+      }
+
+    }
+   
   }
 
   /*
