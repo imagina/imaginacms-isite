@@ -417,6 +417,7 @@ return [
     "insert" => "Insertar",
     "phoneNumber" => "Número de teléfono",
     "quickLook" => "Vistazo rápido",
+    "gridPosition" => "Espació en la Grid",
   ],
   "message" => [
     "showDemo" => "Ver Demo",
