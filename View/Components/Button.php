@@ -22,6 +22,8 @@ class Button extends Component
   public $target;
   public $sizeLabel;
   public $dataItemId;
+  public $dataTarget;
+  public $dataModal;
   
   /**
    * Create a new component instance.
@@ -30,7 +32,7 @@ class Button extends Component
    */
   public function __construct($idButton = null, $style = "", $buttonClasses = "", $onclick="", $withIcon = false, $iconClass = "",
                               $withLabel = false, $label = "", $href = "",  $color="primary",
-                              $target="", $iconPosition="left", $iconColor='currentcolor', $sizeLabel="16", $dataItemId="" )
+                              $target="", $iconPosition="left", $iconColor='currentcolor', $sizeLabel="16", $dataItemId="", $dataTarget=null,$dataModal=null)
   {
     $this->idButton = $idButton ?? uniqid('button');
     $this->style = $style;
@@ -47,6 +49,8 @@ class Button extends Component
     $this->target = $target;
     $this->sizeLabel = $sizeLabel;
     $this->dataItemId =  $dataItemId;
+    $this->dataTarget =  $dataTarget;
+    $this->dataModal =  $dataModal;
   }
 
 
