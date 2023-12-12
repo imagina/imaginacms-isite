@@ -63,7 +63,8 @@ class ItemsList extends Component
    */
   protected $listeners = [
     'itemsListGetData' => 'getData',
-    'itemsListClearValues' => 'clearValues'
+    'itemsListClearValues' => 'clearValues',
+    'deleteFromItemList' => 'deleteFromItemList'
   ];
 
   /**
