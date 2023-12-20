@@ -413,6 +413,8 @@ return [
     "phoneNumber" => "Phone number",
     "quickLook" => "Quick look",
     "gridPosition" => "Grid Position",
+    "us" => "Us",
+    "contactUs" => "Contact",
   ],
   "message" => [
     "showDemo" => "Demo",
