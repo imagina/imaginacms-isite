@@ -1189,7 +1189,7 @@ return [
     ]
   ],
   'timeExpiredToken' => [
-    'value' => 1,
+    'value' => 3650,
     'name' => 'isite::timeExpiredToken',
     'type' => 'input',
     'groupName' => 'tokens',
