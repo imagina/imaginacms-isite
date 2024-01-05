@@ -418,6 +418,8 @@ return [
     "phoneNumber" => "Número de teléfono",
     "quickLook" => "Vistazo rápido",
     "gridPosition" => "Espació en la Grid",
+    "us" => "Nosotros",
+    "contactUs" => "Contactanos",
   ],
   "message" => [
     "showDemo" => "Ver Demo",
