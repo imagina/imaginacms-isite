@@ -22,6 +22,7 @@ class ItemModal extends Component
   public $params;
   public $repository;
   public $idModal;
+  public $varItemName;
 
   /**
   * Listeners
@@ -41,7 +42,8 @@ class ItemModal extends Component
     $view = "isite::frontend.livewire.index.partials.item-modal-content",
     $params = null,
     $repository = null,
-    $idModal = "itemModal"
+    $idModal = "itemModal",
+    $varItemName = "item"
     ){
 
     $this->mobile = $mobile;
@@ -50,7 +52,7 @@ class ItemModal extends Component
     $this->params = $params;
     $this->repository = $repository;
     $this->idModal = $idModal;
-    
+    $this->varItemName = $varItemName;
   }
 
   /*
@@ -67,10 +69,10 @@ class ItemModal extends Component
   
     //TODO check why this method (getData) is called twice, in the meantime I'm doing this validation to avoid $item with null value in sometimes
     if(isset($item->id)){
-      if($_SERVER['REMOTE_ADDR'] == "181.56.253.64") dd($item,$item->mediaFiles(),$this->params);
+     
       //'item' => json_decode(json_encode($item), FALSE)
       $newHtml = view($this->view, [
-        'item' => $item,
+        $this->varItemName => $item,
         'inModal' => true
       ])->render();
   
