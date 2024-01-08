@@ -415,6 +415,11 @@ return [
     "print" => "Imprimir",
     "copy" => "Copiar",
     "insert" => "Insertar",
+    "phoneNumber" => "Número de teléfono",
+    "quickLook" => "Vistazo rápido",
+    "gridPosition" => "Espació en la Grid",
+    "us" => "Nosotros",
+    "contactUs" => "Contactanos",
   ],
   "message" => [
     "showDemo" => "Ver Demo",
@@ -426,7 +431,7 @@ return [
     "advanceEdit" => "Edición Avanzada",
     "descriptionHelpCenter" => "Elige la opción que deseas para resolver tus dudas",
     "editFormProduct" => "En este formulario podrás editar tu producto de manera sencilla, si quieres editar tu producto con opciones más avanzadas, da click en el siguiente botón para ir a el formulario avanzado.",
-    "createFormProduct" => "En este formulario podrás crear un nuevo producto de manera sencilla, si quieres crear tu producto con opciones más avanzadas, da click en el siguiente botón para ir a el formulario avanzado.",
+    "createFormProduct" => "¿Quieres ver las opciones avanzadas?",
     "notFound" => "Lo sentimos, no hay nada aquí",
     "goToHome" => "Volver al inicio",
     "deleteRecord" => "¿Estás seguro que quieres eliminar este registro?",
@@ -491,7 +496,9 @@ return [
     "noCategories" => "No existen categorías",
     "selectedTemplate" => "Plantilla seleccionada",
     "noTemplates" => "No existen plantillas",
-    "noResultsFoundTryAnotherSearchValue" => "No se han encontrado resultados, intenta con otro valor de busqueda..."
+    "noResultsFoundTryAnotherSearchValue" => "No se han encontrado resultados, intenta con otro valor de busqueda...",
+    "accept" => "Aceptar",
+    "emailInvalid" => "Correo invalido",
   ],
   "form" => [
     "id" => "ID",
@@ -697,6 +704,7 @@ return [
     ]
   ],
   "reportQueue" => "Ya tienes un reporte en progreso, lo solicitaste en <b>{date}</b>. Tan pronto este termine habilitaremos la función de 'crear' para ti... Esto lo hacemos para que la aplicación funcione mucho mejor!",
-  "sessionFound" => "Hay una sesión activa"
+  "sessionFound" => "Hay una sesión activa",
+  "alreadyInUse" => "¡Ups! Parece que el nombre que has elegido ya está en uso. ¿Podrías intentar seleccionar otro nombre? ¡Queremos asegurarnos de que tu identidad única brille con fuerza!"
 ];
 
