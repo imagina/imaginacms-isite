@@ -49,6 +49,7 @@ class ItemsList extends Component
   public $emitItemListRenderedName;
   public $disableFilters;
   public $eventToDelete;
+  public $emitItemListRenderedAlways;
 
   //Item List Unique Class
   public $itemListUniqueClass;
@@ -85,7 +86,7 @@ class ItemsList extends Component
     $entityName = "item", $itemComponentName = "isite::item-list", $params = [], $responsiveTopContent = null,
     $showTitle = true, $pagination = null, $configOrderBy = null, $configLayoutIndex = null, $itemComponentAttributes = [],
     $itemModal = null, $carouselAttributes = null, $uniqueItemListRendered = false, $title = null, $description = null,
-    $disableFilters = false, $eventToDelete = null
+    $disableFilters = false, $eventToDelete = null, $emitItemListRenderedAlways = false
   )
   {
     $this->moduleName = strtolower($moduleName);
@@ -119,6 +120,7 @@ class ItemsList extends Component
     $this->itemListUniqueClass = "unique-class-".$this->id;
     $this->disableFilters = $disableFilters;
     $this->eventToDelete = $eventToDelete;
+    $this->emitItemListRenderedAlways = $emitItemListRenderedAlways;
 
   }
 
@@ -328,6 +330,11 @@ class ItemsList extends Component
       $showMore = $items->hasMorePages() ? true : false;
       $this->emit('loadMoreButtonUpdateParamsForFilters', $params, $showMore);
     }
+
+    //Emit Always after update Item List
+    if($this->emitItemListRenderedAlways)
+      $this->dispatchBrowserEvent('emit-always-update-item-list',['newParams' => $params]);
+
     // Emit Finish Render
     //\Log::info("Emit list rendered: ".json_encode($this->emitItemListRendered));
     $this->emitItemListRendered ? $this->emit($this->emitItemListRenderedName, $params) : false;
