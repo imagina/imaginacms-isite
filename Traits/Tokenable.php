@@ -33,10 +33,12 @@ trait Tokenable
     $today = date("Y-m-d h:i:s");
     //Search the token
     $token = Token::where("token", $token)
-      ->where("expires_at",">=",$today)
-      ->where(function ($query){
+      ->where(function($query) use($today){
         $query->where("uses",0)
-          ->orWhereRaw("used < uses");
+          ->orWhere(function($query) use($today){
+            $query->where("expires_at",">=",$today)
+              ->whereRaw("used < uses");
+          });
       })->first();
 
     //If exist the token
@@ -48,8 +50,8 @@ trait Tokenable
         $token->save();
       }
 
-      //Clear all tokens expired
-      $this->clearTokens();
+//      //Clear all tokens expired
+//      $this->clearTokens();
 
       return true;
     }else{
@@ -61,15 +63,15 @@ trait Tokenable
 
   }
 
-  /** Delete token by token column */
-  public function clearTokens()
-  {
-    $today = date("Y-m-d h:i:s");
-    Token::whereDate("expires_at", '<', $today)->orWhere(
-      function ($query){
-        $query->where("uses",">",0)
-          ->whereRaw("used >= uses");
-      }
-    )->delete();
-  }
+//  /** Delete token by token column */
+//  public function clearTokens()
+//  {
+//    $today = date("Y-m-d h:i:s");
+//    Token::whereDate("expires_at", '<', $today)->orWhere(
+//      function ($query){
+//        $query->where("uses",">",0)
+//          ->whereRaw("used >= uses");
+//      }
+//    )->delete();
+//  }
 }
