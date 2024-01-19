@@ -324,6 +324,7 @@ class IsiteServiceProvider extends ServiceProvider
     Livewire::component('isite::items-list', \Modules\Isite\Http\Livewire\Index\ItemsList::class);
     Livewire::component('isite::load-more-button', \Modules\Isite\Http\Livewire\Index\LoadMoreButton::class);
     Livewire::component('isite::item-modal', \Modules\Isite\Http\Livewire\Index\ItemModal::class);
+    Livewire::component('isite::items-map', \Modules\Isite\Http\Livewire\Index\ItemsMap::class);
 
     Livewire::component('isite::filters', \Modules\Isite\Http\Livewire\Filters::class);
     Livewire::component('isite::filter-range', \Modules\Isite\Http\Livewire\Filters\Range::class);

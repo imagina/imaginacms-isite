@@ -183,7 +183,8 @@ return [
   ],
   'maps' => [
     'groupMaps' => 'Maps',
-    'mapsLabel' => 'Maps in the site'
+    'mapsLabel' => 'Maps in the site',
+    'groupMarkersDistance' => 'Distance (In meters) between 2 points to group them into a single Marker',
   ],
   'feeds' => [
     'titlePosts' => 'All new posts on ',
