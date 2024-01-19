@@ -796,7 +796,8 @@ class TenantService
       //ProcessAi::dispatch(["tenantId" => $organization->id]);
     
       //Implementacion 2 - Jobs separados para cada servicio (Hasta ahora mejor que la Implentacion 1)
-      app("Modules\Isite\Services\TenantAiService")->processAi($organization->id,null,1); //$typeOfExecution=1 (executte in jobs)
+      //Testing for now
+      //app("Modules\Isite\Services\TenantAiService")->processAi($organization->id,null,1); //$typeOfExecution=1 (executte in jobs)
 
     }
     
