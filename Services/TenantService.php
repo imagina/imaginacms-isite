@@ -127,6 +127,7 @@ class TenantService
   
     }
 
+    
     //Create organization
     $data['role'] = $role;
     $organization = $this->createTenant(array_merge($data, ["user" => $userCentralData["user"]]));
@@ -250,9 +251,24 @@ class TenantService
     $authData = $this->userService->authenticate(array_merge($userCentralData, ["organization_id" => $organization->id]));
     $redirectUrl = "https://".$domain . "/iadmin?authbearer=" . str_replace("Bearer ", "",$authData->data->bearer)."&expiresatbearer=".urlencode($authData->data->expiresDate);
 
+    $passOTP = null;
     //Change de fake Password with Real Password (Case from Wizard)
     if($updatePassword){
-      $this->userService->updatePasswordInTenant($userCentralData['user'],$tenantUser['user']);
+
+      //Get authType in Central DB
+      //$authTypeSetting = setting('iprofile::authType',null,null,true); 
+
+      $authType = config('asgard.iprofile.config.authType');
+      \Log::info("authType: ".$authType);
+
+      if ($authType=="withEmail"){
+        \Log::info("AUTH|OTP");
+        $passOTP =  $this->userService->updatePasswordsInBothDB($userCentralData['user'],$tenantUser['user']);
+      }else{
+        \Log::info("AUTH|WITH PASSWORD");
+        $this->userService->updatePasswordInTenant($userCentralData['user'],$tenantUser['user']);
+      }
+
     }
 
     //TODO check - Error using Wizard - With postman works fine
@@ -271,7 +287,7 @@ class TenantService
     \Log::info("----------------------------------------------------------");
 
     //Send User because this is the Central Organization with other User Id
-    event(new OrganizationWasCreated($organization,$tenantUser['user']));
+    event(new OrganizationWasCreated($organization,$tenantUser['user'],$passOTP));
 
     //Execute AI Process
     $this->runAI($data,$organization);
