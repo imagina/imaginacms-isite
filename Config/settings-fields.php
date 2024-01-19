@@ -1014,6 +1014,18 @@ return [
       'label' => 'isite::common.maps.labelLocationName'
     ],
   ],
+  'mapGroupMarkersDistance' => [
+    "onlySuperAdmin" => true,
+    'value' => 1,
+    'name' => 'isite::mapGroupMarkersDistance',
+    'type' => 'input',
+    'groupName' => 'maps',
+    'groupTitle' => 'isite::common.maps.groupMaps',
+    'props' => [
+      'label' => 'isite::common.maps.groupMarkersDistance',
+      'type' => 'number',
+    ]
+  ],
   'locationSite' => [
     'value' => '{"title" : "Ubicación", "lat" : 4.646920449476433, "lng" : -74.07857977257274}',
     'name' => 'isite::locationSite',
