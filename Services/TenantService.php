@@ -249,7 +249,7 @@ class TenantService
     $redirectUrl = null;
 
     $authData = $this->userService->authenticate(array_merge($userCentralData, ["organization_id" => $organization->id]));
-    $redirectUrl = "https://".$domain . "/iadmin?authbearer=" . str_replace("Bearer ", "",$authData->data->bearer)."&expiresatbearer=".urlencode($authData->data->expiresDate);
+    $redirectUrl = "https://".$domain . "/iadmin/#/?authbearer=" . str_replace("Bearer ", "",$authData->data->bearer)."&expiresatbearer=".urlencode($authData->data->expiresDate);
 
     $passOTP = null;
     //Change de fake Password with Real Password (Case from Wizard)
@@ -796,7 +796,7 @@ class TenantService
       //ProcessAi::dispatch(["tenantId" => $organization->id]);
     
       //Implementacion 2 - Jobs separados para cada servicio (Hasta ahora mejor que la Implentacion 1)
-      //app("Modules\Isite\Services\TenantAiService")->processAi($organization->id,null,1); //$typeOfExecution=1 (executte in jobs)
+      app("Modules\Isite\Services\TenantAiService")->processAi($organization->id,null,1); //$typeOfExecution=1 (executte in jobs)
 
     }
     
