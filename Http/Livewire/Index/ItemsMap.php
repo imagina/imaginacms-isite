@@ -15,6 +15,7 @@ class ItemsMap extends Component
   public $layoutMarkPopup;
   public $locations;
   public $distancePoints;
+  public $urlMarkerIcon;
  
   /**
   * Listeners
@@ -29,7 +30,7 @@ class ItemsMap extends Component
   * but before render() is called
   */
   public function mount($view = "isite::frontend.livewire.index.items-map", $params = null, $repository = "Modules\Iad\Repositories\AdRepository", $repoMethod = 'getItemsBy',
-  $layoutMarkPopup = "mark-popup-layout-1"
+  $layoutMarkPopup = "mark-popup-layout-1", $urlMarkerIcon = null
   ){
     $this->log = "Isite::Livewire|Index|ItemsMaps|";
     $this->locations = [];
@@ -44,6 +45,13 @@ class ItemsMap extends Component
 
     //Valor en Mts
     $this->distancePoints = setting('isite::mapGroupMarkersDistance',null,1);
+
+    //Esto no funcionó | traia url default y no la guardada en el setting
+    //dd(setting('isite::mapIconMarker'));
+
+    $this->urlIcon = $urlMarkerIcon;
+
+
   }
 
   /*
@@ -180,7 +188,7 @@ class ItemsMap extends Component
           array_push($groupLocations, [
             'lat' => $groupItems[0]["lat"],
             'lng' => $groupItems[0]["lng"],
-            'title' => "Localizaciones Varias",
+            'title' => "Ver mas",
             'id' => $groupItems[0]["id"],
             'groupItemsId' => $groupItemsId,
             'renderedView' => $renderedView
