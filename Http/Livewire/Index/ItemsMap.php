@@ -189,7 +189,7 @@ class ItemsMap extends Component
             'lat' => $groupItems[0]["lat"],
             'lng' => $groupItems[0]["lng"],
             'title' => "Ver mas",
-            'id' => $groupItems[0]["id"],
+            'id' => implode(",",$groupItemsId),
             'groupItemsId' => $groupItemsId,
             'renderedView' => $renderedView
           ]);
@@ -236,6 +236,7 @@ class ItemsMap extends Component
 
     \Log::info($this->log."GroupLocations|END");
 
+    //dd($groupLocations);
     return $groupLocations;
     
   }
