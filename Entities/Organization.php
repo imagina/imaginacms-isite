@@ -87,6 +87,10 @@ class Organization extends BaseTenant implements TenantWithDatabase
     return true;
   }
   
+  function getFillables(){
+    return $this->fillable;
+  }
+  
   public function category()
   {
     return $this->belongsTo(Category::class);
