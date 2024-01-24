@@ -208,6 +208,7 @@ return [
     'labelLocationSite' => 'Ubicación Sede Principal',
     'labelLocationName' => 'Nombre Sede Principal',
     'labelIframeMap' => 'Iframe Mapa Ubicación Sede Principal',
+    'groupMarkersDistance' => 'Distancia (En mts) entre 2 puntos para agruparlos en un solo Marcador',
   ],
   'feeds' => [
     'titlePosts' => 'Todas las nuevas publicaciones en ',
