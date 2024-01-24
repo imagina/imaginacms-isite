@@ -238,7 +238,7 @@ class ItemsList extends Component
     if ($this->firstRequest)
       $this->firstRequest = false;
     // To First Time and Others
-    $this->order = $this->configs['orderBy']['options'][$this->orderBy]['order'];
+    $this->order = $this->moduleParams['order'] ?? $this->configs['orderBy']['options'][$this->orderBy]['order'];
     if (is_string($this->search) && $this->search) {
       $this->filter["search"] = $this->search;
       $this->filter["locale"] = App::getLocale();
