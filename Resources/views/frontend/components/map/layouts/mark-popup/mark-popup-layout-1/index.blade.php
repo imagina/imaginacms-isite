@@ -31,12 +31,18 @@
                                             @endforeach
                                         </div>
                                         <div class="col">
-                                            @if(!empty($item->options->bpni))
-                                                <div class="mark-popup-title">BPIN</div>
-                                                <div class="mark-popup-text">{{$item->options->bpni}}</div>
-                                            @endif
+                                            @foreach($item->fields as $field)
+                                                @if(isset($field->name) && ($field->name == 'bpin'))
+                                                    <div class="mark-popup-title">
+                                                        {{ trans('icustom::common.crudFields.bpni') }}
+                                                    </div>
+                                                    <div class="mark-popup-text">
+                                                        {{$field->value}}
+                                                    </div>
+                                                @endif
+                                            @endforeach
                                             @if(!empty($item->min_price))
-                                                <div class="mark-popup-title">VALOR</div>
+                                                <div class="mark-popup-title">{{ trans('icustom::common.crudFields.worth') }}</div>
                                                 <div class="mark-popup-text text-color">{{"$" . number_format($item->min_price, 0, ",", ".")}}</div>
                                             @endif
                                         </div>
