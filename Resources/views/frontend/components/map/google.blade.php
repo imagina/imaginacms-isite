@@ -6,17 +6,17 @@
     let markers = [];
     let urlMarkerIcon;
 
+    //Validation to Marker Icon
     @if(isset($imageIcon) && !is_null($imageIcon))
       urlMarkerIcon = "{{$imageIcon}}"
     @endif
 
-    
     //Validation Modal
     @if(!isset($inModal) || !$inModal)
       document.addEventListener("DOMContentLoaded", function () {
     @endif
-   
 
+  
     /*
     * Google Map | INIT
     */
@@ -29,17 +29,9 @@
           center: position,
         });
 
-        //Bounds Maps
-        //bounds = new google.maps.LatLngBounds();
-
-        /*
-        * Init locations | By default always added one element not necessary to maps livewire component
-        */
+        //Init locations | By default always added one element not necessary to maps livewire component
         @if($usingLivewire==false)
-          const marker = new google.maps.Marker({
-            position: position,
-            map: map,
-          });
+          setSimpleMarkGoogle(position)
         @endif
 
     }
@@ -51,6 +43,18 @@
     @if(!isset($inModal) || !$inModal) 
       });
     @endif
+
+
+    /*
+    * Set Simple mark
+    */
+    function setSimpleMarkGoogle(position)
+    {
+      var marker = new google.maps.Marker({
+          position: position, 
+          map: map
+      });
+    }
 
     /*
     * Set Markers in Google Map (Case Item Maps | Livewire Component)
@@ -102,7 +106,7 @@
     }
 
     /*
-    * Deletes all markers in the array by removing references to them.
+    * Deletes all markers in the array by removing references to them. (Case Item Maps | Livewire Component)
     */
     function deleteMarkersGoogle() 
     {
