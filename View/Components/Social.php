@@ -6,8 +6,8 @@ use Illuminate\View\Component;
 
 class Social extends Component
 {
-  
-  
+
+
   public $items;
   public $view;
   public $itemLayout;
@@ -37,7 +37,7 @@ class Social extends Component
   public $iconMargin;
   public $iconAnimate;
   public $idSocial;
-  
+
   /**
    * Create a new component instance.
    *
@@ -103,7 +103,7 @@ class Social extends Component
     $this->whatsappAttributes = is_array($whatsappAttributes) && count($whatsappAttributes) > 0 ? $whatsappAttributes : ['size' => $this->size, 'type' => $this->type , 'central' => $this->central];
 
   }
-  
+
   /**
    * Get the view / contents that represent the component.
    *
@@ -145,24 +145,25 @@ class Social extends Component
   public function render()
   {
     $locale = \LaravelLocalization::setLocale() ?: \App::getLocale();
-    
+
     $items = json_decode(setting('isite::socialNetworks',$locale, null, $this->central), true);
-    
+
     $this->items = [];
 
     $settingRepository = app('Modules\Setting\Repositories\SettingRepository');
     $settingSocial = $settingRepository->findByName('isite::socialNetworks');
 
     $createdAtSetting = (isset($settingSocial) && !empty($settingSocial)) ? $settingSocial->getAttributes()['created_at'] : now();
-    
+
     foreach ($items as $key => $value) {
+      $key = ($key == 'twitter') ? 'fa-brands fa-x-twitter' : $key;
       if ($createdAtSetting > '2022-08-29 00:00:00') {
         $this->items[isset($this->customIcons[$key]) ? $this->customIcons[$key] : 'fab fa-' . $key] = $value;
       } else {
         $this->items[isset($this->customIcons[$key]) ? $this->customIcons[$key] : 'fa fa-' . $key] = $value;
       }
     }
-    
+
     return view($this->view);
   }
 }
