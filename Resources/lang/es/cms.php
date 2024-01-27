@@ -614,7 +614,8 @@ return [
     "createdFromIp" => "Creado desde la IP",
     "requestedBy" => "Solicitado Por",
     "slider" => "Slider",
-    "banner" => "Banner"
+    "banner" => "Banner",
+    "warehouse" => "Bodega"
   ],
   "configList" => [
     "loggedAs" => "Registrado como",
