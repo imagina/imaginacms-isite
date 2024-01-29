@@ -613,7 +613,8 @@ return [
     "createdFromIp" => "Created from IP",
     "requestedBy" => "Requested By",
     "slider" => "Slider",
-    "banner" => "Banner"
+    "banner" => "Banner",
+    "warehouse" => "Warehouse"
   ],
   "configList" => [
     "loggedAs" => "logged as",
