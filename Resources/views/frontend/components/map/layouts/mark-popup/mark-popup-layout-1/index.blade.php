@@ -25,7 +25,21 @@
                                         <div class="col-auto mr-2">
                                             @foreach($item->categories as $category)
                                                 @if($category->parent_id == 2)
-                                                    <i class="fa-solid fa-road icon"></i>
+                                                    <div class="icon">
+                                                        @if(isset($category->mediaFiles()->mainimage) &&
+                                                                !empty($category->mediaFiles()->mainimage) &&
+                                                                 strpos($category->mediaFiles()->mainimage->extraLargeThumb, 'default.jpg') == false)
+                                                            <x-media::single-image
+                                                                    imgClasses="icon"
+                                                                    :mediaFiles="$category->mediaFiles()"
+                                                                    :isMedia="true" :alt="$category->title"
+                                                            />
+                                                        @else
+                                                            <x-media::single-image
+                                                                    imgClasses="icon"
+                                                                    setting="icustom::imageDefault"/>
+                                                        @endif
+                                                    </div>
                                                     <div class="mark-popup-small"> {{$category->title}}</div>
                                                 @endif
                                             @endforeach
