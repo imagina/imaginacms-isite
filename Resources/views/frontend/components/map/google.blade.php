@@ -5,10 +5,16 @@
     let bounds;
     let markers = [];
     let urlMarkerIcon;
+    let labelLocation;
 
     //Validation to Marker Icon
     @if(isset($imageIcon) && !is_null($imageIcon))
       urlMarkerIcon = "{{$imageIcon}}"
+    @endif
+
+    //Validation to Label Location
+    @if(isset($locationName) && !is_null($locationName))
+      labelLocation = "{{$locationName}}"
     @endif
 
     //Validation Modal
@@ -52,7 +58,9 @@
     {
       var marker = new google.maps.Marker({
           position: position, 
-          map: map
+          map: map,
+        @if(!is_null($imageIcon)) icon: urlMarkerIcon, @endif
+        @if(!is_null($locationName))  label: labelLocation, @endif
       });
     }
 
