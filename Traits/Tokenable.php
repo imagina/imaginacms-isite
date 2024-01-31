@@ -50,8 +50,8 @@ trait Tokenable
         $token->save();
       }
 
-//      //Clear all tokens expired
-//      $this->clearTokens();
+      //Clear all tokens expired
+      $this->clearTokens();
 
       return true;
     }else{
@@ -63,15 +63,15 @@ trait Tokenable
 
   }
 
-//  /** Delete token by token column */
-//  public function clearTokens()
-//  {
-//    $today = date("Y-m-d h:i:s");
-//    Token::whereDate("expires_at", '<', $today)->orWhere(
-//      function ($query){
-//        $query->where("uses",">",0)
-//          ->whereRaw("used >= uses");
-//      }
-//    )->delete();
-//  }
+  /** Delete token by token column */
+  public function clearTokens()
+  {
+    $today = date("Y-m-d h:i:s");
+    Token::whereDate("expires_at", '<', $today)->orWhere(
+      function ($query){
+        $query->where("uses",">",0)
+          ->whereRaw("used >= uses");
+      }
+    )->forceDelete();
+  }
 }
