@@ -105,7 +105,7 @@ return [
     "delete" => "Eliminar",
     "cancel" => "Cancelar",
     "cancelled" => "Cancelado",
-    "approved" => "Aprovado",
+    "approved" => "Aprobado",
     "open" => "Abierto",
     "close" => "Cerrar",
     "closed" => "Cerrado",
