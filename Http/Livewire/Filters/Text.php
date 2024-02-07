@@ -34,31 +34,31 @@ class Text  extends Component
     $this->repoMethod = $repoMethod;
     $this->layout = $layout;
     $this->classes = $classes;
-    $this->placeholder = $placeholder;
+    $this->placeholder = trans($placeholder);
     $this->name = $name;
     $this->isCollapsable = $isCollapsable;
     $this->isExpanded = $isExpanded;
-    $this->title = $title;
+    $this->title = trans($title);
 
   }
-  
-  
+
+
   /*
   * When SelectedOption has been selected
   */
   public function updatedValue()
   {
-    
+
     $this->emit($this->emitTo, [
       'name' => $this->name,
       $this->repoAction => [
         $this->repoAttribute => $this->value
       ]
     ]);
-    
+
     $this->isExpanded = true;
   }
-  
+
 
   public function render()
   {

@@ -105,7 +105,7 @@ return [
     "delete" => "Eliminar",
     "cancel" => "Cancelar",
     "cancelled" => "Cancelado",
-    "approved" => "Aprovado",
+    "approved" => "Aprobado",
     "open" => "Abierto",
     "close" => "Cerrar",
     "closed" => "Cerrado",
@@ -614,7 +614,8 @@ return [
     "createdFromIp" => "Creado desde la IP",
     "requestedBy" => "Solicitado Por",
     "slider" => "Slider",
-    "banner" => "Banner"
+    "banner" => "Banner",
+    "warehouse" => "Bodega"
   ],
   "configList" => [
     "loggedAs" => "Registrado como",
