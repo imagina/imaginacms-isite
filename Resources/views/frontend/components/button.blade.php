@@ -26,10 +26,6 @@
         line-height: {{$sizeLabel}}px;
         @if(!empty($styleBlock)) {!! $styleBlock !!} @endif
         @if(!empty($styleBlockHover)) &:hover { {!! $styleBlockHover !!} } @endif
-        @if($disabled)
-        background-color: transparent;
-        border: 1px solid transparent
-        @endif
     }
     @if($withIcon)
     #{{$idButton}} i {

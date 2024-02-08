@@ -29,6 +29,9 @@ class Button extends Component
   public $styleBlock;
   public $styleBlockHover;
   public $disabled;
+  public $loadingLabel;
+  public $loadingIcon;
+  public $loading;
   
   /**
    * Create a new component instance.
@@ -38,7 +41,8 @@ class Button extends Component
   public function __construct($idButton = null, $style = "", $buttonClasses = "", $onclick="", $withIcon = false, $iconClass = "",
                               $withLabel = false, $label = "", $href = "",  $color="primary", $classesBlock = null, $sizePadding = "",
                               $target="", $iconPosition="left", $iconColor='currentcolor', $sizeLabel="16", $dataItemId="", $dataTarget=null,
-                              $styleBlock = "", $styleBlockHover = "", $disabled = false
+                              $styleBlock = "", $styleBlockHover = "", $disabled = false, $loadingIcon="spinner-grow spinner-grow-sm",
+                              $loading=false, $loadingLabel = null
   )
   {
     $this->idButton = $idButton ?? uniqid('button');
@@ -64,8 +68,20 @@ class Button extends Component
     $this->styleBlock =  $styleBlock;
     $this->styleBlockHover =  $styleBlockHover;
     $this->disabled =  $disabled;
+    $this->activeLoading($loading,$loadingIcon,$loadingLabel);
   }
 
+  public function activeLoading($loading,$icon,$label){
+      if($loading) {
+          $this->withIcon = true;
+          $this->iconClass = $icon;
+          $this->disabled =  true;
+          if(!empty($label)) {
+          $this->withLabel = true;
+          $this->label = $label;
+          }
+      }
+  }
 
   /**
    * Get the view / contents that represent the component.
