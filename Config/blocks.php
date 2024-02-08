@@ -3291,5 +3291,202 @@ return [
             ]
         ],
     ]
+  ],
+  "button" => [
+    "title" => "Botón",
+    "systemName" => "isite::button",
+    "nameSpace" => "Modules\Isite\View\Components\Button",
+    "contentFields" => [
+        "label" => [
+            "name" => "label",
+            "type" => "input",
+            "columns" => "col-12",
+            "isTranslatable" => true,
+            "props" => [
+                "label" => "Texto del Botón",
+            ]
+        ],
+    ],
+    "attributes" => [
+        "general" => [
+            "title" => "General",
+            "fields" => [
+                "idButton" => [
+                    "name" => "idButton",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "id",
+                    ]
+                ],
+                "buttonClasses" => [
+                    "name" => "buttonClasses",
+                    "value" => "",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Estilo de Predefinidos",
+                        "options" => $vAttributes["buttonStyle"]
+                    ]
+                ],
+                "classesBlock" => [
+                    "name" => "classesBlock",
+                    "value" => "",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Estilo Libre",
+                    ]
+                ],
+                "color" => [
+                    "name" => "color",
+                    "value" => "primary",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Color",
+                        "options" => $vAttributes["bgColor"]
+                    ]
+                ],
+                "sizePadding" => [
+                    "name" => "sizePadding",
+                    "value" => "button-normal",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Espaciado",
+                        "options" => $vAttributes["buttonType"]
+                    ]
+                ],
+                "sizeLabel" => [
+                    "name" => "sizeLabel",
+                    "value" => "16",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Tamaño de texto",
+                    ]
+                ],
+                "withLabel" => [
+                    "name" => "withLabel",
+                    "value" => "1",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Con Texto",
+                        "options" => $vAttributes["validation"]
+                    ]
+                ],
+                "withIcon" => [
+                    "name" => "withIcon",
+                    "value" => "1",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Con Icono",
+                        "options" => $vAttributes["validation"]
+                    ]
+                ],
+                "iconClass" => [
+                    "name" => "iconClass",
+                    "value" => "",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Icono",
+                    ]
+                ],
+                "iconPosition" => [
+                    "name" => "iconPosition",
+                    "value" => "left",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Posición del icono",
+                        "options" => [
+                            ["label" => "Izquierda", "value" => "left"],
+                            ["label" => "Derecha", "value" => "right"]
+                        ]
+                    ]
+                ],
+                "href" => [
+                    "name" => "href",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "href",
+                    ]
+                ],
+                "target" => [
+                    "name" => "target",
+                    "value" => "_self",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Target (Titulo)",
+                        "options" => $vAttributes["target"]
+                    ]
+                ],
+                "dataItemId" => [
+                    "name" => "dataItemId",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "dataItemId",
+                    ]
+                ],
+                "dataTarget" => [
+                    "name" => "dataTarget",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "dataTarget",
+                    ]
+                ],
+                "styleBlock" => [
+                    "name" => "styleBlock",
+                    "type" => "input",
+                    "columns" => "col-12",
+                    "props" => [
+                        "label" => "Estilo libre",
+                        'type' => 'textarea',
+                        'rows' => 2,
+                    ]
+                ],
+                "styleBlockHover" => [
+                    "name" => "styleBlockHover",
+                    "type" => "input",
+                    "columns" => "col-12",
+                    "props" => [
+                        "label" => "Estilo libre hover",
+                        'type' => 'textarea',
+                        'rows' => 2,
+                    ]
+                ],
+            ],
+        ],
+    ]
+  ],
+  "logo" => [
+    "title" => "Logo",
+    "systemName" => "isite::logo",
+    "nameSpace" => "Modules\Isite\View\Components\Logo",
+    "attributes" => [
+        "general" => [
+            "title" => "General",
+            "fields" => [
+                "nameBock" => [
+                    "name" => "nameBock",
+                    "columns" => "col-12",
+                    "value" => "logo1",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Nombre del Setting",
+                        "options" => $vAttributes["logos"]
+                    ]
+                ],
+                "imgClasses" => [
+                    "name" => "imgClasses",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Clase (Imagen)",
+                    ]
+                ],
+                "linkClasses" => [
+                    "name" => "linkClasses",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Clase (Enlace)",
+                    ]
+                ]
+            ]
+        ],
+    ]
   ]
 ];

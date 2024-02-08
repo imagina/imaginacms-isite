@@ -23,6 +23,12 @@ class Button extends Component
   public $sizeLabel;
   public $dataItemId;
   public $dataTarget;
+  public $classesBlock;
+  public $buttonConfig;
+  public $sizePadding;
+  public $styleBlock;
+  public $styleBlockHover;
+  public $disabled;
   
   /**
    * Create a new component instance.
@@ -30,8 +36,10 @@ class Button extends Component
    * @return void
    */
   public function __construct($idButton = null, $style = "", $buttonClasses = "", $onclick="", $withIcon = false, $iconClass = "",
-                              $withLabel = false, $label = "", $href = "",  $color="primary",
-                              $target="", $iconPosition="left", $iconColor='currentcolor', $sizeLabel="16", $dataItemId="", $dataTarget=null)
+                              $withLabel = false, $label = "", $href = "",  $color="primary", $classesBlock = null, $sizePadding = "",
+                              $target="", $iconPosition="left", $iconColor='currentcolor', $sizeLabel="16", $dataItemId="", $dataTarget=null,
+                              $styleBlock = "", $styleBlockHover = "", $disabled = false
+  )
   {
     $this->idButton = $idButton ?? uniqid('button');
     $this->style = $style;
@@ -49,6 +57,13 @@ class Button extends Component
     $this->sizeLabel = $sizeLabel;
     $this->dataItemId =  $dataItemId;
     $this->dataTarget =  $dataTarget;
+    if(isset($classesBlock)){
+        $this->style = $this->buttonClasses;
+        $this->buttonClasses = $buttonClasses.' '.$sizePadding.' '.$classesBlock;
+    }
+    $this->styleBlock =  $styleBlock;
+    $this->styleBlockHover =  $styleBlockHover;
+    $this->disabled =  $disabled;
   }
 
 
