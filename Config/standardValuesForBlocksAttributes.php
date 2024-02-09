@@ -391,4 +391,12 @@ return [
         ["label" => "Opacity Content 5", "value" => "content-animate-5"],
         ["label" => "Opacity Content 6", "value" => "content-animate-6"],
     ],
+    "logos" => [
+        ["label" => "Logo 1", "value" => "logo1"],
+        ["label" => "Logo 2", "value" => "logo2"],
+        ["label" => "Logo 3", "value" => "logo3"],
+        ["label" => "Logo iadmin", "value" => "logoIadmin"],
+        ["label" => "Logo iadmin SM", "value" => "logoIadminSM"],
+        ["label" => "Favicon", "value" => "favicon"]
+    ],
 ];
