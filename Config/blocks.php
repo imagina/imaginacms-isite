@@ -3510,7 +3510,6 @@ return [
             "fields" => [
                 "id" => [
                     "name" => "id",
-                    "value" => "principal",
                     "type" => "input",
                     "props" => [
                         "label" => "id",
