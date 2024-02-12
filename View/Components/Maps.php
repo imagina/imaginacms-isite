@@ -130,6 +130,7 @@ class Maps extends Component
     $this->iframeMap = setting('isite::iframeMap');
     $this->usingLivewire = $usingLivewire;
     $this->allowMoveMarker = $allowMoveMarker;
+    $this->showLocationName = $showLocationName;
   }
 
   /**
