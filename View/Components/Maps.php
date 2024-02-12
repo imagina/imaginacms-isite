@@ -73,7 +73,7 @@ class Maps extends Component
     $this->zoom = $zoom;
     $this->classes = $classes;
     $this->id = $id;
-    $this->mapId = 'map_canvas_' . setting('isite::mapInShow') . '_' . $id;
+    $this->mapId = !is_null($mapId) ? $mapId : 'map_canvas_' . setting('isite::mapInShow') . '_' . $id;
     $this->settingMap = setting('isite::mapInShow');
     $this->inModal = $inModal;
     $this->mapWidth = $mapWidth;
