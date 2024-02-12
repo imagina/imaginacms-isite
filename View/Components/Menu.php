@@ -22,16 +22,35 @@ class Menu extends Component
   public $homeIcon;
   public $collapsed;
   public $central;
-
+  public $modalStyle;
+  public $modalTextTransform;
+  public $modalColor1;
+  public $modalColor2;
+  public $modalTextSize;
+  public $deskStyle;
+  public $deskTextTransform;
+  public $deskTextSize;
+  public $deskColor1;
+  public $deskColor2;
+  public $deskNav;
+  public $deskNavHover;
+  public $deskDropdownMenu;
+  public $deskNavBefore;
+  public $deskNavHoverBefore;
 
   /**
    * Create a new component instance.
    *
    * @return void
    */
-  public function __construct( $id,$repository = null, $params = [], $layout = 'category-menu-layout-1', $title = "Categorías",
-                              $menuBefore = null, $menuAfter = null, $withHome = true, $homeIcon = "",$collapsed = false,
-                              $central = false)
+  public function __construct($id,$repository = null, $params = [], $layout = 'category-menu-layout-1', $title = "Categorías",
+                              $menuBefore = null, $menuAfter = null, $withHome = true, $homeIcon = "", $collapsed = false,
+                              $central = false, $modalStyle = null, $deskStyle = null,  $deskTextTransform = "capitalize",
+                              $modalTextTransform = "uppercase", $deskTextSize = "18", $modalTextSize = "16",
+                              $modalColor1 = "", $modalColor2 = "", $deskColor1 = "", $deskColor2 = "",
+                              $deskNav = "", $deskNavHover = "", $deskDropdownMenu = "", $deskNavBefore = "",
+                              $deskNavHoverBefore = ""
+  )
   {
     $this->id = $id;
     $this->repository = $repository;
@@ -46,9 +65,24 @@ class Menu extends Component
     $this->central = $central;
     $this->view = "isite::frontend.components.category-menu.layouts.{$layout}.index";
     $this->items = [];
-
+    $this->modalStyle = $modalStyle;
+    $this->deskStyle = $deskStyle;
+    $this->deskTextTransform = $deskTextTransform;
+    $this->modalTextTransform = $modalTextTransform;
+    $this->deskTextSize = $deskTextSize;
+    $this->modalTextSize = $modalTextSize;
+    $this->modalColor1 = $modalColor1;
+    $this->modalColor2 = $modalColor2;
+    $this->deskColor1 = $deskColor1;
+    $this->deskColor2 = $deskColor2;
+    $this->deskNav = $deskNav;
+    $this->deskNavHover = $deskNavHover;
+    $this->deskDropdownMenu = $deskDropdownMenu;
+    $this->deskNavBefore = $deskNavBefore;
+    $this->deskNavHoverBefore = $deskNavHoverBefore;
     $this->getItems();
   }
+
 
   private function makeParamsFunction(){
 

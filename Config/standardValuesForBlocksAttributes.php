@@ -399,4 +399,17 @@ return [
         ["label" => "Logo iadmin SM", "value" => "logoIadminSM"],
         ["label" => "Favicon", "value" => "favicon"]
     ],
+    "textTransformCss" => [
+        ["label" => "None", "value" => "none"],
+        ["label" => "Capitalize", "value" => "capitalize"],
+        ["label" => "Uppercase", "value" => "uppercase"],
+        ["label" => "Lowercase", "value" => "lowercase"],
+        ["label" => "Full-width", "value" => "full-width"],
+        ["label" => "Full-size-kana", "value" => "full-size-kana"],
+        ["label" => "Inherit", "value" => "inherit"],
+        ["label" => "Initial", "value" => "initial"],
+        ["label" => "Revert", "value" => "revert"],
+        ["label" => "Revert-layer", "value" => "revert-layer"],
+        ["label" => "Unset", "value" => "unset"],
+    ],
 ];

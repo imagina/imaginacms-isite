@@ -3488,5 +3488,257 @@ return [
             ]
         ],
     ]
+  ],
+  "menu" => [
+    "title" => "Menu",
+    "systemName" => "isite::menu",
+    "nameSpace" => "Modules\Isite\View\Components\Menu",
+    "contentFields" => [
+        "title" => [
+            "name" => "title",
+            "type" => "input",
+            "columns" => "col-12",
+            "isTranslatable" => true,
+            "props" => [
+                "label" => "Titulo del Menu",
+            ]
+        ],
+    ],
+    "attributes" => [
+        "general" => [
+            "title" => "General",
+            "fields" => [
+                "id" => [
+                    "name" => "id",
+                    "value" => "principal",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "id",
+                    ]
+                ],
+                "layout" => [
+                    "name" => "layout",
+                    "value" => "category-menu-layout-2",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Layout",
+                        "options" => [
+                            ["label" => "Layout 1", "value" => "category-menu-layout-1"],
+                            ["label" => "Layout 2", "value" => "category-menu-layout-2"],
+                            ["label" => "Layout 3", "value" => "category-menu-layout-3"],
+                            ["label" => "Layout 4", "value" => "category-menu-layout-4"]
+                        ]
+                    ]
+                ],
+                "repository" => [
+                    "name" => "repository",
+                    "value" => "",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Repositorio",
+                        "options" => [
+                            ["label" => "Sin repositorio", "value" => ""],
+                            ["label" => "Icommerce Category", "value" => "Modules\Icommerce\Repositories\CategoryRepository"],
+                            ["label" => "Iblog Category", "value" => "Modules\Iblog\Repositories\CategoryRepository"]
+                        ]
+                    ]
+                ],
+                "withHome" => [
+                    "name" => "withHome",
+                    "value" => "1",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Con Inicio",
+                        "options" => $vAttributes["validation"]
+                    ]
+                ],
+                "menuBefore" => [
+                    "name" => "menuBefore",
+                    "value" => "",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "menuBefore",
+                    ]
+                ],
+                "menuAfter" => [
+                    "name" => "menuAfter",
+                    "value" => "",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "menuAfter",
+                    ]
+                ],
+                "central" => [
+                    "name" => "central",
+                    "value" => "1",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Central",
+                        "options" => $vAttributes["validation"]
+                    ]
+                ],
+                "deskStyle" => [
+                    "name" => "deskStyle",
+                    "value" => "",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Estilo elementos",
+                        "options" => [
+                            ["label" => "Sin estilo", "value" => ""],
+                            ["label" => "Con Estilo", "value" => "estilo"],
+                        ]
+                    ],
+                    "help" => [
+                        "description" => "Sin estilo, permite tener el menu limpio. Con estilo tiene una base que permite usaer el resto de las configuraciones",
+                    ]
+                ],
+                "deskTextTransform" => [
+                    "name" => "deskTextTransform",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Transformar Texto",
+                        "options" => $vAttributes["textTransformCss"]
+                    ]
+                ],
+                "deskTextSize" => [
+                    "name" => "deskTextSize",
+                    "value" => "18",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Tamaño",
+                        "type" => "number"
+                    ]
+                ],
+                "deskColor1" => [
+                    "name" => "deskColor1",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Color 1",
+                    ]
+                ],
+                "deskColor2" => [
+                    "name" => "deskColor2",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Color 2",
+                    ]
+                ],
+                "deskNav" => [
+                    "name" => "deskNav",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Enlace css",
+                        'type' => 'textarea',
+                        'rows' => 5,
+                    ],
+                    "help" => [
+                        "description" => "Permite agregar estilos adicionales en nav-link ",
+                    ]
+                ],
+                "deskNavHover" => [
+                    "name" => "deskNavHover",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Enlace hover css",
+                        'type' => 'textarea',
+                        'rows' => 5,
+                    ],
+                    "help" => [
+                        "description" => "Permite agregar estilos adicionales en nav-link:hover ",
+                    ]
+                ],
+                "deskNavBefore" => [
+                    "name" => "deskNavBefore",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Enlace before css",
+                        'type' => 'textarea',
+                        'rows' => 5,
+                    ],
+                    "help" => [
+                        "description" => "Permite agregar estilos en nav-link:before",
+                    ]
+                ],
+                "deskNavHoverBefore" => [
+                    "name" => "deskNavHoverBefore",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Enlace hover before css",
+                        'type' => 'textarea',
+                        'rows' => 5,
+                    ],
+                    "help" => [
+                        "description" => "Permite agregar estilos en nav-link:hover:before",
+                    ]
+                ],
+                "deskDropdownMenu" => [
+                    "name" => "deskDropdownMenu",
+                    "type" => "input",
+                    "columns" => "col-12",
+                    "props" => [
+                        "label" => "Dropdown Menu css",
+                        'type' => 'textarea',
+                        'rows' => 5,
+                    ],
+                    "help" => [
+                        "description" => "Permite agregar estilos al dropdown-menu",
+                    ]
+                ],
+            ]
+        ],
+        "modal" => [
+            "title" => "Modal",
+            "fields" => [
+                "modalStyle" => [
+                    "name" => "modalStyle",
+                    "value" => "",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Estilo del modal",
+                        "options" => [
+                            ["label" => "Sin estilo", "value" => ""],
+                            ["label" => "Estilo 1", "value" => "estilo1"],
+                            ["label" => "Estilo 2", "value" => "estilo2"],
+                            ["label" => "Estilo 3", "value" => "estilo3"]
+                        ]
+                    ],
+                    "help" => [
+                        "description" => "Sin estilo, permite tener el modal limpio. Los demas son estilos base",
+                    ]
+                ],
+                "modalTextTransform" => [
+                    "name" => "modalTextTransform",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Transformar Texto",
+                        "options" => $vAttributes["textTransformCss"]
+                    ]
+                ],
+                "modalTextSize" => [
+                    "name" => "modalTextSize",
+                    "value" => "16",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Tamaño",
+                        "type" => "number"
+                    ]
+                ],
+                "modalColor1" => [
+                    "name" => "modalColor1",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Color 1",
+                    ]
+                ],
+                "modalColor2" => [
+                    "name" => "modalColor2",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Color 2",
+                    ]
+                ],
+            ]
+        ]
+    ]
   ]
 ];
