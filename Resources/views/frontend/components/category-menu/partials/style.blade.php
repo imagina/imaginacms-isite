@@ -168,6 +168,12 @@
 
     @else
 
+        @if(!empty($linkMovil))
+        #{{$id}} .link-movil {
+            {!!$linkMovil!!}
+        }
+        @endif
+
         @if(!empty($deskStyle))
         #{{$id}} #{{$id}}contentToMove #{{$id}}nav > ul {
             display: inline-flex;

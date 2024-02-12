@@ -37,6 +37,7 @@ class Menu extends Component
   public $deskDropdownMenu;
   public $deskNavBefore;
   public $deskNavHoverBefore;
+  public $linkMovil;
 
   /**
    * Create a new component instance.
@@ -49,7 +50,7 @@ class Menu extends Component
                               $modalTextTransform = "uppercase", $deskTextSize = "18", $modalTextSize = "16",
                               $modalColor1 = "", $modalColor2 = "", $deskColor1 = "", $deskColor2 = "",
                               $deskNav = "", $deskNavHover = "", $deskDropdownMenu = "", $deskNavBefore = "",
-                              $deskNavHoverBefore = ""
+                              $deskNavHoverBefore = "", $linkMovil = ""
   )
   {
     $this->id = $id;
@@ -80,6 +81,7 @@ class Menu extends Component
     $this->deskDropdownMenu = $deskDropdownMenu;
     $this->deskNavBefore = $deskNavBefore;
     $this->deskNavHoverBefore = $deskNavHoverBefore;
+    $this->linkMovil = $linkMovil;
     $this->getItems();
   }
 

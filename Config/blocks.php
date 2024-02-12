@@ -3623,6 +3623,16 @@ return [
                         "label" => "Color 2",
                     ]
                 ],
+                "linkMovil" => [
+                    "name" => "linkMovil",
+                    "type" => "input",
+                    "columns" => "col-12",
+                    "props" => [
+                        "label" => "Enlace del icono de menu",
+                        'type' => 'textarea',
+                        'rows' => 3,
+                    ],
+                ],
                 "deskNav" => [
                     "name" => "deskNav",
                     "type" => "input",
