@@ -46,6 +46,8 @@ class Maps extends Component
   public $fontSizeTitleSection;
   public $iframeMap;
   public $usingLivewire;
+  public $allowMoveMarker;
+  public $showLocationName;
 
   /**
    * Create a new component instance.
@@ -60,7 +62,7 @@ class Maps extends Component
                               $iconWidth = 28, $mapEvent = null, $iconMarginLeft = 11, $iconMarginTop = 47,
                               $inputLocation = null, $withTitle = false, $alignTitle = 'text-left',
                               $fontSizeTitle = '14', $colorTitle = null, $colorTitleByClass = 'text-primary',
-                              $colorTitleSection = "#000000", $fontSizeTitleSection = "24", $iframeMap = null, $usingLivewire = false
+                              $colorTitleSection = "#000000", $fontSizeTitleSection = "24", $iframeMap = null, $usingLivewire = false, $allowMoveMarker = false, $showLocationName = true
   )
   {
     $defaultMap = json_decode(setting('isite::locationSite'));
@@ -127,6 +129,7 @@ class Maps extends Component
     $this->fontSizeTitleSection = $fontSizeTitleSection;
     $this->iframeMap = setting('isite::iframeMap');
     $this->usingLivewire = $usingLivewire;
+    $this->allowMoveMarker = $allowMoveMarker;
   }
 
   /**

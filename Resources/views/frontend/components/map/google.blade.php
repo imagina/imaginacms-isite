@@ -22,7 +22,12 @@
       document.addEventListener("DOMContentLoaded", function () {
     @endif
 
-  
+    //Validation Geocoder to get address
+    @if($allowMoveMarker)
+      geocoder = new google.maps.Geocoder();
+    @endif
+
+
     /*
     * Google Map | INIT
     */
@@ -37,8 +42,25 @@
 
         //Init locations | By default always added one element not necessary to maps livewire component
         @if($usingLivewire==false)
-          setSimpleMarkGoogle(position)
+          setSimpleMarkerGoogle(position)
         @endif
+
+        //Allow User Move a marker | Prueba 1
+        /*
+        @if($allowMoveMarker)
+          google.maps.event.addListener(map, 'click', function(event) {
+            deleteMarkersGoogle()
+            setSimpleMarkerGoogle(event.latLng)
+            var clickData = event.latLng.toJSON();
+
+            console.warn(event)
+            //console.warn(clickData)
+            // Emit to Component: Iprofile | Address Form
+            //window.livewire.emit('selectedMarkerInMap',clickData);
+          });
+        @endif
+        */
+       
 
     }
 
@@ -54,14 +76,28 @@
     /*
     * Set Simple mark
     */
-    function setSimpleMarkGoogle(position)
+    function setSimpleMarkerGoogle(position)
     {
       var marker = new google.maps.Marker({
           position: position, 
           map: map,
-        @if(!is_null($imageIcon)) icon: urlMarkerIcon, @endif
-        @if(!is_null($locationName))  label: labelLocation, @endif
+          @if(!is_null($imageIcon)) icon: urlMarkerIcon, @endif
+          @if(!is_null($locationName))  label: labelLocation, @endif
+          @if($allowMoveMarker) draggable:true @endif
       });
+
+      @if($allowMoveMarker)
+        marker.addListener("dragend", (event) => {
+          const mPosition = marker.position;
+          //console.log("LAT:"+mPosition.lat())
+
+          // Get Address 
+          getAddressFromPosition(marker.getPosition());
+
+        });
+      @endif
+
+      markers.push(marker)
     }
 
     /*
@@ -125,5 +161,68 @@
       markers = [];
 
     }
+
+    /*
+    * Get Address Format 
+    */
+    function getAddressFromPosition(pos) 
+    {
+      var addressFormat;
+
+      geocoder.geocode({latLng: pos}, function(responses) {
+       
+        if (responses && responses.length > 0) {
+          //console.warn(responses)
+          addressFormat = responses[0].formatted_address;
+
+          //method in  = Address Form | Auto Complete Google
+          var addressData = getDataFromAddress(responses[0].address_components)
+
+        } else {
+          addressFormat = 'Cannot determine address at this location.';
+        }
+
+        //Send data to Address Component
+        emitAddressToUpdate(addressFormat,pos,addressData)
+      });
+
+    }
+  
+    /*
+    * Send Data to Livewire Address Form Component
+    */
+    function emitAddressToUpdate(addressFormat,pos,addressData)
+    {
+      //Data Final
+      var newPosition = {lat: pos.lat(), lng: pos.lng()}
+     
+      //@var inputVarName ya fue declarada en el componente livewire
+      var dataToSend = {inputValue: addressFormat, inputVarName: inputVarName, newPosition: newPosition, addressData: addressData}; 
+
+      //Emit to send data
+      window.livewire.emit('updateDataFromExternal',dataToSend);
+    }
+
+    /*
+    * LIVEWIRE | Listener Component | Case Address Form
+    */
+    window.addEventListener('google-update-marker-in-map', event => {
+      //Before delete markers
+      deleteMarkersGoogle()
+
+      //Init and Reset Bounds
+      var bounds = new google.maps.LatLngBounds();
+
+      //Get data
+      itemPosition = event.detail.itemPosition
+
+      //Create Marker
+      setSimpleMarkerGoogle(itemPosition)
+
+      //Set Bounds
+      bounds.extend(itemPosition);
+      map.fitBounds(bounds);
+
+    });
   
 </script>
