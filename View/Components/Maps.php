@@ -52,6 +52,7 @@ class Maps extends Component
   public $initMultipleLocations;
   public $activeClickInMarker;
   public $emitAfterClickMarker;
+  public $activeAnimationInMarker;
 
   /**
    * Create a new component instance.
@@ -68,7 +69,7 @@ class Maps extends Component
                               $fontSizeTitle = '14', $colorTitle = null, $colorTitleByClass = 'text-primary',
                               $colorTitleSection = "#000000", $fontSizeTitleSection = "24", $iframeMap = null, 
                               $usingLivewire = false, $allowMoveMarker = false, $showLocationName = true, $initMultipleLocations = false,
-                              $activeClickInMarker = false, $emitAfterClickMarker = false
+                              $activeClickInMarker = false, $emitAfterClickMarker = false, $activeAnimationInMarker = false
   )
   {
     $defaultMap = json_decode(setting('isite::locationSite'));
@@ -142,6 +143,7 @@ class Maps extends Component
     $this->initMultipleLocations = $initMultipleLocations;
     $this->activeClickInMarker = $activeClickInMarker;
     $this->emitAfterClickMarker = $emitAfterClickMarker;
+    $this->activeAnimationInMarker = $activeAnimationInMarker;
   }
 
   /**
