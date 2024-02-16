@@ -135,6 +135,7 @@ return [
     "description" => "Description | Descriptions",
     "option" => "Option | Options",
     "edit" => "Edit",
+    "edited" => "Edited",
     "addFile" => "Add File",
     "error" => "Error",
     "enabled" => "Enable",
