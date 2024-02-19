@@ -24,23 +24,22 @@
   </div>
 </div>
 
-@section('scripts')
-@parent
-
-  {{-- SCRIPTS TO OPENSTREET --}}
-  @if($settingMap == 'openStreet')
+{{-- SCRIPTS TO OPENSTREET --}}
+@if($settingMap == 'openStreet')
     @include('isite::frontend.components.map.openstreet')
-  @else
+@else
     @include('isite::frontend.components.map.google')
-  @endif
+@endif
 
-  <!-- Global Scripts -->
-  <script>
+<!-- Global Scripts -->
+<script>
 
-    /*
-    * LIVEWIRE | Listener Component
-    */
-    window.addEventListener('items-map-updated', event => {
+  console.log("Isite::Components|Maps|Init Global")
+
+  /*
+  * LIVEWIRE | Listener Component
+  */
+  window.addEventListener('items-map-updated', event => {
       
       @if($settingMap == 'openStreet')
         deleteMarkersOpenstreet()
@@ -82,11 +81,9 @@
       //Set new bounds (Both Google and Streetmaps)
       map.fitBounds(bounds);
 
-    })
+  })
 
-  </script>
-
-@stop
+</script>
 
 <!-- Extra Styles -->
 <style>
