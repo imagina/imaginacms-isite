@@ -41,7 +41,7 @@ class Button extends Component
   public function __construct($idButton = null, $style = "", $buttonClasses = "", $onclick="", $withIcon = false, $iconClass = "",
                               $withLabel = false, $label = "", $href = "",  $color="primary", $classesBlock = null, $sizePadding = "",
                               $target="", $iconPosition="left", $iconColor='currentcolor', $sizeLabel="16", $dataItemId="", $dataTarget=null,
-                              $styleBlock = "", $styleBlockHover = "", $disabled = false, $loadingIcon="spinner-grow spinner-grow-sm",
+                              $styleBlock = "", $styleBlockHover = "", $disabled = false, $loadingIcon="fa-duotone fa-spinner-third fa-spin",
                               $loading=false, $loadingLabel = null
   )
   {
