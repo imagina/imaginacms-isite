@@ -707,6 +707,8 @@ return [
   ],
   "reportQueue" => "You already have a report in progress, you requested it on <b>{date}</b>. As soon as it is finished we will enable the 'create' function for you... We do this to make the app work much better!",
   "sessionFound" => "There is an active session",
-  "alreadyInUse" => "Oops! It looks like the name you've chosen is already in use. Could you please try selecting a different name? We want to make sure your unique identity shines bright!"
+  "alreadyInUse" => "Oops! It looks like the name you've chosen is already in use. Could you please try selecting a different name? We want to make sure your unique identity shines bright!",
+  "usersToNotify" => 'Users To notify',
+  "emailsToNotify" => "Emails To Notify"
 ];
 
