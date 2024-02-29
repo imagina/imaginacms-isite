@@ -98,6 +98,8 @@
           map.addListener('click', function(markE) {
             console.log("Listener|Click")
 
+            var inputVarName = "{{$inputVarName}}"
+
             //Before delete markers
             deleteMarkersGoogle()
             //set Marker

@@ -53,6 +53,7 @@ class Maps extends Component
   public $activeClickInMarker;
   public $emitAfterClickMarker;
   public $activeAnimationInMarker;
+  public $inputVarName;
 
   /**
    * Create a new component instance.
@@ -69,7 +70,7 @@ class Maps extends Component
                               $fontSizeTitle = '14', $colorTitle = null, $colorTitleByClass = 'text-primary',
                               $colorTitleSection = "#000000", $fontSizeTitleSection = "24", $iframeMap = null, 
                               $usingLivewire = false, $allowMoveMarker = false, $showLocationName = true, $initMultipleLocations = false,
-                              $activeClickInMarker = false, $emitAfterClickMarker = false, $activeAnimationInMarker = false
+                              $activeClickInMarker = false, $emitAfterClickMarker = false, $activeAnimationInMarker = false, $inputVarName = null
   )
   {
     $defaultMap = json_decode(setting('isite::locationSite'));
@@ -144,6 +145,7 @@ class Maps extends Component
     $this->activeClickInMarker = $activeClickInMarker;
     $this->emitAfterClickMarker = $emitAfterClickMarker;
     $this->activeAnimationInMarker = $activeAnimationInMarker;
+    $this->inputVarName = $inputVarName; //Used in Address Map Component | Iprofile
   }
 
   /**
