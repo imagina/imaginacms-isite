@@ -4,7 +4,7 @@ namespace Modules\Isite\Http\Requests;
 
 use Modules\Core\Internationalisation\BaseFormRequest;
 
-class CreateeventRequest extends BaseFormRequest
+class CreateEventRequest extends BaseFormRequest
 {
     public function rules()
     {

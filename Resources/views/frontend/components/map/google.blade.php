@@ -82,7 +82,7 @@
               var locationTitle = "{{$location['title']}}"
               //Esto es porque siempre agregan un locationDefault, con una serie de parametros, pero para estos casos no es necesario
               if(locationDefaultName!=locationTitle){
-                setSimpleMarkerGoogle(locationPosition,locationId,locationTitle,bounds,activeClickInMarker,emitAfterClickMarker,"",locationTitle)
+                setSimpleMarkerGoogle(locationPosition,locationId,locationTitle,bounds,activeClickInMarker,emitAfterClickMarker)
               }
             @endforeach
 
@@ -97,8 +97,6 @@
         @if($allowMoveMarker)
           map.addListener('click', function(markE) {
             console.log("Listener|Click")
-
-            var inputVarName = "{{$inputVarName}}"
 
             //Before delete markers
             deleteMarkersGoogle()
@@ -128,22 +126,15 @@
     /*
     * Set Simple mark | First Time
     */
-    function setSimpleMarkerGoogle(position,id=null,title="",bounds=null,activeClickInMarker=false, emitAfterClickMarker=false,inputVarName="",label=null)
+    function setSimpleMarkerGoogle(position,id=null,title="",bounds=null,activeClickInMarker=false, emitAfterClickMarker=false,inputVarName="")
     {
-
-      var labelMarker = labelLocation; //Global Variable | Default
-      if(label!=null) labelMarker = label;//Especific label
-
-      var labelFontSize =  "{{$labelFontSize}}";
-      var labelFontWeight =  "{{$labelFontWeight}}";
-      var labelColor =  "{{$labelColor}}";
 
       var marker = new google.maps.Marker({
           position: position, 
           map: map,
           title: title,
           @if(!is_null($imageIcon)) icon: urlMarkerIcon, @endif
-          @if(!is_null($showLocationName))  label: {fontSize: labelFontSize ,text: labelMarker, fontWeight:labelFontWeight, color:labelColor}, @endif
+          @if(!is_null($showLocationName))  label: labelLocation, @endif
           @if($allowMoveMarker) draggable:true @endif
           @if($activeAnimationInMarker) animation: google.maps.Animation.DROP, @endif
       });
