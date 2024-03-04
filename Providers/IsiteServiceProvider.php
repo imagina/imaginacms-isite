@@ -285,7 +285,38 @@ class IsiteServiceProvider extends ServiceProvider
                 return new \Modules\Isite\Repositories\Cache\CacheSynchronizableDecorator($repository);
             }
         );
+        
+        $this->app->bind(
+            'Modules\Isite\Repositories\EventRepository',
+            function () {
+                $repository = new \Modules\Isite\Repositories\Eloquent\EloquentEventRepository(new \Modules\Isite\Entities\Event());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Isite\Repositories\Cache\CacheEventDecorator($repository);
+            }
+        );
+        $this->app->bind(
+            'Modules\Isite\Repositories\WebhookRepository',
+            function () {
+                $repository = new \Modules\Isite\Repositories\Eloquent\EloquentWebhookRepository(new \Modules\Isite\Entities\Webhook());
+
+                if (! config('app.cache')) {
+                    return $repository;
+                }
+
+                return new \Modules\Isite\Repositories\Cache\CacheWebhookDecorator($repository);
+            }
+        );
 // add bindings
+
+
+
+
+
+
 
 
 

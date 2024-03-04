@@ -101,7 +101,61 @@ return [
         'destroy' => 'isite::synchronizables.destroy resource',
         'restore' => 'isite::synchronizables.restore resource',
     ],
+    'isite.events' => [
+        'manage' => 'isite::events.manage resource',
+        'index' => 'isite::events.list resource',
+        'create' => 'isite::events.create resource',
+        'edit' => 'isite::events.edit resource',
+        'destroy' => 'isite::events.destroy resource',
+        'restore' => 'isite::events.restore resource',
+    ],
+    'isite.webhooks' => [
+        'manage' => 'isite::webhooks.manage resource',
+        'index' => 'isite::webhooks.list resource',
+        'create' => 'isite::webhooks.create resource',
+        'edit' => 'isite::webhooks.edit resource',
+        'destroy' => 'isite::webhooks.destroy resource',
+        'restore' => 'isite::webhooks.restore resource',
+    ],
+    'isite.events' => [
+        'manage' => 'isite::events.manage resource',
+        'index' => 'isite::events.list resource',
+        'create' => 'isite::events.create resource',
+        'edit' => 'isite::events.edit resource',
+        'destroy' => 'isite::events.destroy resource',
+        'restore' => 'isite::events.restore resource',
+    ],
+    'isite.webhooks' => [
+        'manage' => 'isite::webhooks.manage resource',
+        'index' => 'isite::webhooks.list resource',
+        'create' => 'isite::webhooks.create resource',
+        'edit' => 'isite::webhooks.edit resource',
+        'destroy' => 'isite::webhooks.destroy resource',
+        'restore' => 'isite::webhooks.restore resource',
+    ],
+    'isite.events' => [
+        'manage' => 'isite::events.manage resource',
+        'index' => 'isite::events.list resource',
+        'create' => 'isite::events.create resource',
+        'edit' => 'isite::events.edit resource',
+        'destroy' => 'isite::events.destroy resource',
+        'restore' => 'isite::events.restore resource',
+    ],
+    'isite.webhooks' => [
+        'manage' => 'isite::webhooks.manage resource',
+        'index' => 'isite::webhooks.list resource',
+        'create' => 'isite::webhooks.create resource',
+        'edit' => 'isite::webhooks.edit resource',
+        'destroy' => 'isite::webhooks.destroy resource',
+        'restore' => 'isite::webhooks.restore resource',
+    ],
 // append
+
+
+
+
+
+
 
 
 
