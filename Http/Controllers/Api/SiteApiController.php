@@ -178,11 +178,13 @@ class SiteApiController extends BaseApiController
 
           if ($media === null)
             $setting["media"] = [
+              'id' => null,
               'mimeType' => 'image/jpeg',
               'path' => url('modules/isite/img/defaultLogo.jpg')
             ];
           else
             $setting["media"] = [
+              'id' => $media->id,
               'mimeType' => $media->mimetype,
               'path' => $media->path_string
             ];
@@ -234,6 +236,7 @@ class SiteApiController extends BaseApiController
           $setting['type'] = 'file';
           if (!isset($setting['media'])) {
             $setting["media"] = [
+              'id' => null,
               'mimeType' => 'image/jpeg',
               'path' => url('modules/isite/img/defaultLogo.jpg')
             ];

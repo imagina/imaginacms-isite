@@ -1037,6 +1037,53 @@ return [
       'label' => 'isite::common.maps.labelLocationSite'
     ]
   ],
+  'markerLabelFontSize' => [
+    'value' => null,
+    'name' => 'isite::markerLabelFontSize',
+    "onlySuperAdmin" => true,
+    'type' => 'input',
+    'groupName' => 'maps',
+    'groupTitle' => 'isite::common.settingGroups.colors',
+    'colClass' => 'col-12 col-md-6',
+    'props' => [
+      'label' => 'isite::common.settings.markerLabelFontSize',
+      'type' => 'number'
+    ]
+  ],
+  'markerLabelFontWeight' => [
+    'value' => "normal",
+    'name' => 'isite::markerLabelFontWeight',
+    "onlySuperAdmin" => true,
+    'type' => 'select',
+    'groupName' => 'maps',
+    'groupTitle' => 'isite::common.settingGroups.colors',
+    'colClass' => 'col-12 col-md-6',
+    'props' => [
+      'label' => 'isite::common.settings.markerLabelFontWeight',
+      'useInput' => false,
+      'useChips' => false,
+      'multiple' => false,
+      'hideDropdownIcon' => true,
+      'newValueMode' => 'add-unique',
+      'options' => [
+        ['label' => 'Bold', 'value' => "bold"],
+        ['label' => 'Normal', 'value' => "normal"],
+        ['label' => 'Light', 'value' => "light"],
+      ]
+    ]
+  ],
+  'markerLabelColor' => [
+    'value' => null,
+    'name' => 'isite::markerLabelColor',
+    'type' => 'inputColor',
+    "onlySuperAdmin" => true,
+    'groupName' => 'maps',
+    'groupTitle' => 'isite::common.settingGroups.colors',
+    'colClass' => 'col-12 col-md-6',
+    'props' => [
+      'label' => 'isite::common.settings.markerLabelColor'
+    ]
+  ],
   'iframeMap' => [
     'name' => 'isite::iframeMap',
     'value' => null,

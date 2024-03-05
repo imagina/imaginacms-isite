@@ -82,7 +82,7 @@
               var locationTitle = "{{$location['title']}}"
               //Esto es porque siempre agregan un locationDefault, con una serie de parametros, pero para estos casos no es necesario
               if(locationDefaultName!=locationTitle){
-                setSimpleMarkerGoogle(locationPosition,locationId,locationTitle,bounds,activeClickInMarker,emitAfterClickMarker)
+                setSimpleMarkerGoogle(locationPosition,locationId,locationTitle,bounds,activeClickInMarker,emitAfterClickMarker,"",locationTitle)
               }
             @endforeach
 
@@ -97,6 +97,8 @@
         @if($allowMoveMarker)
           map.addListener('click', function(markE) {
             console.log("Listener|Click")
+
+            var inputVarName = "{{$inputVarName}}"
 
             //Before delete markers
             deleteMarkersGoogle()
@@ -126,8 +128,15 @@
     /*
     * Set Simple mark | First Time
     */
-    function setSimpleMarkerGoogle(position,id=null,title="",bounds=null,activeClickInMarker=false, emitAfterClickMarker=false,inputVarName="")
+    function setSimpleMarkerGoogle(position,id=null,title="",bounds=null,activeClickInMarker=false, emitAfterClickMarker=false,inputVarName="",label=null)
     {
+
+      var labelMarker = labelLocation; //Global Variable | Default
+      if(label!=null) labelMarker = label;//Especific label
+      
+      var labelFontSize =  "{{$labelFontSize}}";
+      var labelFontWeight =  "{{$labelFontWeight}}";
+      var labelColor =  "{{$labelColor}}";
 
       var marker = new google.maps.Marker({
           position: position, 
