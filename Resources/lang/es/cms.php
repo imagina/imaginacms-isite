@@ -709,6 +709,7 @@ return [
   "sessionFound" => "Hay una sesión activa",
   "alreadyInUse" => "¡Ups! Parece que el nombre que has elegido ya está en uso. ¿Podrías intentar seleccionar otro nombre? ¡Queremos asegurarnos de que tu identidad única brille con fuerza!",
   "usersToNotify" => 'Usuarios a Notificar',
-  "emailsToNotify" => "Emails a Notificiar"
+  "emailsToNotify" => "Emails a Notificiar",
+  "dateCache" => "Última actualización: {date}. Refresca cuando quieras."
 ];
 
