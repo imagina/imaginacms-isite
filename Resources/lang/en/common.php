@@ -92,9 +92,6 @@ return [
     'defaultLayout' => 'Layout Default',
     'labelTimeExpiredToken' => 'Download Tokens Expiration Time (Days)',
     'itemsTabs' => 'Enter Titles for the tabs',
-    'markerLabelFontSize' => 'Font Size | Marker Label',
-    'markerLabelFontWeight' => 'Font Weight | Marker Label',
-    'markerLabelColor' => 'Font Color| Marker Label',
   ],
   'settingHints' => [
     'phones' => "Type a phone number and press enter key",
