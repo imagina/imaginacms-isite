@@ -28,6 +28,7 @@ class Menu extends Component
   public $modalColor2;
   public $modalTextSize;
   public $deskStyle;
+  public $deskStyleGeneral;
   public $deskTextTransform;
   public $deskTextSize;
   public $deskColor1;
@@ -44,16 +45,16 @@ class Menu extends Component
    *
    * @return void
    */
-  public function __construct($id,$repository = null, $params = [], $layout = 'category-menu-layout-1', $title = "Categorías",
+  public function __construct($id = null,$repository = null, $params = [], $layout = 'category-menu-layout-1', $title = "Categorías",
                               $menuBefore = null, $menuAfter = null, $withHome = true, $homeIcon = "", $collapsed = false,
                               $central = false, $modalStyle = null, $deskStyle = null,  $deskTextTransform = "capitalize",
                               $modalTextTransform = "uppercase", $deskTextSize = "18", $modalTextSize = "16",
                               $modalColor1 = "", $modalColor2 = "", $deskColor1 = "", $deskColor2 = "",
                               $deskNav = "", $deskNavHover = "", $deskDropdownMenu = "", $deskNavBefore = "",
-                              $deskNavHoverBefore = "", $linkMovil = ""
+                              $deskNavHoverBefore = "", $linkMovil = "", $deskStyleGeneral = null
   )
   {
-    $this->id = $id;
+    $this->id = $id ?? uniqid('menu');
     $this->repository = $repository;
     $this->params = $params;
     $this->layout = $layout;
@@ -82,6 +83,7 @@ class Menu extends Component
     $this->deskNavBefore = $deskNavBefore;
     $this->deskNavHoverBefore = $deskNavHoverBefore;
     $this->linkMovil = $linkMovil;
+    $this->deskStyleGeneral = $deskStyleGeneral;
     $this->getItems();
   }
 

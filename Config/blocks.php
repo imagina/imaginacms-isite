@@ -3627,7 +3627,7 @@ return [
                     "type" => "input",
                     "columns" => "col-12",
                     "props" => [
-                        "label" => "Enlace del icono de menu",
+                        "label" => "Estilo del icono de menu",
                         'type' => 'textarea',
                         'rows' => 3,
                     ],
@@ -3635,8 +3635,9 @@ return [
                 "deskNav" => [
                     "name" => "deskNav",
                     "type" => "input",
+                    "columns" => "col-12",
                     "props" => [
-                        "label" => "Enlace css",
+                        "label" => "Estilo del enlace css",
                         'type' => 'textarea',
                         'rows' => 5,
                     ],
@@ -3647,8 +3648,9 @@ return [
                 "deskNavHover" => [
                     "name" => "deskNavHover",
                     "type" => "input",
+                    "columns" => "col-12",
                     "props" => [
-                        "label" => "Enlace hover css",
+                        "label" => "Estilo del enlace hover css",
                         'type' => 'textarea',
                         'rows' => 5,
                     ],
@@ -3659,8 +3661,9 @@ return [
                 "deskNavBefore" => [
                     "name" => "deskNavBefore",
                     "type" => "input",
+                    "columns" => "col-12",
                     "props" => [
-                        "label" => "Enlace before css",
+                        "label" => "Estilo del enlace before css",
                         'type' => 'textarea',
                         'rows' => 5,
                     ],
@@ -3671,8 +3674,9 @@ return [
                 "deskNavHoverBefore" => [
                     "name" => "deskNavHoverBefore",
                     "type" => "input",
+                    "columns" => "col-12",
                     "props" => [
-                        "label" => "Enlace hover before css",
+                        "label" => "Estilo del enlace hover before css",
                         'type' => 'textarea',
                         'rows' => 5,
                     ],
@@ -3685,12 +3689,25 @@ return [
                     "type" => "input",
                     "columns" => "col-12",
                     "props" => [
-                        "label" => "Dropdown Menu css",
+                        "label" => "Estilo Dropdown Menu css",
                         'type' => 'textarea',
                         'rows' => 5,
                     ],
                     "help" => [
                         "description" => "Permite agregar estilos al dropdown-menu",
+                    ]
+                ],
+                "deskStyleGeneral" => [
+                    "name" => "deskStyleGeneral",
+                    "type" => "input",
+                    "columns" => "col-12",
+                    "props" => [
+                        "label" => "Estilo general css",
+                        'type' => 'textarea',
+                        'rows' => 5,
+                    ],
+                    "help" => [
+                        "description" => "Permite agregar estilos a los navs",
                     ]
                 ],
             ]
@@ -3749,5 +3766,49 @@ return [
             ]
         ]
     ]
-  ]
+  ],
+  "logoImagina" => [
+      "title" => "Logo Imagina",
+      "systemName" => "isite::logo-imagina",
+      "nameSpace" => "Modules\Isite\View\Components\LogoImagina",
+  ],
+  "copyright" => [
+      "title" => "Copyright",
+      "systemName" => "isite::copyright-block",
+      "nameSpace" => "Modules\Isite\View\Components\Copyright",
+      "attributes" => [
+          "general" => [
+              "title" => "General",
+              "fields" => [
+                  "withIconCopyright" => [
+                      "name" => "withIconCopyright",
+                      "value" => "1",
+                      "type" => "select",
+                      "props" => [
+                          "label" => "withIconCopyright",
+                          "options" => $vAttributes["validation"]
+                      ]
+                  ],
+                  "classes" => [
+                      "name" => "classes",
+                      "type" => "input",
+                      "columns" => "col-12",
+                      "props" => [
+                          "label" => "Clases",
+                      ],
+                  ],
+                  "styles" => [
+                      "name" => "styles",
+                      "type" => "input",
+                      "columns" => "col-12",
+                      "props" => [
+                          "label" => "Estilos css",
+                          'type' => 'textarea',
+                          'rows' => 4,
+                      ],
+                  ],
+              ]
+          ],
+      ]
+  ],
 ];
