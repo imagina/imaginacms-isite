@@ -1,12 +1,12 @@
 <?php
 
-namespace Modules\Isite\Repositories\Eloquent;
+namespace Modules\Isite\Repositories\Eloquent; 
 
-use Modules\Isite\Repositories\webhooksRepository;
+use Modules\Isite\Repositories\EventRepository;
 use Modules\Core\Icrud\Repositories\Eloquent\EloquentCrudRepository;
 
-class EloquentwebhooksRepository extends EloquentCrudRepository implements webhooksRepository
-{
+class EloquentEventRepository extends EloquentCrudRepository implements EventRepository
+{ 
   /**
    * Filter names to replace
    * @var array
