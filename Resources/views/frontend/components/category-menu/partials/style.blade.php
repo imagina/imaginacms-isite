@@ -132,88 +132,104 @@
 }
 @else
 
-    @if($layout=='category-menu-layout-3')
-    #{{$id}} .navbar-nav .nav-item .nav-link {
-        color: {{ !empty($deskColor1) ? $deskColor1 : 'var(--primary)' }};
-        font-size: {{$deskTextSize}}px;
-        text-transform: {{$deskTextTransform}};
-        @if(!empty($deskNav))
-        {!!$deskNav!!}
+    @if($layout=='category-menu-layout-3' && !empty($deskStyle))
+
+        @if(!empty($deskStyleGeneral))
+        #{{$id}} .navbar-nav {
+             {!!$deskStyleGeneral!!}
+        }
         @endif
-        &:hover {
-            color: {{ !empty($deskColor2) ? $deskColor2 : 'var(--dark)' }};
-            @if(!empty($deskNavHover))
-                {!!$deskNavHover!!}
+
+        #{{$id}} .navbar-nav .nav-item .nav-link {
+            color: {{ !empty($deskColor1) ? $deskColor1 : 'var(--primary)' }};
+            font-size: {{$deskTextSize}}px;
+            text-transform: {{$deskTextTransform}};
+            @if(!empty($deskNav))
+            {!!$deskNav!!}
             @endif
+            &:hover {
+                color: {{ !empty($deskColor2) ? $deskColor2 : 'var(--dark)' }};
+                @if(!empty($deskNavHover))
+                    {!!$deskNavHover!!}
+                @endif
+            }
+            @if(!empty($deskNavBefore))
+            &:before {
+                {!! $deskNavBefore !!}
+            }
+            @endif
+            @if(!empty($deskNavHoverBefore))
+            &:hover:before {
+                 {!! $deskNavHoverBefore !!}
+            }
+            @endif
+
         }
-        @if(!empty($deskNavBefore))
-        &:before {
-            {!! $deskNavBefore !!}
+        #{{$id}} .navbar-nav .dropdown .dropdown-menu {
+            @if(!empty($deskDropdownMenu))
+            {!!$deskDropdownMenu!!}
+            @endif
+            & .nav-link {
+                font-size: {{$deskTextSize - 2 }}px;
+            }
         }
-        @endif
-        @if(!empty($deskNavHoverBefore))
-        &:hover:before {
-             {!! $deskNavHoverBefore !!}
-        }
-        @endif
-    }
-    #{{$id}} .navbar-nav .dropdown .dropdown-menu {
-        @if(!empty($deskDropdownMenu))
-        {!!$deskDropdownMenu!!}
-        @endif
-        & .nav-link {
-            font-size: {{$deskTextSize - 2 }}px;
-        }
-    }
 
     @else
 
-        @if(!empty($linkMovil))
-        #{{$id}} .link-movil {
-            {!!$linkMovil!!}
-        }
-        @endif
-
         @if(!empty($deskStyle))
-        #{{$id}} #{{$id}}contentToMove #{{$id}}nav > ul {
-            display: inline-flex;
-            & .nav-link {
-                color: {{ !empty($deskColor1) ? $deskColor1 : 'var(--dark)' }};
-                position: relative;
-                font-size: {{$deskTextSize}}px;
-                font-weight: 500;
-                padding: 0.5rem 21px;
-                text-transform: {{$deskTextTransform}};
-                @if(!empty($deskNav))
-                {!!$deskNav!!}
-                @endif
-                &:hover {
-                    color: {{ !empty($deskColor2) ? $deskColor2 : 'var(--primary)' }};
-                    @if(!empty($deskNavHover))
-                    {!!$deskNavHover!!}
+
+            @if(!empty($linkMovil))
+            #{{$id}} .link-movil {
+                 {!!$linkMovil!!}
+            }
+            @endif
+
+            @if(!empty($deskStyleGeneral))
+            #{{$id}} #{{$id}}contentToMove #{{$id}}nav {
+                {!!$deskStyleGeneral!!}
+            }
+            @endif
+
+            #{{$id}} #{{$id}}contentToMove #{{$id}}nav > ul {
+                display: inline-flex;
+                & .nav-link {
+                    color: {{ !empty($deskColor1) ? $deskColor1 : 'var(--dark)' }};
+                    position: relative;
+                    font-size: {{$deskTextSize}}px;
+                    font-weight: 500;
+                    padding: 0.5rem 21px;
+                    text-transform: {{$deskTextTransform}};
+                    @if(!empty($deskNav))
+                    {!!$deskNav!!}
+                    @endif
+                    &:hover {
+                        color: {{ !empty($deskColor2) ? $deskColor2 : 'var(--primary)' }};
+                        @if(!empty($deskNavHover))
+                        {!!$deskNavHover!!}
+                        @endif
+                    }
+                    @if(!empty($deskNavBefore))
+                    &:before {
+                        {!! $deskNavBefore !!}
+                    }
+                    @endif
+                    @if(!empty($deskNavHoverBefore))
+                    &:hover:before {
+                        {!! $deskNavHoverBefore !!}
+                    }
                     @endif
                 }
-                @if(!empty($deskNavBefore))
-                &:before {
-                    {!! $deskNavBefore !!}
-                }
-                @endif
-                @if(!empty($deskNavHoverBefore))
-                &:hover:before {
-                    {!! $deskNavHoverBefore !!}
-                }
-                @endif
-            }
-            & .dropdown .dropdown-menu {
-                @if(!empty($deskDropdownMenu))
-                    {!!$deskDropdownMenu!!}
-                @endif
-                & .nav-link {
-                    font-size: {{$deskTextSize - 2 }}px;
+                & .dropdown .dropdown-menu {
+                    @if(!empty($deskDropdownMenu))
+                        {!!$deskDropdownMenu!!}
+                    @endif
+                    & .nav-link {
+                        font-size: {{$deskTextSize - 2 }}px;
+                    }
                 }
             }
-        }
         @endif
+
     @endif
 
 @endif

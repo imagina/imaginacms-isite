@@ -30,8 +30,23 @@
     //Validation Geocoder to get address
     @if($allowMoveMarker)
       var geocoder = new google.maps.Geocoder();
-    @endif
-     
+    @endif 
+          
+    //Validation Active Click and Emit
+    var activeClickInMarker = false;
+    var emitAfterClickMarker = false;
+
+    @if($activeClickInMarker)
+      activeClickInMarker = true
+      @if($emitAfterClickMarker) 
+        emitAfterClickMarker = true 
+      @endif
+    @endif 
+
+    //Validation Animation in marker
+    var activeAnimationInMarker = false;
+    @if($activeAnimationInMarker) activeAnimationInMarker = true @endif
+
     /*
     * Google Map | INIT
     */
@@ -49,22 +64,51 @@
         //Init locations | By default always added one element not necessary to maps livewire component
         @if($usingLivewire==false)
           setSimpleMarkerGoogle(position)
+        @else
+          //Multiple Locations By Default
+          @if($initMultipleLocations && !is_null($locations) && count($locations))
+
+            //Delete Markers
+            deleteMarkersGoogle();
+            //Get Valuae Default
+            var locationDefaultName = "{{$locationName}}"
+            //Init and Reset Bounds
+            var bounds = new google.maps.LatLngBounds();
+            //Check All Locations
+            @foreach($locations as $location)
+              
+              var locationPosition = {lat: {{$location['lat']}}, lng: {{$location['lng']}}};
+              var locationId = "{{$location['id']}}"
+              var locationTitle = "{{$location['title']}}"
+              //Esto es porque siempre agregan un locationDefault, con una serie de parametros, pero para estos casos no es necesario
+              if(locationDefaultName!=locationTitle){
+                setSimpleMarkerGoogle(locationPosition,locationId,locationTitle,bounds,activeClickInMarker,emitAfterClickMarker,"",locationTitle)
+              }
+            @endforeach
+
+          @endif
+          
         @endif
 
         
-        //Multiple Locations By Default | Al segundo intento no funciona
         /*
-        @if(!is_null($locations) && count($locations))
-          //console.warn("Default Multiple Locations")
-          @foreach($locations as $location)
-            let locationPosition = {lat: {{$location['lat']}}, lng: {{$location['lng']}}};
-            //console.warn("Position: "+locationPosition)
-            setSimpleMarkerGoogle(locationPosition)
-          @endforeach
-        @endif
+        * Click Event | Marker
         */
-        
-        
+        @if($allowMoveMarker)
+          map.addListener('click', function(markE) {
+            console.log("Listener|Click")
+
+            var inputVarName = "{{$inputVarName}}"
+
+            //Before delete markers
+            deleteMarkersGoogle()
+            //set Marker
+            setSimpleMarkerGoogle(markE.latLng,null,"",null,false,false,inputVarName)
+            // Get Address and then emit to save the data
+            getAddressFromPosition(markE.latLng,inputVarName);
+          
+          });
+        @endif
        
         //return newMap
     }
@@ -84,35 +128,72 @@
     /*
     * Set Simple mark | First Time
     */
-    function setSimpleMarkerGoogle(position)
+    function setSimpleMarkerGoogle(position,id=null,title="",bounds=null,activeClickInMarker=false, emitAfterClickMarker=false,inputVarName="",label=null)
     {
+
+      var labelMarker = labelLocation; //Global Variable | Default
+      if(label!=null) labelMarker = label;//Especific label
+
+      var labelFontSize =  "{{$labelFontSize}}";
+      var labelFontWeight =  "{{$labelFontWeight}}";
+      var labelColor =  "{{$labelColor}}";
+
       var marker = new google.maps.Marker({
           position: position, 
           map: map,
+          title: title,
           @if(!is_null($imageIcon)) icon: urlMarkerIcon, @endif
-          @if(!is_null($showLocationName))  label: labelLocation, @endif
+          @if(!is_null($showLocationName))  label: {fontSize: labelFontSize ,text: labelMarker, fontWeight:labelFontWeight, color:labelColor}, @endif
           @if($allowMoveMarker) draggable:true @endif
+          @if($activeAnimationInMarker) animation: google.maps.Animation.DROP, @endif
       });
 
       @if($allowMoveMarker)
         marker.addListener("dragend", (event) => {
-          const mPosition = marker.position;
+          console.log("Listener|Dragen|Position")
+          //var mPosition = marker.position;
+          //console.log(marker.getPosition())
           //console.log("LAT:"+mPosition.lat())
 
           // Get Address 
-          getAddressFromPosition(marker.getPosition());
+          getAddressFromPosition(marker.getPosition(),inputVarName);
 
         });
       @endif
 
+      //Set Bounds
+      if(bounds!=null){
+        bounds.extend(position);
+        map.fitBounds(bounds);//OJOOOOO CON ESTE MAPPPP probar luego con el otro
+      }
+      
+      //Save Markers
       markers.push(marker)
+
+      //Event Click
+      if(activeClickInMarker){
+        marker.addListener("click", () => {
+          
+          if(activeAnimationInMarker){
+            for (let i = 0; i < markers.length; i++) { markers[i].setAnimation(null);}
+            marker.setAnimation(google.maps.Animation.BOUNCE);
+          }
+
+          if(emitAfterClickMarker){
+            //Emit to send data
+            window.livewire.emit('markerSelectedFromMap',id);
+          }
+
+        });
+      }
+
     }
 
     /*
     * Set Markers in Google Map (Case Item Maps | Livewire Component)
     */
     function setMarkerGoogle(bounds)
-    {
+    { 
       console.warn('SET MARKER GOOGLE') 
 
       const itemPosition = {lat: parseFloat(locLat), lng: parseFloat(locLng)};
@@ -201,10 +282,13 @@
     }
 
     /*
-    * Get Address Format 
+    * Get Address Format when Move a Marker
     */
-    function getAddressFromPosition(pos) 
+    function getAddressFromPosition(pos,inputVarName) 
     {
+
+      console.log("Isite::Components|Map|Google|getAddressFromPosition|InputVarName: "+inputVarName)
+
       var addressFormat;
 
       geocoder.geocode({latLng: pos}, function(responses) {
@@ -221,7 +305,7 @@
         }
 
         //Send data to Address Component
-        emitAddressToUpdate(addressFormat,pos,addressData)
+        emitAddressToUpdate(addressFormat,pos,addressData,inputVarName)
       });
 
     }
@@ -229,12 +313,15 @@
     /*
     * Send Data to Livewire Address Form Component
     */
-    function emitAddressToUpdate(addressFormat,pos,addressData)
+    function emitAddressToUpdate(addressFormat,pos,addressData,inputVarName)
     {
+
+      console.log("Isite::Components|Map|Google|emitAddressToUpdate")
+      
       //Data Final
       var newPosition = {lat: pos.lat(), lng: pos.lng()}
      
-      //@var inputVarName ya fue declarada en el componente livewire
+      //Fix data to send the Component Address From
       var dataToSend = {inputValue: addressFormat, inputVarName: inputVarName, newPosition: newPosition, addressData: addressData}; 
 
       //Emit to send data
@@ -244,8 +331,12 @@
     /*
     * LIVEWIRE | Listener Component | Case Address Form | Update Marker with Google Autocomplete
     */
-    @if(isset($allowMoveMarker))
+    @if($allowMoveMarker)
+
       window.addEventListener('google-update-marker-in-map', event => {
+        
+        console.log("Isite::Components|Map|Google|Listener|google-update-marker-in-map")
+
         //Before delete markers
         deleteMarkersGoogle()
 
@@ -253,16 +344,25 @@
         var bounds = new google.maps.LatLngBounds();
 
         //Get data
-        var itemPosition = event.detail.itemPosition
+        var itemPosition = event.detail.itemPosition;
+        var iVn = event.detail.inputVarName;
 
         //Create Marker
-        setSimpleMarkerGoogle(itemPosition)
+        setSimpleMarkerGoogle(itemPosition,null,"",null,false,false,iVn)
 
         //Set Bounds
         bounds.extend(itemPosition);
         map.fitBounds(bounds);
 
+        //Testing | Google Set 22
+        //var newZoom = map.getZoom();
+        //console.warn(newZoom)
+        //map.setZoom(21);
+
       });
+
     @endif
+
+    
   
 </script>

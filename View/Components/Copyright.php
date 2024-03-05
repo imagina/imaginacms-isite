@@ -15,14 +15,17 @@ class Copyright extends Component
   public $withYear;
   public $withTitleCopyright;
   public $withSiteName;
+  public $classes;
+  public $styles;
 
   /**
    * Create a new component instance.
    *
    * @return void
    */
-  public function __construct($classes = null, $withIconCopyright = false, $withLabelCopyright = true,
-                              $withYear = true, $withTitleCopyright = true, $withSiteName = true)
+  public function __construct($classes = "", $withIconCopyright = false, $withLabelCopyright = true,
+                              $withYear = true, $withTitleCopyright = true, $withSiteName = true,
+                              $styles = null )
   {
     $this->name = @setting('core::site-name');
     $this->year = date('Y');
@@ -31,6 +34,8 @@ class Copyright extends Component
     $this->withLabelCopyright = $withLabelCopyright;
     $this->withTitleCopyright = $withTitleCopyright;
     $this->withSiteName = $withSiteName;
+    $this->classes = $classes;
+    $this->styles = $styles;
   }
 
   /**

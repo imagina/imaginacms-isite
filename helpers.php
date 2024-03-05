@@ -366,3 +366,15 @@ if (!function_exists('convertObjectValuesToArray')) {
     return $data;
   }
 }
+
+/**
+ * Clear Response Cache | Example: Required to Warehouse Confirm Button Process
+ */
+if (!function_exists('clearResponseCache')) {
+  function clearResponseCache()
+  {
+    if(!is_null(config('responsecache.enabled')) && config('responsecache.enabled')){
+      \ResponseCache::clear();
+    }
+  }
+}
