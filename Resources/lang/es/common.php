@@ -91,7 +91,10 @@ return [
       ],
       'showGoToSiteButton' => 'Mostrar boton "Ver Sitio"'
     ],
-    'defaultLayout' => 'Plantilla por defecto'
+    'defaultLayout' => 'Plantilla por defecto',
+    'markerLabelFontSize' => 'Tamaño de la Fuente | Etiqueta del Marcador',
+    'markerLabelFontWeight' => 'Grosor de la Fuente | Etiqueta del Marcador',
+    'markerLabelColor' => 'Color de la fuente| Etiqueta del Marcador',
   ],
   'settingHints' => [
     'phones' => "Ingresa un número telefónico y presiona enter",
