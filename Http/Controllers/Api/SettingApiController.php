@@ -182,7 +182,6 @@ class SettingApiController extends BaseApiController
             $media = $dbSetting ? $dbSetting->files()->where('zone', $settingName)->first() : null;
             //Set media value
             $setting["media"] = [
-              'id' => $media->id ?? null,
               'mimeType' => ($media === null) ? 'image/jpeg' : $media->mimetype,
               'path' => ($media === null) ? url('modules/isite/img/defaultLogo.jpg') : $media->path_string
             ];
@@ -205,7 +204,7 @@ class SettingApiController extends BaseApiController
             \Log::info("======== API Cache Setting: ".json_encode($tagGet));
           }
           */
-
+          
         } else {
           unset($module[$keySetting]);
         }

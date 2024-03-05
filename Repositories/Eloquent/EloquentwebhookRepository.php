@@ -6,7 +6,7 @@ use Modules\Isite\Repositories\WebhookRepository;
 use Modules\Core\Icrud\Repositories\Eloquent\EloquentCrudRepository;
 
 class EloquentWebhookRepository extends EloquentCrudRepository implements WebhookRepository
-{
+{ 
   /**
    * Filter names to replace
    * @var array

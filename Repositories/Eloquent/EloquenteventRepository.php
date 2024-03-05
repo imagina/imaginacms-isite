@@ -6,7 +6,7 @@ use Modules\Isite\Repositories\EventRepository;
 use Modules\Core\Icrud\Repositories\Eloquent\EloquentCrudRepository;
 
 class EloquentEventRepository extends EloquentCrudRepository implements EventRepository
-{
+{ 
   /**
    * Filter names to replace
    * @var array
