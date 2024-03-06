@@ -28,11 +28,13 @@ class IsiteColorsSeeder extends Seeder
             'isite::brandDark' => '#1d1d1d',
         ];
 
-        foreach ($settingsToCreate as $key => $settingToCreate) {
+        if (config('asgard.core.core.is_installed')) {
+          foreach ($settingsToCreate as $key => $settingToCreate) {
             $setting = $settings->findByName($key);
             if (! isset($setting->id)) {
-                $settings->createOrUpdate([$key => $settingToCreate]);
+              $settings->createOrUpdate([$key => $settingToCreate]);
             }
+          }
         }
     }
 }

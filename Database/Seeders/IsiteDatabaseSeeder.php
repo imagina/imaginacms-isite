@@ -27,11 +27,13 @@ class IsiteDatabaseSeeder extends Seeder
             'isite::logo3' => json_encode(['medias_single' => ['isite::logo3' => null]]),
         ];
 
-        foreach ($settingsToCreate as $key => $settingToCreate) {
+        if (config('asgard.core.core.is_installed')) {
+          foreach ($settingsToCreate as $key => $settingToCreate) {
             $setting = $settings->findByName($key);
-            if (! isset($setting->id)) {
-                $settings->createOrUpdate([$key => $settingToCreate]);
+            if (!isset($setting->id)) {
+              $settings->createOrUpdate([$key => $settingToCreate]);
             }
+          }
         }
 
         ProcessSeeds::dispatch([
