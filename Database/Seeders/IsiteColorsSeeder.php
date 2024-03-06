@@ -29,10 +29,10 @@ class IsiteColorsSeeder extends Seeder
         ];
 
         foreach ($settingsToCreate as $key => $settingToCreate) {
-            $setting = $settings->findByName($key);
-            if (! isset($setting->id)) {
-                $settings->createOrUpdate([$key => $settingToCreate]);
-            }
+          $setting = $settings->findByName($key);
+          if (! isset($setting->id)) {
+            $settings->createOrUpdate([$key => $settingToCreate]);
+          }
         }
     }
 }
