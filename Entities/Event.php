@@ -27,5 +27,14 @@ class Event extends CrudModel
     'deleted' => []
   ];
   public $translatedAttributes = [];
-  protected $fillable = [];
+  protected $fillable = [
+    'id',
+    'module_name',
+    'name',
+  ];
+
+  public function webhooks()
+  {
+    return $this->hasMany(webhooks::class);
+  }
 }

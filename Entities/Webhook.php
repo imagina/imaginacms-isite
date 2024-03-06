@@ -27,5 +27,16 @@ class Webhook extends CrudModel
     'deleted' => []
   ];
   public $translatedAttributes = [];
-  protected $fillable = [];
+  protected $fillable = [
+    'id',
+    'event_id',
+    'url',
+    'status',
+    'method',
+  ];
+
+  public function event()
+  {
+    return belongsTo(event::class);
+  }
 }
