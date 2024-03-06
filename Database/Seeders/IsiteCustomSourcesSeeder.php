@@ -21,12 +21,10 @@ class IsiteCustomSourcesSeeder extends Seeder
             'isite::customJs' => '',
         ];
 
-        if (config('asgard.core.core.is_installed')) {
-          foreach ($settingsToCreate as $key => $settingToCreate) {
-            $setting = $settings->findByName($key);
-            if (!isset($setting->id)) {
-              $settings->createOrUpdate([$key => $settingToCreate]);
-            }
+        foreach ($settingsToCreate as $key => $settingToCreate) {
+          $setting = $settings->findByName($key);
+          if (!isset($setting->id)) {
+            $settings->createOrUpdate([$key => $settingToCreate]);
           }
         }
     }
