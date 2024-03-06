@@ -709,6 +709,7 @@ return [
   "sessionFound" => "There is an active session",
   "alreadyInUse" => "Oops! It looks like the name you've chosen is already in use. Could you please try selecting a different name? We want to make sure your unique identity shines bright!",
   "usersToNotify" => 'Users To notify',
-  "emailsToNotify" => "Emails To Notify"
+  "emailsToNotify" => "Emails To Notify",
+  "dateCache" => "Last update: {date}. Refresh whenever you want.",
 ];
 
