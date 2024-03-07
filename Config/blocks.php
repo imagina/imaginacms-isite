@@ -3771,6 +3771,7 @@ return [
       "title" => "Logo Imagina",
       "systemName" => "isite::logo-imagina",
       "nameSpace" => "Modules\Isite\View\Components\LogoImagina",
+      "attributes" => []
   ],
   "copyright" => [
       "title" => "Copyright",
