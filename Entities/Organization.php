@@ -16,11 +16,12 @@ use Modules\Ifillable\Traits\isFillable;
 use Modules\Setting\Entities\Setting;
 use Stancl\Tenancy\Database\Concerns\MaintenanceMode;
 use Modules\Isite\Entities\Status;
+use Modules\Tag\Traits\TaggableTrait;
 
 class Organization extends BaseTenant implements TenantWithDatabase
 {
-  use AuditTrait, Translatable, HasDatabase, HasDomains, MediaRelation, Schedulable, hasEventsWithBindings, isFillable, MaintenanceMode;
-  
+  use AuditTrait, Translatable, HasDatabase, HasDomains, MediaRelation, Schedulable, hasEventsWithBindings, isFillable, MaintenanceMode, TaggableTrait;
+
   public $transformer = 'Modules\Isite\Transformers\OrganizationTransformer';
   public $requestValidation = [
     'create' => 'Modules\Isite\Http\Requests\CreateOrganizationRequest',
@@ -58,7 +59,7 @@ class Organization extends BaseTenant implements TenantWithDatabase
     'options' => 'array',
     'maintenance_mode' => 'array'
   ];
-  
+
   public static function getCustomColumns(): array
   {
     return [
@@ -81,36 +82,36 @@ class Organization extends BaseTenant implements TenantWithDatabase
       'maintenance_mode'
     ];
   }
-  
+
   public function getIncrementing()
   {
     return true;
   }
-  
+
   function getFillables(){
     return $this->fillable;
   }
-  
+
   public function category()
   {
     return $this->belongsTo(Category::class);
   }
-  
+
   public function domains()
   {
     return $this->hasMany(Domain::class);
   }
-  
-  
+
+
   public function settings()
   {
     return $this->hasMany(Setting::class);
   }
-  
+
   public function getUrlAttribute()
   {
     $currentLocale = locale();
-    
+
     $domains = $this->domains;
 
     //in some cases, when the tenant is initialized, the table settings hasn't been created, in that case this line break the code with 500
@@ -119,7 +120,7 @@ class Organization extends BaseTenant implements TenantWithDatabase
     } catch (\Exception $e) {
       $tenantRouteAlias = "homepage";
     }
-    
+
     $customDomain = $domains->where("type", "custom")->first()->domain ?? null;
     $defaultDomain = $domains->where("type", "default")->first()->domain ?? $this->slug ?? null;
 
@@ -131,24 +132,24 @@ class Organization extends BaseTenant implements TenantWithDatabase
     } else {
       return "";
     }
-    
+
   }
-  
+
   public function getDomainAttribute()
   {
 
     return parse_url($this->url, PHP_URL_HOST);
   }
-  
+
   public function users()
   {
-    
+
     $driver = config('asgard.user.config.driver');
     return $this->belongsToMany("Modules\\User\\Entities\\{$driver}\\User", 'isite__user_organization')
       ->withPivot('id', 'permissions', 'role_id')
       ->withTimestamps();
   }
-  
+
   public function layout()
   {
     return $this->belongsTo(Layout::class);
@@ -161,7 +162,7 @@ class Organization extends BaseTenant implements TenantWithDatabase
 
     //Set enable value too | example: when update organization via iadmin
     $this->attributes['enable'] = $value;
-   
+
   }
 
   public function getStatusNameAttribute()
@@ -201,5 +202,5 @@ class Organization extends BaseTenant implements TenantWithDatabase
     return $status;
 
   }
-  
+
 }
