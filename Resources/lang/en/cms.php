@@ -703,6 +703,10 @@ return [
       "description" => "In the 'Templates' section, you can choose the design that best suits your website's needs. We have a variety of predefined templates that have been carefully designed to offer you a wide range of styles and functionalities. By selecting a template, you will be defining the structure and overall appearance of your page, so we suggest you choose the one that best reflects the identity of your brand.",
       "title" => "Templates"
 
+    ],
+    "meta" => [
+      "description" => "Tse tags to improve your site's visibility in the search engine",
+      "title" => "Metadata"
     ]
   ],
   "reportQueue" => "You already have a report in progress, you requested it on <b>{date}</b>. As soon as it is finished we will enable the 'create' function for you... We do this to make the app work much better!",

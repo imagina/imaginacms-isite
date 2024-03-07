@@ -703,6 +703,10 @@ return [
     "layouts" => [
       "description" => "En la sección 'plantillas, puedes elegir el diseño que mejor se adapte a las necesidades de tu sitio web. Contamos con una variedad de plantillas predefinidas que han sido cuidadosamente diseñadas para ofrecerte una amplia gama de estilos y funcionalidades. Al seleccionar una plantilla, estarás definiendo la estructura y el aspecto general de tu página, por lo que te sugerimos escoger la que mejor refleje la identidad de tu marca.",
       "title" => "Plantillas"
+    ],
+    "meta" => [
+      "description" => "Usa palabras claves para mejorar la visibilidad de tu sitio en el buscador",
+      "title" => "Metadatos"
     ]
   ],
   "reportQueue" => "Ya tienes un reporte en progreso, lo solicitaste en <b>{date}</b>. Tan pronto este termine habilitaremos la función de 'crear' para ti... Esto lo hacemos para que la aplicación funcione mucho mejor!",
