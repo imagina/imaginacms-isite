@@ -58,6 +58,7 @@ class Maps extends Component
   public $labelFontSize;
   public $labelFontWeight;
   public $labelColor;
+  public $labelTopPosition;
 
   /**
    * Create a new component instance.
@@ -75,7 +76,7 @@ class Maps extends Component
                               $colorTitleSection = "#000000", $fontSizeTitleSection = "24", $iframeMap = null, 
                               $usingLivewire = false, $allowMoveMarker = false, $showLocationName = true, $initMultipleLocations = false,
                               $activeClickInMarker = false, $emitAfterClickMarker = false, $activeAnimationInMarker = false, $inputVarName = null, 
-                              $labelFontSize = null, $labelFontWeight=null, $labelColor=null
+                              $labelFontSize = null, $labelFontWeight=null, $labelColor=null, $labelTopPosition=null
   ){
     $defaultMap = json_decode(setting('isite::locationSite'));
     $this->lat = $lat ?? $defaultMap->lat;
@@ -156,7 +157,8 @@ class Maps extends Component
     $this->labelFontSize = $fontSizeValue."px";
     $this->labelFontWeight = $labelFontWeight ?? setting("isite::markerLabelFontWeight",null,"normal");
     $this->labelColor = $labelColor ?? setting("isite::markerLabelColor",null,"black");
-    
+    $this->labelTopPosition =  $labelTopPosition ?? setting("isite::markerLabelTopPosition",null,"30");
+   
   }
 
   /**

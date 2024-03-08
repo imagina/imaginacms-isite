@@ -143,7 +143,7 @@
           map: map,
           title: title,
           @if(!is_null($imageIcon)) icon: urlMarkerIcon, @endif
-          @if(!is_null($showLocationName))  label: {fontSize: labelFontSize ,text: labelMarker, fontWeight:labelFontWeight, color:labelColor}, @endif
+          @if(!is_null($showLocationName))  label: {className:"marker-position" ,fontSize: labelFontSize ,text: labelMarker, fontWeight:labelFontWeight, color:labelColor}, @endif
           @if($allowMoveMarker) draggable:true @endif
           @if($activeAnimationInMarker) animation: google.maps.Animation.DROP, @endif
       });
