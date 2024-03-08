@@ -95,6 +95,7 @@ return [
     'markerLabelFontSize' => 'Font Size | Marker Label',
     'markerLabelFontWeight' => 'Font Weight | Marker Label',
     'markerLabelColor' => 'Font Color| Marker Label',
+    'markerLabelTopPosition' => 'Top Position | Marker Label',
   ],
   'settingHints' => [
     'phones' => "Type a phone number and press enter key",

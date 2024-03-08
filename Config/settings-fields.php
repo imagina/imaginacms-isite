@@ -1084,6 +1084,19 @@ return [
       'label' => 'isite::common.settings.markerLabelColor'
     ]
   ],
+  'markerLabelTopPosition' => [
+    'value' => null,
+    'name' => 'isite::markerLabelTopPosition',
+    "onlySuperAdmin" => true,
+    'type' => 'input',
+    'groupName' => 'maps',
+    'groupTitle' => 'isite::common.settingGroups.colors',
+    'colClass' => 'col-12 col-md-6',
+    'props' => [
+      'label' => 'isite::common.settings.markerLabelTopPosition',
+      'type' => 'number'
+    ]
+  ],
   'iframeMap' => [
     'name' => 'isite::iframeMap',
     'value' => null,
