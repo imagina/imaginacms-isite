@@ -27,7 +27,7 @@ class WebhookEventTableSeeder extends Seeder
                     $dbEvent= Event::where("module_name", $module->getName())->where("name", $event)->first();
                     if (empty($dbEvent)) {
                         Event::create([
-                            "module_name" => $module,
+                            "module_name" => $module->gerName(),
                             "name" => $event,
                         ]);
                     }
