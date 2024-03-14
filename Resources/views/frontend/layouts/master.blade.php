@@ -43,28 +43,38 @@
 <body>
 
 <div id="page-wrapper">
-  @php
-    $header = "partials.header";
-   
-    if(isset($organization->id)){
-        $layoutHeader = ($organization->layout->path ?? null).".partials.header";
-        if(view()->exists($layoutHeader)) $header = $layoutHeader;
-    }
-  
-  @endphp
+{{--  @php--}}
+{{--    $header = "partials.header";--}}
+{{--   --}}
+{{--    if(isset($organization->id)){--}}
+{{--        $layoutHeader = ($organization->layout->path ?? null).".partials.header";--}}
+{{--        if(view()->exists($layoutHeader)) $header = $layoutHeader;--}}
+{{--    }--}}
+{{--  --}}
+{{--  @endphp--}}
   @include('isite::frontend.partials.colors')
-  @include($header)
+{{--  @include($header)--}}
+  <x-ibuilder::layout
+    entityType="Modules\\Ibuilder\\Entities\\Layout"
+    type="header"
+    alternativeView="partials.header"
+  />
   @yield('content')
-  @php
-    $footer = "partials.footer";
-    
-    if(isset($organization->id)){
-        $layoutFooter = ($organization->layout->path ?? null).".partials.footer";
-        if(view()->exists($layoutFooter)) $footer = $layoutFooter;
-    }
-  
-  @endphp
-  @include($footer)
+{{--  @php--}}
+{{--    $footer = "partials.footer";--}}
+{{--    --}}
+{{--    if(isset($organization->id)){--}}
+{{--        $layoutFooter = ($organization->layout->path ?? null).".partials.footer";--}}
+{{--        if(view()->exists($layoutFooter)) $footer = $layoutFooter;--}}
+{{--    }--}}
+{{--  --}}
+{{--  @endphp--}}
+{{--  @include($footer)--}}
+  <x-ibuilder::layout
+    entityType="Modules\\Ibuilder\\Entities\\Layout"
+    type="footer"
+    alternativeView="partials.footer"
+  />
 </div>
 
 @if(isset(tenant()->id))
