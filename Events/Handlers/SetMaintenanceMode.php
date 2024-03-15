@@ -47,7 +47,11 @@ class SetMaintenanceMode
         \Log::info('Isite: Events|Handlers|SetMaintenanceMode| SET MAINTENANCE: OFF');
       }
 
-      $this->sendEmail($model,$isCreated);
+      /**
+       * Esto se paso a la implementacion con el IsNotificable trait
+       * en la entidad Organization
+       */
+      //$this->sendEmail($model,$isCreated);
       
       
     } catch (\Exception $e) {
@@ -67,7 +71,7 @@ class SetMaintenanceMode
 
       $emailsTo[] = $user->email;
       $title = trans("isite::organizations.title.organization updated");
-      $message = trans("isite::organizations.messages.organization updated",[
+      $message = trans("isite::organizations.messages.organization updated basic",[
         'status' => $model->statusName,
         'url' => $model->url,
         'admin' => url('/iadmin')
