@@ -30,9 +30,9 @@ class SynchronizableService
     // Get entity to create sheet
     $entityToSync = $syncConfig["entities"][$nameSync] ?? [];
     // Get template ID
-    $templateId =  $entityToSync["template_id"] ?? null;
+    $baseTemplateId =  $entityToSync["base_template_id"] ?? null;
 
-    if (!isset($templateId)) throw new Exception("Template not found", 404);
+    if (!isset($baseTemplateId)) throw new Exception("Template not found", 404);
     // Get a sync by name
     $currentModel = $this->modelRepository->getItemsBy(json_decode(json_encode([
       'filter' => ["name" => $nameSync]
@@ -49,17 +49,17 @@ class SynchronizableService
 
     $requestParams = [
       "title" => "{$params["module"]} {$params["entity"]} $siteName",
-      "template_sheet_id" => $templateId,
+      "template_sheet_id" => $baseTemplateId,
       "sheet_id" => $spreadsheetId,
       "old_enabled_emails" => $oldEnabledEmails,
       "enabled_emails" => $params["enabled_emails"]
     ];
 
-    if($spreadsheetId && is_null($currentModel->template_id)) $requestParams["action"] = 'delete';
+    if($spreadsheetId && is_null($currentModel->base_template_id)) $requestParams["action"] = 'delete';
 
     // Send a POST request to N8N to clone the spreadsheet
     $response = $this->client->request('POST',
-      "$this->n8nBaseUrl{$syncConfig["workflowPath"]}create/webhook",
+      "$this->n8nBaseUrl/google-sheets/create/webhook",
       [
         "body" => json_encode($requestParams),
         'headers' => [
@@ -71,17 +71,17 @@ class SynchronizableService
     $responseN8N = json_decode($response->getBody()->getContents());
     $spreadsheetId = $responseN8N->sheet_id;
     $sheets = $responseN8N->sheets;
-    $resultado = [];
+    $allSheets = [];
 
     // Save the sheets id for each sheet
-    foreach ($sheets as $objeto) {
-      if ($objeto->properties->title) {
-        $resultado = array_merge([$objeto->properties->title => $objeto->properties->sheetId], $resultado);
+    foreach ($sheets as $sheet) {
+      if ($sheet->properties->title) {
+        $allSheets = array_merge([$sheet->properties->title => $sheet->properties->sheetId], $allSheets);
       }
     }
     $emails = implode(',', $params["enabled_emails"]);
     // Sync the sheet_id attribute
-    $currentModel->update(['spreadsheet_id' => $spreadsheetId,'template_id' => $templateId, 'sheets' => json_encode($resultado), 'enabled_emails' => $emails]);
+    $currentModel->update(['spreadsheet_id' => $spreadsheetId, 'base_template_id' => $baseTemplateId, 'sheets' => json_encode($allSheets), 'enabled_emails' => $emails]);
 
 
     return ["data" => "Request successful"];
@@ -96,7 +96,7 @@ class SynchronizableService
 
     if(is_null($entityToSync)) throw new Exception("Entity to Export not found", 404);
 
-    $urlToExport = "$this->n8nBaseUrl{$syncConfig["workflowPath"]}export/";
+    $urlToExport = "$this->n8nBaseUrl/google-sheets/export/v2";
 
     $currentModel = $this->modelRepository->getItem($params["name"], json_decode(json_encode([
       'filter' => ["field" => 'name']
@@ -155,7 +155,7 @@ class SynchronizableService
 
     if(is_null($entityToSync)) throw new Exception("Entity to Sync not found", 404);
 
-    $urlToImport = "$this->n8nBaseUrl{$syncConfig["workflowPath"]}import/";
+    $urlToImport = "$this->n8nBaseUrl/google-sheets/import";
 
     $currentModel = $this->modelRepository->getItem($params["name"], json_decode(json_encode([
       'filter' => ["field" => 'name']
@@ -180,6 +180,7 @@ class SynchronizableService
       "dependencies" => $entityToSync["dependencies"],
       "access_token" => $token,
       "requestParams" => $params["requestParams"],
+      "module_name" => $moduleName
     ];
 
     // Send a POST request to N8N to export data to the spreadsheet

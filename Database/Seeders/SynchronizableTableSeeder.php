@@ -30,12 +30,12 @@ class SynchronizableTableSeeder extends Seeder
 
               Synchronizable::create([
                 'name' => $entity,
-                'template_id' => $values["template_id"]
+                'base_template_id' => $values["base_template_id"]
               ]);
-            } else if($syncData->template_id !== $values["template_id"]) {
+            } else if($syncData->base_template_id !== $values["base_template_id"]) {
 
               $syncData->update([
-                'template_id' => null
+                'base_template_id' => null
               ]);
             }
           }
