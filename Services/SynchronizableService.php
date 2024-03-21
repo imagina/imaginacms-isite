@@ -30,7 +30,7 @@ class SynchronizableService
     // Get entity to create sheet
     $entityToSync = $syncConfig["entities"][$nameSync] ?? [];
     // Get template ID
-    $baseTemplateId =  $entityToSync["base_template_id"] ?? null;
+    $baseTemplateId =  $syncConfig["base_template_id"] ?? null;
 
     if (!isset($baseTemplateId)) throw new Exception("Template not found", 404);
     // Get a sync by name
