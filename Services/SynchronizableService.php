@@ -2,6 +2,7 @@
 
 namespace Modules\Isite\Services;
 
+use Modules\Isite\Entities\Synchronizable;
 use Modules\Isite\Repositories\SynchronizableRepository;
 use Mockery\CountValidator\Exception;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,7 @@ class SynchronizableService
     $this->n8nBaseUrl = setting('isite::n8nBaseUrl');
     //Get url of app
     $this->domain = env("APP_URL");
+    $this->modules = app('modules');
     $this->modelRepository = $modelRepository;
   }
 
@@ -30,7 +32,7 @@ class SynchronizableService
     // Get entity to create sheet
     $entityToSync = $syncConfig["entities"][$nameSync] ?? [];
     // Get template ID
-    $baseTemplateId =  $syncConfig["base_template_id"] ?? null;
+    $baseTemplateId =  $entityToSync["base_template_id"] ?? null;
 
     if (!isset($baseTemplateId)) throw new Exception("Template not found", 404);
     // Get a sync by name
@@ -80,9 +82,21 @@ class SynchronizableService
       }
     }
     $emails = implode(',', $params["enabled_emails"]);
-    // Sync the sheet_id attribute
-    $currentModel->update(['spreadsheet_id' => $spreadsheetId, 'base_template_id' => $baseTemplateId, 'sheets' => json_encode($allSheets), 'enabled_emails' => $emails]);
 
+    //Get Modules by configName
+    $params = ["filter" => ["allTranslations" => true, "configNameByModule" => 'synchronizable']];
+    $configsBySync = $this->getConfigBy($params);
+    //Get entities
+    $entities = $this->getOnlyValuesOfConfig($configsBySync, 'entities');
+
+    // Filter by base_template_id
+    $filteredByBaseTemplate = array_filter($entities, function($item) use($baseTemplateId) {
+      return isset($item['base_template_id']) && $item['base_template_id'] === $baseTemplateId;
+    });
+
+    // Sync the sheet_id attribute
+    Synchronizable::whereIn('name', array_keys($filteredByBaseTemplate))
+      ->update(['spreadsheet_id' => $spreadsheetId, 'base_template_id' => $baseTemplateId, 'sheets' => json_encode($allSheets), 'enabled_emails' => $emails]);
 
     return ["data" => "Request successful"];
 
@@ -218,5 +232,64 @@ class SynchronizableService
     $token = $this->getToken($user);
 
     return $token->accessToken;
+  }
+
+  //Get configs by name
+  public function getConfigBy($params) {
+    $enabledModules = $this->modules->allEnabled();
+
+    $configName = $params["filter"]["configName"] ?? false;//Get config name filter
+    $configNameByModule = $params["filter"]["configNameByModule"] ?? false;//Get config name by module filter
+
+    //Get all configs
+    if (!$configName && !$configNameByModule)
+      $response = config("asgard");
+
+    //Get config by name
+    if ($configName && strlen($configName)) {
+      $configNameExplode = explode('.', $configName);
+      $response = config("asgard." . strtolower(array_shift($configNameExplode)) . "." . implode('.', $configNameExplode));
+    }
+
+    //Get config by name to each module
+    if (isset($configNameByModule) && strlen($configNameByModule)) {
+      $response = [];
+      foreach (array_keys($enabledModules) as $moduleName) {
+        $response[$moduleName] = config("asgard." . strtolower($moduleName) . ".config." . $configNameByModule);
+      }
+    }
+
+    //Validate Response
+    if ($response == null) return null;
+
+    //Response data
+    return ["data" => $this->translateLabels($response)];
+  }
+
+  public function translateLabels($data)
+  {
+    if (is_array($data)) {
+      foreach ($data as $key => &$item) {
+        if (is_string($item)) $item = trans($item);
+        else if (is_array($item)) {
+          $item = $this->translateLabels($item);
+        }
+      }
+    }
+
+    return $data;
+  }
+
+  private function getOnlyValuesOfConfig($configs = [], $key = '') {
+    $response = [];
+    foreach ($configs as $configModule) {
+      foreach ($configModule as $values) {
+        if(!empty($key)) {
+          if(isset($values[$key])) $response = array_merge($values[$key], $response);
+        } else $response = array_merge($values, $response);
+      }
+    }
+
+    return $response;
   }
 }
