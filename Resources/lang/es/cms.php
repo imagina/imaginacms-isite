@@ -643,7 +643,7 @@ return [
     "syncBodyStepOne" => "Para acceder a tu documento, simplemente haz clic en el enlace a continuación:",
     "syncBodyLinkStepOne" => "Accede aquí",
     "syncStepTwo" => "Paso 2: Exportar Dependencias",
-    "syncBodyStepTwo" => "Antes de importar productos de manera efectiva, asegúrate de realizar primero una exportación de categorías y marcas. Este paso es esencial para que la importación de productos sea exitosa.",
+    "syncBodyStepTwo" => "Antes de importar los datos de manera efectiva, asegúrate de realizar primero una exportación de dependencias. Este paso es esencial para que la importación sea exitosa.",
     "syncImportantNoteBody" => "Si los botones no están habilitados, significa que se está ejecutando un proceso de sincronización masiva para este módulo. Hasta que este proceso no termine, no tendrás acceso a las acciones.",
     "import" => "Importar",
     "exportDataTitle" => "Exporta tus Datos",
