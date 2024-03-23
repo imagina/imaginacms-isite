@@ -32,7 +32,7 @@ class SynchronizableService
     // Get entity to create sheet
     $entityToSync = $syncConfig["entities"][$nameSync] ?? [];
     // Get template ID
-    $baseTemplateId =  $entityToSync["base_template_id"] ?? null;
+    $baseTemplateId = $entityToSync["base_template_id"] ?? null;
 
     if (!isset($baseTemplateId)) throw new Exception("Template not found", 404);
     // Get a sync by name
@@ -57,7 +57,7 @@ class SynchronizableService
       "enabled_emails" => $params["enabled_emails"]
     ];
 
-    if($spreadsheetId && is_null($currentModel->base_template_id)) $requestParams["action"] = 'delete';
+    if ($spreadsheetId && is_null($currentModel->base_template_id)) $requestParams["action"] = 'delete';
 
     // Send a POST request to N8N to clone the spreadsheet
     $response = $this->client->request('POST',
@@ -90,7 +90,7 @@ class SynchronizableService
     $entities = $this->getOnlyValuesOfConfig($configsBySync, 'entities');
 
     // Filter by base_template_id
-    $filteredByBaseTemplate = array_filter($entities, function($item) use($baseTemplateId) {
+    $filteredByBaseTemplate = array_filter($entities, function ($item) use ($baseTemplateId) {
       return isset($item['base_template_id']) && $item['base_template_id'] === $baseTemplateId;
     });
 
@@ -104,102 +104,140 @@ class SynchronizableService
 
   public function exportData($params)
   {
-    $moduleName = explode('_', $params["name"])[0];
-    $syncConfig = config("asgard.$moduleName.config.synchronizable");
-    $entityToSync = $syncConfig["entities"][$params["name"]] ?? null;
+    //Get config by module name
+    $configData = $this->getConfigByModuleName($params);
 
-    if(is_null($entityToSync)) throw new Exception("Entity to Export not found", 404);
+    //Get current Model
+    $currentModel = $this->getCurrentModel($params);
 
-    $urlToExport = "$this->n8nBaseUrl/google-sheets/export/v2";
+    $entityToSync = $configData["entityToSync"];
 
-    $currentModel = $this->modelRepository->getItem($params["name"], json_decode(json_encode([
-      'filter' => ["field" => 'name']
-    ])));
-
-    if (!isset($currentModel)) throw new Exception("Name {$params["name"]} not found", 404);
-
-    if($currentModel->is_running) throw new Exception("process is runing", 405);
-
-    $sheets = json_decode($currentModel->sheets);
-    // Retrieve the user ID who initiated the action
-    $id = Auth::id();
-    // Get token of soporte
-    $token = $this->generateToken();
-
-    $requestParams = [
-      "name" => $params["name"],
-      "domain_url" => $this->domain,
-      "spreadsheet_id" => $currentModel->spreadsheet_id,
-      "sheets" => $sheets,
-      "access_token" => $token,
-      "requestParams" => $params["requestParams"],
+    $formattedParams = [
+      'functionality' => 'export', // Setting functionality based on export dependencies flag
+      'name' => $params["name"],
+      'requestParams' => $configData["requestParams"],
+      'nameSheetPrincipal' => $configData['nameSheetPrincipal'],
+      'apiRoute' => $entityToSync["apiRoute"],
+      'sheetName' => $entityToSync["sheetName"],
+      'columns' => $entityToSync["columns"] ?? null
     ];
 
-    $functionality = 'export';
 
-    if(isset($params["exportDependencies"]) && $params["exportDependencies"]) {
-      $functionality = 'dependencies';
-      $requestParams["dependencies"] = $entityToSync["dependencies"];
-    } else {
-      $requestParams["api_route"] = $entityToSync["apiRoute"];
-      $requestParams["sheet_name"] = $entityToSync["sheetName"];
-      $requestParams["columns"] = $entityToSync["columns"] ?? null;
+    // If export dependencies flag is set, switch functionality and add dependencies to request parameters
+    if (isset($params["exportDependencies"]) && $params["exportDependencies"]) {
+      $formattedParams['functionality'] = 'dependencies';
+      $formattedParams["dependencies"] = $entityToSync["dependencies"];;
     }
-    // Send a POST request to N8N to export data to the spreadsheet
-    $response = $this->client->request('POST',
-      $urlToExport,
-      [
-        "body" => json_encode($requestParams),
-        'headers' => [
-          'Content-Type' => 'application/json'
-        ]
-      ]
-    );
 
-    $updateModel = $currentModel->update(['is_running' => $functionality, 'last_sync' => now(), 'exported_by_id' => $id]);
+    $response = $this->sendRequestToN8N($formattedParams, $currentModel, '/export/v2');
 
-    return ['data' => json_decode($response->getBody()->getContents())->message];
+    // Returning the response data
+    return ['data' => $response];
   }
 
   public function importData($params)
   {
+    //Get config by module name
+    $configData = $this->getConfigByModuleName($params);
+
+    //Get current Model
+    $currentModel = $this->getCurrentModel($params);
+
+    $entityToSync = $configData["entityToSync"];
+
+    // Constructing request parameters for importing data
+    $formattedParams = [
+      'functionality' => 'import',
+      "name" => $params["name"],
+      "dependencies" => $entityToSync["dependencies"],
+      "requestParams" => $params["requestParams"],
+      'nameSheetPrincipal' => $configData['nameSheetPrincipal'],
+      'apiRoute' => $entityToSync["apiRoute"]
+    ];
+
+    $response = $this->sendRequestToN8N($formattedParams, $currentModel, '/import');
+
+    // Returning the response data
+    return ['data' => $response];
+  }
+
+  private function getConfigByModuleName($params) {
+    // Extracting the module name from the parameter name
     $moduleName = explode('_', $params["name"])[0];
+    // Retrieving synchronization configuration based on the module name
     $syncConfig = config("asgard.$moduleName.config.synchronizable");
+    // Finding the entity to synchronize based on the provided name
     $entityToSync = $syncConfig["entities"][$params["name"]] ?? null;
 
-    if(is_null($entityToSync)) throw new Exception("Entity to Sync not found", 404);
+    // If the entity to sync is not found, throw an exception
+    if (is_null($entityToSync)) throw new Exception("Entity to Sync not found", 404);
 
-    $urlToImport = "$this->n8nBaseUrl/google-sheets/import";
+    // Retrieving request parameters or setting an empty array if not provided
+    $requestParams = $params["requestParams"] ?? [];
 
+    // Setting include parameters based on the entity configuration
+    $requestParams["include"] = $entityToSync["include"] ?? [];
+
+    // Retrieving the name of the principal sheet
+    $nameSheetPrincipal = $entityToSync["sheetName"];
+
+    return [
+      'entityToSync' => $entityToSync,
+      'moduleName' => $moduleName,
+      'requestParams' => $requestParams,
+      'nameSheetPrincipal' => $nameSheetPrincipal,
+      'apiRoute' => $entityToSync["apiRoute"]
+    ];
+  }
+
+  private function getCurrentModel($params) {
+    // Retrieving the current model based on the provided name
     $currentModel = $this->modelRepository->getItem($params["name"], json_decode(json_encode([
       'filter' => ["field" => 'name']
     ])));
 
-    if (!isset($currentModel)) throw new Exception("Name '{$params["name"]}' not found", 404);
+    // If the current model is not found, throw an exception
+    if (!isset($currentModel)) throw new Exception("Name {$params["name"]} not found", 404);
 
-    if ($currentModel->is_running) throw new Exception("'{$params["name"]}' is runing", 400);
+    // If the current model is running, throw an exception
+    if ($currentModel->is_running) throw new Exception("process is runing", 405);
 
-    $sheets = json_decode($currentModel->sheets);
-    // Retrieve the user ID who initiated the action
+    return $currentModel;
+  }
+
+  private function sendRequestToN8N($params, $currentModel, $path) {
+    // Parsing JSON-encoded sheets data
+    $sheets = json_decode($currentModel->sheets, true);
+
+    // Constructing the URL for exporting data to Google Sheets via N8N
+    $urlToSync = $this->n8nBaseUrl."/google-sheets".$path;
+
+    // Retrieving the user ID who initiated the action
     $id = Auth::id();
-    // Get token of soporte
+    // Generating a token for authorization
     $token = $this->generateToken();
 
+    $nameSheetPrincipal = $params['nameSheetPrincipal'];
+
+    // Constructing request parameters for exporting data
     $requestParams = [
-      "spreadsheet_id" => $currentModel->spreadsheet_id,
-      "domain_url" => $this->domain,
-      "sheet_name" => $entityToSync["sheetName"],
       "name" => $params["name"],
+      "domain_url" => $this->domain,
+      "spreadsheet_id" => $currentModel->spreadsheet_id,
+      "sheet_name" => $nameSheetPrincipal,
       "sheets" => $sheets,
-      "dependencies" => $entityToSync["dependencies"],
       "access_token" => $token,
-      "requestParams" => $params["requestParams"],
-      "module_name" => $moduleName
+      "request_params" => $params['requestParams'],
+      "id_prinpal_sheet" => $sheets[$nameSheetPrincipal],
+      "api_route" => $params["apiRoute"],
+      "columns" => $params["columns"] ?? null
     ];
 
-    // Send a POST request to N8N to export data to the spreadsheet
+    if(isset($params['dependencies'])) $requestParams['dependencies'] = $params['dependencies'];
+
+    // Sending a POST request to N8N to export data to the spreadsheet
     $response = $this->client->request('POST',
-      $urlToImport,
+      $urlToSync,
       [
         "body" => json_encode($requestParams),
         'headers' => [
@@ -208,9 +246,10 @@ class SynchronizableService
       ]
     );
 
-    $updateModel = $currentModel->update(['is_running' => 'import', 'last_sync' => now(), 'exported_by_id' => $id]);
+    // Updating the current model with import running status, last sync time, and user ID
+    $updateModel = $currentModel->update(['is_running' => $params['functionality'], 'last_sync' => now(), 'exported_by_id' => $id]);
 
-    return ['data' => json_decode($response->getBody()->getContents())->message];
+    return json_decode($response->getBody()->getContents())->message;
   }
 
   private function getToken($user)
@@ -221,7 +260,8 @@ class SynchronizableService
   }
 
   //Generate token for email 'soporte@imaginacolombia.com'
-  private function generateToken() {
+  private function generateToken()
+  {
     $modelUser = app('Modules\User\Repositories\UserRepository');
     //Get user soporte
     $user = $modelUser->getItem('soporte@imaginacolombia.com', json_decode(json_encode(['filter' => ['field' => 'email']])));
@@ -235,7 +275,8 @@ class SynchronizableService
   }
 
   //Get configs by name
-  public function getConfigBy($params) {
+  public function getConfigBy($params)
+  {
     $enabledModules = $this->modules->allEnabled();
 
     $configName = $params["filter"]["configName"] ?? false;//Get config name filter
@@ -280,12 +321,13 @@ class SynchronizableService
     return $data;
   }
 
-  private function getOnlyValuesOfConfig($configs = [], $key = '') {
+  private function getOnlyValuesOfConfig($configs = [], $key = '')
+  {
     $response = [];
     foreach ($configs as $configModule) {
       foreach ($configModule as $values) {
-        if(!empty($key)) {
-          if(isset($values[$key])) $response = array_merge($values[$key], $response);
+        if (!empty($key)) {
+          if (isset($values[$key])) $response = array_merge($values[$key], $response);
         } else $response = array_merge($values, $response);
       }
     }
