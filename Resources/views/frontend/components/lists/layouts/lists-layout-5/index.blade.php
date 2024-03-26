@@ -37,7 +37,7 @@
             @php($cont=$cont+intval($itemComponentAttributes['itemDelayIn']))
             @endif
         @endif
-        @if($repository=='Modules\Slider\Repositories\SlideApiRepository')
+        @if($repository=='Modules\Slider\Repositories\SlideApiRepository' || $repository=='Modules\Slider\Repositories\SlideRepository')
             @php($itemComponentAttributes["viewMoreButtonLabel"]=$item->caption)
         @endif
         <div class="{{$columnLayout[$key%count($columnLayout)]}}">
