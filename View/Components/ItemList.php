@@ -201,7 +201,7 @@ class ItemList extends Component
   public $categoryColorCustom;
   public $createdDateColorCustom;
   public $userColorCustom;
-
+  public $withUrl;
 
   public function __construct($item,
                               $mediaImage = "mainimage",
@@ -365,7 +365,8 @@ class ItemList extends Component
                               $summaryColorCustom = "",
                               $categoryColorCustom = "",
                               $createdDateColorCustom = "",
-                              $userColorCustom = ""
+                              $userColorCustom = "",
+                              $withUrl = true
   )
   {
     $this->imageAspectMobile = $imageAspectMobile;
@@ -573,6 +574,7 @@ class ItemList extends Component
     $this->categoryColorCustom = $categoryColorCustom;
     $this->createdDateColorCustom = $createdDateColorCustom;
     $this->userColorCustom = $userColorCustom;
+    $this->withUrl = $withUrl;
 
     //Define the summary field value
     if(!empty($summaryField)){
