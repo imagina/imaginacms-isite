@@ -53,6 +53,7 @@ class ItemsList extends Component
 
   //Item List Unique Class
   public $itemListUniqueClass;
+  public $currentRoute;
 
   protected $paginationTheme = 'bootstrap';
   protected $emitItemListRendered;
@@ -121,6 +122,7 @@ class ItemsList extends Component
     $this->disableFilters = $disableFilters;
     $this->eventToDelete = $eventToDelete;
     $this->emitItemListRenderedAlways = $emitItemListRenderedAlways;
+    $this->currentRoute = \Route::current()->getName();
 
   }
 
