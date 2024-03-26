@@ -42,8 +42,10 @@ class TenantAiService
    
     //Icommerce
     if(\Schema::hasTable('icommerce__products')){
-      if($extraData==NULL || in_array("icommerce",$extraData)) 
-        $this->validateExecution($typeOfExecution,"Modules\Icommerce\Services\IcommerceContentAi",$tenantId);
+      if($extraData==NULL || in_array("icommerce",$extraData)){
+        $this->validateExecution($typeOfExecution,"Modules\Icommerce\Services\IcommerceCategoriesContentAi",$tenantId);
+        $this->validateExecution($typeOfExecution,"Modules\Icommerce\Services\IcommerceProductsContentAi",$tenantId);
+      }
     }
 
     \Log::info($this->log."processAi|END");

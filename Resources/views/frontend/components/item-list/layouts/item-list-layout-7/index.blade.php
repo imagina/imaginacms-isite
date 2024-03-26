@@ -98,7 +98,8 @@
             </div>
           @endif
           @if($withSummary && ( isset($item->summary) || isset($item->description) || isset($item->custom_html)) )
-            <div class=" {{$orderClasses["summary"] ?? 'order-5'}} item-summary {{$summaryAlign}}">
+            @if(trim($item->summary) || trim($item->description) || trim($item->custom_html) )
+              <div class=" {{$orderClasses["summary"] ?? 'order-5'}} item-summary {{$summaryAlign}}">
               @if(isset($item->url) && !empty($item->url))
                 <a href="{{$item->url}}" target="{{$target}}">
                   @endif
@@ -110,6 +111,7 @@
                 </a>
               @endif
             </div>
+            @endif
           @endif
           @if($withViewMoreButton)
                   <div class="{{$orderClasses["viewMoreButton"] ?? 'order-5'}} item-view-more-button {{$buttonAlign}}">
@@ -450,6 +452,8 @@
     #{{$id}} .item-content {
         padding-left: {{$contentPaddingLeft}}px;
         padding-right: {{$contentPaddingRight}}px;
+        display: flex;
+        flex-direction: column;
     }
     @endif
     #{{$id}} .style-content {

@@ -27,6 +27,16 @@ class ProcessAi implements ShouldQueue
 
     \Log::info($this->log."|================================================ INIT");
 
+    //Case Wizard
+    /*
+      Cuando se ejecutan los jobs por comando no genera ningun error, pero cuando es todo el proceso del Wizard, estos jobs suelen fallar
+      Se encontro hasta el momento que solo restaurando funcionaba de nuevo bien y por eso se agrego la siguiente validacion:
+    */
+    if($this->params["baseClass"]=="Modules\Page\Services\PageContentAi"){
+      \Log::info($this->log."|Queue Restart");
+      \Artisan::call('queue:restart');
+    }
+
     if(isset($this->params['tenantId'])){
 
       forceInitializeTenant($this->params['tenantId']);

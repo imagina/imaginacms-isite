@@ -71,27 +71,9 @@
     </nav>
   
   </div>
-  
-  <div class="modal modal-menu fade" id="{{ $id }}menuModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header rounded-0">
-          <x-isite::logo name="logo1" central="central" imgClasses="mx-auto my-2"/>
-          <button  type="button" class="close my-0" data-dismiss="modal" aria-label="Close">
-            <i class="fa fa-times-circle text-white"></i>
-          </button>
-        </div>
-        <div class="modal-body">
-          
-          <nav class="navbar navbar-movil p-0">
-            
-            <div class="collapse navbar-collapse show " id="{{ $id }}modalBody">
-            </div>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </div>
+
+  @include('isite::frontend.components.category-menu.partials.modal')
+
 </div>
 @include('isite::frontend.components.category-menu.partials.style')
 @section('scripts-owl')
@@ -120,7 +102,7 @@
       $(window).resize(function(){window.isite_menu_divtomodal()});
       
       var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-      var collapsed = {!! $collapsed ? 'true' : 'false' !!}
+      var collapsed = {!! $collapsed ? 'true' : 'false' !!};
       if(width<=992 || collapsed){
         window.isite_menu_divtomodal()
       }

@@ -15,11 +15,13 @@ class CheckTenancyForMaintenance extends CheckForMaintenanceMode
             $tpl = 'isite::frontend.errors.maintenance';
             $ttpl = 'errors.maintenance';
 
-            if (view()->exists($ttpl)) {
-                $tpl = $ttpl;
-            }
+            if (view()->exists($ttpl)) $tpl = $ttpl;
 
-            return view($tpl);
+            //OJO: esto en DEEV genera un error
+            //return view($tpl);
+
+            return response(trans("isite::organizations.messages.not available"), 500);
+
         }
 
         return $next($request);

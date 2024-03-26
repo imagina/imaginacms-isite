@@ -108,13 +108,16 @@ trait RevisionableTrait
           ->orderBy('updated_at', $order)->limit($limit)->get();
     }
 
-    /**
-     * Invoked before a model is saved. Return false to abort the operation.
-     */
-    public function preSave()
-    {
-        if (! isset($this->revisionEnabled) || $this->revisionEnabled) {
-            // if there's no revisionEnabled. Or if there is, if it's true
+  /**
+   * Invoked before a model is saved. Return false to abort the operation.
+   *
+   * @return bool
+   */
+  public function preSave()
+  {
+    $revisionDisable = $this->revisionDisable ?? false;
+    if (!$revisionDisable) {
+      // if there's no revisionEnabled. Or if there is, if it's true
 
             $this->originalData = $this->original;
             $this->updatedData = $this->attributes;
@@ -217,16 +220,17 @@ trait RevisionableTrait
             return false;
         }
 
-        if ((! isset($this->revisionEnabled) || $this->revisionEnabled)) {
-            $revisions = [
-                'revisionable_type' => $this->getMorphClass(),
-                'revisionable_id' => $this->getKey(),
-                'key' => 'Create Data',
-                'old_value' => null,
-                'new_value' => $this,
-                'created_at' => new \DateTime(),
-                'updated_at' => new \DateTime(),
-            ];
+    $revisionDisable = $this->revisionDisable ?? false;
+    if (!$revisionDisable) {
+      $revisions = [
+        'revisionable_type' => $this->getMorphClass(),
+        'revisionable_id' => $this->getKey(),
+        'key' => 'Create Data',
+        'old_value' => null,
+        'new_value' => $this,
+        'created_at' => new \DateTime(),
+        'updated_at' => new \DateTime(),
+      ];
 
             Revisionable::create($revisions);
 

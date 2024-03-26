@@ -59,7 +59,10 @@ class EloquentOrganizationRepository extends EloquentCrudRepository implements O
           $query->where('locale', $lang)
             ->where('title', 'like', '%' . $filter->search . '%')
             ->orWhere('description', 'like', '%' . $filter->search . '%');
-        })->orWhere('id', 'like', '%' . $filter->search . '%');
+        })->orWhere('id', 'like', '%' . $filter->search . '%')
+          ->orWhere(function ($query) use ($filter) {
+            $query->whereTag($filter->search, 'name');
+          });
       });
 
     }
