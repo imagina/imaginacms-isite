@@ -23,11 +23,13 @@ return [
 
         'invalidCaptcha' => 'Captcha Inválido',
 
-    ],
-    'validation' => [
-    ],
-    'settings' => [
-        'apimaps' => 'Api Code Maps',
-        'appVersion' => 'Versión de la aplicación',
-    ],
+  ],
+  'validation' => [
+  ],
+  'settings' => [
+    'apimaps' => 'Api Code Maps',
+    'appVersion' => 'Versión de la aplicación',
+    'tenantData'=> 'Información para IA',
+    'contentGenerationWithAI' => 'Generación de contenido con IA'
+  ]
 ];

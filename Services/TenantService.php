@@ -41,17 +41,17 @@ class TenantService
         $this->isCreatingLayout = false;
     }
 
-    public function createTenant($data)
-    {
-        \Log::info('----------------------------------------------------------');
-        \Log::info('Creating Organization...');
-        \Log::info('----------------------------------------------------------');
+  public function createTenant($data)
+  {
 
-        if (! isset(tenant()->id)) {
-            if (isset($data['organization_id'])) {
-                tenancy()->initialize($data['organization_id']);
-            }
-        }
+    \Log::info("----------------------------------------------------------");
+    \Log::info("Creating Organization...");
+    \Log::info("----------------------------------------------------------");
+
+    if (!isset(tenant()->id))
+      if (isset($data["organization_id"])) {
+        tenancy()->initialize($data["organization_id"]);
+      }
 
         $organization = Organization::create(array_merge([
             'user_id' => $data['user']->id,
@@ -72,9 +72,9 @@ class TenantService
 
     //Base Url Domain
     $configUrl = config('app.url');
-    if(config("asgard.isite.config.tenant.appUrl")){
-      $configUrl =  config("asgard.isite.config.tenant.appUrl");
-        }
+    if (config("asgard.isite.config.tenant.appUrl") && !empty(config("asgard.isite.config.tenant.appUrl"))) {
+      $configUrl = config("asgard.isite.config.tenant.appUrl");
+    }
 
         $organization->domains()->create([
             'domain' => $data['organization']['domain'] ?? $data['domain'] ?? $organization->slug.'.'.parse_url(config('app.url'), PHP_URL_HOST),
@@ -239,12 +239,27 @@ class TenantService
     $redirectUrl = null;
 
     $authData = $this->userService->authenticate(array_merge($userCentralData, ["organization_id" => $organization->id]));
-    $redirectUrl = "https://".$domain . "/iadmin?authbearer=" . str_replace("Bearer ", "",$authData->data->bearer)."&expiresatbearer=".urlencode($authData->data->expiresDate);
+    $redirectUrl = "https://" . $domain . "/iadmin/#/?authbearer=" . str_replace("Bearer ", "", $authData->data->bearer) . "&expiresatbearer=" . urlencode($authData->data->expiresDate);
 
+    $passOTP = null;
     //Change de fake Password with Real Password (Case from Wizard)
-    if($updatePassword){
-      $this->userService->updatePasswordInTenant($userCentralData['user'],$tenantUser['user']);
-        }
+    if ($updatePassword) {
+
+      //Get authType in Central DB
+      //$authTypeSetting = setting('iprofile::authType',null,null,true);
+
+      $authType = config('asgard.iprofile.config.authType');
+      \Log::info("authType: " . $authType);
+
+      if ($authType == "withEmail") {
+        \Log::info("AUTH|OTP");
+        $passOTP = $this->userService->updatePasswordsInBothDB($userCentralData['user'], $tenantUser['user']);
+      } else {
+        \Log::info("AUTH|WITH PASSWORD");
+        $this->userService->updatePasswordInTenant($userCentralData['user'], $tenantUser['user']);
+      }
+
+    }
 
     //TODO check - Error using Wizard - With postman works fine
     /*
@@ -262,26 +277,27 @@ class TenantService
     \Log::info("----------------------------------------------------------");
 
     //Send User because this is the Central Organization with other User Id
-    event(new OrganizationWasCreated($organization,$tenantUser['user']));
+    event(new OrganizationWasCreated($organization, $tenantUser['user'], $passOTP));
 
-        return [
-            'suser' => ['supassword' => $sAdmin['credentials']['password']],
-            'credentials' => $userCentralData['credentials'],
-            'authData' => $authData,
-            'organization' => new OrganizationTransformer($organization),
-            'redirectUrl' => 'https://'.$domain.'/iadmin?authbearer='.str_replace('Bearer ', '', $authData->data->bearer).'&expiresatbearer='.urlencode($authData->data->expiresDate),
-        ];
-    }
+    //Execute AI Process
+    $this->runAI($data, $organization);
 
-    public function activatePlan($data)
-    {
-        \Log::info('----------------------------------------------------------');
-        \Log::info('Activating Plan Modules');
-        \Log::info('----------------------------------------------------------');
+    return [
+      "suser" => ['supassword' => $sAdmin['credentials']['password']],
+      "credentials" => $userCentralData["credentials"],
+      "authData" => $authData,
+      "organization" => new OrganizationTransformer($organization),
+      "redirectUrl" => $redirectUrl
+    ];
 
-        if (! isset(tenant()->id)) {
-            tenancy()->initialize($data['organization_id']);
-        }
+  }
+
+  public function activatePlan($data)
+  {
+
+    \Log::info("----------------------------------------------------------");
+    \Log::info("Activating Plan Modules");
+    \Log::info("----------------------------------------------------------");
 
     if (!isset(tenant()->id))
       tenancy()->initialize($data["organization_id"]);
@@ -343,11 +359,9 @@ class TenantService
         $this->reseedPageAndMenu($data);
     }
 
-    public function migrateCoreModules($data)
-    {
-        \Log::info('----------------------------------------------------------');
-        \Log::info('Migrating Core Modules');
-        \Log::info('----------------------------------------------------------');
+  public function migrateCoreModules($data)
+  {
+
 
     \Log::info("----------------------------------------------------------");
     \Log::info("Migrating Core Modules");
@@ -369,26 +383,34 @@ class TenantService
         }
     }
 
-    public function seedCoreModules($data)
-    {
-        \Log::info('----------------------------------------------------------');
-        \Log::info('Seeding Core Modules');
-        \Log::info('----------------------------------------------------------');
+  public function seedCoreModules($data)
+  {
 
-        if (! isset(tenant()->id)) {
-            tenancy()->initialize($data['organization_id']);
-        }
+    \Log::info("----------------------------------------------------------");
+    \Log::info("Seeding Core Modules");
+    \Log::info("----------------------------------------------------------");
 
     if (!isset(tenant()->id))
       tenancy()->initialize($data["organization_id"]);
     
     $coreModules = config("asgard.core.config.CoreModules");
 
-        foreach ($coreModules as $module) {
-            \Artisan::call('module:seed', ['module' => $module]);
-            \Log::info(\Artisan::output());
-        }
+    foreach ($coreModules as $module) {
+
+      //Ejecutar solo esta semilla de inmediato
+      $moduleName = ucfirst($module);
+      $seederName = $moduleName . "ModuleTableSeeder";
+
+      $seederClass = "\Modules\\" . $moduleName . "\Database\Seeders\\" . $seederName;
+      $seeder = app($seederClass);
+      $seeder->run();
+
+      \Artisan::call('module:seed', ['module' => $module]);
+
+      \Log::info(\Artisan::output());
     }
+
+  }
 
     public function activateModulesPermissionsInRole($modules, Role $role)
     {
@@ -425,7 +447,13 @@ class TenantService
       */
         }
 
-        $role->permissions = array_merge($allPermissions, $role->permissions ?? []);
+
+    // Por si acaso no afecte cuando se realiza la creacion
+    if ($isUpdating) {
+      $role->permissions = array_merge($role->permissions ?? [], $allPermissions);
+    } else {
+      $role->permissions = array_merge($allPermissions, $role->permissions ?? []);
+    }
 
     /*
     if($role->slug=="admin"){
@@ -628,28 +656,66 @@ class TenantService
         \Log::info('Update Organizations...');
         \Log::info('----------------------------------------------------------');
 
-        if (isset($data['tenantsId']) && is_array($data['tenantsId'])) {
-            foreach ($data['tenantsId'] as $key => $id) {
-                $this->proccessUpdateTenant($id);
-            }
-        } else {
-            //TODO
-            //buscar todos los tenants activos
-            //Actualizalos (foreach) llamando al mismo metodo proccessUpdateTenant($organizationId)
-        }
+    if (isset($data['tenantsId']) && is_array($data['tenantsId'])) {
+
+      foreach ($data['tenantsId'] as $key => $id) {
+        $this->proccessUpdateTenant($id, $data);
+      }
+
+    } else {
+
+      \Log::info("Multiple Organizations");
+
+      $params = ['filter' => ['status' => 1, 'enable' => 1]];
+
+      if (!is_null($data)) $params = array_merge($params, $data);
+
+      $organizations = app("Modules\Isite\Repositories\OrganizationRepository")->getItemsBy(json_decode(json_encode($params)));
+
+      \Log::info("Total Organizations to Update: " . $organizations->count());
+
+      foreach ($organizations as $key => $org) {
+        //\Log::info("Organization Id: ".$org->id);
+        $this->proccessUpdateTenant($org->id, $data);
+      }
+
     }
 
-    public function proccessUpdateTenant($organizationId)
-    {
-        \Log::info('----------------------------------------------------------');
-        \Log::info('Proccess Update - OrganizationId: '.$organizationId);
-        \Log::info('----------------------------------------------------------');
+  }
+
+  /**
+   * @param $data (frontend attributes)
+   */
+  public function proccessUpdateTenant($organizationId, $data)
+  {
+
+    \Log::info("----------------------------------------------------------");
+    \Log::info("Proccess Update - OrganizationId: " . $organizationId);
+    \Log::info("----------------------------------------------------------");
 
         tenancy()->initialize($organizationId);
 
-        //Core Modules Process
-        $this->migrateCoreModules(null);
-        $this->seedCoreModules(null);
+
+    if (isset($data['filter'])) {
+      $filter = json_decode($data['filter']);
+
+      //Filter Only Permissions
+      if (isset($filter->onlyAdminPermissions)) {
+
+        \Log::info("Update Only Admin Permissions");
+
+        $role = Role::where("slug", "admin")->first();
+        $this->activateModulesPermissionsInRole(config("asgard.core.config.CoreModules"), $role, true);
+
+      }
+
+    } else {
+
+      \Log::info("Update ALL");
+
+      //Core Modules Process
+      $this->migrateCoreModules(null);
+      $this->seedCoreModules(null);
 
         //All migrations
         \Artisan::call('module:migrate');
@@ -661,6 +727,43 @@ class TenantService
 
         $this->reseedPageAndMenu();
 
-        \Log::info('Proccess Update - FINISHED - OrganizationId:'.$organizationId);
+      //Restablecer los permisos para el role admin.
+      //Ya que cuando se actualizaba un tenant, sustituia los permisos que ya estaban para ese rol (como los de la creacion q hay varios q no se incluyen)
+      $role = Role::where("slug", "admin")->first();
+      $this->activateModulesPermissionsInRole(config("asgard.core.config.CoreModules"), $role, true);
+
     }
+
+    \Log::info("Proccess Update - FINISHED - OrganizationId:" . $organizationId);
+
+  }
+
+  /**
+   * Execute AI Process
+   * @param $data (Information Request)
+   */
+  private function runAI($data, $organization)
+  {
+
+    //Process AI Services
+    //showDataConnection();
+
+    $setDataAi = $data["dataIa"] ?? null;
+    $contentGenerationWithAIEnable = (int)setting("isite::contentGenerationWithAI");
+
+    //\Log::info("Isite: TenantService|runAi: ".$setDataAi);
+
+    if ($contentGenerationWithAIEnable && !is_null($setDataAi)) {
+
+      //Implementacion 1 - Todo en un solo job (Suele fallar mas la respuesta del Chatgpt)
+      //ProcessAi::dispatch(["tenantId" => $organization->id]);
+
+      //Implementacion 2 - Jobs separados para cada servicio (Hasta ahora mejor que la Implentacion 1)
+      //Testing for now
+      //app("Modules\Isite\Services\TenantAiService")->processAi($organization->id,null,1); //$typeOfExecution=1 (executte in jobs)
+
+    }
+
+  }
+
 }

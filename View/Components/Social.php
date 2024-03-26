@@ -182,13 +182,14 @@ class Social extends Component
 
         $createdAtSetting = (isset($settingSocial) && ! empty($settingSocial)) ? $settingSocial->getAttributes()['created_at'] : now();
 
-        foreach ($items as $key => $value) {
-            if ($createdAtSetting > '2022-08-29 00:00:00') {
-                $this->items[isset($this->customIcons[$key]) ? $this->customIcons[$key] : 'fab fa-'.$key] = $value;
-            } else {
-                $this->items[isset($this->customIcons[$key]) ? $this->customIcons[$key] : 'fa fa-'.$key] = $value;
-            }
-        }
+    foreach ($items as $key => $value) {
+      $key = ($key == 'twitter') ? 'fa-brands fa-x-twitter' : $key;
+      if ($createdAtSetting > '2022-08-29 00:00:00') {
+        $this->items[isset($this->customIcons[$key]) ? $this->customIcons[$key] : 'fab fa-' . $key] = $value;
+      } else {
+        $this->items[isset($this->customIcons[$key]) ? $this->customIcons[$key] : 'fa fa-' . $key] = $value;
+      }
+    }
 
         return view($this->view);
     }

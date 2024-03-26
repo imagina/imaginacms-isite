@@ -181,18 +181,20 @@ class SiteApiController extends BaseApiController
                 if ($setting->isMedia()) {
                     $media = $setting->files()->where('zone', $setting->name)->first() ?? null;
 
-                    if ($media === null) {
-                        $setting['media'] = [
-                            'mimeType' => 'image/jpeg',
-                            'path' => url('modules/isite/img/defaultLogo.jpg'),
-                        ];
-                    } else {
-                        $setting['media'] = [
-                            'mimeType' => $media->mimetype,
-                            'path' => $media->path_string,
-                        ];
-                    }
-                }
+          if ($media === null)
+            $setting["media"] = [
+              'id' => null,
+              'mimeType' => 'image/jpeg',
+              'path' => url('modules/isite/img/defaultLogo.jpg')
+            ];
+          else
+            $setting["media"] = [
+              'id' => $media->id,
+              'mimeType' => $media->mimetype,
+              'path' => $media->path_string
+            ];
+
+        }
 
                 if (isset($mergedSettings[$keyModule][$keyReplaced])) {
                     // merging data on DB with config setting
@@ -238,16 +240,18 @@ class SiteApiController extends BaseApiController
                     }
                 }
 
-                // type setting standard based in view param
-                if (Str::contains($setting['view'], 'file')) {
-                    $setting['type'] = 'file';
-                    if (! isset($setting['media'])) {
-                        $setting['media'] = [
-                            'mimeType' => 'image/jpeg',
-                            'path' => url('modules/isite/img/defaultLogo.jpg'),
-                        ];
-                    }
-                }
+        // type setting standard based in view param
+        if (Str::contains($setting['view'], 'file')) {
+          $setting['type'] = 'file';
+          if (!isset($setting['media'])) {
+            $setting["media"] = [
+              'id' => null,
+              'mimeType' => 'image/jpeg',
+              'path' => url('modules/isite/img/defaultLogo.jpg')
+            ];
+          }
+        }
+
 
                 // type setting standard based in view param
                 if (Str::contains($setting['view'], 'file-multi')) {

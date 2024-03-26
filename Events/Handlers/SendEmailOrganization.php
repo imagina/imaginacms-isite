@@ -36,7 +36,14 @@ class SendEmailOrganization
       $userEmail = $user->email;
 
       $emailsTo[] = $userEmail;
-      
+
+      //Case: normal Login
+      $fakePass = trans("isite::organizations.messages.not password");
+
+      //Case: OTP
+      if(!is_null($event->fakePassword))
+        $fakePass = $event->fakePassword;
+
       //Data to email
       $title = trans("isite::organizations.title.organization created");
 
@@ -48,7 +55,9 @@ class SendEmailOrganization
         $message = trans("isite::organizations.messages.organization updated",[
           'status' => $model->statusName,
           'url' => $model->url,
-          'admin' => url('/iadmin')
+          'admin' => url('/iadmin'),
+          'userEmail' => $userEmail,
+          'userPass' => $fakePass
         ]);
       }
 

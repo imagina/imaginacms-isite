@@ -78,8 +78,8 @@ class Location extends Component
     * Runs once, immediately after the component is instantiated,
     * but before render() is called
     */
-    public function mount($title, $name, $status, $isExpanded, $type, $repository, $emitTo, $repoAction, $repoAttribute, $listener, $repoMethod = 'getItemsBy', $layout = 'location-layout-1', $classes = 'col-12', $params = [], $radio = [], $startGeolocation = false, $findByLngLat = false)
-    {
+	public function mount($title,$name,$status=true,$isExpanded=true,$type="location",$repository,$emitTo,$repoAction,$repoAttribute,$listener,$repoMethod='getItemsBy',$layout='location-layout-1',$classes='col-12', $params = [], $radio = [], $startGeolocation=false,$findByLngLat=false){
+
         $this->title = trans($title);
         $this->name = $name;
         $this->status = $status;

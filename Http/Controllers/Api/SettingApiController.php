@@ -2,14 +2,16 @@
 
 namespace Modules\Isite\Http\Controllers\Api;
 
+use Illuminate\Session\Store;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Session\Store;
+use Illuminate\Routing\Controller;
 use Modules\Ihelpers\Http\Controllers\Api\BaseApiController;
 use Modules\Isite\Transformers\SettingTransformer;
-use Modules\Setting\Contracts\Setting;
 use Modules\Setting\Repositories\SettingRepository;
 use Nwidart\Modules\Module;
+use Illuminate\Support\Str;
+use Modules\Setting\Contracts\Setting;
 
 class SettingApiController extends BaseApiController
 {
@@ -156,44 +158,43 @@ class SettingApiController extends BaseApiController
         //Get available locales
                 $locales = json_decode($dbSettings['Core']['core::locales']->plainValue ?? json_encode([locale()]));
 
-                //Transform settings
-                if (empty($assignedSettings) || in_array($settingName, $assignedSettings)) {
-                    //Set setting value from DB
-                    if ($dbSetting) {
-                        $setting = array_merge($setting, $dbSetting->toArray());
-                    }
-                    //Get default value
-                    $defaultValue = ! isset($setting['default']) ? null :
-                      ($this->isJson($setting['default']) ? json_decode($setting['default']) : $setting['default']);
-                    //Get plain value
-                    $plainValue = ! isset($setting['plainValue']) ? null :
-                      ($this->isJson($setting['plainValue']) ? json_decode($setting['plainValue']) : $setting['plainValue']);
-                    //Validate default values
-                    $setting = array_merge($setting, [
-                        'name' => $settingName,
-                        'description' => isset($setting['description']) ? trans($setting['description']) : '',
-                        'isTranslatable' => $setting['translatable'] ?? false,
-                        'plainValue' => $plainValue ?? $defaultValue,
-                        'value' => ! is_null($plainValue) ? $plainValue : ($setting['value'] ?? $defaultValue ?? null),
-                    ]);
-                    //Get media path
-                    if (is_object($setting['value']) && isset($setting['value']->medias_single)) {
-                        //Get media
-                        $media = $dbSetting ? $dbSetting->files()->where('zone', $settingName)->first() : null;
-                        //Set media value
-                        $setting['media'] = [
-                            'mimeType' => ($media === null) ? 'image/jpeg' : $media->mimetype,
-                            'path' => ($media === null) ? url('modules/isite/img/defaultLogo.jpg') : $media->path_string,
-                        ];
-                    }
-                    //Validate translations
-                    if ($setting['isTranslatable'] && ! isset($setting['translations'])) {
-                        $setting['translations'] = []; //Default value
-                        //Set translations
-                        foreach ($locales as $locale) {
-                            $setting['translations'][] = ['locale' => $locale, 'value' => $setting['value']];
-                        }
-                    }
+        //Transform settings
+        if (empty($assignedSettings) || in_array($settingName, $assignedSettings)) {
+          //Set setting value from DB
+          if ($dbSetting) $setting = array_merge($setting, $dbSetting->toArray());
+          //Get default value
+          $defaultValue = !isset($setting['default']) ? null :
+            ($this->isJson($setting['default']) ? json_decode($setting['default']) : $setting['default']);
+          //Get plain value
+          $plainValue = !isset($setting['plainValue']) ? null :
+            ($this->isJson($setting['plainValue']) ? json_decode($setting['plainValue']) : $setting['plainValue']);
+          //Validate default values
+          $setting = array_merge($setting, [
+            'name' => $settingName,
+            'description' => isset($setting['description']) ? trans($setting['description']) : '',
+            'isTranslatable' => $setting['translatable'] ?? false,
+            'plainValue' => $plainValue ?? $defaultValue,
+            'value' => !is_null($plainValue) ? $plainValue : ($setting['value'] ?? $defaultValue ?? null)
+          ]);
+          //Get media path
+          if (is_object($setting['value']) && isset($setting['value']->medias_single)) {
+            //Get media
+            $media = $dbSetting ? $dbSetting->files()->where('zone', $settingName)->first() : null;
+            //Set media value
+            $setting["media"] = [
+              'id' => $media->id ?? null,
+              'mimeType' => ($media === null) ? 'image/jpeg' : $media->mimetype,
+              'path' => ($media === null) ? url('modules/isite/img/defaultLogo.jpg') : $media->path_string
+            ];
+          }
+          //Validate translations
+          if ($setting['isTranslatable'] && !isset($setting['translations'])) {
+            $setting['translations'] = [];//Default value
+            //Set translations
+            foreach ($locales as $locale) {
+              $setting['translations'][] = ['locale' => $locale, 'value' => $setting['value']];
+            }
+          }
 
           //Chequeando cache de un setting determinado
           /*
@@ -204,24 +205,24 @@ class SettingApiController extends BaseApiController
             \Log::info("======== API Cache Setting: ".json_encode($tagGet));
           }
           */
-          
-                } else {
-                    unset($module[$keySetting]);
-                }
-            }
 
-            if (empty($module)) {
-                unset($mergedSettings[$keyModule]);
-            }
+        } else {
+          unset($module[$keySetting]);
         }
+      }
 
-        return $mergedSettings;
+      if (empty($module))
+        unset($mergedSettings[$keyModule]);
     }
 
-    public function isJson($string)
-    {
-        return ((is_string($string) &&
-          (is_object(json_decode($string)) ||
-            is_array(json_decode($string))))) ? true : false;
-    }
+    return $mergedSettings;
+  }
+
+
+  function isJson($string)
+  {
+    return ((is_string($string) &&
+      (is_object(json_decode($string)) ||
+        is_array(json_decode($string))))) ? true : false;
+  }
 }

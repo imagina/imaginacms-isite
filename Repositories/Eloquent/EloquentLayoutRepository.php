@@ -21,29 +21,35 @@ class EloquentLayoutRepository extends EloquentCrudRepository implements LayoutR
      */
     protected $replaceSyncModelRelations = [];
 
+  /**
+   * Filter query
+   *
+   * @param $query
+   * @param $filter
+   * @param $params
+   * @return mixed
+   */
+  public function filterQuery($query, $filter, $params)
+  {
+
     /**
-     * Filter query
+     * Note: Add filter name to replaceFilters attribute before replace it
      *
-     * @return mixed
+     * Example filter Query
+     * if (isset($filter->status)) $query->where('status', $filter->status);
+     *
      */
-    public function filterQuery($query, $filter, $params)
-    {
-        /**
-         * Note: Add filter name to replaceFilters attribute before replace it
-         *
-         * Example filter Query
-         * if (isset($filter->status)) $query->where('status', $filter->status);
-         */
-        /*
-            * Se aplica para que el layout se pueda encontrar a pesar
-            de ser "internal"
-            */
-
-        $query->where('is_internal', 0);
-
-        //Response
-        return $query;
+    /*
+        * Se aplica para que el layout se pueda encontrar a pesar
+        de ser "internal"
+        */
+    if(!isset($filter->isInternal)){
+      $query->where("is_internal", 0);
     }
+
+    //Response
+    return $query;
+  }
 
     /**
      * Method to sync Model Relations

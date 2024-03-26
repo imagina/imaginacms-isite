@@ -264,15 +264,15 @@ class IsiteServiceProvider extends ServiceProvider
             }
         );
         $this->app->bind(
-            'Modules\Isite\Repositories\SiteRepository',
+            'Modules\Isite\Repositories\SynchronizableRepository',
             function () {
-                $repository = new \Modules\Isite\Repositories\Eloquent\EloquentSiteRepository(new \Modules\Isite\Entities\Site());
+                $repository = new \Modules\Isite\Repositories\Eloquent\EloquentSynchronizableRepository(new \Modules\Isite\Entities\Synchronizable());
 
                 if (! config('app.cache')) {
                     return $repository;
                 }
 
-                return new \Modules\Isite\Repositories\Cache\CacheSiteDecorator($repository);
+                return new \Modules\Isite\Repositories\Cache\CacheSynchronizableDecorator($repository);
             }
         );
         // add bindings
@@ -293,24 +293,26 @@ class IsiteServiceProvider extends ServiceProvider
         Blade::componentNamespace("Modules\Isite\View\Components", 'isite');
     }
 
-    /**
-     * Register components Livewire
-     */
-    private function registerComponentsLivewire()
-    {
-        Livewire::component('isite::items-list', \Modules\Isite\Http\Livewire\Index\ItemsList::class);
-        Livewire::component('isite::load-more-button', \Modules\Isite\Http\Livewire\Index\LoadMoreButton::class);
-        Livewire::component('isite::item-modal', \Modules\Isite\Http\Livewire\Index\ItemModal::class);
+   /**
+   * Register components Livewire
+   */
+  private function registerComponentsLivewire()
+  {
 
-        Livewire::component('isite::filters', \Modules\Isite\Http\Livewire\Filters::class);
-        Livewire::component('isite::filter-range', \Modules\Isite\Http\Livewire\Filters\Range::class);
-        Livewire::component('isite::filter-checkbox', \Modules\Isite\Http\Livewire\Filters\Checkbox::class);
-        Livewire::component('isite::filter-radio', \Modules\Isite\Http\Livewire\Filters\Radio::class);
-        Livewire::component('isite::filter-tree', \Modules\Isite\Http\Livewire\Filters\Tree::class);
-        Livewire::component('isite::filter-select', \Modules\Isite\Http\Livewire\Filters\Select::class);
-        Livewire::component('isite::filter-location', \Modules\Isite\Http\Livewire\Filters\Location::class);
-        Livewire::component('isite::filter-text', \Modules\Isite\Http\Livewire\Filters\Text::class);
-        Livewire::component('isite::filter-autocomplete', \Modules\Isite\Http\Livewire\Filters\Autocomplete::class);
+    Livewire::component('isite::items-list', \Modules\Isite\Http\Livewire\Index\ItemsList::class);
+    Livewire::component('isite::load-more-button', \Modules\Isite\Http\Livewire\Index\LoadMoreButton::class);
+    Livewire::component('isite::item-modal', \Modules\Isite\Http\Livewire\Index\ItemModal::class);
+    Livewire::component('isite::items-map', \Modules\Isite\Http\Livewire\Index\ItemsMap::class);
+
+    Livewire::component('isite::filters', \Modules\Isite\Http\Livewire\Filters::class);
+    Livewire::component('isite::filter-range', \Modules\Isite\Http\Livewire\Filters\Range::class);
+    Livewire::component('isite::filter-checkbox', \Modules\Isite\Http\Livewire\Filters\Checkbox::class);
+    Livewire::component('isite::filter-radio', \Modules\Isite\Http\Livewire\Filters\Radio::class);
+    Livewire::component('isite::filter-tree', \Modules\Isite\Http\Livewire\Filters\Tree::class);
+    Livewire::component('isite::filter-select', \Modules\Isite\Http\Livewire\Filters\Select::class);
+    Livewire::component('isite::filter-location', \Modules\Isite\Http\Livewire\Filters\Location::class);
+    Livewire::component('isite::filter-text', \Modules\Isite\Http\Livewire\Filters\Text::class);
+    Livewire::component('isite::filter-autocomplete', \Modules\Isite\Http\Livewire\Filters\Autocomplete::class);
 
         Livewire::component('isite::filter-order-by', \Modules\Isite\Http\Livewire\Index\Filters\OrderBy::class);
     }

@@ -6,59 +6,41 @@ use Livewire\Component;
 
 class Range extends Component
 {
-    /*
-      * Attributes From Config
-      */
-    public $title;
 
-    public $name;
-
-    public $status;
-
-    public $isExpanded;
-
-    public $type;
-
-    public $repository;
-
-    public $emitTo;
-
-    public $repoAction;
-
-    public $repoAttribute;
-
-    public $listener;
-
-    public $repoMethod;
-
-    public $layout;
-
-    public $classes;
-
-    public $params;
-
-    /*
-    * Attributes
+  /*
+    * Attributes From Config
     */
-    public $valueMin;
+  public $title;
+  public $name;
+  public $status;
+  public $isExpanded;
+  public $type;
+  public $repository;
+  public $emitTo;
+  public $repoAction;
+  public $repoAttribute;
+  public $listener;
+  public $repoMethod;
+  public $layout;
+  public $classes;
+  public $params;
 
-    public $valueMax;
+  /*
+  * Attributes
+  */
+  public $valueMin;
+  public $valueMax;
+  public $step;
+  public $selValueMin;
+  public $selValueMax;
+  public $show;
+  public $emitWithIndividualAtts = true;
 
-    public $step;
-
-    public $selValueMin;
-
-    public $selValueMax;
-
-    public $show;
-
-    public $emitWithIndividualAtts = true;
-
-    /*
-      * Runs once, immediately after the component is instantiated,
-      * but before render() is called
-      */
-    public function mount($title, $name, $status, $isExpanded, $type, $repository, $emitTo, $repoAction,
+  /*
+    * Runs once, immediately after the component is instantiated,
+    * but before render() is called
+    */
+  public function mount($title, $name, $status = true, $isExpanded = true, $type, $repository, $emitTo, $repoAction,
                         $repoAttribute, $listener, $repoMethod = 'getItemsBy', $layout = 'range-layout-1',
                         $classes = 'col-12', $params = [], $step = null, $stepSetting = null)
     {

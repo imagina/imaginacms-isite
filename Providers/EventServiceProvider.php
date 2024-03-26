@@ -44,5 +44,10 @@ class EventServiceProvider extends ServiceProvider
             "Modules\\Isite\\Events\\OrganizationWasUpdated",
             [SetMaintenanceMode::class, 'handle']
         );
+
+        Event::listen(
+            "Modules\\Isite\\Events\\SynchronizableWasUpdated",
+            [NotifyIsRunningEnds::class, 'handle']
+        );
     }
 }

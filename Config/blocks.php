@@ -914,6 +914,15 @@ return [
               "label" => "Sombra de texto",
             ]
           ],
+          "target" => [
+            "name" => "target",
+            "value" => "_self",
+            "type" => "select",
+            "props" => [
+                "label" => "Target",
+                "options" => $vAttributes["target"]
+            ]
+          ],
           "buttonItemClasses" => [
             "name" => "buttonItemClasses",
             "type" => "input",
@@ -3150,128 +3159,657 @@ return [
     "systemName" => "isite::social",
     "nameSpace" => "Modules\Isite\View\Components\Social",
     "attributes" => [
-      "general" => [
-        "title" => "General",
-        "fields" => [
-          "idSocial" => [
-            "name" => "idSocial",
-            "value" => "socialComponent",
-            "type" => "input",
-            "props" => [
-              "label" => "Identificador",
+        "general" => [
+            "title" => "General",
+            "fields" => [
+                "idSocial" => [
+                    "name" => "idSocial",
+                    "value" => "socialComponent",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Identificador",
+                    ]
+                ],
+                "iconDisplay" => [
+                    "name" => "iconDisplay",
+                    "value" => "flex",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Display",
+                        "options" => $vAttributes["display"]
+                    ]
+                ],
+                "iconMargin" => [
+                    "name" => "iconMargin",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Margin",
+                    ]
+                ],
+                "iconStyle" => [
+                    "name" => "iconStyle",
+                    "value" => "1",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Estilo Base",
+                        "options" => [
+                            ["label" => "Estilo 1", "value" => "1"],
+                            ["label" => "Estilo 2", "value" => "2"],
+                            ["label" => "Estilo 3", "value" => "3"],
+                            ["label" => "Estilo 4", "value" => "4"],
+                        ]
+                    ]
+                ],
+                "iconSize" => [
+                    "name" => "iconSize",
+                    "value" => "16px",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Tamaño de icono",
+                    ]
+                ],
+                "iconBackgroundSize" => [
+                    "name" => "iconBackgroundSize",
+                    "value" => "40px",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Tamaño del fondo",
+                    ]
+                ],
+                "iconColor1" => [
+                    "name" => "iconColor1",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Color 1",
+                    ]
+                ],
+                "iconColor2" => [
+                    "name" => "iconColor2",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Color 2",
+                    ]
+                ],
+                "iconBorderWidth" => [
+                    "name" => "iconBorderWidth",
+                    "value" => "0",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Tamaño del borde",
+                        "type" => "number",
+                    ]
+                ],
+                "iconBorderRadius" => [
+                    "name" => "iconBorderRadius",
+                    "value" => "0",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Radio de borde",
+                    ]
+                ],
+                "iconBorderRadiusType" => [
+                    "name" => "iconBorderRadiusType",
+                    "value" => "1",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Tipo del borde",
+                        "options" => $vAttributes["contentBorderRoundedType"]
+                    ]
+                ],
+                "iconAnimate" => [
+                    "name" => "iconAnimate",
+                    "value" => "",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Animacion",
+                        "options" => $vAttributes["animateSocial"]
+                    ]
+                ],
+                "iconBoxShadow" => [
+                    "name" => "iconBoxShadow",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Sombra del Fondo",
+                    ]
+                ],
+                "iconTextShadow" => [
+                    "name" => "iconTextShadow",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Sombra del Texto",
+                    ]
+                ],
+                "withWhatsapp" => [
+                    "name" => "withWhatsapp",
+                    "value" => "1",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Con Whatsapp",
+                        "options" => $vAttributes["validation"]
+                    ]
+                ],
             ]
-          ],
-          "iconDisplay" => [
-            "name" => "iconDisplay",
-            "value" => "flex",
-            "type" => "select",
-            "props" => [
-              "label" => "Display",
-              "options" => $vAttributes["display"]
-            ]
-          ],
-          "iconMargin" => [
-            "name" => "iconMargin",
-            "type" => "input",
-            "props" => [
-              "label" => "Margin",
-            ]
-          ],
-          "iconStyle" => [
-            "name" => "iconStyle",
-            "value" => "1",
-            "type" => "select",
-            "props" => [
-              "label" => "Estilo Base",
-              "options" => [
-                ["label" => "Estilo 1", "value" => "1"],
-                ["label" => "Estilo 2", "value" => "2"],
-                ["label" => "Estilo 3", "value" => "3"],
-                ["label" => "Estilo 4", "value" => "4"],
-              ]
-            ]
-          ],
-          "iconSize" => [
-            "name" => "iconSize",
-            "value" => "16px",
-            "type" => "input",
-            "props" => [
-              "label" => "Tamaño de icono",
-            ]
-          ],
-          "iconBackgroundSize" => [
-            "name" => "iconBackgroundSize",
-            "value" => "40px",
-            "type" => "input",
-            "props" => [
-              "label" => "Tamaño del fondo",
-            ]
-          ],
-          "iconColor1" => [
-            "name" => "iconColor1",
-            "type" => "input",
-            "props" => [
-              "label" => "Color 1",
-            ]
-          ],
-          "iconColor2" => [
-            "name" => "iconColor2",
-            "type" => "input",
-            "props" => [
-              "label" => "Color 2",
-            ]
-          ],
-          "iconBorderWidth" => [
-            "name" => "iconBorderWidth",
-            "value" => "0",
-            "type" => "input",
-            "props" => [
-              "label" => "Tamaño del borde",
-              "type" => "number",
-            ]
-          ],
-          "iconBorderRadius" => [
-            "name" => "iconBorderRadius",
-            "value" => "0",
-            "type" => "input",
-            "props" => [
-              "label" => "Radio de borde",
-            ]
-          ],
-          "iconBorderRadiusType" => [
-            "name" => "iconBorderRadiusType",
-            "value" => "1",
-            "type" => "select",
-            "props" => [
-              "label" => "Tipo del borde",
-              "options" => $vAttributes["contentBorderRoundedType"]
-            ]
-          ],
-          "iconAnimate" => [
-            "name" => "iconAnimate",
-            "value" => "",
-            "type" => "select",
-            "props" => [
-              "label" => "Animacion",
-              "options" => $vAttributes["animateSocial"]
-            ]
-          ],
-          "iconBoxShadow" => [
-            "name" => "iconBoxShadow",
-            "type" => "input",
-            "props" => [
-              "label" => "Sombra del Fondo",
-            ]
-          ],
-          "iconTextShadow" => [
-            "name" => "iconTextShadow",
-            "type" => "input",
-            "props" => [
-              "label" => "Sombra del Texto",
-            ]
-          ],
-        ]
-      ],
+        ],
     ]
-  ]
+  ],
+  "button" => [
+    "title" => "Botón",
+    "systemName" => "isite::button",
+    "nameSpace" => "Modules\Isite\View\Components\Button",
+    "contentFields" => [
+        "label" => [
+            "name" => "label",
+            "type" => "input",
+            "columns" => "col-12",
+            "isTranslatable" => true,
+            "props" => [
+                "label" => "Texto del Botón",
+            ]
+        ],
+    ],
+    "attributes" => [
+        "general" => [
+            "title" => "General",
+            "fields" => [
+                "idButton" => [
+                    "name" => "idButton",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "id",
+                    ]
+                ],
+                "buttonClasses" => [
+                    "name" => "buttonClasses",
+                    "value" => "",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Estilo de Predefinidos",
+                        "options" => $vAttributes["buttonStyle"]
+                    ]
+                ],
+                "classesBlock" => [
+                    "name" => "classesBlock",
+                    "value" => "",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Estilo Libre",
+                    ]
+                ],
+                "color" => [
+                    "name" => "color",
+                    "value" => "primary",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Color",
+                        "options" => $vAttributes["bgColor"]
+                    ]
+                ],
+                "sizePadding" => [
+                    "name" => "sizePadding",
+                    "value" => "button-normal",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Espaciado",
+                        "options" => $vAttributes["buttonType"]
+                    ]
+                ],
+                "sizeLabel" => [
+                    "name" => "sizeLabel",
+                    "value" => "16",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Tamaño de texto",
+                    ]
+                ],
+                "withLabel" => [
+                    "name" => "withLabel",
+                    "value" => "1",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Con Texto",
+                        "options" => $vAttributes["validation"]
+                    ]
+                ],
+                "withIcon" => [
+                    "name" => "withIcon",
+                    "value" => "1",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Con Icono",
+                        "options" => $vAttributes["validation"]
+                    ]
+                ],
+                "iconClass" => [
+                    "name" => "iconClass",
+                    "value" => "",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Icono",
+                    ]
+                ],
+                "iconPosition" => [
+                    "name" => "iconPosition",
+                    "value" => "left",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Posición del icono",
+                        "options" => [
+                            ["label" => "Izquierda", "value" => "left"],
+                            ["label" => "Derecha", "value" => "right"]
+                        ]
+                    ]
+                ],
+                "href" => [
+                    "name" => "href",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "href",
+                    ]
+                ],
+                "target" => [
+                    "name" => "target",
+                    "value" => "_self",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Target (Titulo)",
+                        "options" => $vAttributes["target"]
+                    ]
+                ],
+                "dataItemId" => [
+                    "name" => "dataItemId",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "dataItemId",
+                    ]
+                ],
+                "dataTarget" => [
+                    "name" => "dataTarget",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "dataTarget",
+                    ]
+                ],
+                "styleBlock" => [
+                    "name" => "styleBlock",
+                    "type" => "input",
+                    "columns" => "col-12",
+                    "props" => [
+                        "label" => "Estilo libre",
+                        'type' => 'textarea',
+                        'rows' => 2,
+                    ]
+                ],
+                "styleBlockHover" => [
+                    "name" => "styleBlockHover",
+                    "type" => "input",
+                    "columns" => "col-12",
+                    "props" => [
+                        "label" => "Estilo libre hover",
+                        'type' => 'textarea',
+                        'rows' => 2,
+                    ]
+                ],
+            ],
+        ],
+    ]
+  ],
+  "logo" => [
+    "title" => "Logo",
+    "systemName" => "isite::logo",
+    "nameSpace" => "Modules\Isite\View\Components\Logo",
+    "attributes" => [
+        "general" => [
+            "title" => "General",
+            "fields" => [
+                "nameBock" => [
+                    "name" => "nameBock",
+                    "columns" => "col-12",
+                    "value" => "logo1",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Nombre del Setting",
+                        "options" => $vAttributes["logos"]
+                    ]
+                ],
+                "imgClasses" => [
+                    "name" => "imgClasses",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Clase (Imagen)",
+                    ]
+                ],
+                "linkClasses" => [
+                    "name" => "linkClasses",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Clase (Enlace)",
+                    ]
+                ]
+            ]
+        ],
+    ]
+  ],
+  "menu" => [
+    "title" => "Menu",
+    "systemName" => "isite::menu",
+    "nameSpace" => "Modules\Isite\View\Components\Menu",
+    "contentFields" => [
+        "title" => [
+            "name" => "title",
+            "type" => "input",
+            "columns" => "col-12",
+            "isTranslatable" => true,
+            "props" => [
+                "label" => "Titulo del Menu",
+            ]
+        ],
+    ],
+    "attributes" => [
+        "general" => [
+            "title" => "General",
+            "fields" => [
+                "id" => [
+                    "name" => "id",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "id",
+                    ]
+                ],
+                "layout" => [
+                    "name" => "layout",
+                    "value" => "category-menu-layout-2",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Layout",
+                        "options" => [
+                            ["label" => "Layout 1", "value" => "category-menu-layout-1"],
+                            ["label" => "Layout 2", "value" => "category-menu-layout-2"],
+                            ["label" => "Layout 3", "value" => "category-menu-layout-3"],
+                            ["label" => "Layout 4", "value" => "category-menu-layout-4"]
+                        ]
+                    ]
+                ],
+                "repository" => [
+                    "name" => "repository",
+                    "value" => "",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Repositorio",
+                        "options" => [
+                            ["label" => "Sin repositorio", "value" => ""],
+                            ["label" => "Icommerce Category", "value" => "Modules\Icommerce\Repositories\CategoryRepository"],
+                            ["label" => "Iblog Category", "value" => "Modules\Iblog\Repositories\CategoryRepository"]
+                        ]
+                    ]
+                ],
+                "withHome" => [
+                    "name" => "withHome",
+                    "value" => "1",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Con Inicio",
+                        "options" => $vAttributes["validation"]
+                    ]
+                ],
+                "menuBefore" => [
+                    "name" => "menuBefore",
+                    "value" => "",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "menuBefore",
+                    ]
+                ],
+                "menuAfter" => [
+                    "name" => "menuAfter",
+                    "value" => "",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "menuAfter",
+                    ]
+                ],
+                "central" => [
+                    "name" => "central",
+                    "value" => "1",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Central",
+                        "options" => $vAttributes["validation"]
+                    ]
+                ],
+                "deskStyle" => [
+                    "name" => "deskStyle",
+                    "value" => "",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Estilo elementos",
+                        "options" => [
+                            ["label" => "Sin estilo", "value" => ""],
+                            ["label" => "Con Estilo", "value" => "estilo"],
+                        ]
+                    ],
+                    "help" => [
+                        "description" => "Sin estilo, permite tener el menu limpio. Con estilo tiene una base que permite usaer el resto de las configuraciones",
+                    ]
+                ],
+                "deskTextTransform" => [
+                    "name" => "deskTextTransform",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Transformar Texto",
+                        "options" => $vAttributes["textTransformCss"]
+                    ]
+                ],
+                "deskTextSize" => [
+                    "name" => "deskTextSize",
+                    "value" => "18",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Tamaño",
+                        "type" => "number"
+                    ]
+                ],
+                "deskColor1" => [
+                    "name" => "deskColor1",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Color 1",
+                    ]
+                ],
+                "deskColor2" => [
+                    "name" => "deskColor2",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Color 2",
+                    ]
+                ],
+                "linkMovil" => [
+                    "name" => "linkMovil",
+                    "type" => "input",
+                    "columns" => "col-12",
+                    "props" => [
+                        "label" => "Estilo del icono de menu",
+                        'type' => 'textarea',
+                        'rows' => 3,
+                    ],
+                ],
+                "deskNav" => [
+                    "name" => "deskNav",
+                    "type" => "input",
+                    "columns" => "col-12",
+                    "props" => [
+                        "label" => "Estilo del enlace css",
+                        'type' => 'textarea',
+                        'rows' => 5,
+                    ],
+                    "help" => [
+                        "description" => "Permite agregar estilos adicionales en nav-link ",
+                    ]
+                ],
+                "deskNavHover" => [
+                    "name" => "deskNavHover",
+                    "type" => "input",
+                    "columns" => "col-12",
+                    "props" => [
+                        "label" => "Estilo del enlace hover css",
+                        'type' => 'textarea',
+                        'rows' => 5,
+                    ],
+                    "help" => [
+                        "description" => "Permite agregar estilos adicionales en nav-link:hover ",
+                    ]
+                ],
+                "deskNavBefore" => [
+                    "name" => "deskNavBefore",
+                    "type" => "input",
+                    "columns" => "col-12",
+                    "props" => [
+                        "label" => "Estilo del enlace before css",
+                        'type' => 'textarea',
+                        'rows' => 5,
+                    ],
+                    "help" => [
+                        "description" => "Permite agregar estilos en nav-link:before",
+                    ]
+                ],
+                "deskNavHoverBefore" => [
+                    "name" => "deskNavHoverBefore",
+                    "type" => "input",
+                    "columns" => "col-12",
+                    "props" => [
+                        "label" => "Estilo del enlace hover before css",
+                        'type' => 'textarea',
+                        'rows' => 5,
+                    ],
+                    "help" => [
+                        "description" => "Permite agregar estilos en nav-link:hover:before",
+                    ]
+                ],
+                "deskDropdownMenu" => [
+                    "name" => "deskDropdownMenu",
+                    "type" => "input",
+                    "columns" => "col-12",
+                    "props" => [
+                        "label" => "Estilo Dropdown Menu css",
+                        'type' => 'textarea',
+                        'rows' => 5,
+                    ],
+                    "help" => [
+                        "description" => "Permite agregar estilos al dropdown-menu",
+                    ]
+                ],
+                "deskStyleGeneral" => [
+                    "name" => "deskStyleGeneral",
+                    "type" => "input",
+                    "columns" => "col-12",
+                    "props" => [
+                        "label" => "Estilo general css",
+                        'type' => 'textarea',
+                        'rows' => 5,
+                    ],
+                    "help" => [
+                        "description" => "Permite agregar estilos a los navs",
+                    ]
+                ],
+            ]
+        ],
+        "modal" => [
+            "title" => "Modal",
+            "fields" => [
+                "modalStyle" => [
+                    "name" => "modalStyle",
+                    "value" => "",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Estilo del modal",
+                        "options" => [
+                            ["label" => "Sin estilo", "value" => ""],
+                            ["label" => "Estilo 1", "value" => "estilo1"],
+                            ["label" => "Estilo 2", "value" => "estilo2"],
+                            ["label" => "Estilo 3", "value" => "estilo3"]
+                        ]
+                    ],
+                    "help" => [
+                        "description" => "Sin estilo, permite tener el modal limpio. Los demas son estilos base",
+                    ]
+                ],
+                "modalTextTransform" => [
+                    "name" => "modalTextTransform",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Transformar Texto",
+                        "options" => $vAttributes["textTransformCss"]
+                    ]
+                ],
+                "modalTextSize" => [
+                    "name" => "modalTextSize",
+                    "value" => "16",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Tamaño",
+                        "type" => "number"
+                    ]
+                ],
+                "modalColor1" => [
+                    "name" => "modalColor1",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Color 1",
+                    ]
+                ],
+                "modalColor2" => [
+                    "name" => "modalColor2",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Color 2",
+                    ]
+                ],
+            ]
+        ]
+    ]
+  ],
+  "logoImagina" => [
+      "title" => "Logo Imagina",
+      "systemName" => "isite::logo-imagina",
+      "nameSpace" => "Modules\Isite\View\Components\LogoImagina",
+      "attributes" => []
+  ],
+  "copyright" => [
+      "title" => "Copyright",
+      "systemName" => "isite::copyright-block",
+      "nameSpace" => "Modules\Isite\View\Components\Copyright",
+      "attributes" => [
+          "general" => [
+              "title" => "General",
+              "fields" => [
+                  "withIconCopyright" => [
+                      "name" => "withIconCopyright",
+                      "value" => "1",
+                      "type" => "select",
+                      "props" => [
+                          "label" => "withIconCopyright",
+                          "options" => $vAttributes["validation"]
+                      ]
+                  ],
+                  "classes" => [
+                      "name" => "classes",
+                      "type" => "input",
+                      "columns" => "col-12",
+                      "props" => [
+                          "label" => "Clases",
+                      ],
+                  ],
+                  "styles" => [
+                      "name" => "styles",
+                      "type" => "input",
+                      "columns" => "col-12",
+                      "props" => [
+                          "label" => "Estilos css",
+                          'type' => 'textarea',
+                          'rows' => 4,
+                      ],
+                  ],
+              ]
+          ],
+      ]
+  ],
 ];

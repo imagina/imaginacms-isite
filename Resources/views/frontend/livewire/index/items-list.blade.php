@@ -37,6 +37,9 @@
 	@parent
 	<script type="text/javascript">
 		
+		/*
+		* Emit After List is Rendered | Esto toca hacerlo aca por en el controlador no lo emitia
+		*/
 		document.addEventListener('DOMContentLoaded', function () {
 			window.livewire.emit('itemListRendered',{!! json_encode($params) !!});
 		});
@@ -129,6 +132,13 @@
 	        }
 
 	    }
+
+		/*
+		* LIVEWIRE | Listener Component | Emit always
+		*/
+		window.addEventListener('emit-always-update-item-list', event => {
+			window.livewire.emit('itemListRenderedAlways',event.detail.newParams);
+		});
 
 
 	</script>

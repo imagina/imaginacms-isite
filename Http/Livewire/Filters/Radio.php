@@ -6,49 +6,36 @@ use Livewire\Component;
 
 class Radio extends Component
 {
-    /*
-    * Attributes From Config
+
+  /*
+  * Attributes From Config
+  */
+  public $title;
+  public $name;
+  public $status;
+  public $isExpanded;
+  public $options;
+  public $type;
+  public $repository;
+  public $emitTo;
+  public $repoAction;
+  public $repoAttribute;
+  public $listener;
+  public $repoMethod;
+  public $layout;
+  public $classes;
+
+  /*
+  * Attributes
+  */
+  public $selectedOption;
+  public $show;
+
+  /*
+    * Runs once, immediately after the component is instantiated,
+    * but before render() is called
     */
-    public $title;
-
-    public $name;
-
-    public $status;
-
-    public $isExpanded;
-
-    public $options;
-
-    public $type;
-
-    public $repository;
-
-    public $emitTo;
-
-    public $repoAction;
-
-    public $repoAttribute;
-
-    public $listener;
-
-    public $repoMethod;
-
-    public $layout;
-
-    public $classes;
-
-    /*
-    * Attributes
-    */
-    public $selectedOption;
-
-    public $show;
-
-    /*
-      * Runs once, immediately after the component is instantiated,
-      * but before render() is called
-      */
-    public function mount($title, $name, $status, $isExpanded, $options, $type, $repository, $emitTo,
+  public function mount($title, $name, $status = true, $isExpanded = true, $options, $type, $repository, $emitTo,
                         $repoAction, $repoAttribute, $listener, $repoMethod = 'getItemsBy', $layout = 'radio-layout-1',
                         $classes = 'col-12')
     {

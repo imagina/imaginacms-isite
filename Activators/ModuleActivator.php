@@ -107,9 +107,7 @@ class ModuleActivator implements ActivatorInterface
     $this->setActiveByName($module->getName(), false);
   }
   
-  public function findModuleByName($name)
-  {
-
+  public function findModuleByName($name){
     $allModules = $this->tenantModules();
 
     if (!config('asgard.core.core.is_installed')) {
@@ -117,22 +115,15 @@ class ModuleActivator implements ActivatorInterface
     }
 
     //cached module entity for 30 days
-    $module = $this->cache->tags($this->getTag())
-      ->remember($this->getCacheKey('isite_module_'.$name),
-        $this->cacheLifetime, function () use ($name, $allModules) {
-      try {
-        if (!\Schema::hasTable('isite__modules')) {
-          return false;
-        }
-      } catch (\Exception $e) {
-        return false;
-      }
-      
-      if (!empty($allModules)) {
-        $module = $allModules->where('alias', Str::lower($name))->first() ?? '';
-      } else {
-        
-        $module = IModule::where("alias", Str::lower($name))->first() ?? "";
+    $module = Cache::store(config("cache.default"))->remember('isite_module_'. Str::lower($name).( isset(tenant()->domain) ? tenant()->domain : request()->getHost() ?? ""), 60*60*24*30, function () use ($name,$allModules) {
+
+      if(!\Schema::hasTable('isite__modules')) return false;
+
+      if(!empty($allModules)){
+        $module= $allModules->where("alias", Str::lower($name))->first() ?? "";
+      }else{
+
+        $module =  IModule::where("alias", Str::lower($name))->first() ?? "";
       }
       return $module;
     });
@@ -254,26 +245,44 @@ class ModuleActivator implements ActivatorInterface
     foreach ($allModules as $module) {
       $statuses[Str::ucfirst($module->alias)] = $module->enabled ? true : false;
     }
-    $statuses['Core'] = true;
-    
-    return $statuses;
+    $statuses["Core"] = true;
+
+    return ($statuses);
+
   }
   
-  private function tenantModules()
-  {
+  private function tenantModules(){
 
-    if (!config('asgard.core.core.is_installed')) {
-      return [];
+    $domain = request()->getHost() ?? null;
+
+    if(app()->runningInConsole()){
+      $command = request()->server('argv');
+
+      if (is_array($command) && isset($command[1]) && isset($command[2])) {
+        if($command[1]=="tenant:run" && $command[2]=="schedule:run"){
+          $param = explode('=', $command[3]);
+          $organizationId =  $param[1];
+        }
+      }
+
+      if(isset($organizationId)){
+        $result = \DB::table("isite__domains")->where("organization_id",$organizationId)->get();
+        if(!empty($result)){
+          $custom = $result->where("type","custom")->first();
+          if(isset($custom->domain)) $domain = $custom->domain;
+          else{
+            $default = $result->where("type","default")->first();
+            if(isset($default->domain)) $domain = $default->domain;
+          }
+        }
+      }
     }
 
-    $domain = $this->currentDomain();
 
-    return $this->cache->tags($this->getTag())
-      ->remember($this->getCacheKey('isite_module_all_modules'),
-        $this->cacheLifetime, function () use ($domain) {
+    return Cache::store(config("cache.default"))->remember('isite_module_all_modules'. ( isset(tenant()->domain) ? tenant()->domain : $domain ?? ""), 60*60*24*30, function () use($domain) {
   
       try {
-        if (!\Schema::hasTable('isite__organizations')) {
+        if (! \Schema::hasTable('isite__organizations')) {
           return '';
         }
       } catch (\Exception $e) {
@@ -311,42 +320,7 @@ class ModuleActivator implements ActivatorInterface
       
       return $allModules ?? '';
     });
-  }
-  
-  private function currentDomain(): string
-  {
-    
-    if(isset(tenant()->domain)) return tenant()->domain;
-    
-    $domain = request()->getHost() ?? null;
-    
-    if (app()->runningInConsole()) {
-      $command = request()->server('argv');
-    
-      if (is_array($command) && isset($command[1]) && isset($command[2])) {
-        if ($command[1] == 'tenant:run' && $command[2] == 'schedule:run') {
-          $param = explode('=', $command[3]);
-          $organizationId = $param[1];
-        }
-      }
-    
-      if (isset($organizationId)) {
-        $result = \DB::table('isite__domains')->where('organization_id', $organizationId)->get();
-        if (!empty($result)) {
-          $custom = $result->where('type', 'custom')->first();
-          if (isset($custom->domain)) {
-            $domain = $custom->domain;
-          } else {
-            $default = $result->where('type', 'default')->first();
-            if (isset($default->domain)) {
-              $domain = $default->domain;
-            }
-          }
-        }
-      }
-    }
-    
-    return $domain ?? "";
+
   }
   
   /**
@@ -375,30 +349,12 @@ class ModuleActivator implements ActivatorInterface
   {
     return $this->config->get('modules.activators.file.'.$key, $default);
   }
-  
-  private function getCacheKey(string $baseKey, $default = null): string
-  {
-    $domain = $this->currentDomain();
-    return $baseKey.$domain;
-  }
-  
-  private function getTag(){
-  
-    $domain = $this->currentDomain();
-    return $this->config->get('modules.activators.file.cache-key' . $domain);
-    
-  }
+
   /**
    * Flushes the modules activation statuses cache
    */
   private function flushCache(): void
   {
-    $store = $this->cache;
-  
-    if (method_exists($this->cache->getStore(), 'tags')) {
-      $store = $store->tags([$this->getTag()]);
-    }
-    
-    $store->flush();
+    $this->cache->forget($this->cacheKey);
   }
 }

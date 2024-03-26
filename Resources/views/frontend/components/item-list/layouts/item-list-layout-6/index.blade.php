@@ -79,18 +79,20 @@
         </div>
       @endif
       @if($withSummary && ( isset($item->summary) || isset($item->description) || isset($item->custom_html)) )
-        <div class="col-12 {{$orderClasses["summary"] ?? 'order-5'}} item-summary {{$summaryAlign}}">
-          @if(isset($item->url) && !empty($item->url))
-            <a href="{{$item->url}}" target="{{$target}}">
-              @endif
-              <div
-                class="summary {{$summaryClasses}} {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}} {{$contentMarginInsideX}}">
-                {!! $summary !!}
-              </div>
-              @if(isset($item->url) && !empty($item->url))
-            </a>
-          @endif
-        </div>
+        @if(trim($item->summary) || trim($item->description) || trim($item->custom_html) )
+          <div class="col-12 {{$orderClasses["summary"] ?? 'order-5'}} item-summary {{$summaryAlign}}">
+            @if(isset($item->url) && !empty($item->url))
+              <a href="{{$item->url}}" target="{{$target}}">
+                @endif
+                <div
+                  class="summary {{$summaryClasses}} {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}} {{$contentMarginInsideX}}">
+                  {!! $summary !!}
+                </div>
+                @if(isset($item->url) && !empty($item->url))
+              </a>
+            @endif
+          </div>
+        @endif
       @endif
       @if($withViewMoreButton)
         <div class="col-12 {{$orderClasses["viewMoreButton"] ?? 'order-6'}} item-view-more-button {{$buttonAlign}}">

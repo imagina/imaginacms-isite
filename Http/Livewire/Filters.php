@@ -151,18 +151,18 @@ class Filters extends Component
                     'filter' => $filterToSend,
                 ]);
 
-                if (! empty($this->extraModalId)) {
-                    $this->dispatchBrowserEvent('filters-close-modal');
-                }
-
-                // remove d-none frontend
-                $this->dispatchBrowserEvent('filters-after-get-data');
-            }
-        }
+        if (!empty($this->extraModalId))
+          $this->dispatchBrowserEvent('filters-close-modal');
 
         // remove d-none frontend
         $this->dispatchBrowserEvent('filters-after-get-data');
+      }
     }
+
+    // remove d-none frontend - Case for mobile - Ejem: Dev Alfaro (Added param closeBaseModal)
+    $this->dispatchBrowserEvent('filters-after-get-data',['closeBaseModal' => true]);
+
+  }
 
     /*
     * Action

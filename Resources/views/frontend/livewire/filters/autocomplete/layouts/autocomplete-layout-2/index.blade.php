@@ -8,7 +8,7 @@
                aria-haspopup="false"
                aria-expanded="false"
                role="button"
-               class="input-group dropdown-toggle">
+               class="input-group">
             <div class="input-group">
               <input type="text" id="input_search" wire:model.debounce.500ms="search"
                      wire:keydown.enter="goToIndex"

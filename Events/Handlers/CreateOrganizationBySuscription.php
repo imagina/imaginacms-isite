@@ -159,7 +159,8 @@ class CreateOrganizationBySuscription
       "password" => $fakePassword,
       'layout' => $layout->system_name,
       'category_id' => $suscription->options->category_id,
-      'userData' => $userData
+      'userData' => $userData,
+      'dataIa' => $suscription->options->form_i_a ? json_encode($suscription->options->form_i_a) : null
     ];
 
     /**

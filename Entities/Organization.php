@@ -16,10 +16,11 @@ use Modules\Ifillable\Traits\isFillable;
 use Modules\Setting\Entities\Setting;
 use Stancl\Tenancy\Database\Concerns\MaintenanceMode;
 use Modules\Isite\Entities\Status;
+use Modules\Tag\Traits\TaggableTrait;
 
 class Organization extends BaseTenant implements TenantWithDatabase
 {
-    use AuditTrait, Translatable, HasDatabase, HasDomains, MediaRelation, Schedulable, hasEventsWithBindings, isFillable, MaintenanceMode;
+  use AuditTrait, Translatable, HasDatabase, HasDomains, MediaRelation, Schedulable, hasEventsWithBindings, isFillable, MaintenanceMode, TaggableTrait;
 
     public $transformer = 'Modules\Isite\Transformers\OrganizationTransformer';
 
@@ -93,10 +94,14 @@ class Organization extends BaseTenant implements TenantWithDatabase
         return true;
     }
 
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
+  function getFillables(){
+    return $this->fillable;
+  }
+
+  public function category()
+  {
+    return $this->belongsTo(Category::class);
+  }
 
     public function domains()
     {
@@ -124,14 +129,16 @@ class Organization extends BaseTenant implements TenantWithDatabase
         $customDomain = $domains->where('type', 'custom')->first()->domain ?? null;
         $defaultDomain = $domains->where('type', 'default')->first()->domain ?? $this->slug ?? null;
 
-        if (! empty($customDomain)) {
-            return $customDomain;
-        } elseif (! empty($defaultDomain)) {
-            return tenant_route($defaultDomain, $currentLocale.".$tenantRouteAlias");
-        } else {
-            return '';
-        }
+    if (!empty($customDomain)) {
+      return "https://".$customDomain;
+    } elseif (!empty($defaultDomain)) {
+
+      return tenant_route($defaultDomain, $currentLocale . ".$tenantRouteAlias");
+    } else {
+      return "";
     }
+
+  }
 
     public function getDomainAttribute()
     {
@@ -167,5 +174,37 @@ class Organization extends BaseTenant implements TenantWithDatabase
     $status = new Status();
     return $status->get($this->status);
   }
-  
+
+  public function setOptionsAttribute($value)
+  {
+    $this->attributes['options'] = json_encode($value);
+  }
+
+  public function getOptionsAttribute($value)
+  {
+    return json_decode($value);
+  }
+
+  public function getAiStatusAttribute()
+  {
+
+    $status = 2; //No exists the option (For the site no process was executed for ai)
+
+    $aiModulesConfig = config("asgard.isite.config.aiModulesGenerator");
+    $options = $this->options;
+
+    if(isset($options->aiModulesGenerator)){
+      $status = 0; // Process running
+
+      $allModules = (array)json_decode($options->aiModulesGenerator);
+
+      //it has already been guaranteed and that they are not repeated in the insertion of the options previously
+      if(count($aiModulesConfig)==count($allModules))
+        $status = 1;// Process Completed
+    }
+
+    return $status;
+
+  }
+
 }

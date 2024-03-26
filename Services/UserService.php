@@ -9,6 +9,7 @@ use Modules\Iprofile\Entities\Role;
 use Modules\Core\Console\Installers\Scripts\UserProviders\SentinelInstaller;
 use Modules\Iprofile\Http\Controllers\Api\AuthApiController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
@@ -100,7 +101,7 @@ class UserService
         \Log::info(\Artisan::output());
     }
 
-    public function authenticate($data)
+    public function authenticate($data,$type="credentials")
     {
 
         \Log::info("----------------------------------------------------------");
@@ -142,6 +143,32 @@ class UserService
             "password"=> $password
         ]);
         
-}
+    }
+
+    /**
+     * Cuando es OTP, hay que actualiza los passwords en ambas BD
+     */
+    public function updatePasswordsInBothDB($centralUser,$tenantUser)
+    {
+
+        $passOTP = \Str::random(16);
+        $hashP = Hash::make($passOTP);
+
+        \Log::info($this->log.'updatePasswordsInBothDB|passOTP: '.$passOTP);
+        \Log::info($this->log.'updatePasswordsInBothDB|hashP: '.$hashP);
+
+        //Update In tenant
+        \DB::table("users")->where("id","=",$tenantUser->id)->update([
+            "password"=> $hashP
+        ]);
+
+        //Update In Central
+        $centralUserId = $centralUser->id;
+        $userCentral = tenancy()->central(function () use($hashP,$centralUserId) {
+            return User::where('id',$centralUserId)->update(['password'=>$hashP]);
+        });
+
+        return $passOTP;
+    }
 
 }

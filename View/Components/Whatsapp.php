@@ -6,63 +6,40 @@ use Illuminate\View\Component;
 
 class Whatsapp extends Component
 {
-    public $items;
 
-    public $view;
 
-    public $itemLayout;
+  public $items;
+  public $view;
+  public $itemLayout;
+  public $layout;
+  public $title;
+  public $mask;
+  public $icon;
+  public $id;
+  public $alignment;
+  public $parentAttributes;
+  public $iconLabel;
 
-    public $layout;
-
-    public $title;
-
-    public $mask;
-
-    public $icon;
-
-    public $id;
-
-    public $alignment;
-
-    public $parentAttributes;
-
-    public $iconLabel;
-
-    public $top;
-
-    public $bottom;
-
-    public $right;
-
-    public $left;
-
-    public $size;
-
-    public $type;
-
-    public $numbers;
-
-    public $editButton;
-
-    public $notNumber;
-
-    public $central;
-
-    private $country;
-
-    public $titleInternal;
-
-    public $summaryInternal;
-
-    public $infoTitleColor;
-
-    public $infoSubtitleColor;
-
-    public $dropdownTextAlign;
-
-    public $alignmentMsn;
-
-    public $alignmentWin;
+  public $top;
+  public $bottom;
+  public $right;
+  public $left;
+  public $size;
+  public $type;
+  public $numbers;
+  public $editButton;
+  public $notNumber;
+  public $central;
+  private $country;
+  public $showCountry;
+  public $showNumberCountry;
+  public $titleInternal;
+  public $summaryInternal;
+  public $infoTitleColor;
+  public $infoSubtitleColor;
+  public $dropdownTextAlign;
+  public $alignmentMsn;
+  public $alignmentWin;
 
     /**
      * Create a new component instance.
@@ -75,34 +52,38 @@ class Whatsapp extends Component
     $top = null, $bottom = null, $right = null, $left = null, $type = '', $size = 'lg', $iconLabel = '',
     $notNumber = true, $numbers = [], $editButton = true, $central = false, $titleInternal = '',
     $summaryInternal = '', $infoTitleColor = null, $infoSubtitleColor = null,
-    $dropdownTextAlign = 'text-center', $alignmentMsn = '', $alignmentWin = ''
-  ) {
-        $this->layout = $layout ?? 'whatsapp-layout-1';
-        $this->title = $title ?? '';
-        $this->id = $id ?? 'whatsappComponent';
-        $this->icon = $icon ?? 'fa fa-whatsapp';
-        $this->mask = $mask ?? 1;
-        $this->alignment = $alignment ?? 'dropleft';
-        $this->size = $size ?? 'lg';
-        $this->type = $type ?? '';
-        $this->view = "isite::frontend.components.whatsapp.layouts.{$this->layout}.index";
-        $this->top = $top;
-        $this->bottom = $bottom;
-        $this->right = $right;
-        $this->left = $left;
-        $this->setParentAttributes($parentAttributes);
-        $this->iconLabel = $iconLabel ?? '';
-        $this->notNumber = $notNumber ?? true;
-        $this->numbers = $numbers ?? null;
-        $this->editButton = $editButton ?? true;
-        $this->central = $central;
-        $this->titleInternal = $titleInternal;
-        $this->summaryInternal = $summaryInternal;
-        $this->infoTitleColor = $infoTitleColor ?? ($layout == 'whatsapp-layout-5' ? 'var(--primary)' : 'var(--dark)');
-        $this->infoSubtitleColor = $infoSubtitleColor ?? 'var(--dark)';
-        $this->dropdownTextAlign = $dropdownTextAlign;
-        $this->alignmentMsn = $alignmentMsn;
-        $this->alignmentWin = $alignmentWin;
+    $dropdownTextAlign = 'text-center', $alignmentMsn = '', $alignmentWin = '', $showCountry = true,
+    $showNumberCountry = false
+  )
+  {
+    $this->layout = $layout ?? 'whatsapp-layout-1';
+    $this->title = $title ?? '';
+    $this->id = $id ?? 'whatsappComponent';
+    $this->icon = $icon ?? 'fa fa-whatsapp';
+    $this->mask = $mask ?? 1;
+    $this->alignment = $alignment ?? 'dropleft';
+    $this->size = $size ?? 'lg';
+    $this->type = $type ?? '';
+    $this->view = "isite::frontend.components.whatsapp.layouts.{$this->layout}.index";
+    $this->top = $top;
+    $this->bottom = $bottom;
+    $this->right = $right;
+    $this->left = $left;
+    $this->iconLabel = $iconLabel ?? '';
+    $this->notNumber = $notNumber ?? true;
+    $this->numbers = $numbers ?? null;
+    $this->editButton = $editButton ?? true;
+    $this->central = $central;
+    $this->setParentAttributes($parentAttributes);
+    $this->titleInternal = $titleInternal;
+    $this->summaryInternal = $summaryInternal;
+    $this->infoTitleColor = $infoTitleColor ?? ($layout == 'whatsapp-layout-5' ? 'var(--primary)' : 'var(--dark)');
+    $this->infoSubtitleColor = $infoSubtitleColor ?? 'var(--dark)';
+    $this->dropdownTextAlign = $dropdownTextAlign;
+    $this->alignmentMsn = $alignmentMsn;
+    $this->alignmentWin = $alignmentWin;
+    $this->showCountry = $showCountry;
+    $this->showNumberCountry = $showNumberCountry;
 
         //dd($this->central,$central);
     }
@@ -137,18 +118,20 @@ class Whatsapp extends Component
                   $item = (object) ($this->numbers[$i] ?? []);
               }
 
-              if (! empty($item->callingCode) && ! empty($item->number)) {
-                  if (! empty($this->country) && $this->country->calling_code == $item->callingCode) {
-                      $item->country = $this->country;
-                  } else {
-                      $item->country = $this->country = app('Modules\\Ilocations\\Repositories\\CountryRepository')
-                        ->getItem($item->callingCode, json_decode(json_encode($countryParams)));
-                  }
+      if (!empty($item->callingCode) && !empty($item->number)) {
+        if (!empty($this->country) && $this->country->calling_code == $item->callingCode) $item->country = $this->country;
+        else {
+          $item->country = $this->country = app('Modules\\Ilocations\\Repositories\\CountryRepository')
+            ->getItem($item->callingCode, json_decode(json_encode($countryParams)));
+        }
+        //dd($item);
+        $item->formattedNumber = ($this->showCountry ? "({$item->country->iso_2}) " : "") .
+          ($this->showNumberCountry ? "({$item->callingCode}) " : "" ).
+          $this->formatNumber($item->number, $this->mask);
+        $items[] = $item;
 
-                  $item->formattedNumber = "({$item->country->iso_2}) ".$this->formatNumber($item->number, $this->mask);
-                  $items[] = $item;
-              }
-          }
+      }
+    }
 
           $this->items = $items;
 

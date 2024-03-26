@@ -7,9 +7,13 @@ class OrganizationWasCreated
     public $organization;
     public $user;
 
-    public function __construct($organization,$user = null)
+    //Case OTP
+    public $fakePassword;
+
+    public function __construct($organization,$user = null, $fakePassword = null)
     {
         $this->organization = $organization;
         $this->user = $user;
+        $this->fakePassword = $fakePassword;
     }
 }
