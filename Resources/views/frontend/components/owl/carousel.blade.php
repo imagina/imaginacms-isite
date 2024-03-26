@@ -121,6 +121,9 @@
                               @php($cont=$cont+intval($itemComponentAttributes['itemDelayIn']))
                           @endif
                       @endif
+                      @if($repository=='Modules\Slider\Repositories\SlideApiRepository')
+                         @php($itemComponentAttributes["viewMoreButtonLabel"]=$items[$x + $j]->caption)
+                      @endif
                       @include("isite::frontend.partials.item",["item" => $items[$x + $j], "position" => $x + $j])
 
                       @php($j++)
