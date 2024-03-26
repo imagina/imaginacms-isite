@@ -156,6 +156,15 @@ return [
               "options" => $vAttributes["validation"]
             ]
           ],
+          "withUrl" => [
+            "name" => "withUrl",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+                "label" => "Muestra el elemento con enlace",
+                "options" => $vAttributes["validation"]
+            ]
+          ],
           "orderClasses" => [
             "name" => "orderClasses",
             "value" => ["photo" => "order-0", "title" => "order-1", "date" => "order-2", "categoryTitle" => "order-3", "summary" => "order-4", "viewMoreButton" => "order-5"],
