@@ -591,7 +591,7 @@ class ItemList extends Component
         $this->summary = $item->{$summaryField} ?? "";
       }
     }else{
-      $this->summary = $item->summary ?? $item->description ?? $item->custom_html ?? "";
+      $this->summary = $item->summary ?? $item->description ?? $item->custom_html ?? $item->body ?? "";
     }
   
     //Define the summary characters limit
