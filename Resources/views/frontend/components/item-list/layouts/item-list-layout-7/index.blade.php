@@ -97,8 +97,8 @@
               @endif
             </div>
           @endif
-          @if($withSummary && ( isset($item->summary) || isset($item->description) || isset($item->custom_html)) )
-            @if(trim($item->summary) || trim($item->description) || trim($item->custom_html) )
+          @if($withSummary && ( isset($item->summary) || isset($item->description) || isset($item->custom_html) || isset($item->body)) )
+            @if(trim($item->summary) || trim($item->description) || trim($item->custom_html) || trim($item->body))
               <div class=" {{$orderClasses["summary"] ?? 'order-5'}} item-summary {{$summaryAlign}}">
               @if(isset($item->url) && !empty($item->url) && $withUrl)
                 <a href="{{$item->url}}" target="{{$target}}">
