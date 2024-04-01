@@ -265,11 +265,13 @@ class OwlCarousel extends Component
         $this->owlTitleClasses = $owlTitleClasses;
         $this->owlSubtitleClasses = $owlSubtitleClasses;
         $this->owlWithLineTitle = $owlWithLineTitle;
-        $this->owlLineTitleConfig = ! empty($owlLineTitleConfig) ? $owlLineTitleConfig : [
-            'background' => 'var(--primary)',
-            'height' => '2px',
-            'width' => '10%',
-            'margin' => '0 auto'];
+        $this->owlLineTitleConfig = !empty($owlLineTitleConfig) ? $owlLineTitleConfig : [
+            "background" => "var(--primary)",
+            "height" => "2px",
+            "width" => "10%",
+            "margin" => "0 auto"];
+        $this->dotsStyleColor = $dotsStyleColor;
+        $this->dotsSize = $dotsSize;
         $this->getItems();
         [$this->editLink, $this->tooltipEditLink] = getEditLink($this->repository);
         if ($nav && $navText != '') {

@@ -58,9 +58,12 @@ trait WithProduct
         return $this->morphMany("Modules\Icommerce\Entities\Product", 'entity');
     }
 
-    public function getProductAttribute()
-    {
-        return Product::query()->where('entity_type', get_class($this))
-         ->where('entity_id', $this->id)->withoutTenancy()->first();
+  public function getProductAttribute()
+  {
+    if (is_module_enabled('Icommerce')) {
+      return Product::query()->where('entity_type', get_class($this))
+        ->where('entity_id', $this->id)->withoutTenancy()->first();
     }
+  }
+
 }

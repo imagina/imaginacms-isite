@@ -2,6 +2,8 @@
 
 namespace Modules\Isite\Services;
 
+use Modules\Iforms\Entities\Field;
+
 class AiService
 {
   public $logTitle;
@@ -29,14 +31,16 @@ class AiService
   public function getContent($prompt, $quantity = 1)
   {
     try {
-      //Instance the full prompt
-      $prompt = "Crea un JSON array de objects valido. con " .
-        "$quantity elementos diferentes siguiendo estás instrucciones $prompt ";
-      //Validate site description to do it
-      $siteDescription = setting("core::site-description");
-      \Log::info($this->logTitle."|getContent|Setting CoreSiteDescription: ".$siteDescription);
 
-      if ($siteDescription) $prompt .= "el contenido debe de estar basado en esta descripción: $siteDescription";
+      //Validate site description to do it
+      $settingDataAi = $this->improveDescription(setting("isite::tenant-data-ia"));
+      //\Log::info($this->logTitle."|getContent|Description Improved: ". $settingDataAi);
+
+      //Instance the full prompt
+      $prompt = "Basado en está información recolectada a traves de preguntas y respuestas: ".$settingDataAi .
+      ". Crea un JSON array de objects valido, con $quantity elementos diferentes siguiendo estás instrucciones: $prompt";
+      //\Log::info($this->logTitle."|getContent|Promp: ". $prompt);
+
       //Request
       $client = new \GuzzleHttp\Client();
       $request = $client->request('GET',
@@ -52,7 +56,8 @@ class AiService
           if (isset($value->es)) $tmpItem["es"][$key] = $value->es;
           if (isset($value->es) || isset($value->en)) continue;//Break
           $tmpItem[$key] = $value;
-          
+
+          //Tags is used to get image from provider
           if($key==="tags"){
             $itemImage = $this->getImage($value);
             $tmpItem['image'] = $itemImage;
@@ -83,7 +88,7 @@ class AiService
       'title' => "title: Que sea descriptivo, llamativo de entre 8 a 12 palabras, menos de 60 caracteres, $this->translatablePrompt",
       'shortTitle' => "shortTitle: Que sea descriptivo, llamativo de entre 1 a 2 palabras, $this->translatablePrompt",
       'name' => "name: Que sea descriptivo, llamativo de entre 8 a 12 palabras, menos de 60 caracteres, $this->translatablePrompt",
-      'description' => "description: Que contenga entre 1200 y 1600 palabras con contenio que genere al menos 7 minutos " .
+      'description' => "description: Que contenga entre 1200 y 1600 palabras con contenido que genere al menos 7 minutos " .
         "de lectura. El texto sea en formato HTML puede usar listas, títulos llamativos, $this->translatablePrompt",
       'body' => "body: Que contenga entre 2000 y 2500 palabras con contenido que genere al menos 7 minutos " .
         "de lectura. El texto sea en formato HTML puede usar listas, títulos llamativos y los titulos deben estar en la etiqueta html h2, $this->translatablePrompt",
@@ -153,6 +158,69 @@ class AiService
     $fileCreated = $this->fileService->storeHotLinked($path,$provider);
 
     return $fileCreated;
+
+  }
+
+  /**
+   * Improve description to AI PROMPT
+   */
+  public function improveDescription($setting)
+  {
+
+    $data = (array)json_decode($setting);
+
+    // Get only names indexes
+    $names = array_keys($data);
+
+    //Search fields by name in Central DB
+    $fields = tenancy()->central(function () use($names) {
+      return Field::whereIn("name",$names)->get();
+    });
+
+    //Set new description with questions and answers
+    $newDescription = "";
+    foreach ($fields as $key => $field) {
+      if(isset($data[$field->name])){
+        $newDescription .= $field->label." ".$data[$field->name].". ";
+      }
+    }
+
+    return $newDescription;
+
+  }
+
+  /**
+   * Save in organization options to know if it was completed AI task
+   * @param $name (Module Name - page|iblog|slider|iblog)
+   */
+  public function saveAiCompleted($name)
+  {
+
+    \Log::info($this->logTitle."|saveAiCompleted");
+
+    $organization = tenant();
+    $options = tenant()->options;
+
+    //Check Options
+    if(isset($options->aiModulesGenerator)){
+
+      $allModules = (array)json_decode($options->aiModulesGenerator);
+
+      // Check if not exist in options aiModulesGenerator
+      if(!in_array($name,$allModules)){
+       array_push($allModules,$name);
+        $options->aiModulesGenerator = json_encode($allModules);
+      }
+
+    }else{
+      //No exist the key - First Case
+      $options['aiModulesGenerator'] = json_encode($name);
+    }
+
+    $organization->options = $options;
+
+    //Organization Saved in Central DB
+    $organization->save();
 
   }
 

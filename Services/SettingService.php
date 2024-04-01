@@ -20,8 +20,11 @@ class SettingService
         \Log::info('========== Update Settings ==========');
 
         //Site Name - Translatable
-        $siteName = $data['title'] ?? 'My Site';
-        $this->updateSetting('core::site-name', $siteName, true);
+        $siteName = $data["title"] ?? "My Site";
+        $this->updateSetting("core::site-name",$siteName,true);
+
+        $tenantDataIa = $data["dataIa"] ?? "";
+        $this->updateSetting("isite::tenant-data-ia",$tenantDataIa);
 
         //Iforms - usersToNotify
         $ids = [$tenantUser->id];

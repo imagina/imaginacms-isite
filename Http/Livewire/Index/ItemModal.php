@@ -6,20 +6,19 @@ use Livewire\Component;
 
 class ItemModal extends Component
 {
-    /**
-     * Attributes
-     */
-    public $mobile;
 
-    public $desktop;
 
-    public $view;
 
-    public $params;
-
-    public $repository;
-
-    public $idModal;
+  /**
+   * Attributes
+   */
+  public $mobile;
+  public $desktop;
+  public $view;
+  public $params;
+  public $repository;
+  public $idModal;
+  public $varItemName;
 
     /**
      * Listeners
@@ -38,15 +37,18 @@ class ItemModal extends Component
     $view = 'isite::frontend.livewire.index.partials.item-modal-content',
     $params = null,
     $repository = null,
-    $idModal = 'itemModal'
-    ) {
-        $this->mobile = $mobile;
-        $this->desktop = $desktop;
-        $this->view = $view;
-        $this->params = $params;
-        $this->repository = $repository;
-        $this->idModal = $idModal;
-    }
+    $idModal = "itemModal",
+    $varItemName = "item"
+    ){
+
+    $this->mobile = $mobile;
+    $this->desktop = $desktop;
+    $this->view = $view;
+    $this->params = $params;
+    $this->repository = $repository;
+    $this->idModal = $idModal;
+    $this->varItemName = $varItemName;
+  }
 
     /*
     * Listener - itemModalLoadData
@@ -61,19 +63,20 @@ class ItemModal extends Component
 
     //TODO check why this method (getData) is called twice, in the meantime I'm doing this validation to avoid $item with null value in sometimes
     if(isset($item->id)){
-        //'item' => json_decode(json_encode($item), FALSE)
-        $newHtml = view($this->view, [
-            'item' => $item,
-            'inModal' => true,
-        ])->render();
 
-        if ($idModalNew == $this->idModal) {
-            $this->dispatchBrowserEvent('item-load-modal-content-'.$this->idModal, [
-                'newHtml' => $newHtml,
-                'itemUrl' => $item->url ?? '',
-                'idModalNew' => $idModalNew,
-            ]);
-        }
+      //'item' => json_decode(json_encode($item), FALSE)
+      $newHtml = view($this->view, [
+        $this->varItemName => $item,
+        'inModal' => true
+      ])->render();
+
+      if($idModalNew==$this->idModal){
+        $this->dispatchBrowserEvent('item-load-modal-content-'.$this->idModal, [
+          'newHtml' => $newHtml,
+          'itemUrl' => $item->url ?? '',
+          'idModalNew' => $idModalNew
+        ]);
+      }
     }
     
     

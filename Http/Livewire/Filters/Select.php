@@ -6,60 +6,42 @@ use Livewire\Component;
 
 class Select extends Component
 {
-    /*
-    * Attributes From Config
+
+  /*
+  * Attributes From Config
+  */
+  public $title;
+  public $name;
+  public $status;
+  public $isExpanded;
+  public $type;
+  public $repository;
+  public $emitTo;
+  public $repoAction;
+  public $repoAttribute;
+  public $listener;
+  public $repoMethod;
+  public $layout;
+  public $classes;
+  public $options;
+  public $selected;
+  public $params;
+  public $withTitle;
+  public $withSubtitle;
+  public $getDataAfterSelected;
+  public $entityTitle;
+  public $showFirstOptionSelect;
+
+  /*
+  * Attributes
+  */
+
+
+  /*
+    * Runs once, immediately after the component is instantiated,
+    * but before render() is called
     */
-    public $title;
-
-    public $name;
-
-    public $status;
-
-    public $isExpanded;
-
-    public $type;
-
-    public $repository;
-
-    public $emitTo;
-
-    public $repoAction;
-
-    public $repoAttribute;
-
-    public $listener;
-
-    public $repoMethod;
-
-    public $layout;
-
-    public $classes;
-
-    public $options;
-
-    public $selected;
-
-    public $params;
-
-    public $withTitle;
-
-    public $withSubtitle;
-
-    public $getDataAfterSelected;
-
-    public $entityTitle;
-
-    public $showFirstOptionSelect;
-
-    /*
-    * Attributes
-    */
-
-    /*
-      * Runs once, immediately after the component is instantiated,
-      * but before render() is called
-      */
-    public function mount($title, $name, $status, $isExpanded, $type, $repository, $emitTo, $repoAction,
+  public function mount($title, $name, $status = true, $isExpanded = true, $type, $repository, $emitTo, $repoAction,
                         $repoAttribute, $listener, $repoMethod = 'getItemsBy', $layout = 'select-layout-1',
                         $classes = 'col-12', $params = [], $isCollapsable = true, $withTitle = true, $withSubtitle = true, $getDataAfterSelected = false, $defaultSelectedSetting = null, $entityTitle = null, $showFirstOptionSelect = true)
     {

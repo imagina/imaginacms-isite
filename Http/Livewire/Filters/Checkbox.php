@@ -51,11 +51,11 @@ class Checkbox extends Component
 
     public $tagBoxs;
 
-    /*
-      * Runs once, immediately after the component is instantiated,
-      * but before render() is called
-      */
-    public function mount($title, $name, $status, $isExpanded, $type, $repository, $emitTo, $repoAction,
+  /*
+    * Runs once, immediately after the component is instantiated,
+    * but before render() is called
+    */
+  public function mount($title, $name, $status = true, $isExpanded = true, $type, $repository, $emitTo, $repoAction,
                         $repoAttribute, $listener, $repoMethod = 'getItemsBy', $layout = 'checkbox-layout-1',
                         $classes = 'col-12', $params = [], $wrapperClasses = 'row', $childrenClasses = 'col-12', $tagBoxs = true)
     {
