@@ -430,7 +430,7 @@
         font-size: {{$createdDateTextSize}}px;
         letter-spacing: {{$createdDateLetterSpacing}}px;
         text-shadow:  {{$createdDateShadow}};
-        @if($createdDateColor=="text-custom") color: {{$createDateColorCustom}}; @endif
+        @if($createdDateColor=="text-custom") color: {{$createdDateColorCustom}}; @endif
     }
     #{{$id}} .item-view-more-button .view-more-button {
          text-shadow:  {{$buttonShadow}};
