@@ -47,7 +47,10 @@ return [
     "newExportHelpText" => 'Exportar <b class="text-blue-grey">{pageTitle}</b> con los filtros actuales (sin paginación)',
     "newExportItemHelpText" => 'Exportar <b class="text-blue-grey">Registro ID: {id}</b>',
     "exportReady" => "Tu report <b>{fileName}</b> está listo!",
-    "noOrganization" => "Todavía no perteneces a una organización"
+    "noOrganization" => "Todavía no perteneces a una organización",
+    "refreshAppVersion" => "Estamos creando nuevas funciones. Presione el botón Actualizar para obtener la última versión.",
+    "updateAvailable" => "Actualización disponible",
+    "updateNow" => "Actualizar ahora"
   ],
   "startTime" => "Hora de inicio",
   "endTime" => "Hora de finalización",

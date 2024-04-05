@@ -47,7 +47,10 @@ return [
     "newExportHelpText" => 'Export <b class="text-blue-grey">{pageTitle}</b> with current filters (without pagination)',
     "newExportItemHelpText" => 'Export <b class="text-blue-grey">Record ID: {id}</b>',
     "exportReady" => "Your <b>{fileName}</b> report is Ready!",
-    "noOrganization" => "You do not belong to an organization"
+    "noOrganization" => "You do not belong to an organization",
+    "refreshAppVersion" => "We are creating new features, please hit the Update button to get the last version!",
+    "updateAvailable" => "Update available",
+    "updateNow" => "Update now"
   ],
   "startTime" => "Start time",
   "endTime" => "End time",
