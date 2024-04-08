@@ -2011,6 +2011,7 @@ return [
       "title" => [
         "name" => "title",
         "type" => "input",
+        "columns" => "col-12",
         "isTranslatable" => true,
         "props" => [
           "label" => "Titulo"
@@ -2019,9 +2020,37 @@ return [
       "subtitle" => [
         "name" => "subtitle",
         "type" => "input",
+        "columns" => "col-12",
         "isTranslatable" => true,
         "props" => [
           "label" => "Subtitle"
+        ]
+      ],
+      "titlePhone" => [
+        "name" => "titlePhone",
+        "type" => "input",
+        "columns" => "col-12",
+        "isTranslatable" => true,
+        "props" => [
+            "label" => "Titulo Teléfono"
+        ]
+      ],
+      "titleAddress" => [
+        "name" => "titleAddress",
+        "type" => "input",
+        "columns" => "col-12",
+        "isTranslatable" => true,
+        "props" => [
+            "label" => "Titulo Dirección"
+        ]
+      ],
+      "titleEmail" => [
+        "name" => "titleEmail",
+        "type" => "input",
+        "columns" => "col-12",
+        "isTranslatable" => true,
+        "props" => [
+            "label" => "Titulo Correo Electrónico"
         ]
       ],
     ],
@@ -2031,13 +2060,31 @@ return [
         "fields" => [
           "layout" => [
             "name" => "layout",
-            "value" => "info-contact-layout-1",
+            "value" => "info-contact-layout-2",
             "type" => "select",
             "props" => [
-              "label" => "Plantilla Para Información De Contacto",
+              "label" => "Plantilla",
               "options" => [
-                ["label" => "Información De Contacto Plantilla 1", "value" => "info-contact-layout-1"],
+                ["label" => "Plantilla 1", "value" => "info-contact-layout-1"],
+                ["label" => "Plantilla 2", "value" => "info-contact-layout-2"],
               ]
+            ]
+          ],
+          "container" => [
+            "name" => "container",
+            "value" => "container",
+            "type" => "select",
+            "props" => [
+                "label" => "Tipo de contenedor",
+                "options" => $vAttributes["containers"]
+            ]
+          ],
+          "contactClass" => [
+            "name" => "contactClass",
+            "type" => "input",
+            "columns" => "col-12",
+            "props" => [
+                "label" => "Clases Generales",
             ]
           ],
           "withTitle" => [
@@ -2054,11 +2101,11 @@ return [
             "value" => "text-left",
             "type" => "select",
             "props" => [
-              "label" => "Alineación del titulo",
+              "label" => "Alineación del Titulo",
               "options" => [
-                ["label" => "Alineación a la Izquierda", "value" => "text-left"],
-                ["label" => "Alineación a la Derecha", "value" => "text-right"],
-                ["label" => "Alineación Centrado", "value" => "text-center"],
+                ["label" => "Izquierda", "value" => "text-left"],
+                ["label" => "Derecha", "value" => "text-right"],
+                ["label" => "Centrado", "value" => "text-center"],
               ]
             ]
           ],
@@ -2076,24 +2123,26 @@ return [
             "value" => "text-left",
             "type" => "select",
             "props" => [
-              "label" => "Alineación del subtitulo",
+              "label" => "Alineación del Subtitulo",
               "options" => [
-                ["label" => "Alineación a la Izquierda", "value" => "text-left"],
-                ["label" => "Alineación a la Derecha", "value" => "text-right"],
-                ["label" => "Alineación Centrado", "value" => "text-center"],
+                ["label" => "Izquierda", "value" => "text-left"],
+                ["label" => "Derecha", "value" => "text-right"],
+                ["label" => "Centrado", "value" => "text-center"],
               ]
             ]
           ],
           "alignIcons" => [
             "name" => "alignIcons",
-            "value" => "justify-content-left",
+            "value" => "align-self-start",
             "type" => "select",
             "props" => [
-              "label" => "Alineación Iconos Personalizados",
+              "label" => "Alineación Icono Principal",
               "options" => [
-                ["label" => "Alineación a la Izquierda", "value" => "justify-content-left"],
-                ["label" => "Alineación a la Derecha", "value" => "justify-content-right"],
-                ["label" => "Alineación Centrado", "value" => "justify-content-center"],
+                ["label" => "Arriba", "value" => "align-self-start"],
+                ["label" => "Abajo", "value" => "align-self-end"],
+                ["label" => "Centrado", "value" => "align-self-center"],
+                ["label" => "Baseline", "value" => "align-self-baseline"],
+                ["label" => "Stretch", "value" => "align-self-stretch"],
               ]
             ]
           ],
@@ -2104,22 +2153,22 @@ return [
             "props" => [
               "label" => "Alineación Información",
               "options" => [
-                ["label" => "Alineación a la Izquierda", "value" => "justify-content-left"],
-                ["label" => "Alineación a la Derecha", "value" => "justify-content-right"],
-                ["label" => "Alineación Centrado", "value" => "justify-content-center"],
+                ["label" => "Izquierda", "value" => "justify-content-left"],
+                ["label" => "Derecha", "value" => "justify-content-right"],
+                ["label" => "Centrado", "value" => "justify-content-center"],
               ]
             ]
           ],
           "alignTitleInfoContact" => [
             "name" => "alignTitleInfoContact",
-            "value" => "justify-content-left",
+            "value" => "justify-content-start",
             "type" => "select",
             "props" => [
               "label" => "Alineación Titulo Información",
               "options" => [
-                ["label" => "Alineación a la Izquierda", "value" => "justify-content-left"],
-                ["label" => "Alineación a la Derecha", "value" => "justify-content-right"],
-                ["label" => "Alineación Centrado", "value" => "justify-content-center"],
+                ["label" => "Izquierda", "value" => "justify-content-start"],
+                ["label" => "Derecha", "value" => "justify-content-end"],
+                ["label" => "Centrado", "value" => "justify-content-center"],
               ]
             ]
           ],
@@ -2132,21 +2181,12 @@ return [
               "label" => "Orden de los elementos"
             ]
           ],
-          "container" => [
-            "name" => "container",
-            "value" => "container",
-            "type" => "select",
-            "props" => [
-              "label" => "Tipo de contenedor",
-              "options" => $vAttributes["containers"]
-            ]
-          ],
           "contentPaddingY" => [
             "name" => "contentPaddingY",
             "value" => "",
             "type" => "select",
             "props" => [
-              "label" => "Padding en Eje Y Bloque Información",
+              "label" => "Espaciado Y (Información)",
               "options" => [
                 ["label" => "Sin Padding", "value" => ""],
                 ["label" => "Padding de 1 Pixel", "value" => "py-1"],
@@ -2162,7 +2202,7 @@ return [
             "value" => "",
             "type" => "select",
             "props" => [
-              "label" => "Padding en Eje X Bloque Información",
+              "label" => "Espaciado X (Información)",
               "options" => [
                 ["label" => "Sin Padding", "value" => ""],
                 ["label" => "Padding de 1 Pixel", "value" => "px-1"],
@@ -2178,7 +2218,7 @@ return [
             "value" => "",
             "type" => "select",
             "props" => [
-              "label" => "Margin en Eje Y Bloque Información",
+              "label" => "Margen Y (Información)",
               "options" => [
                 ["label" => "Sin Margin", "value" => ""],
                 ["label" => "Margin de 1 Pixel", "value" => "my-1"],
@@ -2194,7 +2234,7 @@ return [
             "value" => "",
             "type" => "select",
             "props" => [
-              "label" => "Margin en Eje X Bloque Información",
+              "label" => "Margen X (Información)",
               "options" => [
                 ["label" => "Sin Margin", "value" => ""],
                 ["label" => "Margin de 1 Pixel", "value" => "mx-1"],
@@ -2210,7 +2250,7 @@ return [
             "value" => "",
             "type" => "select",
             "props" => [
-              "label" => "Tipo de Borde Bloque Información",
+              "label" => "Tipo de Borde (Información)",
               "options" => [
                 ["label" => "Sin Borde", "value" => ""],
                 ["label" => "Borde Completo", "value" => "border"],
@@ -2226,7 +2266,7 @@ return [
             "value" => "1",
             "type" => "select",
             "props" => [
-              "label" => "Grosor del Borde Bloque Información",
+              "label" => "Grosor del Borde (Información)",
               "options" => [
                 ["label" => "0", "value" => "0"],
                 ["label" => "1px", "value" => "1"],
@@ -2241,30 +2281,55 @@ return [
             "name" => "contentBorderColor",
             "type" => "inputColor",
             "props" => [
-              "label" => "Color Del Borde Bloque Información"
+              "label" => "Color Del Borde (Información)"
+            ]
+          ],
+          "contentInline" => [
+            "name" => "contentInline",
+            "value" => "0",
+            "type" => "select",
+            "props" => [
+                "label" => "Orientación",
+                "options" => $vAttributes["validation"]
             ]
           ],
           "fontSizeTitleSection" => [
             "name" => "fontSizeTitleSection",
             "type" => "input",
             "props" => [
-              "label" => "Tamaño de fuente Titulo Principal",
+              "label" => "Tamaño Titulo",
               "type" => "number"
+            ]
+          ],
+          "titleSectionColorByClass" => [
+            "name" => "titleSectionColorByClass",
+            "type" => "select",
+            "props" => [
+                "label" => "Color Class Titulo",
+                "options" => $vAttributes["textColors"]
             ]
           ],
           "colorTitleSection" => [
             "name" => "colorTitleSection",
             "type" => "inputColor",
             "props" => [
-              "label" => "Color Titulo Principal"
+              "label" => "Color Titulo"
             ]
           ],
           "fontSizeSubtitleSection" => [
             "name" => "fontSizeSubtitleSection",
             "type" => "input",
             "props" => [
-              "label" => "Tamaño de fuente Subtitulo",
+              "label" => "Tamaño de Subtitulo",
               "type" => "number"
+            ]
+          ],
+          "subtitleSectionColorByClass" => [
+            "name" => "subtitleSectionColorByClass",
+            "type" => "select",
+            "props" => [
+                "label" => "Color Class Subtitulo",
+                "options" => $vAttributes["textColors"]
             ]
           ],
           "colorSubtitleSection" => [
@@ -2278,36 +2343,51 @@ return [
             "name" => "fontSizeTitleContact",
             "type" => "input",
             "props" => [
-              "label" => "Tamaño de fuente Titulo Información",
+              "label" => "Tamaño de Información",
               "type" => "number"
+            ]
+          ],
+          "titleContactColorByClass" => [
+            "name" => "titleContactColorByClass",
+            "type" => "select",
+            "props" => [
+                "label" => "Color Class Información",
+                "options" => $vAttributes["textColors"]
             ]
           ],
           "colorTitleContact" => [
             "name" => "colorTitleContact",
             "type" => "inputColor",
             "props" => [
-              "label" => "Color Titulo Información"
+              "label" => "Color Información"
             ]
           ],
           "fontSizeIcons" => [
             "name" => "fontSizeIcons",
             "type" => "input",
             "props" => [
-              "label" => "Tamaño de fuente Iconos",
+              "label" => "Tamaño Iconos",
               "type" => "number"
             ]
           ],
           "colorIcons" => [
-            "name" => "colorTitleContact",
+            "name" => "colorIcons",
             "type" => "inputColor",
             "props" => [
               "label" => "Color Iconos"
             ]
           ],
+          "colorContentContact" => [
+            "name" => "colorContentContact",
+            "type" => "input",
+            "props" => [
+                "label" => "Color Enlaces",
+            ]
+          ],
         ]
       ],
       "phone" => [
-        "title" => "Sección Teléfono",
+        "title" => "Teléfono",
         "fields" => [
           "withPhone" => [
             "name" => "withPhone",
@@ -2327,19 +2407,12 @@ return [
               "options" => $vAttributes["validation"]
             ]
           ],
-          "titlePhone" => [
-            "name" => "titlePhone",
-            "type" => "input",
-            "props" => [
-              "label" => "Titulo Teléfono"
-            ]
-          ],
-          "withIconCustomPhone" => [
-            "name" => "withIconCustomPhone",
+          "withIconPhone" => [
+            "name" => "withIconPhone",
             "value" => "1",
             "type" => "select",
             "props" => [
-              "label" => "Mostrar Icono Personalizado",
+              "label" => "Mostrar Icono",
               "options" => $vAttributes["validation"]
             ]
           ],
@@ -2347,7 +2420,7 @@ return [
             "name" => "iconCustomPhone",
             "type" => "input",
             "props" => [
-              "label" => "Icono Personalizado Teléfono"
+              "label" => "Icono Personalizado "
             ]
           ],
           "withIconComponentPhone" => [
@@ -2362,7 +2435,7 @@ return [
         ]
       ],
       "address" => [
-        "title" => "Sección Dirección",
+        "title" => "Dirección",
         "fields" => [
           "withAddress" => [
             "name" => "withAddress",
@@ -2378,31 +2451,25 @@ return [
             "value" => "1",
             "type" => "select",
             "props" => [
-              "label" => "Mostrar Titulo Dirección",
+              "label" => "Mostrar Titulo",
               "options" => $vAttributes["validation"]
             ]
           ],
-          "titleAddress" => [
-            "name" => "titleAddress",
-            "type" => "input",
-            "props" => [
-              "label" => "Titulo Dirección"
-            ]
-          ],
-          "withIconCustomAddress" => [
-            "name" => "withIconCustomAddress",
+          "withIconAddress" => [
+            "name" => "withIconAddress",
             "value" => "1",
             "type" => "select",
             "props" => [
-              "label" => "Mostrar Icono Personalizado",
+              "label" => "Mostrar Icono",
               "options" => $vAttributes["validation"]
             ]
           ],
           "iconCustomAddress" => [
             "name" => "iconCustomAddress",
+            "value" =>  "fa-solid fa-location-dot",
             "type" => "input",
             "props" => [
-              "label" => "Icono Personalizado Dirección"
+              "label" => "Icono Personalizado"
             ]
           ],
           "withIconComponentAddress" => [
@@ -2417,7 +2484,7 @@ return [
         ]
       ],
       "email" => [
-        "title" => "Sección Correo Electrónico",
+        "title" => "Correo Electrónico",
         "fields" => [
           "withEmail" => [
             "name" => "withEmail",
@@ -2433,19 +2500,12 @@ return [
             "value" => "1",
             "type" => "select",
             "props" => [
-              "label" => "Mostrar Titulo Correo Electrónico",
+              "label" => "Mostrar Titulo",
               "options" => $vAttributes["validation"]
             ]
           ],
-          "titleEmail" => [
-            "name" => "titleEmail",
-            "type" => "input",
-            "props" => [
-              "label" => "Titulo Correo Electrónico"
-            ]
-          ],
-          "withIconCustomEmail" => [
-            "name" => "withIconCustomEmail",
+          "withIconEmail" => [
+            "name" => "withIconEmail",
             "value" => "1",
             "type" => "select",
             "props" => [
@@ -2457,7 +2517,7 @@ return [
             "name" => "iconCustomEmail",
             "type" => "input",
             "props" => [
-              "label" => "Icono Personalizado Correo Electrónico"
+              "label" => "Icono Personalizado"
             ]
           ],
           "withIconComponentEmail" => [
@@ -2472,7 +2532,7 @@ return [
         ]
       ],
       "socialNetworks" => [
-        "title" => "Sección Redes Sociales",
+        "title" => "Redes Sociales",
         "fields" => [
           "withSocialNetworks" => [
             "name" => "withSocialNetworks",
@@ -2483,27 +2543,16 @@ return [
               "options" => $vAttributes["validation"]
             ]
           ],
-          "layoutSocialNetwork" => [
-            "name" => "layoutSocialNetwork",
-            "value" => "social-layout-1",
-            "type" => "select",
-            "props" => [
-              "label" => "Plantilla Para Redes Sociales",
-              "options" => [
-                ["label" => "Redes Sociales Plantilla 1", "value" => "social-layout-1"],
-              ]
-            ]
-          ],
           "alignSocialNetwork" => [
             "name" => "alignSocialNetwork",
-            "value" => "justify-content-left",
+            "value" => "justify-content-start",
             "type" => "select",
             "props" => [
-              "label" => "Alineación Redes Sociales",
+              "label" => "Alineación",
               "options" => [
-                ["label" => "Alineación a la Izquierda", "value" => "justify-content-left"],
-                ["label" => "Alineación a la Derecha", "value" => "justify-content-right"],
-                ["label" => "Alineación Centrado", "value" => "justify-content-center"],
+                ["label" => "Izquierda", "value" => "justify-content-start"],
+                ["label" => "Derecha", "value" => "justify-content-end"],
+                ["label" => "Centrado", "value" => "justify-content-center"],
               ]
             ]
           ],
