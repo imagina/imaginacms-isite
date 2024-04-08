@@ -10,7 +10,7 @@
         {{$subtitle}}
       </div>
     @endif
-    <div class="d-flex flex-column">
+    <div class="group-contact">
     @if($withPhone)
       <div class="info component-phone {{$orderInfo['phone']}} {{$contentPaddingY}} {{$contentPaddingX}} {{$contentMarginY}} {{$contentMarginX}}">
         <div class="row">
@@ -86,6 +86,10 @@
         {{$contentBorderType}}-color: {{$contentBorderColor}};
     }
     @endif
+    #{{$id}} .group-contact {
+        display: flex;
+        flex-direction: column;
+    }
     #{{$id}} .title-section {
         @if($titleSectionColorByClass=='text-custom') color: {{$colorTitleSection}}; @endif
         font-size: {{$fontSizeTitleSection}}px;
