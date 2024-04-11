@@ -26,7 +26,7 @@
 
           <div class="item-image {{$col1}} {{$imagePositionVertical}} @if($withImageOpacity) {{$imageOpacityColor}} {{$imageOpacityDirection}} @endif">
             <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
-                                   :url="$item->url ?? null" :isMedia="true" :target="$target"
+                                   :url="$withUrl ? $item->url ?? null : null" :isMedia="true" :target="$target"
                                    :withVideoControls="$videoControls" :loopVideo="$videoLoop"
                                    :autoplayVideo="$videoAutoplay" :mutedVideo="$videoMuted"
                                    imgClasses="img-style" imgStyles="width:{{$imageWidth}}% !important; height:{{$imageHeight}};"
@@ -44,42 +44,42 @@
 
           @if($withTitle)
             <div class="{{$orderClasses["title"] ?? 'order-1'}} item-title">
-              @if(isset($item->url) && !empty($item->url))
+              @if(isset($item->url) && !empty($item->url) && $withUrl)
                 <a href="{{$item->url}}" target="{{$target}}" class="{{$titleColor}}">
               @endif
-                    <{{$titleHead}} class="title d-flex {{$titleClasses}} {{empty($item->url) ? $titleColor : '' }} {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}} {{$titleMarginT}} {{$titleMarginB}}">
+                    <{{$titleHead}} class="title d-flex {{$titleClasses}} {{empty($item->url) || !$withUrl ? $titleColor : '' }} {{$titleAlignVertical}} {{$titleAlign}} {{$titleTextWeight}} {{$titleTextTransform}} {{$titleMarginT}} {{$titleMarginB}}">
                                   @if($titleVineta) <i class="{{$titleVineta}} {{$titleVinetaColor}} mr-2"></i>  @endif
                                   <span>{!! Str::limit( $item->title ?? $item->name ?? '', $numberCharactersTitle) !!}</span>
                     </{{$titleHead}}>
-              @if(isset($item->url) && !empty($item->url))
+              @if(isset($item->url) && !empty($item->url) && $withUrl)
                 </a>
               @endif
             </div>
           @endif
           @if($withCreatedDate && isset($item->created_at))
             <div class="{{$orderClasses["date"] ?? 'order-2'}} item-created-date {{$createdDateAlign}}">
-              @if(isset($item->url)&& !empty($item->url))
+                @if(isset($item->url) && !empty($item->url) && $withUrl)
                 <a href="{{$item->url}}" target="{{$target}}">
                   @endif
                   <div
                     class="created-date {{$createdDateClasses}} {{$createdDateTextWeight}} {{$createdDateColor}} {{$createdDateMarginT}} {{$createdDateMarginB}}">
                     {{ $item->created_at->format($formatCreatedDate) }}
                   </div>
-                  @if(isset($item->url) && !empty($item->url))
+                  @if(isset($item->url) && !empty($item->url) && $withUrl)
                 </a>
               @endif
             </div>
           @endif
           @if($withUser && ( isset($item->user)))
             <div class="{{$orderClasses["user"] ?? 'order-3'}} item-user {{$userAlign}}">
-              @if(isset($item->url)&& !empty($item->url))
+                @if(isset($item->url) && !empty($item->url) && $withUrl)
                 <a href="{{$item->url}}" target="{{$target}}">
                   @endif
                   <div
                     class="user {{$userTextWeight}} {{$userColor}} {{$userMarginT}} {{$userMarginB}}">
                     Por: {{$item->user->present()->fullname()}}
                   </div>
-                  @if(isset($item->url) && !empty($item->url))
+                  @if(isset($item->url) && !empty($item->url) && $withUrl)
                 </a>
               @endif
             </div>
@@ -97,17 +97,17 @@
               @endif
             </div>
           @endif
-          @if($withSummary && ( isset($item->summary) || isset($item->description) || isset($item->custom_html)) )
-            @if(trim($item->summary) || trim($item->description) || trim($item->custom_html) )
+          @if($withSummary && ( isset($item->summary) || isset($item->description) || isset($item->custom_html) || isset($item->body)) )
+            @if(trim($item->summary) || trim($item->description) || trim($item->custom_html) || trim($item->body))
               <div class=" {{$orderClasses["summary"] ?? 'order-5'}} item-summary {{$summaryAlign}}">
-              @if(isset($item->url) && !empty($item->url))
+              @if(isset($item->url) && !empty($item->url) && $withUrl)
                 <a href="{{$item->url}}" target="{{$target}}">
                   @endif
 
                     <div class="summary {{$summaryClasses}} {{$summaryTextWeight}} {{$summaryColor}} {{$summaryMarginT}} {{$summaryMarginB}} {{$contentMarginInsideX}}">
                         {!! $summary !!}
                     </div>
-                  @if(isset($item->url) && !empty($item->url))
+                  @if(isset($item->url) && !empty($item->url) && $withUrl)
                 </a>
               @endif
             </div>
@@ -137,18 +137,18 @@
               @endif
             </div>
           @endif
-              
+
               @foreach($extraOrderClassesFields as $key => $extraOrderClassesField )
-    
+
                 @if(isset($item->{$extraOrderClassesField}) || isset($item->options->{$extraOrderClassesField}))
                   <div class="{{$orderClasses[$extraOrderClassesField] ?? 'order-6'}} item-{{$extraOrderClassesField}}">
-        
+
                     @if(isset($item->{$extraOrderClassesField}))
                       {{ $item->{$extraOrderClassesField} }}
                     @elseif(isset($item->options->{$extraOrderClassesField}))
                       {{ $item->options->{$extraOrderClassesField} }}
                     @endif
-      
+
                   </div>
                 @endif
               @endforeach
@@ -321,7 +321,6 @@
             z-index: 1;
         @endif
     }
-
     #{{$id}} .item-image picture {
         display: block !important;
         padding: {{$imagePicturePadding}}px;
@@ -431,7 +430,7 @@
         font-size: {{$createdDateTextSize}}px;
         letter-spacing: {{$createdDateLetterSpacing}}px;
         text-shadow:  {{$createdDateShadow}};
-        @if($createdDateColor=="text-custom") color: {{$createDateColorCustom}}; @endif
+        @if($createdDateColor=="text-custom") color: {{$createdDateColorCustom}}; @endif
     }
     #{{$id}} .item-view-more-button .view-more-button {
          text-shadow:  {{$buttonShadow}};

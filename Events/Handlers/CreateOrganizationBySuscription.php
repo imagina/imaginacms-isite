@@ -4,6 +4,7 @@ namespace Modules\Isite\Events\Handlers;
 
 use Modules\User\Entities\Sentinel\User;
 use Modules\Isite\Entities\Organization;
+use Modules\Isite\Entities\Layout;
 use Modules\Iprofile\Entities\Role;
 
 use Illuminate\Http\Request;
@@ -13,29 +14,31 @@ use Modules\Isite\Events\OrganizationWasCreated;
 
 class CreateOrganizationBySuscription
 {
-    private $tenantService;
 
-    private $rolesToTenant;
+  private $tenantService;
+  private $rolesToTenant;
   private $log = "Isite:: Events|CreateOrganizationBySuscription|";
   private $authApi;
 
-    public function __construct(
-  ) {
-        $this->tenantService = app("Modules\Isite\Services\TenantService");
+  public function __construct(
+  ){
+    $this->tenantService = app("Modules\Isite\Services\TenantService");
     $this->rolesToTenant = json_decode(setting("isite::rolesToTenant",null,"[]"));
     $this->authApi = app("Modules\Iprofile\Http\Controllers\Api\AuthApiController");
-    }
+  }
 
-    public function handle($event)
-    {
-    
+  public function handle($event)
+  {
+
     \Log::info($this->log);
 
-        try {
-            $suscription = $event->model;
+    try {
 
-            if ($suscription->entity == "Modules\User\Entities\Sentinel\User") {
-                $user = User::find($suscription->entity_id);
+      $suscription = $event->model;
+
+      if($suscription->entity=="Modules\User\Entities\Sentinel\User"){
+
+        $user = User::find($suscription->entity_id);
 
         if(count($user->organizations)>0){
 
@@ -54,9 +57,9 @@ class CreateOrganizationBySuscription
               //Logout from Wizard (Central DB)
               if(\Auth::check())
                 $this->authApi->logout(app('request'));
-              
+
               //Rol in Central
-              $user = $this->updateRoleUser($user,true);
+              $user = $this->updateRoleUser($user,$suscription,true);
 
               //Set Core
               config(['asgard.core.config.userstamping' => false]);
@@ -70,31 +73,29 @@ class CreateOrganizationBySuscription
 
             }else{
               //LIKE DEEV
-                $user = $this->updateRoleUser($user);
-                $organization = $this->createTenant($user, $suscription);
-
-                tenancy()->initialize($organization->id);
-
-                event(new OrganizationWasCreated($organization));
+              $user = $this->updateRoleUser($user,$suscription);
+              $organization = $this->createTenant($user,$suscription);
+              tenancy()->initialize($organization->id);
+              event(new OrganizationWasCreated($organization));
 
               return ['data' => true];
             }
 
-            }
-      
+          }
+
         }
-        
+
       }
-      
-        } catch (\Exception $e) {
+
+    } catch (\Exception $e) {
         \Log::info($e->getMessage().' '.$e->getFile().' '.$e->getLine());
-            dd($e);
-            \Log::info($e->getMessage().' '.$e->getFile().' '.$e->getLine());
-        }
+        dd($e);
     }
 
-  public function updateRoleUser(object $user,$central = false)
-    {
+  }
+
+  public function updateRoleUser(object $user,$suscription,$central = false)
+  {
 
     \Log::info($this->log.'UpdateRoleUser');
 
@@ -103,31 +104,47 @@ class CreateOrganizationBySuscription
       $role = Role::where("slug", config("tenancy.defaultCentralRole"))->first();
       $roles[] = $role->id;
     }else{
-      $roles = $this->rolesToTenant;
+
+      //Case Like DEEV
+      //Get layout selected
+      $layout = Layout::find($suscription->options->layout_id);
+      //Get Layout Rol
+      $layoutRoles = config("asgard.icustom.config.layoutsRol");
+
+      if(!is_null($layout) && !is_null($layoutRoles)){
+        $sn = $layout->system_name;
+        $role = Role::where("slug",$layoutRoles[$sn])->first();
+        $roles[] = $role->id;
+      }else{
+        $roles = $this->rolesToTenant;
+      }
+     
     }
 
     $user->roles()->sync($roles);
 
-        return $user;
-    }
+    return $user;
 
-    public function createTenant(object $user, object $suscription)
-    {
+  }
+
+  public function createTenant(object $user,object $suscription)
+  {
 
     \Log::info($this->log.'CreateTenant');
 
-        $data = [
-            'user' => $user,
-            'title' => $suscription->options->organization_name,
-            'layout_id' => (int) $suscription->options->layout_id,
-            'category_id' => (int) $suscription->options->category_id,
-            'role_id' => (int) $this->rolesToTenant[0], //To sync in table user_organization to after get example: $organization->users->first()->email
-        ];
+    $data = [
+      'user' => $user,
+      'title' => $suscription->options->organization_name,
+      'layout_id' => (int)$suscription->options->layout_id,
+      'category_id' => (int)$suscription->options->category_id,
+      'role_id' => (int)$this->rolesToTenant[0] //To sync in table user_organization to after get example: $organization->users->first()->email
+    ];
 
-        $organization = $this->tenantService->createTenant($data);
+    $organization = $this->tenantService->createTenant($data);
 
-        return $organization;
-    }
+    return $organization;
+
+  }
 
   public function createMultiTenant(object $user,object $suscription)
   {
@@ -169,9 +186,9 @@ class CreateOrganizationBySuscription
      */
     $response = $this->tenantService->createTenantInMultiDatabase($data);
 
-    
+
     return $response;
-   
+
   }
-  
+
 }
