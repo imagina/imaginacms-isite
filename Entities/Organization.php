@@ -223,20 +223,25 @@ class Organization extends BaseTenant implements TenantWithDatabase
 
       //Get Emails and Broadcast
       $user = $this->users->first();
-      $result['email'] = $user->email;
 
-      //Message
-      $message = trans("isite::organizations.messages.organization updated basic", [
-        'status' => $this->statusName,
-        'url' => $this->url,
-        'admin' => url('/iadmin')
-      ]);
+      if(!is_null($user)){
+        $result['email'] = $user->email;
 
-      $response['updated'] = [
-        "title" => trans("isite::organizations.title.organization updated"),
-        "message" => $message,
-        "email" => $result['email']
-      ];
+        //Message
+        $message = trans("isite::organizations.messages.organization updated basic", [
+          'status' => $this->statusName,
+          'url' => $this->url,
+          'admin' => url('/iadmin')
+        ]);
+
+        $response['updated'] = [
+          "title" => trans("isite::organizations.title.organization updated"),
+          "message" => $message,
+          "email" => $result['email']
+        ];
+
+      }
+      
     }
 
     return $response;
