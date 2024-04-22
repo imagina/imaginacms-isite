@@ -92,9 +92,9 @@ if (!function_exists('getEditLink')) {
 
 if (!function_exists('isiteFormatMoney')) {
 
-  function isiteFormatMoney($value, $showCurrencyCode = false)
+  function isiteFormatMoney($value, $showCurrencyCode = false, $config = "asgard.isite.config.isiteFormatMoney")
   {
-    $format = (object)(Config::get('asgard.isite.config.isiteFormatMoney') ?? [
+    $format = (object)(Config::get($config) ?? [
       'decimals' => 0,
       'decimal_separator' => '',
       'thousands_separator' => '.'
@@ -299,7 +299,7 @@ if (!function_exists('switchDataConnection')) {
   function switchDataConnection($centralOrg = null)
   {
 
-    if (isset(tenant()->id)){
+    if (isset(tenant()->id)) {
       $tenantId = tenant()->id;
       \Log::info("Isite: Helper|switchDataConnection|tenantId: " . $tenantId);
 
