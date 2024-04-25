@@ -57,7 +57,7 @@
               <i class="{{$iconEmail}}"></i>
             </div>
           @endif
-          <div class="col-10 {{$displayFlex}}">
+          <div class="col {{$displayFlex}}">
             @if($withTitleEmail)
               <div class="title-contact {{$alignTitleInfoContact}} {{$titleContactColorByClass}}">
                 {{$titleEmail}}
