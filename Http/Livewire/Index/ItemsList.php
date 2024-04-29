@@ -249,6 +249,7 @@ class ItemsList extends Component
       "page" => $this->page,
       "filter" => $this->filter,
       "order" => $this->order,
+      "orderByRaw" => $this->orderByRaw ?? null,
       "fields" => $this->moduleParams['fields'] ?? null,
     ];
     if (isset($this->moduleParams['filter']) && !empty($this->moduleParams['filter'])) {

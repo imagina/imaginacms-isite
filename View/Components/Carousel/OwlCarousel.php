@@ -229,7 +229,8 @@ class OwlCarousel extends Component
             "take" => $this->params["take"] ?? 12,
             "page" => $this->params["page"] ?? 1,
             "filter" => $this->params["filter"] ?? [],
-            "order" => $this->params["order"] ?? null
+            "order" => $this->params["order"] ?? null,
+            "orderByRaw" => $this->params["orderByRaw"] ?? null,
         ];
     }
 
