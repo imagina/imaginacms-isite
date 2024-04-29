@@ -47,7 +47,10 @@ return [
     "newExportHelpText" => 'Exportar <b class="text-blue-grey">{pageTitle}</b> con los filtros actuales (sin paginación)',
     "newExportItemHelpText" => 'Exportar <b class="text-blue-grey">Registro ID: {id}</b>',
     "exportReady" => "Tu report <b>{fileName}</b> está listo!",
-    "noOrganization" => "Todavía no perteneces a una organización"
+    "noOrganization" => "Todavía no perteneces a una organización",
+    "refreshAppVersion" => "Estamos creando nuevas funciones. Presione el botón Actualizar para obtener la última versión.",
+    "updateAvailable" => "Actualización disponible",
+    "updateNow" => "Actualizar ahora"
   ],
   "startTime" => "Hora de inicio",
   "endTime" => "Hora de finalización",
@@ -642,8 +645,8 @@ return [
     "syncStepOne" => "Paso 1: Accede a tu Documento",
     "syncBodyStepOne" => "Para acceder a tu documento, simplemente haz clic en el enlace a continuación:",
     "syncBodyLinkStepOne" => "Accede aquí",
-    "syncStepTwo" => "Paso 2: Exportar Categorias",
-    "syncBodyStepTwo" => "Antes de importar productos de manera efectiva, asegúrate de realizar primero una exportación de categorías. Este paso es esencial para que la importación de productos sea exitosa.",
+    "syncStepTwo" => "Paso 2: Exportar Dependencias",
+    "syncBodyStepTwo" => "Antes de importar los datos de manera efectiva, asegúrate de realizar primero una exportación de dependencias. Este paso es esencial para que la importación sea exitosa.",
     "syncImportantNoteBody" => "Si los botones no están habilitados, significa que se está ejecutando un proceso de sincronización masiva para este módulo. Hasta que este proceso no termine, no tendrás acceso a las acciones.",
     "import" => "Importar",
     "exportDataTitle" => "Exporta tus Datos",
@@ -659,7 +662,9 @@ return [
     "inProgress" => "En progreso...",
     "failedSync" => "La sincronización fallo",
     "syncFinished" => "¡La sincronización de :entity se ha completado con éxito!",
-    "syncCompleted" => "Sincronización de datos completada"
+    "syncCompleted" => "Sincronización de datos completada",
+    "dependencies" => "Dependencias",
+    "updateNewVersion" => "<b>¡Tenemos nuevas mejoras para ti!</b><br/>Es necesario actualizar uno de tus archivos. Es importante que sepas que al realizar esta actualización, la información contenida en el archivo actual será borrada. Te recomendamos respaldar cualquier información relevante que desees conservar antes de proceder con la actualización."
   ],
   "topLeft" => "Arriba-Izquierda",
   "top" => "Arriba",

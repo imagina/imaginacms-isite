@@ -90,7 +90,8 @@ class Organization extends BaseTenant implements TenantWithDatabase
     return true;
   }
 
-  function getFillables(){
+  function getFillables()
+  {
     return $this->fillable;
   }
 
@@ -127,7 +128,7 @@ class Organization extends BaseTenant implements TenantWithDatabase
     $defaultDomain = $domains->where("type", "default")->first()->domain ?? $this->slug ?? null;
 
     if (!empty($customDomain)) {
-      return "https://".$customDomain;
+      return "https://" . $customDomain;
     } elseif (!empty($defaultDomain)) {
 
       return tenant_route($defaultDomain, $currentLocale . ".$tenantRouteAlias");
@@ -191,13 +192,13 @@ class Organization extends BaseTenant implements TenantWithDatabase
     $aiModulesConfig = config("asgard.isite.config.aiModulesGenerator");
     $options = $this->options;
 
-    if(isset($options->aiModulesGenerator)){
+    if (isset($options->aiModulesGenerator)) {
       $status = 0; // Process running
 
       $allModules = (array)json_decode($options->aiModulesGenerator);
 
       //it has already been guaranteed and that they are not repeated in the insertion of the options previously
-      if(count($aiModulesConfig)==count($allModules))
+      if (count($aiModulesConfig) == count($allModules))
         $status = 1;// Process Completed
     }
 
@@ -205,41 +206,44 @@ class Organization extends BaseTenant implements TenantWithDatabase
 
   }
 
-   /**
+  /**
    * Make Notificable Params | to Trait
    * @param $event (created|updated|deleted)
    */
   public function isNotificableParams($event)
   {
+    $response = [];
 
     //Validation Event Update
-    if($event=="updated"){
+    if ($event == "updated") {
       //Validation Att Status Change
-      if(!$this->wasChanged("status")){
+      if (!$this->wasChanged("status")) {
         return null;
       }
+
+      //Get Emails and Broadcast
+      $user = $this->users->first();
+
+      if(!is_null($user)){
+        $result['email'] = $user->email;
+
+        //Message
+        $message = trans("isite::organizations.messages.organization updated basic", [
+          'status' => $this->statusName,
+          'url' => $this->url,
+          'admin' => url('/iadmin')
+        ]);
+
+        $response['updated'] = [
+          "title" => trans("isite::organizations.title.organization updated"),
+          "message" => $message,
+          "email" => $result['email']
+        ];
+
+      }
+      
     }
 
-    //Get Emails and Broadcast
-    $user = $this->users->first();
-    $result['email'] = $user->email;
-
-    //Message
-    $message = trans("isite::organizations.messages.organization updated basic",[
-      'status' => $this->statusName,
-      'url' => $this->url,
-      'admin' => url('/iadmin')
-    ]);
-
-    return [
-      'updated' => [
-        "title" => trans("isite::organizations.title.organization updated"),
-        "message" => $message,
-        "email" => $result['email']
-      ],
-    ];
-
+    return $response;
   }
-
-
 }

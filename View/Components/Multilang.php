@@ -22,6 +22,12 @@ class Multilang extends Component
   public $imageComponentNamespace;
   public $imageComponent;
   public $showImage;
+  public $classSelect;
+  public $classSelectOut;
+  public $flagStyles;
+  public $flagClasses;
+  public $multiflagClasses;
+  public $linkClasses;
 
   /**
    * Create a new component instance.
@@ -40,7 +46,13 @@ class Multilang extends Component
                               $imageComponentNamespace = "Modules\Media\View\Components\SingleImage",
                               $imageComponent = "media::single-image",
                               $imageComponentAtributtes = [],
-                              $showImage = true
+                              $showImage = true,
+                              $classSelect = "",
+                              $classSelectOut = "",
+                              $flagStyles = null,
+                              $flagClasses = null,
+                              $multiflagClasses = null,
+                              $linkClasses = null
   )
   {
     $this->view = "isite::frontend.components.multilang.layouts.".$layout.".index";
@@ -59,6 +71,12 @@ class Multilang extends Component
     $this->imageComponent = $imageComponent;
     $this->imageComponentAtributtes = $imageComponentAtributtes;
     $this->showImage = $showImage;
+    $this->classSelect = $classSelect;
+    $this->classSelectOut = $classSelectOut;
+    $this->flagStyles = $flagStyles;
+    $this->flagClasses = $flagClasses;
+    $this->multiflagClasses = $multiflagClasses;
+    $this->linkClasses = $linkClasses;
   }
 
 

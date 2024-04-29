@@ -47,7 +47,10 @@ return [
     "newExportHelpText" => 'Export <b class="text-blue-grey">{pageTitle}</b> with current filters (without pagination)',
     "newExportItemHelpText" => 'Export <b class="text-blue-grey">Record ID: {id}</b>',
     "exportReady" => "Your <b>{fileName}</b> report is Ready!",
-    "noOrganization" => "You do not belong to an organization"
+    "noOrganization" => "You do not belong to an organization",
+    "refreshAppVersion" => "We are creating new features, please hit the Update button to get the last version!",
+    "updateAvailable" => "Update available",
+    "updateNow" => "Update now"
   ],
   "startTime" => "Start time",
   "endTime" => "End time",
@@ -641,8 +644,8 @@ return [
     "syncStepOne" => "Step 1: Access Your Document",
     "syncBodyStepOne" => "To access your document, simply click on the link below:",
     "syncBodyLinkStepOne" => "Access Here",
-    "syncStepTwo" => "Step 2: Export Categories",
-    "syncBodyStepTwo" => "Before effectively importing products, make sure to first perform an export of categories. This step is essential for a successful product import.",
+    "syncStepTwo" => "Step 2: Export Dependencies",
+    "syncBodyStepTwo" => "Before effectively importing data, make sure to first perform an export of dependencies. This step is essential for a successful import.",
     "syncImportantNoteBody" => "If the buttons are not enabled, it means that a bulk synchronization process is running for this module. You won't have access to actions until this process is completed.",
     "import" => "Import",
     "exportDataTitle" => "Export your Data",
@@ -658,7 +661,9 @@ return [
     "inProgress" => "In Progress...",
     "failedSync" => "Synchronization failed",
     "syncFinished" => "Synchronization of :entity has successfully completed!",
-    "syncCompleted" => "Sync Data completed"
+    "syncCompleted" => "Sync Data completed",
+    "dependencies" => "Dependencies",
+    "updateNewVersion" => "<b>We have new improvements for you!</b><br/>It's necessary to update one of your files. It's important for you to know that when performing this update, the information contained in the current file will be erased. We recommend backing up any relevant information you want to keep before proceeding with the update."
   ],
   "topLeft" => "Top-Left",
   "top" => "Top",
