@@ -3870,4 +3870,98 @@ return [
           ],
       ]
   ],
+  "multilang" => [
+    "title" => "Idiomas",
+    "systemName" => "isite::multilang",
+    "nameSpace" => "Modules\Isite\View\Components\Multilang",
+    "attributes" => [
+        "general" => [
+            "title" => "General",
+            "fields" => [
+                "layout" => [
+                    "name" => "layout",
+                    "value" => "multilang-layout-1",
+                    "columns" => "col-12",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Layout",
+                        "options" => [
+                            ["label" => "Layout 1", "value" => "multilang-layout-1"],
+                            ["label" => "Layout 2", "value" => "multilang-layout-2"],
+                            ["label" => "Layout 3", "value" => "multilang-layout-3"]
+                        ]
+                    ]
+                ],
+                "showImage" => [
+                    "name" => "showImage",
+                    "value" => "1",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Mostrar Imagen",
+                        "options" => $vAttributes["validation"]
+                    ]
+                ],
+                "showButton" => [
+                    "name" => "showButton",
+                    "value" => "1",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Mostrar Button",
+                        "options" => $vAttributes["validation"]
+                    ]
+                ],
+                "multiflagClasses" => [
+                    "name" => "multiflagClasses",
+                    "columns" => "col-12",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Clase general",
+                    ]
+                ],
+                "classSelect" => [
+                    "name" => "classSelect",
+                    "columns" => "col-12",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Clase selector (Layout 2)",
+                    ]
+                ],
+                "classSelectOut" => [
+                    "name" => "classSelectOut",
+                    "columns" => "col-12",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Clase selector Contenido (Layout 2)",
+                    ]
+                ],
+                "linkClasses" => [
+                    "name" => "linkClasses",
+                    "columns" => "col-12",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Clases Botón (Layout 1 y 3)",
+                    ]
+                ],
+                "flagClasses" => [
+                    "name" => "flagClasses",
+                    "columns" => "col-12",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Clase Bandera",
+                    ]
+                ],
+                "flagStyles" => [
+                    "name" => "flagStyles",
+                    "columns" => "col-12",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Estilo Bandera",
+                        'type' => 'textarea',
+                        'rows' => 2,
+                    ]
+                ],
+            ]
+        ],
+    ]
+  ],
 ];
