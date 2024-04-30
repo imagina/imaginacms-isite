@@ -1,4 +1,4 @@
-<div id="multiLangLayout3" class="multi-lang">
+<div id="multiLangLayout3" class="multi-lang {{$multiflagClasses}}">
   <div class="dropdown">
     @if($showButton)
       <?php
@@ -10,7 +10,7 @@
         'idButton' => 'buttonDropdownMultilang',
         'label' => $longText ? config('available-locales')[LaravelLocalization::getCurrentLocale()]['native'] : LaravelLocalization::getCurrentLocale(),
         'withLabel' => true,
-        'buttonClasses' => 'btn btn-sm dropdown-toggle border-0 text-capitalize text-bold',
+        'buttonClasses' => !empty($linkClasses) ? $linkClasses : 'btn dropdown-toggle border-0 text-capitalize text-bold',
       ], $buttonComponentAtributtes ?? []));
 
       $component->withName($butonComponent);
@@ -26,58 +26,23 @@
     @endif
     
     <div id="imageDropdownMultilang" data-toggle="dropdown">
-      @if($showImage)
-        <?php
-        $hash = sha1($imageComponentNamespace);
-        if (isset($component)) {
-          $__componentOriginal{$hash} = $component;
-        }
-        $component = $__env->getContainer()->make($imageComponentNamespace, array_merge([
-          'src' => url('modules/isite/img/locales/' . LaravelLocalization::getCurrentLocale() . '.jpg'),
-          'imgStyles' => '  width: 35px; height: 33px; object-fit: cover;',
-          'imgClasses' => 'rounded-circle mx-2',
-          'url' => LaravelLocalization::getCurrentLocale(),
-        ], $imageComponentAtributtes ?? []));
-        $component->withName($imageComponent);
-        if ($component->shouldRender()):
-          $__env->startComponent($component->resolveView(), $component->data());
-          if (isset($__componentOriginal{$hash})):
-            $component = $__componentOriginal{$hash};
-            unset($__componentOriginal{$hash});
-          endif;
-          echo $__env->renderComponent();
-        endif;
-        ?>
-      @endif
+      @include('isite::frontend.components.multilang.partials.image', array(
+        'styleFlag' => !empty($flagStyles) ? $flagStyles : 'width: 35px; height: 33px; object-fit: cover;',
+        'classFlag' => !empty($flagClasses) ? $flagClasses : 'rounded-circle mx-2',
+        'locale' => LaravelLocalization::getCurrentLocale())
+      )
     </div>
     
     <div class="dropdown-menu dropdown-menu-right py-0" aria-labelledby="{{$component->idButton}}">
       @foreach($locales as $locale)
         <div class="item-dropdown py-3">
-          @if($showImage)
-            <?php
-            $hash = sha1($imageComponentNamespace);
-            if (isset($component)) {
-              $__componentOriginal{$hash} = $component;
-            }
-            $component = $__env->getContainer()->make($imageComponentNamespace, array_merge([
-              'src' => url('modules/isite/img/locales/' . $locale . '.jpg'),
-              'imgStyles' => 'width: 30px; height: 30px; object-fit:cover',
-              'imgClasses' => 'rounded-circle ml-3 mr-2',
-              'href' => url($locale),
-            ], $imageComponentAtributtes ?? []));
-            $component->withName($imageComponent);
-            if ($component->shouldRender()):
-              $__env->startComponent($component->resolveView(), $component->data());
-              if (isset($__componentOriginal{$hash})):
-                $component = $__componentOriginal{$hash};
-                unset($__componentOriginal{$hash});
-              endif;
-              echo $__env->renderComponent();
-            endif;
-            ?>
-          @endif
-          
+
+          @include('isite::frontend.components.multilang.partials.image', array(
+          'styleFlag' => $flagStyles ?? 'width: 30px; height: 30px; object-fit:cover',
+          'classFlag' => $flagClasses ?? 'rounded-circle ml-3 mr-2',
+          'locale' => $locale)
+          )
+
           @if($showButton)
             <?php
             $hash = sha1($butonComponentNamespace);
@@ -88,8 +53,8 @@
               'label' => $longTextDrop ? config('available-locales')[$locale]['native'] : $locale,
               'href' => setLocaleInUrl($locale),
               'withLabel' => true,
-              'buttonClasses' => 'text-white text-left btn-lg border-0 text-capitalize text-bold',
-              'style' => 'outline'
+              'buttonClasses' => 'text-white text-left btn-lg border-0 px-2 pr-0 text-capitalize text-bold',
+              'style' => ''
             ], $buttonDropDownItemComponentAtributtes ?? []));
             $component->withName($butonComponent);
             if ($component->shouldRender()):
@@ -129,6 +94,10 @@
     }
     #multiLangLayout3 .dropdown-menu .item-dropdown {
         border-bottom: 0.1px solid #0000004d;
+        display: flex;
+        &:hover, &:focus {
+            color: var(--primary);
+        }
     }
     #multiLangLayout3 .dropdown-menu .item-dropdown:last-child {
         border-bottom: 0;
