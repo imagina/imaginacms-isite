@@ -2,16 +2,18 @@
 
 namespace Modules\Isite\Http\Livewire\Index;
 
-use App;
-use Illuminate\Http\Request;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App;
+
+use Illuminate\Http\Request;
 
 class ItemsList extends Component
 {
-    use WithPagination;
 
-    private $firstRequest;
+  use WithPagination;
+
+  private $firstRequest;
 
   public $title;
   public $description;
@@ -49,12 +51,11 @@ class ItemsList extends Component
   public $eventToDelete;
   public $emitItemListRenderedAlways;
 
-    //Item List Unique Class
-    public $itemListUniqueClass;
+  //Item List Unique Class
+  public $itemListUniqueClass;
 
-    protected $paginationTheme = 'bootstrap';
-
-    protected $emitItemListRendered;
+  protected $paginationTheme = 'bootstrap';
+  protected $emitItemListRendered;
 
   private $log = "Isite: Livewire|ItemList|";
 
@@ -67,22 +68,22 @@ class ItemsList extends Component
     'deleteFromItemList' => 'deleteFromItemList'
   ];
 
-    /**
-     * Query String
-     */
-    protected $queryString = [
-        'search' => ['except' => ''],
-        'filter' => ['except' => []],
-        'page' => ['except' => 1],
-    ];
+  /**
+   * Query String
+   */
+  protected $queryString = [
+    'search' => ['except' => ''],
+    'filter' => ['except' => []],
+    'page' => ['except' => 1]
+  ];
 
-    /*
-      * Runs once, immediately after the component is instantiated,
-      * but before render() is called
-      */
-    public function mount(
-    $itemComponentNamespace = "Modules\Isite\View\Components\ItemList", $itemListLayout = null, $moduleName = 'isite',
-    $entityName = 'item', $itemComponentName = 'isite::item-list', $params = [], $responsiveTopContent = null,
+  /*
+    * Runs once, immediately after the component is instantiated,
+    * but before render() is called
+    */
+  public function mount(
+    $itemComponentNamespace = "Modules\Isite\View\Components\ItemList", $itemListLayout = null, $moduleName = "isite",
+    $entityName = "item", $itemComponentName = "isite::item-list", $params = [], $responsiveTopContent = null,
     $showTitle = true, $pagination = null, $configOrderBy = null, $configLayoutIndex = null, $itemComponentAttributes = [],
     $itemModal = null, $carouselAttributes = null, $uniqueItemListRendered = false, $title = null, $description = null,
     $disableFilters = false, $eventToDelete = null, $emitItemListRenderedAlways = false
@@ -123,38 +124,38 @@ class ItemsList extends Component
 
   }
 
-    /*
-    * Init Configs
-    *
-    */
-    public function initConfigs($configOrderBy, $configLayoutIndex)
-    {
-        $this->configs['orderBy'] = $configOrderBy ?? config('asgard.isite.config.orderBy');
-        $this->configs['itemListLayout'] = $configLayoutIndex ?? config('asgard.isite.config.layoutIndex');
-    }
+  /*
+  * Init Configs
+  *
+  */
+  public function initConfigs($configOrderBy, $configLayoutIndex)
+  {
+    $this->configs['orderBy'] = $configOrderBy ?? config("asgard.isite.config.orderBy");
+    $this->configs['itemListLayout'] = $configLayoutIndex ?? config("asgard.isite.config.layoutIndex");
+  }
 
-    /*
-    * Init Values Orderby
-    *
-    */
-    public function initValuesOrderBy()
-    {
-        // OrderBy to URL
-        $this->orderBy = $this->configs['orderBy']['default'] ?? 'nameaz';
-        $this->order = $this->configs['orderBy']['options'][$this->orderBy]['order'];
-    }
+  /*
+  * Init Values Orderby
+  *
+  */
+  public function initValuesOrderBy()
+  {
+    // OrderBy to URL
+    $this->orderBy = $this->configs['orderBy']['default'] ?? "nameaz";
+    $this->order = $this->configs['orderBy']['options'][$this->orderBy]['order'];
+  }
 
-    /*
-    * Init Values To ChangeLayout
-    *
-    */
-    public function initValuesLayout($itemListLayout)
-    {
-        $this->itemListLayout = $itemListLayout ?? $this->configs['itemListLayout']['default'] ?? 'four';
-        $this->layoutClass = $this->configs['itemListLayout']['options'][$this->itemListLayout]['class'];
-        ! is_array($this->layoutClass) ? $this->layoutClass = [$this->layoutClass] : false;
-        $this->wrapperClass = $this->configs['itemListLayout']['options'][$this->itemListLayout]['wrapperClass'] ?? 'row';
-    }
+  /*
+  * Init Values To ChangeLayout
+  *
+  */
+  public function initValuesLayout($itemListLayout)
+  {
+    $this->itemListLayout = $itemListLayout ?? $this->configs['itemListLayout']['default'] ?? "four";
+    $this->layoutClass = $this->configs['itemListLayout']['options'][$this->itemListLayout]['class'];
+    !is_array($this->layoutClass) ? $this->layoutClass = [$this->layoutClass] : false;
+    $this->wrapperClass = $this->configs['itemListLayout']['options'][$this->itemListLayout]['wrapperClass'] ?? 'row';
+  }
 
   /*
   * Listener - GET DATA FROM FILTERS
@@ -185,49 +186,50 @@ class ItemsList extends Component
 
   }
 
-    /*
-    * Init Request
-    *
-    */
-    public function initRequest()
-    {
-        $this->firstRequest = true;
-        $this->emitItemListRendered = false;
-        $this->fill(request()->only('search', 'filter', 'page', 'orderBy'));
-    }
+  /*
+  * Init Request
+  *
+  */
+  public function initRequest()
+  {
+    $this->firstRequest = true;
+    $this->emitItemListRendered = false;
+    $this->fill(request()->only('search', 'filter', 'page', 'orderBy'));
+  }
 
-    /*
-    * Function Frontend - When change the layout
-    *
-    */
-    public function changeLayout($c)
-    {
-        $this->itemListLayout = $c;
-        $this->layoutClass = $this->configs['itemListLayout']['options'][$this->itemListLayout]['class'];
-        ! is_array($this->layoutClass) ? $this->layoutClass = [$this->layoutClass] : false;
-    }
+  /*
+  * Function Frontend - When change the layout
+  *
+  */
+  public function changeLayout($c)
+  {
+    $this->itemListLayout = $c;
+    $this->layoutClass = $this->configs['itemListLayout']['options'][$this->itemListLayout]['class'];
+    !is_array($this->layoutClass) ? $this->layoutClass = [$this->layoutClass] : false;
+  }
 
-    /*
-    * Listener
-    * Clear Values
-    */
-    public function clearValues()
-    {
-        //\Log::info($this->name."- CLEAR VALUES FILTER");
-        $this->filter = [];
-        $this->emitItemListRendered = true;
-    }
+  /*
+  * Listener
+  * Clear Values
+  */
+  public function clearValues()
+  {
+    //\Log::info($this->name."- CLEAR VALUES FILTER");
+    $this->filter = [];
+    $this->emitItemListRendered = true;
+  }
 
-    /*
-    * Function Frontend - Load More Button
-    *
-    */
-    public function loadMore()
-    {
-        $this->take += $this->moduleParams['take'];
-    }
+  /*
+  * Function Frontend - Load More Button
+  *
+  */
+  public function loadMore()
+  {
+    $this->take += $this->moduleParams['take'];
+  }
 
-    /*
+
+  /*
  * Make params to Repository
  * before execcute the query
  */
@@ -247,23 +249,24 @@ class ItemsList extends Component
       "page" => $this->page,
       "filter" => $this->filter,
       "order" => $this->order,
+      "orderByRaw" => $this->orderByRaw ?? null,
       "fields" => $this->moduleParams['fields'] ?? null,
     ];
     if (isset($this->moduleParams['filter']) && !empty($this->moduleParams['filter'])) {
       $params["filter"] = array_merge_recursive($params["filter"], $this->moduleParams['filter']);
     }
 
-        return $params;
-    }
+    return $params;
+  }
 
-    /*
-    * Get Item Repository
-    *
-    */
-    private function getItemRepository()
-    {
-        return app($this->repository);
-    }
+  /*
+  * Get Item Repository
+  *
+  */
+  private function getItemRepository()
+  {
+    return app($this->repository);
+  }
 
 
   /*
