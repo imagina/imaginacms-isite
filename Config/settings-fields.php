@@ -1271,14 +1271,19 @@ return [
     ]
   ],
   'microsoftScopeLogin' => [
-    'value' => "",
+    'value' => [],
     'name' => 'isite::microsoftScopeLogin',
-    'type' => 'input',
+    'type' => 'select',
     'groupName' => 'apiKeys',
     'groupTitle' => 'isite::common.settingGroups.apiKeys',
     'props' => [
-      'label' => 'isite::common.settings.microsoftScopeLogin'
-    ]
+      'label' => 'isite::common.settings.microsoftScopeLogin',
+      'useInput' => true,
+      'useChips' => true,
+      'multiple' => true,
+      'newValueMode' => 'add-unique',
+      'hideDropdownIcon' => true,
+    ],
   ],
   'timeExpiredToken' => [
     'value' => 3650,
