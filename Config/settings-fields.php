@@ -1260,6 +1260,26 @@ return [
       'label' => 'isite::common.settings.microsoftClientId'
     ]
   ],
+  'microsoftAuthUrl' => [
+    'value' => "",
+    'name' => 'isite::microsoftAuthUrl',
+    'type' => 'input',
+    'groupName' => 'apiKeys',
+    'groupTitle' => 'isite::common.settingGroups.apiKeys',
+    'props' => [
+      'label' => 'isite::common.settings.microsoftAuthUrl'
+    ]
+  ],
+  'microsoftScopeLogin' => [
+    'value' => "",
+    'name' => 'isite::microsoftScopeLogin',
+    'type' => 'input',
+    'groupName' => 'apiKeys',
+    'groupTitle' => 'isite::common.settingGroups.apiKeys',
+    'props' => [
+      'label' => 'isite::common.settings.microsoftScopeLogin'
+    ]
+  ],
   'timeExpiredToken' => [
     'value' => 3650,
     'name' => 'isite::timeExpiredToken',
