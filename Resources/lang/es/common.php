@@ -63,6 +63,8 @@ return [
     'facebookClient' => 'Cliente Facebook',
     'facebookAppId' => 'App Id Facebook',
     'microsoftClientId' => 'Cliente Microsoft',
+    'microsoftScopeLogin' => 'Alcances de inicio de sesión de Microsoft',
+    'microsoftAuthUrl' => 'URL de autoridad de Microsoft',
     'labelTimeExpiredToken' => 'Tiempo caducidad Tokens Descarga (Dias)',
     'enableDynamicFieldsCache' => 'Activar caché de dynamic fields en frontend',
     'usersToNotify' => 'Usuarios Para Notificar Cambios En La Aplicación',
