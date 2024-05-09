@@ -412,4 +412,16 @@ return [
         ["label" => "Revert-layer", "value" => "revert-layer"],
         ["label" => "Unset", "value" => "unset"],
     ],
+    "varColors" => [
+        ["label" => "Primary", "value" => "var(--primary)"],
+        ["label" => "Secondary", "value" => "var(--secondary)"],
+        ["label" => "Warning", "value" => "var(--warning)"],
+        ["label" => "Info", "value" => "var(--info)"],
+        ["label" => "Danger", "value" => "var(--danger)"],
+        ["label" => "Dark", "value" => "var(--dark)"],
+        ["label" => "Light", "value" => "var(--light)"],
+        ["label" => "White", "value" => "var(--white)"],
+        ["label" => "Success", "value" => "var(--success)"],
+        ["label" => "Custom", "value" => "text-custom"]
+    ],
 ];
