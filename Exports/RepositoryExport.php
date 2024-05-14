@@ -38,7 +38,7 @@ class RepositoryExport implements FromQuery, WithEvents, ShouldQueue, WithHeadin
         $this->inotification = app('Modules\Notification\Services\Inotification');
     }
 
-    public function query(): Collection
+    public function query(): \Illuminate\Database\Eloquent\Builder
     {
         //Init Repo
         $repository = app("Modules\\{$this->exportParams->moduleName}\\Repositories\\{$this->exportParams->repositoryName}");
