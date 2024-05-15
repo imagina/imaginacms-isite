@@ -179,8 +179,8 @@ class Range extends Component
         $range = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params)));
 
         //Getting the new price range
-        $this->valueMin = floor($range->minPrice);
-        $this->valueMax = round($range->maxPrice);
+        $this->valueMin = floor($range->minPrice ?? 0);
+        $this->valueMax = round($range->maxPrice ?? 0);
 
         //Validating if the user had selected prices
         if (! empty($selectedValues)) {

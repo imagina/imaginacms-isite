@@ -4,6 +4,7 @@ namespace Modules\Isite\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Controller;
 use Modules\Ihelpers\Http\Controllers\Api\BaseApiController;
 use Modules\User\Permissions\PermissionManager;
 

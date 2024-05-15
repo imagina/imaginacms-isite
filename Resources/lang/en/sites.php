@@ -27,7 +27,9 @@ return [
     'validation' => [
     ],
     'settings' => [
-        'apimaps' => 'Api Code Maps',
-        'appVersion' => 'App version',
+      'apimaps' => 'Api Code Maps',
+      'appVersion' => 'App version',
+      'tenantData' => 'Tenant Data IA',
+      'contentGenerationWithAI' => 'Content generation with AI'
     ],
 ];

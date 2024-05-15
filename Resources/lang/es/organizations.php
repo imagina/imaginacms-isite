@@ -26,7 +26,8 @@ return [
         'organization created' => 'Te notificaremos en un proximo correo el estado de tu sitio y enviaremos los enlaces para que puedas
         acceder y gestionarlo',
         'not password' => '(La que ingresaste cuando te registraste)',
-        'organization updated' => '<p>Tu sitio web se encuentra: <strong>:status</strong> </p><p>URL: <a href=":url">:url</a> </p> <p>Edita tu sitio web aqui: <a href=":admin">:admin</a></p> <p>Usuario: :userEmail</p> <p>Contraseña: :userPass</p>'
+        'organization updated' => '<p>Tu sitio web se encuentra: <strong>:status</strong> </p><p>URL: <a href=":url">:url</a> </p> <p>Edita tu sitio web aqui: <a href=":admin">:admin</a></p> <p>Usuario: :userEmail</p> <p>Contraseña: :userPass</p>',
+        'organization updated basic' => '<p>Tu sitio web se encuentra: <strong>:status</strong> </p><p>URL: <a href=":url">:url</a> </p> <p>Edita tu sitio web aqui: <a href=":admin">:admin</a></p>'
     ],
     'validation' => [
     ],

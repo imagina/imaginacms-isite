@@ -18,9 +18,11 @@ class EventServiceProvider extends ServiceProvider
             CreateOrganizationByRole::class
         ],
         */
+        /*
         OrganizationWasUpdated::class => [
             SetMaintenanceMode::class,
         ],
+        */
 
     ];
 
