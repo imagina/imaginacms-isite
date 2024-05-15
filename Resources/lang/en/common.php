@@ -79,6 +79,8 @@ return [
     'facebookClient' => 'Facebook Client',
     'facebookAppId' => 'Facebook App Id',
     'microsoftClientId' => 'Microsoft Client Id',
+    'microsoftScopeLogin' => 'Microsoft Login Scopes',
+    'microsoftAuthUrl' => 'Microsoft Authority URL',
     'cms' => [
       'legacyStructureCMS' => 'Use Legacy Structure CMS',
       'offline' => 'Offline Activated',
