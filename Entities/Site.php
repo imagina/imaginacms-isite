@@ -2,6 +2,7 @@
 
 namespace Modules\Isite\Entities;
 
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Site extends Model

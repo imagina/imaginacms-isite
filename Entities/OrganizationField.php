@@ -2,6 +2,7 @@
 
 namespace Modules\Isite\Entities;
 
+use Astrotomic\Translatable\Translatable;
 use Modules\Core\Icrud\Entities\CrudModel;
 
 class OrganizationField extends CrudModel

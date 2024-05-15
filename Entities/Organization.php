@@ -18,9 +18,11 @@ use Stancl\Tenancy\Database\Concerns\MaintenanceMode;
 use Modules\Isite\Entities\Status;
 use Modules\Tag\Traits\TaggableTrait;
 
+use Modules\Notification\Traits\IsNotificable;
+
 class Organization extends BaseTenant implements TenantWithDatabase
 {
-  use AuditTrait, Translatable, HasDatabase, HasDomains, MediaRelation, Schedulable, hasEventsWithBindings, isFillable, MaintenanceMode, TaggableTrait;
+  use AuditTrait, Translatable, HasDatabase, HasDomains, MediaRelation, Schedulable, hasEventsWithBindings, isFillable, MaintenanceMode, TaggableTrait, IsNotificable;
 
     public $transformer = 'Modules\Isite\Transformers\OrganizationTransformer';
 
@@ -207,4 +209,44 @@ class Organization extends BaseTenant implements TenantWithDatabase
 
   }
 
+  /**
+   * Make Notificable Params | to Trait
+   * @param $event (created|updated|deleted)
+   */
+  public function isNotificableParams($event)
+  {
+    $response = [];
+
+    //Validation Event Update
+    if ($event == "updated") {
+      //Validation Att Status Change
+      if (!$this->wasChanged("status")) {
+        return null;
+      }
+
+      //Get Emails and Broadcast
+      $user = $this->users->first();
+
+      if(!is_null($user)){
+        $result['email'] = $user->email;
+
+        //Message
+        $message = trans("isite::organizations.messages.organization updated basic", [
+          'status' => $this->statusName,
+          'url' => $this->url,
+          'admin' => url('/iadmin')
+        ]);
+
+        $response['updated'] = [
+          "title" => trans("isite::organizations.title.organization updated"),
+          "message" => $message,
+          "email" => $result['email']
+        ];
+
+      }
+
+    }
+
+    return $response;
+  }
 }

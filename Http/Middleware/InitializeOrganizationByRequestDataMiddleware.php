@@ -4,7 +4,10 @@ namespace Modules\Isite\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Modules\Ihelpers\Http\Controllers\Api\BaseApiController;
+use Mockery\CountValidator\Exception;
+use Modules\Isite\Entities\Organization;
 use Modules\Setting\Contracts\Setting;
 
 class InitializeOrganizationByRequestDataMiddleware extends BaseApiController

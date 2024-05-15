@@ -30,9 +30,8 @@ class SetMaintenanceMode
         $isCreated = true;
       }else{
         //when update
-            $params = $event->params;
-            // Extra data custom event entity
-            //$extraData = $params['extraData'];
+        $params = $event->params;
+        //$extraData = $params['extraData'];
 
             $model = $params['model'];
       }
@@ -48,7 +47,11 @@ class SetMaintenanceMode
                 \Log::info('Isite: Events|Handlers|SetMaintenanceMode| SET MAINTENANCE: OFF');
             }
 
-      $this->sendEmail($model,$isCreated);
+      /**
+       * Esto se paso a la implementacion con el IsNotificable trait
+       * en la entidad Organization
+       */
+      //$this->sendEmail($model,$isCreated);
       
       
         } catch (\Exception $e) {

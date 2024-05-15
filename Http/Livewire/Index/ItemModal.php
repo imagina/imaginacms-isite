@@ -3,6 +3,10 @@
 namespace Modules\Isite\Http\Livewire\Index;
 
 use Livewire\Component;
+use Livewire\WithPagination;
+use App;
+
+use Illuminate\Http\Request;
 
 class ItemModal extends Component
 {
