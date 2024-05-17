@@ -48,9 +48,10 @@ return [
     "newExportItemHelpText" => 'Exportar <b class="text-blue-grey">Registro ID: {id}</b>',
     "exportReady" => "Tu report <b>{fileName}</b> está listo!",
     "noOrganization" => "Todavía no perteneces a una organización",
-    "refreshAppVersion" => "Estamos creando nuevas funciones. Presione el botón Actualizar para obtener la última versión.",
-    "updateAvailable" => "Actualización disponible",
-    "updateNow" => "Actualizar ahora"
+    "refreshAppVersion" => "Estamos emocionados de presentar nuevas funciones y mejoras en esta versión. Haga clic en el botón de actualización para disfrutar de la última experiencia.",
+    "updateAvailable" => "¡Nueva actualización disponible!",
+    "updateNow" => "Actualizar ahora",
+    "dispatchBulkAction" => 'Acción masiva de envío de <b class="text-blue-grey">{pageTitle}</b>'
   ],
   "startTime" => "Hora de inicio",
   "endTime" => "Hora de finalización",
@@ -424,6 +425,7 @@ return [
     "gridPosition" => "Espació en la Grid",
     "us" => "Nosotros",
     "contactUs" => "Contactanos",
+    "bulkAction" => "Nueva acción masiva",
   ],
   "message" => [
     "showDemo" => "Ver Demo",
