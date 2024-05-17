@@ -48,9 +48,10 @@ return [
     "newExportItemHelpText" => 'Export <b class="text-blue-grey">Record ID: {id}</b>',
     "exportReady" => "Your <b>{fileName}</b> report is Ready!",
     "noOrganization" => "You do not belong to an organization",
-    "refreshAppVersion" => "We are creating new features, please hit the Update button to get the last version!",
-    "updateAvailable" => "Update available",
-    "updateNow" => "Update now"
+    "refreshAppVersion" => "We are excited to introduce new features and enhancements in this version. Click the update button to enjoy the latest experience.",
+    "updateAvailable" => "New Update Available!",
+    "updateNow" => "Update now",
+    "dispatchBulkAction" => 'Dispatch <b class="text-blue-grey">{pageTitle}</b> bulk action'
   ],
   "startTime" => "Start time",
   "endTime" => "End time",
@@ -419,6 +420,7 @@ return [
     "gridPosition" => "Grid Position",
     "us" => "Us",
     "contactUs" => "Contact",
+    "bulkAction" => "New Bulk Action",
   ],
   "message" => [
     "showDemo" => "Demo",
