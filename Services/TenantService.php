@@ -54,11 +54,9 @@ class TenantService
         tenancy()->initialize($data["organization_id"]);
       }
 
-    $organizationTitle = $data["title"] ?? $data["user"]->present()->fullname;
     $organization = Organization::create(array_merge([
       'user_id' => $data["user"]->id,
-      'title' => $organizationTitle,
-      'slug' => $data["slug"] ?? istr_slug($organizationTitle),
+      'title' => $data["title"] ?? $data["user"]->present()->fullname,
       'status' => $data["status"] ?? json_decode(setting("isite::defaultTenantStatus", null, "true")),
       'layout_id' => $data["layout_id"] ?? json_decode(setting("isite::defaultLayout", null, null)),
       'enable' => $data["enable"] ?? json_decode(setting("isite::defaultTenantStatus", null, "true")),
