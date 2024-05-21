@@ -7,7 +7,6 @@ use Illuminate\View\Component;
 class OwlCarousel extends Component
 {
 
-
   public $items;
   public $emptyItems;
   public $itemsBySlide;
@@ -80,66 +79,24 @@ class OwlCarousel extends Component
    * @return void
    */
   public function __construct($repository,
-                              $id = null,
-                              $view = null,
-                              $params = [],
-                              $margin = 10,
-                              $responsiveClass = true,
-                              $autoplay = true,
-                              $autoplayHoverPause = true,
-                              $loop = true,
-                              $dots = true,
-                              $nav = false,
-                              $center = false,
-                              $responsive = null,
-                              $itemLayout = null,
-                              $title = "",
-                              $subTitle = "",
-                              $itemsBySlide = 1,
-                              $navText = "",
-                              $containerFluid = false,
-                              $itemComponent = null,
-                              $owlBlockStyle = null,
-                              $navIcon = "arrow",
-                              $owlTextAlign = "text-left",
-                              $navPosition = "bottom",
-                              $navSizeLabel = "20",
-                              $dotsStyle = "dots-linear",
-                              $navColor = "primary",
-                              $navSizeButton = "",
-                              $navStyleButton = "",
-                              $owlTextPosition = 2,
-                              $owlTitleMarginT = "mt-0",
-                              $owlTitleMarginB = "mb-0",
-                              $owlTitleColor = null,
-                              $owlTitleVineta = null,
-                              $owlTitleVinetaColor = null,
-                              $owlTitleSize = null,
-                              $owlTitleWeight = "font-weight-normal",
-                              $owlTitleTransform = null,
-                              $owlTitleLetterSpacing = 0,
-                              $owlSubtitleMarginT = "mt-0",
-                              $owlSubtitleMarginB = "mb-0",
-                              $owlSubtitleColor = null,
-                              $owlSubtitleSize = null,
-                              $owlSubtitleWeight = "font-weight-normal",
-                              $owlSubtitleTransform = null,
-                              $owlSubtitleLetterSpacing = 0,
-                              $itemComponentAttributes = [],
-                              $itemComponentNamespace = null,
-                              $stagePadding = 0,
-                              $owlTitleUrl = null,
-                              $owlTitleTarget = "_self",
-                              $autoplayTimeout = 5000,
-                              $mouseDrag = true,
-                              $touchDrag = true,
-                              $navOld = false,
-                              $owlWithLineTitle = 0,
-                              $owlLineTitleConfig = [],
-                              $owlTitleClasses = "",
-                              $owlSubtitleClasses = "",
-                              $dotsStyleColor = "",
-                              $dotsSize = ""
+                              $id = null, $view = null, $params = [], $margin = 10, $responsiveClass = true,
+                              $autoplay = true, $autoplayHoverPause = true, $loop = true, $dots = true, $nav = false,
+                              $center = false, $responsive = null, $itemLayout = null, $title = "", $subTitle = "",
+                              $itemsBySlide = 1, $navText = "", $containerFluid = false, $itemComponent = null,
+                              $owlBlockStyle = null, $navIcon = "arrow", $owlTextAlign = "text-left",
+                              $navPosition = "bottom", $navSizeLabel = "20", $dotsStyle = "dots-linear",
+                              $navColor = "primary", $navSizeButton = "", $navStyleButton = "", $owlTextPosition = 2,
+                              $owlTitleMarginT = "mt-0", $owlTitleMarginB = "mb-0", $owlTitleColor = null,
+                              $owlTitleVineta = null, $owlTitleVinetaColor = null, $owlTitleSize = null,
+                              $owlTitleWeight = "font-weight-normal", $owlTitleTransform = null,
+                              $owlTitleLetterSpacing = 0, $owlSubtitleMarginT = "mt-0", $owlSubtitleMarginB = "mb-0",
+                              $owlSubtitleColor = null, $owlSubtitleSize = null,
+                              $owlSubtitleWeight = "font-weight-normal", $owlSubtitleTransform = null,
+                              $owlSubtitleLetterSpacing = 0, $itemComponentAttributes = [],
+                              $itemComponentNamespace = null, $stagePadding = 0, $owlTitleUrl = null,
+                              $owlTitleTarget = "_self", $autoplayTimeout = 5000, $mouseDrag = true, $touchDrag = true,
+                              $navOld = false, $owlWithLineTitle = 0, $owlLineTitleConfig = [], $owlTitleClasses = "",
+                              $owlSubtitleClasses = "", $dotsStyleColor = "", $dotsSize = ""
   )
   {
 
@@ -167,7 +124,7 @@ class OwlCarousel extends Component
     $this->owlBlockStyle = $owlBlockStyle;
     $this->itemComponent = $itemComponent ?? "isite::item-list";
     $this->view = $view ?? "isite::frontend.components.owl.carousel";
-    $this->itemComponentNamespace =  $itemComponentNamespace ?? "Modules\Isite\View\Components\ItemList";
+    $this->itemComponentNamespace = $itemComponentNamespace ?? "Modules\Isite\View\Components\ItemList";
 
     $this->navIcon = $navIcon;
     $this->navSizeLabel = $navSizeLabel;
@@ -214,7 +171,7 @@ class OwlCarousel extends Component
     $this->dotsSize = $dotsSize;
     $this->getItems();
     list($this->editLink, $this->tooltipEditLink) = getEditLink($this->repository);
-    if($nav && $navText!="") {
+    if ($nav && $navText != "") {
       $this->navOld = true;
       $this->nav = false;
     }
@@ -245,13 +202,13 @@ class OwlCarousel extends Component
         if (is_module_enabled("Icommerce") && $this->itemComponent == "isite::item-list") {
           $this->itemComponent = "icommerce::product-list-item";
           $this->itemComponentNamespace = "Modules\Icommerce\View\Components\ProductListItem";
-          $this->itemComponentAttributes["layout"]="product-list-item-layout-1";
+          $this->itemComponentAttributes["layout"] = "product-list-item-layout-1";
 
         }
         break;
     }
 
-    if(count($this->items)==1) {
+    if (count($this->items) == 1) {
       $this->mouseDrag = false;
       $this->touchDrag = false;
       $this->dots = false;

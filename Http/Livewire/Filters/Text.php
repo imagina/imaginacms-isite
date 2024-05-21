@@ -22,9 +22,9 @@ class Text extends Component
   public $isExpanded;
   public $title;
 
-  public function mount($title, $name, $placeholder, $status = true, $isExpanded = true, $type, $emitTo, $repoAction,
-                        $repoAttribute, $repoMethod = 'getItemsBy', $layout = 'text-layout-1',
-                        $classes = 'col-12', $isCollapsable = true)
+  public function mount($title, $name, $placeholder, $type, $emitTo, $repoAction, $repoAttribute, $status = true,
+                        $isExpanded = true, $repoMethod = 'getItemsBy', $layout = 'text-layout-1', $classes = 'col-12',
+                        $isCollapsable = true)
   {
     $this->status = $status;
     $this->type = $type;
@@ -43,30 +43,30 @@ class Text extends Component
   }
 
 
-    /*
-    * When SelectedOption has been selected
-    */
-    public function updatedValue()
-    {
-        $this->emit($this->emitTo, [
-            'name' => $this->name,
-            $this->repoAction => [
-                $this->repoAttribute => $this->value,
-            ],
-        ]);
+  /*
+  * When SelectedOption has been selected
+  */
+  public function updatedValue()
+  {
+    $this->emit($this->emitTo, [
+      'name' => $this->name,
+      $this->repoAction => [
+        $this->repoAttribute => $this->value,
+      ],
+    ]);
 
-        $this->isExpanded = true;
+    $this->isExpanded = true;
+  }
+
+  public function render()
+  {
+    $tpl = 'isite::frontend.livewire.filters.text.layouts.' . $this->layout . '.index';
+
+    $ttpl = $this->layout;
+    if (view()->exists($ttpl)) {
+      $tpl = $ttpl;
     }
 
-    public function render()
-    {
-        $tpl = 'isite::frontend.livewire.filters.text.layouts.'.$this->layout.'.index';
-
-        $ttpl = $this->layout;
-        if (view()->exists($ttpl)) {
-            $tpl = $ttpl;
-        }
-
-        return view($tpl);
-    }
+    return view($tpl);
+  }
 }
