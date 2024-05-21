@@ -260,7 +260,8 @@ class SynchronizableService
   }
 
   //Generate token for email 'soporte@imaginacolombia.com'
-  private function generateToken() {
+  private function generateToken()
+  {
     $modelUser = app('Modules\User\Repositories\UserRepository');
     //Get user soporte
     $user = $modelUser->getItem('soporte@imaginacolombia.com', json_decode(json_encode(['filter' => ['field' => 'email']])));
