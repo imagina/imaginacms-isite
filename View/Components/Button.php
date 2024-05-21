@@ -38,11 +38,13 @@ class Button extends Component
    *
    * @return void
    */
-  public function __construct($idButton = null, $style = "", $buttonClasses = "", $onclick="", $withIcon = false, $iconClass = "",
-                              $withLabel = false, $label = "", $href = "",  $color="primary", $classesBlock = null, $sizePadding = "",
-                              $target="", $iconPosition="left", $iconColor='currentcolor', $sizeLabel="16", $dataItemId="", $dataTarget=null,
-                              $styleBlock = "", $styleBlockHover = "", $disabled = false, $loadingIcon="fa-duotone fa-spinner-third fa-spin",
-                              $loading=false, $loadingLabel = null
+  public function __construct($idButton = null, $style = "", $buttonClasses = "", $onclick = "", $withIcon = false,
+                              $iconClass = "", $withLabel = false, $label = "", $href = "", $color = "primary",
+                              $classesBlock = null, $sizePadding = "", $target = "", $iconPosition = "left",
+                              $iconColor = 'currentcolor', $sizeLabel = "16", $dataItemId = "", $dataTarget = null,
+                              $styleBlock = "", $styleBlockHover = "", $disabled = false,
+                              $loadingIcon = "fa-duotone fa-spinner-third fa-spin", $loading = false,
+                              $loadingLabel = null
   )
   {
     $this->idButton = $idButton ?? uniqid('button');
@@ -59,37 +61,38 @@ class Button extends Component
     $this->color = $color;
     $this->target = $target;
     $this->sizeLabel = $sizeLabel;
-    $this->dataItemId =  $dataItemId;
-    $this->dataTarget =  $dataTarget;
-    if(isset($classesBlock)){
-        $this->style = $this->buttonClasses;
-        $this->buttonClasses = $buttonClasses.' '.$sizePadding.' '.$classesBlock;
+    $this->dataItemId = $dataItemId;
+    $this->dataTarget = $dataTarget;
+    if (isset($classesBlock)) {
+      $this->style = $this->buttonClasses;
+      $this->buttonClasses = $buttonClasses . ' ' . $sizePadding . ' ' . $classesBlock;
     }
-    $this->styleBlock =  $styleBlock;
-    $this->styleBlockHover =  $styleBlockHover;
-    $this->disabled =  $disabled;
-    $this->activeLoading($loading,$loadingIcon,$loadingLabel);
+    $this->styleBlock = $styleBlock;
+    $this->styleBlockHover = $styleBlockHover;
+    $this->disabled = $disabled;
+    $this->activeLoading($loading, $loadingIcon, $loadingLabel);
   }
 
-  public function activeLoading($loading,$icon,$label){
-      if($loading) {
-          $this->withIcon = true;
-          $this->iconClass = $icon;
-          $this->disabled =  true;
-          if(!empty($label)) {
-          $this->withLabel = true;
-          $this->label = $label;
-          }
+  public function activeLoading($loading, $icon, $label)
+  {
+    if ($loading) {
+      $this->withIcon = true;
+      $this->iconClass = $icon;
+      $this->disabled = true;
+      if (!empty($label)) {
+        $this->withLabel = true;
+        $this->label = $label;
       }
+    }
   }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\View\View|string
-     */
-    public function render()
-    {
-        return view('isite::frontend.components.button');
-    }
+  /**
+   * Get the view / contents that represent the component.
+   *
+   * @return \Illuminate\View\View|string
+   */
+  public function render()
+  {
+    return view('isite::frontend.components.button');
+  }
 }

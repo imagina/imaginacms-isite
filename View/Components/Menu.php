@@ -7,7 +7,6 @@ use Illuminate\View\Component;
 class Menu extends Component
 {
 
-
   public $items;
   public $view;
   public $itemLayout;
@@ -45,13 +44,14 @@ class Menu extends Component
    *
    * @return void
    */
-  public function __construct($id = null,$repository = null, $params = [], $layout = 'category-menu-layout-1', $title = "Categorías",
-                              $menuBefore = null, $menuAfter = null, $withHome = true, $homeIcon = "", $collapsed = false,
-                              $central = false, $modalStyle = null, $deskStyle = null,  $deskTextTransform = "capitalize",
-                              $modalTextTransform = "uppercase", $deskTextSize = "18", $modalTextSize = "16",
-                              $modalColor1 = "", $modalColor2 = "", $deskColor1 = "", $deskColor2 = "",
-                              $deskNav = "", $deskNavHover = "", $deskDropdownMenu = "", $deskNavBefore = "",
-                              $deskNavHoverBefore = "", $linkMovil = "", $deskStyleGeneral = null
+  public function __construct($id = null, $repository = null, $params = [], $layout = 'category-menu-layout-1',
+                              $title = "Categorías", $menuBefore = null, $menuAfter = null, $withHome = true,
+                              $homeIcon = "", $collapsed = false, $central = false, $modalStyle = null,
+                              $deskStyle = null, $deskTextTransform = "capitalize", $modalTextTransform = "uppercase",
+                              $deskTextSize = "18", $modalTextSize = "16", $modalColor1 = "", $modalColor2 = "",
+                              $deskColor1 = "", $deskColor2 = "", $deskNav = "", $deskNavHover = "",
+                              $deskDropdownMenu = "", $deskNavBefore = "", $deskNavHoverBefore = "",
+                              $linkMovil = "", $deskStyleGeneral = null
   )
   {
     $this->id = $id ?? uniqid('menu');
@@ -87,37 +87,37 @@ class Menu extends Component
     $this->getItems();
   }
 
-    private function makeParamsFunction()
-    {
-        return [
-            'include' => $this->params['include'] ?? ['children'],
-            'take' => $this->params['take'] ?? false,
-            'page' => $this->params['page'] ?? false,
-            'filter' => $this->params['filter'] ?? ['showMenu' => true],
-            'order' => $this->params['order'] ?? null,
-        ];
+  private function makeParamsFunction()
+  {
+    return [
+      'include' => $this->params['include'] ?? ['children'],
+      'take' => $this->params['take'] ?? false,
+      'page' => $this->params['page'] ?? false,
+      'filter' => $this->params['filter'] ?? ['showMenu' => true],
+      'order' => $this->params['order'] ?? null,
+    ];
+  }
+
+  private function getItems()
+  {
+    $params = $this->makeParamsFunction();
+
+    if ($this->repository) {
+      $items = app($this->repository)->getItemsBy(json_decode(json_encode($params)));
+
+      if ($items->isNotEmpty()) {
+        $this->items = $items->toTree();
+      }
     }
+  }
 
-    private function getItems()
-    {
-        $params = $this->makeParamsFunction();
-
-        if ($this->repository) {
-            $items = app($this->repository)->getItemsBy(json_decode(json_encode($params)));
-
-            if ($items->isNotEmpty()) {
-                $this->items = $items->toTree();
-            }
-        }
-    }
-
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\Contracts\View\View|string
-     */
-    public function render()
-    {
-        return view($this->view);
-    }
+  /**
+   * Get the view / contents that represent the component.
+   *
+   * @return \Illuminate\Contracts\View\View|string
+   */
+  public function render()
+  {
+    return view($this->view);
+  }
 }

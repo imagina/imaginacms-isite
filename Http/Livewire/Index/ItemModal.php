@@ -11,8 +11,6 @@ use Illuminate\Http\Request;
 class ItemModal extends Component
 {
 
-
-
   /**
    * Attributes
    */
@@ -24,18 +22,18 @@ class ItemModal extends Component
   public $idModal;
   public $varItemName;
 
-    /**
-     * Listeners
-     */
-    protected $listeners = [
-        'itemModalLoadData' => 'getData',
-    ];
+  /**
+   * Listeners
+   */
+  protected $listeners = [
+    'itemModalLoadData' => 'getData',
+  ];
 
-    /*
-    * Runs once, immediately after the component is instantiated,
-    * but before render() is called
-    */
-    public function mount(
+  /*
+  * Runs once, immediately after the component is instantiated,
+  * but before render() is called
+  */
+  public function mount(
     $mobile = false,
     $desktop = false,
     $view = 'isite::frontend.livewire.index.partials.item-modal-content',
@@ -43,7 +41,8 @@ class ItemModal extends Component
     $repository = null,
     $idModal = "itemModal",
     $varItemName = "item"
-    ){
+  )
+  {
 
     $this->mobile = $mobile;
     $this->desktop = $desktop;
@@ -54,19 +53,19 @@ class ItemModal extends Component
     $this->varItemName = $varItemName;
   }
 
-    /*
-    * Listener - itemModalLoadData
-    *
-    */
-    public function getData($itemId, $idModalNew)
-    {
-        //\Log::info("ItemModal - GETDATA : {$itemId} - {$idModalNew}");
+  /*
+  * Listener - itemModalLoadData
+  *
+  */
+  public function getData($itemId, $idModalNew)
+  {
+    //\Log::info("ItemModal - GETDATA : {$itemId} - {$idModalNew}");
 
-        $item = $this->getItemRepository()->getItem($itemId, json_decode(json_encode($this->params)));
+    $item = $this->getItemRepository()->getItem($itemId, json_decode(json_encode($this->params)));
     //\Log::info("ItemModal - : ".($item->id ?? 'asdasd')." $this->repository"." ". json_encode($this->params));
 
     //TODO check why this method (getData) is called twice, in the meantime I'm doing this validation to avoid $item with null value in sometimes
-    if(isset($item->id)){
+    if (isset($item->id)) {
 
       //'item' => json_decode(json_encode($item), FALSE)
       $newHtml = view($this->view, [
@@ -74,35 +73,33 @@ class ItemModal extends Component
         'inModal' => true
       ])->render();
 
-      if($idModalNew==$this->idModal){
-        $this->dispatchBrowserEvent('item-load-modal-content-'.$this->idModal, [
+      if ($idModalNew == $this->idModal) {
+        $this->dispatchBrowserEvent('item-load-modal-content-' . $this->idModal, [
           'newHtml' => $newHtml,
           'itemUrl' => $item->url ?? '',
           'idModalNew' => $idModalNew
         ]);
       }
     }
-    
-    
   }
 
-    /*
-    * Get Item Repository
-    *
-    */
-    private function getItemRepository()
-    {
-        return app($this->repository);
-    }
+  /*
+  * Get Item Repository
+  *
+  */
+  private function getItemRepository()
+  {
+    return app($this->repository);
+  }
 
-    /*
-    * Render
-    *
-    */
-    public function render()
-    {
-        $view = 'isite::frontend.livewire.index.item-modal';
+  /*
+  * Render
+  *
+  */
+  public function render()
+  {
+    $view = 'isite::frontend.livewire.index.item-modal';
 
-        return view($view);
-    }
+    return view($view);
+  }
 }

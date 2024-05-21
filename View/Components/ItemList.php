@@ -8,7 +8,6 @@ use Illuminate\Support\Str;
 class ItemList extends Component
 {
 
-
   public $item;
   public $mediaImage;
   public $view;
@@ -203,170 +202,62 @@ class ItemList extends Component
   public $userColorCustom;
   public $withUrl;
 
-  public function __construct($item,
-                              $mediaImage = "mainimage",
-                              $layout = 'item-list-layout-1',
-                              $parentAttributes = null,
-                              $withViewMoreButton = false,
-                              $viewMoreButtonLabel = "isite::common.menu.viewMore",
-                              $withCreatedDate = false,
-                              $withUser = false,
-                              $formatCreatedDate = "d \\d\\e M",
-                              $orderClasses = [],
-                              $withCategory = false,
-                              $withSummary = true,
-                              $numberCharactersSummary = 100,
-                              $editLink = null,
-                              $tooltipEditLink = null,
-                              $itemComponentView = null,
-                              $itemComponentTarget = null,
-                              $target = "_self",
-                              $itemListLayout = null,
-                              $positionNumber = null,
-                              $imageAspect = "1/1",
-                              $imageAspectMobile = null,
-                              $imageObject = "cover",
-                              $imageBorderRadio = 0,
-                              $imageBorderRadioType = "1",
-                              $imageBorderStyle = "solid",
-                              $imageBorderWidth = 0,
-                              $imageBorderColor = "#000000",
-                              $imagePadding = 0,
-                              $imagePicturePadding = 0,
-                              $withImageOpacity = false,
-                              $imageOpacityColor = "",
-                              $imageOpacityDirection = "",
-                              $withTitle = true,
-                              $titleAlign = "",
-                              $titleTextSize = "20",
-                              $titleTextSizeMobile = "20",
-                              $titleTextWeight = "font-weight-bold",
-                              $titleTextTransform = "",
-                              $summaryAlign = "text-left",
-                              $summaryTextSize = "16",
-                              $summaryTextWeight = "font-weight-normal",
-                              $categoryAlign = "text-left",
-                              $categoryTextSize = "18",
-                              $categoryTextWeight = "font-weight-normal",
-                              $createdDateAlign = "text-left",
-                              $createdDateTextSize = "14",
-                              $createdDateTextWeight = "font-weight-normal",
-                              $userAlign = "text-left",
-                              $userTextSize = "14",
-                              $userTextWeight = "font-weight-normal",
-                              $buttonAlign = "text-left",
-                              $buttonLayout = "border-0",
-                              $buttonIcon = " ",
-                              $buttonIconColor = null,
-                              $buttonIconLR = "left",
-                              $imagePosition = "1",
-                              $imagePositionVertical = "align-self-center",
-                              $contentPositionVertical = "align-self-center",
-                              $contentPadding = 0,
-                              $contentBorder = 0,
-                              $contentBorderColor = "#dddddd",
-                              $contentBorderRounded = 0,
-                              $contentBorderRoundedType = "1",
-                              $buttonColor = "primary",
-                              $contentMarginInsideX = "mx-0",
-                              $contentBorderShadows = "none",
-                              $contentBorderShadowsHover = false,
-                              $titleColor = "text-primary",
-                              $summaryColor = "text-dark",
-                              $categoryColor = "text-primary",
-                              $createdDateColor = "text-primary",
-                              $userColor = "text-primary",
-                              $titleMarginT = "mt-2",
-                              $titleMarginB = "mb-0",
-                              $summaryMarginT = "mt-0",
-                              $summaryMarginB = "mb-0",
-                              $categoryMarginT = "mt-0",
-                              $categoryMarginB = "mb-0",
-                              $createdDateMarginT = "mt-0",
-                              $createdDateMarginB = "mb-0",
-                              $userMarginT = "mt-0",
-                              $userMarginB = "mb-0",
-                              $buttonMarginT = "mt-0",
-                              $buttonMarginB = "mb-0",
-                              $titleLetterSpacing = 0,
-                              $summaryLetterSpacing = 0,
-                              $categoryLetterSpacing = 0,
-                              $createdDateLetterSpacing = 0,
-                              $titleVineta = "",
-                              $titleVinetaColor = "text-dark",
-                              $buttonSize = "button-normal",
-                              $buttonTextSize = 16,
-                              $itemBackgroundColor = "none",
-                              $itemBackgroundColorHover = "none",
-                              $titleHeight = null,
-                              $summaryHeight = "100",
-                              $columnLeft = "col-lg-6",
-                              $columnRight = "col-lg-6",
-                              $titleTextDecoration = "none",
-                              $summaryTextDecoration = "none",
-                              $categoryTextDecoration = "none",
-                              $createdDateTextDecoration = "none",
-                              $titleAlignVertical = "align-items-start",
-                              $numberCharactersTitle = 200,
-                              $itemMarginB = "",
-                              $contentPaddingLeft = 15,
-                              $contentPaddingRight = 15,
-                              $summaryLineHeight = 20,
-                              $withImage = true,
-                              $imageWidth = 100,
-                              $imageAlign = 'left',
-                              $imageHeight = '',
-                              $imageMaxHeight = '',
-                              $imageMinHeight = '',
-                              $summaryField = null,
-                              $summaryWithLimit = true,
-                              $containerActive = false,
-                              $containerType = "container",
-                              $containerJustify = "justify-content-center",
-                              $containerAlign = "align-items-center",
-                              $containerColumn = "col-lg-10",
-                              $contentPaddingL = 0,
-                              $contentPaddingR = 0,
-                              $contentPaddingT = 0,
-                              $contentPaddingB = 0,
-                              $contentBackground = "",
-                              $imageOpacityCustom = "",
-                              $imageOpacityHover = false,
-                              $titleClasses = "",
-                              $summaryClasses = "",
-                              $categoryClasses = "",
-                              $createdDateClasses = "",
-                              $buttonItemClasses = "",
-                              $itemClasses = "",
-                              $buttonConfig = [],
-                              $titleShadow = "",
-                              $summaryShadow = "",
-                              $categoryShadow = "",
-                              $createdDateShadow = "",
-                              $imageShadow = "",
-                              $buttonShadow = "",
-                              $imageAnimate = "",
-                              $imageAnimateOpacityHover = "",
-                              $contentAnimateOpacityHover = "",
-                              $videoLoop = false,
-                              $videoAutoplay = false,
-                              $videoMuted = false,
-                              $videoControls = false,
-                              $titleHead = 'h3',
-                              $itemDuration = null,
-                              $itemDelay = null,
-                              $itemDelayIn = 0,
-                              $itemOffset = null,
-                              $itemEasing = null,
-                              $itemOne = false,
-                              $itemMirror = false,
-                              $itemAnimate = "",
-                              $titleColorCustom = "",
-                              $summaryColorCustom = "",
-                              $categoryColorCustom = "",
-                              $createdDateColorCustom = "",
-                              $userColorCustom = "",
-                              $withUrl = true
+  public function __construct($item, $mediaImage = "mainimage", $layout = 'item-list-layout-1',
+                              $parentAttributes = null, $withViewMoreButton = false,
+                              $viewMoreButtonLabel = "isite::common.menu.viewMore", $withCreatedDate = false,
+                              $withUser = false, $formatCreatedDate = "d \\d\\e M", $orderClasses = [],
+                              $withCategory = false, $withSummary = true, $numberCharactersSummary = 100,
+                              $editLink = null, $tooltipEditLink = null, $itemComponentView = null,
+                              $itemComponentTarget = null, $target = "_self", $itemListLayout = null,
+                              $positionNumber = null, $imageAspect = "1/1", $imageAspectMobile = null,
+                              $imageObject = "cover", $imageBorderRadio = 0, $imageBorderRadioType = "1",
+                              $imageBorderStyle = "solid", $imageBorderWidth = 0, $imageBorderColor = "#000000",
+                              $imagePadding = 0, $imagePicturePadding = 0, $withImageOpacity = false,
+                              $imageOpacityColor = "", $imageOpacityDirection = "", $withTitle = true, $titleAlign = "",
+                              $titleTextSize = "20", $titleTextSizeMobile = "20", $titleTextWeight = "font-weight-bold",
+                              $titleTextTransform = "", $summaryAlign = "text-left", $summaryTextSize = "16",
+                              $summaryTextWeight = "font-weight-normal", $categoryAlign = "text-left",
+                              $categoryTextSize = "18", $categoryTextWeight = "font-weight-normal",
+                              $createdDateAlign = "text-left", $createdDateTextSize = "14",
+                              $createdDateTextWeight = "font-weight-normal", $userAlign = "text-left",
+                              $userTextSize = "14", $userTextWeight = "font-weight-normal", $buttonAlign = "text-left",
+                              $buttonLayout = "border-0", $buttonIcon = " ", $buttonIconColor = null,
+                              $buttonIconLR = "left", $imagePosition = "1", $imagePositionVertical = "align-self-center",
+                              $contentPositionVertical = "align-self-center", $contentPadding = 0, $contentBorder = 0,
+                              $contentBorderColor = "#dddddd", $contentBorderRounded = 0,
+                              $contentBorderRoundedType = "1", $buttonColor = "primary", $contentMarginInsideX = "mx-0",
+                              $contentBorderShadows = "none", $contentBorderShadowsHover = false,
+                              $titleColor = "text-primary", $summaryColor = "text-dark", $categoryColor = "text-primary",
+                              $createdDateColor = "text-primary", $userColor = "text-primary", $titleMarginT = "mt-2",
+                              $titleMarginB = "mb-0", $summaryMarginT = "mt-0", $summaryMarginB = "mb-0",
+                              $categoryMarginT = "mt-0", $categoryMarginB = "mb-0", $createdDateMarginT = "mt-0",
+                              $createdDateMarginB = "mb-0", $userMarginT = "mt-0", $userMarginB = "mb-0",
+                              $buttonMarginT = "mt-0", $buttonMarginB = "mb-0", $titleLetterSpacing = 0,
+                              $summaryLetterSpacing = 0, $categoryLetterSpacing = 0, $createdDateLetterSpacing = 0,
+                              $titleVineta = "", $titleVinetaColor = "text-dark", $buttonSize = "button-normal",
+                              $buttonTextSize = 16, $itemBackgroundColor = "none", $itemBackgroundColorHover = "none",
+                              $titleHeight = null, $summaryHeight = "100", $columnLeft = "col-lg-6",
+                              $columnRight = "col-lg-6", $titleTextDecoration = "none", $summaryTextDecoration = "none",
+                              $categoryTextDecoration = "none", $createdDateTextDecoration = "none",
+                              $titleAlignVertical = "align-items-start", $numberCharactersTitle = 200, $itemMarginB = "",
+                              $contentPaddingLeft = 15, $contentPaddingRight = 15, $summaryLineHeight = 20,
+                              $withImage = true, $imageWidth = 100, $imageAlign = 'left', $imageHeight = '',
+                              $imageMaxHeight = '', $imageMinHeight = '', $summaryField = null, $summaryWithLimit = true,
+                              $containerActive = false, $containerType = "container",
+                              $containerJustify = "justify-content-center", $containerAlign = "align-items-center",
+                              $containerColumn = "col-lg-10", $contentPaddingL = 0, $contentPaddingR = 0,
+                              $contentPaddingT = 0, $contentPaddingB = 0, $contentBackground = "",
+                              $imageOpacityCustom = "", $imageOpacityHover = false, $titleClasses = "",
+                              $summaryClasses = "", $categoryClasses = "", $createdDateClasses = "",
+                              $buttonItemClasses = "", $itemClasses = "", $buttonConfig = [], $titleShadow = "",
+                              $summaryShadow = "", $categoryShadow = "", $createdDateShadow = "", $imageShadow = "",
+                              $buttonShadow = "", $imageAnimate = "", $imageAnimateOpacityHover = "",
+                              $contentAnimateOpacityHover = "", $videoLoop = false, $videoAutoplay = false,
+                              $videoMuted = false, $videoControls = false, $titleHead = 'h3', $itemDuration = null,
+                              $itemDelay = null, $itemDelayIn = 0, $itemOffset = null, $itemEasing = null,
+                              $itemOne = false, $itemMirror = false, $itemAnimate = "", $titleColorCustom = "",
+                              $summaryColorCustom = "", $categoryColorCustom = "", $createdDateColorCustom = "",
+                              $userColorCustom = "", $withUrl = true
   )
   {
     $this->imageAspectMobile = $imageAspectMobile;
@@ -556,17 +447,17 @@ class ItemList extends Component
     $this->itemOne = $itemOne;
     $this->itemMirror = $itemMirror;
     $this->itemAnimate = $itemAnimate;
-    $this->itemClasses = $this->itemMarginB." ".$itemClasses;
+    $this->itemClasses = $this->itemMarginB . " " . $itemClasses;
 
-    if($contentPadding>0) {
-        $this->contentPaddingL = $contentPadding;
-        $this->contentPaddingR = $contentPadding;
-        $this->contentPaddingT = $contentPadding;
-        $this->contentPaddingB = $contentPadding;
+    if ($contentPadding > 0) {
+      $this->contentPaddingL = $contentPadding;
+      $this->contentPaddingR = $contentPadding;
+      $this->contentPaddingT = $contentPadding;
+      $this->contentPaddingB = $contentPadding;
     }
 
-    if($this->buttonLayout=="button-custom") {
-        $this->buttonColor = "";
+    if ($this->buttonLayout == "button-custom") {
+      $this->buttonColor = "";
     }
 
     $this->titleColorCustom = $titleColorCustom;
@@ -577,45 +468,45 @@ class ItemList extends Component
     $this->withUrl = $withUrl;
 
     //Define the summary field value
-    if(!empty($summaryField)){
+    if (!empty($summaryField)) {
       //In case to show a fake field options example "options.secondaryDescription"
-      if(Str::contains($summaryField,'options')){
-        $summaryField = explode(".",$summaryField);
+      if (Str::contains($summaryField, 'options')) {
+        $summaryField = explode(".", $summaryField);
 
-        if(isset($summaryField[1]) && !empty($summaryField[1])){
+        if (isset($summaryField[1]) && !empty($summaryField[1])) {
           $options = json_decode(json_encode($item->options));
-          if(!empty($options)  && isset($options->{$summaryField[1]}))
+          if (!empty($options) && isset($options->{$summaryField[1]}))
             $this->summary = $options->{$summaryField[1]};
         }
-      }else{
+      } else {
         $this->summary = $item->{$summaryField} ?? "";
       }
-    }else{
+    } else {
       $this->summary = $item->summary ?? $item->description ?? $item->custom_html ?? $item->body ?? "";
     }
-  
+
     //Define the summary characters limit
-    if($summaryWithLimit) $this->summary = Str::limit($this->summary,$this->numberCharactersSummary);
-  
+    if ($summaryWithLimit) $this->summary = Str::limit($this->summary, $this->numberCharactersSummary);
+
     //Getting Extra fields in the order classes param
-    $this->extraOrderClassesFields = array_values(array_diff(array_keys($this->orderClasses),[  "photo", "title", "date", "categoryTitle", "summary", "viewMoreButton"]));
+    $this->extraOrderClassesFields = array_values(array_diff(array_keys($this->orderClasses), ["photo", "title", "date", "categoryTitle", "summary", "viewMoreButton"]));
 
     if (!empty($parentAttributes))
       $this->getParentAttributes($parentAttributes);
 
     $this->id = "item" . preg_replace('/[^a-z0-9]/i', '', $item->slug ?? $item->title ?? $item->name ?? "") . $item->id . uniqid();
 
-    $this->imageRadio = $this->radiusType($this->imageBorderRadio,$this->imageBorderRadioType);
-    $this->contentRadio = $this->radiusType($this->contentBorderRounded,$this->contentBorderRoundedType);
+    $this->imageRadio = $this->radiusType($this->imageBorderRadio, $this->imageBorderRadioType);
+    $this->contentRadio = $this->radiusType($this->contentBorderRounded, $this->contentBorderRoundedType);
 
     if (!isset($parentAttributes["itemComponentView"]) && is_null($itemComponentView))
       $this->view = "isite::frontend.components.item-list.layouts." . ($this->layout ?? 'item-list-layout-1') . ".index";
 
     if (isset($item->date_available) && !empty($item->date_available)) {
-     
+
       $dateFix = new \DateTime($item->date_available);
       $this->date = $dateFix->format($formatCreatedDate);
-      
+
     } elseif (isset($item->created_at) && !empty($item->created_at)) {
       $this->date = $item->created_at->format($formatCreatedDate);
     } else {
@@ -623,36 +514,37 @@ class ItemList extends Component
     }
   }
 
-  public function radiusType($radius, $type){
+  public function radiusType($radius, $type)
+  {
     //{{-- 1 all, 2 top, 3 right, 4 left, 5 bottom, 6 top right, 7 top left, 8 bottom right, 9 top left --}}
     switch ($type) {
-        case '2':
-            $radiusAll = $radius . "px " . $radius . "px 0 0";
-            break;
-        case '3':
-            $radiusAll = "0 " . $radius . "px " . $radius . "px 0";
-            break;
-        case '4':
-            $radiusAll = $radius . "px 0 0 " . $radius . "px";
-            break;
-        case '5':
-            $radiusAll = "0 0 " . $radius . "px " . $radius . "px";
-            break;
-        case '6':
-            $radiusAll = $radius . "px 0 " . $radius . "px " . $radius . "px";
-            break;
-        case '7':
-            $radiusAll = "0 " . $radius . "px " . $radius . "px " . $radius . "px";
-            break;
-        case '8':
-            $radiusAll = $radius . "px " . $radius . "px 0 " . $radius . "px";
-            break;
-        case '9':
-            $radiusAll = $radius . "px " . $radius . "px " . $radius . "px 0";
-            break;
-        default:
-            $radiusAll = $radius . "px";
-            break;
+      case '2':
+        $radiusAll = $radius . "px " . $radius . "px 0 0";
+        break;
+      case '3':
+        $radiusAll = "0 " . $radius . "px " . $radius . "px 0";
+        break;
+      case '4':
+        $radiusAll = $radius . "px 0 0 " . $radius . "px";
+        break;
+      case '5':
+        $radiusAll = "0 0 " . $radius . "px " . $radius . "px";
+        break;
+      case '6':
+        $radiusAll = $radius . "px 0 " . $radius . "px " . $radius . "px";
+        break;
+      case '7':
+        $radiusAll = "0 " . $radius . "px " . $radius . "px " . $radius . "px";
+        break;
+      case '8':
+        $radiusAll = $radius . "px " . $radius . "px 0 " . $radius . "px";
+        break;
+      case '9':
+        $radiusAll = $radius . "px " . $radius . "px " . $radius . "px 0";
+        break;
+      default:
+        $radiusAll = $radius . "px";
+        break;
     }
     return $radiusAll;
   }

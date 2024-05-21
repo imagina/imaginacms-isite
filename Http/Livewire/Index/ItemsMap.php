@@ -16,22 +16,24 @@ class ItemsMap extends Component
   public $locations;
   public $distancePoints;
   public $urlMarkerIcon;
- 
+
   /**
-  * Listeners
-  */
+   * Listeners
+   */
   protected $listeners = [
     'itemListRendered' => 'getData', //First Request
     'itemListRenderedAlways' => 'getData'//With Pagination
   ];
- 
+
   /*
   * Runs once, immediately after the component is instantiated,
   * but before render() is called
   */
-  public function mount($view = "isite::frontend.livewire.index.items-map", $params = null, $repository = "Modules\Iad\Repositories\AdRepository", $repoMethod = 'getItemsBy',
-  $layoutMarkPopup = "mark-popup-layout-1", $urlMarkerIcon = null
-  ){
+  public function mount($view = "isite::frontend.livewire.index.items-map", $params = null,
+                        $repository = "Modules\Iad\Repositories\AdRepository", $repoMethod = 'getItemsBy',
+                        $layoutMarkPopup = "mark-popup-layout-1", $urlMarkerIcon = null
+  )
+  {
     $this->log = "Isite::Livewire|Index|ItemsMaps|";
     $this->locations = [];
 
@@ -41,10 +43,10 @@ class ItemsMap extends Component
     $this->repoMethod = $repoMethod;
 
     //Layout personalizado para el Mark Popup
-    $this->layoutMarkPopup = "isite::frontend.components.map.layouts.mark-popup.".$layoutMarkPopup.".index";
+    $this->layoutMarkPopup = "isite::frontend.components.map.layouts.mark-popup." . $layoutMarkPopup . ".index";
 
     //Valor en Mts
-    $this->distancePoints = setting('isite::mapGroupMarkersDistance',null,1);
+    $this->distancePoints = setting('isite::mapGroupMarkersDistance', null, 1);
 
     //Esto no funcionó | traia url default y no la guardada en el setting
     //dd(setting('isite::mapIconMarker'));
@@ -62,7 +64,7 @@ class ItemsMap extends Component
   {
 
     //\Log::info($this->log."Item List Params:".json_encode($params));
-   
+
     // Search items
     $items = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params)));
 
@@ -98,7 +100,7 @@ class ItemsMap extends Component
     //\Log::info($this->log."Locations:".json_encode($this->locations));
 
     //Send event to Update Locations in frontend
-    $this->dispatchBrowserEvent('items-map-updated',[
+    $this->dispatchBrowserEvent('items-map-updated', [
       'locationsItem' => $this->locations
     ]);
 
@@ -112,7 +114,7 @@ class ItemsMap extends Component
   {
     return app($this->repository);
   }
-  
+
   /*
   * Render
   *
@@ -129,17 +131,17 @@ class ItemsMap extends Component
   */
   public function groupLocations($items)
   {
-    \Log::info($this->log."GroupLocations|START");
+    \Log::info($this->log . "GroupLocations|START");
     $groupLocations = [];
 
     $cant = count($items);
 
-    if($cant>0){
+    if ($cant > 0) {
 
       //Main For | Check All Items
-      for ($i=0; $i < $cant ; $i++) { 
+      for ($i = 0; $i < $cant; $i++) {
         $itemCheck = $items[$i];
-        \Log::info($this->log."**** CHECK|ItemId: ".$itemCheck["id"]);
+        \Log::info($this->log . "**** CHECK|ItemId: " . $itemCheck["id"]);
 
         //Attributes para el siguiente for
         $itemCheckWasGrouped = false;
@@ -147,21 +149,21 @@ class ItemsMap extends Component
         $groupItemsId = [];
 
         //Second For | Check main item with others items
-        for ($j=$i+1; $j<$cant; $j++) { 
-         
+        for ($j = $i + 1; $j < $cant; $j++) {
+
           $itemNext = $items[$j];
-          \Log::info($this->log."NEXT|ItemId: ".$itemNext["id"]);
+          \Log::info($this->log . "NEXT|ItemId: " . $itemNext["id"]);
 
           //Calcular distancia entre puntos
-          $distance = $this->calcultaDistance($itemCheck,$itemNext);
+          $distance = $this->calcultaDistance($itemCheck, $itemNext);
 
           //Son items cercanos entonces se agrupan
-          if($distance<$this->distancePoints){
+          if ($distance < $this->distancePoints) {
 
-            \Log::info($this->log."Agrupando Items");
+            \Log::info($this->log . "Agrupando Items");
 
             //Agrego el item principal al grupo
-            if($itemCheckWasGrouped==false){
+            if ($itemCheckWasGrouped == false) {
               array_push($groupItems, $itemCheck);
               array_push($groupItemsId, $itemCheck->id);//Guardar los Ids para aprovechar el FOR
               $itemCheckWasGrouped = true;
@@ -174,48 +176,48 @@ class ItemsMap extends Component
 
         }
 
-        \Log::info($this->log."Items Agrupados: ".count($groupItems));
+        \Log::info($this->log . "Items Agrupados: " . count($groupItems));
 
         //El itemCheck fue agrupado con otros items
-        if(count($groupItems)>0){
+        if (count($groupItems) > 0) {
 
-          \Log::info($this->log."Guardando Agrupados");
+          \Log::info($this->log . "Guardando Agrupados");
 
           //Base layout to Mark Popup
-          $renderedView = view($this->layoutMarkPopup,['items'=> $groupItems])->render();
+          $renderedView = view($this->layoutMarkPopup, ['items' => $groupItems])->render();
 
           //Se define 1 solo Marker para todos los grupos de Items
           array_push($groupLocations, [
             'lat' => $groupItems[0]["lat"],
             'lng' => $groupItems[0]["lng"],
             'title' => "Ver mas",
-            'id' => implode(",",$groupItemsId),
+            'id' => implode(",", $groupItemsId),
             'groupItemsId' => $groupItemsId,
             'renderedView' => $renderedView
           ]);
 
-        }else{
+        } else {
 
           //Verificar que el item a guardar no fue agrupado anteriormente
           $itemExist = false;
           foreach ($groupLocations as $key => $locations) {
             //El marcador creado es de varios items, y el item a guardar ya fue agregado
-            if(isset($locations['groupItemsId']) && in_array($items[$i]["id"], $locations['groupItemsId'])){
+            if (isset($locations['groupItemsId']) && in_array($items[$i]["id"], $locations['groupItemsId'])) {
               $itemExist = true;
               break;
             }
           }
 
           //Si no fue agrupado, se crea marcador para ese Item
-          if($itemExist==false){
+          if ($itemExist == false) {
 
-            \Log::info($this->log."Guardando Individual | ItemId:".$items[$i]["id"]);
+            \Log::info($this->log . "Guardando Individual | ItemId:" . $items[$i]["id"]);
 
             //Se envia siempre en un array para renderizar el layout
             $itemsView[0] = $items[$i];
 
             //Base layout to Mark Popup
-            $renderedView = view($this->layoutMarkPopup,['items' =>  $itemsView ])->render();
+            $renderedView = view($this->layoutMarkPopup, ['items' => $itemsView])->render();
 
             //Se agrega data para el Marcador
             array_push($groupLocations, [
@@ -225,26 +227,22 @@ class ItemsMap extends Component
               'id' => $items[$i]["id"],
               'renderedView' => $renderedView
             ]);
-
           }
-          
         }
-        
       }
-
     }
 
-    \Log::info($this->log."GroupLocations|END");
+    \Log::info($this->log . "GroupLocations|END");
 
     //dd($groupLocations);
     return $groupLocations;
-    
+
   }
 
   /*
   * Calcular distancia entre 2 Items
   */
-  public function calcultaDistance($itemA,$itemB)
+  public function calcultaDistance($itemA, $itemB)
   {
 
     //Transformacion a Radianes
@@ -259,16 +257,14 @@ class ItemsMap extends Component
     //Radio de la Tierra: 6371Km | 6371000 Mts,
     //Usando ley esférica de los cosenos
     $distance = round((6371000 *
-        acos(
-            cos($rlat0) * cos($rlat1) * cos($lonDelta) +
-            sin($rlat0) * sin($rlat1)
-        )
-    ),2);
-    
-    \Log::info($this->log."Distance Aprox: ".$distance." Mts");
+      acos(
+        cos($rlat0) * cos($rlat1) * cos($lonDelta) +
+        sin($rlat0) * sin($rlat1)
+      )
+    ), 2);
+
+    \Log::info($this->log . "Distance Aprox: " . $distance . " Mts");
 
     return $distance;
-
   }
-
 }
