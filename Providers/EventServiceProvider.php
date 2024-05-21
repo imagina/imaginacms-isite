@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Event;
 use Modules\Iprofile\Events\UserCreatedEvent;
 use Modules\Isite\Events\Handlers\CreateOrganizationByRole;
 use Modules\Isite\Events\Handlers\CreateOrganizationBySuscription;
+use Modules\Isite\Events\Handlers\NotifyIsRunningEnds;
 use Modules\Isite\Events\Handlers\SetMaintenanceMode;
 use Modules\Isite\Events\OrganizationWasUpdated;
 
