@@ -231,13 +231,9 @@ class ModuleActivator implements ActivatorInterface
     $statuses = [];
     
     $allModules = $this->tenantModules();
-    
-    if (empty($allModules)) {
-      try {
-        $allModules = IModule::all() ?? [];
-      } catch (\Exception $e) {
-        $allModules = [];
-      }
+
+    if(empty($allModules)){
+      $allModules = IModule::all() ?? "";
     }
     
     //});

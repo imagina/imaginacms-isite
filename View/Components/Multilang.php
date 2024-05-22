@@ -36,26 +36,16 @@ class Multilang extends Component
    */
   public function __construct($layout = "multilang-layout-1",
                               $butonComponentNamespace = "Modules\Isite\View\Components\Button",
-                              $butonComponent = "isite::Button",
-                              $buttonComponentAtributtes = [],
-                              $buttonDropDownItemComponentAtributtes = [],
-                              $showButton = true,
-                              $longText = true,
+                              $butonComponent = "isite::Button", $buttonComponentAtributtes = [],
+                              $buttonDropDownItemComponentAtributtes = [], $showButton = true, $longText = true,
                               $longTextDrop = true,
-
                               $imageComponentNamespace = "Modules\Media\View\Components\SingleImage",
-                              $imageComponent = "media::single-image",
-                              $imageComponentAtributtes = [],
-                              $showImage = true,
-                              $classSelect = "",
-                              $classSelectOut = "",
-                              $flagStyles = null,
-                              $flagClasses = null,
-                              $multiflagClasses = null,
-                              $linkClasses = null
+                              $imageComponent = "media::single-image", $imageComponentAtributtes = [], $showImage = true,
+                              $classSelect = "", $classSelectOut = "", $flagStyles = null, $flagClasses = null,
+                              $multiflagClasses = null, $linkClasses = null
   )
   {
-    $this->view = "isite::frontend.components.multilang.layouts.".$layout.".index";
+    $this->view = "isite::frontend.components.multilang.layouts." . $layout . ".index";
     $this->locales = json_decode(setting("core::locales"));
 
     $this->butonComponentNamespace = $butonComponentNamespace;

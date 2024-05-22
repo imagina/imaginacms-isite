@@ -176,7 +176,7 @@ class InfoContact extends Component
     $this->subtitleSectionColorByClass = $subtitleSectionColorByClass;
     $this->titleContactColorByClass = $titleContactColorByClass;
     $this->withHyphen = $withHyphen;
-    if (!$withIconsComponents){
+    if (!$withIconsComponents) {
       $this->withIconComponentAddress = false;
       $this->withIconComponentPhone = false;
       $this->withIconComponentEmail = false;
@@ -191,14 +191,14 @@ class InfoContact extends Component
     } else {
       $this->displayFlex = '';
     }
-    if($iconCustomPhone) {
-        $this->iconPhone = $iconCustomPhone;
+    if ($iconCustomPhone) {
+      $this->iconPhone = $iconCustomPhone;
     }
-    if($iconCustomAddress) {
-       $this->iconAddress = $iconCustomAddress;
+    if ($iconCustomAddress) {
+      $this->iconAddress = $iconCustomAddress;
     }
-    if($iconCustomPhone) {
-       $this->iconEmail = $iconCustomEmail;
+    if ($iconCustomPhone) {
+      $this->iconEmail = $iconCustomEmail;
     }
   }
 

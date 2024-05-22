@@ -2,6 +2,7 @@
 
 namespace Modules\Isite\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Modules\Core\Http\Controllers\Admin\AdminBaseController;
 use Modules\Isite\Entities\Recommendation;

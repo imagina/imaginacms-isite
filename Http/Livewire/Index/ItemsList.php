@@ -14,7 +14,6 @@ class ItemsList extends Component
   use WithPagination;
 
   private $firstRequest;
-
   public $title;
   public $description;
   public $moduleName;
@@ -53,6 +52,7 @@ class ItemsList extends Component
 
   //Item List Unique Class
   public $itemListUniqueClass;
+  public $currentRoute;
 
   protected $paginationTheme = 'bootstrap';
   protected $emitItemListRendered;
@@ -117,10 +117,11 @@ class ItemsList extends Component
     $this->validateNameEmitListRendered();
     list($this->editLink, $this->tooltipEditLink) = getEditLink($this->repository);
 
-    $this->itemListUniqueClass = "unique-class-".$this->id;
+    $this->itemListUniqueClass = "unique-class-" . $this->id;
     $this->disableFilters = $disableFilters;
     $this->eventToDelete = $eventToDelete;
     $this->emitItemListRenderedAlways = $emitItemListRenderedAlways;
+    $this->currentRoute = \Route::current()->getName();
 
   }
 
@@ -168,7 +169,7 @@ class ItemsList extends Component
     //\Log::info("ITEMLIST - GETDATA - PARAMS: ".json_encode($params));
     if (isset($params["filter"])) {
       $this->emitItemListRendered = true;
-      if(!$this->disableFilters)
+      if (!$this->disableFilters)
         $this->filter = array_merge($this->filter, $params["filter"]);
 
       $this->resetPage();
@@ -289,18 +290,18 @@ class ItemsList extends Component
     //\Log::info($this->log."deleteFromWishlist");
 
     //Delete in other process
-    if(!is_null($this->eventToDelete)){
+    if (!is_null($this->eventToDelete)) {
 
       //The other component will be in charge of delete the item
       //The other component will emit the event to reload the ItemList
-      $this->emit($this->eventToDelete['eventName'],$id,$this->entityNamespace,$this->eventToDelete['params']);
+      $this->emit($this->eventToDelete['eventName'], $id, $this->entityNamespace, $this->eventToDelete['params']);
 
-    }else{
+    } else {
       //Delete in the same repository from this item list
 
       $item = $this->getItemRepository()->getItem($id); //Search item
 
-      if(isset($item->id)){
+      if (isset($item->id)) {
         $item->delete();
         $this->resetPage(); //Reset item list
       }
@@ -333,8 +334,8 @@ class ItemsList extends Component
     }
 
     //Emit Always after update Item List
-    if($this->emitItemListRenderedAlways)
-      $this->dispatchBrowserEvent('emit-always-update-item-list',['newParams' => $params]);
+    if ($this->emitItemListRenderedAlways)
+      $this->dispatchBrowserEvent('emit-always-update-item-list', ['newParams' => $params]);
 
     // Emit Finish Render
     //\Log::info("Emit list rendered: ".json_encode($this->emitItemListRendered));

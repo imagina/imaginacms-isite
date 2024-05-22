@@ -3,6 +3,7 @@
 namespace Modules\Isite\Events\Handlers;
 
 use Maatwebsite\Sidebar\Group;
+use Maatwebsite\Sidebar\Item;
 use Maatwebsite\Sidebar\Menu;
 use Modules\Core\Events\BuildingSidebar;
 use Modules\User\Contracts\Authentication;

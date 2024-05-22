@@ -14,7 +14,7 @@ This Partials depends on the following variables:
 <?php
 $hash = sha1($itemComponentNamespace);
 if (isset($component)) {
-  $__componentOriginal{$hash} = $component;
+  $__componentOriginal[$hash] = $component;
 }
 $component = $__env->getContainer()->make($itemComponentNamespace, array_merge([
   "item" => $item ?? null,
@@ -27,9 +27,9 @@ $component = $__env->getContainer()->make($itemComponentNamespace, array_merge([
 $component->withName($itemComponent);
 if ($component->shouldRender()):
   $__env->startComponent($component->resolveView(), $component->data());
-  if (isset($__componentOriginal{$hash})):
-    $component = $__componentOriginal{$hash};
-    unset($__componentOriginal{$hash});
+  if (isset($__componentOriginal[$hash])):
+    $component = $__componentOriginal[$hash];
+    unset($__componentOriginal[$hash]);
   endif;
   echo $__env->renderComponent();
 endif;

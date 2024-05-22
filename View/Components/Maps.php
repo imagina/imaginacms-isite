@@ -58,12 +58,12 @@ class Maps extends Component
   public $labelColor;
   public $labelTopPosition;
 
-    /**
-     * Create a new component instance.
-     *
-     * @return void
-     */
-    public function __construct($lat = null, $lng = null, $locationName = null, $title = 'Mapa',
+  /**
+   * Create a new component instance.
+   *
+   * @return void
+   */
+  public function __construct($lat = null, $lng = null, $locationName = null, $title = 'Mapa',
                               $zoom = 16, $classes = '', $id = 1, $mapId = null, $inModal = false, $mapWidth = '100%',
                               $mapHeight = '314px', $layout = 'map-layout-1', $locations = [], $view = null,
                               $imageIcon = null, $mapStyle = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -72,10 +72,12 @@ class Maps extends Component
                               $inputLocation = null, $withTitle = false, $alignTitle = 'text-left',
                               $fontSizeTitle = '14', $colorTitle = null, $colorTitleByClass = 'text-primary',
                               $colorTitleSection = "#000000", $fontSizeTitleSection = "24", $iframeMap = null,
-                              $usingLivewire = false, $allowMoveMarker = false, $showLocationName = true, $initMultipleLocations = false,
-                              $activeClickInMarker = false, $emitAfterClickMarker = false, $activeAnimationInMarker = false, $inputVarName = null,
-                              $labelFontSize = null, $labelFontWeight=null, $labelColor=null, $labelTopPosition=null
-  ){
+                              $usingLivewire = false, $allowMoveMarker = false, $showLocationName = true,
+                              $initMultipleLocations = false, $activeClickInMarker = false,
+                              $emitAfterClickMarker = false, $activeAnimationInMarker = false, $inputVarName = null,
+                              $labelFontSize = null, $labelFontWeight = null, $labelColor = null, $labelTopPosition = null
+  )
+  {
     $defaultMap = json_decode(setting('isite::locationSite'));
     $this->lat = $lat ?? $defaultMap->lat;
     $this->lng = $lng ?? $defaultMap->lng;
@@ -117,9 +119,9 @@ class Maps extends Component
     }
     $this->locations = $locationsMap;
 
-        $numLocations = count($this->locations);
-        $totalLat = 0;
-        $totalLng = 0;
+    $numLocations = count($this->locations);
+    $totalLat = 0;
+    $totalLng = 0;
 
     foreach ($this->locations as $location) {
       $totalLat = $totalLat + $location['lat'];
@@ -151,21 +153,21 @@ class Maps extends Component
     $this->inputVarName = $inputVarName; //Used in Address Map Component | Iprofile
 
     // Label Marker
-    $fontSizeValue =  $labelFontSize ?? setting("isite::markerLabelFontSize",null,"12");
-    $this->labelFontSize = $fontSizeValue."px";
-    $this->labelFontWeight = $labelFontWeight ?? setting("isite::markerLabelFontWeight",null,"normal");
-    $this->labelColor = $labelColor ?? setting("isite::markerLabelColor",null,"black");
-    $this->labelTopPosition =  $labelTopPosition ?? setting("isite::markerLabelTopPosition",null,"30");
+    $fontSizeValue = $labelFontSize ?? setting("isite::markerLabelFontSize", null, "12");
+    $this->labelFontSize = $fontSizeValue . "px";
+    $this->labelFontWeight = $labelFontWeight ?? setting("isite::markerLabelFontWeight", null, "normal");
+    $this->labelColor = $labelColor ?? setting("isite::markerLabelColor", null, "black");
+    $this->labelTopPosition = $labelTopPosition ?? setting("isite::markerLabelTopPosition", null, "30");
 
   }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\View\View|string
-     */
-    public function render()
-    {
-        return view($this->view);
-    }
+  /**
+   * Get the view / contents that represent the component.
+   *
+   * @return \Illuminate\View\View|string
+   */
+  public function render()
+  {
+    return view($this->view);
+  }
 }

@@ -23,7 +23,7 @@ class Copyright extends Component
    */
   public function __construct($classes = "", $withIconCopyright = false, $withLabelCopyright = true,
                               $withYear = true, $withTitleCopyright = true, $withSiteName = true,
-                              $styles = null )
+                              $styles = null)
   {
     $this->name = @setting('core::site-name');
     $this->year = date('Y');
@@ -36,13 +36,13 @@ class Copyright extends Component
     $this->styles = $styles;
   }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\View\View|string
-     */
-    public function render()
-    {
-        return view('isite::frontend.components.copyright');
-    }
+  /**
+   * Get the view / contents that represent the component.
+   *
+   * @return \Illuminate\View\View|string
+   */
+  public function render()
+  {
+    return view('isite::frontend.components.copyright');
+  }
 }

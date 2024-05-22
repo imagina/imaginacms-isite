@@ -2,7 +2,7 @@
   <?php
   $hash = sha1($imageComponentNamespace);
   if (isset($component)) {
-    $__componentOriginal{$hash} = $component;
+    $__componentOriginal[$hash] = $component;
   }
   $component = $__env->getContainer()->make($imageComponentNamespace, array_merge([
     'src' => url('modules/isite/img/locales/' . $locale . '.jpg'),
@@ -13,9 +13,9 @@
   $component->withName($imageComponent);
   if ($component->shouldRender()):
     $__env->startComponent($component->resolveView(), $component->data());
-    if (isset($__componentOriginal{$hash})):
-      $component = $__componentOriginal{$hash};
-      unset($__componentOriginal{$hash});
+    if (isset($__componentOriginal[$hash])):
+      $component = $__componentOriginal[$hash];
+      unset($__componentOriginal[$hash]);
     endif;
     echo $__env->renderComponent();
   endif;

@@ -2,11 +2,17 @@
 
 namespace Modules\Isite\Http\Controllers;
 
-use Illuminate\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Modules\Iblog\Entities\Post;
+use Log;
+use Mockery\CountValidator\Exception;
+use Modules\Core\Http\Controllers\BasePublicController;
+use Modules\Iprofile\Repositories\UserApiRepository;
+use Route;
 use Modules\Ihelpers\Http\Controllers\Api\BaseApiController;
+use Illuminate\Support\Str;
+use Modules\Isite\Entities\block;
+use Modules\Iblog\Entities\Post;
+
 use Modules\Isite\Repositories\CategoryRepository;
 
 class PublicController extends BaseApiController

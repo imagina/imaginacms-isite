@@ -6,6 +6,7 @@ use Astrotomic\Translatable\Translatable;
 use Kalnoy\Nestedset\NodeTrait;
 use Modules\Core\Icrud\Entities\CrudModel;
 use Modules\Media\Support\Traits\MediaRelation;
+use Illuminate\Support\Str;
 
 class Category extends CrudModel
 {
