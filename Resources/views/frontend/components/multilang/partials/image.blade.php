@@ -5,7 +5,7 @@
     $__componentOriginal[$hash] = $component;
   }
   $component = $__env->getContainer()->make($imageComponentNamespace, array_merge([
-    'src' => url('modules/isite/img/locales/' . $locale . '.jpg'),
+    'src' => url($localesUrl . $locale . '.jpg'),
     'imgStyles' => $styleFlag ?? '',
     'imgClasses' => $classFlag ?? '',
     'url' => LaravelLocalization::getCurrentLocale(),
