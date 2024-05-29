@@ -48,10 +48,11 @@ return [
     "newExportItemHelpText" => 'Exportar <b class="text-blue-grey">Registro ID: {id}</b>',
     "exportReady" => "Tu report <b>{fileName}</b> está listo!",
     "noOrganization" => "Todavía no perteneces a una organización",
-    "refreshAppVersion" => "Estamos emocionados de presentar nuevas funciones y mejoras en esta versión. Haga clic en el botón de actualización para disfrutar de la última experiencia.",
+    "refreshAppVersion" => "Estamos emocionados de presentar nuevas funciones y mejoras en esta versión. Las actualizaciones se están descargando automáticamente para que puedas disfrutar de la última experiencia sin ninguna interrupción.",
     "updateAvailable" => "¡Nueva actualización disponible!",
     "updateNow" => "Actualizar ahora",
-    "dispatchBulkAction" => 'Acción masiva de envío de <b class="text-blue-grey">{pageTitle}</b>'
+    "dispatchBulkAction" => 'Acción masiva de envío de <b class="text-blue-grey">{pageTitle}</b>',
+    "cacheCleanupMessage"=> "Estamos actualmente limpiando la caché. Esto puede liberar espacio y resolver algunos problemas. Por favor, ten en cuenta que la próxima vez que cargues la aplicación, podría tomar un poco más de tiempo ya que se estará generando una nueva caché."
   ],
   "startTime" => "Hora de inicio",
   "endTime" => "Hora de finalización",
@@ -418,6 +419,7 @@ return [
     "createNewAccount" => "Crear Nueva Cuenta",
     "continue" => "Continuar",
     "print" => "Imprimir",
+    "cacheCleanup"=> "Limpieza de Caché",
     "copy" => "Copiar",
     "insert" => "Insertar",
     "phoneNumber" => "Número de teléfono",
