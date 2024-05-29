@@ -3962,6 +3962,18 @@ return [
                         'rows' => 2,
                     ]
                 ],
+                "localesUrl" => [
+                    "name" => "localesUrl",
+                    "value" => "modules/isite/img/locales/",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Locales Imagen",
+                        "options" => [
+                            ["label" => "isite", "value" => "modules/isite/img/locales/"],
+                            ["label" => "icustom", "value" => "modules/icustom/img/locales/"],
+                        ]
+                    ]
+                ],
             ]
         ],
     ]
@@ -4185,8 +4197,8 @@ return [
                         "options" => $vAttributes["imageAspect"]
                     ]
                 ],
-                "imageObject" => [
-                    "name" => "imageObject",
+                "imageObjectFit" => [
+                    "name" => "imageObjectFit",
                     "value" => "cover",
                     "type" => "select",
                     "props" => [
