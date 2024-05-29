@@ -9,6 +9,7 @@ class Multilang extends Component
 
   public $itemLayout;
   public $locales;
+  public $localesUrl;
 
   public $buttonComponentAtributtes;
   public $buttonDropDownItemComponentAtributtes;
@@ -42,11 +43,12 @@ class Multilang extends Component
                               $imageComponentNamespace = "Modules\Media\View\Components\SingleImage",
                               $imageComponent = "media::single-image", $imageComponentAtributtes = [], $showImage = true,
                               $classSelect = "", $classSelectOut = "", $flagStyles = null, $flagClasses = null,
-                              $multiflagClasses = null, $linkClasses = null
+                              $multiflagClasses = null, $linkClasses = null, $localesUrl = "modules/isite/img/locales/"
   )
   {
     $this->view = "isite::frontend.components.multilang.layouts." . $layout . ".index";
     $this->locales = json_decode(setting("core::locales"));
+    $this->localesUrl = $localesUrl;
 
     $this->butonComponentNamespace = $butonComponentNamespace;
     $this->butonComponent = $butonComponent;
