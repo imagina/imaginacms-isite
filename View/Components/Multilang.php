@@ -7,8 +7,9 @@ use Illuminate\View\Component;
 class Multilang extends Component
 {
 
-    public $itemLayout;
+  public $itemLayout;
   public $locales;
+  public $localesUrl;
 
   public $buttonComponentAtributtes;
   public $buttonDropDownItemComponentAtributtes;
@@ -52,11 +53,13 @@ class Multilang extends Component
                               $flagStyles = null,
                               $flagClasses = null,
                               $multiflagClasses = null,
-                              $linkClasses = null
+                              $linkClasses = null,
+                              $localesUrl = "modules/isite/img/locales/"
   )
   {
     $this->view = "isite::frontend.components.multilang.layouts.".$layout.".index";
     $this->locales = json_decode(setting("core::locales"));
+    $this->localesUrl = $localesUrl;
 
     $this->butonComponentNamespace = $butonComponentNamespace;
     $this->butonComponent = $butonComponent;
