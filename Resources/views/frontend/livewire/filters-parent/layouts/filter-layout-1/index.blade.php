@@ -5,7 +5,7 @@
 			<div id="contenttomove" class="d-none">
 				<div class="row">
 					@foreach($filters as $index => $filter)
-						@if($filter['status'])
+						@if(isset($filter['status']))
 							<div class="{{$filter['classes']}}">
 								@livewire("isite::filter-".$filter['type'], $filter, key($index.'-'.$filter['type']))
 							</div>
@@ -53,10 +53,10 @@
 
 		/*Validate init width to desktop - show filters*/
 		var widthInit = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-	
+
 		if(widthInit > 992) {
 			$("#contenttomove").removeClass("d-none");
-			
+
 		}
 
 		$(document).ready(function () {
@@ -68,12 +68,12 @@
 					$("#contenttomove").removeClass("d-none");
 				} else {
 					$('#staticdiv').append($("#contenttomove"));
-					
+
 				}
 			}
-			
+
 			/**
-			* If the filters are already in a modal, 
+			* If the filters are already in a modal,
 			* they should not be added again (Example: Latinas Website)
 			*/
 			@if($showResponsiveModal)
@@ -82,10 +82,10 @@
 				if(width<=992)
 					divtomodal()
 			@endif
-			
+
 			// Fix all
 			$("#contenttomove").removeClass("d-none");
-			
+
 			/*
 			* Listener Filters Close Modal
 			*/
@@ -94,7 +94,7 @@
 					$('#{{$extraModalId}}').modal('hide');
 				})
 			@endif
-			
+
 			/*
 			* Listener After Get Data (getDataFromFilters)
 			*/
@@ -118,7 +118,7 @@
 				}
 
 			})
-			
+
 		});
 	</script>
 
