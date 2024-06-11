@@ -17,7 +17,7 @@
             </div>
         </div>
     </div>
-    <div class="breadcrumb-image position-relative overlay-hidden" @if($breadcrumbPosition==1) order-0 @endif">
+    <div class="breadcrumb-image position-relative overlay-hidden @if($breadcrumbPosition==1) order-0 @endif">
         @if($withTitle&&isset($page)&&!empty($page))
             <div class="breadcrumb-info breadcrumb-overlay">
                 <div class="h-100 {{$container}} {{$containerClass}}">
