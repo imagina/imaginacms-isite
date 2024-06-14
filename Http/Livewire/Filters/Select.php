@@ -41,13 +41,14 @@ class Select extends Component
     * Runs once, immediately after the component is instantiated,
     * but before render() is called
     */
-  public function mount($title, $name, $type, $repository, $emitTo, $repoAction,
-                        $repoAttribute, $listener, $status = true, $isExpanded = true, $repoMethod = 'getItemsBy',
+  public function mount($name, $type, $repository, $emitTo, $repoAction,
+                        $repoAttribute, $listener, $title = null, $status = true, $isExpanded = true, $repoMethod = 'getItemsBy',
                         $layout = 'select-layout-1', $classes = 'col-12', $params = [], $isCollapsable = true,
                         $withTitle = true, $withSubtitle = true, $getDataAfterSelected = false,
                         $defaultSelectedSetting = null, $entityTitle = null, $showFirstOptionSelect = true)
   {
-    $this->title = trans($title);
+    $this->title = trans($title) ?? trans('isearch::common.filters.searchRepositories.title');
+    $this->entityTitle = $entityTitle ?? trans('isearch::common.filters.searchRepositories.entity title');
     $this->name = $name;
     $this->status = $status;
     $this->isExpanded = $isExpanded;
@@ -66,7 +67,6 @@ class Select extends Component
     $this->withTitle = $withTitle;
     $this->withSubtitle = $withSubtitle;
     $this->getDataAfterSelected = $getDataAfterSelected;
-    $this->entityTitle = $entityTitle;
     $this->showFirstOptionSelect = $showFirstOptionSelect;
 
     $this->getData();
