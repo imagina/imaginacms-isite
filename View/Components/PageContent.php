@@ -47,6 +47,7 @@ class PageContent extends Component
     public $bodyAlign;
     public $bodyColor;
     public $bodyColorByClass;
+    public $bodyContentInside;
 
     public $galleryLayout;
     public $galleryResponsive;
@@ -126,6 +127,7 @@ class PageContent extends Component
                               $bodyAlign = "text-justify",
                               $bodyColor = null,
                               $bodyColorByClass = "text-dark",
+                              $bodyContentInside = "float-left w-50",
                               $bodyExtraMiniClass = "",
                               $galleryLayout = "gallery-layout-1",
                               $galleryResponsive = [],
@@ -223,6 +225,7 @@ class PageContent extends Component
       $this->bodyAlign = $bodyAlign;
       $this->bodyColor = $bodyColor;
       $this->bodyColorByClass = $bodyColorByClass;
+      $this->bodyContentInside = $bodyContentInside;
       $this->shareClass = $shareClass;
       $this->shareFontClass = $shareFontClass;
       $this->shareStyle = $shareStyle;

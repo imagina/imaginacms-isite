@@ -4247,22 +4247,6 @@ return [
         "general" => [
             "title" => "General",
             "fields" => [
-                "layout" => [
-                    "name" => "layout",
-                    "value" => "page-layout-1",
-                    "type" => "select",
-                    'columns' => 'col-12',
-                    "props" => [
-                        "label" => "Layout",
-                        "options" => [
-                            ["label" => "Layout 1", "value" => "page-layout-1"],
-                            ["label" => "Layout 2", "value" => "page-layout-2"],
-                        ]
-                    ],
-                    "help" => [
-                        "description" => "Layout 1 es una columna. Layout 2 la imagen esta dentro de la descripción ",
-                    ]
-                ],
                 "row" => [
                     "name" => "row",
                     "value" => "row align-items-center",
@@ -4279,6 +4263,17 @@ return [
                     "columns" => "col-12",
                     "props" => [
                         "label" => "Orden de los elementos"
+                    ]
+                ],
+                "bodyContentInside" => [
+                    "name" => "bodyContentInside",
+                    "columns" => "col-12",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Clases contenido dentro de la descripción",
+                    ],
+                    "help" => [
+                        "description" => "Clases que engloban los componentes cuando se encuentran dentro de la descripción",
                     ]
                 ],
             ]
@@ -4380,6 +4375,76 @@ return [
                 ],
             ]
         ],
+        "body" => [
+            "title" => "Descripción",
+            "fields" => [
+                "withBody" => [
+                    "name" => "withBody",
+                    "value" => "1",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Mostrar",
+                        "options" => $vAttributes["validation"]
+                    ]
+                ],
+                "bodyFontSize" => [
+                    "name" => "bodyFontSize",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Tamaño de fuente",
+                        "type" => "number"
+                    ]
+                ],
+                "bodyAlign" => [
+                    "name" => "bodyAlign",
+                    "value" => "text-justify",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Alineación",
+                        "options" => $vAttributes["textAlign"]
+                    ]
+                ],
+                "bodyColorByClass" => [
+                    "name" => "bodyColorByClass",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Color Class",
+                        "options" => $vAttributes["textColors"]
+                    ]
+                ],
+                "bodyColor" => [
+                    "name" => "bodyColor",
+                    "type" => "inputColor",
+                    "props" => [
+                        "label" => "Color Custom",
+                    ],
+                    "help" => [
+                        "description" => "Selecciona el color Custom en Color Class para activarlo",
+                    ]
+                ],
+                "bodyClass" => [
+                    "name" => "bodyClass",
+                    "type" => "input",
+                    "columns" => "col-12",
+                    "props" => [
+                        "label" => "Clases",
+                    ],
+                ],
+                "bodyStyle" => [
+                    "name" => "bodyStyle",
+                    "type" => "input",
+                    "columns" => "col-12",
+                    "props" => [
+                        "label" => "Estilos",
+                        'type' => 'textarea',
+                        'rows' => 5,
+                    ],
+                    "help" => [
+                        "description" => "Permite agregar estilos adicionales en la descripción",
+                    ]
+                ],
+            ]
+        ],
         "media" => [
             "title" => "Imagen o Video",
             "fields" => [
@@ -4389,7 +4454,12 @@ return [
                     "type" => "select",
                     "props" => [
                         "label" => "Mostrar",
-                        "options" => $vAttributes["validation"]
+                        "options" => [
+                            ["label" => "Si", "value" => "1"],
+                            ["label" => "Si (en la descripción)", "value" => "2"],
+                            ["label" => "No", "value" => "3"],
+                        ]
+                        //"options" => $vAttributes["validation"]
                     ]
                 ],
                 "imageAspectRatio" => [
@@ -4477,76 +4547,6 @@ return [
                 ],
             ]
         ],
-        "body" => [
-            "title" => "Descripción",
-            "fields" => [
-                "withBody" => [
-                    "name" => "withBody",
-                    "value" => "1",
-                    "type" => "select",
-                    "props" => [
-                        "label" => "Mostrar",
-                        "options" => $vAttributes["validation"]
-                    ]
-                ],
-                "bodyFontSize" => [
-                    "name" => "bodyFontSize",
-                    "type" => "input",
-                    "props" => [
-                        "label" => "Tamaño de fuente",
-                        "type" => "number"
-                    ]
-                ],
-                "bodyAlign" => [
-                    "name" => "bodyAlign",
-                    "value" => "text-justify",
-                    "type" => "select",
-                    "props" => [
-                        "label" => "Alineación",
-                        "options" => $vAttributes["textAlign"]
-                    ]
-                ],
-                "bodyColorByClass" => [
-                    "name" => "bodyColorByClass",
-                    "type" => "select",
-                    "props" => [
-                        "label" => "Color Class",
-                        "options" => $vAttributes["textColors"]
-                    ]
-                ],
-                "bodyColor" => [
-                    "name" => "bodyColor",
-                    "type" => "inputColor",
-                    "props" => [
-                        "label" => "Color Custom",
-                    ],
-                    "help" => [
-                        "description" => "Selecciona el color Custom en Color Class para activarlo",
-                    ]
-                ],
-                "bodyClass" => [
-                    "name" => "bodyClass",
-                    "type" => "input",
-                    "columns" => "col-12",
-                    "props" => [
-                        "label" => "Clases",
-                    ],
-                ],
-                "bodyStyle" => [
-                    "name" => "bodyStyle",
-                    "type" => "input",
-                    "columns" => "col-12",
-                    "props" => [
-                        "label" => "Estilos",
-                        'type' => 'textarea',
-                        'rows' => 5,
-                    ],
-                    "help" => [
-                        "description" => "Permite agregar estilos adicionales en la descripción",
-                    ]
-                ],
-            ]
-        ],
         "gallery" => [
             "title" => "Galeria",
             "fields" => [
@@ -4556,7 +4556,12 @@ return [
                     "type" => "select",
                     "props" => [
                         "label" => "Mostrar",
-                        "options" => $vAttributes["validation"]
+                        "options" => [
+                            ["label" => "Si", "value" => "1"],
+                            ["label" => "Si (en la descripción)", "value" => "2"],
+                            ["label" => "No", "value" => "3"],
+                        ]
+                        //"options" => $vAttributes["validation"]
                     ]
                 ],
                 "galleryLayout" => [
@@ -4744,7 +4749,12 @@ return [
                     "type" => "select",
                     "props" => [
                         "label" => "Mostrar",
-                        "options" => $vAttributes["validation"]
+                        "options" => [
+                            ["label" => "Si", "value" => "1"],
+                            ["label" => "Si (en la descripción)", "value" => "2"],
+                            ["label" => "No", "value" => "3"],
+                        ]
+                        //"options" => $vAttributes["validation"]
                     ]
                 ],
                 "bodyExtra" => [
@@ -4836,7 +4846,12 @@ return [
                     "type" => "select",
                     "props" => [
                         "label" => "Mostrar Imagen",
-                        "options" => $vAttributes["validation"]
+                        "options" => [
+                            ["label" => "Si", "value" => "1"],
+                            ["label" => "Si (en la descripción)", "value" => "2"],
+                            ["label" => "No", "value" => "3"],
+                        ]
+                        //"options" => $vAttributes["validation"]
                     ]
                 ],
                 "videoExternal" => [
