@@ -125,9 +125,9 @@
              <div class="col-12 {{$orderClasses[$extraOrderClassesField] ?? 'order-6'}} item-{{$extraOrderClassesField}}">
 
                @if(isset($item->{$extraOrderClassesField}))
-                 {{ $item->{$extraOrderClassesField} }}
+                 {!! $item->{$extraOrderClassesField} !!}
                @elseif(isset($item->options->{$extraOrderClassesField}))
-                 {{ $item->options->{$extraOrderClassesField} }}
+                 {!! $item->options->{$extraOrderClassesField} !!}
                @endif
 
              </div>

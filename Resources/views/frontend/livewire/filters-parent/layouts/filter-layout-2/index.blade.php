@@ -1,11 +1,11 @@
 <div class="filters">
 	@if(!empty($filters))
 
-		
+
 		<div class="filter-layout-2">
 				<div class="row">
 					@foreach($filters as $index => $filter)
-						@if($filter['status'])
+						@if(isset($filter['status']))
 							<div class="{{$filter['classes']}}">
 								@livewire("isite::filter-".$filter['type'], $filter, key($index.'-'.$filter['type']))
 							</div>
@@ -23,6 +23,6 @@
 				</div>
 
 		</div>
-		
+
 	@endif
 </div>
