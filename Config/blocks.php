@@ -4352,22 +4352,6 @@ return [
                         "description" => "Selecciona el color Custom en Color Class para activarlo",
                     ]
                 ],
-                "titlePosition" => [
-                    "name" => "titlePosition",
-                    "value" => "1",
-                    "type" => "select",
-                    "columns" => "col-12",
-                    "props" => [
-                        "label" => "Posición del titulo",
-                        "options" => [
-                            ["label" => "Debajo", "value" => "1"],
-                            ["label" => "Arriba", "value" => "2"],
-                        ],
-                    ],
-                    "help" => [
-                        "description" => "Funciona cuando el breadcrumb esta dentro de la imagen",
-                    ]
-                ],
                 "titleIcon" => [
                     "name" => "titleIcon",
                     "value" => "",
