@@ -23,7 +23,9 @@
                 <div class="h-100 {{$container}} {{$containerClass}}">
                     <div class="h-100 {{$row}}">
                         <div class="{{$col}}">
-
+                            @if($titlePosition==2)
+                                <div class="title-section  {{$colorTitleByClass}} {{$titleClass}}">{{$page->title}}</div>
+                            @endif
                             <nav aria-label="breadcrumb" @if($breadcrumbPosition!=2) class="d-none" @endif>
                                 <ol class="breadcrumb {{$breadcrumbClass}}">
                                     <li class="breadcrumb-item">
@@ -34,7 +36,9 @@
                                     @endif
                                 </ol>
                             </nav>
+                            @if($titlePosition==1)
                             <div class="title-section  {{$colorTitleByClass}} {{$titleClass}}">{{$page->title}}</div>
+                            @endif
                         </div>
                     </div>
                 </div>

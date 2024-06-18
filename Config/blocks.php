@@ -4045,7 +4045,7 @@ return [
                         "label" => "Icono Font",
                     ],
                     "help" => [
-                        "description" => "Icon Font tiene prioridad, colocar el codigo unicode son el '\'",
+                        "description" => "Icon Font tiene prioridad, colocar el codigo unicode sin el '\'",
                     ]
                 ],
                 "breadcrumbPosition" => [
@@ -4134,6 +4134,21 @@ return [
                     ],
                     "help" => [
                         "description" => "Selecciona el color Custom en Color Class para activarlo",
+                    ]
+                ],
+                "titlePosition" => [
+                    "name" => "titlePosition",
+                    "value" => "1",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Posición",
+                        "options" => [
+                            ["label" => "Debajo", "value" => "1"],
+                            ["label" => "Arriba", "value" => "2"],
+                        ],
+                    ],
+                    "help" => [
+                        "description" => "Funciona cuando el breadcrumb esta dentro de la imagen",
                     ]
                 ],
                 "titleClass" => [
@@ -4287,7 +4302,11 @@ return [
                     "type" => "select",
                     "props" => [
                         "label" => "Mostrar Titulo",
-                        "options" => $vAttributes["validation"]
+                        "options" => [
+                            ["label" => "Si", "value" => "1"],
+                            ["label" => "Si (en la descripción)", "value" => "2"],
+                            ["label" => "No", "value" => "3"],
+                        ]
                     ]
                 ],
                 "titleFontSize" => [
@@ -4333,12 +4352,63 @@ return [
                         "description" => "Selecciona el color Custom en Color Class para activarlo",
                     ]
                 ],
+                "titlePosition" => [
+                    "name" => "titlePosition",
+                    "value" => "1",
+                    "type" => "select",
+                    "columns" => "col-12",
+                    "props" => [
+                        "label" => "Posición del titulo",
+                        "options" => [
+                            ["label" => "Debajo", "value" => "1"],
+                            ["label" => "Arriba", "value" => "2"],
+                        ],
+                    ],
+                    "help" => [
+                        "description" => "Funciona cuando el breadcrumb esta dentro de la imagen",
+                    ]
+                ],
+                "titleIcon" => [
+                    "name" => "titleIcon",
+                    "value" => "",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Icono",
+                    ]
+                ],
+                "titleIconPosition" => [
+                    "name" => "titleIconPosition",
+                    "value" => "1",
+                    "type" => "select",
+                    "props" => [
+                        "label" => "Posición del icono",
+                        "options" => [
+                            ["label" => "Izquierda", "value" => "1"],
+                            ["label" => "Derecha", "value" => "2"],
+                            ["label" => "Arriba", "value" => "3"],
+                            ["label" => "Abajo", "value" => "4"],
+                        ],
+                    ]
+                ],
+                "titleIconStyle" => [
+                    "name" => "titleIconStyle",
+                    "type" => "input",
+                    "columns" => "col-12",
+                    "props" => [
+                        "label" => "Estilos del icono",
+                        'type' => 'textarea',
+                        'rows' => 5,
+                    ],
+                    "help" => [
+                        "description" => "Permite agregar estilos adicionales en el icono",
+                    ]
+                ],
                 "titleClass" => [
                     "name" => "titleClass",
                     "type" => "input",
                     "columns" => "col-12",
                     "props" => [
-                        "label" => "Clases",
+                        "label" => "Clases del titulo",
                     ],
                 ],
                 "titleStyle" => [
@@ -4346,9 +4416,9 @@ return [
                     "type" => "input",
                     "columns" => "col-12",
                     "props" => [
-                        "label" => "Estilos",
+                        "label" => "Estilos del titulo",
                         'type' => 'textarea',
-                        'rows' => 5,
+                        'rows' => 8,
                     ],
                     "help" => [
                         "description" => "Permite agregar estilos adicionales en titulo",
@@ -4459,7 +4529,6 @@ return [
                             ["label" => "Si (en la descripción)", "value" => "2"],
                             ["label" => "No", "value" => "3"],
                         ]
-                        //"options" => $vAttributes["validation"]
                     ]
                 ],
                 "imageAspectRatio" => [
@@ -4468,7 +4537,24 @@ return [
                     "type" => "select",
                     "props" => [
                         "label" => "Aspect Ratio",
-                        "options" => $vAttributes["imageAspect"]
+                        "options" =>  [
+                            ["label" => "auto", "value" => "auto"],
+                            ["label" => "1/1", "value" => "1/1"],
+                            ["label" => "4/3", "value" => "4/3"],
+                            ["label" => "4/5", "value" => "4/5"],
+                            ["label" => "16/9", "value" => "16/9"],
+                            ["label" => "21/9", "value" => "21/9"],
+                            ["label" => "21/5", "value" => "21/5"],
+                            ["label" => "5/4", "value" => "5/4"],
+                            ["label" => "custom", "value" => "aspect-custom"],
+                        ]
+                    ]
+                ],
+                "imageAspectRatioCustom" => [
+                    "name" => "imageAspectRatioCustom",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Aspect Ratio Custom",
                     ]
                 ],
                 "imageObjectFit" => [
@@ -4561,7 +4647,6 @@ return [
                             ["label" => "Si (en la descripción)", "value" => "2"],
                             ["label" => "No", "value" => "3"],
                         ]
-                        //"options" => $vAttributes["validation"]
                     ]
                 ],
                 "galleryLayout" => [
@@ -4697,7 +4782,24 @@ return [
                     "type" => "select",
                     "props" => [
                         "label" => "Aspect Ratio",
-                        "options" => $vAttributes["imageAspect"]
+                        "options" =>  [
+                            ["label" => "auto", "value" => "auto"],
+                            ["label" => "1/1", "value" => "1/1"],
+                            ["label" => "4/3", "value" => "4/3"],
+                            ["label" => "4/5", "value" => "4/5"],
+                            ["label" => "16/9", "value" => "16/9"],
+                            ["label" => "21/9", "value" => "21/9"],
+                            ["label" => "21/5", "value" => "21/5"],
+                            ["label" => "5/4", "value" => "5/4"],
+                            ["label" => "custom", "value" => "aspect-custom"],
+                        ]
+                    ]
+                ],
+                "galleryAspectRatioCustom" => [
+                    "name" => "galleryAspectRatioCustom",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Aspect Ratio Custom",
                     ]
                 ],
                 "galleryObjectFit" => [
@@ -4851,7 +4953,6 @@ return [
                             ["label" => "Si (en la descripción)", "value" => "2"],
                             ["label" => "No", "value" => "3"],
                         ]
-                        //"options" => $vAttributes["validation"]
                     ]
                 ],
                 "videoExternal" => [
@@ -4873,6 +4974,20 @@ return [
                         "label" => "Responsive (Video)",
                         "options" => $vAttributes["embedResponsive"]
                     ]
+                ],
+                "videoExternalWidth" => [
+                    "name" => "videoExternalWidth",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Ancho (Formato Libre)",
+                    ],
+                ],
+                "videoExternalHeight" => [
+                    "name" => "videoExternalHeight",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Alto (Formato Libre)",
+                    ],
                 ],
                 "videoExternalClass" => [
                     "name" => "videoExternalClass",

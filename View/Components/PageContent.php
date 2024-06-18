@@ -18,12 +18,16 @@ class PageContent extends Component
     public $titleAlign;
     public $titleColor;
     public $titleColorByClass;
+    public $titleIcon;
+    public $titleIconPosition;
+    public $titleIconStyle;
 
     public $imageClass;
     public $imageStyle;
     public $imageObjectFit;
     public $imageObjectPosicion;
     public $imageAspectRatio;
+    public $imageAspectRatioCustom;
 
     public $withMedia;
     public $withBody;
@@ -66,6 +70,7 @@ class PageContent extends Component
     public $galleryObjectFit;
     public $galleryObjectPosicion;
     public $galleryAspectRatio;
+    public $galleryAspectRatioCustom;
 
     public $bodyExtra;
     public $bodyExtraClass;
@@ -81,6 +86,8 @@ class PageContent extends Component
     public $videoExternalClass;
     public $videoExternalStyle;
     public $videoExternalMiniClass;
+    public $videoExternalWidth;
+    public $videoExternalHeight;
 
     public $shareClass;
     public $shareFontClass;
@@ -103,11 +110,15 @@ class PageContent extends Component
                               $titleAlign = "",
                               $titleColor = null,
                               $titleColorByClass = "text-white",
+                              $titleIcon = "",
+                              $titleIconPosition = 1,
+                              $titleIconStyle = null,
                               $imageClass = "",
                               $imageStyle = null,
                               $imageObjectFit = "cover",
                               $imageObjectPosicion = "",
                               $imageAspectRatio = "21/5",
+                              $imageAspectRatioCustom = "",
                               $withMedia = true,
                               $withBody = true,
                               $withGallery = true,
@@ -146,6 +157,7 @@ class PageContent extends Component
                               $galleryObjectFit = "cover",
                               $galleryObjectPosicion = "",
                               $galleryAspectRatio = "1/1",
+                              $galleryAspectRatioCustom = "",
                               $bodyExtra = "",
                               $bodyExtraClass = "",
                               $bodyExtraStyle = null,
@@ -160,7 +172,9 @@ class PageContent extends Component
                               $videoExternalResponsive = "embed-responsive-4by3",
                               $videoExternalClass = "",
                               $videoExternalStyle = null,
-                              $videoExternalMiniClass = ""
+                              $videoExternalMiniClass = "",
+                              $videoExternalWidth = "100%",
+                              $videoExternalHeight = "300px"
   )
   {
       $this->id= $id ?? uniqid('page');
@@ -174,11 +188,15 @@ class PageContent extends Component
       $this->titleAlign = $titleAlign;
       $this->titleColor = $titleColor;
       $this->titleColorByClass = $titleColorByClass;
+      $this->titleIcon = $titleIcon;
+      $this->titleIconPosition = $titleIconPosition;
+      $this->titleIconStyle = $titleIconStyle;
       $this->imageClass = $imageClass;
       $this->imageStyle = $imageStyle;
       $this->imageObjectFit = $imageObjectFit;
       $this->imageObjectPosicion = $imageObjectPosicion;
       $this->imageAspectRatio = $imageAspectRatio;
+      $this->imageAspectRatioCustom = $imageAspectRatioCustom;
       $this->withMedia = $withMedia;
       $this->withBody = $withBody;
       $this->withGallery = $withGallery;
@@ -209,6 +227,7 @@ class PageContent extends Component
       $this->galleryObjectFit = $galleryObjectFit;
       $this->galleryObjectPosicion = $galleryObjectPosicion;
       $this->galleryAspectRatio = $galleryAspectRatio;
+      $this->galleryAspectRatioCustom = $galleryAspectRatioCustom;
       $this->galleryResponsive = $galleryResponsive ?? [0 => ["items" => 1], 640 => ["items" => 2], 992 => ["items" => 4]];
       $this->galleryDots = $galleryDots;
       $this->galleryDotsStyle = $galleryDotsStyle;
@@ -233,6 +252,8 @@ class PageContent extends Component
       $this->videoExternalResponsive = $videoExternalResponsive;
       $this->videoExternalClass = $videoExternalClass;
       $this->videoExternalStyle = $videoExternalStyle;
+      $this->videoExternalWidth = $videoExternalWidth;
+      $this->videoExternalHeight = $videoExternalHeight;
       //$this-> = $;
 
       if(!empty($bodyExtra)){
@@ -271,6 +292,6 @@ class PageContent extends Component
    */
   public function render()
   {
-    return view("isite::frontend.components.page-content");
+    return view("isite::frontend.components.page-content.index");
   }
 }

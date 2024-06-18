@@ -1,84 +1,26 @@
 <section id="{{$id}}" class="page-content">
     <div class="{{$row}}">
-        @if($withTitle)
-            <div class="{{$orderClasses["title"] ?? 'order-0'}} page-title">
-                <h2 class="title {{$titleColorByClass}} {{$titleAlign}} {{$titleClass}}">
-                    {{$page->title ?? 'Title'}}
-                </h2>
-            </div>
+        @if($withTitle==1)
+            @include('isite::frontend.components.page-content.partials.title')
         @endif
 
         @if($withBody)
             <div class="{{$orderClasses["body"] ?? 'order-2'}} page-body">
                 <div class="body-content {{$bodyContentInside}}">
+                    @if($withTitle==2)
+                        @include('isite::frontend.components.page-content.partials.title')
+                    @endif
                     @if($withMedia==2)
-                        <div class="{{$orderClasses["media"] ?? 'order-1'}} page-image">
-                            <div class="image">
-                                <x-media::single-image
-                                        :title="$page->title ?? ''"
-                                        :isMedia="true"
-                                        width="100%"
-                                        :withVideoControls="$videoControls" :loopVideo="$videoLoop"
-                                        :autoplayVideo="$videoAutoplay" :mutedVideo="$videoMuted"
-                                        :mediaFiles="$page->mediaFiles() ?? null"
-                                        imgClasses="{{$imageClass}} img-style"
-                                />
-                            </div>
-                        </div>
+                            @include('isite::frontend.components.page-content.partials.media')
                     @endif
                     @if($withGallery==2)
-                        @php
-                            $navText = [ "<i class='$galleryNavIcons[0]'></i>", "<i class='$galleryNavIcons[1]'></i>" ];
-                        @endphp
-                        <div class="{{$orderClasses["gallery"] ?? 'order-3'}} page-gallery">
-                            <div class="gallery {{$galleryClass}}">
-                                @if(!empty($page->mediaFiles()->gallery))
-                                <x-media::gallery
-                                        :layout="$galleryLayout"
-                                        :responsive="$galleryResponsive"
-                                        :dots="$galleryDots"
-                                        :nav="$galleryNav"
-                                        :navText="$navText"
-                                        :mediaFiles="$page->mediaFiles()" />
-                                @endif
-                            </div>
-                        </div>
+                            @include('isite::frontend.components.page-content.partials.gallery')
                     @endif
                     @if($withBodyExtra==2 && !is_null($bodyExtra))
-                        <div class="{{$orderClasses["bodyExtra"] ?? 'order-4'}} page-body-extra">
-                            <div class="body-extra {{$bodyExtraColorByClass}} {{$bodyExtraAlign}} {{$bodyExtraClass}}">
-                                @foreach($bodyExtra as $extra)
-                                    <div class="body-extra-mini {{$bodyExtraMiniClass}}">
-                                        {!! $page->options->{$extra} ?? '' !!}
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
+                            @include('isite::frontend.components.page-content.partials.body-extra')
                     @endif
                     @if($withVideoExternal==2 && !empty($videoExternal))
-                        <div class="{{$orderClasses["videoExternal"] ?? 'order-5'}} page-video-external">
-                            <div class="video-external {{$videoExternalClass}}">
-                                @foreach($videoExternal as $external)
-                                    <div class="video-external-mini {{$videoExternalMiniClass}}">
-                                        @php
-                                            $video = $page->options->{$external};
-                                            $exists = strpos($video, 'youtube');
-                                            if($exists !== false) {
-                                                $query = parse_url($video, PHP_URL_QUERY);
-                                                parse_str($query, $params);
-                                                if(isset($params['v'])){
-                                                    $youtubeId = $params['v'];
-                                                    $video = 'https://www.youtube.com/embed/'.$youtubeId;
-                                                }
-                                            }
-                                        @endphp
-                                        <div class="embed-responsive {{$videoExternalResponsive}}">
-                                            <iframe class="embed-responsive-item" src="{{$video}}"></iframe>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
+                            @include('isite::frontend.components.page-content.partials.video-extra')
                     @endif
                 </div>
 
@@ -89,73 +31,16 @@
         @endif
 
         @if($withMedia==1)
-            <div class="{{$orderClasses["media"] ?? 'order-1'}} page-image">
-                <div class="image">
-                    <x-media::single-image
-                            :title="$page->title ?? ''"
-                            :isMedia="true"
-                            width="100%"
-                            :withVideoControls="$videoControls" :loopVideo="$videoLoop"
-                            :autoplayVideo="$videoAutoplay" :mutedVideo="$videoMuted"
-                            :mediaFiles="$page->mediaFiles() ?? ''"
-                            imgClasses="{{$imageClass}} img-style"
-                    />
-                </div>
-            </div>
+            @include('isite::frontend.components.page-content.partials.media')
         @endif
         @if($withGallery==1)
-            @php
-                $navText = [ "<i class='$galleryNavIcons[0]'></i>", "<i class='$galleryNavIcons[1]'></i>" ];
-            @endphp
-            <div class="{{$orderClasses["gallery"] ?? 'order-3'}} page-gallery">
-                <div class="gallery {{$galleryClass}}">
-                    @if(!empty($page->mediaFiles()->gallery))
-                    <x-media::gallery
-                            :layout="$galleryLayout"
-                            :responsive="$galleryResponsive"
-                            :dots="$galleryDots"
-                            :nav="$galleryNav"
-                            :navText="$navText"
-                            :mediaFiles="$page->mediaFiles()" />
-                    @endif
-                </div>
-            </div>
+            @include('isite::frontend.components.page-content.partials.gallery')
         @endif
         @if($withBodyExtra==1 && !is_null($bodyExtra))
-            <div class="{{$orderClasses["bodyExtra"] ?? 'order-4'}} page-body-extra">
-                <div class="body-extra {{$bodyExtraColorByClass}} {{$bodyExtraAlign}} {{$bodyExtraClass}}">
-                    @foreach($bodyExtra as $extra)
-                        <div class="body-extra-mini {{$bodyExtraMiniClass}}">
-                            {!! $page->options->{$extra} ?? '' !!}
-                        </div>
-                    @endforeach
-                </div>
-            </div>
+            @include('isite::frontend.components.page-content.partials.body-extra')
         @endif
         @if($withVideoExternal==1 && !empty($videoExternal))
-            <div class="{{$orderClasses["videoExternal"] ?? 'order-5'}} page-video-external">
-                <div class="video-external {{$videoExternalClass}}">
-                    @foreach($videoExternal as $external)
-                        <div class="video-external-mini {{$videoExternalMiniClass}}">
-                            @php
-                                $video = $page->options->{$external};
-                                $exists = strpos($video, 'youtube');
-                                if($exists !== false) {
-                                    $query = parse_url($video, PHP_URL_QUERY);
-                                    parse_str($query, $params);
-                                    if(isset($params['v'])){
-                                        $youtubeId = $params['v'];
-                                        $video = 'https://www.youtube.com/embed/'.$youtubeId;
-                                    }
-                                }
-                            @endphp
-                            <div class="embed-responsive {{$videoExternalResponsive}}">
-                                <iframe class="embed-responsive-item" src="{{$video}}"></iframe>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
+            @include('isite::frontend.components.page-content.partials.video-extra')
         @endif
 
        @if($withShare)
@@ -183,6 +68,11 @@
    {!!$titleStyle!!}
     @endif
 }
+@if(!empty($titleIconStyle))
+#{{$id}} .page-title .title i {
+ {!!$titleIconStyle!!}
+}
+@endif
 @if($withLineTitle==1)
 #{{$id}} .page-title .title:after {
      content: '';
@@ -198,7 +88,7 @@
 #{{$id}} .page-image .cover-img {
     object-fit: {{$imageObjectFit}};
     object-position: {{$imageObjectPosicion}};
-    aspect-ratio: {{$imageAspectRatio}};
+    aspect-ratio: {{$imageAspectRatio=='aspect-custom' ? $imageAspectRatioCustom : $imageAspectRatio}};
     @if(!empty($imageStyle))
     {!!$imageStyle!!}
     @endif
@@ -222,7 +112,7 @@
      & img {
         object-fit: {{$galleryObjectFit}};
         object-position: {{$galleryObjectPosicion}};
-        aspect-ratio: {{$galleryAspectRatio}};
+        aspect-ratio: {{$galleryAspectRatio=='aspect-custom' ? $galleryAspectRatioCustom : $galleryAspectRatio}};
      }
      @endif
 }

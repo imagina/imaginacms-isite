@@ -22,6 +22,7 @@ class BreadcrumbNew extends Component
     public $withTitle;
     public $titleClass;
     public $titleStyle;
+    public $titlePosition;
     public $fontSizeTitle;
     public $colorTitle;
     public $colorTitleByClass;
@@ -56,6 +57,7 @@ class BreadcrumbNew extends Component
                               $withTitle = false,
                               $titleClass = "",
                               $titleStyle = "",
+                              $titlePosition = 1,
                               $fontSizeTitle = "24",
                               $colorTitle = null,
                               $colorTitleByClass = "text-white",
@@ -85,6 +87,7 @@ class BreadcrumbNew extends Component
       $this->withTitle = $withTitle;
       $this->titleClass = $titleClass;
       $this->titleStyle = $titleStyle;
+      $this->titlePosition = $titlePosition;
       $this->fontSizeTitle = $fontSizeTitle;
       $this->colorTitle = $colorTitle;
       $this->colorTitleByClass = $colorTitleByClass;
