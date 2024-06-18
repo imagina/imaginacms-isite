@@ -17,13 +17,15 @@
             </div>
         </div>
     </div>
-    <div class="breadcrumb-image position-relative overlay-hidden" @if($breadcrumbPosition==1) order-0 @endif">
+    <div class="breadcrumb-image position-relative overlay-hidden @if($breadcrumbPosition==1) order-0 @endif">
         @if($withTitle&&isset($page)&&!empty($page))
             <div class="breadcrumb-info breadcrumb-overlay">
                 <div class="h-100 {{$container}} {{$containerClass}}">
                     <div class="h-100 {{$row}}">
                         <div class="{{$col}}">
-
+                            @if($titlePosition==2)
+                                <div class="title-section  {{$colorTitleByClass}} {{$titleClass}}">{{$page->title}}</div>
+                            @endif
                             <nav aria-label="breadcrumb" @if($breadcrumbPosition!=2) class="d-none" @endif>
                                 <ol class="breadcrumb {{$breadcrumbClass}}">
                                     <li class="breadcrumb-item">
@@ -34,7 +36,9 @@
                                     @endif
                                 </ol>
                             </nav>
-                            <div class="title-section  {{$colorTitleByClass}} {{$titleClass}}">{{$page->title}}</div>
+                            @if($titlePosition==1)
+                                <div class="title-section  {{$colorTitleByClass}} {{$titleClass}}">{{$page->title}}</div>
+                            @endif
                         </div>
                     </div>
                 </div>
