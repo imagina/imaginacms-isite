@@ -373,8 +373,34 @@ if (!function_exists('convertObjectValuesToArray')) {
 if (!function_exists('clearResponseCache')) {
   function clearResponseCache()
   {
-    if(!is_null(config('responsecache.enabled')) && config('responsecache.enabled')){
+    if (!is_null(config('responsecache.enabled')) && config('responsecache.enabled')) {
       \ResponseCache::clear();
     }
+  }
+}
+
+if (!function_exists('iconfig')) {
+  function iconfig($configName = null, $byModule = false)
+  {
+    //Init response
+    $response = config("asgard");
+
+    if ($configName && strlen($configName)) {
+      $modules = app('modules');//Init modules
+      $enabledModules = $modules->allEnabled();//Get all enable modules
+
+      //Get config by name to each module
+      if ($byModule) {
+        $response = [];
+        foreach (array_keys($enabledModules) as $moduleName) {
+          $response[$moduleName] = config("asgard." . strtolower($moduleName) . "." . $configName);
+        }
+      } else {
+        $configNameExplode = explode('.', $configName);
+        $response = config("asgard." . strtolower(array_shift($configNameExplode)) . "." . implode('.', $configNameExplode));
+      }
+    }
+
+    return $response;
   }
 }
