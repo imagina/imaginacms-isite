@@ -37,6 +37,7 @@ class BreadcrumbNew extends Component
     public $icon;
     public $iconFont;
     public $breadcrumbPosition; // arriba abajo dentro
+    public $pageId;
 
   /**
    * Create a new component instance.
@@ -71,10 +72,10 @@ class BreadcrumbNew extends Component
                               $imageObjectFit = "cover",
                               $imageObjectPosicion = "",
                               $imageAspectRatio = "21/5",
-                              $imageAspectRatioMobile = "16/9"
+                              $imageAspectRatioMobile = "16/9",
+                              $pageId = null
   )
   {
-      $this->page = $viewParams['page'] ?? $page;
       $this->breadcrumbSection = $breadcrumbSection;
       $this->breadcrumbClass = $breadcrumbClass;
       $this->breadcrumbStyle = $breadcrumbStyle;
@@ -102,8 +103,24 @@ class BreadcrumbNew extends Component
       $this->imageObjectPosicion = $imageObjectPosicion;
       $this->imageAspectRatio = $imageAspectRatio;
       $this->imageAspectRatioMobile = $imageAspectRatioMobile;
+
+      if(!empty($viewParams['page'])) {
+          $this->page = $viewParams['page'];
+      } elseif(!empty($pageId)) {
+          $this->fakePage($pageId);
+      } else {
+          $this->page = $page;
+      }
+
   }
 
+  public function fakePage($id)
+  {
+      $repository = app('Modules\Page\Repositories\PageRepository');
+      $params = ['filter' => ['id' => $id],'take' => 1];
+      $fakePage = $repository->getItemsBy(json_decode(json_encode($params)));
+      $this->page = $fakePage[0];
+  }
   
   /**
    * Get the view / contents that represent the component.
