@@ -4096,6 +4096,17 @@ return [
                         'rows' => 5,
                     ],
                 ],
+                "pageId" => [
+                    "name" => "pageId",
+                    "columns" => "col-12",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Id de página de prueba",
+                    ],
+                    "help" => [
+                        "description" => "Este dato solo se toma en cuenta para previsualizar el bloque, se sugiere verificar su funcionalidad en la página final.",
+                    ]
+                ],
             ]
         ],
         "title" => [
@@ -4289,6 +4300,17 @@ return [
                     ],
                     "help" => [
                         "description" => "Clases que engloban los componentes cuando se encuentran dentro de la descripción",
+                    ]
+                ],
+                "pageId" => [
+                    "name" => "pageId",
+                    "columns" => "col-12",
+                    "type" => "input",
+                    "props" => [
+                        "label" => "Id de página de prueba",
+                    ],
+                    "help" => [
+                        "description" => "Este dato solo se toma en cuenta para previsualizar el bloque, se sugiere verificar su funcionalidad en la página final.",
                     ]
                 ],
             ]

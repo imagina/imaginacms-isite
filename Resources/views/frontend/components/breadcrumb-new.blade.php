@@ -46,14 +46,17 @@
         @endif
         @if(($withImage) && isset($page) && !empty($page) && isset($page->mediaFiles()->breadcrumbimage) && !empty($page->mediaFiles()->breadcrumbimage))
             @if($overlay) <div class="overlay"></div> @endif
-            <x-media::single-image
-                    :title="$page->title ?? 'breadcrumbimage'"
-                    :isMedia="true"
-                    :mediaFiles="$page->mediaFiles()"
-                    zone="breadcrumbimage"
-                    imgClasses="b-image {{$imageClass}}"
-                    imgStyles="{{$imageStyle}}"
-            />
+            @if(!is_null($page->mediaFiles()) && !is_null($page->mediaFiles()->breadcrumbimage->id))
+                <x-media::single-image
+                        :title="$page->title ?? 'breadcrumbimage'"
+                        :isMedia="true"
+                        :mediaFiles="$page->mediaFiles()"
+                        zone="breadcrumbimage"
+                        imgClasses="b-image {{$imageClass}}"
+                />
+            @else
+                <div class="b-image {{$imageClass}}"></div>
+            @endif
         @endif
     </div>
 </section>
@@ -112,6 +115,9 @@
     object-fit: {{$imageObjectFit}};
     object-position: {{$imageObjectPosicion}};
     aspect-ratio: {{$imageAspectRatio}};
+    @if(!empty($imageStyle))
+    {!!$imageStyle!!}
+    @endif
 }
 @if(!is_null($imageAspectRatioMobile))
 @media (max-width: 767.98px) {
