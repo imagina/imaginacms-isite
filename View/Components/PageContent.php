@@ -8,6 +8,7 @@ class PageContent extends Component
     public $id;
     public $viewParams;
     public $page;
+    public $pageId;
 
     public $row;
     public $withTitle;
@@ -101,6 +102,7 @@ class PageContent extends Component
   public function __construct($id = null,
                               $viewParams = [],
                               $page = null,
+                              $pageId = null,
                               $row = "row align-items-center",
                               $withTitle = true,
                               $titleClass = "",
@@ -178,7 +180,6 @@ class PageContent extends Component
   )
   {
       $this->id= $id ?? uniqid('page');
-      $this->page = $viewParams['page'] ?? $page;
       $this->row = $row;
       $this->withTitle = $withTitle;
       $this->titleClass = $titleClass;
@@ -256,6 +257,14 @@ class PageContent extends Component
       $this->videoExternalHeight = $videoExternalHeight;
       //$this-> = $;
 
+      if(!empty($viewParams['page'])) {
+          $this->page = $viewParams['page'];
+      } elseif(!empty($pageId)) {
+          $this->fakePage($pageId);
+      } else {
+          $this->page = $page;
+      }
+
       if(!empty($bodyExtra)){
           if (strpos($bodyExtra, ',') !== false) {
               $this->bodyExtra = explode(",",$bodyExtra);
@@ -284,6 +293,13 @@ class PageContent extends Component
 
   }
 
+  public function fakePage($id)
+  {
+    $repository = app('Modules\Page\Repositories\PageRepository');
+    $params = ['filter' => ['id' => $id],'take' => 1];
+    $fakePage = $repository->getItemsBy(json_decode(json_encode($params)));
+    $this->page = $fakePage[0];
+  }
 
   /**
    * Get the view / contents that represent the component.
