@@ -113,8 +113,8 @@
         //return newMap
     }
 
-    //INIT GOOGLE MAPS
-    initMap();
+    //INIT GOOGLE MAPS //TODO: Revisar por que no carga sin un timeout
+    setTimeout(() => initMap(), 1000)
 
     //Se le agrego esta validacion de "usingLivewire", xq cuando se le daba al boton "Agregar nueva direccion" ya no mostraba el mapa
     @if($usingLivewire==false)
