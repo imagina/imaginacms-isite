@@ -14,6 +14,9 @@ use Modules\Isite\Events\Handlers\CreateOrganizationBySuscription;
 use Modules\Isite\Events\Handlers\SendEmailOrganization;
 use Modules\Isite\Events\Handlers\NotifyIsRunningEnds;
 
+use Modules\Isite\Entities\Webhook;
+use Modules\James\Listeners\EventWebhooks;
+
 class EventServiceProvider extends ServiceProvider
 {
     protected $listen = [
@@ -55,5 +58,28 @@ class EventServiceProvider extends ServiceProvider
             "Modules\\Isite\\Events\\SynchronizableWasUpdated",
             [NotifyIsRunningEnds::class, 'handle']
         );
+    }
+
+    public function boot()
+    {
+
+        parent::boot();
+        
+       $webhooks = Webhook::with('entity')->get();
+       //dd($webhooks);
+        foreach ($webhooks as $webhook) {
+
+
+            $eventName = 'eloquent.'.$webhook->type.': Modules\\' . $webhook->entity->module_name . '\\Entities\\'.$webhook->entity->name;
+            //var_dump($eventName);
+
+            
+
+            Event::listen($eventName,  function ($eventData) use ($webhook) {
+                $listener = new EventWebhooks($webhook);
+                $listener->handle($eventData);
+            });
+            
+        }
     }
 }
