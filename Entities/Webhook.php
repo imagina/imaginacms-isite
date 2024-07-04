@@ -29,14 +29,16 @@ class Webhook extends CrudModel
   public $translatedAttributes = [];
   protected $fillable = [
     'id',
-    'event_id',
+    'entity_id',
     'url',
     'status',
+    'type',
     'method',
+    'headers',
   ];
 
-  public function webhookEntity()
-  {
-    return belongsTo(WebhookEntity::class);
-  }
+  public function entity()
+    {
+        return $this->belongsTo(WebhookEntity::class,'entity_id');
+    }
 }

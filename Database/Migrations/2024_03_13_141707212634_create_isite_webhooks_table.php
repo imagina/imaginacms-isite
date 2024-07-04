@@ -16,10 +16,11 @@ class CreateIsiteWebhooksTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             // Your fields...
-            $table->integer('event_id')->unsigned();
+            $table->integer('entity_id')->unsigned();
             $table->string('url');
             $table->boolean('status')->default(true);
-            $table->string('method')->default('GET');
+            $table->string('method')->default('POST');
+            $table->string('type')->default('created');
             $table->text('headers')->nullable();
             // Audit fields
             $table->timestamps();

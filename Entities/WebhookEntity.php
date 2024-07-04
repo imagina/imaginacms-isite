@@ -33,9 +33,9 @@ class WebhookEntity extends CrudModel
     'name',
   ];
 
-  public function webhooks()
+  public function webhook()
   {
-    return $this->hasMany(Webhooks::class);
+      return $this->hasMany(Webhook::class);
   }
 
 }
