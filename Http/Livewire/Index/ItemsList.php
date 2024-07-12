@@ -86,9 +86,10 @@ class ItemsList extends Component
     $entityName = "item", $itemComponentName = "isite::item-list", $params = [], $responsiveTopContent = null,
     $showTitle = true, $pagination = null, $configOrderBy = null, $configLayoutIndex = null, $itemComponentAttributes = [],
     $itemModal = null, $carouselAttributes = null, $uniqueItemListRendered = false, $title = null, $description = null,
-    $disableFilters = false, $eventToDelete = null, $emitItemListRenderedAlways = false
+    $disableFilters = false, $eventToDelete = null, $emitItemListRenderedAlways = false, $id = null
   )
   {
+    $this->id = $id ?? rand(0,99);
     $this->moduleName = strtolower($moduleName);
     $this->entityName = strtolower($entityName);
     $customIndexTitle = setting($moduleName . '::customIndexTitle');
