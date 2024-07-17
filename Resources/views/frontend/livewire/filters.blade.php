@@ -20,7 +20,7 @@
 					@if($showBtnClear)
 						<button wire:click="clearValuesFilters" id="btnClear" type="button" class="btnClear btn btn-primary mx-2">{{trans('isite::frontend.buttons.clear')}}</button>
 						{{--
-						<button id="btnClear" type="button" class="btnClear btn btn-primary" onClick="window.livewire.emit('itemsListClearValues')">{{trans('isite::frontend.buttons.clear')}}</button>
+						<button id="btnClear" type="button" class="btnClear btn btn-primary" onClick="window.livewire.dispatch('itemsListClearValues')">{{trans('isite::frontend.buttons.clear')}}</button>
 						--}}
 					@endif
 				</div>

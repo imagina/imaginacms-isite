@@ -8,9 +8,12 @@ use Illuminate\Support\Str;
 use Livewire\Component;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Modules\Isearch\Repositories\SearchRepository;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class Autocomplete extends Component
 {
+
+  use LivewireAlert;
   /*
   * Attributes From Config
   */
@@ -101,7 +104,7 @@ class Autocomplete extends Component
     $this->updatedSearchFromInput = true;
     \Log::info('UpdatedSearch', [$this->emitTo]);
     if (!empty($this->emitTo)) {
-      $this->emit($this->emitTo, [
+      $this->dispatch($this->emitTo, [
         'name' => $this->name,
         $this->repoAction => [
           $this->repoAttribute => $this->search ?? null,

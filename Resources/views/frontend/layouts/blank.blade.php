@@ -54,7 +54,7 @@
   {!! Theme::script('js/secondary.js?v='.setting('isite::appVersion'),["defer" => true]) !!}
 @endif
 
-@livewireScripts
+@livewireScriptConfig
 <x-livewire-alert::scripts />
 
 <script defer type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5fd9384eb64d610011fa8357&product=inline-share-buttons" async="async"></script>
