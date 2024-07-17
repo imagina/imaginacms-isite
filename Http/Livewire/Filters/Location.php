@@ -178,7 +178,7 @@ class Location extends Component
     }
 
     // Emit To (config file - parent filter or items list)
-    $this->emit($this->emitTo, [
+    $this->dispatch($this->emitTo, [
       'name' => $this->name,
       $this->repoAction => [
         $this->repoAttribute => $emitInfor,

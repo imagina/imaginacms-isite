@@ -181,7 +181,7 @@
 
           if(emitAfterClickMarker){
             //Emit to send data
-            window.livewire.emit('markerSelectedFromMap',id);
+            window.livewire.dispatch('markerSelectedFromMap',id);
           }
 
         });
@@ -325,7 +325,7 @@
       var dataToSend = {inputValue: addressFormat, inputVarName: inputVarName, newPosition: newPosition, addressData: addressData}; 
 
       //Emit to send data
-      window.livewire.emit('updateDataFromExternal',dataToSend);
+      window.livewire.dispatch('updateDataFromExternal',dataToSend);
     }
 
     /*

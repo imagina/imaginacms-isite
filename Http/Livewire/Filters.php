@@ -137,7 +137,7 @@ class Filters extends Component
 
           return;
         }
-        $this->emit('itemsListGetData', [
+        $this->dispatch('itemsListGetData', [
           'filter' => $filterToSend,
         ]);
 
@@ -162,8 +162,8 @@ class Filters extends Component
   {
     if (!empty($this->filtersValues)) {
       $this->filtersValues = [];
-      $this->emit('filtersClearValues');
-      $this->emit('itemsListClearValues');
+      $this->dispatch('filtersClearValues');
+      $this->dispatch('itemsListClearValues');
     }
 
     // remove d-none frontend

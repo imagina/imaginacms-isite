@@ -52,7 +52,7 @@
             // emit To Parent Filter
             function emitToParentFilterLocation(lat,lng,updateItemList){
 
-                window.livewire.emit('filtersGetData',{
+                window.livewire.dispatch('filtersGetData',{
                     'name' : 'location-range',
                     'filter' : {
                         'nearby':{

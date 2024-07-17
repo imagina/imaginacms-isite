@@ -41,7 +41,7 @@
 		* Emit After List is Rendered | Esto toca hacerlo aca por en el controlador no lo emitia
 		*/
 		document.addEventListener('DOMContentLoaded', function () {
-			window.livewire.emit('itemListRendered',{!! json_encode($params) !!});
+			Livewire.dispatch('itemListRendered',{!! json_encode($params) !!});
 		});
 		
 		/*
@@ -66,7 +66,7 @@
 		/*
     	* Document Ready Gral
     	*/
-		jQuery(document).ready(function($) {
+		document.addEventListener('livewire:init', function () {
 
 			@if(isset($itemListLayout) && $itemListLayout=='carousel')
 	    		$('#idCarousel_{{$this->id}}').owlCarousel({!! json_encode($carouselAttributes) !!})
@@ -76,7 +76,7 @@
     		* Listener Item List Rendered
     		*/
     		var nameEmit = 'itemListRendered';
-    		if(@this.uniqueItemListRendered){
+    		if({{$this->uniqueItemListRendered ? 'true' : 'false'}} == 'true'){
     			nameEmit = 'itemListRendered_{{$this->id}}'
     		}
 

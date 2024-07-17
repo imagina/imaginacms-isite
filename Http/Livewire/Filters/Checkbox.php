@@ -75,7 +75,7 @@ class Checkbox extends Component
   */
   public function updatedSelectedOptions()
   {
-    $this->emit($this->emitTo, [
+    $this->dispatch($this->emitTo, [
       'name' => $this->name,
       $this->repoAction => [
         $this->repoAttribute => array_values($this->selectedOptions),

@@ -128,7 +128,7 @@ class Range extends Component
      * repoAction => 'filter' (To Product Repository),
      * repoAttribute = 'priceRange' (To Product Repository),
      */
-    $this->emit($this->emitTo, [
+    $this->dispatch($this->emitTo, [
       'name' => $this->name,
       $this->repoAction => [
         $this->repoAttribute => [

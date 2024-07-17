@@ -13,6 +13,7 @@ return [
         'position' => 'top-end',
         'timer' => 5000,
         'timerProgressBar' => true,
+        "showCloseButton" => true
     ],
 
     /*
