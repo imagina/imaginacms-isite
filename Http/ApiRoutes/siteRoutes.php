@@ -16,6 +16,10 @@ Route::prefix('/site')->group(function (Router $router) {
         'as' => 'api.isite.index',
         'uses' => 'SiteApiController@index',
     ]);
+    $router->get('/modules-info', [
+      'as' => 'api.isite.modules.index',
+      'uses' => 'SiteApiController@getModulesData',
+    ]);
     $router->post('/cache-clear', [
         'as' => 'api.isite.cache.clear',
         'uses' => 'SiteApiController@cacheClear',
