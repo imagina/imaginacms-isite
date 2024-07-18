@@ -15,6 +15,7 @@ use Illuminate\Support\Str;
 use Modules\Core\Foundation\Theme\ThemeManager;
 use Modules\User\Permissions\PermissionManager;
 use Spatie\ResponseCache\Facades\ResponseCache;
+use Modules\Isite\Services\ModulesInfoService;
 
 //Controller
 use Modules\Isite\Http\Controllers\Api\SettingApiController;
@@ -440,5 +441,19 @@ class SiteApiController extends BaseApiController
     return response()->json($response, $status ?? 200);
   }
 
-
+  /**
+   * Return the modules information
+   * @return void
+   */
+  public function getModulesData()
+  {
+    try {
+      $service = new ModulesInfoService();
+      $response = ["data" => $service->getInfo()];
+    } catch (\Exception $e) {
+      $status = $this->getStatusError($e->getCode());
+      $response = ["errors" => $e->getMessage()];
+    }
+    return response()->json($response, $status ?? 200);
+  }
 }
