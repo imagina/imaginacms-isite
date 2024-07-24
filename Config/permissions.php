@@ -101,6 +101,11 @@ return [
         'destroy' => 'isite::synchronizables.destroy resource',
         'restore' => 'isite::synchronizables.restore resource',
     ],
+    'isite.soft-delete' => [
+      'index' => 'isite::synchronizables.list resource',
+      'destroy' => 'isite::synchronizables.destroy resource',
+      'restore' => 'isite::synchronizables.restore resource',
+    ],
 // append
 
 

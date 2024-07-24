@@ -498,7 +498,7 @@ print $output;
     function emit_{{$name}}(itemId, itemUrl) {
       var configEmit =  {!! $emitTo ? 'true' : 'false' !!};
       if (configEmit) {
-        window.livewire.emit('updateItemSelected', itemId)
+        window.livewire.dispatch('updateItemSelected', itemId)
       } else {
         window.location.href = itemUrl
       }

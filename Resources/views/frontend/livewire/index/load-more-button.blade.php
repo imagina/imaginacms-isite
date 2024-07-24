@@ -4,8 +4,8 @@
   		<a wire:click="loadMore" class="btn btn-primary btn-load-more">{{trans('isite::frontend.buttons.load more')}}</a>
   	@endif
 
-  	<input wire:model="showBtnLoadMore" type="hidden" id="inputShowBtnLoadMore">
-  	<input wire:model="infiniteStatus" type="hidden" id="inputInfiniteStatus">
+  	<input wire:model.live="showBtnLoadMore" type="hidden" id="inputShowBtnLoadMore">
+  	<input wire:model.live="infiniteStatus" type="hidden" id="inputInfiniteStatus">
 
 </div>
 
@@ -87,7 +87,7 @@
 				        	//console.warn("EMIT LOAD MOREEEEEEEEE ")
 
 				        	$("#inputInfiniteStatus").val(true)
-				            window.livewire.emit('loadMoreButtonInfinite');
+				            window.livewire.dispatch('loadMoreButtonInfinite');
 				        }
 				    }
 			    };

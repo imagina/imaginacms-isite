@@ -113,8 +113,8 @@
         //return newMap
     }
 
-    //INIT GOOGLE MAPS
-    initMap();
+    //INIT GOOGLE MAPS //TODO: Revisar por que no carga sin un timeout
+    setTimeout(() => initMap(), 1000)
 
     //Se le agrego esta validacion de "usingLivewire", xq cuando se le daba al boton "Agregar nueva direccion" ya no mostraba el mapa
     @if($usingLivewire==false)
@@ -181,7 +181,7 @@
 
           if(emitAfterClickMarker){
             //Emit to send data
-            window.livewire.emit('markerSelectedFromMap',id);
+            window.livewire.dispatch('markerSelectedFromMap',id);
           }
 
         });
@@ -325,7 +325,7 @@
       var dataToSend = {inputValue: addressFormat, inputVarName: inputVarName, newPosition: newPosition, addressData: addressData}; 
 
       //Emit to send data
-      window.livewire.emit('updateDataFromExternal',dataToSend);
+      window.livewire.dispatch('updateDataFromExternal',dataToSend);
     }
 
     /*

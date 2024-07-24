@@ -43,7 +43,7 @@ class SendEmailOrganization
       //Case: OTP
       if(!is_null($event->fakePassword))
         $fakePass = $event->fakePassword;
-
+      
       //Data to email
       $title = trans("isite::organizations.title.organization created");
 

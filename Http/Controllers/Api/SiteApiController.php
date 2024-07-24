@@ -15,6 +15,7 @@ use Modules\Isite\Transformers\NwidartModuleTransformer;
 use Modules\Setting\Repositories\SettingRepository;
 use Modules\User\Permissions\PermissionManager;
 use Spatie\ResponseCache\Facades\ResponseCache;
+use Modules\Isite\Services\ModulesInfoService;
 
 //Controller
 
@@ -439,5 +440,21 @@ class SiteApiController extends BaseApiController
         }
 
         return response()->json($response, $status ?? 200);
+    }
+
+    /**
+     * Return the modules information
+     * @return void
+     */
+    public function getModulesData()
+    {
+      try {
+        $service = new ModulesInfoService();
+        $response = ["data" => $service->getInfo()];
+      } catch (\Exception $e) {
+        $status = $this->getStatusError($e->getCode());
+        $response = ["errors" => $e->getMessage()];
+      }
+      return response()->json($response, $status ?? 200);
     }
 }
