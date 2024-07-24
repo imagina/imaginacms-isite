@@ -217,4 +217,5 @@ return [
     'message' => 'Sorry, this page is not available.',
     'globe' => 'Try later',
   ],
+  'hasUniqueFields' => 'Unable to save the record due to a conflict with another existing record. Please ensure the information provided is unique and try again.'
 ];

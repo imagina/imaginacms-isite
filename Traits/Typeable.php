@@ -67,7 +67,10 @@ trait Typeable
    */
   public function getLayoutIdAttribute()
   {
-    return $this->typeable->layout_id ?? null;
+    if($this->relationLoaded('typeable'))
+      return $this->typeable->layout_id ?? null;
+    else
+      return null;
   }
   
   

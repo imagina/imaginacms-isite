@@ -63,17 +63,26 @@ class SendEmailOrganization
 
       tenancy()->central(function() use ($emailsTo,$title,$message){
 
+        //IDs to Broadcast
+        $broadcastTo = json_decode(setting("notification::usersToNotify", null, "[]",true));
+
+        $userId = \Auth::id() ?? null;
+        $source = "iadmin";
+
         //Notification - Email
         $this->notificationService->to([
-          "email" => $emailsTo
+          "email" => $emailsTo,
+          "broadcast" => $broadcastTo,
         ])->push([
             "title" => $title,
             "message" => $message,
             "fromAddress" => env('MAIL_FROM_ADDRESS'),
             "fromName" => "",
             "setting" => [  
-                "saveInDatabase" => 0
-            ]
+                "saveInDatabase" => 1
+            ],
+            "user_id" => $userId,
+            "source" => $source
         ]);
 
       });

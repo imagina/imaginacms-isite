@@ -227,6 +227,11 @@ class Organization extends BaseTenant implements TenantWithDatabase
       if(!is_null($user)){
         $result['email'] = $user->email;
 
+        //Set Broadcast
+        //$settingsAdmins =  json_decode(setting("notification::usersToNotify", null, "[]"));
+        //array_push($settingsAdmins,$user->id);
+        $result['broadcast'] = $user->id;
+        
         //Message
         $message = trans("isite::organizations.messages.organization updated basic", [
           'status' => $this->statusName,
@@ -234,10 +239,16 @@ class Organization extends BaseTenant implements TenantWithDatabase
           'admin' => url('/iadmin')
         ]);
 
+        $userId = \Auth::id() ?? null;
+        $source = "iadmin";
+
         $response['updated'] = [
           "title" => trans("isite::organizations.title.organization updated"),
           "message" => $message,
-          "email" => $result['email']
+          "email" => $result['email'],
+          "broadcast" => $result['broadcast'],
+          "userId" => $userId,
+          "source" => $source
         ];
 
       }
