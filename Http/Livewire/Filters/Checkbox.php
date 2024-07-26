@@ -112,8 +112,9 @@ class Checkbox extends Component
   * Listener
   * Item List Rendered (Like First Version)
   */
-  public function getData($params)
+  public function getData($params = [])
   {
+
     // Params From Config
     if (!empty($this->params)) {
       $params = array_replace_recursive($params, $this->params);
@@ -121,7 +122,7 @@ class Checkbox extends Component
 
     //\Log::info("NAME: ".$this->name."- PARAMS:".json_encode($params));
 
-    $this->options = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params)));
+    $this->options = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params, JSON_FORCE_OBJECT)));
 
     if ($this->options->isNotEmpty() && Str::contains($this->repository, 'Category')) {
       $this->options = $this->options->toTree();
