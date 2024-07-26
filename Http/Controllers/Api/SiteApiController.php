@@ -369,7 +369,7 @@ class SiteApiController extends BaseApiController
             //clear spatie larevel-responsecache
             ResponseCache::clear();
             //Artisan Cache clear
-            Artisan::call('cache:clear');
+            //Artisan::call('cache:clear');
 
             //Response
             $response = ['data' => []];
