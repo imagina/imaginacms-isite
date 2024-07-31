@@ -404,3 +404,25 @@ if (!function_exists('iconfig')) {
     return $response;
   }
 }
+
+/**
+ * SAnitize a search parameter
+ */
+if (!function_exists('sanitizeSearchParameter')) {
+  function sanitizeSearchParameter($searchParam)
+  {
+    // Define the characters to keep, including Spanish letters and accents
+    $allowedChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 áéíóúÁÉÍÓÚñÑ';
+
+    // Use a regular expression to remove any character not in the allowed set
+    $sanitizedParam = preg_replace('/[^' . preg_quote($allowedChars, '/') . ']/u', '', $searchParam);
+
+    // Replace multiple spaces with a single space
+    $sanitizedParam = preg_replace('/\s+/', ' ', $sanitizedParam);
+
+    // Trim leading and trailing spaces
+    $sanitizedParam = trim($sanitizedParam);
+
+    return $sanitizedParam;
+  }
+}
