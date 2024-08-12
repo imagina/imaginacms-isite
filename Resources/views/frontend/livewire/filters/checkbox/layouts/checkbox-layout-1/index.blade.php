@@ -38,7 +38,7 @@
       </div>
     </div>
   @endif
+    @once
+      @include('isite::frontend.livewire.filters.checkbox.partials.style')
+    @endonce
 </div>
-@once
-    @include('isite::frontend.livewire.filters.checkbox.partials.style')
-@endonce
