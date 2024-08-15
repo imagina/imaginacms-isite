@@ -47,7 +47,7 @@ class OrderBy extends Component
     * Listener - Item List Rendered
     *
     */
-    public function itemListRendered($params)
+    public function itemListRendered($params = [])
     {
         // Testing
         //\Log::info("OrderBy - Item List Rendered - Params: ".json_encode($params));

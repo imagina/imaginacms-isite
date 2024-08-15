@@ -278,8 +278,7 @@ class ItemList extends Component
     $this->withSummary = $withSummary;
     $this->numberCharactersSummary = $numberCharactersSummary;
     $this->orderClasses = !empty($orderClasses) ? $orderClasses : ["photo" => "order-0", "title" => "order-1", "date" => "order-2", "categoryTitle" => "order-3", "summary" => "order-4", "viewMoreButton" => "order-5"];
-    $this->editLink = $editLink;
-    $this->tooltipEditLink = $tooltipEditLink;
+    list($this->editLink, $this->tooltipEditLink) = getEditLink($item->repository ?? "");
     $this->layout = $layout;
     $this->itemListLayout = $itemListLayout;
     $this->imageObject = $imageObject;

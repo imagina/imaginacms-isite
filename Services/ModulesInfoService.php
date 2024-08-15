@@ -2,6 +2,8 @@
 
 namespace Modules\Isite\Services;
 
+use Illuminate\Support\Str;
+
 class ModulesInfoService
 {
   public $modules;
@@ -54,6 +56,7 @@ class ModulesInfoService
 
         $entities[] = [
           "name" => $entityName,
+          "pluralName" => Str::plural($entityName),
           "path" => $entityPath,
           "isSoftDeleteEnable" => $this->existTrait('softDelete', $model),
           "isRevisionableEnable" => $this->existTrait('revisionable', $model)

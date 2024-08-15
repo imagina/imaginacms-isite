@@ -41,8 +41,8 @@ class Range extends Component
     * but before render() is called
     */
   public function mount($title, $name, $type, $repository, $emitTo, $repoAction, $repoAttribute, $listener,
-                        $status = true, $isExpanded = true, $repoMethod = 'getItemsBy', $layout = 'range-layout-1',
-                        $classes = 'col-12', $params = [], $step = null, $stepSetting = null)
+                        $params = [], $status = true, $isExpanded = true, $repoMethod = 'getItemsBy',
+                        $layout = 'range-layout-1', $classes = 'col-12', $step = null, $stepSetting = null)
   {
     $this->title = trans($title);
     $this->name = $name;
@@ -169,14 +169,14 @@ class Range extends Component
   * Listener
   * Item List Rendered (Like First Version)
   */
-  public function getData($params)
+  public function getData($params = [])
   {
     // Testing
     //\Log::info("GET DATA - PARAMS: ".json_encode($params));
 
     $selectedValues = $params['filter'][$this->repoAttribute] ?? null;
 
-    $range = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params)));
+    $range = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params, JSON_FORCE_OBJECT)));
 
     //Getting the new price range
     $this->valueMin = floor($range->minPrice ?? 0);
@@ -213,7 +213,7 @@ class Range extends Component
     }
 
     // Dispatch Event to FrontEnd JQuery Layout Slider
-    $this->dispatchBrowserEvent('filter-prices-updated', [
+    $this->dispatch('filter-prices-updated', [
       'newPriceMin' => $this->valueMin,
       'newPriceMax' => $this->valueMax,
       'newSelValueMin' => $this->selValueMin,
