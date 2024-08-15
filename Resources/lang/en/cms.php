@@ -625,7 +625,7 @@ return [
   "configList" => [
     "loggedAs" => "logged as",
     "fullScreen" => "show in full screen",
-    "signOut" => "sign out",
+    "signOut" => "Sign Out",
     "leaveImpersonating" => "Leave impersonating",
     "clearCache" => "Clear cache",
     "goToSite" => "Go to site"
