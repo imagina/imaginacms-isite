@@ -14,7 +14,21 @@ return [
         "loadOptions" => [
           "apiRoute" => "apiRoutes.qpage.pages"
         ]
-      ]
+      ],
+      [
+        "label" => "Posts",
+        "value" => "Modules\Iblog\Entities\Post",
+        "loadOptions" => [
+            "apiRoute" => "apiRoutes.qblog.posts"
+        ]
+      ],
+      [
+        "label" => "Categories",
+        "value" => "Modules\Iblog\Entities\Category",
+        "loadOptions" => [
+            "apiRoute" => "apiRoutes.qblog.categories"
+        ]
+      ],
     ],
     "attributes" => [
       "general" => [
@@ -1074,19 +1088,23 @@ return [
           "imageAspect" => [
             "name" => "imageAspect",
             "value" => "1/1",
-            "type" => "select",
+            "type" => "input",
             "props" => [
               "label" => "Aspect Ratio",
-              "options" => $vAttributes["imageAspect"]
+            ],
+            "help" => [
+               "description" => "auto - 1/1 - 3/2 - 4/3 - 4/5 - 16/9 - 21/9 - 21/5 - 5/4 - 3/1 - 19/8",
             ]
           ],
           "imageAspectMobile" => [
             "name" => "imageAspectMobile",
             "value" => "1/1",
-            "type" => "select",
+            "type" => "input",
             "props" => [
               "label" => "Aspect Ratio Mobile",
-              "options" => $vAttributes["imageAspect"]
+            ],
+            "help" => [
+               "description" => "auto - 1/1 - 3/2 - 4/3 - 4/5 - 16/9 - 21/9 - 21/5 - 5/4 - 3/1 - 19/8",
             ]
           ],
           "imageObject" => [
