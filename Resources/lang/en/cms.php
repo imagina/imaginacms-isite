@@ -723,6 +723,8 @@ return [
   "alreadyInUse" => "Oops! It looks like the name you've chosen is already in use. Could you please try selecting a different name? We want to make sure your unique identity shines bright!",
   "usersToNotify" => 'Users To notify',
   "emailsToNotify" => "Emails To Notify",
-  "dateCache" => "Last update: {date}."
+  "dateCache" => "Last update: {date}.",
+  "useViewParams" => "Use view params",
+  "details" => "Details"
 ];
 
