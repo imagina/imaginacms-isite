@@ -48,7 +48,7 @@ class Text extends Component
   */
   public function updatedValue()
   {
-    $this->dispatch($this->emitTo, [
+    $this->emit($this->emitTo, [
       'name' => $this->name,
       $this->repoAction => [
         $this->repoAttribute => $this->value,

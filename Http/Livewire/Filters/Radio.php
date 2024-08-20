@@ -62,7 +62,7 @@ class Radio extends Component
   */
   public function updatedSelectedOption()
   {
-    $this->dispatch($this->emitTo, [
+    $this->emit($this->emitTo, [
       $this->repoAction => [
         $this->repoAttribute => (bool)$this->selectedOption,
       ],

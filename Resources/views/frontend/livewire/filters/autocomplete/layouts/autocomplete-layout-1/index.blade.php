@@ -11,7 +11,7 @@
                role="button"
                class="input-group">
             <div class="input-group">
-              <input type="text" id="input_search" wire:model.live.debounce.500ms="search"
+              <input type="text" id="input_search" wire:model.debounce.500ms="search"
                      wire:keydown.enter="goToIndex"
                      autocomplete="off"
                      class="form-control  rounded-right"

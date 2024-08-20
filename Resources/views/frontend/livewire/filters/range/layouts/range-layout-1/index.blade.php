@@ -28,7 +28,7 @@
 			<div class="mx-3">
 				<div id="slider-range-{{$name}}" wire:ignore></div>
 
-				<button onClick="window.livewire.dispatch('updateRange',{'selValueMin' : document.getElementById('selValueMin-{{$name}}').value,'selValueMax' : document.getElementById('selValueMax-{{$name}}').value})" id="btnUpdatePrices" class="btn btn-outline-primary btn-sm btn-block mt-3">
+				<button onClick="window.livewire.emit('updateRange',{'selValueMin' : document.getElementById('selValueMin-{{$name}}').value,'selValueMax' : document.getElementById('selValueMax-{{$name}}').value})" id="btnUpdatePrices" class="btn btn-outline-primary btn-sm btn-block mt-3">
 					{{trans('isite::common.button.update')}}
 				</button>
 			</div>

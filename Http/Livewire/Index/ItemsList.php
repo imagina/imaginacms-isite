@@ -86,10 +86,9 @@ class ItemsList extends Component
     $entityName = "item", $itemComponentName = "isite::item-list", $params = [], $responsiveTopContent = null,
     $showTitle = true, $pagination = null, $configOrderBy = null, $configLayoutIndex = null, $itemComponentAttributes = [],
     $itemModal = null, $carouselAttributes = null, $uniqueItemListRendered = false, $title = null, $description = null,
-    $disableFilters = false, $eventToDelete = null, $emitItemListRenderedAlways = false, $id = null
+    $disableFilters = false, $eventToDelete = null, $emitItemListRenderedAlways = false
   )
   {
-    $this->id = $id ?? rand(0,99);
     $this->moduleName = strtolower($moduleName);
     $this->entityName = strtolower($entityName);
     $customIndexTitle = setting($moduleName . '::customIndexTitle');
@@ -295,7 +294,7 @@ class ItemsList extends Component
 
       //The other component will be in charge of delete the item
       //The other component will emit the event to reload the ItemList
-      $this->dispatch($this->eventToDelete['eventName'], $id, $this->entityNamespace, $this->eventToDelete['params']);
+      $this->emit($this->eventToDelete['eventName'], $id, $this->entityNamespace, $this->eventToDelete['params']);
 
     } else {
       //Delete in the same repository from this item list
@@ -331,7 +330,7 @@ class ItemsList extends Component
     // Update Params in other component when init a Filter
     if ($this->pagination["type"] == "infiniteScroll") {
       $showMore = $items->hasMorePages() ? true : false;
-      $this->dispatch('loadMoreButtonUpdateParamsForFilters', $params, $showMore);
+      $this->emit('loadMoreButtonUpdateParamsForFilters', $params, $showMore);
     }
 
     //Emit Always after update Item List
