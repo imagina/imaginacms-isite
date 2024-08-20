@@ -131,7 +131,7 @@ class Select extends Component
 
     //Emit
     if ($this->selected != 'NULL') {
-      $this->dispatch($this->emitTo, [
+      $this->emit($this->emitTo, [
         'name' => $this->name,
         $this->repoAction => [
           $this->repoAttribute => $this->selected == 'NULL' ? null : $this->selected,

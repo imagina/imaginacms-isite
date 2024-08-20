@@ -38,7 +38,7 @@ class OrderBy extends Component
 
         //\Log::info("EMIT GET DATA: ".json_encode($this->order));
 
-        $this->dispatch('itemsListGetData', [
+        $this->emit('itemsListGetData', [
             'order' => $this->orderBy,
         ]);
     }
