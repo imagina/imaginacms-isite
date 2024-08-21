@@ -45,7 +45,7 @@ crossorigin=""/>
             @if(isset($mapEvent) & !is_null($mapEvent))
                 myMarker.on({
                 click: function (e) {
-                    window.livewire.dispatch('{{$mapEvent}}', {{$location['id']}});
+                    window.livewire.emit('{{$mapEvent}}', {{$location['id']}});
                 }
                 });
             @endif

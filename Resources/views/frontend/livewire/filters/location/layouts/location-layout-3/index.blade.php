@@ -28,7 +28,7 @@
             //console.warn("FILTER LOCATION - FRONTEND - SELECTED OPTION: "+selectedOptionId)
             setTimeout(function(){
 
-                window.livewire.dispatch('filtersGetData',{
+                window.livewire.emit('filtersGetData',{
                     'name' : 'location-range',
                     'filter' : {
                         'cityId':selectedOptionId  

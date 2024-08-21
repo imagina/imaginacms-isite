@@ -32,6 +32,7 @@ class Button extends Component
   public $loadingLabel;
   public $loadingIcon;
   public $loading;
+  public $wireClickPrevent;
 
   /**
    * Create a new component instance.
@@ -44,7 +45,7 @@ class Button extends Component
                               $iconColor = 'currentcolor', $sizeLabel = "16", $dataItemId = "", $dataTarget = null,
                               $styleBlock = "", $styleBlockHover = "", $disabled = false,
                               $loadingIcon = "fa-duotone fa-spinner-third fa-spin", $loading = false,
-                              $loadingLabel = null
+                              $loadingLabel = null, $wireClickPrevent = null
   )
   {
     $this->idButton = $idButton ?? uniqid('button');
@@ -63,6 +64,7 @@ class Button extends Component
     $this->sizeLabel = $sizeLabel;
     $this->dataItemId = $dataItemId;
     $this->dataTarget = $dataTarget;
+    $this->wireClickPrevent = $wireClickPrevent;
     if (isset($classesBlock)) {
       $this->style = $this->buttonClasses;
       $this->buttonClasses = $buttonClasses . ' ' . $sizePadding . ' ' . $classesBlock;

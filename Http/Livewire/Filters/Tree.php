@@ -85,7 +85,7 @@ class Tree extends Component
 
       $this->refreshBreadcrumb();
 
-      $this->dispatch($this->emitTo, [
+      $this->emit($this->emitTo, [
         $this->repoAction => [
           $this->repoAttribute => $item,
         ],
