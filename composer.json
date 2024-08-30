@@ -11,7 +11,7 @@
         "imagina/igamification-module": "v10.x-dev",
         "livewire/livewire": "^2.11",
         "jantinnerezo/livewire-alert": "^2.2",
-        "spatie/laravel-responsecache": "^7.4",
+        "imagina/laravel-responsecache": "^6.8",
         "kalnoy/nestedset": "^6.0",
         "hisorange/browser-detect": "^4.4.0",
         "maatwebsite/excel": "^3.1",
