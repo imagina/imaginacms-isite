@@ -723,5 +723,6 @@ return [
   "emailsToNotify" => "Emails a Notificiar",
   "dateCache" => "Última actualización: {date}. Refresca cuando quieras.",
   "useViewParams" => "Usar los parametros de la vista",
+  "details" => "Detalles"
 ];
 
