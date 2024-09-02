@@ -7,8 +7,9 @@ use Illuminate\View\Component;
 class Multilang extends Component
 {
 
-    public $itemLayout;
+  public $itemLayout;
   public $locales;
+  public $localesUrl;
 
   public $buttonComponentAtributtes;
   public $buttonDropDownItemComponentAtributtes;
@@ -22,6 +23,12 @@ class Multilang extends Component
   public $imageComponentNamespace;
   public $imageComponent;
   public $showImage;
+  public $classSelect;
+  public $classSelectOut;
+  public $flagStyles;
+  public $flagClasses;
+  public $multiflagClasses;
+  public $linkClasses;
 
   /**
    * Create a new component instance.
@@ -40,11 +47,19 @@ class Multilang extends Component
                               $imageComponentNamespace = "Modules\Media\View\Components\SingleImage",
                               $imageComponent = "media::single-image",
                               $imageComponentAtributtes = [],
-                              $showImage = true
+                              $showImage = true,
+                              $classSelect = "",
+                              $classSelectOut = "",
+                              $flagStyles = null,
+                              $flagClasses = null,
+                              $multiflagClasses = null,
+                              $linkClasses = null,
+                              $localesUrl = "modules/isite/img/locales/"
   )
   {
     $this->view = "isite::frontend.components.multilang.layouts.".$layout.".index";
     $this->locales = json_decode(setting("core::locales"));
+    $this->localesUrl = $localesUrl;
 
     $this->butonComponentNamespace = $butonComponentNamespace;
     $this->butonComponent = $butonComponent;
@@ -59,6 +74,12 @@ class Multilang extends Component
     $this->imageComponent = $imageComponent;
     $this->imageComponentAtributtes = $imageComponentAtributtes;
     $this->showImage = $showImage;
+    $this->classSelect = $classSelect;
+    $this->classSelectOut = $classSelectOut;
+    $this->flagStyles = $flagStyles;
+    $this->flagClasses = $flagClasses;
+    $this->multiflagClasses = $multiflagClasses;
+    $this->linkClasses = $linkClasses;
   }
 
 

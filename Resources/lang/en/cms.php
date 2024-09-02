@@ -47,7 +47,11 @@ return [
     "newExportHelpText" => 'Export <b class="text-blue-grey">{pageTitle}</b> with current filters (without pagination)',
     "newExportItemHelpText" => 'Export <b class="text-blue-grey">Record ID: {id}</b>',
     "exportReady" => "Your <b>{fileName}</b> report is Ready!",
-    "noOrganization" => "You do not belong to an organization"
+    "noOrganization" => "You do not belong to an organization",
+    "refreshAppVersion" => "We are excited to introduce new features and enhancements in this version. Click the update button to enjoy the latest experience.",
+    "updateAvailable" => "New Update Available!",
+    "updateNow" => "Update now",
+    "dispatchBulkAction" => 'Dispatch <b class="text-blue-grey">{pageTitle}</b> bulk action'
   ],
   "startTime" => "Start time",
   "endTime" => "End time",
@@ -416,6 +420,7 @@ return [
     "gridPosition" => "Grid Position",
     "us" => "Us",
     "contactUs" => "Contact",
+    "bulkAction" => "New Bulk Action",
   ],
   "message" => [
     "showDemo" => "Demo",
@@ -489,7 +494,7 @@ return [
     "finishRegister" => "There is little left to finish your registration...",
     "ready" => "Ready",
     "noRegistered" => "You are not registered yet",
-    "hintFilterByQuery" => "Type 3 or more characters to search for options",
+    "hintFilterByQuery" => "Type 2 or more characters to search for options",
     "invalidFormat" => "Invalid format",
     "specialCharactersAreNotAllowed" => "Special characters are not allowed",
     "configureThisSection" => "configure This section",
@@ -620,7 +625,7 @@ return [
   "configList" => [
     "loggedAs" => "logged as",
     "fullScreen" => "show in full screen",
-    "signOut" => "sign out",
+    "signOut" => "Sign Out",
     "leaveImpersonating" => "Leave impersonating",
     "clearCache" => "Clear cache",
     "goToSite" => "Go to site"
@@ -641,8 +646,8 @@ return [
     "syncStepOne" => "Step 1: Access Your Document",
     "syncBodyStepOne" => "To access your document, simply click on the link below:",
     "syncBodyLinkStepOne" => "Access Here",
-    "syncStepTwo" => "Step 2: Export Categories",
-    "syncBodyStepTwo" => "Before effectively importing products, make sure to first perform an export of categories. This step is essential for a successful product import.",
+    "syncStepTwo" => "Step 2: Export Dependencies",
+    "syncBodyStepTwo" => "Before effectively importing data, make sure to first perform an export of dependencies. This step is essential for a successful import.",
     "syncImportantNoteBody" => "If the buttons are not enabled, it means that a bulk synchronization process is running for this module. You won't have access to actions until this process is completed.",
     "import" => "Import",
     "exportDataTitle" => "Export your Data",
@@ -658,7 +663,9 @@ return [
     "inProgress" => "In Progress...",
     "failedSync" => "Synchronization failed",
     "syncFinished" => "Synchronization of :entity has successfully completed!",
-    "syncCompleted" => "Sync Data completed"
+    "syncCompleted" => "Sync Data completed",
+    "dependencies" => "Dependencies",
+    "updateNewVersion" => "<b>We have new improvements for you!</b><br/>It's necessary to update one of your files. It's important for you to know that when performing this update, the information contained in the current file will be erased. We recommend backing up any relevant information you want to keep before proceeding with the update."
   ],
   "topLeft" => "Top-Left",
   "top" => "Top",
@@ -703,12 +710,19 @@ return [
       "description" => "In the 'Templates' section, you can choose the design that best suits your website's needs. We have a variety of predefined templates that have been carefully designed to offer you a wide range of styles and functionalities. By selecting a template, you will be defining the structure and overall appearance of your page, so we suggest you choose the one that best reflects the identity of your brand.",
       "title" => "Templates"
 
+    ],
+    "meta" => [
+      "description" => "Tse tags to improve your site's visibility in the search engine",
+      "title" => "Metadata"
     ]
   ],
   "reportQueue" => "You already have a report in progress, you requested it on <b>{date}</b>. As soon as it is finished we will enable the 'create' function for you... We do this to make the app work much better!",
   "sessionFound" => "There is an active session",
   "alreadyInUse" => "Oops! It looks like the name you've chosen is already in use. Could you please try selecting a different name? We want to make sure your unique identity shines bright!",
   "usersToNotify" => 'Users To notify',
-  "emailsToNotify" => "Emails To Notify"
+  "emailsToNotify" => "Emails To Notify",
+  "dateCache" => "Last update: {date}. Refresh whenever you want.",
+  "useViewParams" => "Use view params",
+  "details" => "Details"
 ];
 

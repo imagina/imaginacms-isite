@@ -91,7 +91,11 @@ return [
       ],
       'showGoToSiteButton' => 'Mostrar boton "Ver Sitio"'
     ],
-    'defaultLayout' => 'Plantilla por defecto'
+    'defaultLayout' => 'Plantilla por defecto',
+    'markerLabelFontSize' => 'Tamaño de la Fuente | Etiqueta del Marcador',
+    'markerLabelFontWeight' => 'Grosor de la Fuente | Etiqueta del Marcador',
+    'markerLabelColor' => 'Color de la fuente| Etiqueta del Marcador',
+    'markerLabelTopPosition' => 'Top Position | Etiqueta del Marcador',
   ],
   'settingHints' => [
     'phones' => "Ingresa un número telefónico y presiona enter",
@@ -242,4 +246,5 @@ return [
     'message' => 'Lo sentimos, esta página no esta disponible.',
     'globe' => 'Intenta más adelante',
   ],
+  'hasUniqueFields' => 'No se puede guardar el registro debido a un conflicto con otro registro existente. Asegúrese de que la información proporcionada sea única y vuelva a intentarlo.'
 ];

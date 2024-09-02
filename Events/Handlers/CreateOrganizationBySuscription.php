@@ -4,6 +4,7 @@ namespace Modules\Isite\Events\Handlers;
 
 use Modules\User\Entities\Sentinel\User;
 use Modules\Isite\Entities\Organization;
+use Modules\Isite\Entities\Layout;
 use Modules\Iprofile\Entities\Role;
 
 use Illuminate\Http\Request;
@@ -58,7 +59,7 @@ class CreateOrganizationBySuscription
                 $this->authApi->logout(app('request'));
 
               //Rol in Central
-              $user = $this->updateRoleUser($user,true);
+              $user = $this->updateRoleUser($user,$suscription,true);
 
               //Set Core
               config(['asgard.core.config.userstamping' => false]);
@@ -72,7 +73,7 @@ class CreateOrganizationBySuscription
 
             }else{
               //LIKE DEEV
-              $user = $this->updateRoleUser($user);
+              $user = $this->updateRoleUser($user,$suscription);
               $organization = $this->createTenant($user,$suscription);
               tenancy()->initialize($organization->id);
               event(new OrganizationWasCreated($organization));
@@ -93,7 +94,7 @@ class CreateOrganizationBySuscription
 
   }
 
-  public function updateRoleUser(object $user,$central = false)
+  public function updateRoleUser(object $user,$suscription,$central = false)
   {
 
     \Log::info($this->log.'UpdateRoleUser');
@@ -103,7 +104,21 @@ class CreateOrganizationBySuscription
       $role = Role::where("slug", config("tenancy.defaultCentralRole"))->first();
       $roles[] = $role->id;
     }else{
-      $roles = $this->rolesToTenant;
+
+      //Case Like DEEV
+      //Get layout selected
+      $layout = Layout::find($suscription->options->layout_id);
+      //Get Layout Rol
+      $layoutRoles = config("asgard.icustom.config.layoutsRol");
+
+      if(!is_null($layout) && !is_null($layoutRoles)){
+        $sn = $layout->system_name;
+        $role = Role::where("slug",$layoutRoles[$sn])->first();
+        $roles[] = $role->id;
+      }else{
+        $roles = $this->rolesToTenant;
+      }
+     
     }
 
     $user->roles()->sync($roles);

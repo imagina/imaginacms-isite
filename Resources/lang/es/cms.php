@@ -47,7 +47,11 @@ return [
     "newExportHelpText" => 'Exportar <b class="text-blue-grey">{pageTitle}</b> con los filtros actuales (sin paginación)',
     "newExportItemHelpText" => 'Exportar <b class="text-blue-grey">Registro ID: {id}</b>',
     "exportReady" => "Tu report <b>{fileName}</b> está listo!",
-    "noOrganization" => "Todavía no perteneces a una organización"
+    "noOrganization" => "Todavía no perteneces a una organización",
+    "refreshAppVersion" => "Estamos emocionados de presentar nuevas funciones y mejoras en esta versión. Haga clic en el botón de actualización para disfrutar de la última experiencia.",
+    "updateAvailable" => "¡Nueva actualización disponible!",
+    "updateNow" => "Actualizar ahora",
+    "dispatchBulkAction" => 'Acción masiva de envío de <b class="text-blue-grey">{pageTitle}</b>'
   ],
   "startTime" => "Hora de inicio",
   "endTime" => "Hora de finalización",
@@ -421,6 +425,7 @@ return [
     "gridPosition" => "Espació en la Grid",
     "us" => "Nosotros",
     "contactUs" => "Contactanos",
+    "bulkAction" => "Nueva acción masiva",
   ],
   "message" => [
     "showDemo" => "Ver Demo",
@@ -489,7 +494,7 @@ return [
     "finishRegister" => "Falta poco para terminar tu registro",
     "ready" => "Todo está listo",
     "noRegistered" => "Aún no estás registrado",
-    "hintFilterByQuery" => "Escribe 3 o más caracteres para buscar opciones",
+    "hintFilterByQuery" => "Escribe 2 o más caracteres para buscar opciones",
     "invalidFormat" => "Formato invalido",
     "specialCharactersAreNotAllowed" => "No se permiten caracteres especiales",
     "configureThisSection" => "Configura esta sección",
@@ -642,8 +647,8 @@ return [
     "syncStepOne" => "Paso 1: Accede a tu Documento",
     "syncBodyStepOne" => "Para acceder a tu documento, simplemente haz clic en el enlace a continuación:",
     "syncBodyLinkStepOne" => "Accede aquí",
-    "syncStepTwo" => "Paso 2: Exportar Categorias",
-    "syncBodyStepTwo" => "Antes de importar productos de manera efectiva, asegúrate de realizar primero una exportación de categorías. Este paso es esencial para que la importación de productos sea exitosa.",
+    "syncStepTwo" => "Paso 2: Exportar Dependencias",
+    "syncBodyStepTwo" => "Antes de importar los datos de manera efectiva, asegúrate de realizar primero una exportación de dependencias. Este paso es esencial para que la importación sea exitosa.",
     "syncImportantNoteBody" => "Si los botones no están habilitados, significa que se está ejecutando un proceso de sincronización masiva para este módulo. Hasta que este proceso no termine, no tendrás acceso a las acciones.",
     "import" => "Importar",
     "exportDataTitle" => "Exporta tus Datos",
@@ -659,7 +664,9 @@ return [
     "inProgress" => "En progreso...",
     "failedSync" => "La sincronización fallo",
     "syncFinished" => "¡La sincronización de :entity se ha completado con éxito!",
-    "syncCompleted" => "Sincronización de datos completada"
+    "syncCompleted" => "Sincronización de datos completada",
+    "dependencies" => "Dependencias",
+    "updateNewVersion" => "<b>¡Tenemos nuevas mejoras para ti!</b><br/>Es necesario actualizar uno de tus archivos. Es importante que sepas que al realizar esta actualización, la información contenida en el archivo actual será borrada. Te recomendamos respaldar cualquier información relevante que desees conservar antes de proceder con la actualización."
   ],
   "topLeft" => "Arriba-Izquierda",
   "top" => "Arriba",
@@ -703,12 +710,19 @@ return [
     "layouts" => [
       "description" => "En la sección 'plantillas, puedes elegir el diseño que mejor se adapte a las necesidades de tu sitio web. Contamos con una variedad de plantillas predefinidas que han sido cuidadosamente diseñadas para ofrecerte una amplia gama de estilos y funcionalidades. Al seleccionar una plantilla, estarás definiendo la estructura y el aspecto general de tu página, por lo que te sugerimos escoger la que mejor refleje la identidad de tu marca.",
       "title" => "Plantillas"
+    ],
+    "meta" => [
+      "description" => "Usa palabras claves para mejorar la visibilidad de tu sitio en el buscador",
+      "title" => "Metadatos"
     ]
   ],
   "reportQueue" => "Ya tienes un reporte en progreso, lo solicitaste en <b>{date}</b>. Tan pronto este termine habilitaremos la función de 'crear' para ti... Esto lo hacemos para que la aplicación funcione mucho mejor!",
   "sessionFound" => "Hay una sesión activa",
   "alreadyInUse" => "¡Ups! Parece que el nombre que has elegido ya está en uso. ¿Podrías intentar seleccionar otro nombre? ¡Queremos asegurarnos de que tu identidad única brille con fuerza!",
   "usersToNotify" => 'Usuarios a Notificar',
-  "emailsToNotify" => "Emails a Notificiar"
+  "emailsToNotify" => "Emails a Notificiar",
+  "dateCache" => "Última actualización: {date}. Refresca cuando quieras.",
+  "useViewParams" => "Usar los parametros de la vista",
+  "details" => "Detalles"
 ];
 

@@ -95,4 +95,10 @@
   }
   @endif
 
+  .marker-position{
+    position:relative;
+    left:0;
+    top:{{$labelTopPosition}}px;
+  }
+
 </style>

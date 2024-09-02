@@ -10,7 +10,7 @@
     if (isset($component)) {
       $__componentOriginal[$hash] = $component;
     }
-    $component = $__env->getContainer()->make($itemComponentNamespace, array_merge($itemComponentAttributes, ["item" => $item,"itemListLayout"=>$itemListLayout,"editLink"=>$editLink,"tooltipEditLink"=>$tooltipEditLink]));
+    $component = $__env->getContainer()->make($itemComponentNamespace, array_merge($itemComponentAttributes, ["item" => $item,"itemListLayout"=>$itemListLayout,"editLink"=>$editLink,"tooltipEditLink"=>$tooltipEditLink, "currentRoute" => $currentRoute]));
     $component->withName($itemComponentName);
     if ($component->shouldRender()):
       $__env->startComponent($component->resolveView(), $component->data());

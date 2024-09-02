@@ -16,6 +16,10 @@ $router->group(['prefix' => '/site'/*,'middleware' => ['auth:api']*/], function 
     'as' => 'api.isite.index',
     'uses' => 'SiteApiController@index',
   ]);
+  $router->get('/modules-info', [
+    'as' => 'api.isite.modules.index',
+    'uses' => 'SiteApiController@getModulesData',
+  ]);
   $router->post('/cache-clear', [
     'as' => 'api.isite.cache.clear',
     'uses' => 'SiteApiController@cacheClear',
@@ -37,7 +41,7 @@ $router->group(['prefix' => '/site'/*,'middleware' => ['auth:api']*/], function 
     $router->put('/update', [
       'as' => 'api.isite.tenant.update',
       'uses' => 'SiteApiController@tenantUpdate',
-    ]); 
+    ]);
   });
 
 

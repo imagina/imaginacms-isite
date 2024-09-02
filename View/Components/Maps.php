@@ -53,6 +53,12 @@ class Maps extends Component
   public $activeClickInMarker;
   public $emitAfterClickMarker;
   public $activeAnimationInMarker;
+  public $inputVarName;
+
+  public $labelFontSize;
+  public $labelFontWeight;
+  public $labelColor;
+  public $labelTopPosition;
 
   /**
    * Create a new component instance.
@@ -69,9 +75,9 @@ class Maps extends Component
                               $fontSizeTitle = '14', $colorTitle = null, $colorTitleByClass = 'text-primary',
                               $colorTitleSection = "#000000", $fontSizeTitleSection = "24", $iframeMap = null, 
                               $usingLivewire = false, $allowMoveMarker = false, $showLocationName = true, $initMultipleLocations = false,
-                              $activeClickInMarker = false, $emitAfterClickMarker = false, $activeAnimationInMarker = false
-  )
-  {
+                              $activeClickInMarker = false, $emitAfterClickMarker = false, $activeAnimationInMarker = false, $inputVarName = null, 
+                              $labelFontSize = null, $labelFontWeight=null, $labelColor=null, $labelTopPosition=null
+  ){
     $defaultMap = json_decode(setting('isite::locationSite'));
     $this->lat = $lat ?? $defaultMap->lat;
     $this->lng = $lng ?? $defaultMap->lng;
@@ -144,6 +150,15 @@ class Maps extends Component
     $this->activeClickInMarker = $activeClickInMarker;
     $this->emitAfterClickMarker = $emitAfterClickMarker;
     $this->activeAnimationInMarker = $activeAnimationInMarker;
+    $this->inputVarName = $inputVarName; //Used in Address Map Component | Iprofile
+    
+    // Label Marker
+    $fontSizeValue =  $labelFontSize ?? setting("isite::markerLabelFontSize",null,"12");
+    $this->labelFontSize = $fontSizeValue."px";
+    $this->labelFontWeight = $labelFontWeight ?? setting("isite::markerLabelFontWeight",null,"normal");
+    $this->labelColor = $labelColor ?? setting("isite::markerLabelColor",null,"black");
+    $this->labelTopPosition =  $labelTopPosition ?? setting("isite::markerLabelTopPosition",null,"30");
+   
   }
 
   /**

@@ -32,12 +32,16 @@ class Synchronizable extends CrudModel
   ];
   public $translatedAttributes = [];
   protected $fillable = [
-      'sheet_id',
-      'name',
-      'enabled',
-      'is_running',
-      'enabled_emails',
-      'last_sync',
-      'exported_by_id'
+    'spreadsheet_id',
+    'name',
+    'enabled',
+    'is_running',
+    'enabled_emails',
+    'sheets',
+    'options',
+    'errors',
+    'base_template_id',
+    'last_sync',
+    'exported_by_id'
   ];
 }

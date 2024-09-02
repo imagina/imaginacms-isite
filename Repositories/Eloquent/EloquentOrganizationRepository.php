@@ -7,19 +7,19 @@ use Modules\Core\Icrud\Repositories\Eloquent\EloquentCrudRepository;
 
 class EloquentOrganizationRepository extends EloquentCrudRepository implements OrganizationRepository
 {
-  
+
   /**
    * Filter names to replace
    * @var array
    */
   protected $replaceFilters = [];
-  
+
   /**
    * Relation names to replace
    * @var array
    */
   protected $replaceSyncModelRelations = [];
-  
+
   /**
    * Filter query
    *
@@ -39,7 +39,7 @@ class EloquentOrganizationRepository extends EloquentCrudRepository implements O
       }
     }
    // dd($query->toSql(),$query->getBindings());
-    
+
     /**
      * Note: Add filter name to replaceFilters attribute before replace it
      *
@@ -48,39 +48,41 @@ class EloquentOrganizationRepository extends EloquentCrudRepository implements O
      *
      */
 
-      //Filter Category Id
+    //Filter Category Id
     if (isset($filter->category) && !empty($filter->category))
       $query->where('category_id', $filter->category);
 
 
-      // add filter by search
+    // add filter by search
     if (isset($filter->search) && !empty($filter->search)) {
 
-        //get language translation
-        $lang = \App::getLocale();
+      //get language translation
+      $lang = \App::getLocale();
 
-        $query->where(function ($query) use ($filter, $lang) {
-          $query->whereHas('translations', function ($query) use ($filter, $lang) {
-            $query->where('locale', $lang)
-              ->where('title', 'like', '%' . $filter->search . '%')
-              ->orWhere('description', 'like', '%' . $filter->search . '%');
-          })->orWhere('id', 'like', '%' . $filter->search . '%');
-        });
-      
+      $query->where(function ($query) use ($filter, $lang) {
+        $query->whereHas('translations', function ($query) use ($filter, $lang) {
+          $query->where('locale', $lang)
+            ->where('title', 'like', '%' . $filter->search . '%')
+            ->orWhere('description', 'like', '%' . $filter->search . '%');
+        })->orWhere('id', 'like', '%' . $filter->search . '%')
+          ->orWhere(function ($query) use ($filter) {
+            $query->whereTag($filter->search, 'name');
+          });
+      });
     }
-  
+
     if (isset($params->setting) && isset($params->setting->fromAdmin) && $params->setting->fromAdmin) {
-    
+
     } else {
-    
+
       //Pre filters by default
       $query->where('status', 1);
     }
-  
+
     //Response
     return $query;
   }
-  
+
   /**
    * Method to sync Model Relations
    *
@@ -91,7 +93,7 @@ class EloquentOrganizationRepository extends EloquentCrudRepository implements O
   {
     //Get model relations data from attribute of model
     $modelRelationsData = ($model->modelRelations ?? []);
-    
+
     /**
      * Note: Add relation name to replaceSyncModelRelations attribute before replace it
      *
@@ -101,9 +103,9 @@ class EloquentOrganizationRepository extends EloquentCrudRepository implements O
      * }
      *
      */
-    
+
     //Response
     return $model;
   }
-  
+
 }

@@ -153,7 +153,7 @@ return [
     'colClass' => 'col-12 col-md-6',
     'quickSetting' => true,
     'props' => [
-        'label' => 'isite::common.settings.brandTertiary'
+      'label' => 'isite::common.settings.brandTertiary'
     ]
   ],
   'tertiaryContrast' => [
@@ -165,7 +165,7 @@ return [
     'colClass' => 'col-12 col-md-6',
     'quickSetting' => true,
     'props' => [
-        'label' => 'isite::common.settings.tertiaryContrast'
+      'label' => 'isite::common.settings.tertiaryContrast'
     ]
   ],
   'brandQuaternary' => [
@@ -177,7 +177,7 @@ return [
     'colClass' => 'col-12 col-md-6',
     'quickSetting' => true,
     'props' => [
-        'label' => 'isite::common.settings.brandQuaternary'
+      'label' => 'isite::common.settings.brandQuaternary'
     ]
   ],
   'quaternaryContrast' => [
@@ -189,7 +189,7 @@ return [
     'colClass' => 'col-12 col-md-6',
     'quickSetting' => true,
     'props' => [
-        'label' => 'isite::common.settings.quaternaryContrast'
+      'label' => 'isite::common.settings.quaternaryContrast'
     ]
   ],
   'brandAddressBar' => [
@@ -1037,6 +1037,66 @@ return [
       'label' => 'isite::common.maps.labelLocationSite'
     ]
   ],
+  'markerLabelFontSize' => [
+    'value' => null,
+    'name' => 'isite::markerLabelFontSize',
+    "onlySuperAdmin" => true,
+    'type' => 'input',
+    'groupName' => 'maps',
+    'groupTitle' => 'isite::common.settingGroups.colors',
+    'colClass' => 'col-12 col-md-6',
+    'props' => [
+      'label' => 'isite::common.settings.markerLabelFontSize',
+      'type' => 'number'
+    ]
+  ],
+  'markerLabelFontWeight' => [
+    'value' => "normal",
+    'name' => 'isite::markerLabelFontWeight',
+    "onlySuperAdmin" => true,
+    'type' => 'select',
+    'groupName' => 'maps',
+    'groupTitle' => 'isite::common.settingGroups.colors',
+    'colClass' => 'col-12 col-md-6',
+    'props' => [
+      'label' => 'isite::common.settings.markerLabelFontWeight',
+      'useInput' => false,
+      'useChips' => false,
+      'multiple' => false,
+      'hideDropdownIcon' => true,
+      'newValueMode' => 'add-unique',
+      'options' => [
+        ['label' => 'Bold', 'value' => "bold"],
+        ['label' => 'Normal', 'value' => "normal"],
+        ['label' => 'Light', 'value' => "light"],
+      ]
+    ]
+  ],
+  'markerLabelColor' => [
+    'value' => null,
+    'name' => 'isite::markerLabelColor',
+    'type' => 'inputColor',
+    "onlySuperAdmin" => true,
+    'groupName' => 'maps',
+    'groupTitle' => 'isite::common.settingGroups.colors',
+    'colClass' => 'col-12 col-md-6',
+    'props' => [
+      'label' => 'isite::common.settings.markerLabelColor'
+    ]
+  ],
+  'markerLabelTopPosition' => [
+    'value' => null,
+    'name' => 'isite::markerLabelTopPosition',
+    "onlySuperAdmin" => true,
+    'type' => 'input',
+    'groupName' => 'maps',
+    'groupTitle' => 'isite::common.settingGroups.colors',
+    'colClass' => 'col-12 col-md-6',
+    'props' => [
+      'label' => 'isite::common.settings.markerLabelTopPosition',
+      'type' => 'number'
+    ]
+  ],
   'iframeMap' => [
     'name' => 'isite::iframeMap',
     'value' => null,
@@ -1300,7 +1360,21 @@ return [
       'label' => 'isite::isite.centralizedBrand'
     ]
   ],
-
+  'contentGenerationWithAI' => [
+    "onlySuperAdmin" => true,
+    'value' => '0',
+    'name' => 'isite::contentGenerationWithAI',
+    'type' => 'select',
+    'groupName' => 'tenants',
+    'groupTitle' => 'isite::common.settingGroups.tenants',
+    'props' => [
+      'label' => "isite::sites.settings.contentGenerationWithAI",
+      'options' => [
+        ['label' => 'isite::cms.label.enabled', 'value' => '1'],
+        ['label' => 'isite::cms.label.disabled', 'value' => '0']
+      ]
+    ]
+  ],
   'tenantDataIa' => [
     "onlySuperAdmin" => true,
     'value' => null,
