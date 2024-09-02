@@ -16,10 +16,12 @@ use Modules\Ifillable\Traits\isFillable;
 use Modules\Setting\Entities\Setting;
 use Stancl\Tenancy\Database\Concerns\MaintenanceMode;
 use Modules\Isite\Entities\Status;
+use Modules\Core\Icrud\Traits\HasCacheClearable;
 
 class Organization extends BaseTenant implements TenantWithDatabase
 {
-  use AuditTrait, Translatable, HasDatabase, HasDomains, MediaRelation, Schedulable, hasEventsWithBindings, isFillable, MaintenanceMode;
+  use AuditTrait, Translatable, HasDatabase, HasDomains, MediaRelation, Schedulable, hasEventsWithBindings, isFillable,
+      MaintenanceMode, HasCacheClearable;
   
   public $transformer = 'Modules\Isite\Transformers\OrganizationTransformer';
   public $requestValidation = [
@@ -201,5 +203,15 @@ class Organization extends BaseTenant implements TenantWithDatabase
     return $status;
 
   }
+
+    public function getCacheClearableData()
+    {
+        return [
+            'urls' => [
+                config("app.url"),
+                $this->url
+            ]
+        ];
+    }
   
 }
