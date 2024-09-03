@@ -1,5 +1,8 @@
 <div class="item-layout item-list-layout-1 position-relative">
-  <x-isite::edit-link link="{{$editLink}}{{$item->id}}" :item="$item" tooltip="{{$tooltipEditLink}}"/>
+    @livewire('isite::edit-link', ['link' => "{{$editLink}}{{$item->id}}",
+    'tooltip' => "{{$tooltipEditLink}}",
+    'item' => '{{$item}}'
+    ])
   <div class="card card-category card-item border-0">
     <div class="row align-items-center">
 

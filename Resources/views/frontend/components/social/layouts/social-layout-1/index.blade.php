@@ -1,9 +1,9 @@
 <div id="{{ $id }}" class="d-inline-block social-{{ $position }} position-relative {{$iconAnimate}}">
-  <x-isite::edit-link
-    link="/iadmin/#/site/settings?module=isite&group=socialNetworks"
-    :tooltip="trans('isite::common.editLink.tooltipSocial')"
-    top="-31px" left="-7px"
-  />
+    @livewire('isite::edit-link', ['link' => "/iadmin/#/site/settings?module=isite&group=socialNetworks",
+    'tooltip' => "trans('isite::common.editLink.tooltipSocial')",
+    'top' => '-31px',
+    'left' => '-7px'
+    ])
   @foreach($items as $name=>$value)
     @if(!empty($value))
       <a href="{{ $value }}" target="_blank" aria-label="social {{ $type }} {{$name}}">
