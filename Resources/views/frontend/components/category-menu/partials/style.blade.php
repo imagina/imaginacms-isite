@@ -134,6 +134,12 @@
 
     @if($layout=='category-menu-layout-3' && !empty($deskStyle))
 
+        @if(!empty($deskStyleGeneral))
+        #{{$id}} .navbar-nav {
+             {!!$deskStyleGeneral!!}
+        }
+        @endif
+
         #{{$id}} .navbar-nav .nav-item .nav-link {
             color: {{ !empty($deskColor1) ? $deskColor1 : 'var(--primary)' }};
             font-size: {{$deskTextSize}}px;
@@ -175,6 +181,12 @@
             @if(!empty($linkMovil))
             #{{$id}} .link-movil {
                  {!!$linkMovil!!}
+            }
+            @endif
+
+            @if(!empty($deskStyleGeneral))
+            #{{$id}} #{{$id}}contentToMove #{{$id}}nav {
+                {!!$deskStyleGeneral!!}
             }
             @endif
 

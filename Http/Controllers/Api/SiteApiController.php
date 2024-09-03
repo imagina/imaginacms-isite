@@ -15,6 +15,7 @@ use Illuminate\Support\Str;
 use Modules\Core\Foundation\Theme\ThemeManager;
 use Modules\User\Permissions\PermissionManager;
 use Spatie\ResponseCache\Facades\ResponseCache;
+use Modules\Isite\Services\ModulesInfoService;
 
 //Controller
 use Modules\Isite\Http\Controllers\Api\SettingApiController;
@@ -178,11 +179,13 @@ class SiteApiController extends BaseApiController
 
           if ($media === null)
             $setting["media"] = [
+              'id' => null,
               'mimeType' => 'image/jpeg',
               'path' => url('modules/isite/img/defaultLogo.jpg')
             ];
           else
             $setting["media"] = [
+              'id' => $media->id,
               'mimeType' => $media->mimetype,
               'path' => $media->path_string
             ];
@@ -234,6 +237,7 @@ class SiteApiController extends BaseApiController
           $setting['type'] = 'file';
           if (!isset($setting['media'])) {
             $setting["media"] = [
+              'id' => null,
               'mimeType' => 'image/jpeg',
               'path' => url('modules/isite/img/defaultLogo.jpg')
             ];
@@ -374,19 +378,19 @@ class SiteApiController extends BaseApiController
     //Return response
     return response()->json($response ?? ["data" => "Request successful"], $status ?? 200);
   }
-  
+
   /**
    * Create Site - Tenant
    * @param Request $request
    */
   public function create(Request $request){
-    
+
     $data = $request->input('attributes');
-    
+
    // try {
-    
+
     $response = $this->tenantService->createTenantInMultiDatabase($data);
-    
+
     //Response
     $response = ["data" => $response];
     //  \DB::commit();//Commit to DataBase
@@ -397,15 +401,15 @@ class SiteApiController extends BaseApiController
 //     }
     return response()->json($response, $status ?? 200);
   }
-  
+
   public function activateModule(Request $request){
-    
+
     $data = $request->input('attributes');
-    
+
     try {
-    
+
     $response = $this->tenantService->activateModule($data);
-    
+
     //Response
     $response = ["data" => $response];
        \DB::commit();//Commit to DataBase
@@ -418,17 +422,17 @@ class SiteApiController extends BaseApiController
   }
 
   public function tenantUpdate(Request $request){
-    
-    
+
+
     $data = $request->input('attributes');
-    
+
     try {
-    
+
       $response = $this->tenantService->updateTenant($data);
-    
+
       //Response
       $response = ["data" => "Tenant Updated"];
-   
+
     } catch (\Exception $e) {
 
       $status = $this->getStatusError($e->getCode());
@@ -437,5 +441,19 @@ class SiteApiController extends BaseApiController
     return response()->json($response, $status ?? 200);
   }
 
-
+  /**
+   * Return the modules information
+   * @return void
+   */
+  public function getModulesData()
+  {
+    try {
+      $service = new ModulesInfoService();
+      $response = ["data" => $service->getInfo()];
+    } catch (\Exception $e) {
+      $status = $this->getStatusError($e->getCode());
+      $response = ["errors" => $e->getMessage()];
+    }
+    return response()->json($response, $status ?? 200);
+  }
 }

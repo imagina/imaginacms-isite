@@ -16,13 +16,14 @@ use Modules\Ifillable\Traits\isFillable;
 use Modules\Setting\Entities\Setting;
 use Stancl\Tenancy\Database\Concerns\MaintenanceMode;
 use Modules\Isite\Entities\Status;
+use Modules\Tag\Traits\TaggableTrait;
+use Modules\Notification\Traits\IsNotificable;
 use Modules\Core\Icrud\Traits\HasCacheClearable;
 
 class Organization extends BaseTenant implements TenantWithDatabase
 {
-  use AuditTrait, Translatable, HasDatabase, HasDomains, MediaRelation, Schedulable, hasEventsWithBindings, isFillable,
-      MaintenanceMode, HasCacheClearable;
-  
+  use AuditTrait, Translatable, HasDatabase, HasDomains, MediaRelation, Schedulable, hasEventsWithBindings, isFillable, MaintenanceMode, TaggableTrait, IsNotificable, HasCacheClearable;
+
   public $transformer = 'Modules\Isite\Transformers\OrganizationTransformer';
   public $requestValidation = [
     'create' => 'Modules\Isite\Http\Requests\CreateOrganizationRequest',
@@ -60,7 +61,7 @@ class Organization extends BaseTenant implements TenantWithDatabase
     'options' => 'array',
     'maintenance_mode' => 'array'
   ];
-  
+
   public static function getCustomColumns(): array
   {
     return [
@@ -83,36 +84,37 @@ class Organization extends BaseTenant implements TenantWithDatabase
       'maintenance_mode'
     ];
   }
-  
+
   public function getIncrementing()
   {
     return true;
   }
-  
-  function getFillables(){
+
+  function getFillables()
+  {
     return $this->fillable;
   }
-  
+
   public function category()
   {
     return $this->belongsTo(Category::class);
   }
-  
+
   public function domains()
   {
     return $this->hasMany(Domain::class);
   }
-  
-  
+
+
   public function settings()
   {
     return $this->hasMany(Setting::class);
   }
-  
+
   public function getUrlAttribute()
   {
     $currentLocale = locale();
-    
+
     $domains = $this->domains;
 
     //in some cases, when the tenant is initialized, the table settings hasn't been created, in that case this line break the code with 500
@@ -121,36 +123,36 @@ class Organization extends BaseTenant implements TenantWithDatabase
     } catch (\Exception $e) {
       $tenantRouteAlias = "homepage";
     }
-    
+
     $customDomain = $domains->where("type", "custom")->first()->domain ?? null;
     $defaultDomain = $domains->where("type", "default")->first()->domain ?? $this->slug ?? null;
 
     if (!empty($customDomain)) {
-      return "https://".$customDomain;
+      return "https://" . $customDomain;
     } elseif (!empty($defaultDomain)) {
 
       return tenant_route($defaultDomain, $currentLocale . ".$tenantRouteAlias");
     } else {
       return "";
     }
-    
+
   }
-  
+
   public function getDomainAttribute()
   {
 
     return parse_url($this->url, PHP_URL_HOST);
   }
-  
+
   public function users()
   {
-    
+
     $driver = config('asgard.user.config.driver');
     return $this->belongsToMany("Modules\\User\\Entities\\{$driver}\\User", 'isite__user_organization')
       ->withPivot('id', 'permissions', 'role_id')
       ->withTimestamps();
   }
-  
+
   public function layout()
   {
     return $this->belongsTo(Layout::class);
@@ -163,7 +165,7 @@ class Organization extends BaseTenant implements TenantWithDatabase
 
     //Set enable value too | example: when update organization via iadmin
     $this->attributes['enable'] = $value;
-   
+
   }
 
   public function getStatusNameAttribute()
@@ -190,13 +192,13 @@ class Organization extends BaseTenant implements TenantWithDatabase
     $aiModulesConfig = config("asgard.isite.config.aiModulesGenerator");
     $options = $this->options;
 
-    if(isset($options->aiModulesGenerator)){
+    if (isset($options->aiModulesGenerator)) {
       $status = 0; // Process running
 
       $allModules = (array)json_decode($options->aiModulesGenerator);
 
       //it has already been guaranteed and that they are not repeated in the insertion of the options previously
-      if(count($aiModulesConfig)==count($allModules))
+      if (count($aiModulesConfig) == count($allModules))
         $status = 1;// Process Completed
     }
 
@@ -204,7 +206,58 @@ class Organization extends BaseTenant implements TenantWithDatabase
 
   }
 
-    public function getCacheClearableData()
+  /**
+   * Make Notificable Params | to Trait
+   * @param $event (created|updated|deleted)
+   */
+  public function isNotificableParams($event)
+  {
+    $response = [];
+
+    //Validation Event Update
+    if ($event == "updated") {
+      //Validation Att Status Change
+      if (!$this->wasChanged("status")) {
+        return null;
+      }
+
+      //Get Emails and Broadcast
+      $user = $this->users->first();
+
+      if(!is_null($user)){
+        $result['email'] = $user->email;
+
+        //Set Broadcast
+        //$settingsAdmins =  json_decode(setting("notification::usersToNotify", null, "[]"));
+        //array_push($settingsAdmins,$user->id);
+        $result['broadcast'] = $user->id;
+        
+        //Message
+        $message = trans("isite::organizations.messages.organization updated basic", [
+          'status' => $this->statusName,
+          'url' => $this->url,
+          'admin' => url('/iadmin')
+        ]);
+
+        $userId = \Auth::id() ?? null;
+        $source = "iadmin";
+
+        $response['updated'] = [
+          "title" => trans("isite::organizations.title.organization updated"),
+          "message" => $message,
+          "email" => $result['email'],
+          "broadcast" => $result['broadcast'],
+          "userId" => $userId,
+          "source" => $source
+        ];
+
+      }
+      
+    }
+
+    return $response;
+  }
+  public function getCacheClearableData()
     {
         return [
             'urls' => [
@@ -213,5 +266,4 @@ class Organization extends BaseTenant implements TenantWithDatabase
             ]
         ];
     }
-  
 }

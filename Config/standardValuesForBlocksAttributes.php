@@ -308,7 +308,8 @@ return [
         ["label" => "Aspect 21:9", "value" => "embed-responsive-21by9"],
         ["label" => "Aspect 16:9", "value" => "embed-responsive-16by9"],
         ["label" => "Aspect 4:3", "value" => "embed-responsive-4by3"],
-        ["label" => "Aspect 1:1", "value" => "embed-responsive-1by1"]
+        ["label" => "Aspect 1:1", "value" => "embed-responsive-1by1"],
+        ["label" => "Aspect None", "value" => "none"]
     ],
     "titleLine" => [
         ["label" => "Sin linea", "value" => "0"],
@@ -411,5 +412,17 @@ return [
         ["label" => "Revert", "value" => "revert"],
         ["label" => "Revert-layer", "value" => "revert-layer"],
         ["label" => "Unset", "value" => "unset"],
+    ],
+    "varColors" => [
+        ["label" => "Primary", "value" => "var(--primary)"],
+        ["label" => "Secondary", "value" => "var(--secondary)"],
+        ["label" => "Warning", "value" => "var(--warning)"],
+        ["label" => "Info", "value" => "var(--info)"],
+        ["label" => "Danger", "value" => "var(--danger)"],
+        ["label" => "Dark", "value" => "var(--dark)"],
+        ["label" => "Light", "value" => "var(--light)"],
+        ["label" => "White", "value" => "var(--white)"],
+        ["label" => "Success", "value" => "var(--success)"],
+        ["label" => "Custom", "value" => "text-custom"]
     ],
 ];

@@ -23,13 +23,19 @@ class SynchronizableTableSeeder extends Seeder
         $configData = config('asgard.' . $lowercaseModule . '.config.synchronizable');
 
         if(isset($configData) && $configData) {
-          foreach ($configData["entities"] as $entity) {
+          foreach ($configData["entities"] as $entity => $values) {
             $syncData = Synchronizable::where('name', $entity)->first();
 
             if(!isset($syncData->id)) {
 
               Synchronizable::create([
-                'name' => $entity
+                'name' => $entity,
+                'base_template_id' => $values["base_template_id"]
+              ]);
+            } else if($syncData->base_template_id !== $values["base_template_id"]) {
+
+              $syncData->update([
+                'base_template_id' => null
               ]);
             }
           }

@@ -92,9 +92,9 @@ if (!function_exists('getEditLink')) {
 
 if (!function_exists('isiteFormatMoney')) {
 
-  function isiteFormatMoney($value, $showCurrencyCode = false)
+  function isiteFormatMoney($value, $showCurrencyCode = false, $config = "asgard.isite.config.isiteFormatMoney")
   {
-    $format = (object)(Config::get('asgard.isite.config.isiteFormatMoney') ?? [
+    $format = (object)(Config::get($config) ?? [
       'decimals' => 0,
       'decimal_separator' => '',
       'thousands_separator' => '.'
@@ -153,9 +153,13 @@ if (!function_exists('generatePassword')) {
 if (!function_exists('isMobileDevice')) {
   function isMobileDevice()
   {
-    return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo
-|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i"
-      , $_SERVER["HTTP_USER_AGENT"]);
+    if(isset($_SERVER["HTTP_USER_AGENT"])){
+      return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo
+              |fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i"
+        , $_SERVER["HTTP_USER_AGENT"]);
+    }else{
+      return false;
+    }
   }
 }
 
@@ -373,8 +377,56 @@ if (!function_exists('convertObjectValuesToArray')) {
 if (!function_exists('clearResponseCache')) {
   function clearResponseCache()
   {
-    if(!is_null(config('responsecache.enabled')) && config('responsecache.enabled')){
+    if (!is_null(config('responsecache.enabled')) && config('responsecache.enabled')) {
       \ResponseCache::clear();
     }
+  }
+}
+
+if (!function_exists('iconfig')) {
+  function iconfig($configName = null, $byModule = false)
+  {
+    //Init response
+    $response = config("asgard");
+
+    if ($configName && strlen($configName)) {
+      $modules = app('modules');//Init modules
+      $enabledModules = $modules->allEnabled();//Get all enable modules
+
+      //Get config by name to each module
+      if ($byModule) {
+        $response = [];
+        foreach (array_keys($enabledModules) as $moduleName) {
+          $response[$moduleName] = config("asgard." . strtolower($moduleName) . "." . $configName);
+        }
+      } else {
+        $configNameExplode = explode('.', $configName);
+        $response = config("asgard." . strtolower(array_shift($configNameExplode)) . "." . implode('.', $configNameExplode));
+      }
+    }
+
+    return $response;
+  }
+}
+
+/**
+ * SAnitize a search parameter
+ */
+if (!function_exists('sanitizeSearchParameter')) {
+  function sanitizeSearchParameter($searchParam)
+  {
+    // Define the characters to keep, including Spanish letters and accents
+    $allowedChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 áéíóúÁÉÍÓÚñÑ';
+
+    // Use a regular expression to remove any character not in the allowed set
+    $sanitizedParam = preg_replace('/[^' . preg_quote($allowedChars, '/') . ']/u', '', $searchParam);
+
+    // Replace multiple spaces with a single space
+    $sanitizedParam = preg_replace('/\s+/', ' ', $sanitizedParam);
+
+    // Trim leading and trailing spaces
+    $sanitizedParam = trim($sanitizedParam);
+
+    return $sanitizedParam;
   }
 }

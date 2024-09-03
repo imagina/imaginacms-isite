@@ -39,12 +39,13 @@ class CaptchaMiddleware extends BaseApiController
 
           //Verify if exist token
           if($token) {
-            //Define keys according to version of captcha
-            $secret = setting('isite::reCaptchaV2Secret') ?? setting('isite::reCaptchaV3Secret');
-            $sitekey = setting('isite::reCaptchaV2Site') ?? setting('isite::reCaptchaV3Site');
+            //Define keys according to version of captcha. Priority to v3
+            $secret = setting('isite::reCaptchaV3Secret') ?? setting('isite::reCaptchaV2Secret');
+            $sitekey = setting('isite::reCaptchaV3Site') ?? setting('isite::reCaptchaV2Site');
 
             $captcha = new \Anhskohbo\NoCaptcha\NoCaptcha($secret, $sitekey);
             $isValid = $captcha->verifyResponse($token);//Validate token captcha
+
             if (!$isValid) throw new Exception();
           }
         } else throw new Exception();

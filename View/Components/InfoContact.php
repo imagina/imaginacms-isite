@@ -71,6 +71,12 @@ class InfoContact extends Component
   public $withIconsComponents;
   public $withIcons;
   public $withHyphen;
+  public $id;
+  public $contactClass;
+  public $iconCustomPhone;
+  public $iconCustomAddress;
+  public $iconCustomEmail;
+  public $colorContentContact;
 
   /**
    * Create a new component instance.
@@ -98,9 +104,17 @@ class InfoContact extends Component
                               $iconsPaddingX = '', $iconsMarginY = '', $iconsMarginX = '',
                               $titleSectionColorByClass = 'text-primary', $subtitleSectionColorByClass = 'text-dark',
                               $titleContactColorByClass = 'text-primary', $contentInline = false,
-                              $withIconsComponents = true, $withIcons = true, $withHyphen = true
+                              $withIconsComponents = true, $withIcons = true, $withHyphen = true, $id = null,
+                              $contactClass = '', $iconCustomPhone = '', $iconCustomAddress = '', $iconCustomEmail = '',
+                              $colorContentContact = '000000FF'
   )
   {
+    $this->id = $id ?? uniqid('contact');
+    $this->contactClass = $contactClass;
+    $this->iconCustomPhone = $iconCustomPhone;
+    $this->iconCustomAddress = $iconCustomAddress;
+    $this->iconCustomEmail = $iconCustomEmail;
+    $this->colorContentContact = $colorContentContact;
     $this->withPhone = $withPhone;
     $this->withAddress = $withAddress;
     $this->withEmail = $withEmail;
@@ -176,6 +190,15 @@ class InfoContact extends Component
       $this->displayFlex = 'd-flex';
     } else {
       $this->displayFlex = '';
+    }
+    if($iconCustomPhone) {
+        $this->iconPhone = $iconCustomPhone;
+    }
+    if($iconCustomAddress) {
+       $this->iconAddress = $iconCustomAddress;
+    }
+    if($iconCustomPhone) {
+       $this->iconEmail = $iconCustomEmail;
     }
   }
 
