@@ -100,7 +100,7 @@ class Radio extends Component
   public function getData($params = [])
   {
 
-    $resultShowFilter = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params, JSON_FORCE_OBJECT)));
+    $resultShowFilter = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params)));
 
     // Validation from URL
     if (isset($params['filter'][$this->repoAttribute])) {

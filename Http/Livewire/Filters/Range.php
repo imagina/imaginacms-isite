@@ -176,7 +176,7 @@ class Range extends Component
 
     $selectedValues = $params['filter'][$this->repoAttribute] ?? null;
 
-    $range = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params, JSON_FORCE_OBJECT)));
+    $range = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params)));
 
     //Getting the new price range
     $this->valueMin = floor($range->minPrice ?? 0);
