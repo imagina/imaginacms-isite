@@ -8,10 +8,10 @@
     @if(!empty($item->callingCode) && !empty($item->number))
       <div class="col-12 position-relative">
         @if($editButton == true)
-          <x-isite::edit-link
-            link="/iadmin/#/site/settings?module=isite&settings=whatsapp1,whatsapp2,whatsapp3"
-            :tooltip="trans('isite::common.editLink.tooltipWhatsapp')"
-            top="-5px" left="165px"/>
+              @livewire('isite::edit-link', ['link' => "/iadmin/#/site/settings?module=isite&settings=whatsapp1,whatsapp2,whatsapp3",
+              'tooltip' => "trans('isite::common.editLink.tooltipWhatsapp')",
+              'top' => '-5px', 'left' => '165px'
+              ])
         @endif
         @if($type)
           <span class="fa-stack fa-{{ $size }}">
