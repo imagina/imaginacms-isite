@@ -1,5 +1,5 @@
 <div id="{{ $id }}" class="d-inline-block social-{{ $position }} position-relative {{$iconAnimate}}">
-  <x-isite::edit-link
+  <livewire:isite::edit-link
     link="/iadmin/#/site/settings?module=isite&group=socialNetworks"
     :tooltip="trans('isite::common.editLink.tooltipSocial')"
     top="-31px" left="-7px"

@@ -1,6 +1,6 @@
 @if(!empty($addresses))
   <div id="componentContactAddresses" class="position-relative {{$classes}}">
-    <x-isite::edit-link
+    <livewire:isite::edit-link
       link="/iadmin/#/site/settings?module=isite&settings=addresses"
       :tooltip="trans('isite::common.editLink.tooltipAddress')"/>
     <div class="d-flex">
