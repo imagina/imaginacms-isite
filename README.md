@@ -24,13 +24,13 @@ The edit button component has required parameters and optional parameters to mee
 Currently, the edit button is implemented automatically in most components such as sliders among others, since they can be generated automatically, on the other hand, at the moment to generate an edit button of a setting of any module, the following command line must be fulfilled, which will call the edit button and will take us to edit the setting that we need.
 
   ```ruby
-  <x-isite::edit-link link="/iadmin/#/site/settings?settings={{setting_name}}&module={{module_name}}"/> 
+  <livewire:isite::edit-link link="/iadmin/#/site/settings?settings={{setting_name}}&module={{module_name}}"/> 
   ```
 
 The previous line shows the route that the link parameter must take to make the edit button to any setting, and finally there is an example of the command line to make an edit button of any setting with all the parameters already named above
 
   ```ruby
-  <x-isite::edit-link link="/iadmin/#/site/settings?settings=settingTest&module=icustom" tooltip="Edit Setting settingTest" classes="py-5 edit-button-settingName" top="35%" bottom="15%" right="85%" left="45%" idButton="editSettingTest"/> 
+  <livewire:isite::edit-link link="/iadmin/#/site/settings?settings=settingTest&module=icustom" tooltip="Edit Setting settingTest" classes="py-5 edit-button-settingName" top="35%" bottom="15%" right="85%" left="45%" idButton="editSettingTest"/> 
   ```
 
 Remember that optional parameters do not generate errors if they are not sent, otherwise the required parameters can generate an error when assigning them. 

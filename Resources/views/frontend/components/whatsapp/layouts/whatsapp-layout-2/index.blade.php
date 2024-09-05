@@ -3,7 +3,7 @@
   @foreach($items as $key => $item)
     @if($editButton == true)
       <div class="position-relative">
-        <x-isite::edit-link
+        <livewire:isite::edit-link
           link="/iadmin/#/site/settings?module=isite&settings=whatsapp1,whatsapp2,whatsapp3"
           :tooltip="trans('isite::common.editLink.tooltipWhatsapp')"
           top="-3px" left="42px"/>
@@ -25,7 +25,7 @@
 @else
   <div class="btn-group {{$alignment}} whatsapp-layout-2 position-relative">
     @if($editButton == true)
-      <x-isite::edit-link
+      <livewire:isite::edit-link
         link="/iadmin/#/site/settings?module=isite&settings=whatsapp1,whatsapp2,whatsapp3"
         :tooltip="trans('isite::common.editLink.tooltipWhatsapp')"
         top="3px" left="37px"/>

@@ -121,8 +121,7 @@ class Checkbox extends Component
     }
 
     //\Log::info("NAME: ".$this->name."- PARAMS:".json_encode($params));
-
-    $this->options = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params, JSON_FORCE_OBJECT)));
+    $this->options = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params)));
 
     if ($this->options->isNotEmpty() && Str::contains($this->repository, 'Category')) {
       $this->options = $this->options->toTree();
