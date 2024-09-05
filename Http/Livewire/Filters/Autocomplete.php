@@ -8,9 +8,11 @@ use Illuminate\Support\Str;
 use Livewire\Component;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Modules\Isearch\Repositories\SearchRepository;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class Autocomplete extends Component
 {
+  use LivewireAlert;
   /*
   * Attributes From Config
   */
