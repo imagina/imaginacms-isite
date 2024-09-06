@@ -17,12 +17,13 @@ use Modules\Setting\Entities\Setting;
 use Stancl\Tenancy\Database\Concerns\MaintenanceMode;
 use Modules\Isite\Entities\Status;
 use Modules\Tag\Traits\TaggableTrait;
-
 use Modules\Notification\Traits\IsNotificable;
+use Modules\Core\Icrud\Traits\HasCacheClearable;
 
 class Organization extends BaseTenant implements TenantWithDatabase
 {
-  use AuditTrait, Translatable, HasDatabase, HasDomains, MediaRelation, Schedulable, hasEventsWithBindings, isFillable, MaintenanceMode, TaggableTrait, IsNotificable;
+  use AuditTrait, Translatable, HasDatabase, HasDomains, MediaRelation, Schedulable, hasEventsWithBindings, isFillable,
+      MaintenanceMode, TaggableTrait, IsNotificable, HasCacheClearable;
 
   public $transformer = 'Modules\Isite\Transformers\OrganizationTransformer';
   public $requestValidation = [
@@ -246,4 +247,13 @@ class Organization extends BaseTenant implements TenantWithDatabase
 
     return $response;
   }
+    public function getCacheClearableData()
+    {
+        return [
+            'urls' => [
+                config("app.url"),
+                $this->url
+            ]
+        ];
+    }
 }
