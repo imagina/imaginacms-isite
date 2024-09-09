@@ -213,7 +213,7 @@ class Range extends Component
     }
 
     // Dispatch Event to FrontEnd JQuery Layout Slider
-    $this->dispatch('filter-prices-updated', [
+    $this->dispatchBrowserEvent('filter-prices-updated', [
       'newPriceMin' => $this->valueMin,
       'newPriceMax' => $this->valueMax,
       'newSelValueMin' => $this->selValueMin,
