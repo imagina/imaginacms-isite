@@ -168,11 +168,14 @@ if (!function_exists('isMobileDevice')) {
 */
 if (!function_exists('setLocaleInUrl')) {
 
-  function setLocaleInUrl($locale)
-  {
-    //return LaravelLocalization::getLocalizedURL($locale);
-    return url()->current() . '?' . http_build_query(['lang' => $locale]);
-  }
+    function setLocaleInUrl($locale)
+    {
+        if (url()->current() == config("app.url")) {
+            return LaravelLocalization::getLocalizedURL($locale);
+        } else {
+            return url()->current() . '?' . http_build_query(['lang' => $locale]);
+        }
+    }
 
 }
 
