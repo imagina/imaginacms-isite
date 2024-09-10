@@ -167,7 +167,7 @@ class ItemsList extends Component
   {
     
     
-    //\Log::info("ITEMLIST - GETDATA - PARAMS: ".json_encode($params));
+    \Log::info("ITEMLIST - GETDATA - PARAMS: ".json_encode($params));
     if (isset($params["filter"])) {
       $this->emitItemListRendered = true;
       if(!$this->disableFilters)
@@ -288,10 +288,12 @@ class ItemsList extends Component
   public function deleteFromItemList($id)
   {
     
-    //\Log::info($this->log."deleteFromWishlist");
+    //\Log::info($this->log."deleteFromItemList");
 
     //Delete in other process
     if(!is_null($this->eventToDelete)){
+
+      //\Log::info($this->log."deleteFromItemList|EMIT");
 
       //The other component will be in charge of delete the item
       //The other component will emit the event to reload the ItemList
@@ -303,8 +305,11 @@ class ItemsList extends Component
       $item = $this->getItemRepository()->getItem($id); //Search item
 
       if(isset($item->id)){
-        $item->delete();
-        $this->resetPage(); //Reset item list
+        //$item->delete();
+        //Case Cache: Con el $item->delete() funcionaba pero con cache activo no.
+        $this->getItemRepository()->deleteBy($id);
+       
+        $this->resetPage();
       }
 
     }
