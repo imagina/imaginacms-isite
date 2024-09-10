@@ -167,7 +167,7 @@ class ItemsList extends Component
   {
     
     
-    \Log::info("ITEMLIST - GETDATA - PARAMS: ".json_encode($params));
+    //\Log::info("ITEMLIST - GETDATA - PARAMS: ".json_encode($params));
     if (isset($params["filter"])) {
       $this->emitItemListRendered = true;
       if(!$this->disableFilters)
@@ -292,8 +292,6 @@ class ItemsList extends Component
 
     //Delete in other process
     if(!is_null($this->eventToDelete)){
-
-      //\Log::info($this->log."deleteFromItemList|EMIT");
 
       //The other component will be in charge of delete the item
       //The other component will emit the event to reload the ItemList
