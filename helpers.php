@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 if (!function_exists('alternate')) {
 
   function alternate($model)
@@ -153,11 +155,11 @@ if (!function_exists('generatePassword')) {
 if (!function_exists('isMobileDevice')) {
   function isMobileDevice()
   {
-    if(isset($_SERVER["HTTP_USER_AGENT"])){
+    if (isset($_SERVER["HTTP_USER_AGENT"])) {
       return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo
               |fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i"
         , $_SERVER["HTTP_USER_AGENT"]);
-    }else{
+    } else {
       return false;
     }
   }
@@ -168,14 +170,14 @@ if (!function_exists('isMobileDevice')) {
 */
 if (!function_exists('setLocaleInUrl')) {
 
-    function setLocaleInUrl($locale)
-    {
-        if (url()->current() == config("app.url")) {
-            return LaravelLocalization::getLocalizedURL($locale);
-        } else {
-            return url()->current() . '?' . http_build_query(['lang' => $locale]);
-        }
+  function setLocaleInUrl($locale)
+  {
+    if (url()->current() == config("app.url")) {
+      return LaravelLocalization::getLocalizedURL($locale);
+    } else {
+      return url()->current() . '?' . http_build_query(['lang' => $locale]);
     }
+  }
 
 }
 
@@ -380,7 +382,7 @@ if (!function_exists('convertObjectValuesToArray')) {
 if (!function_exists('clearResponseCache')) {
   function clearResponseCache()
   {
-    if(!is_null(config('responsecache.enabled')) && config('responsecache.enabled')){
+    if (!is_null(config('responsecache.enabled')) && config('responsecache.enabled')) {
       \ResponseCache::clear();
     }
   }
@@ -431,5 +433,27 @@ if (!function_exists('sanitizeSearchParameter')) {
     $sanitizedParam = trim($sanitizedParam);
 
     return $sanitizedParam;
+  }
+}
+
+if (!function_exists('humanizeDuration')) {
+  function humanizeDuration($startDate, $endDate)
+  {
+    if (!$endDate) {
+      return null;
+    }
+
+    $start = Carbon::parse($startDate);
+    $end = Carbon::parse($endDate);
+
+    $diffInMinutes = $start->diffInMinutes($end);
+
+    $days = floor($diffInMinutes / (60 * 24));
+    $hours = floor(($diffInMinutes % (60 * 24)) / 60);
+    $minutes = $diffInMinutes % 60;
+
+    return ($days > 0 ? $days . ' ' . trans('isite::isite.days') . ' ' : '') .
+      ($hours > 0 ? $hours . ' ' . trans('isite::isite.hours') . ' ' : '') .
+      ($minutes > 0 ? $minutes . ' ' . trans('isite::isite.minutes') : '');
   }
 }
