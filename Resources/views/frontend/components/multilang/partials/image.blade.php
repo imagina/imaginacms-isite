@@ -8,7 +8,7 @@
     'src' => url($localesUrl . $locale . '.jpg'),
     'imgStyles' => $styleFlag ?? '',
     'imgClasses' => $classFlag ?? '',
-    'url' => LaravelLocalization::getCurrentLocale(),
+    'url' => setLocaleInUrl($locale),
   ], $imageComponentAtributtes ?? []));
   $component->withName($imageComponent);
   if ($component->shouldRender()):
