@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Route;
 
 if (!function_exists('alternate')) {
 
@@ -172,11 +173,16 @@ if (!function_exists('setLocaleInUrl')) {
 
   function setLocaleInUrl($locale)
   {
-    if (url()->current() == config("app.url")) {
-      return LaravelLocalization::getLocalizedURL($locale);
-    } else {
-      return url()->current() . '?' . http_build_query(['lang' => $locale]);
+    //Don't allow click at the same locale button
+    if ($locale == locale()) return null;
+    //Instance the default locale url
+    $localeUrl = url()->current() . '?' . http_build_query(['lang' => $locale]);
+    //Validate if it's homepage change de localUrl
+    if (str_contains(Route::currentRouteName(), 'homepage')) {
+      $localeUrl = LaravelLocalization::getLocalizedURL($locale);
     }
+    //Response
+    return $localeUrl;
   }
 
 }
@@ -220,6 +226,7 @@ if (!function_exists('validateLocaleFromUrl')) {
     }
 
     $result["locale"] = $locale;
+
     return $result;
 
   }
@@ -458,7 +465,7 @@ if (!function_exists('humanizeDuration')) {
   }
 }
 
-if (! function_exists('convertMinutesToHumanReadable')) {
+if (!function_exists('convertMinutesToHumanReadable')) {
   function convertMinutesToHumanReadable($minutes)
   {
     if (!$minutes) return 0;
