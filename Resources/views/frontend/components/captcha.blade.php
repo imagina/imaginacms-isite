@@ -17,7 +17,7 @@
     @parent
     <script type="text/javascript">
       //Get the submit element
-      const submitElement = $("#{{ $formId }} input[type=submit], #{{ $formId }} button[type=submit]");
+      let submitElement = $("#{{ $formId }} input[type=submit], #{{ $formId }} button[type=submit]");
 
       $(function () {
         //Disable the submit  button by default if it is the v2
