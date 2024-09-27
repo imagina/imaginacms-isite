@@ -428,6 +428,8 @@ return [
     "us" => "Nosotros",
     "contactUs" => "Contactanos",
     "bulkAction" => "Nueva acción masiva",
+    "bulkPermissions" => "Permisos masivos",
+    "entityPermissions" => "Permisos de entidad"
   ],
   "message" => [
     "showDemo" => "Ver Demo",
