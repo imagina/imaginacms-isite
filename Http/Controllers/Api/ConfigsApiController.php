@@ -42,16 +42,19 @@ class ConfigsApiController extends BaseApiController
   //Recursive Translate labels
   public function translateLabels($data)
   {
-    if (is_array($data)) {
-      foreach ($data as $key => &$item) {
-        if (is_string($item)) $item = trans($item);
-        else if (is_array($item)) {
-          $item = $this->translateLabels($item);
-        }
-      }
-    }
+      $ignoreKeys = ['systemname', 'namespace'];
 
-    return $data;
+      if (is_array($data)) {
+          foreach ($data as $key => &$item) {
+              if (is_string($item) && in_array(strtolower($key), $ignoreKeys)) {
+                  $item = trans($item);
+              } elseif (is_array($item)) {
+                  $item = $this->translateLabels($item);
+              }
+          }
+      }
+
+      return $data;
   }
 
   /** Return the modules information */
