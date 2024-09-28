@@ -21,7 +21,7 @@ class InitEditLink extends Component
 
       if (isset($permissions['isite.edit-link.manage']) && $permissions['isite.edit-link.manage']) {
         $this->canAccess = true;
-        $this->emit('canAccessChanged', $this->canAccess);
+        $this->emit('canAccessEditLink', $this->canAccess);
       }
     }
     if (isset($item->id)) {

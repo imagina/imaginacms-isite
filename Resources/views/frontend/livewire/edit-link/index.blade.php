@@ -1,5 +1,5 @@
 <div {{$idButton ? 'id=".$idButton."' : ''}}
-     class="editLink d-none position-absolute {{$classes}}"
+     class="edit-link d-none position-absolute {{$classes}}"
      style="top:{{$top}}; bottom:{{$bottom}}; left: {{$left}}; right: {{$right}}; z-index:999">
     <a id="buttonEditLink"
        class="btn btn-sm text-white"
