@@ -1,7 +1,7 @@
 @if(!empty($emails))
   <!--emails content-->
   <div id="componentContactEmails" class="position-relative {{$classes}}">
-    <livewire:isite::edit-link
+    <x-isite::edit-link
       link="/iadmin/#/site/settings?module=isite&settings=emails"
       :tooltip="trans('isite::common.editLink.tooltipEmail')"/>
     <div class="d-flex">
