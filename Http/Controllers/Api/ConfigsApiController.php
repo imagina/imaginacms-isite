@@ -46,7 +46,7 @@ class ConfigsApiController extends BaseApiController
 
       if (is_array($data)) {
           foreach ($data as $key => &$item) {
-              if (is_string($item) && in_array(strtolower($key), $ignoreKeys)) {
+              if (is_string($item) && !in_array(strtolower($key), $ignoreKeys)) {
                   $item = trans($item);
               } elseif (is_array($item)) {
                   $item = $this->translateLabels($item);
