@@ -1,8 +1,9 @@
 <div class="item-layout item-list-layout-2 position-relative">
-    @livewire('isite::edit-link', ['link' => "{{$editLink}}{{$item->id}}",
-    'tooltip' => "{{$tooltipEditLink}}",
-    'item' => '{{$item}}'
-    ])
+    <x-isite::edit-link
+            link="{{$editLink}}{{$item->id}}"
+            :tooltip="$tooltipEditLink"
+            :item="$item"
+    />
   <div class="card card-category bg-white border-0">
     @if(isset($item->url) && !empty($item->url))
       <a href="{{$item->url}}">

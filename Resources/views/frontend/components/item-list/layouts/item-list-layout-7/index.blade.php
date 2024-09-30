@@ -19,10 +19,11 @@
     {{ $itemEasing ? 'data-aos-easing='.$itemEasing  : '' }}
     {{ $itemOne ? 'data-aos-once='.$itemOne  : '' }}
     {{ $itemMirror ? 'data-aos-mirror='.$itemMirror  : '' }}>
-    @livewire('isite::edit-link', ['link' => "{{$editLink}}{{$item->id}}",
-    'tooltip' => "{{$tooltipEditLink}}",
-    'item' => '{{$item}}'
-    ])
+    <x-isite::edit-link
+            link="{{$editLink}}{{$item->id}}"
+            :tooltip="$tooltipEditLink"
+            :item="$item"
+    />
   <div class="card-item {{$row}} @if($imageOpacityHover) opacity-with-hover @else opacity-without-hover @endif">
     <div class="{{$imagePosition!='1' ? 'row no-gutters' : ''}}">
         @if(method_exists ( $item, "mediaFiles" ) && $withImage )
