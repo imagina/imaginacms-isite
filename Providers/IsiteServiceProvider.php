@@ -314,7 +314,6 @@ class IsiteServiceProvider extends ServiceProvider
     Livewire::component('isite::filter-text', \Modules\Isite\Http\Livewire\Filters\Text::class);
     Livewire::component('isite::filter-autocomplete', \Modules\Isite\Http\Livewire\Filters\Autocomplete::class);
     Livewire::component('isite::filter-order-by', \Modules\Isite\Http\Livewire\Index\Filters\OrderBy::class);
-    Livewire::component('isite::edit-link', \Modules\Isite\Http\Livewire\EditLink::class);
     Livewire::component('isite::init-edit-link', \Modules\Isite\Http\Livewire\InitEditLink::class);
     }
 
@@ -327,7 +326,7 @@ class IsiteServiceProvider extends ServiceProvider
             GenerateSitemapCommand::class,
             TenantModuleMigrateCommand::class,
             TenantsScheduleCommand::class,
-      TenantAiCommand::class,
+            TenantAiCommand::class,
         ]);
     }
 }
