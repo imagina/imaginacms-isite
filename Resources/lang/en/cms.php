@@ -423,6 +423,8 @@ return [
     "us" => "Us",
     "contactUs" => "Contact",
     "bulkAction" => "New Bulk Action",
+    "bulkPermissions" => "Bulk Permissions",
+    "entityPermissions" => "Entity Permissions"
   ],
   "message" => [
     "showDemo" => "Demo",

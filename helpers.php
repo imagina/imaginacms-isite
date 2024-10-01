@@ -1,5 +1,8 @@
 <?php
 
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Route;
+
 if (!function_exists('alternate')) {
 
   function alternate($model)
@@ -153,11 +156,11 @@ if (!function_exists('generatePassword')) {
 if (!function_exists('isMobileDevice')) {
   function isMobileDevice()
   {
-    if(isset($_SERVER["HTTP_USER_AGENT"])){
+    if (isset($_SERVER["HTTP_USER_AGENT"])) {
       return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo
               |fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i"
         , $_SERVER["HTTP_USER_AGENT"]);
-    }else{
+    } else {
       return false;
     }
   }
@@ -170,8 +173,16 @@ if (!function_exists('setLocaleInUrl')) {
 
   function setLocaleInUrl($locale)
   {
-    //return LaravelLocalization::getLocalizedURL($locale);
-    return url()->current() . '?' . http_build_query(['lang' => $locale]);
+    //Don't allow click at the same locale button
+    if ($locale == locale()) return null;
+    //Instance the default locale url
+    $localeUrl = url()->current() . '?' . http_build_query(['lang' => $locale]);
+    //Validate if it's homepage change de localUrl
+    if (str_contains(Route::currentRouteName(), 'homepage')) {
+      $localeUrl = LaravelLocalization::getLocalizedURL($locale);
+    }
+    //Response
+    return $localeUrl;
   }
 
 }
@@ -215,6 +226,7 @@ if (!function_exists('validateLocaleFromUrl')) {
     }
 
     $result["locale"] = $locale;
+
     return $result;
 
   }
@@ -377,7 +389,7 @@ if (!function_exists('convertObjectValuesToArray')) {
 if (!function_exists('clearResponseCache')) {
   function clearResponseCache()
   {
-    if(!is_null(config('responsecache.enabled')) && config('responsecache.enabled')){
+    if (!is_null(config('responsecache.enabled')) && config('responsecache.enabled')) {
       \ResponseCache::clear();
     }
   }
@@ -428,5 +440,62 @@ if (!function_exists('sanitizeSearchParameter')) {
     $sanitizedParam = trim($sanitizedParam);
 
     return $sanitizedParam;
+  }
+}
+
+if (!function_exists('humanizeDuration')) {
+  function humanizeDuration($startDate, $endDate)
+  {
+    if (!$endDate) {
+      return null;
+    }
+
+    $start = Carbon::parse($startDate);
+    $end = Carbon::parse($endDate);
+
+    $diffInMinutes = $start->diffInMinutes($end);
+
+    $days = floor($diffInMinutes / (60 * 24));
+    $hours = floor(($diffInMinutes % (60 * 24)) / 60);
+    $minutes = $diffInMinutes % 60;
+
+    return ($days > 0 ? $days . ' ' . trans('isite::isite.days') . ' ' : '') .
+      ($hours > 0 ? $hours . ' ' . trans('isite::isite.hours') . ' ' : '') .
+      ($minutes > 0 ? $minutes . ' ' . trans('isite::isite.minutes') : '');
+  }
+}
+
+if (!function_exists('convertMinutesToHumanReadable')) {
+  function convertMinutesToHumanReadable($minutes)
+  {
+    if (!$minutes) return 0;
+    if ($minutes < 60) {
+      return $minutes . ' ' . trans('itask::tasks.minutes');
+    }
+
+    $weeks = floor($minutes / (60 * 24 * 7));
+    $days = floor(($minutes % (60 * 24 * 7)) / (60 * 24));
+    $hours = floor(($minutes % (60 * 24)) / 60);
+    $remainingMinutes = $minutes % 60;
+
+    $result = '';
+
+    if ($weeks > 0) {
+      $result .= $weeks . ' ' . trans('itask::tasks.weeks') . ' ';
+    }
+
+    if ($days > 0) {
+      $result .= $days . ' ' . trans('itask::tasks.days') . ' ';
+    }
+
+    if ($hours > 0) {
+      $result .= $hours . ' ' . trans('itask::tasks.hours') . ' ';
+    }
+
+    if ($remainingMinutes > 0) {
+      $result .= trans('itask::tasks.and') . ' ' . $remainingMinutes . ' ' . trans('itask::tasks.minutes');
+    }
+
+    return $result;
   }
 }

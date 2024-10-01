@@ -7,7 +7,8 @@
        target="_blank"
        data-toggle="tooltip"
        title="{{$tooltip}}"
-       style="background: {{$bgColor}}">
+       style="background: {{$bgColor}}"
+    >
         <i class="{{$icon}} text-white"></i><span> | {{trans("isite::common.editLink.buttonEdit")}}</span>
     </a>
 </div>

@@ -176,7 +176,7 @@ class Range extends Component
 
     $selectedValues = $params['filter'][$this->repoAttribute] ?? null;
 
-    $range = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params, JSON_FORCE_OBJECT)));
+    $range = $this->getRepository()->{$this->repoMethod}(json_decode(json_encode($params)));
 
     //Getting the new price range
     $this->valueMin = floor($range->minPrice ?? 0);
@@ -213,7 +213,7 @@ class Range extends Component
     }
 
     // Dispatch Event to FrontEnd JQuery Layout Slider
-    $this->dispatch('filter-prices-updated', [
+    $this->dispatchBrowserEvent('filter-prices-updated', [
       'newPriceMin' => $this->valueMin,
       'newPriceMax' => $this->valueMax,
       'newSelValueMin' => $this->selValueMin,

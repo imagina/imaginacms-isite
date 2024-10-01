@@ -292,6 +292,8 @@ class ItemsList extends Component
     //Delete in other process
     if (!is_null($this->eventToDelete)) {
 
+      //\Log::info($this->log."deleteFromItemList|EMIT");
+
       //The other component will be in charge of delete the item
       //The other component will emit the event to reload the ItemList
       $this->emit($this->eventToDelete['eventName'], $id, $this->entityNamespace, $this->eventToDelete['params']);
@@ -302,8 +304,11 @@ class ItemsList extends Component
       $item = $this->getItemRepository()->getItem($id); //Search item
 
       if (isset($item->id)) {
-        $item->delete();
-        $this->resetPage(); //Reset item list
+       //$item->delete();
+        //Case Cache: Con el $item->delete() funcionaba pero con cache activo no.
+        $this->getItemRepository()->deleteBy($id);
+
+        $this->resetPage();
       }
 
     }

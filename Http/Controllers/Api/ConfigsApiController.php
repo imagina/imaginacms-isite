@@ -30,7 +30,6 @@ class ConfigsApiController extends BaseApiController
             if ($response == null) {
                 throw new \Exception('Item not found', 204);
             }
-
             //Response data
             $response = ['data' => $this->translateLabels($response)];
         } catch (\Exception $e) {
@@ -45,9 +44,11 @@ class ConfigsApiController extends BaseApiController
     //Recursive Translate labels
     public function translateLabels($data)
     {
+        $ignoreKeys = ['systemname', 'namespace'];
+
         if (is_array($data)) {
             foreach ($data as $key => &$item) {
-                if (is_string($item)) {
+                if (is_string($item) && !in_array(strtolower($key), $ignoreKeys)) {
                     $item = trans($item);
                 } elseif (is_array($item)) {
                     $item = $this->translateLabels($item);
