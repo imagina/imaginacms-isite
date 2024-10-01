@@ -1,8 +1,7 @@
 @if(!empty($addresses))
   <div id="componentContactAddresses" class="position-relative {{$classes}}">
-    <x-isite::edit-link
-      link="/iadmin/#/site/settings?module=isite&settings=addresses"
-      :tooltip="trans('isite::common.editLink.tooltipAddress')"/>
+      @livewire('isite::edit-link', ['link' => "/iadmin/#/site/settings?module=isite&settings=addresses",
+      'tooltip' => "trans('isite::common.editLink.tooltipAddress')"])
     <div class="d-flex">
       @if($showIcon)
         <i class="{{$icon}} align-self-center mr-2"></i>

@@ -2,11 +2,10 @@
   <div class="rotate">
     <div class="content-background position-relative">
       @if($editButton == true)
-        <x-isite::edit-link
-          link="/iadmin/#/site/settings?module=isite&settings=whatsapp1,whatsapp2,whatsapp3"
-          :tooltip="trans('isite::common.editLink.tooltipWhatsapp')"
-          top="-48px"
-        />
+            @livewire('isite::edit-link', ['link' => "/iadmin/#/site/settings?module=isite&settings=whatsapp1,whatsapp2,whatsapp3",
+            'tooltip' => "trans('isite::common.editLink.tooltipWhatsapp')",
+            'top' => "-48px"
+            ])
       @endif
       <x-isite::whatsapp layout="whatsapp-layout-2" icon="{{$icon}}" alignment="{{$alignment}}" size="{{ $size }}"
                          dropdownTextAlign="{{$dropdownTextAlign}}" infoSubtitleColor="{{$infoSubtitleColor}}"
