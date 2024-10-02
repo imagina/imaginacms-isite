@@ -25,13 +25,14 @@
                         @foreach($items as $item)
                         @php($firstChildrenLevel = count($item->children) ? $item->children  : null)
                         <li class="nav-item">
+
                             <a  @if(empty($firstChildrenLevel)) class="nav-link" href="{{$item->url}}" onmouseover="closeLinks()"
-                                @else class="nav-link nav-link-hover" onmouseover="openLinks(event, '{{ $item->title ?? $item->name }}Menu')" @endif >
+                                @else class="nav-link nav-link-hover" href="{{$item->url}}" onmouseover="openLinks(event, '{{ $item->title ?? $item->name }}Menu')" @endif >
                                 @php($mediaFiles = $item->mediaFiles())
                                 @if(isset($mediaFiles->iconimage->path) && !strpos($mediaFiles->iconimage->path,"default.jpg"))
                                     <img class="filter" src="{{$mediaFiles->iconimage->path}}">
                                 @endif
-                                {{ $item->title ?? $item->name }}
+                                {{ $item->title ?? $item->name }} o
                                 @if(!empty($firstChildrenLevel)) <i class="arrow"></i> @endif
                             </a>
                         </li>
@@ -91,6 +92,7 @@
                             @foreach($items as $item)
                                 @php($firstChildrenLevel = count($item->children) ? $item->children  : null)
                                 <li class="nav-item {{$firstChildrenLevel ? 'dropdown' : ''}}">
+                                    {{--
                                     <a href="{{$item->url}}" class="nav-link" data-toggle="{{$firstChildrenLevel ? 'dropdown' : ''}}">
                                         @php($mediaFiles = $item->mediaFiles())
                                         @if(isset($mediaFiles->iconimage->path) && !strpos($mediaFiles->iconimage->path,"default.jpg"))
@@ -99,6 +101,23 @@
                                         {{ $item->title ?? $item->name }}
                                         @if(!empty($firstChildrenLevel)) <i class="arrow"></i> @endif
                                     </a>
+                                    --}}
+                                    <!-- link main -->
+                                    <a href="{{$item->url}}" class="nav-link"
+                                       data-toggle="{{$firstChildrenLevel ? 'dropdown' : ''}}">
+                                        @php($mediaFiles = $item->mediaFiles())
+                                        @if(isset($mediaFiles->iconimage->path) && !strpos($mediaFiles->iconimage->path, "default.jpg"))
+                                            <img class="filter" src="{{$mediaFiles->iconimage->path}}">
+                                        @endif
+                                        {{ $item->title ?? $item->name }}
+                                        {{-- @if(!empty($firstChildrenLevel)) <i class="arrow"></i> @endif --}}
+                                    </a>
+                                    <!-- Link external -->
+                                    @if(!empty($firstChildrenLevel))
+                                    <a href="{{$item->url}}"  target="_self" class="btn-link-icon-menu">
+                                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    </a>
+                                    @endif
                                     @if($firstChildrenLevel)
                                         <div class="dropdown-menu">
                                             @if($firstChildrenLevel)
