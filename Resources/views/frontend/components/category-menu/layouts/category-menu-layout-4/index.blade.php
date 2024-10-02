@@ -32,7 +32,7 @@
                                 @if(isset($mediaFiles->iconimage->path) && !strpos($mediaFiles->iconimage->path,"default.jpg"))
                                     <img class="filter" src="{{$mediaFiles->iconimage->path}}">
                                 @endif
-                                {{ $item->title ?? $item->name }} o
+                                {{ $item->title ?? $item->name }} 
                                 @if(!empty($firstChildrenLevel)) <i class="arrow"></i> @endif
                             </a>
                         </li>
