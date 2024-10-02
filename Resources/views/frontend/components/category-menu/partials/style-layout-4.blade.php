@@ -50,7 +50,7 @@
      }
     #{{ $id }} .modal-menu .modal-body .nav-item .nav-link {
          position: relative;
-         padding: 0.5rem 20px .5rem 1rem;
+         padding: 0.5rem 40px .5rem 1rem;
          color: #444444;
          font-size: 1rem;
          display: flex;
@@ -170,7 +170,19 @@
          content: "\f107"; /* content: "\f063";*/
          font-family: "FontAwesome";
      }
-
+    #{{$id}} .btn-link-icon-menu {
+         position: absolute;
+         color var(--primary);
+         right: 15px; top: 50%;
+         transform: translateY(-50%);
+        &:hover {
+         color: #444444;
+        }
+    }
+    #{{ $id }} .modal-menu .modal-body .nav-item.dropdown.show .btn-link-icon-menu {
+         transform: none;
+         top: 9px;
+    }
     #{{ $id }} .nav-movil .navbar-nav .dropdown-menu {
          position: relative !important;
          transform: none !important;

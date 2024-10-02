@@ -91,14 +91,21 @@
                             @foreach($items as $item)
                                 @php($firstChildrenLevel = count($item->children) ? $item->children  : null)
                                 <li class="nav-item {{$firstChildrenLevel ? 'dropdown' : ''}}">
-                                    <a href="{{$item->url}}" class="nav-link" data-toggle="{{$firstChildrenLevel ? 'dropdown' : ''}}">
+                                    <!-- link main -->
+                                    <a href="{{$item->url}}" class="nav-link"
+                                       data-toggle="{{$firstChildrenLevel ? 'dropdown' : ''}}">
                                         @php($mediaFiles = $item->mediaFiles())
-                                        @if(isset($mediaFiles->iconimage->path) && !strpos($mediaFiles->iconimage->path,"default.jpg"))
+                                        @if(isset($mediaFiles->iconimage->path) && !strpos($mediaFiles->iconimage->path, "default.jpg"))
                                             <img class="filter" src="{{$mediaFiles->iconimage->path}}">
                                         @endif
                                         {{ $item->title ?? $item->name }}
-                                        @if(!empty($firstChildrenLevel)) <i class="arrow"></i> @endif
                                     </a>
+                                    <!-- Link external -->
+                                    @if(!empty($firstChildrenLevel))
+                                        <a href="{{$item->url}}"  target="_self" class="btn-link-icon-menu">
+                                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                        </a>
+                                    @endif
                                     @if($firstChildrenLevel)
                                         <div class="dropdown-menu">
                                             @if($firstChildrenLevel)
