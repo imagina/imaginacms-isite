@@ -247,7 +247,11 @@ class SynchronizableService
     );
 
     // Updating the current model with import running status, last sync time, and user ID
-    $updateModel = $currentModel->update(['is_running' => $params['functionality'], 'last_sync' => now(), 'exported_by_id' => $id]);
+    $this->modelRepository->updateBy($currentModel->id, [
+      'is_running' => $params['functionality'],
+      'last_sync' => now(),
+      'exported_by_id' => $id
+    ]);
 
     return json_decode($response->getBody()->getContents())->message;
   }
