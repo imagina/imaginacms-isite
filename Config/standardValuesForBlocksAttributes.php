@@ -162,7 +162,7 @@ return [
         ["label" => "Fill", "value" => "fill"],
         ["label" => "Inicial", "value" => "inicial"],
         ["label" => "Revert", "value" => "revert"],
-        ["label" => "Scale-down", "value" => "scale Down"],
+        ["label" => "Scale-down", "value" => "scale-down"],
         ["label" => "Unset", "value" => "unset"],
         ["label" => "none", "value" => "none"]
     ],
