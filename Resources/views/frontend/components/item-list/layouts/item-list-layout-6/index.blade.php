@@ -6,10 +6,11 @@
     {{ $itemEasing ? 'data-aos-easing='.$itemEasing  : '' }}
     {{ $itemOne ? 'data-aos-once='.$itemOne  : '' }}
     {{ $itemMirror ? 'data-aos-mirror='.$itemMirror  : '' }}>
-    @livewire('isite::edit-link', ['link' => "{{$editLink}}{{$item->id}}",
-    'tooltip' => "{{$tooltipEditLink}}",
-    'item' => '{{$item}}'
-    ])
+    <x-isite::edit-link
+            link="{{$editLink}}{{$item->id}}"
+            :tooltip="$tooltipEditLink"
+            :item="$item"
+    />
   <div class="card-item @if($imageOpacityHover) opacity-with-hover @else opacity-without-hover @endif">
     <div class="row align-items-center">
 

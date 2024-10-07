@@ -1,8 +1,9 @@
 <div class="item-layout item-list-layout-3 position-relative">
-    @livewire('isite::edit-link', ['link' => "{{$editLink}}{{$item->id}}",
-    'tooltip' => "{{$tooltipEditLink}}",
-    'item' => '{{$item}}'
-    ])
+    <x-isite::edit-link
+            link="{{$editLink}}{{$item->id}}"
+            :tooltip="$tooltipEditLink"
+            :item="$item"
+    />
   <div class="card card-item">
     @if(method_exists ( $item, "mediaFiles" ) )
       <div class="item-image">
