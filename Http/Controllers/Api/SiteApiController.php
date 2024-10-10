@@ -16,6 +16,7 @@ use Modules\Core\Foundation\Theme\ThemeManager;
 use Modules\User\Permissions\PermissionManager;
 use Spatie\ResponseCache\Facades\ResponseCache;
 use Modules\Isite\Services\ModulesInfoService;
+use Modules\Core\Jobs\ClearAllResponseCache;
 
 //Controller
 use Modules\Isite\Http\Controllers\Api\SettingApiController;
@@ -35,9 +36,9 @@ class SiteApiController extends BaseApiController
 
   public function __construct(
     SettingRepository $setting,
-    ThemeManager $themeManager,
+    ThemeManager      $themeManager,
     PermissionManager $permissions,
-    TenantService $tenantService)
+    TenantService     $tenantService)
   {
     $this->module = app('modules');
     $this->setting = $setting;
@@ -361,11 +362,8 @@ class SiteApiController extends BaseApiController
   public function cacheClear(Request $request)
   {
     try {
-      //clear spatie larevel-responsecache
-      ResponseCache::clear();
-      //Artisan Cache clear
-      //Artisan::call('cache:clear');
-
+      //Clear all response cache
+      ClearAllResponseCache::dispatch(['force' => true]);
       //Response
       $response = ["data" => []];
     } catch (\Exception $e) {
@@ -383,11 +381,12 @@ class SiteApiController extends BaseApiController
    * Create Site - Tenant
    * @param Request $request
    */
-  public function create(Request $request){
+  public function create(Request $request)
+  {
 
     $data = $request->input('attributes');
 
-   // try {
+    // try {
 
     $response = $this->tenantService->createTenantInMultiDatabase($data);
 
@@ -402,26 +401,28 @@ class SiteApiController extends BaseApiController
     return response()->json($response, $status ?? 200);
   }
 
-  public function activateModule(Request $request){
+  public function activateModule(Request $request)
+  {
 
     $data = $request->input('attributes');
 
     try {
 
-    $response = $this->tenantService->activateModule($data);
+      $response = $this->tenantService->activateModule($data);
 
-    //Response
-    $response = ["data" => $response];
-       \DB::commit();//Commit to DataBase
-     } catch (\Exception $e) {
-       \DB::rollback();//Rollback to Data Base
-       $status = $this->getStatusError($e->getCode());
-       $response = ["errors" => $e->getMessage()];
-     }
+      //Response
+      $response = ["data" => $response];
+      \DB::commit();//Commit to DataBase
+    } catch (\Exception $e) {
+      \DB::rollback();//Rollback to Data Base
+      $status = $this->getStatusError($e->getCode());
+      $response = ["errors" => $e->getMessage()];
+    }
     return response()->json($response, $status ?? 200);
   }
 
-  public function tenantUpdate(Request $request){
+  public function tenantUpdate(Request $request)
+  {
 
 
     $data = $request->input('attributes');

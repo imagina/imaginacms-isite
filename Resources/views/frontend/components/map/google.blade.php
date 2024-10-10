@@ -270,7 +270,15 @@
         });
 
         if(components.locality) { city = components.locality; }
-        if(!city) { city = components.administrative_area_level_1; }
+
+        if(!city) { 
+          if(typeof components.administrative_area_level_2 !== 'undefined'){
+            //A pesar de estar en el mismo lugar, no retornaba la ciudad en 'locality' pero en level 2 si
+            city = components.administrative_area_level_2;
+          }else{
+            city = components.administrative_area_level_1;
+          }
+        }
         if(components.postal_code) { postalCode = components.postal_code; }
         if(components.administrative_area_level_1) { state = components.administrative_area_level_1; }
         if(components.country) { country = components.country; }

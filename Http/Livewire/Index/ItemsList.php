@@ -288,7 +288,7 @@ class ItemsList extends Component
   public function deleteFromItemList($id)
   {
     
-    //\Log::info($this->log."deleteFromWishlist");
+    //\Log::info($this->log."deleteFromItemList");
 
     //Delete in other process
     if(!is_null($this->eventToDelete)){
@@ -303,8 +303,11 @@ class ItemsList extends Component
       $item = $this->getItemRepository()->getItem($id); //Search item
 
       if(isset($item->id)){
-        $item->delete();
-        $this->resetPage(); //Reset item list
+        //$item->delete();
+        //Case Cache: Con el $item->delete() funcionaba pero con cache activo no.
+        $this->getItemRepository()->deleteBy($id);
+       
+        $this->resetPage();
       }
 
     }

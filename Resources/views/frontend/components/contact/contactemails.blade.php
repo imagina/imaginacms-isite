@@ -2,8 +2,9 @@
   <!--emails content-->
   <div id="componentContactEmails" class="position-relative {{$classes}}">
     <x-isite::edit-link
-      link="/iadmin/#/site/settings?module=isite&settings=emails"
-      :tooltip="trans('isite::common.editLink.tooltipEmail')"/>
+            link="/iadmin/#/site/settings?module=isite&settings=emails"
+            :tooltip="trans('isite::common.editLink.tooltipEmail')"
+    />
     <div class="d-flex">
       <!--icon-->
       @if($showIcon)
