@@ -23,7 +23,7 @@ use Modules\Core\Icrud\Traits\HasCacheClearable;
 class Organization extends BaseTenant implements TenantWithDatabase
 {
   use AuditTrait, Translatable, HasDatabase, HasDomains, MediaRelation, Schedulable, hasEventsWithBindings, isFillable,
-      MaintenanceMode, TaggableTrait, IsNotificable, HasCacheClearable;
+    MaintenanceMode, TaggableTrait, IsNotificable, HasCacheClearable;
 
   public $transformer = 'Modules\Isite\Transformers\OrganizationTransformer';
   public $requestValidation = [
@@ -225,7 +225,7 @@ class Organization extends BaseTenant implements TenantWithDatabase
       //Get Emails and Broadcast
       $user = $this->users->first();
 
-      if(!is_null($user)){
+      if (!is_null($user)) {
         $result['email'] = $user->email;
 
         //Message
@@ -242,18 +242,19 @@ class Organization extends BaseTenant implements TenantWithDatabase
         ];
 
       }
-      
+
     }
 
     return $response;
   }
-    public function getCacheClearableData()
-    {
-        return [
-            'urls' => [
-                config("app.url"),
-                $this->url
-            ]
-        ];
+
+  public function getCacheClearableData()
+  {
+    $baseUrls = [config("app.url")];
+    if (!$this->wasRecentlyCreated) {
+      $baseUrls[] = $this->url;
     }
+    $urls = ['urls' => $baseUrls];
+    return $urls;
+  }
 }
