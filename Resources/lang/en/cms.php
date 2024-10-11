@@ -62,6 +62,7 @@ return [
   "perzonalizationTitle" => "Welcome to the editor of your website",
   "perzonalizationDescription" => "Easily change the logo, colors and the main information of your website",
   "label" => [
+    "appliedFilters"=> "You have filters applied, click here to open",
     "daysAroundToday" => "{numDays} days Around Today",
     "clickToAction" => "Click to Action",
     "massiveSynchronization" => "Massive Synchronization",
