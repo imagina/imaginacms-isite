@@ -48,10 +48,11 @@ return [
     "newExportItemHelpText" => 'Export <b class="text-blue-grey">Record ID: {id}</b>',
     "exportReady" => "Your <b>{fileName}</b> report is Ready!",
     "noOrganization" => "You do not belong to an organization",
-    "refreshAppVersion" => "We are excited to introduce new features and enhancements in this version. Click the update button to enjoy the latest experience.",
+    "refreshAppVersion" => "We are excited to introduce new features and improvements in this version. Updates are being downloaded automatically so you can enjoy the latest experience without any interruptions.",
     "updateAvailable" => "New Update Available!",
     "updateNow" => "Update now",
-    "dispatchBulkAction" => 'Dispatch <b class="text-blue-grey">{pageTitle}</b> bulk action'
+    "dispatchBulkAction" => 'Dispatch <b class="text-blue-grey">{pageTitle}</b> bulk action',
+    "cacheCleanupMessage" => "We are currently clearing the cache. This can free up space and resolve some issues. Please note that the next time you load the application, it may take a bit longer as a new cache is being generated."
   ],
   "startTime" => "Start time",
   "endTime" => "End time",
@@ -61,6 +62,7 @@ return [
   "perzonalizationTitle" => "Welcome to the editor of your website",
   "perzonalizationDescription" => "Easily change the logo, colors and the main information of your website",
   "label" => [
+    "daysAroundToday" => "{numDays} days Around Today",
     "clickToAction" => "Click to Action",
     "massiveSynchronization" => "Massive Synchronization",
     "migration" => "Migration",
@@ -71,6 +73,7 @@ return [
     "defaultMessage" => "Default message",
     "informationTitle" => "Site Information",
     "trial" => "Trial",
+    "cacheCleanup"=> "Cache Cleanup",
     "activity" => "Activity | Activities",
     "top" => "Top",
     "bottom" => "Bottom",
@@ -421,6 +424,8 @@ return [
     "us" => "Us",
     "contactUs" => "Contact",
     "bulkAction" => "New Bulk Action",
+    "bulkPermissions" => "Bulk Permissions",
+    "entityPermissions" => "Entity Permissions"
   ],
   "message" => [
     "showDemo" => "Demo",
@@ -721,7 +726,7 @@ return [
   "alreadyInUse" => "Oops! It looks like the name you've chosen is already in use. Could you please try selecting a different name? We want to make sure your unique identity shines bright!",
   "usersToNotify" => 'Users To notify',
   "emailsToNotify" => "Emails To Notify",
-  "dateCache" => "Last update: {date}. Refresh whenever you want.",
+  "dateCache" => "Last update: {date}.",
   "useViewParams" => "Use view params",
   "details" => "Details"
 ];
