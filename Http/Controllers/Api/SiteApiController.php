@@ -9,6 +9,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
 use Modules\Core\Foundation\Theme\ThemeManager;
+use Modules\Core\Jobs\ClearAllResponseCache;
 use Modules\Ihelpers\Http\Controllers\Api\BaseApiController;
 use Modules\Isite\Services\TenantService;
 use Modules\Isite\Transformers\NwidartModuleTransformer;
@@ -367,7 +368,8 @@ class SiteApiController extends BaseApiController
     {
         try {
             //clear spatie larevel-responsecache
-            ResponseCache::clear();
+//            ResponseCache::clear();
+          ClearAllResponseCache::dispatch(['force' => true]);
             //Artisan Cache clear
             //Artisan::call('cache:clear');
 

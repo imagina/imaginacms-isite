@@ -26,7 +26,7 @@
                         @php($firstChildrenLevel = count($item->children) ? $item->children  : null)
                         <li class="nav-item">
                             <a  @if(empty($firstChildrenLevel)) class="nav-link" href="{{$item->url}}" onmouseover="closeLinks()"
-                                @else class="nav-link nav-link-hover" onmouseover="openLinks(event, '{{ $item->title ?? $item->name }}Menu')" @endif >
+                                @else class="nav-link nav-link-hover" href="{{$item->url}}" onmouseover="openLinks(event, '{{ $item->title ?? $item->name }}Menu')" @endif >
                                 @php($mediaFiles = $item->mediaFiles())
                                 @if(isset($mediaFiles->iconimage->path) && !strpos($mediaFiles->iconimage->path,"default.jpg"))
                                     <img class="filter" src="{{$mediaFiles->iconimage->path}}">
