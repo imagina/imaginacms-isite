@@ -1,26 +1,26 @@
 <?php
 
 return [
-    'yes' => 'Si',
-    'no' => 'No',
-    'menu' => [
-        'home' => 'Inicio',
-        'viewMore' => 'Ver más',
-    ],
-    'settings' => [
-        'wizardTenantType' => 'Tipo de Wizard',
-        'logo1' => 'Logo N°1',
-        'logo2' => 'Logo N°2',
-        'logo3' => 'Logo N°3',
-        'logoIadmin' => 'Logo Iadmin',
-        'logoIadminSM' => 'Logo Iadmin SM',
-        'favicon' => 'Favicon',
-        'addressBar' => 'Color de la barra de direcciones',
-        'brandPrimary' => 'Color Primario',
-        'primaryContrast' => 'Contraste Primario',
-        'brandSecondary' => 'Color Secundario',
-        'secondaryContrast' => 'Contraste Secundario',
-        'brandTertiary' => 'Color Terciario',
+  'yes' => 'Si',
+  'no' => 'No',
+  'menu' => [
+    'home' => 'Inicio',
+    'viewMore' => 'Ver más',
+  ],
+  'settings' => [
+    'wizardTenantType' => 'Tipo de Wizard',
+    'logo1' => 'Logo N°1',
+    'logo2' => 'Logo N°2',
+    'logo3' => 'Logo N°3',
+    'logoIadmin' => 'Logo Iadmin',
+    'logoIadminSM' => 'Logo Iadmin SM',
+    'favicon' => 'Favicon',
+    'addressBar' => 'Color de la barra de direcciones',
+    'brandPrimary' => 'Color Primario',
+    'primaryContrast' => 'Contraste Primario',
+    'brandSecondary' => 'Color Secundario',
+    'secondaryContrast' => 'Contraste Secundario',
+    'brandTertiary' => 'Color Terciario',
     'tertiaryContrast' => 'Contraste Terciario',
     'brandQuaternary' => 'Color Cuaternario',
     'quaternaryContrast' => 'Contraste Cuaternario',
@@ -98,6 +98,15 @@ return [
     'markerLabelFontWeight' => 'Grosor de la Fuente | Etiqueta del Marcador',
     'markerLabelColor' => 'Color de la fuente| Etiqueta del Marcador',
     'markerLabelTopPosition' => 'Top Position | Etiqueta del Marcador',
+    'cmsManifest' => [
+      'groupName' => 'PWA',
+      'manifestName' => 'Nombre',
+      'manifestShortName' => 'Nombre Corto',
+      'manifestDescription' => 'Descripción',
+      'manifestBackgroundColor' => 'Color de Fondo',
+      'manifestThemeColor' => 'Color del Tema',
+      'manifestIconsBaseUrl' => 'Base URL para Iconos',
+    ]
   ],
   'settingHints' => [
     'phones' => "Ingresa un número telefónico y presiona enter",

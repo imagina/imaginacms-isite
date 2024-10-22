@@ -8,7 +8,7 @@ return [
     'type' => 'input',
     'props' => ['label' => "isite::sites.settings.appVersion"]
   ],
-  
+
   //Media
   'logo1' => [
     'value' => (object)['isite::logo1' => null],
@@ -726,7 +726,7 @@ return [
       'rows' => 12,
     ],
   ],
-  
+
   //Client Google
   'api-client-google' => [
     'value' => "",
@@ -815,7 +815,7 @@ return [
       'label' => 'isite::pdf.settings.pdf.text.Information_content',
     ]
   ],
-  
+
   //Roles to register
   'rolesToTenant' => [
     "onlySuperAdmin" => true,
@@ -834,7 +834,7 @@ return [
       'select' => ['label' => 'name', 'id' => 'id']
     ]
   ],
-  
+
   //Default Tenant Status
   'defaultTenantStatus' => [
     'value' => true,
@@ -856,7 +856,7 @@ return [
       ]
     ]
   ],
-  
+
   //Tenant route alias
   'tenantRouteAlias' => [
     'value' => "homepage",
@@ -884,7 +884,7 @@ return [
       ]
     ],
   ],
-  
+
   'mapInShow' => [
     "onlySuperAdmin" => true,
     'value' => 'openStreet',
@@ -900,7 +900,7 @@ return [
       ]
     ]
   ],
-  
+
   'statusModalVerifier' => [
     'value' => '0',
     'name' => 'isite::statusModalVerifier',
@@ -1373,5 +1373,80 @@ return [
     'groupTitle' => 'isite::common.settingGroups.tenants',
     'colClass' => 'col-12',
     'props' => ['label' => "isite::sites.settings.tenantDataIa"]
+  ],
+  //CMS Manifest PWA
+  'manifestName' => [
+    'name' => 'isite::manifestName',
+    'value' => 'My Site',
+    'type' => 'input',
+    'isTranslatable' => true,
+    'columns' => 'col-12 col-md-6',
+    'groupName' => 'cmsManifest',
+    'groupTitle' => 'isite::common.settings.cmsManifest.groupName',
+    'props' => [
+      'label' => 'isite::common.settings.cmsManifest.manifestName'
+    ],
+  ],
+  'manifestShortName' => [
+    'name' => 'isite::manifestShortName',
+    'value' => null,
+    'type' => 'input',
+    'isTranslatable' => true,
+    'columns' => 'col-12 col-md-6',
+    'groupName' => 'cmsManifest',
+    'groupTitle' => 'isite::common.settings.cmsManifest.groupName',
+    'props' => [
+      'label' => 'isite::common.settings.cmsManifest.manifestShortName'
+    ],
+  ],
+  'manifestDescription' => [
+    'name' => 'isite::manifestDescription',
+    'value' => null,
+    'type' => 'input',
+    'isTranslatable' => true,
+    'groupName' => 'cmsManifest',
+    'groupTitle' => 'isite::common.settings.cmsManifest.groupName',
+    'colClass' => 'col-12',
+    'props' => [
+      'label' => 'isite::common.settings.cmsManifest.manifestDescription',
+      'type' => 'textarea',
+      'rows' => 3,
+    ],
+  ],
+  'manifestBackgroundColor' => [
+    'value' => null,
+    'name' => 'isite::manifestBackgroundColor',
+    'type' => 'inputColor',
+    'colClass' => 'col-12 col-md-6',
+    'groupName' => 'cmsManifest',
+    'groupTitle' => 'isite::common.settings.cmsManifest.groupName',
+    'props' => [
+      'label' => 'isite::common.settings.cmsManifest.manifestBackgroundColor'
+    ]
+  ],
+  'manifestThemeColor' => [
+    'value' => null,
+    'name' => 'isite::manifestThemeColor',
+    'type' => 'inputColor',
+    'groupName' => 'cmsManifest',
+    'groupTitle' => 'isite::common.settings.cmsManifest.groupName',
+    'colClass' => 'col-12 col-md-6',
+    'groupName' => 'cmsManifest',
+    'groupTitle' => 'isite::common.settingGroups.cmsManifest',
+    'props' => [
+      'label' => 'isite::common.settings.cmsManifest.manifestThemeColor'
+    ]
+  ],
+  'manifestIconsBaseUrl' => [
+    'name' => 'isite::manifestIconsBaseUrl',
+    'value' => null,
+    'type' => 'input',
+    'isTranslatable' => true,
+    'columns' => 'col-12',
+    'groupName' => 'cmsManifest',
+    'groupTitle' => 'isite::common.settings.cmsManifest.groupName',
+    'props' => [
+      'label' => 'isite::common.settings.cmsManifest.manifestIconsBaseUrl'
+    ],
   ],
 ];
