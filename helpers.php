@@ -470,7 +470,7 @@ if (!function_exists('convertMinutesToHumanReadable')) {
   {
     if (!$minutes) return 0;
     if ($minutes < 60) {
-      return $minutes . ' ' . trans('itask::tasks.minutes');
+      return $minutes . ' ' . trans('isite::isite.minutes');
     }
 
     $weeks = floor($minutes / (60 * 24 * 7));
@@ -481,19 +481,19 @@ if (!function_exists('convertMinutesToHumanReadable')) {
     $result = '';
 
     if ($weeks > 0) {
-      $result .= $weeks . ' ' . trans('itask::tasks.weeks') . ' ';
+      $result .= $weeks . ' ' . trans('isite::isite.weeks') . ' ';
     }
 
     if ($days > 0) {
-      $result .= $days . ' ' . trans('itask::tasks.days') . ' ';
+      $result .= $days . ' ' . trans('isite::isite.days') . ' ';
     }
 
     if ($hours > 0) {
-      $result .= $hours . ' ' . trans('itask::tasks.hours') . ' ';
+      $result .= $hours . ' ' . trans('isite::isite.hours') . ' ';
     }
 
     if ($remainingMinutes > 0) {
-      $result .= trans('itask::tasks.and') . ' ' . $remainingMinutes . ' ' . trans('itask::tasks.minutes');
+      $result .= trans('isite::isite.and') . ' ' . $remainingMinutes . ' ' . trans('isite::isite.minutes');
     }
 
     return $result;
