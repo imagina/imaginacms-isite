@@ -58,9 +58,12 @@ class SiteApiController extends BaseApiController
     public function index(Request $request)
     {
         try {
-            //Request to Repository
-            $params = $this->getParamsRequest($request);
-
+          //Request to Repository
+          $params = $this->getParamsRequest($request);
+          if (isset($params->filter->name)) {
+            $settingsByName = $this->validateResponseApi($this->settingController->index($request));
+            $response =['data' => $settingsByName];
+          }else {
             $enabledModules = $this->module->allEnabled();
             // getting modules with settings and enabled
             $modulesWithSettings = $this->setting->moduleSettings($enabledModules);
@@ -71,9 +74,9 @@ class SiteApiController extends BaseApiController
 
             // fetching settings in DB by module
             foreach ($modulesWithSettings as $key => $module) {
-                $translatableSettings[$key] = $this->setting->translatableModuleSettings($key);
-                $plainSettings[$key] = $this->setting->plainModuleSettings($key);
-                $dbSettings[$key] = $this->setting->savedModuleSettings($key);
+              $translatableSettings[$key] = $this->setting->translatableModuleSettings($key);
+              $plainSettings[$key] = $this->setting->plainModuleSettings($key);
+              $dbSettings[$key] = $this->setting->savedModuleSettings($key);
             }
 
             // merging translatable and plain settings
@@ -83,42 +86,43 @@ class SiteApiController extends BaseApiController
             $locales = config('asgard.core.available-locales');
 
             foreach ($locales as $key => &$locale) {
-                $locale['iso'] = $key;
+              $locale['iso'] = $key;
             }
 
             //getting plubic themes available
             $themes = [];
             foreach ($this->themeManager->allPublicThemes() as $key => $theme) {
-                $themes[$key] = [
-                    'name' => $theme->getName(),
-                    'path' => $theme->getPath(),
-                    'lowerName' => $theme->getLowerName(),
-                ];
+              $themes[$key] = [
+                'name' => $theme->getName(),
+                'path' => $theme->getPath(),
+                'lowerName' => $theme->getLowerName(),
+              ];
             }
 
             //Get all settings (With new setting controller)
             $settingsResponse = [];
             $allSettings = $this->validateResponseApi($this->settingController->index(new Request()));
             foreach ($allSettings as $settingObj) {
-                $settingsResponse = array_merge($settingsResponse, collect($settingObj)->values()->toArray());
+              $settingsResponse = array_merge($settingsResponse, collect($settingObj)->values()->toArray());
             }
 
             //Response
             $response = [
-                'data' => [
-                    //"siteSettings" => $this->transformSettings($dbSettings, $mergedSettings),
-                    'siteSettings' => $settingsResponse,
-                    'availableLocales' => array_values($locales),
-                    'availableThemes' => array_values($themes),
-                    'defaultLocale' => config('app.locale'),
-                    'modulesEnabled' => NwidartModuleTransformer::collection($enabledModules),
-                ],
+              'data' => [
+                //"siteSettings" => $this->transformSettings($dbSettings, $mergedSettings),
+                'siteSettings' => $settingsResponse,
+                'availableLocales' => array_values($locales),
+                'availableThemes' => array_values($themes),
+                'defaultLocale' => config('app.locale'),
+                'modulesEnabled' => NwidartModuleTransformer::collection($enabledModules),
+              ],
             ];
 
             //Return specific setting group
             if (isset($params->filter->settingGroupName)) {
-                $response['data'] = $response['data'][$params->filter->settingGroupName] ?? [];
+              $response['data'] = $response['data'][$params->filter->settingGroupName] ?? [];
             }
+          }
         } catch (\Exception $e) {
             $status = $this->getStatusError($e->getCode());
             $response = ['errors' => $e->getMessage()];
