@@ -308,7 +308,8 @@ return [
         ["label" => "Aspect 21:9", "value" => "embed-responsive-21by9"],
         ["label" => "Aspect 16:9", "value" => "embed-responsive-16by9"],
         ["label" => "Aspect 4:3", "value" => "embed-responsive-4by3"],
-        ["label" => "Aspect 1:1", "value" => "embed-responsive-1by1"]
+        ["label" => "Aspect 1:1", "value" => "embed-responsive-1by1"],
+        ["label" => "Aspect None", "value" => "none"]
     ],
     "titleLine" => [
         ["label" => "Sin linea", "value" => "0"],
