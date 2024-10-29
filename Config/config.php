@@ -12,7 +12,8 @@ return [
   'livewireAlerts' => [
     'position' => 'top-end',
     "timer" => 5000,
-    "timerProgressBar" => true
+    "timerProgressBar" => true,
+    "showCloseButton" =>  true
   ],
 
   /*
