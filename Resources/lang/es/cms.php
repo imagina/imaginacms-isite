@@ -431,7 +431,8 @@ return [
     "contactUs" => "Contactanos",
     "bulkAction" => "Nueva acción masiva",
     "bulkPermissions" => "Permisos masivos",
-    "entityPermissions" => "Permisos de entidad"
+    "entityPermissions" => "Permisos de entidad",
+    "selectAll" => "Seleccionar todo"
   ],
   "message" => [
     "showDemo" => "Ver Demo",

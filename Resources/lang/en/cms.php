@@ -426,7 +426,8 @@ return [
     "contactUs" => "Contact",
     "bulkAction" => "New Bulk Action",
     "bulkPermissions" => "Bulk Permissions",
-    "entityPermissions" => "Entity Permissions"
+    "entityPermissions" => "Entity Permissions",
+    "selectAll" => "Select All"
   ],
   "message" => [
     "showDemo" => "Demo",
