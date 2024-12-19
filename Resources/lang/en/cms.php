@@ -666,6 +666,7 @@ return [
     "syncSuccess" => "The Synchronization has been initiated successfully",
     "categories" => "Categories",
     "products" => "Products",
+    "orders" => "Orders",
     "generateFile" => "Generating File, please wait a moment...",
     "inProgress" => "In Progress...",
     "failedSync" => "Synchronization failed",

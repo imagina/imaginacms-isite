@@ -667,6 +667,7 @@ return [
     "syncSuccess" => "Se inicio correctamente la sincronización",
     "categories" => "Categorias",
     "products" => "Productos",
+    "orders" => "Ordenes",
     "generateFile" => "Generando Archivo, espere un momento...",
     "inProgress" => "En progreso...",
     "failedSync" => "La sincronización fallo",
