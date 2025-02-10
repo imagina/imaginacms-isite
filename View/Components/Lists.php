@@ -117,7 +117,11 @@ class Lists extends Component
     $this->itemComponentNamespace = $itemComponentNamespace ?? "Modules\Isite\View\Components\ItemList";
     $this->itemComponentAttributesMain = count($itemComponentAttributesMain) ? $itemComponentAttributesMain : config('asgard.isite.config.indexItemListAttributesMain');
     $this->itemComponentAttributesList = count($itemComponentAttributesList) ? $itemComponentAttributesList : config('asgard.isite.config.indexItemListAttributesList');
-    $this->itemComponentAttributes = $itemComponentAttributes;
+    if ($layout == "lists-layout-5") {
+      $this->itemComponentAttributes = $itemComponentAttributes;
+    } elseif($layout == "lists-layout-4") {
+      $this->itemComponentAttributes = count($itemComponentAttributes) ? $itemComponentAttributes : $this->itemComponentAttributesList;
+    }
     $this->titleUrl = $titleUrl;
     $this->titleTarget = $titleTarget;
     $this->subtitle = $subtitle;
