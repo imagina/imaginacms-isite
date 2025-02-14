@@ -33,7 +33,8 @@ class CreateOrganizationBySuscription
     \Log::info($this->log);
 
     try {
-
+      //Not clear cache
+      app()->instance('clearResponseCache', false);
       $suscription = $event->model;
 
       if($suscription->entity=="Modules\User\Entities\Sentinel\User"){
@@ -68,7 +69,7 @@ class CreateOrganizationBySuscription
 
               //Set Core
               config(['asgard.core.config.userstamping' => true]);
-
+              $this->initProcessCache();
               return $result;
 
             }else{
@@ -77,7 +78,7 @@ class CreateOrganizationBySuscription
               $organization = $this->createTenant($user,$suscription);
               tenancy()->initialize($organization->id);
               event(new OrganizationWasCreated($organization));
-
+              $this->initProcessCache();
               return ['data' => true];
             }
 
@@ -86,7 +87,6 @@ class CreateOrganizationBySuscription
         }
 
       }
-
     } catch (\Exception $e) {
         \Log::info($e->getMessage().' '.$e->getFile().' '.$e->getLine());
         dd($e);
@@ -118,7 +118,7 @@ class CreateOrganizationBySuscription
       }else{
         $roles = $this->rolesToTenant;
       }
-     
+
     }
 
     $user->roles()->sync($roles);
@@ -191,4 +191,14 @@ class CreateOrganizationBySuscription
 
   }
 
+
+  public function initProcessCache()
+  {
+
+    $log = "CreateOrganization::";
+    \Log::info($log."initProcessCache");
+
+    //JOB Clear
+    \Modules\Core\Jobs\ClearAllResponseCache::dispatch(['force' => true]);
+  }
 }
