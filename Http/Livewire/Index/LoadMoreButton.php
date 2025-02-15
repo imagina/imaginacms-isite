@@ -33,6 +33,7 @@ class LoadMoreButton extends Component
   public $showBtnLoadMore;
   public $editLink;
   public $tooltipEditLink;
+  public $currentRoute;
 
   /**
    * Listeners
@@ -46,7 +47,7 @@ class LoadMoreButton extends Component
   * Runs once, immediately after the component is instantiated,
   * but before render() is called
   */
-  public function mount($entityName,$itemComponentNamespace,$itemComponentName,$itemComponentAttributes,$layoutClass,$itemListLayout,$repository,$params,$pagination,$itemMainClass,$itemModal,$editLink,$tooltipEditLink,$parentItemListUniqueClass)
+  public function mount($entityName,$itemComponentNamespace,$itemComponentName,$itemComponentAttributes,$layoutClass,$itemListLayout,$repository,$params,$pagination,$itemMainClass,$itemModal,$editLink,$tooltipEditLink,$parentItemListUniqueClass,$currentRoute=null)
   {
 
     $this->entityName = $entityName;
@@ -70,6 +71,7 @@ class LoadMoreButton extends Component
     $this->tooltipEditLink = $tooltipEditLink;
 
     $this->parentItemListUniqueClass = $parentItemListUniqueClass;
+    $this->currentRoute = $currentRoute;
     
   }
 
@@ -101,7 +103,8 @@ class LoadMoreButton extends Component
       'editLink' => $this->editLink,
       'tooltipEditLink' => $this->tooltipEditLink,
       'itemModal' => $this->itemModal,
-      'itemListLayout' => $this->itemListLayout
+      'itemListLayout' => $this->itemListLayout,
+      'currentRoute' => $this->currentRoute
     ])->render();
     
     $this->dispatchBrowserEvent('items-load-more-button', [

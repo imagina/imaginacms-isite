@@ -15,6 +15,7 @@
 			:itemComponentName="$itemComponentName"
 			:itemComponentAttributes="$itemComponentAttributes"
 			:pagination="$pagination"
+			:currentRoute="$currentRoute"
 		/>
 		
 	@endif	

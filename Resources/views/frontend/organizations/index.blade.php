@@ -13,10 +13,10 @@
 
 		<div class="row">
 
-     
+
       <div class="col-lg-12">
-         
-        <livewire:isite::items-list 
+
+        <livewire:isite::items-list
             moduleName="Isite"
             itemComponentName="isite::item-list"
             itemComponentNamespace="Modules\Isite\View\Components\ItemList"
@@ -24,8 +24,8 @@
             :configLayoutIndex="config('asgard.isite.config.organizations.layoutIndex')"
             :itemComponentAttributes="config('asgard.isite.config.organizations.indexItemListAttributes')"
             :params="[
-            'filter' => ['category' => $category->id ?? null],
-            'include' => ['translations','category'], 
+            'filter' => $filters,
+            'include' => ['translations','category'],
             'take' => setting('icommerce::product-per-page',null,12)]"
             :responsiveTopContent="['mobile'=>false,'desktop'=>false]"
             :pagination="config('asgard.isite.config.organizations.pagination')"
@@ -33,12 +33,12 @@
             />
 
           <hr>
-        
+
         </div>
-      
+
       </div>
     </div>
-  
+
 </div>
 
 @stop

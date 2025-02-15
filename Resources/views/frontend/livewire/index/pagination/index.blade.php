@@ -22,6 +22,7 @@
 				:itemMainClass="$itemMainClass"
 				:itemModal="$itemModal"
 				:parentItemListUniqueClass="$itemListUniqueClass"
+				:currentRoute="$currentRoute"
 			/>
 		
 		@endif	

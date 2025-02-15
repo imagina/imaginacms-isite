@@ -38,7 +38,6 @@ class EloquentOrganizationRepository extends EloquentCrudRepository implements O
         });
       }
     }
-   // dd($query->toSql(),$query->getBindings());
 
     /**
      * Note: Add filter name to replaceFilters attribute before replace it
@@ -77,6 +76,16 @@ class EloquentOrganizationRepository extends EloquentCrudRepository implements O
 
       //Pre filters by default
       $query->where('status', 1);
+    }
+
+    if (isset($filter->layoutType)) {
+      $layouTypes = config('asgard.isite.config.layoutTypes');
+      $systemNames = $layouTypes[$filter->layoutType] ?? [];
+      if (count($systemNames)) {
+        $query->whereHas('layout', function ($query) use ($systemNames) {
+          $query->whereIn('system_name', $systemNames);
+        });
+      }
     }
 
     //Response

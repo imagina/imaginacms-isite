@@ -22,7 +22,8 @@ class PublicController extends BaseApiController
 
   public function __construct(
     CategoryRepository $category
-  ){
+  )
+  {
     parent::__construct();
     $this->category = $category;
   }
@@ -34,7 +35,7 @@ class PublicController extends BaseApiController
 
     $organization = tenant();
 
-    if(isset($organization->id)){
+    if (isset($organization->id)) {
       //default view in the Theme
       if (view()->exists("isite.organization.default"))
         return view("isite.organization.default", compact('organization'));
@@ -53,7 +54,7 @@ class PublicController extends BaseApiController
     $pageRepository = app("Modules\Page\Repositories\PageRepository");
     $page = $pageRepository->findBySlug("home");
 
-    if(isset($page->id)){
+    if (isset($page->id)) {
       $controller = app("Modules\Page\Http\Controllers\PublicController");
       return $controller->home($page);
     }
@@ -101,45 +102,45 @@ class PublicController extends BaseApiController
    * @param $slug
    * @return \Illuminate\View\View
    */
-  public function uri($slug,Request $request)
+  public function uri($slug, Request $request)
   {
     try {
 
       //revoke api routes
-      if(Str::contains($slug,"api/"))  return response("",404);
+      if (Str::contains($slug, "api/")) return response("", 404);
 
-    //Pimero buscamos el path completo en el slug del post, si existe redirige
-    $postRepository = app("Modules\Iblog\Repositories\PostRepository");
-    $post = $postRepository->getItem($slug, json_decode(json_encode(["filter" => ["field" => "slug"]])));
+      //Pimero buscamos el path completo en el slug del post, si existe redirige
+      $postRepository = app("Modules\Iblog\Repositories\PostRepository");
+      $post = $postRepository->getItem($slug, json_decode(json_encode(["filter" => ["field" => "slug"]])));
 
-    //el post debe tener un campo falso urlCoder con valor onlyPost que habilite al posts para accederse unicamente con su slug como url
-    if (isset($post->id) && isset($post->options->urlCoder) && $post->options->urlCoder == "onlyPost") {
-      $controller = app("Modules\Iblog\Http\Controllers\PublicController");
-      return $controller->show($post,$request);
-    }
-
-    //Segundo, busamos el path completo en el slug de la categoria
-    $categoryRepository = app("Modules\Iblog\Repositories\CategoryRepository");
-    $category = $categoryRepository->getItem($slug, json_decode(json_encode(["filter" => ["field" => "slug"]])));
-
-    if (isset($category->id)) {
-      $controller = app("Modules\Iblog\Http\Controllers\PublicController");
-      return $controller->index($category,$request);
-    }
-
-    //Tercero, buscamos el path menos el ultimo en una categoria, si existe, buscamos el ultimo path en un post con la categoria, redirigimos
-    $arg = explode("/", $slug);
-    $category = $categoryRepository->getItem(Str::remove("/" . end($arg), $slug), json_decode(json_encode(["filter" => ["field" => "slug"]])));
-
-    if (isset($category->id)) {
-      $post = $postRepository->getItem(end($arg), json_decode(json_encode(["filter" => ["categories" => $category->id, "field" => "slug"]])));
-
-      if (isset($post->id)) {
+      //el post debe tener un campo falso urlCoder con valor onlyPost que habilite al posts para accederse unicamente con su slug como url
+      if (isset($post->id) && isset($post->options->urlCoder) && $post->options->urlCoder == "onlyPost") {
         $controller = app("Modules\Iblog\Http\Controllers\PublicController");
-        return $controller->show($post,$request);
+        return $controller->show($post, $request);
       }
-    }
-    }catch(\Exception $e){
+
+      //Segundo, busamos el path completo en el slug de la categoria
+      $categoryRepository = app("Modules\Iblog\Repositories\CategoryRepository");
+      $category = $categoryRepository->getItem($slug, json_decode(json_encode(["filter" => ["field" => "slug"]])));
+
+      if (isset($category->id)) {
+        $controller = app("Modules\Iblog\Http\Controllers\PublicController");
+        return $controller->index($category, $request);
+      }
+
+      //Tercero, buscamos el path menos el ultimo en una categoria, si existe, buscamos el ultimo path en un post con la categoria, redirigimos
+      $arg = explode("/", $slug);
+      $category = $categoryRepository->getItem(Str::remove("/" . end($arg), $slug), json_decode(json_encode(["filter" => ["field" => "slug"]])));
+
+      if (isset($category->id)) {
+        $post = $postRepository->getItem(end($arg), json_decode(json_encode(["filter" => ["categories" => $category->id, "field" => "slug"]])));
+
+        if (isset($post->id)) {
+          $controller = app("Modules\Iblog\Http\Controllers\PublicController");
+          return $controller->show($post, $request);
+        }
+      }
+    } catch (\Exception $e) {
 
       \Log::info($e->getMessage());
 
@@ -149,9 +150,9 @@ class PublicController extends BaseApiController
     $pageRepository = app("Modules\Page\Repositories\PageRepository");
     $page = $pageRepository->findBySlug($slug);
 
-    if(isset($page->id)){
+    if (isset($page->id)) {
       $controller = app("Modules\Page\Http\Controllers\PublicController");
-      return $controller->uri($page,$slug,$request);
+      return $controller->uri($page, $slug, $request);
     }
 
     return response()->view('errors.404', [], 404);
@@ -172,7 +173,7 @@ class PublicController extends BaseApiController
 
     $category = null;
 
-    if ($slug && $slug !=trans('isite::routes.organizations.index.index')) {
+    if ($slug && $slug != trans('isite::routes.organizations.index.index')) {
 
       $category = $this->category->findBySlug($slug);
 
@@ -199,8 +200,13 @@ class PublicController extends BaseApiController
 
     $title = (isset($category->id) ? ($category->h1_title ?? $category->title) : trans('isite::organizations.plural'));
 
-    return view($tpl, compact('title', 'category'));
+    //Filters
+    $filters = ['category' => $category->id ?? null];
+    if ($request->input('filters')) $filters = array_merge(
+      $filters,
+      json_decode(urldecode($request->input('filters')), true)
+    );
 
-
+    return view($tpl, compact('title', 'category', 'filters'));
   }
 }

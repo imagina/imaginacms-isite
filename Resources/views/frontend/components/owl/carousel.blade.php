@@ -123,6 +123,7 @@
                       @endif
                       @if($repository=='Modules\Slider\Repositories\SlideApiRepository' || $repository=='Modules\Slider\Repositories\SlideRepository')
                          @php($itemComponentAttributes["viewMoreButtonLabel"]=$items[$x + $j]->caption)
+                         @php($itemComponentAttributes["target"]=$items[$x + $j]->target)
                       @endif
                       @include("isite::frontend.partials.item",["item" => $items[$x + $j], "position" => $x + $j])
 
