@@ -73,6 +73,7 @@ class OwlCarousel extends Component
     public $owlSubtitleClasses;
     public $dotsStyleColor;
     public $dotsSize;
+    public $typeComponent;
 
     /**
      * Create a new component instance.
@@ -139,7 +140,8 @@ class OwlCarousel extends Component
                                 $owlTitleClasses = "",
                                 $owlSubtitleClasses = "",
                                 $dotsStyleColor = "",
-                                $dotsSize = ""
+                                $dotsSize = "",
+                                $typeComponent = false
     )
     {
 
@@ -212,12 +214,12 @@ class OwlCarousel extends Component
             "margin" => "0 auto"];
         $this->dotsStyleColor = $dotsStyleColor;
         $this->dotsSize = $dotsSize;
-        $this->getItems();
         list($this->editLink, $this->tooltipEditLink) = getEditLink($this->repository);
         if($nav && $navText!="") {
             $this->navOld = true;
             $this->nav = false;
         }
+        $this->getItems();
     }
 
     private
@@ -248,6 +250,10 @@ class OwlCarousel extends Component
                     $this->itemComponentAttributes["layout"]="product-list-item-layout-1";
 
                 }
+                break;
+            case 'Modules\Slider\Repositories\SlideApiRepository':
+            case 'Modules\Slider\Repositories\SlideRepository':
+                $this->typeComponent = true;
                 break;
         }
 
