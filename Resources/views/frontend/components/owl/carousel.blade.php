@@ -104,6 +104,8 @@
           @endif
           <div class="@if($navPosition!="center" || ($nav==false && $navPosition=="center")) row py-3 @endif">
             <div id="{{$id}}Carousel" class="owl-carousel owl-theme {{$dotsStyle}}">
+
+
               @php($x = 0) {{-- iterador de items --}}
               @php($j = 0) {{-- iterador de itemsBySlide --}}
               @while(isset($items[$x]))
@@ -114,18 +116,25 @@
                     @endif
 
                     @while(isset($items[$x + $j]) && $j<$itemsBySlide)
-    
+
                       @if(!empty($itemComponentAttributes["itemDelay"]))
                           @php($itemComponentAttributes["itemDelay"]=$delay+$cont)
                           @if(!empty($itemComponentAttributes["itemDelayIn"]))
                               @php($cont=$cont+intval($itemComponentAttributes['itemDelayIn']))
                           @endif
                       @endif
-                      @if($repository=='Modules\Slider\Repositories\SlideApiRepository' || $repository=='Modules\Slider\Repositories\SlideRepository')
-                         @php($itemComponentAttributes["viewMoreButtonLabel"]=$items[$x + $j]->caption)
-                         @php($itemComponentAttributes["target"]=$items[$x + $j]->target)
+                      @if($typeComponent && !empty($items[$x + $j]->code_ads))
+                        <div class="banner-{{$items[$x + $j]->id}}">
+                          {!! $items[$x + $j]->code_ads !!}
+                        </div>
+                      @else
+                        @if($typeComponent)
+                          @php($itemComponentAttributes["viewMoreButtonLabel"]=$items[$x + $j]->caption)
+                          @php($itemComponentAttributes["target"]=$items[$x + $j]->target)
+                        @endif
+
+                        @include("isite::frontend.partials.item",["item" => $items[$x + $j], "position" => $x + $j])
                       @endif
-                      @include("isite::frontend.partials.item",["item" => $items[$x + $j], "position" => $x + $j])
 
                       @php($j++)
                     @endwhile
@@ -221,11 +230,11 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-  
+
       function refreshOwl(){
 
           createOWL{{$id}}();
-      
+
           let sizeButton = document.querySelector('[id="{{$id}}"] .prevBtn');
           let width = (sizeButton.offsetWidth) + 2;
           let wrapper = document.querySelector('[id="{{$id}}"] .wrapper');
@@ -237,14 +246,14 @@
       }
 
      createOWL{{$id}}();
-  
+
       @if($nav && $navPosition=="center")
         window.addEventListener('owlRefreshed', refreshOwl())
         refreshOwl();
       @endif
     });
 
-  
+
   </script>
 
 

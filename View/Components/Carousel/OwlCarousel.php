@@ -72,6 +72,7 @@ class OwlCarousel extends Component
   public $owlSubtitleClasses;
   public $dotsStyleColor;
   public $dotsSize;
+  public $typeComponent;
 
   /**
    * Create a new component instance.
@@ -96,7 +97,7 @@ class OwlCarousel extends Component
                               $itemComponentNamespace = null, $stagePadding = 0, $owlTitleUrl = null,
                               $owlTitleTarget = "_self", $autoplayTimeout = 5000, $mouseDrag = true, $touchDrag = true,
                               $navOld = false, $owlWithLineTitle = 0, $owlLineTitleConfig = [], $owlTitleClasses = "",
-                              $owlSubtitleClasses = "", $dotsStyleColor = "", $dotsSize = ""
+                              $owlSubtitleClasses = "", $dotsStyleColor = "", $dotsSize = "", $typeComponent = false
   )
   {
 
@@ -205,6 +206,10 @@ class OwlCarousel extends Component
           $this->itemComponentAttributes["layout"] = "product-list-item-layout-1";
 
         }
+        break;
+      case 'Modules\Slider\Repositories\SlideApiRepository':
+      case 'Modules\Slider\Repositories\SlideRepository':
+        $this->typeComponent = true;
         break;
     }
 
