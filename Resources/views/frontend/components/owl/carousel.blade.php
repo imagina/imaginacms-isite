@@ -229,31 +229,35 @@
       });
     }
 
-    document.addEventListener('DOMContentLoaded', function () {
+    function refreshOwl(){
 
-      function refreshOwl(){
+      createOWL{{$id}}();
 
-          createOWL{{$id}}();
-
-          let sizeButton = document.querySelector('[id="{{$id}}"] .prevBtn');
-          let width = (sizeButton.offsetWidth) + 2;
-          let wrapper = document.querySelector('[id="{{$id}}"] .wrapper');
-          let w = (width)*2 + 9;
-          if(wrapper != null) {
-            wrapper.style.cssText = 'grid-template-columns: '+width+'px calc(100% - '+w+'px) '+width+'px';
-          }
-
+      let sizeButton = document.querySelector('[id="{{$id}}"] .prevBtn');
+      let width = (sizeButton.offsetWidth) + 2;
+      let wrapper = document.querySelector('[id="{{$id}}"] .wrapper');
+      let w = (width)*2 + 9;
+      if(wrapper != null) {
+        wrapper.style.cssText = 'grid-template-columns: '+width+'px calc(100% - '+w+'px) '+width+'px';
       }
 
-     createOWL{{$id}}();
+    }
+
+    // Function to check if DOM is ready and initialize OWL
+    function initOWL() {
+      createOWL{{$id}}();
 
       @if($nav && $navPosition=="center")
-        window.addEventListener('owlRefreshed', refreshOwl())
-        refreshOwl();
+      window.addEventListener('owlRefreshed', refreshOwl())
+      refreshOwl();
       @endif
-    });
+    }
 
-
+    if (document.readyState != 'complete') {
+      document.addEventListener('DOMContentLoaded', initOWL);
+    } else {
+      initOWL(); // DOM is already loaded, initialize immediately
+    }
   </script>
 
 
