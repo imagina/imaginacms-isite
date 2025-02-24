@@ -213,6 +213,9 @@
         autoplayTimeout: {{$autoplayTimeout}},
         mouseDrag: {!! $mouseDrag ? 'true' : 'false' !!},
         touchDrag: {!! $touchDrag ? 'true' : 'false' !!},
+        animateIn: "{{ $owlTransition[ 0 ] }}",  // animation entrance
+        animateOut: "{{ $owlTransition[ 1 ] }}",  // animation exit
+        rtl: {!! $direction == 1 ?  'true' : 'false' !!},
         {!! !empty($navText) ? 'navText: '.$navText."," : "" !!}
       });
 
