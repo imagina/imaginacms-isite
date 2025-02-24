@@ -179,7 +179,7 @@ class OwlCarousel extends Component
       $this->navOld = true;
       $this->nav = false;
     }
-      $this->owlTransition = !empty(trim($owlTransition))
+      $this->owlTransition = !empty(trim($owlTransition))  ||  is_string(trim($owlTransition))
         ? explode(",", $owlTransition)
         : explode(",", "animate__slideInLeft,animate__slideOutRight");
       $this->direction =  $direction;
