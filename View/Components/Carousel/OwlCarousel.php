@@ -243,4 +243,3 @@ class OwlCarousel extends Component
     return view($this->view);
   }
 }
-
