@@ -51,6 +51,7 @@ class Autocomplete extends Component
   public $collapsable;
   public $labelButton;
   public $withLabelButton;
+  public $applyTenantUrlToBtnSearch;
 
   protected $listeners = ['autocompleteChangeCollapsable'];
 
@@ -61,7 +62,7 @@ class Autocomplete extends Component
   public function mount($name = null, $layout = 'autocomplete-layout-1', $showModal = false, $icon = 'fa fa-search',
                         $placeholder = null, $title = '', $params = [], $buttonSearch = false, $emitTo = null,
                         $repoAction = null, $repoAttribute = null, $repoMethod = null, $minSearchChars = null,
-                        $goToRouteAlias = null, $labelButton = null, $withLabelButton = false)
+                        $goToRouteAlias = null, $labelButton = null, $withLabelButton = false, $applyTenantUrlToBtnSearch = false)
   {
     $this->defaultView = 'isite::frontend.livewire.filters.autocomplete.layouts.autocomplete-layout-1.index';
     $this->view = isset($layout) ? 'isite::frontend.livewire.filters.autocomplete.layouts.' . $layout . '.index' : $this->defaultView;
@@ -87,6 +88,7 @@ class Autocomplete extends Component
     $this->featuredOptions = json_decode(setting('isearch::listFeaturedOptionsSearch', null, "[]"));
     $this->labelButton = $labelButton ?? trans('isite::common.filters.autocomplete.labelButtonSearch');
     $this->withLabelButton = $withLabelButton;
+    $this->applyTenantUrlToBtnSearch = $applyTenantUrlToBtnSearch;
   }
 
   public function hydrate()
@@ -169,7 +171,16 @@ class Autocomplete extends Component
         $route = 'isearch.search';
       }
 
-      $this->redirect(LaravelLocalization::localizeUrl(route($route, null, false), $locale) . '?search=' . $this->search);
+      $routeFinal = route($route,null,false);
+      //Validation Case Tenant | Like DEEV
+      if($this->applyTenantUrlToBtnSearch){
+        $tenancyMode = config("tenancy.mode", null);
+        if(!empty($tenancyMode) && $tenancyMode == "singleDatabase")
+          $routeFinal = tenant_route(Str::remove('https://',tenant()->url),$route);
+      }
+
+      $this->redirect(LaravelLocalization::localizeUrl($routeFinal,$locale) . '?search=' . $this->search);
+
     }
   }
 

@@ -28,7 +28,7 @@ class Addresses extends Component
     if (!empty($addresses)) {
       $this->addresses = !is_array($addresses) ? [$addresses] : $addresses;
     } else {
-      $this->addresses = json_decode(setting('isite::addresses', null, '[]', $central));
+      $this->addresses = json_decode(setting('isite::addresses', \LaravelLocalization::setLocale() ?? \App::getLocale(), '[]', $central));
     }
   }
 

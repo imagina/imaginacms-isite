@@ -39,6 +39,7 @@
   {{--Fontawesome--}}
   <script src="https://kit.fontawesome.com/56d3d5dce0.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/js/v4-shims.min.js" integrity="sha512-pd9YFLsGdZIRG1ChLLdpxgGT+xR7rVjsHqm6RP0toUadPB4XZZ7LlqzX3IhnpMd2Cb8b2s8yVFwY21epgr84qw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <livewire:isite::init-edit-link/>
 </head>
 <body>
 

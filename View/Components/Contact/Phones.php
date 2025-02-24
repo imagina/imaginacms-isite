@@ -27,7 +27,7 @@ class Phones extends Component
     if (!empty($phones)) {
       $this->phones = !is_array($phones) ? [$phones] : $phones;
     } else {
-      $this->phones = json_decode(setting('isite::phones', null, '[]'));
+      $this->phones = json_decode(setting('isite::phones', \LaravelLocalization::setLocale() ?? \App::getLocale(), '[]'));
     }
 
     $this->showIcon = $showIcon;

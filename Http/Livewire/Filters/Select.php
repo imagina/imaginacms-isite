@@ -47,7 +47,7 @@ class Select extends Component
                         $withTitle = true, $withSubtitle = true, $getDataAfterSelected = false,
                         $defaultSelectedSetting = null, $entityTitle = null, $showFirstOptionSelect = true)
   {
-    $this->title = trans($title) ?? trans('isearch::common.filters.searchRepositories.title');
+    $this->title = !is_null($title) ? trans($title) : trans('isearch::common.filters.searchRepositories.title');
     $this->entityTitle = $entityTitle ?? trans('isearch::common.filters.searchRepositories.entity title');
     $this->name = $name;
     $this->status = $status;

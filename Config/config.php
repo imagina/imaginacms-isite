@@ -13,6 +13,7 @@ return [
         'position' => 'top-end',
         'timer' => 5000,
         'timerProgressBar' => true,
+        "showCloseButton" =>  true
     ],
 
     /*
@@ -296,7 +297,7 @@ return [
         'code' => 'USD',
         'value' => 1,
     ],
-  
+
   /*
 |--------------------------------------------------------------------------
 | Microsoft Clarity Global Script

@@ -62,6 +62,8 @@ return [
   "perzonalizationTitle" => "Bienvenid@ al editor de tu sitio web",
   "perzonalizationDescription" => "De manera fácil, cambia el logo, colores y la información principal de tu página web",
   "label" => [
+    "appliedFilters"=> "Tienes filtros aplicados, haz clic aquí para abrir",
+    'daysAroundToday'=> '{numDays} días alrededor de hoy',
     "clickToAction" => "Click para Acción",
     "massiveSynchronization" => "Sincronización Masiva",
     "migration" => "Migración",
@@ -428,6 +430,9 @@ return [
     "us" => "Nosotros",
     "contactUs" => "Contactanos",
     "bulkAction" => "Nueva acción masiva",
+    "bulkPermissions" => "Permisos masivos",
+    "entityPermissions" => "Permisos de entidad",
+    "selectAll" => "Seleccionar todo"
   ],
   "message" => [
     "showDemo" => "Ver Demo",
@@ -662,6 +667,7 @@ return [
     "syncSuccess" => "Se inicio correctamente la sincronización",
     "categories" => "Categorias",
     "products" => "Productos",
+    "orders" => "Ordenes",
     "generateFile" => "Generando Archivo, espere un momento...",
     "inProgress" => "En progreso...",
     "failedSync" => "La sincronización fallo",

@@ -56,7 +56,12 @@ class Lists extends Component
   public $columns;
   public $withLineTitle;
   public $lineTitleConfig;
-
+  public $itemRow;
+  public $titleRow;
+  public $titleColumn;
+  public $listExtra;
+  public $listExtraItemColumn;
+  public $listExtraItem;
 
   /**
    * Create a new component instance.
@@ -76,7 +81,8 @@ class Lists extends Component
                               $subtitleWeight = "font-weight-normal", $subtitleTransform = null,
                               $subtitleLetterSpacing = 0, $textPosition = 2, $textAlign = "", $subtitleColor = null,
                               $titleClasses = "", $subtitleClasses = "", $columns = "", $withLineTitle = 0,
-                              $lineTitleConfig = []
+                              $lineTitleConfig = [], $itemRow = "row", $titleRow = "row", $titleColumn = "col-12",
+                              $listExtra = "", $listExtraItemColumn = "mb-3"
   )
   {
 
@@ -111,7 +117,11 @@ class Lists extends Component
     $this->itemComponentNamespace = $itemComponentNamespace ?? "Modules\Isite\View\Components\ItemList";
     $this->itemComponentAttributesMain = count($itemComponentAttributesMain) ? $itemComponentAttributesMain : config('asgard.isite.config.indexItemListAttributesMain');
     $this->itemComponentAttributesList = count($itemComponentAttributesList) ? $itemComponentAttributesList : config('asgard.isite.config.indexItemListAttributesList');
-    $this->itemComponentAttributes = $itemComponentAttributes;
+    if ($layout == "lists-layout-5") {
+      $this->itemComponentAttributes = $itemComponentAttributes;
+    } elseif($layout == "lists-layout-4") {
+      $this->itemComponentAttributes = count($itemComponentAttributes) ? $itemComponentAttributes : $this->itemComponentAttributesList;
+    }
     $this->titleUrl = $titleUrl;
     $this->titleTarget = $titleTarget;
     $this->subtitle = $subtitle;
@@ -124,6 +134,12 @@ class Lists extends Component
     $this->subtitleColor = $subtitleColor;
     $this->titleClasses = $titleClasses;
     $this->subtitleClasses = $subtitleClasses;
+    $this->itemRow = $itemRow;
+    $this->titleRow = $titleRow;
+    $this->titleColumn = $titleColumn;
+    $this->listExtra = $listExtra;
+    $this->listExtraItem = explode(",", $listExtraItemColumn);
+
     $this->columnLayout = explode(",", $columns);
     if ($layout == "lists-layout-5" && empty($columns)) {
       $this->columnLayout = [$columnLeft];

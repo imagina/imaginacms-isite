@@ -23,7 +23,7 @@ use Modules\Core\Icrud\Traits\HasCacheClearable;
 class Organization extends BaseTenant implements TenantWithDatabase
 {
   use AuditTrait, Translatable, HasDatabase, HasDomains, MediaRelation, Schedulable, hasEventsWithBindings, isFillable,
-      MaintenanceMode, TaggableTrait, IsNotificable, HasCacheClearable;
+    MaintenanceMode, TaggableTrait, IsNotificable, HasCacheClearable;
 
   public $transformer = 'Modules\Isite\Transformers\OrganizationTransformer';
   public $requestValidation = [
@@ -125,6 +125,9 @@ class Organization extends BaseTenant implements TenantWithDatabase
       $tenantRouteAlias = "homepage";
     }
 
+    //Extra validation | In laravel 10 setting can be empty
+    if(is_null($tenantRouteAlias) || empty($tenantRouteAlias)) $tenantRouteAlias = "homepage";
+
     $customDomain = $domains->where("type", "custom")->first()->domain ?? null;
     $defaultDomain = $domains->where("type", "default")->first()->domain ?? $this->slug ?? null;
 
@@ -225,8 +228,13 @@ class Organization extends BaseTenant implements TenantWithDatabase
       //Get Emails and Broadcast
       $user = $this->users->first();
 
-      if(!is_null($user)){
+      if (!is_null($user)) {
         $result['email'] = $user->email;
+
+        //Set Broadcast
+        //$settingsAdmins =  json_decode(setting("notification::usersToNotify", null, "[]"));
+        //array_push($settingsAdmins,$user->id);
+        $result['broadcast'] = $user->id;
 
         //Message
         $message = trans("isite::organizations.messages.organization updated basic", [
@@ -235,25 +243,32 @@ class Organization extends BaseTenant implements TenantWithDatabase
           'admin' => url('/iadmin')
         ]);
 
+        $userId = \Auth::id() ?? null;
+        $source = "iadmin";
+
         $response['updated'] = [
           "title" => trans("isite::organizations.title.organization updated"),
           "message" => $message,
-          "email" => $result['email']
+          "email" => $result['email'],
+          "broadcast" => $result['broadcast'],
+          "userId" => $userId,
+          "source" => $source
         ];
 
       }
-      
+
     }
 
     return $response;
   }
-    public function getCacheClearableData()
-    {
-        return [
-            'urls' => [
-                config("app.url"),
-                $this->url
-            ]
-        ];
+
+  public function getCacheClearableData()
+  {
+    $baseUrls = [config("app.url")];
+    if (!$this->wasRecentlyCreated) {
+      $baseUrls[] = $this->url;
     }
+    $urls = ['urls' => $baseUrls];
+    return $urls;
+  }
 }

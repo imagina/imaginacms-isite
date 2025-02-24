@@ -3,6 +3,8 @@
 namespace Modules\Isite\Http\Livewire\Filters;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Str;
 
 class Tree extends Component
 {
@@ -141,20 +143,33 @@ class Tree extends Component
 
     $this->items = $this->getRepository()->{$this->repoMethod}($params);
 
+    //created module and entity in plural to build the same tag name that is in the Cache decorators
+    $moduleName = explode("\\", $this->entityClass)[1];
+    $entityPlural = Str::plural(explode("\\", $this->entityClass)[3]);
+    $with = [];
+
+    if (method_exists((new $this->entityClass), 'translations')) $with[] = "translations";
+    if (method_exists((new $this->entityClass), 'files')) $with[] = "files";
+
     // Reorganize collection by the 'mode' config
     if (isset($this->itemSelected->id) && $this->renderMode) {
+      $itemSelected = $this->itemSelected;
       switch ($this->renderMode) {
         case 'allFamilyOfTheSelectedNode':
-          $ancestors = $this->entityClass::ancestorsAndSelf($this->itemSelected->id)->where('status', 1);
-          $rootItem = $ancestors->whereNull('parent_id')->first();
-          $this->items = $this->entityClass::descendantsAndSelf($rootItem->id)->where('status', 1);
+          $this->items = Cache::store(config("cache.default"))->tags(Str::lower("$moduleName.$entityPlural"))->remember('isite_module_filter_tree::allFamilyOfTheSelectedNode' . Str::lower($this->entityClass) . (isset(tenant()->domain) ? tenant()->domain : request()->getHost() ?? ""), 60 * 60 * 24 * 30, function () use ($itemSelected, $with) {
+            $ancestors = $this->entityClass::whereAncestorOf($itemSelected->id, true)->with($with)->get()->where("status", 1);
+            $rootItem = $ancestors->whereNull('parent_id')->first();
+            return $this->entityClass::whereDescendantOf($rootItem->id, 'and', false, true)->with(["translations", "files"])->get()->where("status", 1);
+          });
           break;
 
         case 'onlyLeftAndRightOfTheSelectedNode':
-          $ancestors = $this->entityClass::ancestorsOf($this->itemSelected->id)->where('status', 1);
-          $descendants = $result = $this->entityClass::descendantsAndSelf($this->itemSelected->id)->where('status', 1);
-          $siblings = $this->itemSelected->getSiblings()->where('status', 1);
-          $this->items = $ancestors->merge($descendants)->merge($siblings);
+          $this->items = Cache::store(config("cache.default"))->tags(Str::lower("$moduleName.$entityPlural"))->remember('isite_module_filter_tree::onlyLeftAndRightOfTheSelectedNode' . Str::lower($this->entityClass) . (isset(tenant()->domain) ? tenant()->domain : request()->getHost() ?? ""), 60 * 60 * 24 * 30, function () use ($itemSelected, $with) {
+            $ancestors = $this->entityClass::whereAncestorOf($itemSelected->id)->with($with)->get()->where("status", 1);
+            $descendants = $result = $this->entityClass::whereDescendantOf($itemSelected->id, 'and', false, true)->with(["translations", "files"])->get()->where("status", 1);
+            $siblings = $itemSelected->siblings()->with(["translations", "files"])->get()->where("status", 1);
+            return $ancestors->merge($descendants)->merge($siblings);
+          });
           break;
       }
     }

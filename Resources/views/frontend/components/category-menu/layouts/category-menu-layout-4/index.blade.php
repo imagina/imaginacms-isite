@@ -23,53 +23,55 @@
                 <div class="modal-body modal-scroll">
                     <ul class="nav flex-column">
                         @foreach($items as $item)
-                        @php($firstChildrenLevel = count($item->children) ? $item->children  : null)
-                        <li class="nav-item">
-                            <a  @if(empty($firstChildrenLevel)) class="nav-link" href="{{$item->url}}" onmouseover="closeLinks()"
-                                @else class="nav-link nav-link-hover" onmouseover="openLinks(event, '{{ $item->title ?? $item->name }}Menu')" @endif >
-                                @php($mediaFiles = $item->mediaFiles())
-                                @if(isset($mediaFiles->iconimage->path) && !strpos($mediaFiles->iconimage->path,"default.jpg"))
-                                    <img class="filter" src="{{$mediaFiles->iconimage->path}}">
-                                @endif
-                                {{ $item->title ?? $item->name }}
-                                @if(!empty($firstChildrenLevel)) <i class="arrow"></i> @endif
-                            </a>
-                        </li>
+                            @php($firstChildrenLevel = count($item->children) ? $item->children  : null)
+                            <li class="nav-item">
+                                <a  @if(empty($firstChildrenLevel)) class="nav-link" href="{{$item->url}}" onmouseover="closeLinks()"
+                                    @else class="nav-link nav-link-hover" href="{{$item->url}}"
+                                    ontouchstart="openLinksTouchs(event, '{{ $item->title ?? $item->name }}Menu')"
+                                    onmouseover="openLinks(event, '{{ $item->title ?? $item->name }}Menu')" @endif >
+                                    @php($mediaFiles = $item->mediaFiles())
+                                    @if(isset($mediaFiles->iconimage->path) && !strpos($mediaFiles->iconimage->path,"default.jpg"))
+                                        <img class="filter" src="{{$mediaFiles->iconimage->path}}">
+                                    @endif
+                                    {{ $item->title ?? $item->name }}
+                                    @if(!empty($firstChildrenLevel)) <i class="arrow"></i> @endif
+                                </a>
+                            </li>
                         @endforeach
                     </ul>
                 </div>
             </div>
         </div>
         <div class="modal-dialog-submenu">
-        @foreach($items as $item)
-            @php($firstChildrenLevel = count($item->children) ? $item->children  : null)
-            @if($firstChildrenLevel)
-                <div id="{{ $item->title ?? $item->name }}Menu" class="modal-content-panel modal-scroll">
-                    <h3><a href="{{$item->url}}">{{ $item->title ?? $item->name }}</a></h3>
-                    @if($firstChildrenLevel)
-                        <div class="row modal-content-chilfren">
-                            @foreach($firstChildrenLevel as $firstChildLevel)
-                                @if($firstChildLevel->status)
-                                    <li class="col-6 nav-item">
-                                        <a class="nav-link" href="{{$firstChildLevel->url}}">{{ $firstChildLevel->title ?? $firstChildLevel->name }}</a>
-                                        @php($secondChildrenLevel = $firstChildLevel->children ?? null)
-                                        @if($secondChildrenLevel)
-                                            <div class="dropdown-submenu">
-                                                @foreach($secondChildrenLevel as $secondChildLevel)
-                                                    @if($secondChildLevel->status)
-                                                        <a href="{{$secondChildLevel->url}}">{{ $secondChildLevel->title ?? $secondChildLevel->name }}</a>
-                                                    @endif
-                                                @endforeach
-                                            </div>
-                                        @endif
-                                    </li>
-                                @endif
-                            @endforeach
-                        </div>
-                    @endif
-                </div>
-            @endif
-        @endforeach
+            @foreach($items as $item)
+                @php($firstChildrenLevel = count($item->children) ? $item->children  : null)
+                @if($firstChildrenLevel)
+                    <div id="{{ $item->title ?? $item->name }}Menu" class="modal-content-panel modal-scroll">
+                        <h3><a href="{{$item->url}}">{{ $item->title ?? $item->name }}</a></h3>
+                        @if($firstChildrenLevel)
+                            <div class="row modal-content-chilfren">
+                                @foreach($firstChildrenLevel as $firstChildLevel)
+                                    @if($firstChildLevel->status)
+                                        <li class="col-6 nav-item">
+                                            <a class="nav-link" href="{{$firstChildLevel->url}}">{{ $firstChildLevel->title ?? $firstChildLevel->name }}</a>
+                                            @php($secondChildrenLevel = $firstChildLevel->children ?? null)
+                                            @if($secondChildrenLevel)
+                                                <div class="dropdown-submenu">
+                                                    @foreach($secondChildrenLevel as $secondChildLevel)
+                                                        @if($secondChildLevel->status)
+                                                            <a href="{{$secondChildLevel->url}}">{{ $secondChildLevel->title ?? $secondChildLevel->name }}</a>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            @endif
+                                        </li>
+                                    @endif
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
+                @endif
+            @endforeach
         </div>
     </div>
     <div class="modal modal-menu fade" id="{{ $id }}menuModal" tabindex="-1" role="dialog"
@@ -91,14 +93,21 @@
                             @foreach($items as $item)
                                 @php($firstChildrenLevel = count($item->children) ? $item->children  : null)
                                 <li class="nav-item {{$firstChildrenLevel ? 'dropdown' : ''}}">
-                                    <a href="{{$item->url}}" class="nav-link" data-toggle="{{$firstChildrenLevel ? 'dropdown' : ''}}">
+                                    <!-- link main -->
+                                    <a href="{{$item->url}}" class="nav-link"
+                                       data-toggle="{{$firstChildrenLevel ? 'dropdown' : ''}}">
                                         @php($mediaFiles = $item->mediaFiles())
-                                        @if(isset($mediaFiles->iconimage->path) && !strpos($mediaFiles->iconimage->path,"default.jpg"))
+                                        @if(isset($mediaFiles->iconimage->path) && !strpos($mediaFiles->iconimage->path, "default.jpg"))
                                             <img class="filter" src="{{$mediaFiles->iconimage->path}}">
                                         @endif
                                         {{ $item->title ?? $item->name }}
-                                        @if(!empty($firstChildrenLevel)) <i class="arrow"></i> @endif
                                     </a>
+                                    <!-- Link external -->
+                                    @if(!empty($firstChildrenLevel))
+                                        <a href="{{$item->url}}"  target="_self" class="btn-link-icon-menu">
+                                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                        </a>
+                                    @endif
                                     @if($firstChildrenLevel)
                                         <div class="dropdown-menu">
                                             @if($firstChildrenLevel)
@@ -145,6 +154,18 @@
             }
         }
         function openLinks(evt, itemMenu) {
+            let navlinks;
+            closeLinks();
+            navlinks = document.getElementsByClassName("nav-link-hover");
+            for (i = 0; i < navlinks.length; i++) {
+                navlinks[i].className = navlinks[i].className.replace(" active", "");
+            }
+            document.getElementById(itemMenu).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+        function openLinksTouchs(evt, itemMenu) {
+            evt.preventDefault()
+            console.log("Touchs",evt)
             let navlinks;
             closeLinks();
             navlinks = document.getElementsByClassName("nav-link-hover");

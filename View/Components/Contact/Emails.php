@@ -28,7 +28,7 @@ class Emails extends Component
     if (!empty($emails)) {
       $this->emails = !is_array($emails) ? [$emails] : $emails;
     } else {
-      $this->emails = json_decode(setting('isite::emails', null, '[]', $central));
+      $this->emails = json_decode(setting('isite::emails', \LaravelLocalization::setLocale() ?? \App::getLocale(), '[]', $central));
     }
   }
 

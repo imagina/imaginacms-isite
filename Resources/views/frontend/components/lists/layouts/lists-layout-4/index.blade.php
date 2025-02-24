@@ -1,24 +1,31 @@
 <div id="{{ $id }}" class="{{ $class }} lists-layout-4">
-    <div class="row">
-        @if($title!=="")
-            <div class="col-12">
-                <div class="title-section {{$titleAlign}}">
-                    @if($titleUrl)
-                    <a href="{{$titleUrl}}" target="{{$titleTarget}}" style="text-decoration: none;">
-                    @endif
-                    <h2 class="title {{$titleColor}} {{$titleWeight}} {{$titleTransform}} mb-0" style="font-size: {{$titleSize}}px;">
-                        @if($titleVineta) <i class="{{$titleVineta}} {{$titleVinetaColor}} mr-1"></i>  @endif
-                        <span> {!! $title !!}</span>
-                    </h2>
-                    @if($titleUrl)
-                    </a>
-                    @endif
-                </div>
-                <hr class="{{$titleLineMarginY}}">
-            </div>
-
-        @endif
-
+    @if($title!=="" || $subtitle!=="")
+    <div class="{{$titleRow}} row-title">
+      <div class="{{$titleColumn}}">
+        <div class="title-section {{$textAlign}} @if($textPosition==3) d-flex flex-column @endif ">
+          @if($title!=="")
+            @if($titleUrl)
+              <a href="{{$titleUrl}}" target="{{$titleTarget}}" class="text-decoration-none">
+                @endif
+                <h2 class="title {{$titleClasses}} {{ $textPosition==3 ? 'order-1':'' }} {{$titleColor}} {{$titleWeight}} {{$titleTransform}}">
+                  @if($titleVineta) <i class="{{$titleVineta}} {{$titleVinetaColor}} mr-1"></i>  @endif
+                  <span> {!! $title !!}</span>
+                </h2>
+                @if($titleUrl)
+              </a>
+            @endif
+          @endif
+          @if($subtitle!=="" && $textPosition!=1)
+            <h3 class="subtitle {{$subtitleClasses}} {{$subtitleColor}} {{$subtitleWeight}} {{$subtitleTransform}}">
+              {!! $subtitle !!}
+            </h3>
+          @endif
+        </div>
+        <hr class="{{$titleLineMarginY}}">
+      </div>
+    </div>
+    @endif
+    <div class="{{$itemRow}} row-item">
         <div class="list-column-1 {{$columnLeft}} {{ $orderColumnMain==1 ? 'order-1':'' }}">
             @include("isite::frontend.partials.item",["itemLayout" => $itemComponentAttributesMain['layout'], "itemComponentAttributes" => $itemComponentAttributesMain, "item" => $items[0]])
         </div>
@@ -28,11 +35,11 @@
                     @include($preListContentView)
                 </div>
             @endif
-            <div class="list-extra">
+            <div class="list-extra {{$listExtra}}">
                 @foreach ($items as $key => $item)
                     @if($key > 0)
-                        <div class="list-extra-item mb-3">
-                            @include("isite::frontend.partials.item",["itemLayout" => $itemComponentAttributesList['layout'],"itemComponentAttributes" => $itemComponentAttributesList])
+                        <div class="list-extra-item {{$listExtraItem[$key%count($listExtraItem)]}}">
+                            @include("isite::frontend.partials.item",["itemLayout" => $itemComponentAttributes['layout'],"itemComponentAttributes" => $itemComponentAttributes])
                         </div>
                     @endif
                 @endforeach
@@ -47,12 +54,30 @@
     </div>
 </div>
 <style>
-    .lists-layout-4 .list-column-1 .card-item {
-        margin-top: 0 !important;
-    }
-    .lists-layout-4 .list-image-bottom {
-        aspect-ratio: 1.3333333333;
-        object-fit: cover;
-    }
-
+  #{{$id}} .title-section .title {
+    font-size: {{$titleSize}}px;
+    letter-spacing: {{$titleLetterSpacing}}px;
+  }
+  #{{$id}} .title-section .subtitle {
+     font-size: {{$subtitleSize}}px;
+     letter-spacing: {{$subtitleLetterSpacing}}px;
+   }
+  @if($withLineTitle==1)
+  #{{$id}} .title-section .title:after {
+         content: '';
+         display: block;
+       @foreach($lineTitleConfig as $key => $line)
+       {{$key}}: {{$line}};
+       @endforeach
+  }
+  @endif
+  @if($withLineTitle==2)
+  #{{$id}} .title-section .subtitle:after {
+           content: '';
+           display: block;
+         @foreach($lineTitleConfig as $key => $line)
+        {{$key}}: {{$line}};
+         @endforeach
+  }
+  @endif
 </style>

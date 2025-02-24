@@ -62,6 +62,8 @@ return [
   "perzonalizationTitle" => "Welcome to the editor of your website",
   "perzonalizationDescription" => "Easily change the logo, colors and the main information of your website",
   "label" => [
+    "appliedFilters"=> "You have filters applied, click here to open",
+    "daysAroundToday" => "{numDays} days Around Today",
     "clickToAction" => "Click to Action",
     "massiveSynchronization" => "Massive Synchronization",
     "migration" => "Migration",
@@ -423,6 +425,9 @@ return [
     "us" => "Us",
     "contactUs" => "Contact",
     "bulkAction" => "New Bulk Action",
+    "bulkPermissions" => "Bulk Permissions",
+    "entityPermissions" => "Entity Permissions",
+    "selectAll" => "Select All"
   ],
   "message" => [
     "showDemo" => "Demo",
@@ -661,6 +666,7 @@ return [
     "syncSuccess" => "The Synchronization has been initiated successfully",
     "categories" => "Categories",
     "products" => "Products",
+    "orders" => "Orders",
     "generateFile" => "Generating File, please wait a moment...",
     "inProgress" => "In Progress...",
     "failedSync" => "Synchronization failed",

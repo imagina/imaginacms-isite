@@ -32,9 +32,16 @@
 	</div>
 
 </div>
-
 @section('scripts')
 	@parent
+	<style>
+		.text-primary-site {
+			color: var(--primary);
+		}
+		.bg-primary-site {
+			background-color: var(--primary);
+		}
+	</style>
 	<script type="text/javascript">
 		
 		/*

@@ -1407,6 +1407,10 @@ return [
       [
         "label" => "Slider::Slider",
         "value" => "Modules\Slider\Repositories\SlideRepository"
+      ],
+      [
+        "label" => "Icommerce::Manufacturer",
+        "value" => "Modules\Icommerce\Repositories\ManufacturerRepository"
       ]
     ],
     "childBlocks" => [
@@ -1430,6 +1434,13 @@ return [
         "isTranslatable" => true,
         "props" => [
           "label" => "Subtitulo",
+        ]
+      ],
+      "owlTitleUrl" => [
+        "name" => "owlTitleUrl",
+        "type" => "input",
+        "props" => [
+          "label" => "Url (Titulo)"
         ]
       ],
     ],
@@ -1751,13 +1762,6 @@ return [
             "type" => "input",
             "props" => [
               "label" => "Icon (Titulo)"
-            ]
-          ],
-          "owlTitleUrl" => [
-            "name" => "owlTitleUrl",
-            "type" => "input",
-            "props" => [
-              "label" => "Url (Titulo)"
             ]
           ],
           "owlTitleTarget" => [
@@ -2827,6 +2831,10 @@ return [
         "label" => "Paginas",
         "value" => "Modules\Page\Repositories\PageRepository"
       ],
+      [
+        "label" => "Icommerce::Manufacturer",
+        "value" => "Modules\Icommerce\Repositories\ManufacturerRepository"
+      ]
     ],
     "childBlocks" => [
       "itemComponentAttributes" => "isite::item-list",
@@ -2851,6 +2859,13 @@ return [
           "label" => "Subtitulo",
         ]
       ],
+      "titleUrl" => [
+        "name" => "titleUrl",
+        "type" => "input",
+        "props" => [
+          "label" => "Url (Titulo)"
+        ]
+      ],
     ],
     "attributes" => [
       "general" => [
@@ -2866,12 +2881,9 @@ return [
           "layout" => [
             "name" => "layout",
             "value" => "lists-layout-5",
-            "type" => "select",
+            "type" => "input",
             "props" => [
               "label" => "layout",
-              "options" => [
-                ["label" => "lists-layout-5", "value" => "lists-layout-5"],
-              ]
             ]
           ],
           "class" => [
@@ -2883,6 +2895,15 @@ return [
               "label" => "Clases General",
             ]
           ],
+          "itemRow" => [
+            "name" => "itemRow",
+            "value" => "row",
+            "type" => "input",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Fila de los Elementos",
+            ]
+          ],
           "columns" => [
             "name" => "columns",
             "value" => "",
@@ -2890,6 +2911,84 @@ return [
             "columns" => "col-12",
             "props" => [
               "label" => "Columnas",
+            ]
+          ],
+          "orderColumnMain" => [
+            "name" => "orderColumnMain",
+            "value" => "0",
+            "type" => "select",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Orden de Columnas (Layout 4)",
+              "options" => [
+                ["label" => "Columna 1", "value" => "0"],
+                ["label" => "Columna 2", "value" => "1"],
+              ]
+            ],
+            "help" => [
+              "description" => "Aplica solo para al layout 4",
+            ]
+          ],
+          "columnLeft" => [
+            "name" => "columnLeft",
+            "value" => "col-lg-8",
+            "type" => "input",
+            "props" => [
+              "label" => "Columna Izquierda (Layout 4)",
+            ],
+            "help" => [
+              "description" => "Aplica solo para al layout 4",
+            ]
+          ],
+          "columnRight" => [
+            "name" => "columnRight",
+            "value" => "col-lg-4",
+            "type" => "input",
+            "props" => [
+              "label" => "Columna Derecha (Layout 4)",
+            ],
+            "help" => [
+              "description" => "Aplica solo para al layout 4",
+            ]
+          ],
+          "listExtra" => [
+            "name" => "listExtra",
+            "type" => "input",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Fila de las lista (Layout 4)",
+            ],
+            "help" => [
+              "description" => "Aplica solo para al layout 4",
+            ]
+          ],
+          "listExtraItemColumn" => [
+            "name" => "listExtraItemColumn",
+            "value" => "mb-3",
+            "type" => "input",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Columnas de la lista (Layout 4)",
+            ],
+            "help" => [
+              "description" => "Aplica solo para al layout 4",
+            ]
+          ],
+          "itemComponentAttributesMain" => [
+            "name" => "itemComponentAttributesMain",
+            "value" => [
+              'withCreatedDate' => true,
+              'withSummary' => false,
+              'layout' => 'item-list-layout-6',
+              'imageAspect' => '4/3',
+              'titleColor' => 'text-dark',
+              'createdDateColor' => 'text-light',
+              'formatCreatedDate' => 'd \d\e M, Y',
+              'titleHeight' => 'auto'],
+            "type" => "json",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Atributos items (Principal)"
             ]
           ],
         ]
@@ -2985,13 +3084,6 @@ return [
               "label" => "Icon (Titulo)"
             ]
           ],
-          "titleUrl" => [
-            "name" => "titleUrl",
-            "type" => "input",
-            "props" => [
-              "label" => "Url (Titulo)"
-            ]
-          ],
           "titleTarget" => [
             "name" => "titleTarget",
             "value" => "_self",
@@ -3075,6 +3167,24 @@ return [
             "columns" => "col-12",
             "props" => [
               "label" => "Configuración de Línea",
+            ]
+          ],
+          "titleRow" => [
+            "name" => "titleRow",
+            "value" => "row",
+            "type" => "input",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Fila",
+            ]
+          ],
+          "titleColumn" => [
+            "name" => "titleColumn",
+            "value" => "col-12",
+            "type" => "input",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Columna",
             ]
           ],
         ]

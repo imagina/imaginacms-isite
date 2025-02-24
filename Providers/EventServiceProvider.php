@@ -10,6 +10,7 @@ use Modules\Isite\Events\Handlers\CreateOrganizationBySuscription;
 use Modules\Isite\Events\Handlers\NotifyIsRunningEnds;
 use Modules\Isite\Events\Handlers\SetMaintenanceMode;
 use Modules\Isite\Events\OrganizationWasUpdated;
+use Modules\Isite\Events\Handlers\SendEmailOrganization;
 
 class EventServiceProvider extends ServiceProvider
 {

@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Route;
 
 if (!function_exists('alternate')) {
 
@@ -172,11 +173,16 @@ if (!function_exists('setLocaleInUrl')) {
 
   function setLocaleInUrl($locale)
   {
-    if (url()->current() == config("app.url")) {
-      return LaravelLocalization::getLocalizedURL($locale);
-    } else {
-      return url()->current() . '?' . http_build_query(['lang' => $locale]);
+    //Don't allow click at the same locale button
+    if ($locale == locale()) return null;
+    //Instance the default locale url
+    $localeUrl = url()->current() . '?' . http_build_query(['lang' => $locale]);
+    //Validate if it's homepage change de localUrl
+    if (str_contains(Route::currentRouteName(), 'homepage')) {
+      $localeUrl = LaravelLocalization::getLocalizedURL($locale);
     }
+    //Response
+    return $localeUrl;
   }
 
 }
@@ -220,6 +226,7 @@ if (!function_exists('validateLocaleFromUrl')) {
     }
 
     $result["locale"] = $locale;
+
     return $result;
 
   }
@@ -455,5 +462,40 @@ if (!function_exists('humanizeDuration')) {
     return ($days > 0 ? $days . ' ' . trans('isite::isite.days') . ' ' : '') .
       ($hours > 0 ? $hours . ' ' . trans('isite::isite.hours') . ' ' : '') .
       ($minutes > 0 ? $minutes . ' ' . trans('isite::isite.minutes') : '');
+  }
+}
+
+if (!function_exists('convertMinutesToHumanReadable')) {
+  function convertMinutesToHumanReadable($minutes)
+  {
+    if (!$minutes) return 0;
+    if ($minutes < 60) {
+      return $minutes . ' ' . trans('isite::isite.minutes');
+    }
+
+    $weeks = floor($minutes / (60 * 24 * 7));
+    $days = floor(($minutes % (60 * 24 * 7)) / (60 * 24));
+    $hours = floor(($minutes % (60 * 24)) / 60);
+    $remainingMinutes = $minutes % 60;
+
+    $result = '';
+
+    if ($weeks > 0) {
+      $result .= $weeks . ' ' . trans('isite::isite.weeks') . ' ';
+    }
+
+    if ($days > 0) {
+      $result .= $days . ' ' . trans('isite::isite.days') . ' ';
+    }
+
+    if ($hours > 0) {
+      $result .= $hours . ' ' . trans('isite::isite.hours') . ' ';
+    }
+
+    if ($remainingMinutes > 0) {
+      $result .= trans('isite::isite.and') . ' ' . $remainingMinutes . ' ' . trans('isite::isite.minutes');
+    }
+
+    return $result;
   }
 }

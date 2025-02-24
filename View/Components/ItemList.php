@@ -270,7 +270,7 @@ class ItemList extends Component
     $this->view = $itemComponentView ?? $this->view;
     $this->target = $itemComponentTarget ?? $target ?? "_self";
     $this->withViewMoreButton = $withViewMoreButton;
-    $this->viewMoreButtonLabel = $viewMoreButtonLabel;
+    $this->viewMoreButtonLabel =  strlen(trim($viewMoreButtonLabel ?? "")) ? $viewMoreButtonLabel : "isite::common.menu.viewMore";
     $this->withCreatedDate = $withCreatedDate;
     $this->withUser = $withUser;
     $this->formatCreatedDate = $formatCreatedDate;
