@@ -1,4 +1,5 @@
 <div class="load-more-button mx-auto">
+  <div id="load-more-loading" class="my-4 loader" style="display: none;"></div>
 
 	@if($showBtnLoadMore && $pagination["type"]=="loadMore")
   		<a wire:click="loadMore" class="btn btn-primary btn-load-more">{{trans('isite::frontend.buttons.load more')}}</a>
@@ -12,9 +13,9 @@
 @section('scripts')
 	@parent
 	<script type="text/javascript">
-		
+
 	    jQuery(document).ready(function($) {
-	    	
+
 	    	//console.warn("============ INITTT LOAD MORE BUTTONNNNN")
 
 	    	function htmlToElements(html) {
@@ -24,7 +25,8 @@
 			}
 
 		    window.addEventListener('items-load-more-button', event => {
-		    	
+          document.getElementById('load-more-loading').style.display = 'none';
+
 		    	// Bricklayer needed
 		    	@if($itemListLayout=="masonry")
 			    	var rows = htmlToElements(event.detail.newHtml);
@@ -42,7 +44,7 @@
 				@if($pagination['type']=="infiniteScroll")
 					$("#inputInfiniteStatus").val(false)
 				@endif
-				
+
 		    });
 
 		    /*
@@ -53,11 +55,11 @@
 		    	//console.warn("============ ES INFINITE")
 
 		    	let itemListPos = $(".{{$itemMainClass}}-list").offset().top;
-		    	
+
 			   	window.onscroll = function(ev) {
 
 			   		//console.warn("SCROLLLLLLL");
-			   		
+
 			   		var inputShow = $("#inputShowBtnLoadMore").val();
 			   		var inputInfinite = $("#inputInfiniteStatus").val();
 
@@ -69,7 +71,7 @@
 					* infiniteStatus == false = Request is not executting
 			   		*/
 			   		if(inputShow=="true" && inputInfinite=="false"){
-			   			
+
 			   			/*
 			   			* innerHeight = Altura en pix del viewport
 			   			* scrollY = Número de píxeles, desplazados mediante el scroll vertical.
@@ -83,6 +85,7 @@
 			   			//console.warn("currentHeight: "+currentHeight)
 
 				        if (currentPos >= currentHeight) {
+                  document.getElementById('load-more-loading').style.display = 'block';
 
 				        	//console.warn("EMIT LOAD MOREEEEEEEEE ")
 
@@ -91,11 +94,11 @@
 				        }
 				    }
 			    };
-				
+
 			}
-		   
+
 		});
 
 	</script>
 
-@stop				
+@stop
