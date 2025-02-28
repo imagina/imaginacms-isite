@@ -25,6 +25,7 @@
 			}
 
 		    window.addEventListener('items-load-more-button', event => {
+          if (typeof window.reinitializeNewSliders === "function") reinitializeNewSliders()
           document.getElementById('load-more-loading').style.display = 'none';
 
 		    	// Bricklayer needed
