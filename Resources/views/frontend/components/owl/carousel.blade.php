@@ -229,7 +229,7 @@
       });
     }
 
-    function refreshOwl(){
+    function refreshOwl{{$id}}(){
 
       createOWL{{$id}}();
 
@@ -244,19 +244,19 @@
     }
 
     // Function to check if DOM is ready and initialize OWL
-    function initOWL() {
+    function initOWL{{$id}}() {
       createOWL{{$id}}();
 
       @if($nav && $navPosition=="center")
-      window.addEventListener('owlRefreshed', refreshOwl())
-      refreshOwl();
+      window.addEventListener('owlRefreshed', refreshOwl{{$id}}())
+      refreshOwl{{$id}}();
       @endif
     }
 
     if (document.readyState != 'complete') {
-      document.addEventListener('DOMContentLoaded', initOWL);
+      document.addEventListener('DOMContentLoaded', initOWL{{$id}});
     } else {
-      initOWL(); // DOM is already loaded, initialize immediately
+      initOWL{{$id}}(); // DOM is already loaded, initialize immediately
     }
   </script>
 
