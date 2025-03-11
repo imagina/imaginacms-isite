@@ -121,11 +121,18 @@
                               @php($cont=$cont+intval($itemComponentAttributes['itemDelayIn']))
                           @endif
                       @endif
-                      @if($repository=='Modules\Slider\Repositories\SlideApiRepository' || $repository=='Modules\Slider\Repositories\SlideRepository')
-                         @php($itemComponentAttributes["viewMoreButtonLabel"]=$items[$x + $j]->caption)
-                         @php($itemComponentAttributes["target"]=$items[$x + $j]->target)
+                      @if($typeComponent && !empty($items[$x + $j]->code_ads))
+                        <div class="banner-{{$items[$x + $j]->id}}">
+                          {!! $items[$x + $j]->code_ads !!}
+                        </div>
+                      @else
+                        @if($typeComponent)
+                          @php($itemComponentAttributes["viewMoreButtonLabel"]=$items[$x + $j]->caption)
+                          @php($itemComponentAttributes["target"]=$items[$x + $j]->target)
+                        @endif
+
+                        @include("isite::frontend.partials.item",["item" => $items[$x + $j], "position" => $x + $j])
                       @endif
-                      @include("isite::frontend.partials.item",["item" => $items[$x + $j], "position" => $x + $j])
 
                       @php($j++)
                     @endwhile
@@ -221,11 +228,11 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-  
+
       function refreshOwl(){
 
           createOWL{{$id}}();
-      
+
           let sizeButton = document.querySelector('[id="{{$id}}"] .prevBtn');
           let width = (sizeButton.offsetWidth) + 2;
           let wrapper = document.querySelector('[id="{{$id}}"] .wrapper');
@@ -237,14 +244,14 @@
       }
 
      createOWL{{$id}}();
-  
+
       @if($nav && $navPosition=="center")
         window.addEventListener('owlRefreshed', refreshOwl())
         refreshOwl();
       @endif
     });
 
-  
+
   </script>
 
 
