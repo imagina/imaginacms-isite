@@ -396,14 +396,14 @@ if (!function_exists('clearResponseCache')) {
 }
 
 if (!function_exists('iconfig')) {
-  function iconfig($configName = null, $byModule = false)
+  function iconfig($configName = null, $byModule = false, $onlyEnableModules = true)
   {
     //Init response
     $response = config("asgard");
 
     if ($configName && strlen($configName)) {
       $modules = app('modules');//Init modules
-      $enabledModules = $modules->allEnabled();//Get all enable modules
+      $enabledModules = $onlyEnableModules ? $modules->allEnabled() : $modules->all();//Get all enable modules
 
       //Get config by name to each module
       if ($byModule) {
