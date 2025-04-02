@@ -222,11 +222,13 @@ return [
     'titleEmail' => 'E-mail',
   ],
   'button' => [
-    'update' => 'Update'
+    'update' => 'Update',
+    'tabSeeAll' => 'See all',
   ],
   'viewErrors' => [
     'message' => 'Sorry, this page is not available.',
     'globe' => 'Try later',
+    'msnAlert' => 'There are no featured categories',
   ],
   'hasUniqueFields' => 'Unable to save the record due to a conflict with another existing record. Please ensure the information provided is unique and try again.'
 ];

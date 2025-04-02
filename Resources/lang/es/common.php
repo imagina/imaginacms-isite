@@ -251,11 +251,13 @@ return [
     ],
   ],
   'button' => [
-    'update' => 'Actualizar'
+    'update' => 'Actualizar',
+    'tabSeeAll' => 'Ver todos',
   ],
   'viewErrors' => [
     'message' => 'Lo sentimos, esta página no esta disponible.',
     'globe' => 'Intenta más adelante',
+    'msnAlert' => 'No existen categorias destacadas',
   ],
   'hasUniqueFields' => 'No se puede guardar el registro debido a un conflicto con otro registro existente. Asegúrese de que la información proporcionada sea única y vuelva a intentarlo.'
 ];
