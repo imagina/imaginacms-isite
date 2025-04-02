@@ -5196,4 +5196,548 @@ return [
         ],
     ]
   ],
+  "itemsTabs" => [
+    "title" => "Tabs de Items",
+    "systemName" => "isite::items-tabs",
+    "nameSpace" => "Modules\Isite\View\Components\ItemsTabs",
+    "content" => [
+      [
+        "label" => "Post",
+        "value" => "Modules\Iblog\Repositories\PostRepository"
+      ],
+      [
+        "label" => "Productos",
+        "value" => "Modules\Icommerce\Repositories\ProductRepository"
+      ],
+    ],
+    "childBlocks" => [
+      "componentItemComponentAttributes" => "isite::item-list",
+      "productItemComponentAttributes" => "icommerce::components.product-list-item"
+    ],
+    "contentFields" => [
+      "title" => [
+        "name" => "title",
+        "type" => "input",
+        "columns" => "col-12",
+        "isTranslatable" => true,
+        "props" => [
+          "label" => "Titulo",
+        ]
+      ],
+      "subtitle" => [
+        "name" => "subtitle",
+        "type" => "html",
+        "columns" => "col-12",
+        "isTranslatable" => true,
+        "props" => [
+          "label" => "Subtitulo",
+        ]
+      ],
+      "titleUrl" => [
+        "name" => "titleUrl",
+        "type" => "input",
+        "columns" => "col-12",
+        "isTranslatable" => true,
+        "props" => [
+          "label" => "Url del titulo",
+        ]
+      ],
+    ],
+    "attributes" => [
+      "general" => [
+        "title" => "General",
+        "fields" => [
+          "tabsSection" => [
+            "name" => "tabsSection",
+            "columns" => "col-md-12",
+            "type" => "input",
+            "props" => [
+              "label" => "Clase General"
+            ]
+          ],
+          "tabsNav" => [
+            "name" => "tabsNav",
+            "columns" => "col-md-12",
+            "type" => "input",
+            "props" => [
+              "label" => "Clase Cabecera Nav"
+            ]
+          ],
+          "tabsNavStyle" => [
+            "name" => "tabsNavStyle",
+            "type" => "input",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Estilo nav",
+              'type' => 'textarea',
+              'rows' => 2,
+            ]
+          ],
+          "tabsNavLinkStyle" => [
+            "name" => "tabsNavLinkStyle",
+            "type" => "input",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Estilo nav-link",
+              'type' => 'textarea',
+              'rows' => 5,
+            ]
+          ],
+          "tabsNavLinkHoverStyle" => [
+            "name" => "tabsNavLinkHoverStyle",
+            "type" => "input",
+            "props" => [
+              "label" => "Estilo nav-link hover",
+              'type' => 'textarea',
+              'rows' => 5,
+            ]
+          ],
+          "tabsNavLinkActiveStyle" => [
+            "name" => "tabsNavLinkActiveStyle",
+            "type" => "input",
+            "props" => [
+              "label" => "Estilo nav-link active",
+              'type' => 'textarea',
+              'rows' => 5,
+            ]
+          ],
+          "tabsContent" => [
+            "name" => "tabsContent",
+            "value" => "border-top border-bottom border-white",
+            "columns" => "col-md-12",
+            "type" => "input",
+            "props" => [
+              "label" => "Clase Content"
+            ]
+          ],
+          "tabsContentStyle" => [
+            "name" => "tabsContentStyle",
+            "type" => "input",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Estilo tabs content",
+              'type' => 'textarea',
+              'rows' => 4,
+            ]
+          ],
+          "alertClass" => [
+            "name" => "alertClass",
+            "value" => "my-5 w-75 mx-auto",
+            "columns" => "col-md-12",
+            "type" => "input",
+            "props" => [
+              "label" => "Clases Alerta"
+            ]
+          ],
+          "withTabBtn" => [
+            "name" => "withTabBtn",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar Boton por Categoria",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
+          "tabBtnAlign" => [
+            "name" => "tabBtnAlign",
+            "value" => "text-center",
+            "columns" => "col-md-12",
+            "type" => "input",
+            "props" => [
+              "label" => "Alineacion del botón"
+            ]
+          ],
+          "tabBtnClass" => [
+            "name" => "tabBtnClass",
+            "value" => "button-primary px-3 py-2",
+            "columns" => "col-md-12",
+            "type" => "input",
+            "props" => [
+              "label" => "Clases Botón"
+            ]
+          ],
+          "tabBtnStyle" => [
+            "name" => "tabBtnStyle",
+            "type" => "input",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Estilo Botón",
+              'type' => 'textarea',
+              'rows' => 4,
+            ]
+          ],
+          "categoriesOrder" => [
+            "name" => "categoriesOrder",
+            "value" => ["field" => "created_at","way" => "asc"],
+            "type" => "json",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Ordenar Categorias"
+            ]
+          ],
+        ]
+      ],
+      "component" => [
+        "title" => "Componentes",
+        "fields" => [
+          "componentUse" => [
+            "name" => "componentUse",
+            "value" => "item-list",
+            "columns" => "col-12",
+            "type" => "select",
+            "props" => [
+              "label" => "Componentes",
+              "options" => [
+                ["label" => "Lista", "value" => "item-list"],
+                ["label" => "Carousel", "value" => "carousel"],
+              ]
+            ]
+          ],
+          "itemListCol" => [
+            "name" => "itemListCol",
+            "value" => "col-6  col-lg-4 mb-3 ",
+            "columns" => "col-12",
+            "type" => "input",
+            "props" => [
+              "label" => "Columna de elementos (Lista)",
+            ]
+          ],
+          "itemListTake" => [
+            "name" => "itemListTake",
+            "value" => "8",
+            "type" => "input",
+            "props" => [
+              "label" => "Número de elementos (Lista)",
+              "type" => "number",
+            ]
+          ],
+          "itemListPag" => [
+            "name" => "itemListPag",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar Paginación (Lista)",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
+          "itemListPagType" => [
+            "name" => "itemListPagType",
+            "value" => "normal",
+            "type" => "select",
+            "props" => [
+              "label" => "Tipo (Lista)",
+              "options" => [
+                ["label" => "Normal", "value" => "normal"],
+                ["label" => "LoadMore", "value" => "loadMore"],
+                ["label" => "InfiniteScroll", "value" => "infiniteScroll"],
+              ]
+            ]
+          ],
+          "itemListPagStyle" => [
+            "name" => "itemListPagStyle",
+            "value" => ["color" => "var(--dark)",
+              "size" => "12",
+              "width" => "30",
+              "height" => "30",
+              "radius" => "50%",
+              "backgroundActivo" => "var(--primary)",
+              "backgroundInactivo" => "transparent",
+              "colorHover" => "var(--light)",
+              "colorActivo" => "#ffffff",
+              "backgroundHover" => "var(--light)",
+              "margin" => "0"],
+            "type" => "json",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Estilo del Paginador (Lista)"
+            ]
+          ],
+          "itemListPagStyleGeneral" => [
+            "name" => "itemListPagStyleGeneral",
+            "type" => "input",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Estilo libre del Paginador (Lista)",
+              'type' => 'textarea',
+              'rows' => 5,
+            ],
+            "help" => [
+              "description" => "Permite agregar estilos adicionales al paginador",
+            ]
+          ],
+          "componentResponsive" => [
+            "name" => "componentResponsive",
+            "value" => [0 => ["items" => 1], 640 => ["items" => 2], 992 => ["items" => 4]],
+            "type" => "json",
+            'columns' => 'col-12',
+            "props" => [
+              "label" => "Responsive (Carousel)"
+            ]
+          ],
+          "carouselAttr" => [
+            "name" => "carouselAttr",
+            "value" => ["take" => "20",
+              "margin" => "20",
+              "loop" => false,
+              "dots" => false,
+              "dotsStyle" => "dots-linear",
+              "dotsStyleColor" => "primary",
+              "dotsSize" => "",
+              "mediaImage" => "mainimage",
+              "autoplay" => false,
+              "center" => false,
+              "stagePadding" => "0",
+              "container" => false,
+              "nav" => false,
+              "navIcon" => "arrow",
+              "navPosition" => "bottom",
+              "navSizeLabel" => "15",
+              "navColor" => "primary",
+              "navStyleButton" => "",
+              "navSizeButton" => "button-link"
+            ],
+            "type" => "json",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Atributos (Carousel)"
+            ],
+          ],
+        ]
+      ],
+      "text" => [
+        "title" => "Texto (Titulo y Subtitulo)",
+        "fields" => [
+          "textClasses" => [
+            "name" => "textClasses",
+            "columns" => "col-md-12",
+            "type" => "input",
+            "props" => [
+              "label" => "Clase General de los textos"
+            ]
+          ],
+          "textPosition" => [
+            "name" => "textPosition",
+            "value" => "2",
+            "columns" => "col-12",
+            "type" => "select",
+            "props" => [
+              "label" => "Posición de los textos",
+              "options" => [
+                ["label" => "Solo título", "value" => "1"],
+                ["label" => "Solo Subtítulo", "value" => "4"],
+                ["label" => "Título con descripción abajo", "value" => "2"],
+                ["label" => "Título abajo con descripción arriba", "value" => "3"],
+
+              ]
+            ]
+          ],
+          "textAlign" => [
+            "name" => "textAlign",
+            "columns" => "col-12",
+            "type" => "select",
+            "props" => [
+              "label" => "Alineación",
+              "options" => $vAttributes["align"]
+            ]
+          ],
+          "textVineta" => [
+            "name" => "textVineta",
+            "type" => "input",
+            "props" => [
+              "label" => "Icono"
+            ]
+          ],
+          "textVinetaColorClass" => [
+            "name" => "textVinetaColorClass",
+            "type" => "select",
+            "props" => [
+              "label" => "Color icon (Clases)",
+              "options" => $vAttributes["textColors"]
+            ]
+          ],
+          "textVinetaColor" => [
+            "name" => "textVinetaColor",
+            "type" => "inputColor",
+            "props" => [
+              "label" => "Color icon",
+            ],
+            "help" => [
+              "description" => "Selecciona el color custom en Color icon Class para activarlo",
+            ]
+          ],
+          "textVinetaPosition" => [
+            "name" => "textVinetaPosition",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Posición del icono",
+              "options" => [
+                ["label" => "Sobre el titulo", "value" => "1"],
+                ["label" => "Debajo del titulo", "value" => "2"],
+                ["label" => "Al lado derecho del titulo", "value" => "3"],
+                ["label" => "Al lado izquierdo del titulo", "value" => "4"],
+                ["label" => "Sobre del subtitulo", "value" => "5"],
+                ["label" => "Debajo del subtitulo", "value" => "6"],
+              ]
+            ]
+          ],
+          "textWithLine" => [
+            "name" => "textWithLine",
+            "columns" => "col-12",
+            "value" => "0",
+            "type" => "select",
+            "props" => [
+              "label" => "Linea",
+              "options" => $vAttributes["titleLine"]
+            ]
+          ],
+          "textLineConfig" => [
+            "name" => "textLineConfig",
+            "value" => ['background' => 'var(--primary)','height' => '2px','width' => '10%','margin' => '0 auto'],
+            "type" => "json",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Configuración de Línea",
+            ]
+          ],
+          "titleClasses" => [
+            "name" => "titleClasses",
+            "type" => "input",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Clases  (Titulo)",
+            ]
+          ],
+          "titleSize" => [
+            "name" => "titleSize",
+            "type" => "input",
+            "props" => [
+              "label" => "Tamaño Fuente (Titulo)",
+            ]
+          ],
+          "titleTransform" => [
+            "name" => "titleTransform",
+            "type" => "select",
+            "props" => [
+              "label" => "Transformar (Titulo)",
+              "options" => $vAttributes["textTransform"]
+            ]
+          ],
+          "titleColorClass" => [
+            "name" => "titleColorClass",
+            "type" => "select",
+            "props" => [
+              "label" => "Color Class  (Titulo)",
+              "options" => $vAttributes["textColors"]
+            ],
+          ],
+          "titleColor" => [
+            "name" => "titleColor",
+            "type" => "input",
+            "props" => [
+              "label" => "Color (Titulo)",
+            ],
+            "help" => [
+              "description" => "Selecciona el color custom en Color Class para activarlo",
+            ]
+          ],
+          "titleWeight" => [
+            "name" => "titleWeight",
+            "type" => "select",
+            "props" => [
+              "label" => "Negrita (Titulo)",
+              "options" => $vAttributes["textWeight"]
+            ]
+          ],
+          "titleLetterSpacing" => [
+            "name" => "titleLetterSpacing",
+            "type" => "input",
+            "props" => [
+              "label" => "Espacio entre letras  (Titulo)",
+              "type" => "number"
+            ]
+          ],
+          "titleShadow" => [
+            "name" => "titleShadow",
+            "type" => "input",
+            "props" => [
+              "label" => "Sombra  (Titulo)",
+            ]
+          ],
+          "titleTarget" => [
+            "name" => "titleTarget",
+            "type" => "select",
+            "props" => [
+              "label" => "Target  (Titulo)",
+              "options" => $vAttributes["target"]
+            ]
+          ],
+          "subtitleClasses" => [
+            "name" => "subtitleClasses",
+            "type" => "input",
+            "columns" => "col-12",
+            "props" => [
+              "label" => "Clases  (Subtitulo)",
+            ]
+          ],
+          "subtitleSize" => [
+            "name" => "subtitleSize",
+            "type" => "input",
+            "props" => [
+              "label" => "Tamaño Fuente (Subtitulo)",
+            ]
+          ],
+          "subtitleTransform" => [
+            "name" => "subtitleTransform",
+            "type" => "select",
+            "props" => [
+              "label" => "Transformar  (Subtitulo)",
+              "options" => $vAttributes["textTransform"]
+            ]
+          ],
+          "subtitleColorClass" => [
+            "name" => "subtitleColorClass",
+            "type" => "select",
+            "props" => [
+              "label" => "Color Class (Subtitulo)",
+              "options" => $vAttributes["textColors"]
+            ]
+          ],
+          "subtitleColor" => [
+            "name" => "subtitleColor",
+            "type" => "input",
+            "props" => [
+              "label" => "Color Custom  (Subtitulo)",
+            ],
+            "help" => [
+              "description" => "Selecciona el color custom en Color Class para activarlo",
+            ]
+          ],
+          "subtitleWeight" => [
+            "name" => "subtitleWeight",
+            "type" => "select",
+            "props" => [
+              "label" => "Negrita  (Subtitulo)",
+              "options" => $vAttributes["textWeight"]
+            ]
+          ],
+          "subtitleLetterSpacing" => [
+            "name" => "subtitleLetterSpacing",
+            "type" => "input",
+            "props" => [
+              "label" => "Espacio entre letras  (Subtitulo)",
+              "type" => "number"
+            ]
+          ],
+          "subtitleShadow" => [
+            "name" => "subtitleShadow",
+            "type" => "input",
+            "props" => [
+              "label" => "Sombra  (Subtitulo)",
+            ]
+          ],
+        ]
+      ],
+    ]
+  ],
 ];
