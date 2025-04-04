@@ -21,15 +21,12 @@ class RegisterModuleService
         if (! isset($module->id)) {
             $module = $moduleRepository->create([
                 'alias' => $moduleAlias,
-                'es' => [
-                    'name' => trans("$moduleAlias::$moduleAlias.name", [], 'es'),
-                ],
-                'en' => [
-                    'name' => trans("$moduleAlias::$moduleAlias.name", [], 'en'),
-                ],
                 'enabled' => true,
                 'priority' => $priority,
             ]);
+
+            $this->createTranslations($module,$moduleAlias);
+
         }
 
         //setting the other columns validating if there are any change to fill it
@@ -45,4 +42,26 @@ class RegisterModuleService
 
         $module->save();
     }
+
+    /**
+     * add translations to the module
+     */
+    private function createTranslations($module,$moduleAlias)
+    {
+
+      $translations = [
+        ['locale' => 'es','name' => trans("$moduleAlias::$moduleAlias.name", [], 'es')],
+        ['locale' => 'en','name' => trans("$moduleAlias::$moduleAlias.name", [], 'en')]
+      ];
+
+      foreach ($translations as $translation) {
+        \DB::table('isite__module_translations')->insert([
+            'name' => $translation['name'],
+            'module_id' => $module->id,
+            'locale' => $translation['locale']
+        ]);
+      }
+
+    }
+
 }
