@@ -73,6 +73,8 @@ class OwlCarousel extends Component
   public $dotsStyleColor;
   public $dotsSize;
   public $typeComponent;
+  public $owlTransition;
+  public  $direction;
 
   /**
    * Create a new component instance.
@@ -97,7 +99,8 @@ class OwlCarousel extends Component
                               $itemComponentNamespace = null, $stagePadding = 0, $owlTitleUrl = null,
                               $owlTitleTarget = "_self", $autoplayTimeout = 5000, $mouseDrag = true, $touchDrag = true,
                               $navOld = false, $owlWithLineTitle = 0, $owlLineTitleConfig = [], $owlTitleClasses = "",
-                              $owlSubtitleClasses = "", $dotsStyleColor = "", $dotsSize = "", $typeComponent = false
+                              $owlSubtitleClasses = "", $dotsStyleColor = "", $dotsSize = "", $typeComponent = false,
+                              $owlTransition = null, $direction = 0
   )
   {
 
@@ -176,6 +179,10 @@ class OwlCarousel extends Component
       $this->navOld = true;
       $this->nav = false;
     }
+      $this->owlTransition = !empty(trim($owlTransition))  &&  is_string(trim($owlTransition))
+        ? explode(",", $owlTransition)
+        : explode(",", "animate__slideInLeft,animate__slideOutRight");
+      $this->direction =  $direction;
   }
 
   private

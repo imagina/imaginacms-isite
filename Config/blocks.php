@@ -1475,6 +1475,34 @@ return [
               "options" => $vAttributes["validation"]
             ]
           ],
+          "direction" => [
+            "name" => "direction",
+            "value" => "0",
+            "type" => "select",
+            "props" => [
+              "label" => "Dirección",
+              "options" => [
+                ["label" => "Izquierda", "value" => "0"],
+                ["label" => "Derecha", "value" => "1"]
+              ],
+            ]
+          ],
+          "owlTransition" => [
+            "name" => "owlTransition",
+            "value" => "",
+            "type" => "input",
+            "columns" => 'col-12',
+            "props" => [
+              "label" => "Animación Para carousel",
+              "type" => "text",
+            ],
+            "help" => [
+              "description" => "ingresa la animación separada por coma (,).
+                La primera es de entrada, y la segunda de salida.
+                ANIMACIONES: https://animate.style.
+                NOTA: Solo funciona con un elemento por transición",
+            ],
+          ],
           "autoplayHoverPause" => [
             "name" => "autoplayHoverPause",
             "value" => "1",

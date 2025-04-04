@@ -6,6 +6,7 @@ return [
         'we found' => 'Encontramos',
         'items' => 'Items',
         'views' => 'Vistas',
+        'my_account' => 'Mi Cuenta'
     ],
     'sort' => [
         'title' => 'Ordenar Por',
