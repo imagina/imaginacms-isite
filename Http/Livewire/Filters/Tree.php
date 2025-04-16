@@ -173,7 +173,7 @@ class Tree extends Component
       $itemSelected = $this->itemSelected;
       switch ($this->renderMode) {
         case 'allFamilyOfTheSelectedNode':
-          $this->items = Cache::store(config("cache.default"))->tags(Str::lower("$moduleName.$entityPlural"))->remember('isite_module_filter_tree::allFamilyOfTheSelectedNode'. Str::lower($this->entityClass).( isset(tenant()->domain) ? tenant()->domain : request()->getHost() ?? ""), 60*60*24*30, function () use ($itemSelected,$with) {
+          $this->items = Cache::store(config("cache.default"))->tags(Str::lower("$moduleName.$entityPlural"))->remember('isite_module_filter_tree::allFamilyOfTheSelectedNode'. Str::lower($this->entityClass).( isset(tenant()->domain) ? tenant()->domain : request()->getHost() ?? "").$itemSelected->id, 60*60*24*30, function () use ($itemSelected,$with) {
   
             $ancestors = $this->entityClass::whereAncestorOf($itemSelected->id, true)->with($with)->get()->where("status", 1);
             $rootItem = $ancestors->whereNull('parent_id')->first();
@@ -183,7 +183,7 @@ class Tree extends Component
           break;
         
         case 'onlyLeftAndRightOfTheSelectedNode':
-          $this->items = Cache::store(config("cache.default"))->tags(Str::lower("$moduleName.$entityPlural"))->remember('isite_module_filter_tree::onlyLeftAndRightOfTheSelectedNode'. Str::lower($this->entityClass).( isset(tenant()->domain) ? tenant()->domain : request()->getHost() ?? ""), 60*60*24*30, function () use ($itemSelected,$with) {
+          $this->items = Cache::store(config("cache.default"))->tags(Str::lower("$moduleName.$entityPlural"))->remember('isite_module_filter_tree::onlyLeftAndRightOfTheSelectedNode'. Str::lower($this->entityClass).( isset(tenant()->domain) ? tenant()->domain : request()->getHost() ?? "").$itemSelected->id, 60*60*24*30, function () use ($itemSelected,$with) {
   
             $ancestors = $this->entityClass::whereAncestorOf($itemSelected->id)->with($with)->get()->where("status", 1);
             $descendants = $result = $this->entityClass::whereDescendantOf($itemSelected->id, 'and', false, true)->with(["translations", "files"])->get()->where("status", 1);
