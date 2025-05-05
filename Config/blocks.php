@@ -3754,6 +3754,7 @@ return [
               "options" => [
                 ["label" => "Sin repositorio", "value" => ""],
                 ["label" => "Icommerce Category", "value" => "Modules\Icommerce\Repositories\CategoryRepository"],
+                ["label" => "Iad Category", "value" => "Modules\Iad\Repositories\CategoryRepository"],
                 ["label" => "Iblog Category", "value" => "Modules\Iblog\Repositories\CategoryRepository"]
               ]
             ]
