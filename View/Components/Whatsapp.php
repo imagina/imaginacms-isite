@@ -106,6 +106,7 @@ class Whatsapp extends Component
       'include' => [],
       'filter' => [
         'field' => 'calling_code',
+        'indexAll' => true
       ],
     ];
 
