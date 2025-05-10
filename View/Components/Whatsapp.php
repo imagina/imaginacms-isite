@@ -106,6 +106,7 @@ class Whatsapp extends Component
       'include' => [],
       'filter' => [
         'field' => 'calling_code',
+        'indexAll' => true
       ],
     ];
 
@@ -122,8 +123,8 @@ class Whatsapp extends Component
           $item->country = $this->country = app('Modules\\Ilocations\\Repositories\\CountryRepository')
             ->getItem($item->callingCode, json_decode(json_encode($countryParams)));
         }
-        //dd($item);
-        $item->formattedNumber = ($this->showCountry ? "({$item->country->iso_2}) " : "") .
+        $countryIso = isset($item->country) ? $item->country->iso_2 : '';
+        $item->formattedNumber = ($this->showCountry ? "({$countryIso}) " : "") .
           ($this->showNumberCountry ? "({$item->callingCode}) " : "") .
           $this->formatNumber($item->number, $this->mask);
         $items[] = $item;

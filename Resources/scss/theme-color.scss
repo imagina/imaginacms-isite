@@ -9,6 +9,8 @@ $theme-color: map-merge(
             "warning":    var(--warning),
             "danger":     var(--danger),
             "light":      var(--light),
+            "tertiary":   var(--tertiary),
+            "quaternary": var(--quaternary),
     ),
     $theme-color
 );

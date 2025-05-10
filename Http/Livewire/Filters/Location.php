@@ -47,6 +47,7 @@ class Location extends Component
   public $options;
   public $selectedOption;
   public $selectedOptionName = '';
+  public $reloadPage;
 
   /*
   * Runs once, immediately after the component is instantiated,
@@ -55,7 +56,7 @@ class Location extends Component
   public function mount($title, $name, $repository, $emitTo, $repoAction, $repoAttribute, $listener, $status = true,
                         $isExpanded = true, $type = "location", $repoMethod = 'getItemsBy',
                         $layout = 'location-layout-1', $classes = 'col-12', $params = [], $radio = [],
-                        $startGeolocation = false, $findByLngLat = false)
+                        $startGeolocation = false, $findByLngLat = false, $reloadPage = null)
   {
 
     $this->title = trans($title);
@@ -75,6 +76,7 @@ class Location extends Component
     $this->radio = $radio;
     $this->startGeolocation = $startGeolocation;
     $this->findByLngLat = $findByLngLat;
+    $this->reloadPage = $reloadPage;
 
     $this->initValues();
   }
@@ -92,7 +94,7 @@ class Location extends Component
 
     /* Init Values to type 2*/
     if ($this->type == 'location-2') {
-      $this->options = $this->cityRepository()->getItemsBy();
+      $this->options = $this->cityRepository()->getItemsBy([]);
 
       $optionId = request()->session()->get('cityIdSelected');
 
@@ -185,6 +187,11 @@ class Location extends Component
       ],
       'eventUpdateItemsList' => $this->startGeolocation,
     ]);
+
+    if ($this->reloadPage) {
+      $this->dispatchBrowserEvent('reload-page');
+    }
+
   }
 
   /*

@@ -10,7 +10,9 @@ return [
         ["label" => "Info", "value" => "info"],
         ["label" => "Light", "value" => "light"],
         ["label" => "Dark", "value" => "dark"],
-        ["label" => "White", "value" => "white"]
+        ["label" => "White", "value" => "white"],
+        ["label" => "Tertiary", "value" => "tertiary"],
+        ["label" => "Quaternarye", "value" => "quaternary"]
     ],
     "opacityColor" => [
         ["label" => "Custom", "value" => "opacity-custom"],
@@ -29,6 +31,8 @@ return [
         ["label" => "Light", "value" => "text-light"],
         ["label" => "White", "value" => "text-white"],
         ["label" => "Success", "value" => "text-success"],
+        ["label" => "Tertiary", "value" => "text-tertiary"],
+        ["label" => "Quaternary", "value" => "text-quaternary"],
         ["label" => "Custom", "value" => "text-custom"]
     ],
     "marginB" => [
@@ -423,6 +427,8 @@ return [
         ["label" => "Light", "value" => "var(--light)"],
         ["label" => "White", "value" => "var(--white)"],
         ["label" => "Success", "value" => "var(--success)"],
+        ["label" => "Tertiary", "value" => "var(--tertiary)"],
+        ["label" => "Quaternary", "value" => "var(--quaternary)"],
         ["label" => "Custom", "value" => "text-custom"]
     ],
 ];
