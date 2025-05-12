@@ -94,7 +94,10 @@ class Location extends Component
 
     /* Init Values to type 2*/
     if ($this->type == 'location-2') {
-      $this->options = $this->cityRepository()->getItemsBy([]);
+      $params = [
+        'filter' => [],
+      ];
+      $this->options = $this->cityRepository()->getItemsBy(json_decode(json_encode($params)));
 
       $optionId = request()->session()->get('cityIdSelected');
 
