@@ -16,26 +16,26 @@
   --}}
   <link rel="shortcut icon" href="{{Setting::get('isite::favicon',null,null,true)}}">
   <link rel="canonical" href="{{canonical_url()}}"/>
-  
+
   @if(isset(tenant()->id))
     <link rel="stylesheet" as="style"  href="{{tenant()->url.'/themes/'.strtolower(setting('core::template', null, 'ImaginaTheme')).'/'.'css/app.css?v='.setting('isite::appVersion')}}" />
-    
+
     <script src="{{tenant()->url.'/themes/'.strtolower(setting('core::template', null, 'ImaginaTheme')).'/'.'js/app.js?v='.setting('isite::appVersion')}}" ></script>
   @else
     {!! Theme::style('css/app.css?v='.setting('isite::appVersion')) !!}
-    
+
     {!! Theme::script('js/app.js?v='.setting('isite::appVersion')) !!}
-  
+
   @endif
-  
+
   @stack('css-stack')
   @livewireStyles
-  
+
   {{-- Custom Head JS --}}
   @if(Setting::has('isite::headerCustomJs'))
     {!! Setting::get('isite::headerCustomJs') !!}
   @endif
-  
+
   {{--Fontawesome--}}
   <script src="https://kit.fontawesome.com/56d3d5dce0.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/js/v4-shims.min.js" integrity="sha512-pd9YFLsGdZIRG1ChLLdpxgGT+xR7rVjsHqm6RP0toUadPB4XZZ7LlqzX3IhnpMd2Cb8b2s8yVFwY21epgr84qw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -60,6 +60,17 @@
     type="header"
     alternativeView="partials.header"
   />
+
+  <script>
+    function initTooltips() {
+      $('[data-toggle="tooltip"]').tooltip('dispose').tooltip(); // Reinicia tooltips
+    }
+    // Ejecutar en diferentes eventos
+    $(document).ready(initTooltips);
+    document.addEventListener("livewire:load", initTooltips);
+    document.addEventListener("livewire:update", initTooltips);
+  </script>
+
   @yield('content')
 {{--  @php--}}
 {{--    $footer = "partials.footer";--}}
@@ -80,11 +91,11 @@
 
 @if(isset(tenant()->id))
   <link href="{{tenant()->url.'/themes/'.strtolower(setting('core::template', null, 'ImaginaTheme')).'/'.'css/secondary.css?v='.setting('isite::appVersion')}}" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-  
+
   <script src="{{tenant()->url.'/themes/'.strtolower(setting('core::template', null, 'ImaginaTheme')).'/'.'js/secondary.js?v='.setting('isite::appVersion')}}" defer="true"></script>
 
 @else
-  
+
   {!! Theme::style('css/secondary.css?v='.setting('isite::appVersion'),["rel" => "preload", "as" => "style", "onload" => "this.onload=null;this.rel='stylesheet'"]) !!}
   {!! Theme::script('js/secondary.js?v='.setting('isite::appVersion'),["defer" => true]) !!}
 
@@ -93,6 +104,8 @@
 @if(!is_null(Setting::get('isite::api-maps',null,null,true)))
   <script src="https://maps.googleapis.com/maps/api/js?key={!! Setting::get('isite::api-maps',null,null,true) !!}&libraries=places"></script>
 @endif
+
+
 
 
 @livewireScripts
