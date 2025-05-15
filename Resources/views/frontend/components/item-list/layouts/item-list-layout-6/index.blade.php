@@ -388,7 +388,10 @@
     }
     @endif
 
-    @if( $item->mediaFiles()->{$mediaImage}->isVideo)
+    @if(method_exists($item, 'mediaFiles') &&
+    isset($item->mediaFiles()->{$mediaImage}) &&
+    method_exists($item->mediaFiles()->{$mediaImage}, 'isVideo') &&
+    $item->mediaFiles()->{$mediaImage}->isVideo()))
         @if($withImageOpacity && ($imageOpacityColor=='opacity-custom'))
         @if(!$imageOpacityHover)
             #{{$id}}  .item-image  {

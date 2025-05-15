@@ -493,7 +493,10 @@
     }
     @endif
 
-    @if( $item->mediaFiles()->{$mediaImage}->isVideo)
+    @if(method_exists($item, 'mediaFiles') &&
+    isset($item->mediaFiles()->{$mediaImage}) &&
+    method_exists($item->mediaFiles()->{$mediaImage}, 'isVideo') &&
+    $item->mediaFiles()->{$mediaImage}->isVideo()))
         #{{$id}} .item-content > div {
             z-index: 2;
         }

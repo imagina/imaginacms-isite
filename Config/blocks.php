@@ -1411,6 +1411,18 @@ return [
       [
         "label" => "Icommerce::Manufacturer",
         "value" => "Modules\Icommerce\Repositories\ManufacturerRepository"
+      ],
+      [
+        "label" => "Iad::Category",
+        "value" => "Modules\Iad\Repositories\CategoryRepository"
+      ],
+      [
+        "label" => "Iad::Ads",
+        "value" => "Modules\Iad\Repositories\AdRepository"
+      ],
+      [
+        "label" => "Menu::Menu Items",
+        "value" => "Modules\Menu\Repositories\MenuItemRepository"
       ]
     ],
     "childBlocks" => [
@@ -1914,12 +1926,20 @@ return [
     "nameSpace" => "livewire",
     "content" => [
       [
-        "label" => "Post",
+        "label" => "Iblog::Post",
         "value" => "Modules\Iblog\Entities\Post"
       ],
       [
-        "label" => "Category",
+        "label" => "Iblog::Category",
         "value" => "Modules\Iblog\Entities\Category"
+      ],
+      [
+        "label" => "Iad::Category",
+        "value" => "Modules\Iad\Entities\Category"
+      ],
+      [
+        "label" => "Iad::ad",
+        "value" => "Modules\Iad\Entities\ad"
       ]
     ],
     "contentFields" => [
