@@ -59,6 +59,7 @@
         map = new google.maps.Map(document.getElementById("{{$mapId}}"), {
           zoom: {{$zoom}},
           center: position,
+          streetViewControl: false,
         });
 
         //Init locations | By default always added one element not necessary to maps livewire component
@@ -271,7 +272,7 @@
 
         if(components.locality) { city = components.locality; }
 
-        if(!city) { 
+        if(!city) {
           if(typeof components.administrative_area_level_2 !== 'undefined'){
             //A pesar de estar en el mismo lugar, no retornaba la ciudad en 'locality' pero en level 2 si
             city = components.administrative_area_level_2;
