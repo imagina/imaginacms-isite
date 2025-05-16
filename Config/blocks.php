@@ -30,6 +30,16 @@ return [
         ]
       ],
     ],
+    "contentFields" => [
+      "viewMoreButtonLabel" => [
+        "name" => "viewMoreButtonLabel",
+        "type" => "input",
+        "isTranslatable" => true,
+        "props" => [
+          "label" => "Texto del botón",
+        ],
+      ],
+    ],
     "attributes" => [
       "general" => [
         "title" => "General",
@@ -922,12 +932,15 @@ return [
               ]
             ]
           ],
-          "viewMoreButtonLabel" => [
-            "name" => "viewMoreButtonLabel",
+          "viewMoreButtonLabelByITem" => [
+            "name" => "viewMoreButtonLabelByITem",
             "type" => "input",
             "props" => [
-              "label" => "Texto del botón",
-            ]
+              "label" => "Campo Falso para botón",
+            ],
+            "help" => [
+              "description" => "Aqui puedes Colocar el campo falso",
+            ],
           ],
           "buttonShadow" => [
             "name" => "buttonShadow",

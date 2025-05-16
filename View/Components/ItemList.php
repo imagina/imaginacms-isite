@@ -13,6 +13,7 @@ class ItemList extends Component
   public $view;
   public $withViewMoreButton;
   public $viewMoreButtonLabel;
+  public $viewMoreButtonLabelByITem;
   public $withCreatedDate;
   public $withCategory;
   public $withUser;
@@ -257,7 +258,7 @@ class ItemList extends Component
                               $itemDelay = null, $itemDelayIn = 0, $itemOffset = null, $itemEasing = null,
                               $itemOne = false, $itemMirror = false, $itemAnimate = "", $titleColorCustom = "",
                               $summaryColorCustom = "", $categoryColorCustom = "", $createdDateColorCustom = "",
-                              $userColorCustom = "", $withUrl = true
+                              $userColorCustom = "", $withUrl = true, $viewMoreButtonLabelByITem = ''
   )
   {
     $this->imageAspectMobile = $imageAspectMobile;
@@ -270,7 +271,8 @@ class ItemList extends Component
     $this->view = $itemComponentView ?? $this->view;
     $this->target = $itemComponentTarget ?? $target ?? "_self";
     $this->withViewMoreButton = $withViewMoreButton;
-    $this->viewMoreButtonLabel =  strlen(trim($viewMoreButtonLabel ?? "")) ? $viewMoreButtonLabel : "isite::common.menu.viewMore";
+    $this->viewMoreButtonLabel =  strlen(trim($viewMoreButtonLabel ?? "")) ? $viewMoreButtonLabel : trans("isite::common.menu.viewMore");
+    $this->viewMoreButtonLabelByITem =  $viewMoreButtonLabelByITem;
     $this->withCreatedDate = $withCreatedDate;
     $this->withUser = $withUser;
     $this->formatCreatedDate = $formatCreatedDate;

@@ -101,7 +101,16 @@
                 @if($viewMoreButtonLabel=="")
                     @php $labelExist= false; @endphp
                 @else
-                    @php $labelExist= true; @endphp
+                  @php
+                    $labelExist= true;
+                    $labelButton= $viewMoreButtonLabel;
+
+                    if(isset($viewMoreButtonLabelByITem)){
+                      if(isset($item->options) && isset($item->options->{$viewMoreButtonLabelByITem}) && !empty($item->options->{$viewMoreButtonLabelByITem})){
+                          $labelButton = $item->options->{$viewMoreButtonLabelByITem};
+                     }
+                    }
+                  @endphp
                 @endif
             <x-isite::button :style="$buttonLayout"
                              :buttonClasses="$buttonSize.' view-more-button '.$buttonLayout.' '.$buttonMarginT.' '.$buttonMarginB.' '.$contentMarginInsideX.' '.$buttonItemClasses"
@@ -111,7 +120,7 @@
                              :iconClass="$buttonIcon"
                              :withLabel="$labelExist"
                              :color="$buttonColor"
-                             :label="trans($viewMoreButtonLabel)"
+                             label="{{ $labelButton }}"
                              :target="$target"
                              :iconColor="$buttonIconColor"
                              :sizeLabel="$buttonTextSize"
