@@ -471,14 +471,12 @@ class ItemList extends Component
       //In case to show a fake field options example "options.secondaryDescription"
       if (Str::contains($summaryField, 'options')) {
         $summaryField = explode(".", $summaryField);
-
         if (isset($summaryField[1]) && !empty($summaryField[1])) {
-          $options = json_decode(json_encode($item->options));
-          if (!empty($options) && isset($options->{$summaryField[1]}))
-            $this->summary = $options->{$summaryField[1]};
+          if(isset($item->options->{$summaryField[1]})) $this->summary = $item->options->{$summaryField[1]};
+          if(method_exists($item, 'formatFillableToModel')) {
+            $this->summary = $item->getFieldByName($summaryField[1]);
+          }
         }
-      } else {
-        $this->summary = $item->{$summaryField} ?? "";
       }
     } else {
       $this->summary = $item->summary ?? $item->description ?? $item->custom_html ?? $item->body ?? "";
