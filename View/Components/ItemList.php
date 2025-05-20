@@ -271,7 +271,7 @@ class ItemList extends Component
     $this->view = $itemComponentView ?? $this->view;
     $this->target = $itemComponentTarget ?? $target ?? "_self";
     $this->withViewMoreButton = $withViewMoreButton;
-    $this->viewMoreButtonLabel =  strlen(trim($viewMoreButtonLabel ?? "")) ? $viewMoreButtonLabel : trans("isite::common.menu.viewMore");
+    $this->viewMoreButtonLabel = $this->getViewMoreButtonLabel($item,$viewMoreButtonLabel,$viewMoreButtonLabelByITem) ?? trans("isite::common.menu.viewMore");
     $this->viewMoreButtonLabelByITem =  $viewMoreButtonLabelByITem;
     $this->withCreatedDate = $withCreatedDate;
     $this->withUser = $withUser;
@@ -513,6 +513,22 @@ class ItemList extends Component
     } else {
       $this->withCreatedDate = false;
     }
+  }
+
+  // Get label to view more Button
+   public function getViewMoreButtonLabel($item, $viewMoreButtonLabel, $viewMoreButtonLabelByITem)
+  {
+    $label = null;
+
+    if ( !empty($viewMoreButtonLabelByITem) ) {
+      $label = $item->options->{$viewMoreButtonLabelByITem} ?? null;
+
+      if (empty($label) && method_exists($item, 'formatFillableToModel')) {
+        $label = $item->getFieldByName($viewMoreButtonLabelByITem);
+      }
+    }
+
+    return trans($label ?: ($viewMoreButtonLabel ?: 'isite::common.menu.viewMore'));
   }
 
   public function radiusType($radius, $type)

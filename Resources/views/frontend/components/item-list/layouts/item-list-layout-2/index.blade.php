@@ -79,13 +79,7 @@
               @if(isset($item->url) && !empty($item->url))
                 <a href="{{$item->url}}" class="btn" target="{{$target}}">
                   @endif
-                  @if(isset($viewMoreButtonLabelByITem))
-                    @if(isset($item->options) && isset($item->options->{$viewMoreButtonLabelByITem}) && !empty($item->options->{$viewMoreButtonLabelByITem})){
-                      {!! $item->options->{$viewMoreButtonLabelByITem} !!}
-                    @endif
-                  @else
-                    {{ $viewMoreButtonLabel }}
-                  @endif
+                  {{ $viewMoreButtonLabel }}
                   @if(isset($item->url) && !empty($item->url))
                 </a>
               @endif

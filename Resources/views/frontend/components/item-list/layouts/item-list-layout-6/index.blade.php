@@ -98,20 +98,11 @@
         <div class="col-12 {{$orderClasses["viewMoreButton"] ?? 'order-6'}} item-view-more-button {{$buttonAlign}}">
           @if(isset($item->url) && !empty($item->url))
 
-                @if($viewMoreButtonLabel=="")
-                    @php $labelExist= false; @endphp
-                @else
-                  @php
-                    $labelExist= true;
-                    $labelButton= $viewMoreButtonLabel;
-
-                    if(isset($viewMoreButtonLabelByITem)){
-                      if(isset($item->options) && isset($item->options->{$viewMoreButtonLabelByITem}) && !empty($item->options->{$viewMoreButtonLabelByITem})){
-                          $labelButton = $item->options->{$viewMoreButtonLabelByITem};
-                     }
-                    }
-                  @endphp
-                @endif
+            @if($viewMoreButtonLabel=="")
+              @php $labelExist= false; @endphp
+            @else
+              @php $labelExist= true; @endphp
+            @endif
             <x-isite::button :style="$buttonLayout"
                              :buttonClasses="$buttonSize.' view-more-button '.$buttonLayout.' '.$buttonMarginT.' '.$buttonMarginB.' '.$contentMarginInsideX.' '.$buttonItemClasses"
                              :href="$item->url"
@@ -120,7 +111,7 @@
                              :iconClass="$buttonIcon"
                              :withLabel="$labelExist"
                              :color="$buttonColor"
-                             label="{{ $labelButton }}"
+                             :label="$viewMoreButtonLabel"
                              :target="$target"
                              :iconColor="$buttonIconColor"
                              :sizeLabel="$buttonTextSize"
