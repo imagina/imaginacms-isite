@@ -519,10 +519,10 @@ class ItemList extends Component
     $label = null;
 
     if ( !empty($viewMoreButtonLabelByITem) ) {
-      $label = $item->options->{$viewMoreButtonLabelByITem} ?? null;
+      $label =  method_exists($item, 'formatFillableToModel') ? $item->getFieldByName($viewMoreButtonLabelByITem) : null;
 
-      if (empty($label) && method_exists($item, 'formatFillableToModel')) {
-        $label = $item->getFieldByName($viewMoreButtonLabelByITem);
+      if (empty($label)) {
+        $label = $item->options->{$viewMoreButtonLabelByITem} ?? null;
       }
     }
 
