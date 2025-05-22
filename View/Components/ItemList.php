@@ -141,6 +141,7 @@ class ItemList extends Component
   public $summaryLineHeight;
 
   public $withImage;
+  public $withVideo;
   public $imageWidth;
   public $imageHeight;
   public $imageMaxHeight;
@@ -149,6 +150,7 @@ class ItemList extends Component
 
   public $date;
   public $summary;
+  public $externalVideo;
 
   public $containerActive;
   public $containerType;
@@ -242,7 +244,7 @@ class ItemList extends Component
                               $categoryTextDecoration = "none", $createdDateTextDecoration = "none",
                               $titleAlignVertical = "align-items-start", $numberCharactersTitle = 200, $itemMarginB = "",
                               $contentPaddingLeft = 15, $contentPaddingRight = 15, $summaryLineHeight = 20,
-                              $withImage = true, $imageWidth = 100, $imageAlign = 'left', $imageHeight = '',
+                              $withImage = true, $withVideo =false,$imageWidth = 100, $imageAlign = 'left', $imageHeight = '',
                               $imageMaxHeight = '', $imageMinHeight = '', $summaryField = null, $summaryWithLimit = true,
                               $containerActive = false, $containerType = "container",
                               $containerJustify = "justify-content-center", $containerAlign = "align-items-center",
@@ -258,7 +260,7 @@ class ItemList extends Component
                               $itemDelay = null, $itemDelayIn = 0, $itemOffset = null, $itemEasing = null,
                               $itemOne = false, $itemMirror = false, $itemAnimate = "", $titleColorCustom = "",
                               $summaryColorCustom = "", $categoryColorCustom = "", $createdDateColorCustom = "",
-                              $userColorCustom = "", $withUrl = true, $viewMoreButtonLabelByITem = ''
+                              $userColorCustom = "", $withUrl = true, $viewMoreButtonLabelByITem = '', $externalVideo = ''
   )
   {
     $this->imageAspectMobile = $imageAspectMobile;
@@ -390,6 +392,7 @@ class ItemList extends Component
     $this->summaryLineHeight = $summaryLineHeight;
 
     $this->withImage = $withImage;
+    $this->withVideo = $withVideo;
     $this->imageWidth = $imageWidth;
     $this->imageAlign = $imageAlign;
     $this->imageHeight = $imageHeight;
@@ -510,6 +513,23 @@ class ItemList extends Component
       $this->date = $item->created_at->format($formatCreatedDate);
     } else {
       $this->withCreatedDate = false;
+    }
+
+    // Video
+    if($this->withVideo){
+      if ( isset( $item->options->UrlExternalVideoPost ) && !empty( $item->options->UrlExternalVideoPost ) ){
+        // Get url from crud field
+        $this->externalVideo = $item->options->UrlExternalVideoPost ?? '';
+        // Check  if it's YouTube video
+        if ( !empty( $this->externalVideo ) && strpos( $this->externalVideo, 'youtube' ) !== false ){
+          $query = parse_url( $this->externalVideo, PHP_URL_QUERY );
+          parse_str( $query, $params );
+          if ( isset( $params[ 'v' ] ) ){
+            $youtubeId = $params[ 'v' ];
+            $this->externalVideo = 'https://www.youtube.com/embed/' . $youtubeId;
+          }
+        }
+      }
     }
   }
 

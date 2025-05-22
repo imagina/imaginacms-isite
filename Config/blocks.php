@@ -1215,6 +1215,21 @@ return [
           ],
         ]
       ],
+      "videoExternal" => [
+        "title" => "Video Externo",
+        "fields" => [
+          "withVideo" => [
+            "name" => "withVideo",
+            "value" => "1",
+            "type" => "select",
+            "props" => [
+              "label" => "Mostrar",
+              "options" => $vAttributes["validation"]
+            ],
+            "help"=> ["description" => "Solo para video Externo"]
+          ],
+        ]
+      ],
       "opacity" => [
         "title" => "Opacidad y Animaciones",
         "fields" => [
