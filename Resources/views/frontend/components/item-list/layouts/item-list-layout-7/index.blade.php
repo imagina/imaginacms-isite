@@ -22,17 +22,23 @@
   <x-isite::edit-link link="{{$editLink}}{{$item->id}}" :item="$item" tooltip="{{$tooltipEditLink}}"/>
   <div class="card-item {{$row}} @if($imageOpacityHover) opacity-with-hover @else opacity-without-hover @endif">
     <div class="{{$imagePosition!='1' ? 'row no-gutters' : ''}}">
-        @if(method_exists ( $item, "mediaFiles" ) && $withImage )
 
-          <div class="item-image {{$col1}} {{$imagePositionVertical}} @if($withImageOpacity) {{$imageOpacityColor}} {{$imageOpacityDirection}} @endif">
-            <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
-                                   :url="$withUrl ? $item->url ?? null : null" :isMedia="true" :target="$target"
-                                   :withVideoControls="$videoControls" :loopVideo="$videoLoop"
-                                   :autoplayVideo="$videoAutoplay" :mutedVideo="$videoMuted"
-                                   imgClasses="img-style" imgStyles="width:{{$imageWidth}}% !important; height:{{$imageHeight}};"
-                                   :mediaFiles="$item->mediaFiles()" :zone="$mediaImage ?? 'mainimage'"/>
-          </div>
-        @endif
+      @if( $withImage)
+        <div class="@if(isset($externalVideo) && !empty($externalVideo)) item-video @else item-image @endif {{$col1}} {{$imagePositionVertical}} @if($withImageOpacity) {{$imageOpacityColor}} {{$imageOpacityDirection}} @endif">
+
+          @if(isset($externalVideo) && !empty($externalVideo) && $withVideo)
+            @include('isite::frontend.partials.video-fancybox', ['src' => $externalVideo, 'article' => $item ])
+
+          @elseif(method_exists ( $item, "mediaFiles" ))
+              <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name" :
+                                     :url="$withUrl ? $item->url ?? null : null" :isMedia="true" :target="$target"
+                                     :withVideoControls="$videoControls" :loopVideo="$videoLoop"
+                                     :autoplayVideo="$videoAutoplay" :mutedVideo="$videoMuted"
+                                     imgClasses="img-style" imgStyles="width:{{$imageWidth}}% !important; height:{{$imageHeight}};"
+                                     :mediaFiles="$item->mediaFiles()" :zone="$mediaImage ?? 'mainimage'"/>
+          @endif
+        </div>
+      @endif
 
         @if($containerActive)
             <div class="{{$containerType}} image-overlay overlay-container">
@@ -326,7 +332,7 @@
         padding: {{$imagePicturePadding}}px;
         text-align: {{$imageAlign}};
     }
-    #{{$id}} .img-style  {
+    #{{$id}} .img-style, #{{$id}} .video-style  {
         border-radius: {{$imageRadio}};
         border-style: {{$imageBorderStyle}};
         border-width: {{$imageBorderWidth}}px;
@@ -469,7 +475,7 @@
     }
     @if(!is_null($imageAspectMobile))
     @media (max-width: 767.98px) {
-        #{{$id}} .img-style, #{{$id}} .cover-img{
+        #{{$id}} .img-style, #{{$id}} .cover-img, #{{$id}} .video-style{
             aspect-ratio: {{$imageAspectMobile}};
         }
     }
