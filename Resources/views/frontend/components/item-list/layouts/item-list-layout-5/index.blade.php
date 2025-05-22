@@ -81,7 +81,7 @@
                 @if(isset($item->url) && !empty($item->url))
                   <a href="{{$item->url}}" class="btn view-more-button" target="{{$target}}">
                     @endif
-                    {{trans($viewMoreButtonLabel)}}
+                      {{ $viewMoreButtonLabel }}
                     @if(isset($item->url) && !empty($item->url))
                   </a>
                 @endif

@@ -13,6 +13,7 @@ class ItemList extends Component
   public $view;
   public $withViewMoreButton;
   public $viewMoreButtonLabel;
+  public $viewMoreButtonLabelByITem;
   public $withCreatedDate;
   public $withCategory;
   public $withUser;
@@ -257,7 +258,7 @@ class ItemList extends Component
                               $itemDelay = null, $itemDelayIn = 0, $itemOffset = null, $itemEasing = null,
                               $itemOne = false, $itemMirror = false, $itemAnimate = "", $titleColorCustom = "",
                               $summaryColorCustom = "", $categoryColorCustom = "", $createdDateColorCustom = "",
-                              $userColorCustom = "", $withUrl = true
+                              $userColorCustom = "", $withUrl = true, $viewMoreButtonLabelByITem = ''
   )
   {
     $this->imageAspectMobile = $imageAspectMobile;
@@ -270,7 +271,8 @@ class ItemList extends Component
     $this->view = $itemComponentView ?? $this->view;
     $this->target = $itemComponentTarget ?? $target ?? "_self";
     $this->withViewMoreButton = $withViewMoreButton;
-    $this->viewMoreButtonLabel =  strlen(trim($viewMoreButtonLabel ?? "")) ? $viewMoreButtonLabel : "isite::common.menu.viewMore";
+    $this->viewMoreButtonLabel = $this->getViewMoreButtonLabel($item,$viewMoreButtonLabel,$viewMoreButtonLabelByITem) ?? trans("isite::common.menu.viewMore");
+    $this->viewMoreButtonLabelByITem =  $viewMoreButtonLabelByITem;
     $this->withCreatedDate = $withCreatedDate;
     $this->withUser = $withUser;
     $this->formatCreatedDate = $formatCreatedDate;
@@ -509,6 +511,22 @@ class ItemList extends Component
     } else {
       $this->withCreatedDate = false;
     }
+  }
+
+  // Get label to view more Button
+   public function getViewMoreButtonLabel($item, $viewMoreButtonLabel, $viewMoreButtonLabelByITem)
+  {
+    $label = null;
+
+    if ( !empty($viewMoreButtonLabelByITem) ) {
+      $label =  method_exists($item, 'formatFillableToModel') ? $item->getFieldByName($viewMoreButtonLabelByITem) : null;
+
+      if (empty($label)) {
+        $label = $item->options->{$viewMoreButtonLabelByITem} ?? null;
+      }
+    }
+
+    return trans($label ?: ($viewMoreButtonLabel ?: 'isite::common.menu.viewMore'));
   }
 
   public function radiusType($radius, $type)
