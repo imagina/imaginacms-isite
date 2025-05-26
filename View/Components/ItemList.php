@@ -244,7 +244,7 @@ class ItemList extends Component
                               $categoryTextDecoration = "none", $createdDateTextDecoration = "none",
                               $titleAlignVertical = "align-items-start", $numberCharactersTitle = 200, $itemMarginB = "",
                               $contentPaddingLeft = 15, $contentPaddingRight = 15, $summaryLineHeight = 20,
-                              $withImage = true, $withVideo =false,$imageWidth = 100, $imageAlign = 'left', $imageHeight = '',
+                              $withImage = true, $withVideo =true,$imageWidth = 100, $imageAlign = 'left', $imageHeight = '',
                               $imageMaxHeight = '', $imageMinHeight = '', $summaryField = null, $summaryWithLimit = true,
                               $containerActive = false, $containerType = "container",
                               $containerJustify = "justify-content-center", $containerAlign = "align-items-center",
