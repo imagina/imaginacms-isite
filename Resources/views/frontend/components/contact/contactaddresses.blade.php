@@ -9,7 +9,7 @@
       @endif
       <div class="content-address">
         @foreach($addresses as $key => $addresses)
-          <a href="https://google.com.co/maps/search/{{$addresses}}" target="_blank">
+          <a href="https://google.com.co/maps/search/{{ urlencode($addresses) }}" target="_blank">
             @if($withHyphen) @if($key > 0)<span> - </span>@endif @endif
             <div class="d-inline-block">{{$addresses}}</div>
           </a>
