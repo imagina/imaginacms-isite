@@ -13,6 +13,7 @@ class ItemList extends Component
   public $view;
   public $withViewMoreButton;
   public $viewMoreButtonLabel;
+  public $viewMoreButtonLabelByITem;
   public $withCreatedDate;
   public $withCategory;
   public $withUser;
@@ -140,6 +141,7 @@ class ItemList extends Component
   public $summaryLineHeight;
 
   public $withImage;
+  public $withVideo;
   public $imageWidth;
   public $imageHeight;
   public $imageMaxHeight;
@@ -148,6 +150,7 @@ class ItemList extends Component
 
   public $date;
   public $summary;
+  public $externalVideo;
 
   public $containerActive;
   public $containerType;
@@ -241,7 +244,7 @@ class ItemList extends Component
                               $categoryTextDecoration = "none", $createdDateTextDecoration = "none",
                               $titleAlignVertical = "align-items-start", $numberCharactersTitle = 200, $itemMarginB = "",
                               $contentPaddingLeft = 15, $contentPaddingRight = 15, $summaryLineHeight = 20,
-                              $withImage = true, $imageWidth = 100, $imageAlign = 'left', $imageHeight = '',
+                              $withImage = true, $withVideo =true,$imageWidth = 100, $imageAlign = 'left', $imageHeight = '',
                               $imageMaxHeight = '', $imageMinHeight = '', $summaryField = null, $summaryWithLimit = true,
                               $containerActive = false, $containerType = "container",
                               $containerJustify = "justify-content-center", $containerAlign = "align-items-center",
@@ -257,7 +260,7 @@ class ItemList extends Component
                               $itemDelay = null, $itemDelayIn = 0, $itemOffset = null, $itemEasing = null,
                               $itemOne = false, $itemMirror = false, $itemAnimate = "", $titleColorCustom = "",
                               $summaryColorCustom = "", $categoryColorCustom = "", $createdDateColorCustom = "",
-                              $userColorCustom = "", $withUrl = true
+                              $userColorCustom = "", $withUrl = true, $viewMoreButtonLabelByITem = '', $externalVideo = ''
   )
   {
     $this->imageAspectMobile = $imageAspectMobile;
@@ -270,7 +273,8 @@ class ItemList extends Component
     $this->view = $itemComponentView ?? $this->view;
     $this->target = $itemComponentTarget ?? $target ?? "_self";
     $this->withViewMoreButton = $withViewMoreButton;
-    $this->viewMoreButtonLabel =  strlen(trim($viewMoreButtonLabel ?? "")) ? $viewMoreButtonLabel : "isite::common.menu.viewMore";
+    $this->viewMoreButtonLabel = $this->getViewMoreButtonLabel($item,$viewMoreButtonLabel,$viewMoreButtonLabelByITem) ?? trans("isite::common.menu.viewMore");
+    $this->viewMoreButtonLabelByITem =  $viewMoreButtonLabelByITem;
     $this->withCreatedDate = $withCreatedDate;
     $this->withUser = $withUser;
     $this->formatCreatedDate = $formatCreatedDate;
@@ -388,6 +392,7 @@ class ItemList extends Component
     $this->summaryLineHeight = $summaryLineHeight;
 
     $this->withImage = $withImage;
+    $this->withVideo = $withVideo;
     $this->imageWidth = $imageWidth;
     $this->imageAlign = $imageAlign;
     $this->imageHeight = $imageHeight;
@@ -471,14 +476,12 @@ class ItemList extends Component
       //In case to show a fake field options example "options.secondaryDescription"
       if (Str::contains($summaryField, 'options')) {
         $summaryField = explode(".", $summaryField);
-
         if (isset($summaryField[1]) && !empty($summaryField[1])) {
-          $options = json_decode(json_encode($item->options));
-          if (!empty($options) && isset($options->{$summaryField[1]}))
-            $this->summary = $options->{$summaryField[1]};
+          if(isset($item->options->{$summaryField[1]})) $this->summary = $item->options->{$summaryField[1]};
+          if(method_exists($item, 'formatFillableToModel')) {
+            $this->summary = $item->getFieldByName($summaryField[1]);
+          }
         }
-      } else {
-        $this->summary = $item->{$summaryField} ?? "";
       }
     } else {
       $this->summary = $item->summary ?? $item->description ?? $item->custom_html ?? $item->body ?? "";
@@ -511,6 +514,39 @@ class ItemList extends Component
     } else {
       $this->withCreatedDate = false;
     }
+
+    // Video
+    if($this->withVideo){
+      if ( isset( $item->options->UrlExternalVideoPost ) && !empty( $item->options->UrlExternalVideoPost ) ){
+        // Get url from crud field
+        $this->externalVideo = $item->options->UrlExternalVideoPost ?? '';
+        // Check  if it's YouTube video
+        if ( !empty( $this->externalVideo ) && strpos( $this->externalVideo, 'youtube' ) !== false ){
+          $query = parse_url( $this->externalVideo, PHP_URL_QUERY );
+          parse_str( $query, $params );
+          if ( isset( $params[ 'v' ] ) ){
+            $youtubeId = $params[ 'v' ];
+            $this->externalVideo = 'https://www.youtube.com/embed/' . $youtubeId;
+          }
+        }
+      }
+    }
+  }
+
+  // Get label to view more Button
+   public function getViewMoreButtonLabel($item, $viewMoreButtonLabel, $viewMoreButtonLabelByITem)
+  {
+    $label = null;
+
+    if ( !empty($viewMoreButtonLabelByITem) ) {
+      $label =  method_exists($item, 'formatFillableToModel') ? $item->getFieldByName($viewMoreButtonLabelByITem) : null;
+
+      if (empty($label)) {
+        $label = $item->options->{$viewMoreButtonLabelByITem} ?? null;
+      }
+    }
+
+    return trans($label ?: ($viewMoreButtonLabel ?: 'isite::common.menu.viewMore'));
   }
 
   public function radiusType($radius, $type)

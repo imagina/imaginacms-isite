@@ -9,19 +9,22 @@
   <x-isite::edit-link link="{{$editLink}}{{$item->id}}" :item="$item" tooltip="{{$tooltipEditLink}}"/>
   <div class="card-item @if($imageOpacityHover) opacity-with-hover @else opacity-without-hover @endif">
     <div class="row align-items-center">
+      @if($withImage)
+        <div class="col-12 {{$orderClasses["photo"] ?? 'order-0'}} @if(isset($externalVideo) && !empty($externalVideo)) item-video @else item-image @endif @if($withImageOpacity) {{$imageOpacityColor}} {{$imageOpacityDirection}} @endif">
 
-       @if(method_exists ( $item, "mediaFiles" ) && $withImage )
-          <div
-            class="col-12 {{$orderClasses["photo"] ?? 'order-0'}} item-image @if($withImageOpacity) {{$imageOpacityColor}} {{$imageOpacityDirection}} @endif">
-            <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name"
-                                   :url="$withUrl ? $item->url ?? null : null" :isMedia="true"  imgClasses="img-style"
-                                   :withVideoControls="$videoControls" :loopVideo="$videoLoop"
-                                   :autoplayVideo="$videoAutoplay" :mutedVideo="$videoMuted"
-                                   :target="$target" :mediaFiles="$item->mediaFiles()" imgStyles="width:{{$imageWidth}}% !important; height:{{$imageHeight}};"
-                                   :zone="$mediaImage ?? 'mainimage'"/>
-
+            @if(isset($externalVideo) && !empty($externalVideo) && $withVideo)
+                @include('isite::frontend.partials.video-fancybox', ['src' => $externalVideo, 'article' => $item])
+              
+            @elseif(method_exists($item, "mediaFiles"))
+                <x-media::single-image :alt="$item->title ?? $item->name" :title="$item->title ?? $item->name"
+                                       :url="$withUrl ? $item->url ?? null : null" :isMedia="true"  imgClasses="img-style"
+                                       :withVideoControls="$videoControls" :loopVideo="$videoLoop"
+                                       :autoplayVideo="$videoAutoplay" :mutedVideo="$videoMuted"
+                                       :target="$target" :mediaFiles="$item->mediaFiles()" imgStyles="width:{{$imageWidth}}% !important; height:{{$imageHeight}};"
+                                       :zone="$mediaImage ?? 'mainimage'"/>
+            @endif
           </div>
-       @endif
+      @endif
       @if($withTitle)
       <div class="col-12 {{$orderClasses["title"] ?? 'order-1'}} item-title">
           @if(isset($item->url) && !empty($item->url) && $withUrl)
@@ -98,11 +101,11 @@
         <div class="col-12 {{$orderClasses["viewMoreButton"] ?? 'order-6'}} item-view-more-button {{$buttonAlign}}">
           @if(isset($item->url) && !empty($item->url))
 
-                @if($viewMoreButtonLabel=="")
-                    @php $labelExist= false; @endphp
-                @else
-                    @php $labelExist= true; @endphp
-                @endif
+            @if($viewMoreButtonLabel=="")
+              @php $labelExist= false; @endphp
+            @else
+              @php $labelExist= true; @endphp
+            @endif
             <x-isite::button :style="$buttonLayout"
                              :buttonClasses="$buttonSize.' view-more-button '.$buttonLayout.' '.$buttonMarginT.' '.$buttonMarginB.' '.$contentMarginInsideX.' '.$buttonItemClasses"
                              :href="$item->url"
@@ -111,7 +114,7 @@
                              :iconClass="$buttonIcon"
                              :withLabel="$labelExist"
                              :color="$buttonColor"
-                             :label="trans($viewMoreButtonLabel)"
+                             :label="$viewMoreButtonLabel"
                              :target="$target"
                              :iconColor="$buttonIconColor"
                              :sizeLabel="$buttonTextSize"
@@ -264,7 +267,7 @@
         border-radius: {{$imageRadio}};
     }
 
-    #{{$id}} .img-style {
+    #{{$id}} .img-style, #{{$id}} .video-style  {
        border-radius: {{$imageRadio}};
        border-style: {{$imageBorderStyle}};
        border-width: {{$imageBorderWidth}}px;
@@ -365,7 +368,7 @@
     }
     @if(!is_null($imageAspectMobile))
         @media (max-width: 767.98px) {
-        #{{$id}} .img-style, #{{$id}} .cover-img {
+        #{{$id}} .img-style, #{{$id}} .cover-img, #{{$id}} .video-style {
             aspect-ratio: {{$imageAspectMobile}};
         }
     }
@@ -460,8 +463,3 @@
     @endif
 </style>
 </div>
-
-
-
-
-
