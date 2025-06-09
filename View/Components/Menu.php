@@ -38,6 +38,7 @@ class Menu extends Component
   public $deskNavBefore;
   public $deskNavHoverBefore;
   public $linkMovil;
+  public $reverseOrder;
 
   /**
    * Create a new component instance.
@@ -51,7 +52,7 @@ class Menu extends Component
                               $deskTextSize = "18", $modalTextSize = "16", $modalColor1 = "", $modalColor2 = "",
                               $deskColor1 = "", $deskColor2 = "", $deskNav = "", $deskNavHover = "",
                               $deskDropdownMenu = "", $deskNavBefore = "", $deskNavHoverBefore = "",
-                              $linkMovil = "", $deskStyleGeneral = null
+                              $linkMovil = "", $deskStyleGeneral = null, $reverseOrder = false
   )
   {
     $this->id = $id ?? uniqid('menu');
@@ -84,6 +85,7 @@ class Menu extends Component
     $this->deskNavHoverBefore = $deskNavHoverBefore;
     $this->linkMovil = $linkMovil;
     $this->deskStyleGeneral = $deskStyleGeneral;
+    $this->reverseOrder = $reverseOrder;
     $this->getItems();
   }
 
@@ -106,7 +108,7 @@ class Menu extends Component
       $items = app($this->repository)->getItemsBy(json_decode(json_encode($params)));
 
       if ($items->isNotEmpty()) {
-        $this->items = $items->toTree();
+        $this->items = $this->reverseOrder ? $items->reverse()->toTree() : $items->toTree();
       }
     }
   }
