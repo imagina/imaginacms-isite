@@ -3975,6 +3975,15 @@ return [
               "description" => "Permite agregar estilos a los navs",
             ]
           ],
+          "reverseOrder" => [
+            "name" => "reverseOrder",
+            "value" => "0",
+            "type" => "select",
+            "props" => [
+              "label" => "Orden de los elementos (Repositorio)",
+              "options" => $vAttributes["validation"]
+            ]
+          ],
         ]
       ],
       "modal" => [

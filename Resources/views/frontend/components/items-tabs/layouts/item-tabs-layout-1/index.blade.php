@@ -124,6 +124,8 @@
 @section('scripts-owl')
   @parent
   <script>
-    document.querySelector("#{{$id}} .no-items.alert-danger").classList.add(..."{{ $alertClass }}".split(" "));
+    document.querySelectorAll("#{{$id}} .no-items.alert-danger").forEach(function(el) {
+      el.classList.add(..."{{ $alertClass }}".split(" "));
+    });
   </script>
 @stop
