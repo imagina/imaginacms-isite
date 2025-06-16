@@ -7,8 +7,6 @@ use Modules\Core\Icrud\Entities\CrudModel;
 
 class Synchronizable extends CrudModel
 {
-  use Translatable;
-
   protected $table = 'isite__synchronizables';
   public $transformer = 'Modules\Isite\Transformers\SynchronizableTransformer';
   public $repository = 'Modules\Isite\Repositories\SynchronizableRepository';
