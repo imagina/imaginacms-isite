@@ -17,6 +17,7 @@
     @parent
     <script type="text/javascript">
       //Get the submit element
+      const formElement{{$formId}} = $("#{{ $formId }}");
       let submitElement{{$formId}} = $("#{{ $formId }} input[type=submit], #{{ $formId }} button[type=submit]");
 
       $(function () {
@@ -24,10 +25,23 @@
         if ({{$captchaVersion}} == '2') disable{{ $formId }}Button();
         //Set the needed attributes in submit element to use v3
         else {
-          submitElement{{$formId}}.addClass("g-recaptcha");
-          submitElement{{$formId}}.attr('data-sitekey', "{{$captchaKey}}")
-          submitElement{{$formId}}.attr('data-action', "submit")
-          submitElement{{$formId}}.attr('data-callback', "onSubmit{{$formId}}Form");
+          // Hook the submit action for reCAPTCHA v3
+          submitElement{{$formId}}.on('click', function (e) {
+            e.preventDefault();
+            grecaptcha.ready(function () {
+              grecaptcha.execute("{{ $captchaKey }}", { action: 'submit' }).then(function (token) {
+                // Append token to form
+                formElement{{$formId}}.find('input[name="g-recaptcha-response"]').remove(); // prevent duplicates
+                formElement{{$formId}}.append(`<input type="hidden" name="g-recaptcha-response" value="${token}">`);
+
+                // Validate and submit
+                if (formElement{{$formId}}.get(0).checkValidity()) formElement{{$formId}}.submit();
+                else formElement{{$formId}}.get(0).reportValidity();
+              });
+            });
+          });
+
+          console.info(`[Captcha] v3 click handler attached for form: {{$formId}}`);
         }
       });
 
