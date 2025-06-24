@@ -1178,6 +1178,19 @@ return [
       'label' => 'isite::common.sitemap.labelSitemapDepth'
     ],
   ],
+  'sitemapEnable' => [
+    'value' => "1",
+    'name' => 'isite::sitemapEnable',
+    "onlySuperAdmin" => true,
+    'type' => 'checkbox',
+    'groupName' => 'sitemap',
+    'groupTitle' => 'isite::common.settingGroups.sitemap',
+    'props' => [
+      'label' => 'isite::common.sitemap.labelSitemapEnable',
+      'trueValue' => "1",
+      'falseValue' => "0",
+    ],
+  ],
   'showGoToSiteButton' => [
     'name' => 'isite::showGoToSiteButton',
     'value' => '1',

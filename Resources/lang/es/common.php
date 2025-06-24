@@ -236,6 +236,7 @@ return [
   ],
   'sitemap' => [
     'labelSitemapDepth' => 'Profundidad Del Mapa Del Sitio',
+    'labelSitemapEnable' => 'Activar mapa del sitio',
     'labelUserAgentRobots' => 'Agentes De Busqueda Para El Archivo Robots.txt',
     'labelActiveGenerateRobotsFile' => 'Sitemap Con Archivo Robots.txt',
   ],
