@@ -212,6 +212,7 @@ return [
   ],
   'sitemap' => [
     'labelSitemapDepth' => 'Sitemap Depth',
+    'labelSitemapEnable' => 'Activate sitemap',
     'labelUserAgentRobots' => 'Search Agents For The Robots.txt File',
     'labelActiveGenerateRobotsFile' => 'Sitemap With Robots.txt File',
   ],
