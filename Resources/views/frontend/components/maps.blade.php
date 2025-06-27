@@ -5,18 +5,18 @@
     </div>
   @endif
   <div class="section-map">
-    <div class="map">
+    <div class="map" @if($usingLivewire) wire:ignore @endif>
       @if(isset($iframeMap) && !empty($iframeMap))
         {!! $iframeMap !!}
       @else
         @if($settingMap == 'googleMaps')
           <div class="content">
             <div id="{{$mapId}}" class="{{$classes}} maps-component"
-                 style="width:{{$mapWidth}}; height:{{$mapHeight}}" @if($usingLivewire) wire:ignore @endif></div>
+                 style="width:{{$mapWidth}}; height:{{$mapHeight}}"></div>
           </div>
         @elseif($settingMap == 'openStreet')
           <div class="content">
-            <div id="{{$mapId}}" class="map map-home" style="width:{{$mapWidth}}; height:{{$mapHeight}}"  @if($usingLivewire) wire:ignore @endif></div>
+            <div id="{{$mapId}}" class="map map-home" style="width:{{$mapWidth}}; height:{{$mapHeight}}"></div>
           </div>
         @endif
       @endif
