@@ -94,9 +94,24 @@ class SynchronizableService
       return isset($item['base_template_id']) && $item['base_template_id'] === $baseTemplateId;
     });
 
-    // Sync the sheet_id attribute
-    Synchronizable::whereIn('name', array_keys($filteredByBaseTemplate))
-      ->update(['spreadsheet_id' => $spreadsheetId, 'base_template_id' => $baseTemplateId, 'sheets' => json_encode($allSheets), 'enabled_emails' => $emails]);
+    $paramsGet = json_decode(json_encode(['filter' => [
+      'name' => [
+        'where' => 'in',
+        'value' => array_keys($filteredByBaseTemplate)
+        ]
+    ]]));
+
+    $syncData = $this->modelRepository->getItemsBy($paramsGet);
+
+    foreach ($syncData as $item) {
+      $this->modelRepository->updateBy($item->id, [
+        'spreadsheet_id' => $spreadsheetId,
+        'base_template_id' => $baseTemplateId,
+        'sheets' => json_encode($allSheets),
+        'enabled_emails' => $emails
+      ]);
+    }
+
 
     return ["data" => "Request successful"];
 
