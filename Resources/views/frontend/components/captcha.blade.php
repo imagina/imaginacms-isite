@@ -59,7 +59,7 @@
       function onSubmit{{$formId}}Form() {
         const form = $("#{{ $formId }}");
         //Validate form before submit
-        if (form.get(0).checkValidity()) form.submit()
+        if (form.get(0).checkValidity()) form.trigger('submit');
         else form.get(0).reportValidity()
       }
     </script>
