@@ -35,7 +35,7 @@
                 formElement{{$formId}}.append(`<input type="hidden" name="g-recaptcha-response" value="${token}">`);
 
                 // Validate and submit
-                if (formElement{{$formId}}.get(0).checkValidity()) formElement{{$formId}}.submit();
+                if (formElement{{$formId}}.get(0).checkValidity()) $("#{{ $formId }}").submit();
                 else formElement{{$formId}}.get(0).reportValidity();
               });
             });
