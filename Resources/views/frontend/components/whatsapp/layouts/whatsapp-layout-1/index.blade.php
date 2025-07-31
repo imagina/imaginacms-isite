@@ -4,7 +4,7 @@
       <h3>{{ $title }}</h3>
     </div>
   @endif
-  @foreach($items as $item)
+  @foreach($items as $key=> $item)
     @if(!empty($item->callingCode) && !empty($item->number))
       <div class="col-12 position-relative">
         @if($editButton == true)
@@ -23,7 +23,7 @@
         @else
           <i class="{{ $icon }} fa-{{ $size }}"></i>
         @endif
-        <a aria-label="whatsapp" href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}" target="_blank">
+        <a id="whatsappLayout1k{{$key}}" aria-label="whatsapp" href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}" target="_blank">
           {{ isset($item->label) ? $item->label.': ' : '' }} {{ $item->formattedNumber }}
         </a>
       </div>

@@ -21,7 +21,7 @@
       <div class="window-content">
         <div class="scroll">
           @foreach($items as $key => $item)
-            <a class="content-list text-decoration-none"
+            <a id="whatsappLayout5k{{$key}}" class="content-list text-decoration-none"
                href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}"
                target="_blank" aria-label="whatsapp">
               <div class="list-image">

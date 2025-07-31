@@ -9,7 +9,7 @@
           top="-3px" left="42px"/>
       </div>
     @endif
-    <a href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}"
+    <a id="whatsappLayout2k{{$key}}" href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}"
        class="whatsapp-layout-2 position-relative" target="_blank" aria-label="whatsapp {{ $icon }}">
       @if($type)
         <span class="fa-stack fa-{{ $size }}">
@@ -48,7 +48,7 @@
       @foreach($items as $key => $item)
         @if(!empty($item->callingCode) && !empty($item->number))
           <div class="number-whatsapp {{$dropdownTextAlign}}">
-            <a class="text-decoration-none" href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}"
+            <a id="whatsappLayout2k{{$key}}" class="text-decoration-none" href="https://wa.me/{{ $item->callingCode }}{{ $item->number }}?text={{ $item->message }}"
                target="_blank" aria-label="whatsapp">
               <p class="mb-0">
                 @if(isset($item->iconLabel) && !empty($item->iconLabel))
