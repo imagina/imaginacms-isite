@@ -74,7 +74,8 @@ class OwlCarousel extends Component
   public $dotsSize;
   public $typeComponent;
   public $owlTransition;
-  public  $direction;
+  public $direction;
+  public $chunkedItems;
 
   /**
    * Create a new component instance.
@@ -179,14 +180,14 @@ class OwlCarousel extends Component
       $this->navOld = true;
       $this->nav = false;
     }
-      $this->owlTransition = !empty(trim($owlTransition))  &&  is_string(trim($owlTransition))
-        ? explode(",", $owlTransition)
-        : explode(",", "animate__slideInLeft,animate__slideOutRight");
-      $this->direction =  $direction;
+    $this->owlTransition = !empty(trim($owlTransition)) && is_string(trim($owlTransition))
+      ? explode(",", $owlTransition)
+      : explode(",", "animate__slideInLeft,animate__slideOutRight");
+    $this->direction = $direction;
+    $this->performanceData();
   }
 
-  private
-  function makeParamsFunction()
+  private function makeParamsFunction()
   {
 
     return [
@@ -199,8 +200,7 @@ class OwlCarousel extends Component
     ];
   }
 
-  private
-  function getItems()
+  private function getItems()
   {
 
     $this->items = app($this->repository)->getItemsBy(json_decode(json_encode($this->makeParamsFunction())));
@@ -232,13 +232,42 @@ class OwlCarousel extends Component
     }
   }
 
+  function performanceData()
+  {
+    $performanceItems = [];
+    $delay = $itemComponentAttributes['itemDelay'] ?? 0;
+    $cont = 0;
+
+    foreach ($this->items as $item) {
+      $componentAttributes = $this->itemComponentAttributes;
+      //Define the delay for item
+      if (!empty($componentAttributes["itemDelay"])) {
+        $componentAttributes["itemDelay"] = $delay + $cont;
+        if (!empty($componentAttributes["itemDelayIn"])) {
+          $cont = $cont + intval($componentAttributes['itemDelayIn']);
+        }
+      }
+      //Added typeComponent Atributes
+      if ($this->typeComponent) {
+        $componentAttributes["viewMoreButtonLabel"] = $item->caption;
+        $componentAttributes["target"] = $item->target;
+      }
+      //Set the item component attributes
+      $performanceItems[] = [
+        "item" => $item,
+        "componentAttributes" => $componentAttributes,
+      ];
+    }
+
+    $this->chunkedItems = collect($performanceItems)->chunk($this->itemsBySlide);
+  }
+
   /**
    * Get the view / contents that represent the component.
    *
    * @return \Illuminate\Contracts\View\View|string
    */
-  public
-  function render()
+  public function render()
   {
     return view($this->view);
   }
