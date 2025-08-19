@@ -1,0 +1,30 @@
+{
+    "name": "imagina/isite",
+    "description": "",
+    "authors": [
+        {
+            "name": "Imagina Colombia",
+            "email": "soporte@imaginacolombia.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Isite\\": "app/",
+            "Modules\\Isite\\Database\\Factories\\": "database/factories/",
+            "Modules\\Isite\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Isite\\Tests\\": "tests/"
+        }
+    }
+}

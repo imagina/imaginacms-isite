@@ -1,0 +1,12 @@
+
+{
+    "name": "Isite",
+    "alias": "isite",
+    "description": "manage isite",
+    "keywords": ["isite"],
+    "priority": 0,
+    "providers": [
+        "Modules\\Isite\\Providers\\IsiteServiceProvider"
+    ],
+    "files": []
+}
