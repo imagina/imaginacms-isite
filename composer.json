@@ -1,61 +1,31 @@
 {
-    "name": "imagina/isite-module",
-    "description": "custom settings of the site",
-    "type": "asgard-module",
-    "license": "MIT",
-    "require": {
-        "php": "^8.1",
-        "composer/installers": "~1.0",
-        "imagina/core-module": "^10.0",
-        "imagina/ihelpers-module": "^10.0",
-        "imagina/igamification-module": "^10.0",
-        "livewire/livewire": "^2.11",
-        "jantinnerezo/livewire-alert": "^2.2",
-        "spatie/laravel-responsecache": "^7.4",
-        "kalnoy/nestedset": "^6.0",
-        "hisorange/browser-detect": "^4.4.0",
-        "maatwebsite/excel": "^3.1",
-        "stancl/tenancy": "^3.7",
-        "barryvdh/laravel-dompdf": "^2.0",
-        "imagina/ischedulable-module": "^10.0",
-        "imagina/ifillable-module": "^10.0",
-        "spatie/laravel-sitemap": "^6.3",
-        "spatie/robots-txt": "^2.0",
-        "imagina/iqreable": "^10.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^10",
-        "orchestra/testbench": "^8.5"
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Modules\\Isite\\": ".",
-            "Modules\\": "Modules/"
-        }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
+    "name": "imagina/isite",
+    "description": "",
     "authors": [
         {
-            "name": "Nicolas Widart",
-            "email": "n.widart@gmail.com"
+            "name": "Imagina Colombia",
+            "email": "soporte@imaginacolombia.com"
         }
     ],
-    "scripts": {
-        "post-install-cmd": [
-            "php artisan module:seed isite"
-        ]
-
-    },
     "extra": {
-        "branch-alias": {
-            "dev-master": "4.0.x-dev",
-            "dev-v10.x": "10.0.x-dev"
+        "laravel": {
+            "providers": [],
+            "aliases": {}
         }
     },
     "autoload": {
         "psr-4": {
-            "Modules\\Isite\\": ""
+            "Modules\\Isite\\": "app/",
+            "Modules\\Isite\\Database\\Factories\\": "database/factories/",
+            "Modules\\Isite\\Database\\Seeders\\": "database/seeders/"
+        },
+        "files": [
+            "helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Isite\\Tests\\": "tests/"
         }
     }
 }
