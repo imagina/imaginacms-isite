@@ -55,11 +55,11 @@
 {{--  @endphp--}}
   @include('isite::frontend.partials.colors')
 {{--  @include($header)--}}
-  <x-ibuilder::layout
-    entityType="Modules\\Ibuilder\\Entities\\Layout"
-    type="header"
-    alternativeView="partials.header"
-  />
+{{--  <x-ibuilder::layout--}}
+{{--    entityType="Modules\\Ibuilder\\Entities\\Layout"--}}
+{{--    type="header"--}}
+{{--    alternativeView="partials.header"--}}
+{{--  />--}}
 
   <script>
     function initTooltips() {
@@ -71,7 +71,7 @@
     document.addEventListener("livewire:update", initTooltips);
   </script>
 
-  @yield('content')
+{{--  @yield('content')--}}
 {{--  @php--}}
 {{--    $footer = "partials.footer";--}}
 {{--    --}}
@@ -82,11 +82,11 @@
 {{--  --}}
 {{--  @endphp--}}
 {{--  @include($footer)--}}
-  <x-ibuilder::layout
-    entityType="Modules\\Ibuilder\\Entities\\Layout"
-    type="footer"
-    alternativeView="partials.footer"
-  />
+{{--  <x-ibuilder::layout--}}
+{{--    entityType="Modules\\Ibuilder\\Entities\\Layout"--}}
+{{--    type="footer"--}}
+{{--    alternativeView="partials.footer"--}}
+{{--  />--}}
 </div>
 
 @if(isset(tenant()->id))

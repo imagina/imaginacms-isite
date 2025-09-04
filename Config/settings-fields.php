@@ -1476,4 +1476,22 @@ return [
       'label' => 'isite::common.settings.cmsManifest.manifestIconsBaseUrl'
     ],
   ],
+  //Multiples
+  'allowedIps' => [
+    'value' => [],
+    'name' => 'isite::allowedIps',
+    'type' => 'select',
+    'groupName' => 'security',
+    'groupTitle' => 'isite::common.settingGroups.security',
+    'quickSetting' => true,
+    'isTranslatable' => true,
+    'props' => [
+      'label' => 'isite::common.settings.allowedIps',
+      'useInput' => true,
+      'useChips' => true,
+      'multiple' => true,
+      'hideDropdownIcon' => true,
+      'newValueMode' => 'add-unique'
+    ]
+  ],
 ];

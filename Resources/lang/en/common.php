@@ -8,6 +8,7 @@ return [
     'viewMore' => 'View more',
   ],
   'settings' => [
+    'allowedIps' => 'Allowed Ips',
     'wizardTenantType' => 'Wizard Type',
     'logo1' => 'Logo N°1',
     'logo2' => 'Logo N°2',
@@ -115,6 +116,7 @@ return [
   ],
   'settingGroups' => [
     'sitemap' => 'Sitemap',
+    'security' => 'Security',
     'media' => [
       'title' => 'Media',
       'description' => 'Media'

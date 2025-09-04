@@ -8,6 +8,7 @@ return [
     'viewMore' => 'Ver más',
   ],
   'settings' => [
+    'allowedIps' => 'Ips Autorizadas',
     'wizardTenantType' => 'Tipo de Wizard',
     'logo1' => 'Logo N°1',
     'logo2' => 'Logo N°2',
@@ -128,6 +129,7 @@ return [
     'sitemap' => 'Mapa Del Sitio',
     'title' => 'Agrega tu logo',
     'groupNameTimeToken' => 'Tokens',
+    'security' => 'Seguridad',
     'media' => [
       'title' => 'Agrega tu Imagen',
       'description' => 'Agregar el logo de tu empresa'
