@@ -8,7 +8,17 @@ use Nwidart\Modules\Traits\PathNamespace;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 // Bindings
+use Modules\Isite\Repositories\Eloquent\EloquentContactRepository;
+use Modules\Isite\Repositories\Cache\CacheContactDecorator;
+use Modules\Isite\Repositories\ContactRepository;
+use Modules\Isite\Models\Contact;
+use Modules\Isite\Repositories\Eloquent\EloquentWhatsappRepository;
+use Modules\Isite\Repositories\Cache\CacheWhatsappDecorator;
+use Modules\Isite\Repositories\WhatsappRepository;
+use Modules\Isite\Models\Whatsapp;
 // append-use-bindings
+
+
 
 class IsiteServiceProvider extends ServiceProvider
 {
@@ -156,6 +166,22 @@ class IsiteServiceProvider extends ServiceProvider
 
     private function registerBindings(): void
     {
-        // append-bindings
+        $this->app->bind(ContactRepository::class, function () {
+    $repository = new EloquentContactRepository(new Contact());
+
+    return config('app.cache')
+        ? new CacheContactDecorator($repository)
+        : $repository;
+});
+$this->app->bind(WhatsappRepository::class, function () {
+    $repository = new EloquentWhatsappRepository(new Whatsapp());
+
+    return config('app.cache')
+        ? new CacheWhatsappDecorator($repository)
+        : $repository;
+});
+// append-bindings
+
+
     }
 }
