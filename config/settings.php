@@ -34,7 +34,7 @@ return [
   ],
   'siteDescription' => [
     'name' => 'isite::site-description',
-    'default' => null,
+    'default' => 'This is my site description',
     'isTranslatable' => true,
     'dynamicField' => [
       'type' => 'input',
